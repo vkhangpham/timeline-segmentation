@@ -1,0 +1,2164 @@
+{
+  "analysis_metadata": {
+    "domain_name": "computer_vision",
+    "analysis_date": "2025-06-16T12:34:09.182537",
+    "time_range": [
+      1962,
+      2023
+    ],
+    "total_papers_analyzed": 471,
+    "methodology": {
+      "shift_detection": "Enhanced Shift Signal Detection",
+      "period_characterization": "Temporal Network Stability Analysis",
+      "segment_merging": "Semantic Similarity & Weak Signal Analysis",
+      "change_points_detected": 9,
+      "statistical_significance": 0.6403830372472398
+    }
+  },
+  "segmentation_results": {
+    "change_points": [
+      1979,
+      1987,
+      1994,
+      1996,
+      2001,
+      2003,
+      2009,
+      2014,
+      2016
+    ],
+    "segments": [
+      [
+        1962,
+        1978
+      ],
+      [
+        1979,
+        1986
+      ],
+      [
+        1987,
+        1993
+      ],
+      [
+        1994,
+        2000
+      ],
+      [
+        2001,
+        2008
+      ],
+      [
+        2009,
+        2013
+      ],
+      [
+        2014,
+        2023
+      ]
+    ],
+    "statistical_significance": 0.6403830372472398,
+    "method_details": {
+      "change_points_detected": 9,
+      "burst_periods_detected": 0,
+      "methods_used": [
+        "enhanced_shift_signal"
+      ]
+    }
+  },
+  "timeline_analysis": {
+    "original_period_characterizations": [
+      {
+        "period": [
+          1962,
+          1978
+        ],
+        "topic_label": "Early Foundations of Computer Vision",
+        "topic_description": "During the period spanning from 1962 to 1978, computer vision research was primarily focused on establishing fundamental methods for image analysis. Early work centered around feature extraction techniques like texture classification and moment invariants for visual pattern recognition (Visual pattern recognition by moment invariants, 1962), alongside detection algorithms such as the Hough transformation introduced in Use of the Hough transformation to detect lines and curves in pictures (1972). Concurrently, papers on Digital Image Processing explored foundational concepts like image representation via Discrete Cosine Transform methods. This era laid critical groundwork for subsequent advancements by demonstrating feasible approaches to automated visual understanding.",
+        "network_stability": 0.3333333333333333,
+        "community_persistence": 0.65,
+        "flow_stability": 0.0,
+        "centrality_consensus": 0.995,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2044465660",
+            "title": "Textural Features for Image Classification",
+            "year": 1973,
+            "citation_count": 20414,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the significance of textural features in image classification, detailing easily computable features based on gray-tone spatial dependencies and their application in categorizing various types of imagery, including photomicrographs and satellite images. It presents experimental results demonstrating high identification accuracy across different datasets, suggesting the broad applicability of these textural features in image classification tasks.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, content-based image retrieval, image classification, object recognition, computer vision, multimedia retrieval, feature detection, deep learning, image representation, machine learning research, texture analysis, textural features, machine vision, digital image processing",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "content-based image retrieval",
+              "image classification",
+              "object recognition",
+              "computer vision",
+              "multimedia retrieval",
+              "feature detection",
+              "deep learning",
+              "image representation",
+              "machine learning research",
+              "texture analysis",
+              "textural features",
+              "machine vision",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W3017143921",
+            "title": "Pattern classification and scene analysis",
+            "year": 1973,
+            "citation_count": 12979,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article offers a comprehensive overview of statistical methods for pattern recognition and scene analysis, covering topics such as Bayesian decision theory, supervised and unsupervised learning, and various techniques for image classification and analysis within the fields of computer science and artificial intelligence.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, image classification, statistical pattern recognition, scene understanding, pattern classification, computer vision, machine learning, scene analysis, data science, spatial analysis, knowledge discovery, pattern analysis, machine learning research, machine vision",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "image classification",
+              "statistical pattern recognition",
+              "scene understanding",
+              "pattern classification",
+              "computer vision",
+              "machine learning",
+              "scene analysis",
+              "data science",
+              "spatial analysis",
+              "knowledge discovery",
+              "pattern analysis",
+              "machine learning research",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2159498975",
+            "title": "Visual pattern recognition by moment invariants",
+            "year": 1962,
+            "citation_count": 7298,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "This article presents a theory of two-dimensional moment invariants for recognizing planar geometric figures, establishing a fundamental theorem that connects these invariants to algebraic forms. It discusses the derivation of complete systems under various transformations and demonstrates practical applications in visual pattern recognition, including the ability to identify geometric patterns and alphabetical characters regardless of their position, size, or orientation.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, computer vision, visual pattern recognition, cognitive science, temporal pattern recognition, visual perception, vision recognition, machine vision, moment invariants",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "object recognition",
+              "computer vision",
+              "visual pattern recognition",
+              "cognitive science",
+              "temporal pattern recognition",
+              "visual perception",
+              "vision recognition",
+              "machine vision",
+              "moment invariants"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2095905764",
+            "title": "Use of the Hough transformation to detect lines and curves in pictures",
+            "year": 1972,
+            "citation_count": 5979,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the Hough transformation, a computationally efficient method for detecting lines and curves in images, highlighting the advantages of using angle-radius parameters over traditional slope-intercept forms. It also explores the broader applications of this technique in curve fitting and its implications for various fields such as computer vision, image analysis, and pattern recognition.\n\nTopic: pattern recognition, computer science, visual science, image analysis, neuroscience, object detection, image representation, hough transformation, computational imaging, computational geometry, localization, shift detection, machine vision, digital image processing, curve fitting, object recognition, computer vision, curve modeling, applied mathematics",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "visual science",
+              "image analysis",
+              "neuroscience",
+              "object detection",
+              "image representation",
+              "hough transformation",
+              "computational imaging",
+              "computational geometry",
+              "localization",
+              "shift detection",
+              "machine vision",
+              "digital image processing",
+              "curve fitting",
+              "object recognition",
+              "computer vision",
+              "curve modeling",
+              "applied mathematics"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2031614119",
+            "title": "Discrete Cosine Transform",
+            "year": 1974,
+            "citation_count": 4607,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the discrete cosine transform (DCT), detailing its definition, computation algorithm, and applications in digital processing, particularly in pattern recognition and Wiener filtering. It also compares the performance of DCT with other orthogonal transforms, including the optimal Karhunen-Lo\u00e8ve transform, in terms of rate-distortion criteria across various fields such as image analysis, computer vision, and machine learning.\n\nTopic: image analysis, computer science, aerospace engineering, computer vision, machine learning, biometrics, unmanned aircraft system, fourier expansion, source separation, deep learning, planetary sciences, discrete cosine transform, machine vision",
+            "keywords": [
+              "image analysis",
+              "computer science",
+              "aerospace engineering",
+              "computer vision",
+              "machine learning",
+              "biometrics",
+              "unmanned aircraft system",
+              "fourier expansion",
+              "source separation",
+              "deep learning",
+              "planetary sciences",
+              "discrete cosine transform",
+              "machine vision"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0,
+          "number_of_nodes": 7,
+          "number_of_edges": 0,
+          "average_clustering": 0.0,
+          "number_of_components": 7,
+          "degree_centralization": 0.0
+        },
+        "confidence": 0.6845833333333334
+      },
+      {
+        "period": [
+          1979,
+          1986
+        ],
+        "topic_label": "Feature-Based Image Analysis and Representation",
+        "topic_description": "During the period 1979-1986, computer vision research focused on extracting meaningful features from images for analysis. Key papers included 'Theory of edge detection' which provided a robust mathematical foundation for identifying edges in images, and 'Fractal-Based Description of Natural Scenes' that introduced methods to represent complex natural scenes using fractals. The development of image representation schemes like the Laplacian Pyramid ('The Laplacian Pyramid as a Compact Image Code') offered efficient ways to encode visual information. This era also saw early work on face recognition ('Understanding face recognition'), which aimed at automating human perception tasks, and an algorithm for medical imaging ('A Real-Time QRS Detection Algorithm') showing practical applications in pattern detection.",
+        "network_stability": 0.22374429223744288,
+        "community_persistence": 0.65,
+        "flow_stability": 0.6004442002713091,
+        "centrality_consensus": 0.9980631010485617,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2019111214",
+            "title": "Understanding face recognition",
+            "year": 1986,
+            "citation_count": 3739,
+            "score": 0.29432969863758907,
+            "is_breakthrough": false,
+            "abstract": "This article presents a theoretical model for understanding face recognition, outlining seven distinct types of information derived from faces and exploring the cognitive processes involved in recognizing familiar faces. It integrates findings from various studies, including laboratory experiments and observations of patients with cerebral injuries, to clarify the similarities and differences between face recognition and other forms of recognition, such as object and word recognition.\n\nTopic: pattern recognition, computer science, machine learning, face recognition, image analysis, information fusion, feature detection, cognitive science, data science, image representation, computational imaging, deep learning, machine learning research, machine vision, face detection, object recognition, feature extraction, automatic identification, computer vision",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "face recognition",
+              "image analysis",
+              "information fusion",
+              "feature detection",
+              "cognitive science",
+              "data science",
+              "image representation",
+              "computational imaging",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "face detection",
+              "object recognition",
+              "feature extraction",
+              "automatic identification",
+              "computer vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2158270878",
+            "title": "Fractal-Based Description of Natural Scenes",
+            "year": 1984,
+            "citation_count": 1769,
+            "score": 0.29432969863758907,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the use of fractal functions to effectively represent and compute natural shapes in images, such as mountains and trees, by modeling their surfaces. It highlights the advantages of fractals in generating realistic textures and their applications in image analysis, scene understanding, and pattern recognition.\n\nTopic: pattern recognition, computer science, image analysis, fractal, scene modeling, data science, fractal-based description, image representation, computational imaging, scene understanding, localization, deep learning, machine vision, digital image processing, scene interpretation, computer vision, geography, scene analysis, image sequence analysis, natural scenes",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "image analysis",
+              "fractal",
+              "scene modeling",
+              "data science",
+              "fractal-based description",
+              "image representation",
+              "computational imaging",
+              "scene understanding",
+              "localization",
+              "deep learning",
+              "machine vision",
+              "digital image processing",
+              "scene interpretation",
+              "computer vision",
+              "geography",
+              "scene analysis",
+              "image sequence analysis",
+              "natural scenes"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2162273778",
+            "title": "A Real-Time QRS Detection Algorithm",
+            "year": 1985,
+            "citation_count": 6820,
+            "score": 0.2118424861245044,
+            "is_breakthrough": false,
+            "abstract": "The article presents a real-time algorithm designed for the accurate detection of QRS complexes in ECG signals, achieving a 99.3% detection rate by utilizing digital analysis techniques and adaptive threshold adjustments to minimize false positives from interference. The algorithm's effectiveness is enhanced by a specialized bandpass filter, allowing for increased sensitivity in various heart rate morphologies.\n\nTopic: automatic target recognition, computer science, real-time monitoring, computer vision, machine learning, detection technique, deep learning, machine vision",
+            "keywords": [
+              "automatic target recognition",
+              "computer science",
+              "real-time monitoring",
+              "computer vision",
+              "machine learning",
+              "detection technique",
+              "deep learning",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2003370853",
+            "title": "Theory of edge detection",
+            "year": 1980,
+            "citation_count": 6016,
+            "score": 0.2118424861245044,
+            "is_breakthrough": false,
+            "abstract": "The article presents a theory of edge detection that analyzes intensity changes in images across various scales using second derivative Gaussian filters, leading to the identification of zero-crossing segments as oriented primitives. It further discusses how these segments, derived from surface discontinuities, can be combined to create a raw primal sketch, providing insights into image representation and psychophysical findings in the context of computer vision and image analysis.\n\nTopic: image analysis, pattern recognition, computer science, machine vision, graph theory, edge detection, theoretical computer science, computer vision, applied mathematics, feature detection, object detection, localization, systems engineering, image representation, spectral theory, detection technique, image segmentation, convex analysis",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "machine vision",
+              "graph theory",
+              "edge detection",
+              "theoretical computer science",
+              "computer vision",
+              "applied mathematics",
+              "feature detection",
+              "object detection",
+              "localization",
+              "systems engineering",
+              "image representation",
+              "spectral theory",
+              "detection technique",
+              "image segmentation",
+              "convex analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2103504761",
+            "title": "The Laplacian Pyramid as a Compact Image Code",
+            "year": 1983,
+            "citation_count": 5870,
+            "score": 0.2118424861245044,
+            "is_breakthrough": false,
+            "abstract": "The article presents a novel image encoding technique using a Laplacian pyramid structure, which employs local operators of varying scales to achieve data compression by removing pixel-to-pixel correlations and quantizing the difference image. This method enhances salient features and is well-suited for both compression and analysis tasks, supported by efficient coding and decoding algorithms.\n\nTopic: computational imaging, computer science, image coding, compact image code, computer vision, laplacian pyramid",
+            "keywords": [
+              "computational imaging",
+              "computer science",
+              "image coding",
+              "compact image code",
+              "computer vision",
+              "laplacian pyramid"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.01098901098901099,
+          "number_of_nodes": 14,
+          "number_of_edges": 2,
+          "average_clustering": 0.0,
+          "number_of_components": 14,
+          "degree_centralization": 0.15384615384615385
+        },
+        "confidence": 0.9730079533343833
+      },
+      {
+        "period": [
+          1987,
+          1993
+        ],
+        "topic_label": "Emergence of Statistical Learning in Computer Vision",
+        "topic_description": "During the period spanning from 1987 to 1993, computer vision research began exploring statistical learning methods as a key paradigm for pattern recognition. This era saw significant advancements through papers like 'High confidence visual recognition of persons by a test of statistical independence' and 'Face recognition: features versus templates', which applied hypothesis testing frameworks to biometric challenges such as face recognition. The development of image representation techniques including wavelet-based approaches in 'Embedded image coding using zerotrees of wavelet coefficients' further demonstrated the integration of mathematical tools for efficient digital processing. This period marked a transition from earlier foundation-based methods toward more sophisticated, data-driven analysis.",
+        "network_stability": 0.32247706422018346,
+        "community_persistence": 0.6512532981530343,
+        "flow_stability": 0.0,
+        "centrality_consensus": 0.9950394717619491,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2053691921",
+            "title": "Embedded image coding using zerotrees of wavelet coefficients",
+            "year": 1993,
+            "citation_count": 4862,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the embedded zerotree wavelet (EZW) algorithm, a highly effective image compression technique that generates a bit stream in order of importance, allowing for flexible encoding and decoding based on target rates or distortion metrics. It highlights the algorithm's competitive performance against other methods without requiring prior training or knowledge, leveraging key concepts such as hierarchical subband decomposition and adaptive arithmetic coding.\n\nTopic: image analysis, computational imaging, computer science, image compression, image coding, digital signal processing, computer vision, wavelet coefficients, wavelet, image representation, wavelet theory, principal component analysis, digital image processing",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "image compression",
+              "image coding",
+              "digital signal processing",
+              "computer vision",
+              "wavelet coefficients",
+              "wavelet",
+              "image representation",
+              "wavelet theory",
+              "principal component analysis",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1963623641",
+            "title": "A survey of image registration techniques",
+            "year": 1992,
+            "citation_count": 4015,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article provides a comprehensive overview of image registration techniques, which are essential for aligning images taken under varying conditions, such as different times or viewpoints. It categorizes these techniques into three major types based on the sources of misalignment and discusses their applications in fields like medical imaging, satellite monitoring, and autonomous navigation, while emphasizing the importance of understanding the characteristics of each variation to select the most suitable registration method.\n\nTopic: image analysis, pattern recognition, computer science, image registration techniques, computer vision, image registration, image classification, digital image processing",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "image registration techniques",
+              "computer vision",
+              "image registration",
+              "image classification",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2102796633",
+            "title": "High confidence visual recognition of persons by a test of statistical independence",
+            "year": 1993,
+            "citation_count": 3211,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel method for rapid visual recognition of individuals using statistical independence tests, focusing on the unique features of the iris in facial recognition. By encoding iris images into compact sequences and employing statistical decision theory, the method achieves high identification accuracy and confidence levels, with a theoretical error rate of one in 131,000.\n\nTopic: image analysis, pattern recognition, statistical independence, computer vision, visual diagnosis, biometrics, biostatistics, visual perception, statistics, image representation, image similarity, human identification, vision recognition, machine vision, face detection",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "statistical independence",
+              "computer vision",
+              "visual diagnosis",
+              "biometrics",
+              "biostatistics",
+              "visual perception",
+              "statistics",
+              "image representation",
+              "image similarity",
+              "human identification",
+              "vision recognition",
+              "machine vision",
+              "face detection"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2099838434",
+            "title": "The Lens Opacities Classification System III",
+            "year": 1993,
+            "citation_count": 2647,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the development of the Lens Opacities Classification System III (LOCS III), which addresses the limitations of its predecessor, LOCS II, by introducing a more precise grading system for cataracts using a decimal scale and an expanded set of standards. This new system enhances interobserver agreement and improves the classification of nuclear, cortical, and posterior subcapsular cataracts through advanced imaging techniques.\n\nTopic: image analysis, pattern recognition, optical image recognition, computer vision, localization, image representation, machine learning research, earth science, digital image processing",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "optical image recognition",
+              "computer vision",
+              "localization",
+              "image representation",
+              "machine learning research",
+              "earth science",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2113341759",
+            "title": "Face recognition: features versus templates",
+            "year": 1993,
+            "citation_count": 2446,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article discusses two new algorithms for computer-based face recognition: one that utilizes geometrical features of the face and another that employs template matching techniques. Both methods demonstrate approximately 90% accuracy in recognizing faces, highlighting advancements in image analysis and pattern recognition within the field of computer vision.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, machine vision, image classification, object recognition, feature extraction, computer vision, machine learning, feature detection, biometrics, image representation, face recognition, machine learning research, design, feature (computer vision)",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "machine vision",
+              "image classification",
+              "object recognition",
+              "feature extraction",
+              "computer vision",
+              "machine learning",
+              "feature detection",
+              "biometrics",
+              "image representation",
+              "face recognition",
+              "machine learning research",
+              "design",
+              "feature (computer vision)"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.002631578947368421,
+          "number_of_nodes": 20,
+          "number_of_edges": 1,
+          "average_clustering": 0.0,
+          "number_of_components": 19,
+          "degree_centralization": 0.05263157894736842
+        },
+        "confidence": 0.8053503532706339
+      },
+      {
+        "period": [
+          1994,
+          2000
+        ],
+        "topic_label": "Statistical Learning in Computer Vision",
+        "topic_description": "During the period spanning 1987 to 1993, computer vision research began exploring statistical learning methods as a key paradigm for pattern recognition. This era saw significant advancements through papers like 'High confidence visual recognition of persons by a test of statistical independence' and 'Face recognition: features versus templates', which applied hypothesis testing frameworks to biometric challenges such as face recognition. The development of image representation techniques including wavelet-based approaches in 'Embedded image coding using zerotrees of wavelet coefficients' further demonstrated the integration of mathematical tools for efficient digital processing. This period marked a transition from earlier foundation-based methods toward more sophisticated, data-driven analysis.",
+        "network_stability": 0.25253642845572144,
+        "community_persistence": 0.4085075660489838,
+        "flow_stability": 0.6147071757965948,
+        "centrality_consensus": 0.995096117674434,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2098947662",
+            "title": "View-based and modular eigenspaces for face recognition",
+            "year": 1994,
+            "citation_count": 1842,
+            "score": 0.25319950620604736,
+            "is_breakthrough": false,
+            "abstract": "The article discusses experiments with eigenfaces for face recognition and interactive search within a large-scale database of approximately 1,000 faces, exploring the challenges of varying viewing orientations. It introduces a view-based multiple-observer eigenspace technique and a modular description that enhances recognition accuracy by focusing on key facial features, ultimately demonstrating a more robust framework for automatic feature extraction.\n\nTopic: pattern recognition, computer science, multi-view geometry, machine learning, face recognition, image analysis, information fusion, modular eigenspaces, feature detection, cognitive science, object detection, data science, image representation, computational imaging, deep learning, machine learning research, machine vision, face detection, object recognition, computer vision",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "multi-view geometry",
+              "machine learning",
+              "face recognition",
+              "image analysis",
+              "information fusion",
+              "modular eigenspaces",
+              "feature detection",
+              "cognitive science",
+              "object detection",
+              "data science",
+              "image representation",
+              "computational imaging",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "face detection",
+              "object recognition",
+              "computer vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2167667767",
+            "title": "A flexible new technique for camera calibration",
+            "year": 2000,
+            "citation_count": 12438,
+            "score": 0.2492550314935949,
+            "is_breakthrough": true,
+            "abstract": "The article presents a new flexible technique for camera calibration that requires only a planar pattern observed from at least two different orientations, allowing for easy implementation without the need for expensive equipment. The method models radial lens distortion and combines a closed-form solution with nonlinear refinement, demonstrating effective results through both simulations and real data applications.\n\nTopic: computer science, calibration, computer vision, camera calibration",
+            "keywords": [
+              "computer science",
+              "calibration",
+              "computer vision",
+              "camera calibration"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2159686933",
+            "title": "Example-based learning for view-based human face detection",
+            "year": 1998,
+            "citation_count": 1778,
+            "score": 0.24816929814445707,
+            "is_breakthrough": true,
+            "abstract": "The article discusses an example-based learning method for detecting vertical frontal views of human faces in complex environments, utilizing model clusters of \"face\" and \"nonface\" patterns. It emphasizes the importance of a distance metric in computing feature vectors and clusters for effective classification of face presence in images.\n\nTopic: image analysis, pattern recognition, computer science, human-computer interaction, explanation-based learning, computer vision, machine learning, instance-based learning, machine vision, face detection, example-based learning",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "human-computer interaction",
+              "explanation-based learning",
+              "computer vision",
+              "machine learning",
+              "instance-based learning",
+              "machine vision",
+              "face detection",
+              "example-based learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2131938193",
+            "title": "A pyramid approach to subpixel registration based on intensity",
+            "year": 1998,
+            "citation_count": 2844,
+            "score": 0.2423202180863627,
+            "is_breakthrough": true,
+            "abstract": "The article presents an automatic subpixel registration algorithm that utilizes a pyramid approach to minimize intensity differences between reference and test datasets, applicable to both 2D images and 3D volumes. By employing a coarse-to-fine iterative strategy and a new variation of the Marquardt-Levenberg optimization, the method achieves robust and efficient registration, particularly for intramodality PET and fMRI data, while also addressing image contrast differences.\n\nTopic: image analysis, computational imaging, computer science, image formation, computer vision, applied mathematics, image reconstruction, image representation, image registration, machine vision, digital image processing",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "image formation",
+              "computer vision",
+              "applied mathematics",
+              "image reconstruction",
+              "image representation",
+              "image registration",
+              "machine vision",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2115213191",
+            "title": "A Bayesian computer vision system for modeling human interactions",
+            "year": 2000,
+            "citation_count": 1605,
+            "score": 0.24183116477951475,
+            "is_breakthrough": true,
+            "abstract": "The article presents a real-time Bayesian computer vision system designed to recognize and model human interactions in visual surveillance, focusing on detecting and classifying behaviors such as following or altering paths to meet others. It compares two state-based architectures, HMMs and CHMMs, and utilizes synthetic training to develop flexible prior models that accurately classify interactions without the need for additional tuning.\n\nTopic: computer science, human-computer interaction, computer vision, bayesian analysis, bayesian network",
+            "keywords": [
+              "computer science",
+              "human-computer interaction",
+              "computer vision",
+              "bayesian analysis",
+              "bayesian network"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.010629251700680272,
+          "number_of_nodes": 49,
+          "number_of_edges": 25,
+          "average_clustering": 0.12857142857142856,
+          "number_of_components": 33,
+          "degree_centralization": 0.10815602836879433
+        },
+        "confidence": 0.920858080497335
+      },
+      {
+        "period": [
+          2001,
+          2008
+        ],
+        "topic_label": "Statistical Learning for Computer Vision Tasks",
+        "topic_description": "During the period spanning from 2001 to 2008, computer vision research increasingly turned towards statistical learning approaches to tackle complex tasks such as face recognition. This era was marked by papers like 'Mean shift: a robust approach toward feature space analysis' and 'Face recognition using eigenfaces', which demonstrated how probabilistic models could be applied effectively for visual pattern recognition problems. Concurrently, the development of methods including interactive graph cuts ('Interactive graph cuts for optimal boundary & region segmentation') and support vector machines ('Training support vector machines: an application to face detection') highlighted a growing focus on optimizing performance in tasks like object segmentation and detection.",
+        "network_stability": 0.31716226223533406,
+        "community_persistence": 0.46326191579392617,
+        "flow_stability": 0.6523135761563564,
+        "centrality_consensus": 0.9950369340921354,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2124351082",
+            "title": "Training support vector machines: an application to face detection",
+            "year": 2002,
+            "citation_count": 2465,
+            "score": 0.2550062964632594,
+            "is_breakthrough": true,
+            "abstract": "The article explores the use of Support Vector Machines (SVMs) in computer vision, specifically for face detection, detailing the optimization techniques used to train SVMs on large datasets and presenting experimental results that demonstrate the effectiveness of this approach.\n\nTopic: image analysis, pattern recognition, computer science, support vector machine, computer vision, machine learning, object detection, machine vision, face detection",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "support vector machine",
+              "computer vision",
+              "machine learning",
+              "object detection",
+              "machine vision",
+              "face detection"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2169551590",
+            "title": "Interactive graph cuts for optimal boundary &amp; region segmentation of objects in N-D images",
+            "year": 2002,
+            "citation_count": 3532,
+            "score": 0.2501962298563852,
+            "is_breakthrough": true,
+            "abstract": "This article presents a novel technique for interactive segmentation of N-dimensional images using graph cuts, allowing users to define object and background pixels to achieve optimal boundary and region segmentation. The method incorporates both hard and soft constraints, demonstrating effectiveness in various applications such as photo editing and medical imaging, while also showcasing a fast implementation through a max-flow algorithm.\n\nTopic: computer science, computer vision, n-d images, interactive graph cuts, image segmentation, region segmentation",
+            "keywords": [
+              "computer science",
+              "computer vision",
+              "n-d images",
+              "interactive graph cuts",
+              "image segmentation",
+              "region segmentation"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2098693229",
+            "title": "Face recognition using eigenfaces",
+            "year": 2002,
+            "citation_count": 5301,
+            "score": 0.248018437574809,
+            "is_breakthrough": true,
+            "abstract": "The article discusses a near-real-time face recognition system that utilizes the concept of 'eigenfaces' to detect and identify human faces by projecting face images onto a feature space, allowing for the recognition of individuals based on their unique characteristics in an unsupervised manner. This approach leverages two-dimensional representations of faces to effectively encode variations and improve recognition accuracy.\n\nTopic: pattern recognition, computer science, face recognition, image analysis, information fusion, feature detection, data science, computational imaging, localization, deep learning, machine learning research, machine vision, digital image processing, face detection, object recognition, feature extraction, computer vision, applied mathematics, image classification",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "face recognition",
+              "image analysis",
+              "information fusion",
+              "feature detection",
+              "data science",
+              "computational imaging",
+              "localization",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "digital image processing",
+              "face detection",
+              "object recognition",
+              "feature extraction",
+              "computer vision",
+              "applied mathematics",
+              "image classification"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2067191022",
+            "title": "Mean shift: a robust approach toward feature space analysis",
+            "year": 2002,
+            "citation_count": 10781,
+            "score": 0.24684764626760625,
+            "is_breakthrough": true,
+            "abstract": "The article presents a non-parametric mean shift technique for analyzing complex multimodal feature spaces and identifying arbitrarily shaped clusters, demonstrating its effectiveness through applications in image segmentation and discontinuity-preserving smoothing. It highlights the convergence of the method and its robust performance in various low-level vision tasks, supported by extensive experimental results.\n\nTopic: pattern recognition, computer science, machine learning, feature space analysis, mean shift, image analysis, information fusion, structure from motion, feature detection, data science, feature (computer vision), computational imaging, robust feature, deep learning, computational statistic, machine learning research, shift detection, machine vision, computer vision, applied mathematics",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "feature space analysis",
+              "mean shift",
+              "image analysis",
+              "information fusion",
+              "structure from motion",
+              "feature detection",
+              "data science",
+              "feature (computer vision)",
+              "computational imaging",
+              "robust feature",
+              "deep learning",
+              "computational statistic",
+              "machine learning research",
+              "shift detection",
+              "machine vision",
+              "computer vision",
+              "applied mathematics"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2123921160",
+            "title": "From few to many: illumination cone models for face recognition under variable lighting and pose",
+            "year": 2001,
+            "citation_count": 4777,
+            "score": 0.2409103978181823,
+            "is_breakthrough": true,
+            "abstract": "The article presents a generative method for face recognition that utilizes illumination cone models to effectively recognize faces under varying lighting and poses. By reconstructing shape albedo from a limited number of training images, the approach synthesizes novel poses and achieves high accuracy in identity assignment, even in challenging conditions.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, computer vision, machine learning, face recognition, illumination modeling, variable lighting, illumination cone models, machine vision",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "object recognition",
+              "computer vision",
+              "machine learning",
+              "face recognition",
+              "illumination modeling",
+              "variable lighting",
+              "illumination cone models",
+              "machine vision"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.00820534399326741,
+          "number_of_nodes": 98,
+          "number_of_edges": 78,
+          "average_clustering": 0.09280855199222546,
+          "number_of_components": 38,
+          "degree_centralization": 0.056915807560137456
+        },
+        "confidence": 0.947970392035775
+      },
+      {
+        "period": [
+          2009,
+          2013
+        ],
+        "topic_label": "Statistical Learning for Computer Vision Tasks",
+        "topic_description": "During the period spanning from 2001 to 2008, computer vision research increasingly turned towards statistical learning approaches to tackle complex tasks such as face recognition. This era was marked by papers like 'Mean shift: a robust approach toward feature space analysis' and 'Face recognition using eigenfaces', which demonstrated how probabilistic models could be applied effectively for visual pattern recognition problems. Concurrently, the development of methods including interactive graph cuts ('Interactive graph cuts for optimal boundary & region segmentation') and support vector machines ('Training support vector machines: an application to face detection') highlighted a growing focus on optimizing performance in tasks like object segmentation and detection.",
+        "network_stability": 0.3187732286742188,
+        "community_persistence": 0.4517144713538665,
+        "flow_stability": 0.6214153036748905,
+        "centrality_consensus": 0.9950466994204794,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2546302380",
+            "title": "What is the best multi-stage architecture for object recognition?",
+            "year": 2009,
+            "citation_count": 2057,
+            "score": 0.2525930213314843,
+            "is_breakthrough": true,
+            "abstract": "The article explores the effectiveness of multi-stage architectures in object recognition systems, focusing on the impact of non-linear transformations, the benefits of learned filters over hardwired ones, and the advantages of using multiple extraction stages. It highlights key findings, including the importance of rectification and local contrast normalization for accuracy, and presents results demonstrating significant performance improvements on benchmark datasets like Caltech-101 and MNIST.\n\nTopic: computer science, machine learning, image analysis, information fusion, convolutional neural network, robot learning, object detection, image representation, computational imaging, neural architecture search, systems engineering, deep learning, 3d object recognition, machine vision, best multi-stage architecture, object recognition, computer vision, architecture, neural network (machine learning)",
+            "keywords": [
+              "computer science",
+              "machine learning",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "robot learning",
+              "object detection",
+              "image representation",
+              "computational imaging",
+              "neural architecture search",
+              "systems engineering",
+              "deep learning",
+              "3d object recognition",
+              "machine vision",
+              "best multi-stage architecture",
+              "object recognition",
+              "computer vision",
+              "architecture",
+              "neural network (machine learning)"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2167089254",
+            "title": "Visual tracking with online Multiple Instance Learning",
+            "year": 2009,
+            "citation_count": 1749,
+            "score": 0.2421379606465717,
+            "is_breakthrough": true,
+            "abstract": "This article discusses a novel approach to object tracking using Multiple Instance Learning (MIL) to develop an adaptive appearance model, which enhances the robustness of tracking by reducing inaccuracies in labeled training examples compared to traditional supervised methods. The proposed MIL algorithm demonstrates superior performance in real-time tracking scenarios, addressing challenges associated with drift in tracking systems.\n\nTopic: multi-task learning, image analysis, computer science, computer vision, machine learning, deep learning, multiple instance learning, machine vision",
+            "keywords": [
+              "multi-task learning",
+              "image analysis",
+              "computer science",
+              "computer vision",
+              "machine learning",
+              "deep learning",
+              "multiple instance learning",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2129812935",
+            "title": "Robust Face Recognition via Sparse Representation",
+            "year": 2009,
+            "citation_count": 9264,
+            "score": 0.24029971572277795,
+            "is_breakthrough": true,
+            "abstract": "The article discusses a novel approach to robust face recognition using sparse representation techniques, addressing challenges such as varying expressions, illumination, and occlusion. It proposes a classification algorithm based on l{1}-minimization that enhances feature extraction and demonstrates improved performance over traditional methods through extensive experiments on publicly available databases.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, object recognition, feature learning, feature extraction, computer vision, machine learning, feature detection, data science, sparse representation, deep learning, image representation, machine vision, robust face recognition",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "object recognition",
+              "feature learning",
+              "feature extraction",
+              "computer vision",
+              "machine learning",
+              "feature detection",
+              "data science",
+              "sparse representation",
+              "deep learning",
+              "image representation",
+              "machine vision",
+              "robust face recognition"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2536599074",
+            "title": "Non-local sparse models for image restoration",
+            "year": 2009,
+            "citation_count": 1641,
+            "score": 0.24029971572277795,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel approach to image restoration that combines adaptive sparse signal representations with non-local means, leveraging self-similarities in natural images. Through joint decomposition of similar signals using a learned dictionary, the proposed method demonstrates superior performance in denoising and demosaicking tasks, effectively restoring images from digital cameras with improved speed and memory efficiency.\n\nTopic: image analysis, computational imaging, computer science, compressive sensing, non-local sparse models, image restoration, computer vision, machine learning, sparse neural network, image reconstruction, sparse representation, image representation, machine learning research, digital image processing",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "compressive sensing",
+              "non-local sparse models",
+              "image restoration",
+              "computer vision",
+              "machine learning",
+              "sparse neural network",
+              "image reconstruction",
+              "sparse representation",
+              "image representation",
+              "machine learning research",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2024165284",
+            "title": "Tensor Decompositions and Applications",
+            "year": 2009,
+            "citation_count": 8929,
+            "score": 0.2381543324616449,
+            "is_breakthrough": true,
+            "abstract": "This article surveys higher-order tensor decompositions, highlighting their applications across various fields such as psychometrics, signal processing, and computer vision, while also discussing notable decomposition methods like CANDECOMP/PARAFAC and Tucker decomposition, along with available software tools for tensor analysis.\n\nTopic: mathematics, computational imaging, computer science, dimensionality reduction, linear algebra, operator theory, parameter identification, tensor decompositions, matrix analysis, computer vision, low-rank approximation, applied mathematics, numerical linear algebra, spectral theory, machine learning research, feature construction, computational geometry",
+            "keywords": [
+              "mathematics",
+              "computational imaging",
+              "computer science",
+              "dimensionality reduction",
+              "linear algebra",
+              "operator theory",
+              "parameter identification",
+              "tensor decompositions",
+              "matrix analysis",
+              "computer vision",
+              "low-rank approximation",
+              "applied mathematics",
+              "numerical linear algebra",
+              "spectral theory",
+              "machine learning research",
+              "feature construction",
+              "computational geometry"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.006479081821547575,
+          "number_of_nodes": 74,
+          "number_of_edges": 35,
+          "average_clustering": 0.07207207207207207,
+          "number_of_components": 42,
+          "degree_centralization": 0.05707762557077625
+        },
+        "confidence": 0.9291328348886015
+      },
+      {
+        "period": [
+          2014,
+          2023
+        ],
+        "topic_label": "Dominance of Deep Learning in Computer Vision",
+        "topic_description": "During the period spanning 2014-2023, computer vision research was characterized by the widespread adoption of deep learning techniques. Key papers such as Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation (2014) demonstrated how convolutional neural networks could improve object detection tasks. Fully convolutional networks for semantic segmentation (CVPR 2015) further advanced this paradigm by enabling pixel-wise image understanding, while Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (2015) highlighted the effectiveness of deep neural architectures in achieving state-of-the-art performance. DeCAF and OverFeat established early proof-of-concepts for leveraging deep learning features across various recognition tasks.",
+        "network_stability": 0.4184530924530343,
+        "community_persistence": 0.39091472481505185,
+        "flow_stability": 0.6583556251657958,
+        "centrality_consensus": 0.9950356524739122,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2102605133",
+            "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+            "year": 2014,
+            "citation_count": 24628,
+            "score": 0.30006423785925895,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with domain-specific fine-tuning when labeled data is limited.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "fuzzy set",
+              "image analysis",
+              "information fusion",
+              "accurate object detection",
+              "feature detection",
+              "cognitive science",
+              "object detection",
+              "data science",
+              "object categorization",
+              "computational imaging",
+              "localization",
+              "deep learning",
+              "machine vision",
+              "rich feature hierarchies",
+              "semantic segmentation",
+              "object recognition",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1903029394",
+            "title": "Fully convolutional networks for semantic segmentation",
+            "year": 2015,
+            "citation_count": 28292,
+            "score": 0.2951010372168401,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and reports significant performance improvements on benchmark datasets like PASCAL VOC and NYUDv2.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "image segmentation",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "convolutional networks",
+              "cognitive science",
+              "data science",
+              "computational imaging",
+              "scene understanding",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "semantic segmentation",
+              "medical image computing",
+              "feature extraction",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2155541015",
+            "title": "DeCAF: A Deep Convolutional Activation Feature for Generic Visual Recognition",
+            "year": 2014,
+            "citation_count": 3290,
+            "score": 0.2751822705838736,
+            "is_breakthrough": true,
+            "abstract": "The article presents DeCAF, a deep convolutional activation feature designed to assess the effectiveness of features from a fully supervised deep learning model for various generic visual recognition tasks. It highlights the ability of these features to be repurposed for novel applications, demonstrating superior performance in several vision challenges and providing an open-source implementation for further research in visual concept learning.\n\nTopic: pattern recognition, computer science, feature learning, machine learning, visual science, generic visual recognition, image analysis, information fusion, convolutional neural network, cognitive science, data science, image representation, vision recognition, feature (computer vision), computational imaging, deep learning, machine vision, visual question answering, computer vision",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "feature learning",
+              "machine learning",
+              "visual science",
+              "generic visual recognition",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "cognitive science",
+              "data science",
+              "image representation",
+              "vision recognition",
+              "feature (computer vision)",
+              "computational imaging",
+              "deep learning",
+              "machine vision",
+              "visual question answering",
+              "computer vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2963542991",
+            "title": "OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks",
+            "year": 2014,
+            "citation_count": 2672,
+            "score": 0.2707477249326735,
+            "is_breakthrough": true,
+            "abstract": "The article presents OverFeat, an integrated framework that utilizes Convolutional Networks for classification, localization, and detection of objects, employing a multiscale sliding window approach and novel deep learning techniques to enhance detection confidence. It highlights the framework's success in the ImageNet Large Scale Visual Recognition Challenge 2013 and its contributions to advancing state-of-the-art performance in image analysis and object recognition tasks.\n\nTopic: image analysis, pattern recognition, computer science, convolutional networks, object recognition, integrated recognition, computer vision, machine learning, feature detection, object detection, localization, deep learning, shift detection",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "convolutional networks",
+              "object recognition",
+              "integrated recognition",
+              "computer vision",
+              "machine learning",
+              "feature detection",
+              "object detection",
+              "localization",
+              "deep learning",
+              "shift detection"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1677182931",
+            "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+            "year": 2015,
+            "citation_count": 14420,
+            "score": 0.25692761064302017,
+            "is_breakthrough": true,
+            "abstract": "The article explores advancements in rectifier networks for image classification, introducing the Parametric Linear Unit (PReLU) to enhance model fitting with minimal computational cost and risk of overfitting. It also presents a robust initialization method for training deep models, achieving a groundbreaking 4.94% top-5 test error on the ImageNet 2012 dataset, surpassing human-level performance for the first time.\n\nTopic: digital image processing, sparse neural network, imagenet classification, computer science, machine learning research, deep learning, machine vision, adversarial machine learning, image representation, human-level performance, human image synthesis, computational imaging, geometric learning, machine learning, data science, computer vision, cognitive science, computational intelligence, convolutional neural network, image analysis",
+            "keywords": [
+              "digital image processing",
+              "sparse neural network",
+              "imagenet classification",
+              "computer science",
+              "machine learning research",
+              "deep learning",
+              "machine vision",
+              "adversarial machine learning",
+              "image representation",
+              "human-level performance",
+              "human image synthesis",
+              "computational imaging",
+              "geometric learning",
+              "machine learning",
+              "data science",
+              "computer vision",
+              "cognitive science",
+              "computational intelligence",
+              "convolutional neural network",
+              "image analysis"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.02215218991534781,
+          "number_of_nodes": 209,
+          "number_of_edges": 963,
+          "average_clustering": 0.32121557165406156,
+          "number_of_components": 17,
+          "degree_centralization": 0.24651616499442586
+        },
+        "confidence": 1.0
+      }
+    ],
+    "final_period_characterizations": [
+      {
+        "period": [
+          1962,
+          1978
+        ],
+        "topic_label": "Early Foundations of Computer Vision",
+        "topic_description": "During the period spanning from 1962 to 1978, computer vision research was primarily focused on establishing fundamental methods for image analysis. Early work centered around feature extraction techniques like texture classification and moment invariants for visual pattern recognition (Visual pattern recognition by moment invariants, 1962), alongside detection algorithms such as the Hough transformation introduced in Use of the Hough transformation to detect lines and curves in pictures (1972). Concurrently, papers on Digital Image Processing explored foundational concepts like image representation via Discrete Cosine Transform methods. This era laid critical groundwork for subsequent advancements by demonstrating feasible approaches to automated visual understanding.",
+        "network_stability": 0.3333333333333333,
+        "community_persistence": 0.65,
+        "flow_stability": 0.0,
+        "centrality_consensus": 0.995,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2044465660",
+            "title": "Textural Features for Image Classification",
+            "year": 1973,
+            "citation_count": 20414,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the significance of textural features in image classification, detailing easily computable features based on gray-tone spatial dependencies and their application in categorizing various types of imagery, including photomicrographs and satellite images. It presents experimental results demonstrating high identification accuracy across different datasets, suggesting the broad applicability of these textural features in image classification tasks.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, content-based image retrieval, image classification, object recognition, computer vision, multimedia retrieval, feature detection, deep learning, image representation, machine learning research, texture analysis, textural features, machine vision, digital image processing",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "content-based image retrieval",
+              "image classification",
+              "object recognition",
+              "computer vision",
+              "multimedia retrieval",
+              "feature detection",
+              "deep learning",
+              "image representation",
+              "machine learning research",
+              "texture analysis",
+              "textural features",
+              "machine vision",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W3017143921",
+            "title": "Pattern classification and scene analysis",
+            "year": 1973,
+            "citation_count": 12979,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article offers a comprehensive overview of statistical methods for pattern recognition and scene analysis, covering topics such as Bayesian decision theory, supervised and unsupervised learning, and various techniques for image classification and analysis within the fields of computer science and artificial intelligence.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, image classification, statistical pattern recognition, scene understanding, pattern classification, computer vision, machine learning, scene analysis, data science, spatial analysis, knowledge discovery, pattern analysis, machine learning research, machine vision",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "image classification",
+              "statistical pattern recognition",
+              "scene understanding",
+              "pattern classification",
+              "computer vision",
+              "machine learning",
+              "scene analysis",
+              "data science",
+              "spatial analysis",
+              "knowledge discovery",
+              "pattern analysis",
+              "machine learning research",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2159498975",
+            "title": "Visual pattern recognition by moment invariants",
+            "year": 1962,
+            "citation_count": 7298,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "This article presents a theory of two-dimensional moment invariants for recognizing planar geometric figures, establishing a fundamental theorem that connects these invariants to algebraic forms. It discusses the derivation of complete systems under various transformations and demonstrates practical applications in visual pattern recognition, including the ability to identify geometric patterns and alphabetical characters regardless of their position, size, or orientation.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, computer vision, visual pattern recognition, cognitive science, temporal pattern recognition, visual perception, vision recognition, machine vision, moment invariants",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "object recognition",
+              "computer vision",
+              "visual pattern recognition",
+              "cognitive science",
+              "temporal pattern recognition",
+              "visual perception",
+              "vision recognition",
+              "machine vision",
+              "moment invariants"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2095905764",
+            "title": "Use of the Hough transformation to detect lines and curves in pictures",
+            "year": 1972,
+            "citation_count": 5979,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the Hough transformation, a computationally efficient method for detecting lines and curves in images, highlighting the advantages of using angle-radius parameters over traditional slope-intercept forms. It also explores the broader applications of this technique in curve fitting and its implications for various fields such as computer vision, image analysis, and pattern recognition.\n\nTopic: pattern recognition, computer science, visual science, image analysis, neuroscience, object detection, image representation, hough transformation, computational imaging, computational geometry, localization, shift detection, machine vision, digital image processing, curve fitting, object recognition, computer vision, curve modeling, applied mathematics",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "visual science",
+              "image analysis",
+              "neuroscience",
+              "object detection",
+              "image representation",
+              "hough transformation",
+              "computational imaging",
+              "computational geometry",
+              "localization",
+              "shift detection",
+              "machine vision",
+              "digital image processing",
+              "curve fitting",
+              "object recognition",
+              "computer vision",
+              "curve modeling",
+              "applied mathematics"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2031614119",
+            "title": "Discrete Cosine Transform",
+            "year": 1974,
+            "citation_count": 4607,
+            "score": 0.24285714285714285,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the discrete cosine transform (DCT), detailing its definition, computation algorithm, and applications in digital processing, particularly in pattern recognition and Wiener filtering. It also compares the performance of DCT with other orthogonal transforms, including the optimal Karhunen-Lo\u00e8ve transform, in terms of rate-distortion criteria across various fields such as image analysis, computer vision, and machine learning.\n\nTopic: image analysis, computer science, aerospace engineering, computer vision, machine learning, biometrics, unmanned aircraft system, fourier expansion, source separation, deep learning, planetary sciences, discrete cosine transform, machine vision",
+            "keywords": [
+              "image analysis",
+              "computer science",
+              "aerospace engineering",
+              "computer vision",
+              "machine learning",
+              "biometrics",
+              "unmanned aircraft system",
+              "fourier expansion",
+              "source separation",
+              "deep learning",
+              "planetary sciences",
+              "discrete cosine transform",
+              "machine vision"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0,
+          "number_of_nodes": 7,
+          "number_of_edges": 0,
+          "average_clustering": 0.0,
+          "number_of_components": 7,
+          "degree_centralization": 0.0
+        },
+        "confidence": 0.6845833333333334
+      },
+      {
+        "period": [
+          1979,
+          1986
+        ],
+        "topic_label": "Feature-Based Image Analysis and Representation",
+        "topic_description": "During the period 1979-1986, computer vision research focused on extracting meaningful features from images for analysis. Key papers included 'Theory of edge detection' which provided a robust mathematical foundation for identifying edges in images, and 'Fractal-Based Description of Natural Scenes' that introduced methods to represent complex natural scenes using fractals. The development of image representation schemes like the Laplacian Pyramid ('The Laplacian Pyramid as a Compact Image Code') offered efficient ways to encode visual information. This era also saw early work on face recognition ('Understanding face recognition'), which aimed at automating human perception tasks, and an algorithm for medical imaging ('A Real-Time QRS Detection Algorithm') showing practical applications in pattern detection.",
+        "network_stability": 0.22374429223744288,
+        "community_persistence": 0.65,
+        "flow_stability": 0.6004442002713091,
+        "centrality_consensus": 0.9980631010485617,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2019111214",
+            "title": "Understanding face recognition",
+            "year": 1986,
+            "citation_count": 3739,
+            "score": 0.29432969863758907,
+            "is_breakthrough": false,
+            "abstract": "This article presents a theoretical model for understanding face recognition, outlining seven distinct types of information derived from faces and exploring the cognitive processes involved in recognizing familiar faces. It integrates findings from various studies, including laboratory experiments and observations of patients with cerebral injuries, to clarify the similarities and differences between face recognition and other forms of recognition, such as object and word recognition.\n\nTopic: pattern recognition, computer science, machine learning, face recognition, image analysis, information fusion, feature detection, cognitive science, data science, image representation, computational imaging, deep learning, machine learning research, machine vision, face detection, object recognition, feature extraction, automatic identification, computer vision",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "face recognition",
+              "image analysis",
+              "information fusion",
+              "feature detection",
+              "cognitive science",
+              "data science",
+              "image representation",
+              "computational imaging",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "face detection",
+              "object recognition",
+              "feature extraction",
+              "automatic identification",
+              "computer vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2158270878",
+            "title": "Fractal-Based Description of Natural Scenes",
+            "year": 1984,
+            "citation_count": 1769,
+            "score": 0.29432969863758907,
+            "is_breakthrough": false,
+            "abstract": "The article discusses the use of fractal functions to effectively represent and compute natural shapes in images, such as mountains and trees, by modeling their surfaces. It highlights the advantages of fractals in generating realistic textures and their applications in image analysis, scene understanding, and pattern recognition.\n\nTopic: pattern recognition, computer science, image analysis, fractal, scene modeling, data science, fractal-based description, image representation, computational imaging, scene understanding, localization, deep learning, machine vision, digital image processing, scene interpretation, computer vision, geography, scene analysis, image sequence analysis, natural scenes",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "image analysis",
+              "fractal",
+              "scene modeling",
+              "data science",
+              "fractal-based description",
+              "image representation",
+              "computational imaging",
+              "scene understanding",
+              "localization",
+              "deep learning",
+              "machine vision",
+              "digital image processing",
+              "scene interpretation",
+              "computer vision",
+              "geography",
+              "scene analysis",
+              "image sequence analysis",
+              "natural scenes"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2162273778",
+            "title": "A Real-Time QRS Detection Algorithm",
+            "year": 1985,
+            "citation_count": 6820,
+            "score": 0.2118424861245044,
+            "is_breakthrough": false,
+            "abstract": "The article presents a real-time algorithm designed for the accurate detection of QRS complexes in ECG signals, achieving a 99.3% detection rate by utilizing digital analysis techniques and adaptive threshold adjustments to minimize false positives from interference. The algorithm's effectiveness is enhanced by a specialized bandpass filter, allowing for increased sensitivity in various heart rate morphologies.\n\nTopic: automatic target recognition, computer science, real-time monitoring, computer vision, machine learning, detection technique, deep learning, machine vision",
+            "keywords": [
+              "automatic target recognition",
+              "computer science",
+              "real-time monitoring",
+              "computer vision",
+              "machine learning",
+              "detection technique",
+              "deep learning",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2003370853",
+            "title": "Theory of edge detection",
+            "year": 1980,
+            "citation_count": 6016,
+            "score": 0.2118424861245044,
+            "is_breakthrough": false,
+            "abstract": "The article presents a theory of edge detection that analyzes intensity changes in images across various scales using second derivative Gaussian filters, leading to the identification of zero-crossing segments as oriented primitives. It further discusses how these segments, derived from surface discontinuities, can be combined to create a raw primal sketch, providing insights into image representation and psychophysical findings in the context of computer vision and image analysis.\n\nTopic: image analysis, pattern recognition, computer science, machine vision, graph theory, edge detection, theoretical computer science, computer vision, applied mathematics, feature detection, object detection, localization, systems engineering, image representation, spectral theory, detection technique, image segmentation, convex analysis",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "machine vision",
+              "graph theory",
+              "edge detection",
+              "theoretical computer science",
+              "computer vision",
+              "applied mathematics",
+              "feature detection",
+              "object detection",
+              "localization",
+              "systems engineering",
+              "image representation",
+              "spectral theory",
+              "detection technique",
+              "image segmentation",
+              "convex analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2103504761",
+            "title": "The Laplacian Pyramid as a Compact Image Code",
+            "year": 1983,
+            "citation_count": 5870,
+            "score": 0.2118424861245044,
+            "is_breakthrough": false,
+            "abstract": "The article presents a novel image encoding technique using a Laplacian pyramid structure, which employs local operators of varying scales to achieve data compression by removing pixel-to-pixel correlations and quantizing the difference image. This method enhances salient features and is well-suited for both compression and analysis tasks, supported by efficient coding and decoding algorithms.\n\nTopic: computational imaging, computer science, image coding, compact image code, computer vision, laplacian pyramid",
+            "keywords": [
+              "computational imaging",
+              "computer science",
+              "image coding",
+              "compact image code",
+              "computer vision",
+              "laplacian pyramid"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.01098901098901099,
+          "number_of_nodes": 14,
+          "number_of_edges": 2,
+          "average_clustering": 0.0,
+          "number_of_components": 14,
+          "degree_centralization": 0.15384615384615385
+        },
+        "confidence": 0.9730079533343833
+      },
+      {
+        "period": [
+          1987,
+          1993
+        ],
+        "topic_label": "Emergence of Statistical Learning in Computer Vision",
+        "topic_description": "During the period spanning from 1987 to 1993, computer vision research began exploring statistical learning methods as a key paradigm for pattern recognition. This era saw significant advancements through papers like 'High confidence visual recognition of persons by a test of statistical independence' and 'Face recognition: features versus templates', which applied hypothesis testing frameworks to biometric challenges such as face recognition. The development of image representation techniques including wavelet-based approaches in 'Embedded image coding using zerotrees of wavelet coefficients' further demonstrated the integration of mathematical tools for efficient digital processing. This period marked a transition from earlier foundation-based methods toward more sophisticated, data-driven analysis.",
+        "network_stability": 0.32247706422018346,
+        "community_persistence": 0.6512532981530343,
+        "flow_stability": 0.0,
+        "centrality_consensus": 0.9950394717619491,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2053691921",
+            "title": "Embedded image coding using zerotrees of wavelet coefficients",
+            "year": 1993,
+            "citation_count": 4862,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the embedded zerotree wavelet (EZW) algorithm, a highly effective image compression technique that generates a bit stream in order of importance, allowing for flexible encoding and decoding based on target rates or distortion metrics. It highlights the algorithm's competitive performance against other methods without requiring prior training or knowledge, leveraging key concepts such as hierarchical subband decomposition and adaptive arithmetic coding.\n\nTopic: image analysis, computational imaging, computer science, image compression, image coding, digital signal processing, computer vision, wavelet coefficients, wavelet, image representation, wavelet theory, principal component analysis, digital image processing",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "image compression",
+              "image coding",
+              "digital signal processing",
+              "computer vision",
+              "wavelet coefficients",
+              "wavelet",
+              "image representation",
+              "wavelet theory",
+              "principal component analysis",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1963623641",
+            "title": "A survey of image registration techniques",
+            "year": 1992,
+            "citation_count": 4015,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article provides a comprehensive overview of image registration techniques, which are essential for aligning images taken under varying conditions, such as different times or viewpoints. It categorizes these techniques into three major types based on the sources of misalignment and discusses their applications in fields like medical imaging, satellite monitoring, and autonomous navigation, while emphasizing the importance of understanding the characteristics of each variation to select the most suitable registration method.\n\nTopic: image analysis, pattern recognition, computer science, image registration techniques, computer vision, image registration, image classification, digital image processing",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "image registration techniques",
+              "computer vision",
+              "image registration",
+              "image classification",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2102796633",
+            "title": "High confidence visual recognition of persons by a test of statistical independence",
+            "year": 1993,
+            "citation_count": 3211,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel method for rapid visual recognition of individuals using statistical independence tests, focusing on the unique features of the iris in facial recognition. By encoding iris images into compact sequences and employing statistical decision theory, the method achieves high identification accuracy and confidence levels, with a theoretical error rate of one in 131,000.\n\nTopic: image analysis, pattern recognition, statistical independence, computer vision, visual diagnosis, biometrics, biostatistics, visual perception, statistics, image representation, image similarity, human identification, vision recognition, machine vision, face detection",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "statistical independence",
+              "computer vision",
+              "visual diagnosis",
+              "biometrics",
+              "biostatistics",
+              "visual perception",
+              "statistics",
+              "image representation",
+              "image similarity",
+              "human identification",
+              "vision recognition",
+              "machine vision",
+              "face detection"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2099838434",
+            "title": "The Lens Opacities Classification System III",
+            "year": 1993,
+            "citation_count": 2647,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the development of the Lens Opacities Classification System III (LOCS III), which addresses the limitations of its predecessor, LOCS II, by introducing a more precise grading system for cataracts using a decimal scale and an expanded set of standards. This new system enhances interobserver agreement and improves the classification of nuclear, cortical, and posterior subcapsular cataracts through advanced imaging techniques.\n\nTopic: image analysis, pattern recognition, optical image recognition, computer vision, localization, image representation, machine learning research, earth science, digital image processing",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "optical image recognition",
+              "computer vision",
+              "localization",
+              "image representation",
+              "machine learning research",
+              "earth science",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2113341759",
+            "title": "Face recognition: features versus templates",
+            "year": 1993,
+            "citation_count": 2446,
+            "score": 0.24438849120371095,
+            "is_breakthrough": true,
+            "abstract": "The article discusses two new algorithms for computer-based face recognition: one that utilizes geometrical features of the face and another that employs template matching techniques. Both methods demonstrate approximately 90% accuracy in recognizing faces, highlighting advancements in image analysis and pattern recognition within the field of computer vision.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, machine vision, image classification, object recognition, feature extraction, computer vision, machine learning, feature detection, biometrics, image representation, face recognition, machine learning research, design, feature (computer vision)",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "machine vision",
+              "image classification",
+              "object recognition",
+              "feature extraction",
+              "computer vision",
+              "machine learning",
+              "feature detection",
+              "biometrics",
+              "image representation",
+              "face recognition",
+              "machine learning research",
+              "design",
+              "feature (computer vision)"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.002631578947368421,
+          "number_of_nodes": 20,
+          "number_of_edges": 1,
+          "average_clustering": 0.0,
+          "number_of_components": 19,
+          "degree_centralization": 0.05263157894736842
+        },
+        "confidence": 0.8053503532706339
+      },
+      {
+        "period": [
+          1994,
+          2000
+        ],
+        "topic_label": "Statistical Learning in Computer Vision",
+        "topic_description": "During the period spanning 1987 to 1993, computer vision research began exploring statistical learning methods as a key paradigm for pattern recognition. This era saw significant advancements through papers like 'High confidence visual recognition of persons by a test of statistical independence' and 'Face recognition: features versus templates', which applied hypothesis testing frameworks to biometric challenges such as face recognition. The development of image representation techniques including wavelet-based approaches in 'Embedded image coding using zerotrees of wavelet coefficients' further demonstrated the integration of mathematical tools for efficient digital processing. This period marked a transition from earlier foundation-based methods toward more sophisticated, data-driven analysis.",
+        "network_stability": 0.25253642845572144,
+        "community_persistence": 0.4085075660489838,
+        "flow_stability": 0.6147071757965948,
+        "centrality_consensus": 0.995096117674434,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2098947662",
+            "title": "View-based and modular eigenspaces for face recognition",
+            "year": 1994,
+            "citation_count": 1842,
+            "score": 0.25319950620604736,
+            "is_breakthrough": false,
+            "abstract": "The article discusses experiments with eigenfaces for face recognition and interactive search within a large-scale database of approximately 1,000 faces, exploring the challenges of varying viewing orientations. It introduces a view-based multiple-observer eigenspace technique and a modular description that enhances recognition accuracy by focusing on key facial features, ultimately demonstrating a more robust framework for automatic feature extraction.\n\nTopic: pattern recognition, computer science, multi-view geometry, machine learning, face recognition, image analysis, information fusion, modular eigenspaces, feature detection, cognitive science, object detection, data science, image representation, computational imaging, deep learning, machine learning research, machine vision, face detection, object recognition, computer vision",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "multi-view geometry",
+              "machine learning",
+              "face recognition",
+              "image analysis",
+              "information fusion",
+              "modular eigenspaces",
+              "feature detection",
+              "cognitive science",
+              "object detection",
+              "data science",
+              "image representation",
+              "computational imaging",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "face detection",
+              "object recognition",
+              "computer vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2167667767",
+            "title": "A flexible new technique for camera calibration",
+            "year": 2000,
+            "citation_count": 12438,
+            "score": 0.2492550314935949,
+            "is_breakthrough": true,
+            "abstract": "The article presents a new flexible technique for camera calibration that requires only a planar pattern observed from at least two different orientations, allowing for easy implementation without the need for expensive equipment. The method models radial lens distortion and combines a closed-form solution with nonlinear refinement, demonstrating effective results through both simulations and real data applications.\n\nTopic: computer science, calibration, computer vision, camera calibration",
+            "keywords": [
+              "computer science",
+              "calibration",
+              "computer vision",
+              "camera calibration"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2159686933",
+            "title": "Example-based learning for view-based human face detection",
+            "year": 1998,
+            "citation_count": 1778,
+            "score": 0.24816929814445707,
+            "is_breakthrough": true,
+            "abstract": "The article discusses an example-based learning method for detecting vertical frontal views of human faces in complex environments, utilizing model clusters of \"face\" and \"nonface\" patterns. It emphasizes the importance of a distance metric in computing feature vectors and clusters for effective classification of face presence in images.\n\nTopic: image analysis, pattern recognition, computer science, human-computer interaction, explanation-based learning, computer vision, machine learning, instance-based learning, machine vision, face detection, example-based learning",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "human-computer interaction",
+              "explanation-based learning",
+              "computer vision",
+              "machine learning",
+              "instance-based learning",
+              "machine vision",
+              "face detection",
+              "example-based learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2131938193",
+            "title": "A pyramid approach to subpixel registration based on intensity",
+            "year": 1998,
+            "citation_count": 2844,
+            "score": 0.2423202180863627,
+            "is_breakthrough": true,
+            "abstract": "The article presents an automatic subpixel registration algorithm that utilizes a pyramid approach to minimize intensity differences between reference and test datasets, applicable to both 2D images and 3D volumes. By employing a coarse-to-fine iterative strategy and a new variation of the Marquardt-Levenberg optimization, the method achieves robust and efficient registration, particularly for intramodality PET and fMRI data, while also addressing image contrast differences.\n\nTopic: image analysis, computational imaging, computer science, image formation, computer vision, applied mathematics, image reconstruction, image representation, image registration, machine vision, digital image processing",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "image formation",
+              "computer vision",
+              "applied mathematics",
+              "image reconstruction",
+              "image representation",
+              "image registration",
+              "machine vision",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2115213191",
+            "title": "A Bayesian computer vision system for modeling human interactions",
+            "year": 2000,
+            "citation_count": 1605,
+            "score": 0.24183116477951475,
+            "is_breakthrough": true,
+            "abstract": "The article presents a real-time Bayesian computer vision system designed to recognize and model human interactions in visual surveillance, focusing on detecting and classifying behaviors such as following or altering paths to meet others. It compares two state-based architectures, HMMs and CHMMs, and utilizes synthetic training to develop flexible prior models that accurately classify interactions without the need for additional tuning.\n\nTopic: computer science, human-computer interaction, computer vision, bayesian analysis, bayesian network",
+            "keywords": [
+              "computer science",
+              "human-computer interaction",
+              "computer vision",
+              "bayesian analysis",
+              "bayesian network"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.010629251700680272,
+          "number_of_nodes": 49,
+          "number_of_edges": 25,
+          "average_clustering": 0.12857142857142856,
+          "number_of_components": 33,
+          "degree_centralization": 0.10815602836879433
+        },
+        "confidence": 0.920858080497335
+      },
+      {
+        "period": [
+          2001,
+          2008
+        ],
+        "topic_label": "Statistical Learning for Computer Vision Tasks",
+        "topic_description": "During the period spanning from 2001 to 2008, computer vision research increasingly turned towards statistical learning approaches to tackle complex tasks such as face recognition. This era was marked by papers like 'Mean shift: a robust approach toward feature space analysis' and 'Face recognition using eigenfaces', which demonstrated how probabilistic models could be applied effectively for visual pattern recognition problems. Concurrently, the development of methods including interactive graph cuts ('Interactive graph cuts for optimal boundary & region segmentation') and support vector machines ('Training support vector machines: an application to face detection') highlighted a growing focus on optimizing performance in tasks like object segmentation and detection.",
+        "network_stability": 0.31716226223533406,
+        "community_persistence": 0.46326191579392617,
+        "flow_stability": 0.6523135761563564,
+        "centrality_consensus": 0.9950369340921354,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2124351082",
+            "title": "Training support vector machines: an application to face detection",
+            "year": 2002,
+            "citation_count": 2465,
+            "score": 0.2550062964632594,
+            "is_breakthrough": true,
+            "abstract": "The article explores the use of Support Vector Machines (SVMs) in computer vision, specifically for face detection, detailing the optimization techniques used to train SVMs on large datasets and presenting experimental results that demonstrate the effectiveness of this approach.\n\nTopic: image analysis, pattern recognition, computer science, support vector machine, computer vision, machine learning, object detection, machine vision, face detection",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "support vector machine",
+              "computer vision",
+              "machine learning",
+              "object detection",
+              "machine vision",
+              "face detection"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2169551590",
+            "title": "Interactive graph cuts for optimal boundary &amp; region segmentation of objects in N-D images",
+            "year": 2002,
+            "citation_count": 3532,
+            "score": 0.2501962298563852,
+            "is_breakthrough": true,
+            "abstract": "This article presents a novel technique for interactive segmentation of N-dimensional images using graph cuts, allowing users to define object and background pixels to achieve optimal boundary and region segmentation. The method incorporates both hard and soft constraints, demonstrating effectiveness in various applications such as photo editing and medical imaging, while also showcasing a fast implementation through a max-flow algorithm.\n\nTopic: computer science, computer vision, n-d images, interactive graph cuts, image segmentation, region segmentation",
+            "keywords": [
+              "computer science",
+              "computer vision",
+              "n-d images",
+              "interactive graph cuts",
+              "image segmentation",
+              "region segmentation"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2098693229",
+            "title": "Face recognition using eigenfaces",
+            "year": 2002,
+            "citation_count": 5301,
+            "score": 0.248018437574809,
+            "is_breakthrough": true,
+            "abstract": "The article discusses a near-real-time face recognition system that utilizes the concept of 'eigenfaces' to detect and identify human faces by projecting face images onto a feature space, allowing for the recognition of individuals based on their unique characteristics in an unsupervised manner. This approach leverages two-dimensional representations of faces to effectively encode variations and improve recognition accuracy.\n\nTopic: pattern recognition, computer science, face recognition, image analysis, information fusion, feature detection, data science, computational imaging, localization, deep learning, machine learning research, machine vision, digital image processing, face detection, object recognition, feature extraction, computer vision, applied mathematics, image classification",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "face recognition",
+              "image analysis",
+              "information fusion",
+              "feature detection",
+              "data science",
+              "computational imaging",
+              "localization",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "digital image processing",
+              "face detection",
+              "object recognition",
+              "feature extraction",
+              "computer vision",
+              "applied mathematics",
+              "image classification"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2067191022",
+            "title": "Mean shift: a robust approach toward feature space analysis",
+            "year": 2002,
+            "citation_count": 10781,
+            "score": 0.24684764626760625,
+            "is_breakthrough": true,
+            "abstract": "The article presents a non-parametric mean shift technique for analyzing complex multimodal feature spaces and identifying arbitrarily shaped clusters, demonstrating its effectiveness through applications in image segmentation and discontinuity-preserving smoothing. It highlights the convergence of the method and its robust performance in various low-level vision tasks, supported by extensive experimental results.\n\nTopic: pattern recognition, computer science, machine learning, feature space analysis, mean shift, image analysis, information fusion, structure from motion, feature detection, data science, feature (computer vision), computational imaging, robust feature, deep learning, computational statistic, machine learning research, shift detection, machine vision, computer vision, applied mathematics",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "feature space analysis",
+              "mean shift",
+              "image analysis",
+              "information fusion",
+              "structure from motion",
+              "feature detection",
+              "data science",
+              "feature (computer vision)",
+              "computational imaging",
+              "robust feature",
+              "deep learning",
+              "computational statistic",
+              "machine learning research",
+              "shift detection",
+              "machine vision",
+              "computer vision",
+              "applied mathematics"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2123921160",
+            "title": "From few to many: illumination cone models for face recognition under variable lighting and pose",
+            "year": 2001,
+            "citation_count": 4777,
+            "score": 0.2409103978181823,
+            "is_breakthrough": true,
+            "abstract": "The article presents a generative method for face recognition that utilizes illumination cone models to effectively recognize faces under varying lighting and poses. By reconstructing shape albedo from a limited number of training images, the approach synthesizes novel poses and achieves high accuracy in identity assignment, even in challenging conditions.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, computer vision, machine learning, face recognition, illumination modeling, variable lighting, illumination cone models, machine vision",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "object recognition",
+              "computer vision",
+              "machine learning",
+              "face recognition",
+              "illumination modeling",
+              "variable lighting",
+              "illumination cone models",
+              "machine vision"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.00820534399326741,
+          "number_of_nodes": 98,
+          "number_of_edges": 78,
+          "average_clustering": 0.09280855199222546,
+          "number_of_components": 38,
+          "degree_centralization": 0.056915807560137456
+        },
+        "confidence": 0.947970392035775
+      },
+      {
+        "period": [
+          2009,
+          2013
+        ],
+        "topic_label": "Statistical Learning for Computer Vision Tasks",
+        "topic_description": "During the period spanning from 2001 to 2008, computer vision research increasingly turned towards statistical learning approaches to tackle complex tasks such as face recognition. This era was marked by papers like 'Mean shift: a robust approach toward feature space analysis' and 'Face recognition using eigenfaces', which demonstrated how probabilistic models could be applied effectively for visual pattern recognition problems. Concurrently, the development of methods including interactive graph cuts ('Interactive graph cuts for optimal boundary & region segmentation') and support vector machines ('Training support vector machines: an application to face detection') highlighted a growing focus on optimizing performance in tasks like object segmentation and detection.",
+        "network_stability": 0.3187732286742188,
+        "community_persistence": 0.4517144713538665,
+        "flow_stability": 0.6214153036748905,
+        "centrality_consensus": 0.9950466994204794,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2546302380",
+            "title": "What is the best multi-stage architecture for object recognition?",
+            "year": 2009,
+            "citation_count": 2057,
+            "score": 0.2525930213314843,
+            "is_breakthrough": true,
+            "abstract": "The article explores the effectiveness of multi-stage architectures in object recognition systems, focusing on the impact of non-linear transformations, the benefits of learned filters over hardwired ones, and the advantages of using multiple extraction stages. It highlights key findings, including the importance of rectification and local contrast normalization for accuracy, and presents results demonstrating significant performance improvements on benchmark datasets like Caltech-101 and MNIST.\n\nTopic: computer science, machine learning, image analysis, information fusion, convolutional neural network, robot learning, object detection, image representation, computational imaging, neural architecture search, systems engineering, deep learning, 3d object recognition, machine vision, best multi-stage architecture, object recognition, computer vision, architecture, neural network (machine learning)",
+            "keywords": [
+              "computer science",
+              "machine learning",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "robot learning",
+              "object detection",
+              "image representation",
+              "computational imaging",
+              "neural architecture search",
+              "systems engineering",
+              "deep learning",
+              "3d object recognition",
+              "machine vision",
+              "best multi-stage architecture",
+              "object recognition",
+              "computer vision",
+              "architecture",
+              "neural network (machine learning)"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2167089254",
+            "title": "Visual tracking with online Multiple Instance Learning",
+            "year": 2009,
+            "citation_count": 1749,
+            "score": 0.2421379606465717,
+            "is_breakthrough": true,
+            "abstract": "This article discusses a novel approach to object tracking using Multiple Instance Learning (MIL) to develop an adaptive appearance model, which enhances the robustness of tracking by reducing inaccuracies in labeled training examples compared to traditional supervised methods. The proposed MIL algorithm demonstrates superior performance in real-time tracking scenarios, addressing challenges associated with drift in tracking systems.\n\nTopic: multi-task learning, image analysis, computer science, computer vision, machine learning, deep learning, multiple instance learning, machine vision",
+            "keywords": [
+              "multi-task learning",
+              "image analysis",
+              "computer science",
+              "computer vision",
+              "machine learning",
+              "deep learning",
+              "multiple instance learning",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2129812935",
+            "title": "Robust Face Recognition via Sparse Representation",
+            "year": 2009,
+            "citation_count": 9264,
+            "score": 0.24029971572277795,
+            "is_breakthrough": true,
+            "abstract": "The article discusses a novel approach to robust face recognition using sparse representation techniques, addressing challenges such as varying expressions, illumination, and occlusion. It proposes a classification algorithm based on l{1}-minimization that enhances feature extraction and demonstrates improved performance over traditional methods through extensive experiments on publicly available databases.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, object recognition, feature learning, feature extraction, computer vision, machine learning, feature detection, data science, sparse representation, deep learning, image representation, machine vision, robust face recognition",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "computational imaging",
+              "object recognition",
+              "feature learning",
+              "feature extraction",
+              "computer vision",
+              "machine learning",
+              "feature detection",
+              "data science",
+              "sparse representation",
+              "deep learning",
+              "image representation",
+              "machine vision",
+              "robust face recognition"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2536599074",
+            "title": "Non-local sparse models for image restoration",
+            "year": 2009,
+            "citation_count": 1641,
+            "score": 0.24029971572277795,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel approach to image restoration that combines adaptive sparse signal representations with non-local means, leveraging self-similarities in natural images. Through joint decomposition of similar signals using a learned dictionary, the proposed method demonstrates superior performance in denoising and demosaicking tasks, effectively restoring images from digital cameras with improved speed and memory efficiency.\n\nTopic: image analysis, computational imaging, computer science, compressive sensing, non-local sparse models, image restoration, computer vision, machine learning, sparse neural network, image reconstruction, sparse representation, image representation, machine learning research, digital image processing",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "compressive sensing",
+              "non-local sparse models",
+              "image restoration",
+              "computer vision",
+              "machine learning",
+              "sparse neural network",
+              "image reconstruction",
+              "sparse representation",
+              "image representation",
+              "machine learning research",
+              "digital image processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2024165284",
+            "title": "Tensor Decompositions and Applications",
+            "year": 2009,
+            "citation_count": 8929,
+            "score": 0.2381543324616449,
+            "is_breakthrough": true,
+            "abstract": "This article surveys higher-order tensor decompositions, highlighting their applications across various fields such as psychometrics, signal processing, and computer vision, while also discussing notable decomposition methods like CANDECOMP/PARAFAC and Tucker decomposition, along with available software tools for tensor analysis.\n\nTopic: mathematics, computational imaging, computer science, dimensionality reduction, linear algebra, operator theory, parameter identification, tensor decompositions, matrix analysis, computer vision, low-rank approximation, applied mathematics, numerical linear algebra, spectral theory, machine learning research, feature construction, computational geometry",
+            "keywords": [
+              "mathematics",
+              "computational imaging",
+              "computer science",
+              "dimensionality reduction",
+              "linear algebra",
+              "operator theory",
+              "parameter identification",
+              "tensor decompositions",
+              "matrix analysis",
+              "computer vision",
+              "low-rank approximation",
+              "applied mathematics",
+              "numerical linear algebra",
+              "spectral theory",
+              "machine learning research",
+              "feature construction",
+              "computational geometry"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.006479081821547575,
+          "number_of_nodes": 74,
+          "number_of_edges": 35,
+          "average_clustering": 0.07207207207207207,
+          "number_of_components": 42,
+          "degree_centralization": 0.05707762557077625
+        },
+        "confidence": 0.9291328348886015
+      },
+      {
+        "period": [
+          2014,
+          2023
+        ],
+        "topic_label": "Dominance of Deep Learning in Computer Vision",
+        "topic_description": "During the period spanning 2014-2023, computer vision research was characterized by the widespread adoption of deep learning techniques. Key papers such as Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation (2014) demonstrated how convolutional neural networks could improve object detection tasks. Fully convolutional networks for semantic segmentation (CVPR 2015) further advanced this paradigm by enabling pixel-wise image understanding, while Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (2015) highlighted the effectiveness of deep neural architectures in achieving state-of-the-art performance. DeCAF and OverFeat established early proof-of-concepts for leveraging deep learning features across various recognition tasks.",
+        "network_stability": 0.4184530924530343,
+        "community_persistence": 0.39091472481505185,
+        "flow_stability": 0.6583556251657958,
+        "centrality_consensus": 0.9950356524739122,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2102605133",
+            "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+            "year": 2014,
+            "citation_count": 24628,
+            "score": 0.30006423785925895,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with domain-specific fine-tuning when labeled data is limited.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "fuzzy set",
+              "image analysis",
+              "information fusion",
+              "accurate object detection",
+              "feature detection",
+              "cognitive science",
+              "object detection",
+              "data science",
+              "object categorization",
+              "computational imaging",
+              "localization",
+              "deep learning",
+              "machine vision",
+              "rich feature hierarchies",
+              "semantic segmentation",
+              "object recognition",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1903029394",
+            "title": "Fully convolutional networks for semantic segmentation",
+            "year": 2015,
+            "citation_count": 28292,
+            "score": 0.2951010372168401,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and reports significant performance improvements on benchmark datasets like PASCAL VOC and NYUDv2.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "image segmentation",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "convolutional networks",
+              "cognitive science",
+              "data science",
+              "computational imaging",
+              "scene understanding",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "semantic segmentation",
+              "medical image computing",
+              "feature extraction",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2155541015",
+            "title": "DeCAF: A Deep Convolutional Activation Feature for Generic Visual Recognition",
+            "year": 2014,
+            "citation_count": 3290,
+            "score": 0.2751822705838736,
+            "is_breakthrough": true,
+            "abstract": "The article presents DeCAF, a deep convolutional activation feature designed to assess the effectiveness of features from a fully supervised deep learning model for various generic visual recognition tasks. It highlights the ability of these features to be repurposed for novel applications, demonstrating superior performance in several vision challenges and providing an open-source implementation for further research in visual concept learning.\n\nTopic: pattern recognition, computer science, feature learning, machine learning, visual science, generic visual recognition, image analysis, information fusion, convolutional neural network, cognitive science, data science, image representation, vision recognition, feature (computer vision), computational imaging, deep learning, machine vision, visual question answering, computer vision",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "feature learning",
+              "machine learning",
+              "visual science",
+              "generic visual recognition",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "cognitive science",
+              "data science",
+              "image representation",
+              "vision recognition",
+              "feature (computer vision)",
+              "computational imaging",
+              "deep learning",
+              "machine vision",
+              "visual question answering",
+              "computer vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2963542991",
+            "title": "OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks",
+            "year": 2014,
+            "citation_count": 2672,
+            "score": 0.2707477249326735,
+            "is_breakthrough": true,
+            "abstract": "The article presents OverFeat, an integrated framework that utilizes Convolutional Networks for classification, localization, and detection of objects, employing a multiscale sliding window approach and novel deep learning techniques to enhance detection confidence. It highlights the framework's success in the ImageNet Large Scale Visual Recognition Challenge 2013 and its contributions to advancing state-of-the-art performance in image analysis and object recognition tasks.\n\nTopic: image analysis, pattern recognition, computer science, convolutional networks, object recognition, integrated recognition, computer vision, machine learning, feature detection, object detection, localization, deep learning, shift detection",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "convolutional networks",
+              "object recognition",
+              "integrated recognition",
+              "computer vision",
+              "machine learning",
+              "feature detection",
+              "object detection",
+              "localization",
+              "deep learning",
+              "shift detection"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1677182931",
+            "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+            "year": 2015,
+            "citation_count": 14420,
+            "score": 0.25692761064302017,
+            "is_breakthrough": true,
+            "abstract": "The article explores advancements in rectifier networks for image classification, introducing the Parametric Linear Unit (PReLU) to enhance model fitting with minimal computational cost and risk of overfitting. It also presents a robust initialization method for training deep models, achieving a groundbreaking 4.94% top-5 test error on the ImageNet 2012 dataset, surpassing human-level performance for the first time.\n\nTopic: digital image processing, sparse neural network, imagenet classification, computer science, machine learning research, deep learning, machine vision, adversarial machine learning, image representation, human-level performance, human image synthesis, computational imaging, geometric learning, machine learning, data science, computer vision, cognitive science, computational intelligence, convolutional neural network, image analysis",
+            "keywords": [
+              "digital image processing",
+              "sparse neural network",
+              "imagenet classification",
+              "computer science",
+              "machine learning research",
+              "deep learning",
+              "machine vision",
+              "adversarial machine learning",
+              "image representation",
+              "human-level performance",
+              "human image synthesis",
+              "computational imaging",
+              "geometric learning",
+              "machine learning",
+              "data science",
+              "computer vision",
+              "cognitive science",
+              "computational intelligence",
+              "convolutional neural network",
+              "image analysis"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.02215218991534781,
+          "number_of_nodes": 209,
+          "number_of_edges": 963,
+          "average_clustering": 0.32121557165406156,
+          "number_of_components": 17,
+          "degree_centralization": 0.24651616499442586
+        },
+        "confidence": 1.0
+      }
+    ],
+    "unified_confidence": 0.8944147067657232,
+    "narrative_evolution": "1962-1978: Early Foundations of Computer Vision \u2192 1979-1986: Feature-Based Image Analysis and Representation \u2192 1987-1993: Emergence of Statistical Learning in Computer Vision ... (7 total periods)"
+  },
+  "segment_merging": {
+    "merging_performed": true,
+    "original_segments": 7,
+    "final_segments": 7,
+    "merge_decisions": [],
+    "merging_summary": "No merging performed - all segments sufficiently distinct"
+  }
+}

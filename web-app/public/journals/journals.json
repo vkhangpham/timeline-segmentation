@@ -1,0 +1,78 @@
+{
+  "generated_at": "2025-06-14T03:40:33.688Z",
+  "total_count": 9,
+  "phases": [
+    {
+      "phase": "9",
+      "title": "Phase 9 Development Journal",
+      "url": "/journals/dev_journal_phase9.html",
+      "filename": "dev_journal_phase9.html"
+    },
+    {
+      "phase": "8",
+      "title": "Phase 8 Development Journal",
+      "url": "/journals/dev_journal_phase8.html",
+      "filename": "dev_journal_phase8.html"
+    },
+    {
+      "phase": "7",
+      "title": "Phase 7 Development Journal",
+      "url": "/journals/dev_journal_phase7.html",
+      "filename": "dev_journal_phase7.html"
+    },
+    {
+      "phase": "6",
+      "title": "Phase 6 Development Journal",
+      "url": "/journals/dev_journal_phase6.html",
+      "filename": "dev_journal_phase6.html"
+    },
+    {
+      "phase": "5",
+      "title": "Phase 5 Development Journal",
+      "url": "/journals/dev_journal_phase5.html",
+      "filename": "dev_journal_phase5.html"
+    },
+    {
+      "phase": "4",
+      "title": "Phase 4 Development Journal",
+      "url": "/journals/dev_journal_phase4.html",
+      "filename": "dev_journal_phase4.html"
+    },
+    {
+      "phase": "3",
+      "title": "Phase 3 Development Journal",
+      "url": "/journals/dev_journal_phase3.html",
+      "filename": "dev_journal_phase3.html"
+    },
+    {
+      "phase": "2",
+      "title": "Phase 2 Development Journal",
+      "url": "/journals/dev_journal_phase2.html",
+      "filename": "dev_journal_phase2.html"
+    },
+    {
+      "phase": "1",
+      "title": "Phase 1 Development Journal",
+      "url": "/journals/dev_journal_phase1.html",
+      "filename": "dev_journal_phase1.html"
+    }
+  ],
+  "latest_phase": 9,
+  "available_phases": [
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "description": "Automatically generated from available development journal HTML files",
+  "last_scan": {
+    "files_scanned": 11,
+    "journal_files_found": 9,
+    "phases_discovered": 9
+  }
+}

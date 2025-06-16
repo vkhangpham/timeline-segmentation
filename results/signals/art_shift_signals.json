@@ -1,0 +1,2483 @@
+{
+  "metadata": {
+    "domain_name": "art",
+    "analysis_date": "2025-06-16T12:30:58.925559",
+    "analysis_type": "shift_signal_detection",
+    "description": "Paradigm transition detection using multi-source signal fusion",
+    "methodology": {
+      "stage1": "Individual signal detection (citation, semantic, direction)",
+      "stage2": "Cross-validation and confidence scoring",
+      "stage3": "Paradigm significance filtering",
+      "stage4": "Transition evidence generation"
+    }
+  },
+  "raw_signals": {
+    "count": 52,
+    "description": "Raw signals from individual detection methods before validation",
+    "signals": [
+      {
+        "year": 1985,
+        "confidence": 0.1808749341164069,
+        "signal_type": "citation_disruption",
+        "evidence_strength": 0.15072911176367243,
+        "supporting_evidence": [
+          "Citation pattern change: 0.072 \u2192 0.223"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1480062598",
+          "https://openalex.org/W2003727510",
+          "https://openalex.org/W2057106053",
+          "https://openalex.org/W1988899198"
+        ],
+        "transition_description": "Structural break in citation patterns at 1985",
+        "paradigm_significance": 0.5
+      },
+      {
+        "year": 1990,
+        "confidence": 0.15133781102714416,
+        "signal_type": "citation_disruption",
+        "evidence_strength": 0.07566890551357208,
+        "supporting_evidence": [
+          "Influence pattern change: 0.123 \u2192 0.198"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1558050452",
+          "https://openalex.org/W1560880354",
+          "https://openalex.org/W2168884969",
+          "https://openalex.org/W2014673109",
+          "https://openalex.org/W2035834232",
+          "https://openalex.org/W2141208341",
+          "https://openalex.org/W25198730",
+          "https://openalex.org/W2150069692",
+          "https://openalex.org/W1568272571",
+          "https://openalex.org/W4212865901",
+          "https://openalex.org/W1567871163",
+          "https://openalex.org/W2135647588",
+          "https://openalex.org/W1501553023",
+          "https://openalex.org/W2013903288"
+        ],
+        "transition_description": "Structural break in influence patterns at 1990",
+        "paradigm_significance": 0.6
+      },
+      {
+        "year": 1934,
+        "confidence": 0.4878048780487805,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4878048780487805,
+        "supporting_evidence": [
+          "New focus: intellectual history",
+          "New focus: narrative",
+          "New focus: philosophy of film"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2008942963"
+        ],
+        "transition_description": "Research direction shift: 85.4% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1958,
+        "confidence": 0.6710526315789473,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6710526315789473,
+        "supporting_evidence": [
+          "New focus: art research",
+          "New focus: psychology",
+          "New focus: visual science"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2032771350",
+          "https://openalex.org/W1708436379"
+        ],
+        "transition_description": "Research direction shift: 86.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1959,
+        "confidence": 0.7101449275362318,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.7101449275362318,
+        "supporting_evidence": [
+          "New focus: philosophy of film",
+          "New focus: visual arts",
+          "New focus: visual art practice",
+          "New focus: contemporary art",
+          "New focus: aesthetics"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 91.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1960,
+        "confidence": 0.6277915632754343,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6277915632754343,
+        "supporting_evidence": [
+          "New focus: visual arts",
+          "New focus: visual art practice",
+          "New focus: contemporary art",
+          "New focus: visual culture",
+          "New focus: psychology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2080480260"
+        ],
+        "transition_description": "Research direction shift: 84.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1961,
+        "confidence": 0.45706371191135736,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.45706371191135736,
+        "supporting_evidence": [
+          "New focus: experimental aesthetic",
+          "New focus: visual art practice",
+          "New focus: contemporary art",
+          "New focus: visual culture",
+          "New focus: visual communication"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 78.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1962,
+        "confidence": 0.5148741418764302,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5148741418764302,
+        "supporting_evidence": [
+          "New focus: narrative",
+          "New focus: cultural studies",
+          "New focus: narrative representation",
+          "New focus: literary criticism"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 78.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1963,
+        "confidence": 0.5943589743589744,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5943589743589744,
+        "supporting_evidence": [
+          "New focus: narrative",
+          "New focus: cultural studies",
+          "New focus: ethnomusicology",
+          "New focus: narrative representation",
+          "New focus: literary criticism"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1506087369"
+        ],
+        "transition_description": "Research direction shift: 81.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1967,
+        "confidence": 0.5847176079734219,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5847176079734219,
+        "supporting_evidence": [
+          "New focus: aesthetics",
+          "New focus: cognitive science",
+          "New focus: art history"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2011946757"
+        ],
+        "transition_description": "Research direction shift: 76.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1969,
+        "confidence": 0.768472906403941,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.768472906403941,
+        "supporting_evidence": [
+          "New focus: art research",
+          "New focus: art history",
+          "New focus: art theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1970507305"
+        ],
+        "transition_description": "Research direction shift: 89.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1973,
+        "confidence": 0.6814814814814816,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6814814814814816,
+        "supporting_evidence": [
+          "New focus: representation theory",
+          "New focus: visual arts",
+          "New focus: visual language",
+          "New focus: linguistics",
+          "New focus: philosophy of language"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2045798786"
+        ],
+        "transition_description": "Research direction shift: 85.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1975,
+        "confidence": 0.47454122512277075,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.47454122512277075,
+        "supporting_evidence": [
+          "New focus: visual culture",
+          "New focus: image communication",
+          "New focus: visual science"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 74.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1976,
+        "confidence": 0.4652777777777778,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4652777777777778,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: historical evidence",
+          "New focus: folklore tradition",
+          "New focus: folklore study",
+          "New focus: image representation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2080334355"
+        ],
+        "transition_description": "Research direction shift: 76.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1978,
+        "confidence": 0.43539429840799704,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.43539429840799704,
+        "supporting_evidence": [
+          "New focus: historical evidence",
+          "New focus: folklore tradition",
+          "New focus: folklore study",
+          "New focus: ritual",
+          "New focus: contemporary art"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3150186605"
+        ],
+        "transition_description": "Research direction shift: 66.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1981,
+        "confidence": 0.5074513766102551,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5074513766102551,
+        "supporting_evidence": [
+          "New focus: image communication",
+          "New focus: visual culture",
+          "New focus: classics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1991087993"
+        ],
+        "transition_description": "Research direction shift: 76.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1982,
+        "confidence": 0.5916159567275185,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5916159567275185,
+        "supporting_evidence": [
+          "New focus: modern literature",
+          "New focus: image communication",
+          "New focus: narrative",
+          "New focus: literary study",
+          "New focus: literary theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2089412241",
+          "https://openalex.org/W2048510706"
+        ],
+        "transition_description": "Research direction shift: 86.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1983,
+        "confidence": 0.6123086535457669,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6123086535457669,
+        "supporting_evidence": [
+          "New focus: image representation",
+          "New focus: modern literature",
+          "New focus: culture",
+          "New focus: cognitive science",
+          "New focus: philosophy of film"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2088629671",
+          "https://openalex.org/W620187770"
+        ],
+        "transition_description": "Research direction shift: 82.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1984,
+        "confidence": 0.501395800461221,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.501395800461221,
+        "supporting_evidence": [
+          "New focus: post-colonial criticism",
+          "New focus: social change",
+          "New focus: experimental aesthetic",
+          "New focus: philosophy of film",
+          "New focus: modernity"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1970579459"
+        ],
+        "transition_description": "Research direction shift: 66.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1987,
+        "confidence": 0.487012987012987,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.487012987012987,
+        "supporting_evidence": [
+          "New focus: modern life",
+          "New focus: reconstruction technique",
+          "New focus: machine vision",
+          "New focus: computer vision",
+          "New focus: philosophy"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 75.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1988,
+        "confidence": 0.4643877551020407,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4643877551020407,
+        "supporting_evidence": [
+          "New focus: modern life",
+          "New focus: machine vision",
+          "New focus: art criticism",
+          "New focus: computer vision",
+          "New focus: african american studies"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1985104332",
+          "https://openalex.org/W2529585633"
+        ],
+        "transition_description": "Research direction shift: 79.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1989,
+        "confidence": 0.5217553688141924,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5217553688141924,
+        "supporting_evidence": [
+          "New focus: comparative literature",
+          "New focus: machine vision",
+          "New focus: emotion",
+          "New focus: modern literature",
+          "New focus: scene interpretation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1775511237",
+          "https://openalex.org/W1995387874",
+          "https://openalex.org/W2054097442",
+          "https://openalex.org/W2098784908",
+          "https://openalex.org/W2138096165",
+          "https://openalex.org/W2076346711"
+        ],
+        "transition_description": "Research direction shift: 83.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1990,
+        "confidence": 0.6051051051051051,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6051051051051051,
+        "supporting_evidence": [
+          "New focus: image representation",
+          "New focus: comparative literature",
+          "New focus: emotion",
+          "New focus: social semiotics",
+          "New focus: affective computing"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2141208341",
+          "https://openalex.org/W25198730",
+          "https://openalex.org/W1567871163",
+          "https://openalex.org/W1501553023"
+        ],
+        "transition_description": "Research direction shift: 83.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1991,
+        "confidence": 0.5633229813664596,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5633229813664596,
+        "supporting_evidence": [
+          "New focus: intellectual history",
+          "New focus: authenticity",
+          "New focus: image representation",
+          "New focus: comparative literature",
+          "New focus: image communication"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2045732064",
+          "https://openalex.org/W1497692907",
+          "https://openalex.org/W2082626220"
+        ],
+        "transition_description": "Research direction shift: 81.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1992,
+        "confidence": 0.560682893847194,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.560682893847194,
+        "supporting_evidence": [
+          "New focus: intellectual history",
+          "New focus: authenticity",
+          "New focus: digital art",
+          "New focus: gender studies",
+          "New focus: creativity assessment"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1528900327",
+          "https://openalex.org/W581651874",
+          "https://openalex.org/W2013573542",
+          "https://openalex.org/W2049648156"
+        ],
+        "transition_description": "Research direction shift: 80.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1993,
+        "confidence": 0.5262190025076623,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5262190025076623,
+        "supporting_evidence": [
+          "New focus: authenticity",
+          "New focus: digital art",
+          "New focus: gender studies",
+          "New focus: design culture",
+          "New focus: walter benjamin"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1517761588",
+          "https://openalex.org/W353667370"
+        ],
+        "transition_description": "Research direction shift: 73.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1994,
+        "confidence": 0.41891304347826086,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.41891304347826086,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: facial expression",
+          "New focus: visual reasoning",
+          "New focus: walter benjamin",
+          "New focus: human-computer interaction"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1593163947",
+          "https://openalex.org/W1938860504",
+          "https://openalex.org/W2119941884",
+          "https://openalex.org/W1964140767",
+          "https://openalex.org/W2075046998"
+        ],
+        "transition_description": "Research direction shift: 58.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1995,
+        "confidence": 0.4395544634224944,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4395544634224944,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: machine vision",
+          "New focus: facial expression",
+          "New focus: walter benjamin",
+          "New focus: scene interpretation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1964627907"
+        ],
+        "transition_description": "Research direction shift: 65.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1996,
+        "confidence": 0.40879092438424713,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.40879092438424713,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: machine vision",
+          "New focus: facial expression",
+          "New focus: modern literature",
+          "New focus: philosophy of music"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2159374708",
+          "https://openalex.org/W1575041706",
+          "https://openalex.org/W2088239578",
+          "https://openalex.org/W589086132",
+          "https://openalex.org/W2094987439"
+        ],
+        "transition_description": "Research direction shift: 67.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1997,
+        "confidence": 0.47589928057553965,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.47589928057553965,
+        "supporting_evidence": [
+          "New focus: authenticity",
+          "New focus: creative computing",
+          "New focus: machine vision",
+          "New focus: advanced display technology",
+          "New focus: improvisation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1930240810",
+          "https://openalex.org/W621923303",
+          "https://openalex.org/W2070401514"
+        ],
+        "transition_description": "Research direction shift: 77.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1998,
+        "confidence": 0.44986107602930037,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.44986107602930037,
+        "supporting_evidence": [
+          "New focus: creative computing",
+          "New focus: behavioral sciences",
+          "New focus: political history",
+          "New focus: creative technology",
+          "New focus: arts-based research"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W378939584",
+          "https://openalex.org/W2106044202",
+          "https://openalex.org/W2125399516",
+          "https://openalex.org/W4388358549",
+          "https://openalex.org/W1999684301",
+          "https://openalex.org/W1522225789",
+          "https://openalex.org/W1534033255"
+        ],
+        "transition_description": "Research direction shift: 70.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1999,
+        "confidence": 0.4489233595264823,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4489233595264823,
+        "supporting_evidence": [
+          "New focus: creative computing",
+          "New focus: behavioral sciences",
+          "New focus: cultural theory",
+          "New focus: education",
+          "New focus: personality psychology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2135370208",
+          "https://openalex.org/W2037802731",
+          "https://openalex.org/W1957277773",
+          "https://openalex.org/W2091685917"
+        ],
+        "transition_description": "Research direction shift: 67.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2000,
+        "confidence": 0.42770944534694827,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.42770944534694827,
+        "supporting_evidence": [
+          "New focus: tourism",
+          "New focus: personality psychology",
+          "New focus: personality",
+          "New focus: user-centered design",
+          "New focus: consumer behaviour"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2088165831",
+          "https://openalex.org/W1998515403"
+        ],
+        "transition_description": "Research direction shift: 61.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2001,
+        "confidence": 0.45198654876074235,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.45198654876074235,
+        "supporting_evidence": [
+          "New focus: machine vision",
+          "New focus: linguistics",
+          "New focus: surface finish",
+          "New focus: surface science",
+          "New focus: psychology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1505038837",
+          "https://openalex.org/W1980611441",
+          "https://openalex.org/W2109506130",
+          "https://openalex.org/W2292976057",
+          "https://openalex.org/W1820567615",
+          "https://openalex.org/W1487045401",
+          "https://openalex.org/W2029146742",
+          "https://openalex.org/W2068623560",
+          "https://openalex.org/W2127666976",
+          "https://openalex.org/W2066646322",
+          "https://openalex.org/W604021879",
+          "https://openalex.org/W1584974224",
+          "https://openalex.org/W1966922436"
+        ],
+        "transition_description": "Research direction shift: 68.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2002,
+        "confidence": 0.40339176829268286,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.40339176829268286,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: image representation",
+          "New focus: film",
+          "New focus: machine vision",
+          "New focus: linguistics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2625385308",
+          "https://openalex.org/W2012908435",
+          "https://openalex.org/W2152646984",
+          "https://openalex.org/W2943755647",
+          "https://openalex.org/W2024531881"
+        ],
+        "transition_description": "Research direction shift: 68.4% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2004,
+        "confidence": 0.41724941724941716,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.41724941724941716,
+        "supporting_evidence": [
+          "New focus: content-based image retrieval",
+          "New focus: intellectual history",
+          "New focus: urban geography",
+          "New focus: image retrieval",
+          "New focus: visual art practice"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W631128470",
+          "https://openalex.org/W2001933992"
+        ],
+        "transition_description": "Research direction shift: 65.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2005,
+        "confidence": 0.41595940959409594,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.41595940959409594,
+        "supporting_evidence": [
+          "New focus: content-based image retrieval",
+          "New focus: intellectual history",
+          "New focus: urban geography",
+          "New focus: image retrieval",
+          "New focus: object removal"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2110903858",
+          "https://openalex.org/W2171670511",
+          "https://openalex.org/W1582997496"
+        ],
+        "transition_description": "Research direction shift: 61.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2006,
+        "confidence": 0.41239518315364726,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.41239518315364726,
+        "supporting_evidence": [
+          "New focus: content-based image retrieval",
+          "New focus: urban geography",
+          "New focus: image retrieval",
+          "New focus: object removal",
+          "New focus: fractal"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W607363940",
+          "https://openalex.org/W2156494141",
+          "https://openalex.org/W4246763861",
+          "https://openalex.org/W2045895693"
+        ],
+        "transition_description": "Research direction shift: 60.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2007,
+        "confidence": 0.4411897115759777,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4411897115759777,
+        "supporting_evidence": [
+          "New focus: cultural tourism",
+          "New focus: tourism",
+          "New focus: tourism performance",
+          "New focus: contemporary drama",
+          "New focus: digital medium"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W612169504",
+          "https://openalex.org/W1597789369"
+        ],
+        "transition_description": "Research direction shift: 63.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2009,
+        "confidence": 0.47408496732026145,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.47408496732026145,
+        "supporting_evidence": [
+          "New focus: cultural tourism",
+          "New focus: tourism",
+          "New focus: avatar animation",
+          "New focus: art policy",
+          "New focus: tourism performance"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2092972897"
+        ],
+        "transition_description": "Research direction shift: 67.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2010,
+        "confidence": 0.4922150156854443,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4922150156854443,
+        "supporting_evidence": [
+          "New focus: art policy",
+          "New focus: ethnography",
+          "New focus: video game development",
+          "New focus: object recognition",
+          "New focus: mental health"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W629102060",
+          "https://openalex.org/W4379416997"
+        ],
+        "transition_description": "Research direction shift: 69.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2011,
+        "confidence": 0.5051717532882135,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5051717532882135,
+        "supporting_evidence": [
+          "New focus: digital art",
+          "New focus: applied mathematics",
+          "New focus: qualitative method",
+          "New focus: art policy",
+          "New focus: art criticism"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1574602695"
+        ],
+        "transition_description": "Research direction shift: 74.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2012,
+        "confidence": 0.4356818181818182,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4356818181818182,
+        "supporting_evidence": [
+          "New focus: creative computing",
+          "New focus: image similarity",
+          "New focus: applied mathematics",
+          "New focus: creativity assessment",
+          "New focus: critical theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2171960331",
+          "https://openalex.org/W2078807908"
+        ],
+        "transition_description": "Research direction shift: 64.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2013,
+        "confidence": 0.4392702464451343,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4392702464451343,
+        "supporting_evidence": [
+          "New focus: human movement",
+          "New focus: data science",
+          "New focus: human performance",
+          "New focus: computational aesthetic",
+          "New focus: philosophy of film"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2786739783"
+        ],
+        "transition_description": "Research direction shift: 67.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2014,
+        "confidence": 0.4720024902951732,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4720024902951732,
+        "supporting_evidence": [
+          "New focus: data science",
+          "New focus: gender studies",
+          "New focus: embodiment",
+          "New focus: deep learning",
+          "New focus: social cognition"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2047643928",
+          "https://openalex.org/W2029411311"
+        ],
+        "transition_description": "Research direction shift: 67.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2015,
+        "confidence": 0.4512059369202226,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4512059369202226,
+        "supporting_evidence": [
+          "New focus: inpainting",
+          "New focus: embodiment",
+          "New focus: biomedical imaging",
+          "New focus: scene interpretation",
+          "New focus: physical anthropology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1931639407",
+          "https://openalex.org/W1924619199",
+          "https://openalex.org/W4256168637"
+        ],
+        "transition_description": "Research direction shift: 65.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2017,
+        "confidence": 0.44489912447658925,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.44489912447658925,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: artistic style",
+          "New focus: machine vision",
+          "New focus: neural algorithm",
+          "New focus: artificial intelligence"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2603777577",
+          "https://openalex.org/W2964024144"
+        ],
+        "transition_description": "Research direction shift: 59.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2018,
+        "confidence": 0.4642857142857143,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4642857142857143,
+        "supporting_evidence": [
+          "New focus: artistic style",
+          "New focus: neural algorithm",
+          "New focus: artificial intelligence",
+          "New focus: transfer learning",
+          "New focus: photo-realistic image synthesis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3043547428"
+        ],
+        "transition_description": "Research direction shift: 65.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2019,
+        "confidence": 0.40539516556793215,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.40539516556793215,
+        "supporting_evidence": [
+          "New focus: transfer learning",
+          "New focus: photo-realistic image synthesis",
+          "New focus: computational photography",
+          "New focus: generative adversarial network",
+          "New focus: image reconstruction"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2935837427"
+        ],
+        "transition_description": "Research direction shift: 64.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2020,
+        "confidence": 0.44569640062597804,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.44569640062597804,
+        "supporting_evidence": [
+          "New focus: religious symbol",
+          "New focus: symmetry",
+          "New focus: history of art",
+          "New focus: kinematics",
+          "New focus: performance art"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2302659223",
+          "https://openalex.org/W3012791980",
+          "https://openalex.org/W2503075868"
+        ],
+        "transition_description": "Research direction shift: 65.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2021,
+        "confidence": 0.45667293233082706,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.45667293233082706,
+        "supporting_evidence": [
+          "New focus: religious symbol",
+          "New focus: narrative",
+          "New focus: history of art"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 64.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2023,
+        "confidence": 0.42457091237579037,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.42457091237579037,
+        "supporting_evidence": [
+          "New focus: inter-professional collaboration",
+          "New focus: experiential learning",
+          "New focus: reflective practitioner",
+          "New focus: ethnographic theory",
+          "New focus: professional preparation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1541215049"
+        ],
+        "transition_description": "Research direction shift: 57.3% new keywords",
+        "paradigm_significance": 0.4
+      }
+    ],
+    "signal_types": [
+      "citation_disruption",
+      "direction_volatility"
+    ]
+  },
+  "validated_signals": {
+    "count": 28,
+    "description": "Cross-validated signals with combined evidence",
+    "signals": [
+      {
+        "year": 1985,
+        "confidence": 0.1808749341164069,
+        "signal_type": "validated_citation_disruption",
+        "evidence_strength": 0.15072911176367243,
+        "supporting_evidence": [
+          "Citation pattern change: 0.072 \u2192 0.223"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2057106053",
+          "https://openalex.org/W2003727510",
+          "https://openalex.org/W1480062598",
+          "https://openalex.org/W1988899198"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption",
+        "paradigm_significance": 0.5
+      },
+      {
+        "year": 1990,
+        "confidence": 0.9564429161322492,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6051051051051051,
+        "supporting_evidence": [
+          "Influence pattern change: 0.123 \u2192 0.198",
+          "New focus: image representation",
+          "New focus: comparative literature",
+          "New focus: emotion",
+          "New focus: social semiotics",
+          "New focus: affective computing"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1560880354",
+          "https://openalex.org/W2013903288",
+          "https://openalex.org/W2168884969",
+          "https://openalex.org/W2014673109",
+          "https://openalex.org/W1501553023",
+          "https://openalex.org/W1567871163",
+          "https://openalex.org/W25198730",
+          "https://openalex.org/W4212865901",
+          "https://openalex.org/W2141208341",
+          "https://openalex.org/W2035834232",
+          "https://openalex.org/W1558050452",
+          "https://openalex.org/W2135647588",
+          "https://openalex.org/W1568272571",
+          "https://openalex.org/W2150069692"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption, direction_volatility",
+        "paradigm_significance": 0.6
+      },
+      {
+        "year": 1934,
+        "confidence": 0.4878048780487805,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4878048780487805,
+        "supporting_evidence": [
+          "New focus: intellectual history",
+          "New focus: narrative",
+          "New focus: philosophy of film"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2008942963"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1958,
+        "confidence": 0.6710526315789473,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6710526315789473,
+        "supporting_evidence": [
+          "New focus: art research",
+          "New focus: psychology",
+          "New focus: visual science"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1708436379",
+          "https://openalex.org/W2032771350"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1960,
+        "confidence": 0.6277915632754343,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6277915632754343,
+        "supporting_evidence": [
+          "New focus: visual arts",
+          "New focus: visual art practice",
+          "New focus: contemporary art",
+          "New focus: visual culture",
+          "New focus: psychology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2080480260"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1962,
+        "confidence": 0.5148741418764302,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5148741418764302,
+        "supporting_evidence": [
+          "New focus: narrative",
+          "New focus: cultural studies",
+          "New focus: narrative representation",
+          "New focus: literary criticism"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1967,
+        "confidence": 0.5847176079734219,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5847176079734219,
+        "supporting_evidence": [
+          "New focus: aesthetics",
+          "New focus: cognitive science",
+          "New focus: art history"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2011946757"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1969,
+        "confidence": 0.768472906403941,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.768472906403941,
+        "supporting_evidence": [
+          "New focus: art research",
+          "New focus: art history",
+          "New focus: art theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1970507305"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1973,
+        "confidence": 0.6814814814814816,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6814814814814816,
+        "supporting_evidence": [
+          "New focus: representation theory",
+          "New focus: visual arts",
+          "New focus: visual language",
+          "New focus: linguistics",
+          "New focus: philosophy of language"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2045798786"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1975,
+        "confidence": 0.47454122512277075,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.47454122512277075,
+        "supporting_evidence": [
+          "New focus: visual culture",
+          "New focus: image communication",
+          "New focus: visual science"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1978,
+        "confidence": 0.43539429840799704,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.43539429840799704,
+        "supporting_evidence": [
+          "New focus: historical evidence",
+          "New focus: folklore tradition",
+          "New focus: folklore study",
+          "New focus: ritual",
+          "New focus: contemporary art"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3150186605"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1981,
+        "confidence": 0.5074513766102551,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5074513766102551,
+        "supporting_evidence": [
+          "New focus: image communication",
+          "New focus: visual culture",
+          "New focus: classics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1991087993"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1992,
+        "confidence": 0.560682893847194,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.560682893847194,
+        "supporting_evidence": [
+          "New focus: intellectual history",
+          "New focus: authenticity",
+          "New focus: digital art",
+          "New focus: gender studies",
+          "New focus: creativity assessment"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2049648156",
+          "https://openalex.org/W1528900327",
+          "https://openalex.org/W581651874",
+          "https://openalex.org/W2013573542"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1994,
+        "confidence": 0.41891304347826086,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.41891304347826086,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: facial expression",
+          "New focus: visual reasoning",
+          "New focus: walter benjamin",
+          "New focus: human-computer interaction"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1964140767",
+          "https://openalex.org/W1593163947",
+          "https://openalex.org/W2119941884",
+          "https://openalex.org/W1938860504",
+          "https://openalex.org/W2075046998"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1996,
+        "confidence": 0.40879092438424713,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40879092438424713,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: machine vision",
+          "New focus: facial expression",
+          "New focus: modern literature",
+          "New focus: philosophy of music"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1575041706",
+          "https://openalex.org/W2159374708",
+          "https://openalex.org/W2088239578",
+          "https://openalex.org/W2094987439",
+          "https://openalex.org/W589086132"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1998,
+        "confidence": 0.44986107602930037,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.44986107602930037,
+        "supporting_evidence": [
+          "New focus: creative computing",
+          "New focus: behavioral sciences",
+          "New focus: political history",
+          "New focus: creative technology",
+          "New focus: arts-based research"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W378939584",
+          "https://openalex.org/W4388358549",
+          "https://openalex.org/W2106044202",
+          "https://openalex.org/W1999684301",
+          "https://openalex.org/W2125399516",
+          "https://openalex.org/W1522225789",
+          "https://openalex.org/W1534033255"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2000,
+        "confidence": 0.42770944534694827,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.42770944534694827,
+        "supporting_evidence": [
+          "New focus: tourism",
+          "New focus: personality psychology",
+          "New focus: personality",
+          "New focus: user-centered design",
+          "New focus: consumer behaviour"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1998515403",
+          "https://openalex.org/W2088165831"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2002,
+        "confidence": 0.40339176829268286,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40339176829268286,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: image representation",
+          "New focus: film",
+          "New focus: machine vision",
+          "New focus: linguistics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2152646984",
+          "https://openalex.org/W2943755647",
+          "https://openalex.org/W2012908435",
+          "https://openalex.org/W2625385308",
+          "https://openalex.org/W2024531881"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2004,
+        "confidence": 0.41724941724941716,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.41724941724941716,
+        "supporting_evidence": [
+          "New focus: content-based image retrieval",
+          "New focus: intellectual history",
+          "New focus: urban geography",
+          "New focus: image retrieval",
+          "New focus: visual art practice"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W631128470",
+          "https://openalex.org/W2001933992"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2006,
+        "confidence": 0.41239518315364726,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.41239518315364726,
+        "supporting_evidence": [
+          "New focus: content-based image retrieval",
+          "New focus: urban geography",
+          "New focus: image retrieval",
+          "New focus: object removal",
+          "New focus: fractal"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2045895693",
+          "https://openalex.org/W2156494141",
+          "https://openalex.org/W607363940",
+          "https://openalex.org/W4246763861"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2009,
+        "confidence": 0.47408496732026145,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.47408496732026145,
+        "supporting_evidence": [
+          "New focus: cultural tourism",
+          "New focus: tourism",
+          "New focus: avatar animation",
+          "New focus: art policy",
+          "New focus: tourism performance"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2092972897"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2011,
+        "confidence": 0.5051717532882135,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5051717532882135,
+        "supporting_evidence": [
+          "New focus: digital art",
+          "New focus: applied mathematics",
+          "New focus: qualitative method",
+          "New focus: art policy",
+          "New focus: art criticism"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1574602695"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2013,
+        "confidence": 0.4392702464451343,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4392702464451343,
+        "supporting_evidence": [
+          "New focus: human movement",
+          "New focus: data science",
+          "New focus: human performance",
+          "New focus: computational aesthetic",
+          "New focus: philosophy of film"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2786739783"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2015,
+        "confidence": 0.4512059369202226,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4512059369202226,
+        "supporting_evidence": [
+          "New focus: inpainting",
+          "New focus: embodiment",
+          "New focus: biomedical imaging",
+          "New focus: scene interpretation",
+          "New focus: physical anthropology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W4256168637",
+          "https://openalex.org/W1931639407",
+          "https://openalex.org/W1924619199"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2017,
+        "confidence": 0.44489912447658925,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.44489912447658925,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: artistic style",
+          "New focus: machine vision",
+          "New focus: neural algorithm",
+          "New focus: artificial intelligence"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2964024144",
+          "https://openalex.org/W2603777577"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2019,
+        "confidence": 0.40539516556793215,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40539516556793215,
+        "supporting_evidence": [
+          "New focus: transfer learning",
+          "New focus: photo-realistic image synthesis",
+          "New focus: computational photography",
+          "New focus: generative adversarial network",
+          "New focus: image reconstruction"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2935837427"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2021,
+        "confidence": 0.45667293233082706,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.45667293233082706,
+        "supporting_evidence": [
+          "New focus: religious symbol",
+          "New focus: narrative",
+          "New focus: history of art"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2023,
+        "confidence": 0.42457091237579037,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.42457091237579037,
+        "supporting_evidence": [
+          "New focus: inter-professional collaboration",
+          "New focus: experiential learning",
+          "New focus: reflective practitioner",
+          "New focus: ethnographic theory",
+          "New focus: professional preparation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1541215049"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      }
+    ],
+    "validation_improvements": {
+      "multi_signal_bonus_applied": true,
+      "temporal_proximity_clustering": true,
+      "evidence_combination": true
+    }
+  },
+  "paradigm_shifts": {
+    "count": 21,
+    "description": "Final paradigm shift signals after significance filtering",
+    "signals": [
+      {
+        "year": 1985,
+        "confidence": 0.1808749341164069,
+        "signal_type": "validated_citation_disruption",
+        "evidence_strength": 0.15072911176367243,
+        "supporting_evidence": [
+          "Citation pattern change: 0.072 \u2192 0.223"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2057106053",
+          "https://openalex.org/W2003727510",
+          "https://openalex.org/W1480062598",
+          "https://openalex.org/W1988899198"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption",
+        "paradigm_significance": 0.8
+      },
+      {
+        "year": 1990,
+        "confidence": 0.9564429161322492,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6051051051051051,
+        "supporting_evidence": [
+          "Influence pattern change: 0.123 \u2192 0.198",
+          "New focus: image representation",
+          "New focus: comparative literature",
+          "New focus: emotion",
+          "New focus: social semiotics",
+          "New focus: affective computing"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1560880354",
+          "https://openalex.org/W2013903288",
+          "https://openalex.org/W2168884969",
+          "https://openalex.org/W2014673109",
+          "https://openalex.org/W1501553023",
+          "https://openalex.org/W1567871163",
+          "https://openalex.org/W25198730",
+          "https://openalex.org/W4212865901",
+          "https://openalex.org/W2141208341",
+          "https://openalex.org/W2035834232",
+          "https://openalex.org/W1558050452",
+          "https://openalex.org/W2135647588",
+          "https://openalex.org/W1568272571",
+          "https://openalex.org/W2150069692"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption, direction_volatility",
+        "paradigm_significance": 1.0999999999999999
+      },
+      {
+        "year": 1969,
+        "confidence": 0.768472906403941,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.768472906403941,
+        "supporting_evidence": [
+          "New focus: art research",
+          "New focus: art history",
+          "New focus: art theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1970507305"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.6000000000000001
+      },
+      {
+        "year": 1973,
+        "confidence": 0.6814814814814816,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6814814814814816,
+        "supporting_evidence": [
+          "New focus: representation theory",
+          "New focus: visual arts",
+          "New focus: visual language",
+          "New focus: linguistics",
+          "New focus: philosophy of language"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2045798786"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1975,
+        "confidence": 0.47454122512277075,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.47454122512277075,
+        "supporting_evidence": [
+          "New focus: visual culture",
+          "New focus: image communication",
+          "New focus: visual science"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1978,
+        "confidence": 0.43539429840799704,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.43539429840799704,
+        "supporting_evidence": [
+          "New focus: historical evidence",
+          "New focus: folklore tradition",
+          "New focus: folklore study",
+          "New focus: ritual",
+          "New focus: contemporary art"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3150186605"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1981,
+        "confidence": 0.5074513766102551,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5074513766102551,
+        "supporting_evidence": [
+          "New focus: image communication",
+          "New focus: visual culture",
+          "New focus: classics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1991087993"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1992,
+        "confidence": 0.560682893847194,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.560682893847194,
+        "supporting_evidence": [
+          "New focus: intellectual history",
+          "New focus: authenticity",
+          "New focus: digital art",
+          "New focus: gender studies",
+          "New focus: creativity assessment"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2049648156",
+          "https://openalex.org/W1528900327",
+          "https://openalex.org/W581651874",
+          "https://openalex.org/W2013573542"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1994,
+        "confidence": 0.41891304347826086,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.41891304347826086,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: facial expression",
+          "New focus: visual reasoning",
+          "New focus: walter benjamin",
+          "New focus: human-computer interaction"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1964140767",
+          "https://openalex.org/W1593163947",
+          "https://openalex.org/W2119941884",
+          "https://openalex.org/W1938860504",
+          "https://openalex.org/W2075046998"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1996,
+        "confidence": 0.40879092438424713,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40879092438424713,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: machine vision",
+          "New focus: facial expression",
+          "New focus: modern literature",
+          "New focus: philosophy of music"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1575041706",
+          "https://openalex.org/W2159374708",
+          "https://openalex.org/W2088239578",
+          "https://openalex.org/W2094987439",
+          "https://openalex.org/W589086132"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1998,
+        "confidence": 0.44986107602930037,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.44986107602930037,
+        "supporting_evidence": [
+          "New focus: creative computing",
+          "New focus: behavioral sciences",
+          "New focus: political history",
+          "New focus: creative technology",
+          "New focus: arts-based research"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W378939584",
+          "https://openalex.org/W4388358549",
+          "https://openalex.org/W2106044202",
+          "https://openalex.org/W1999684301",
+          "https://openalex.org/W2125399516",
+          "https://openalex.org/W1522225789",
+          "https://openalex.org/W1534033255"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2000,
+        "confidence": 0.42770944534694827,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.42770944534694827,
+        "supporting_evidence": [
+          "New focus: tourism",
+          "New focus: personality psychology",
+          "New focus: personality",
+          "New focus: user-centered design",
+          "New focus: consumer behaviour"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1998515403",
+          "https://openalex.org/W2088165831"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2002,
+        "confidence": 0.40339176829268286,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40339176829268286,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: image representation",
+          "New focus: film",
+          "New focus: machine vision",
+          "New focus: linguistics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2152646984",
+          "https://openalex.org/W2943755647",
+          "https://openalex.org/W2012908435",
+          "https://openalex.org/W2625385308",
+          "https://openalex.org/W2024531881"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2009,
+        "confidence": 0.47408496732026145,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.47408496732026145,
+        "supporting_evidence": [
+          "New focus: cultural tourism",
+          "New focus: tourism",
+          "New focus: avatar animation",
+          "New focus: art policy",
+          "New focus: tourism performance"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2092972897"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2011,
+        "confidence": 0.5051717532882135,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5051717532882135,
+        "supporting_evidence": [
+          "New focus: digital art",
+          "New focus: applied mathematics",
+          "New focus: qualitative method",
+          "New focus: art policy",
+          "New focus: art criticism"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1574602695"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2013,
+        "confidence": 0.4392702464451343,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4392702464451343,
+        "supporting_evidence": [
+          "New focus: human movement",
+          "New focus: data science",
+          "New focus: human performance",
+          "New focus: computational aesthetic",
+          "New focus: philosophy of film"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2786739783"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2015,
+        "confidence": 0.4512059369202226,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4512059369202226,
+        "supporting_evidence": [
+          "New focus: inpainting",
+          "New focus: embodiment",
+          "New focus: biomedical imaging",
+          "New focus: scene interpretation",
+          "New focus: physical anthropology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W4256168637",
+          "https://openalex.org/W1931639407",
+          "https://openalex.org/W1924619199"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2017,
+        "confidence": 0.44489912447658925,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.44489912447658925,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: artistic style",
+          "New focus: machine vision",
+          "New focus: neural algorithm",
+          "New focus: artificial intelligence"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2964024144",
+          "https://openalex.org/W2603777577"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2019,
+        "confidence": 0.40539516556793215,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40539516556793215,
+        "supporting_evidence": [
+          "New focus: transfer learning",
+          "New focus: photo-realistic image synthesis",
+          "New focus: computational photography",
+          "New focus: generative adversarial network",
+          "New focus: image reconstruction"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2935837427"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2021,
+        "confidence": 0.45667293233082706,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.45667293233082706,
+        "supporting_evidence": [
+          "New focus: religious symbol",
+          "New focus: narrative",
+          "New focus: history of art"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2023,
+        "confidence": 0.42457091237579037,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.42457091237579037,
+        "supporting_evidence": [
+          "New focus: inter-professional collaboration",
+          "New focus: experiential learning",
+          "New focus: reflective practitioner",
+          "New focus: ethnographic theory",
+          "New focus: professional preparation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1541215049"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      }
+    ],
+    "filtering_criteria": {
+      "breakthrough_paper_proximity": "Within 2 years",
+      "multi_signal_confidence_boost": ">0.7 threshold",
+      "domain_specific_thresholds": "Applied"
+    }
+  },
+  "transition_evidence": {
+    "count": 21,
+    "description": "Supporting evidence and justifications for paradigm transitions",
+    "evidence": [
+      {
+        "year": 1985,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2057106053",
+          "https://openalex.org/W2003727510",
+          "https://openalex.org/W1480062598",
+          "https://openalex.org/W1988899198"
+        ],
+        "confidence_score": 0.1808749341164069
+      },
+      {
+        "year": 1990,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W1560880354",
+          "https://openalex.org/W2013903288",
+          "https://openalex.org/W2168884969",
+          "https://openalex.org/W2014673109",
+          "https://openalex.org/W1501553023"
+        ],
+        "confidence_score": 0.9564429161322492
+      },
+      {
+        "year": 1969,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art theory",
+          "Emerging keyword: narrative"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W1970507305"
+        ],
+        "confidence_score": 0.768472906403941
+      },
+      {
+        "year": 1973,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: narrative",
+          "Emerging keyword: art research"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2045798786"
+        ],
+        "confidence_score": 0.6814814814814816
+      },
+      {
+        "year": 1975,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art research",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [],
+        "confidence_score": 0.47454122512277075
+      },
+      {
+        "year": 1978,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W3150186605"
+        ],
+        "confidence_score": 0.43539429840799704
+      },
+      {
+        "year": 1981,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: aesthetics",
+          "Emerging keyword: narrative"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W1991087993"
+        ],
+        "confidence_score": 0.5074513766102551
+      },
+      {
+        "year": 1992,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: aesthetics",
+          "Emerging keyword: art history"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2049648156",
+          "https://openalex.org/W1528900327",
+          "https://openalex.org/W581651874",
+          "https://openalex.org/W2013573542"
+        ],
+        "confidence_score": 0.560682893847194
+      },
+      {
+        "year": 1994,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, \"Images in Advertising: The Need for a Theory of Visual Rhetoric,\" builds on the th",
+          "The child paper, \"Images in Advertising: The Need for a Theory of Visual Rhetoric,\" builds on the th"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1964140767",
+          "https://openalex.org/W1593163947",
+          "https://openalex.org/W2119941884",
+          "https://openalex.org/W1938860504",
+          "https://openalex.org/W2075046998"
+        ],
+        "confidence_score": 0.41891304347826086
+      },
+      {
+        "year": 1996,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W1575041706",
+          "https://openalex.org/W2159374708",
+          "https://openalex.org/W2088239578",
+          "https://openalex.org/W2094987439",
+          "https://openalex.org/W589086132"
+        ],
+        "confidence_score": 0.40879092438424713
+      },
+      {
+        "year": 1998,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the concepts introduced in the parent paper by extending the techniques of"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W378939584",
+          "https://openalex.org/W4388358549",
+          "https://openalex.org/W2106044202",
+          "https://openalex.org/W1999684301",
+          "https://openalex.org/W2125399516"
+        ],
+        "confidence_score": 0.44986107602930037
+      },
+      {
+        "year": 2000,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by referencing Guilford's foundational work on the creati",
+          "The child paper on \"image analogies\" builds on the concepts introduced in the parent paper about pai",
+          "The child paper builds on the parent paper by exploring the relationship between users' perceptions "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1998515403",
+          "https://openalex.org/W2088165831"
+        ],
+        "confidence_score": 0.42770944534694827
+      },
+      {
+        "year": 2002,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: aesthetics",
+          "Emerging keyword: art history"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by introducing a novel algorithm for simultaneous structu",
+          "The child paper builds on the parent paper by proposing a novel algorithm that combines the advantag",
+          "The child paper builds on the parent paper by referencing Guilford's foundational work on the creati"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2152646984",
+          "https://openalex.org/W2943755647",
+          "https://openalex.org/W2012908435",
+          "https://openalex.org/W2625385308",
+          "https://openalex.org/W2024531881"
+        ],
+        "confidence_score": 0.40339176829268286
+      },
+      {
+        "year": 2009,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: aesthetics",
+          "Emerging keyword: performance studies"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the concepts of creativity and engagement discussed in the parent paper by",
+          "The child paper, \"Beyond Big and Little: The Four C Model of Creativity,\" builds on the concepts pre",
+          "The child paper, \"Presentation and validation of the Radboud Faces Database,\" builds on the parent p"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2092972897"
+        ],
+        "confidence_score": 0.47408496732026145
+      },
+      {
+        "year": 2011,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: aesthetics",
+          "Emerging keyword: performance studies"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, \"Im2Text: Describing Images Using 1 Million Captioned Photographs,\" builds on the p",
+          "The child paper, \"Presentation and validation of the Radboud Faces Database,\" builds on the parent p",
+          "The child paper, \"AVA: A large-scale database for aesthetic visual analysis,\" builds on the parent p"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1574602695"
+        ],
+        "confidence_score": 0.5051717532882135
+      },
+      {
+        "year": 2013,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: image representation",
+          "Emerging keyword: aesthetics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, \"Describing Textures in the Wild,\" builds on the parent paper, \"Describing objects ",
+          "The child paper builds on the parent paper by expanding the theoretical framework of aesthetic emoti",
+          "The child paper builds on the parent paper by expanding the philosophical concepts of emotions relat"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2786739783"
+        ],
+        "confidence_score": 0.4392702464451343
+      },
+      {
+        "year": 2015,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: image analysis",
+          "Emerging keyword: image representation"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by extending the discussion of visual culture and aesthet",
+          "The child paper, \"Describing Textures in the Wild,\" builds on the parent paper, \"Describing objects ",
+          "The child paper builds on the parent paper by utilizing the concept of image analogies to develop a "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W4256168637",
+          "https://openalex.org/W1931639407",
+          "https://openalex.org/W1924619199"
+        ],
+        "confidence_score": 0.4512059369202226
+      },
+      {
+        "year": 2017,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: image analysis"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by introducing a novel method, Adaptive Instance Normaliz",
+          "The child paper, \"Generative Image Inpainting with Contextual Attention,\" builds on the foundational",
+          "The child paper builds on the parent paper by introducing a novel adaptive instance normalization (A"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2964024144",
+          "https://openalex.org/W2603777577"
+        ],
+        "confidence_score": 0.44489912447658925
+      },
+      {
+        "year": 2019,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: performance studies"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, \"Generative Image Inpainting with Contextual Attention,\" builds on the foundational",
+          "The child paper, \"Generative Image Inpainting with Contextual Attention,\" builds on the concepts int"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2935837427"
+        ],
+        "confidence_score": 0.40539516556793215
+      },
+      {
+        "year": 2021,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: art history",
+          "Emerging keyword: performance art"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, \"Encoding in Style: a StyleGAN Encoder for Image-to-Image Translation,\" builds on t",
+          "The child paper, \"Encoding in Style: a StyleGAN Encoder for Image-to-Image Translation,\" builds on t"
+        ],
+        "breakthrough_papers": [],
+        "confidence_score": 0.45667293233082706
+      },
+      {
+        "year": 2023,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: art",
+          "Emerging keyword: image communication",
+          "Emerging keyword: image representation"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W1541215049"
+        ],
+        "confidence_score": 0.42457091237579037
+      }
+    ]
+  },
+  "visualization_metadata": {
+    "timeline_data": {
+      "raw_signal_years": [
+        1934,
+        1958,
+        1959,
+        1960,
+        1961,
+        1962,
+        1963,
+        1967,
+        1969,
+        1973,
+        1975,
+        1976,
+        1978,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2004,
+        2005,
+        2006,
+        2007,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2023
+      ],
+      "validated_signal_years": [
+        1934,
+        1958,
+        1960,
+        1962,
+        1967,
+        1969,
+        1973,
+        1975,
+        1978,
+        1981,
+        1985,
+        1990,
+        1992,
+        1994,
+        1996,
+        1998,
+        2000,
+        2002,
+        2004,
+        2006,
+        2009,
+        2011,
+        2013,
+        2015,
+        2017,
+        2019,
+        2021,
+        2023
+      ],
+      "paradigm_shift_years": [
+        1969,
+        1973,
+        1975,
+        1978,
+        1981,
+        1985,
+        1990,
+        1992,
+        1994,
+        1996,
+        1998,
+        2000,
+        2002,
+        2009,
+        2011,
+        2013,
+        2015,
+        2017,
+        2019,
+        2021,
+        2023
+      ]
+    },
+    "confidence_distributions": {
+      "raw_confidence_range": [
+        0,
+        1
+      ],
+      "paradigm_confidence_range": [
+        0,
+        1
+      ]
+    },
+    "signal_type_analysis": {
+      "raw_types": [
+        "citation_disruption",
+        "direction_volatility"
+      ],
+      "final_types": [
+        "validated_citation_disruption",
+        "validated_direction_volatility"
+      ]
+    },
+    "filtering_statistics": {
+      "raw_to_validated_retention": 0.5384615384615384,
+      "validated_to_paradigm_retention": 0.75,
+      "overall_retention": 0.40384615384615385
+    }
+  }
+}

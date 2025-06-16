@@ -1,0 +1,17 @@
+{
+  "Paradigm_Shifts": {
+    "f_statistic": 0.4497991967871486,
+    "p_value": 0.7194238867194724,
+    "significant": false
+  },
+  "Avg_Significance": {
+    "f_statistic": 65.07136871342365,
+    "p_value": 9.726326461998713e-13,
+    "significant": true
+  },
+  "Filtering_Effectiveness": {
+    "f_statistic": 12.945895896362932,
+    "p_value": 1.7338352611498982e-05,
+    "significant": true
+  }
+}

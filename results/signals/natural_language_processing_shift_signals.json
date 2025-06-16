@@ -1,0 +1,1881 @@
+{
+  "metadata": {
+    "domain_name": "natural_language_processing",
+    "analysis_date": "2025-06-16T12:38:49.176298",
+    "analysis_type": "shift_signal_detection",
+    "description": "Paradigm transition detection using multi-source signal fusion",
+    "methodology": {
+      "stage1": "Individual signal detection (citation, semantic, direction)",
+      "stage2": "Cross-validation and confidence scoring",
+      "stage3": "Paradigm significance filtering",
+      "stage4": "Transition evidence generation"
+    }
+  },
+  "raw_signals": {
+    "count": 24,
+    "description": "Raw signals from individual detection methods before validation",
+    "signals": [
+      {
+        "year": 2011,
+        "confidence": 0.30396535743251063,
+        "signal_type": "citation_disruption",
+        "evidence_strength": 0.2533044645270922,
+        "supporting_evidence": [
+          "Citation pattern change: 0.130 \u2192 0.383"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2158899491",
+          "https://openalex.org/W1524333225",
+          "https://openalex.org/W2135621733",
+          "https://openalex.org/W2997617958",
+          "https://openalex.org/W2113459411",
+          "https://openalex.org/W2084046180",
+          "https://openalex.org/W2171928131",
+          "https://openalex.org/W2169818249",
+          "https://openalex.org/W22861983",
+          "https://openalex.org/W1560147776",
+          "https://openalex.org/W1743243001",
+          "https://openalex.org/W4231796555",
+          "https://openalex.org/W1585100903",
+          "https://openalex.org/W2153848201",
+          "https://openalex.org/W2130339025",
+          "https://openalex.org/W1423339008",
+          "https://openalex.org/W71795751",
+          "https://openalex.org/W196214544",
+          "https://openalex.org/W2168041406",
+          "https://openalex.org/W2134800885",
+          "https://openalex.org/W2218318129",
+          "https://openalex.org/W1998042868",
+          "https://openalex.org/W2159457224",
+          "https://openalex.org/W1987425720",
+          "https://openalex.org/W2150009200"
+        ],
+        "transition_description": "Structural break in citation patterns at 2011",
+        "paradigm_significance": 0.5
+      },
+      {
+        "year": 2011,
+        "confidence": 0.4,
+        "signal_type": "semantic_shift",
+        "evidence_strength": 0.4,
+        "supporting_evidence": [
+          "architectural_shifts: foundational",
+          "domain_expansion: broader context"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2158899491",
+          "https://openalex.org/W179875071",
+          "https://openalex.org/W1524333225",
+          "https://openalex.org/W2174706414",
+          "https://openalex.org/W2135621733",
+          "https://openalex.org/W4299828299",
+          "https://openalex.org/W2997617958",
+          "https://openalex.org/W168564468",
+          "https://openalex.org/W2113459411",
+          "https://openalex.org/W4211186029",
+          "https://openalex.org/W2147768505",
+          "https://openalex.org/W2084046180",
+          "https://openalex.org/W182831726",
+          "https://openalex.org/W2112420033",
+          "https://openalex.org/W1978062397",
+          "https://openalex.org/W2040467972",
+          "https://openalex.org/W2158139315",
+          "https://openalex.org/W2402268235",
+          "https://openalex.org/W2146089916",
+          "https://openalex.org/W2171928131",
+          "https://openalex.org/W1989484209",
+          "https://openalex.org/W2126581182",
+          "https://openalex.org/W2169818249",
+          "https://openalex.org/W22861983",
+          "https://openalex.org/W2142159465",
+          "https://openalex.org/W2171278097",
+          "https://openalex.org/W1560147776",
+          "https://openalex.org/W1743243001",
+          "https://openalex.org/W1916559533",
+          "https://openalex.org/W2165599843",
+          "https://openalex.org/W4239946314",
+          "https://openalex.org/W2612769033",
+          "https://openalex.org/W4231796555",
+          "https://openalex.org/W1585100903",
+          "https://openalex.org/W2153848201",
+          "https://openalex.org/W2130339025",
+          "https://openalex.org/W1423339008",
+          "https://openalex.org/W71795751",
+          "https://openalex.org/W196214544",
+          "https://openalex.org/W2168041406",
+          "https://openalex.org/W2134800885",
+          "https://openalex.org/W2218318129",
+          "https://openalex.org/W1998042868",
+          "https://openalex.org/W2159457224",
+          "https://openalex.org/W1987425720",
+          "https://openalex.org/W2150009200",
+          "https://openalex.org/W1410460"
+        ],
+        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, domain_expansion: broader context",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2013,
+        "confidence": 0.4,
+        "signal_type": "semantic_shift",
+        "evidence_strength": 0.6,
+        "supporting_evidence": [
+          "architectural_shifts: novel architecture",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W2153579005",
+          "https://openalex.org/W1614298861",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2950577311",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W4294170691",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2950133940",
+          "https://openalex.org/W2251939518",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W2949547296",
+          "https://openalex.org/W2174706414",
+          "https://openalex.org/W2133564696",
+          "https://openalex.org/W4299828299",
+          "https://openalex.org/W2949888546",
+          "https://openalex.org/W4211186029",
+          "https://openalex.org/W2147768505",
+          "https://openalex.org/W2120615054",
+          "https://openalex.org/W2131744502",
+          "https://openalex.org/W2141599568",
+          "https://openalex.org/W2019759670",
+          "https://openalex.org/W2095655043",
+          "https://openalex.org/W1978062397",
+          "https://openalex.org/W2040467972",
+          "https://openalex.org/W1981425990",
+          "https://openalex.org/W2185175083",
+          "https://openalex.org/W2250861254",
+          "https://openalex.org/W2402268235",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W2949541494",
+          "https://openalex.org/W2096943734",
+          "https://openalex.org/W1989484209",
+          "https://openalex.org/W2125031621",
+          "https://openalex.org/W2252136820",
+          "https://openalex.org/W2126725946",
+          "https://openalex.org/W1922655562",
+          "https://openalex.org/W1527575280",
+          "https://openalex.org/W2031998113",
+          "https://openalex.org/W2251803266",
+          "https://openalex.org/W2172140247",
+          "https://openalex.org/W2131571251",
+          "https://openalex.org/W2612769033",
+          "https://openalex.org/W2008806374",
+          "https://openalex.org/W2252123671",
+          "https://openalex.org/W2250879510",
+          "https://openalex.org/W2252215182",
+          "https://openalex.org/W2113772582",
+          "https://openalex.org/W1714665356",
+          "https://openalex.org/W2962706528"
+        ],
+        "transition_description": "Semantic paradigm shift: architectural_shifts: novel architecture, foundational_work: establishes",
+        "paradigm_significance": 0.6
+      },
+      {
+        "year": 2014,
+        "confidence": 0.8,
+        "signal_type": "semantic_shift",
+        "evidence_strength": 1.0,
+        "supporting_evidence": [
+          "architectural_shifts: foundational",
+          "architectural_shifts: novel architecture",
+          "domain_expansion: broader context",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W1536680647",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2153579005",
+          "https://openalex.org/W1614298861",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2950577311",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W4294170691",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W1902237438",
+          "https://openalex.org/W2963684088",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2950133940",
+          "https://openalex.org/W2963840672",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W2251939518",
+          "https://openalex.org/W1514535095",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W2949547296",
+          "https://openalex.org/W2950178297",
+          "https://openalex.org/W2133564696",
+          "https://openalex.org/W2949888546",
+          "https://openalex.org/W2963012544",
+          "https://openalex.org/W1840435438",
+          "https://openalex.org/W2120615054",
+          "https://openalex.org/W2131744502",
+          "https://openalex.org/W1552847225",
+          "https://openalex.org/W2141599568",
+          "https://openalex.org/W2019759670",
+          "https://openalex.org/W2095655043",
+          "https://openalex.org/W1544827683",
+          "https://openalex.org/W2962965405",
+          "https://openalex.org/W2193413348",
+          "https://openalex.org/W1981425990",
+          "https://openalex.org/W2265846598",
+          "https://openalex.org/W2185175083",
+          "https://openalex.org/W2951548327",
+          "https://openalex.org/W2250861254",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W2949541494",
+          "https://openalex.org/W2096943734",
+          "https://openalex.org/W1591706642",
+          "https://openalex.org/W2125031621",
+          "https://openalex.org/W658020064",
+          "https://openalex.org/W2252136820",
+          "https://openalex.org/W2126725946",
+          "https://openalex.org/W1922655562",
+          "https://openalex.org/W2038043464",
+          "https://openalex.org/W2250966211",
+          "https://openalex.org/W1527575280",
+          "https://openalex.org/W2031998113",
+          "https://openalex.org/W1938755728",
+          "https://openalex.org/W2251803266",
+          "https://openalex.org/W2172140247",
+          "https://openalex.org/W2139501017",
+          "https://openalex.org/W2131571251",
+          "https://openalex.org/W2144554289",
+          "https://openalex.org/W1663984431",
+          "https://openalex.org/W2008806374",
+          "https://openalex.org/W2252123671",
+          "https://openalex.org/W2250879510",
+          "https://openalex.org/W2170738476",
+          "https://openalex.org/W2251135946",
+          "https://openalex.org/W2334889010",
+          "https://openalex.org/W2252215182",
+          "https://openalex.org/W2113772582",
+          "https://openalex.org/W1714665356",
+          "https://openalex.org/W1942214758",
+          "https://openalex.org/W2963963856",
+          "https://openalex.org/W2962706528"
+        ],
+        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, architectural_shifts: novel architecture, domain_expansion: broader context",
+        "paradigm_significance": 1.0
+      },
+      {
+        "year": 2015,
+        "confidence": 0.8,
+        "signal_type": "semantic_shift",
+        "evidence_strength": 1.0,
+        "supporting_evidence": [
+          "architectural_shifts: foundational",
+          "architectural_shifts: novel architecture",
+          "domain_expansion: applicable to",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W1536680647",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W1902237438",
+          "https://openalex.org/W2963684088",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2963840672",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W2963748441",
+          "https://openalex.org/W2525778437",
+          "https://openalex.org/W1514535095",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W2949547296",
+          "https://openalex.org/W2963373786",
+          "https://openalex.org/W2950178297",
+          "https://openalex.org/W2133564696",
+          "https://openalex.org/W2296283641",
+          "https://openalex.org/W2949888546",
+          "https://openalex.org/W2963012544",
+          "https://openalex.org/W1840435438",
+          "https://openalex.org/W2120615054",
+          "https://openalex.org/W2131744502",
+          "https://openalex.org/W1552847225",
+          "https://openalex.org/W2019759670",
+          "https://openalex.org/W2963226019",
+          "https://openalex.org/W2963216553",
+          "https://openalex.org/W1544827683",
+          "https://openalex.org/W2962965405",
+          "https://openalex.org/W2346578806",
+          "https://openalex.org/W2327501763",
+          "https://openalex.org/W2963929190",
+          "https://openalex.org/W2193413348",
+          "https://openalex.org/W2562607067",
+          "https://openalex.org/W2265846598",
+          "https://openalex.org/W2185175083",
+          "https://openalex.org/W2951548327",
+          "https://openalex.org/W2250861254",
+          "https://openalex.org/W2963206148",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W2963625095",
+          "https://openalex.org/W2949541494",
+          "https://openalex.org/W2963223306",
+          "https://openalex.org/W2517194566",
+          "https://openalex.org/W2962883855",
+          "https://openalex.org/W1591706642",
+          "https://openalex.org/W2125031621",
+          "https://openalex.org/W2432004435",
+          "https://openalex.org/W658020064",
+          "https://openalex.org/W1922655562",
+          "https://openalex.org/W2038043464",
+          "https://openalex.org/W2405756170",
+          "https://openalex.org/W2250966211",
+          "https://openalex.org/W1527575280",
+          "https://openalex.org/W1938755728",
+          "https://openalex.org/W2413794162",
+          "https://openalex.org/W2460657278",
+          "https://openalex.org/W2251803266",
+          "https://openalex.org/W2172140247",
+          "https://openalex.org/W2139501017",
+          "https://openalex.org/W2131571251",
+          "https://openalex.org/W2144554289",
+          "https://openalex.org/W2343052201",
+          "https://openalex.org/W1663984431",
+          "https://openalex.org/W2425121537",
+          "https://openalex.org/W2951534261",
+          "https://openalex.org/W2949999304",
+          "https://openalex.org/W2963758027",
+          "https://openalex.org/W2250879510",
+          "https://openalex.org/W2306941105",
+          "https://openalex.org/W2170738476",
+          "https://openalex.org/W2251135946",
+          "https://openalex.org/W2334889010",
+          "https://openalex.org/W2964167098",
+          "https://openalex.org/W2252215182",
+          "https://openalex.org/W2515462165",
+          "https://openalex.org/W2962826786",
+          "https://openalex.org/W2340954483",
+          "https://openalex.org/W2113772582",
+          "https://openalex.org/W2963042536",
+          "https://openalex.org/W1942214758",
+          "https://openalex.org/W2963963856",
+          "https://openalex.org/W2962706528",
+          "https://openalex.org/W2963167310"
+        ],
+        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, architectural_shifts: novel architecture, domain_expansion: applicable to",
+        "paradigm_significance": 1.0
+      },
+      {
+        "year": 2016,
+        "confidence": 0.8,
+        "signal_type": "semantic_shift",
+        "evidence_strength": 0.8,
+        "supporting_evidence": [
+          "architectural_shifts: novel architecture",
+          "domain_expansion: broader context",
+          "domain_expansion: applicable to",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1536680647",
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2493916176",
+          "https://openalex.org/W1902237438",
+          "https://openalex.org/W2963684088",
+          "https://openalex.org/W2963840672",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W2963748441",
+          "https://openalex.org/W2525778437",
+          "https://openalex.org/W1514535095",
+          "https://openalex.org/W2963373786",
+          "https://openalex.org/W2950178297",
+          "https://openalex.org/W2296283641",
+          "https://openalex.org/W2277195237",
+          "https://openalex.org/W2606974598",
+          "https://openalex.org/W2963626623",
+          "https://openalex.org/W2962879692",
+          "https://openalex.org/W2108646579",
+          "https://openalex.org/W4295521014",
+          "https://openalex.org/W2963012544",
+          "https://openalex.org/W1840435438",
+          "https://openalex.org/W1552847225",
+          "https://openalex.org/W2963226019",
+          "https://openalex.org/W2963216553",
+          "https://openalex.org/W1544827683",
+          "https://openalex.org/W2962965405",
+          "https://openalex.org/W2737258237",
+          "https://openalex.org/W2346578806",
+          "https://openalex.org/W2893425640",
+          "https://openalex.org/W2327501763",
+          "https://openalex.org/W2964268978",
+          "https://openalex.org/W2963929190",
+          "https://openalex.org/W2963918774",
+          "https://openalex.org/W2193413348",
+          "https://openalex.org/W2562607067",
+          "https://openalex.org/W2265846598",
+          "https://openalex.org/W2951548327",
+          "https://openalex.org/W2613904329",
+          "https://openalex.org/W2963444790",
+          "https://openalex.org/W2963084599",
+          "https://openalex.org/W2963206148",
+          "https://openalex.org/W2526050071",
+          "https://openalex.org/W2963625095",
+          "https://openalex.org/W2550553598",
+          "https://openalex.org/W2963223306",
+          "https://openalex.org/W2517194566",
+          "https://openalex.org/W2962883855",
+          "https://openalex.org/W2550821151",
+          "https://openalex.org/W2561715562",
+          "https://openalex.org/W2605376995",
+          "https://openalex.org/W1591706642",
+          "https://openalex.org/W2432004435",
+          "https://openalex.org/W658020064",
+          "https://openalex.org/W2964265128",
+          "https://openalex.org/W2169213601",
+          "https://openalex.org/W2605982830",
+          "https://openalex.org/W2038043464",
+          "https://openalex.org/W2405756170",
+          "https://openalex.org/W2597655663",
+          "https://openalex.org/W2250966211",
+          "https://openalex.org/W2605135824",
+          "https://openalex.org/W1938755728",
+          "https://openalex.org/W2413794162",
+          "https://openalex.org/W2460657278",
+          "https://openalex.org/W2139501017",
+          "https://openalex.org/W2144554289",
+          "https://openalex.org/W2343052201",
+          "https://openalex.org/W2963969878",
+          "https://openalex.org/W2612675303",
+          "https://openalex.org/W1663984431",
+          "https://openalex.org/W2963339397",
+          "https://openalex.org/W2425121537",
+          "https://openalex.org/W2951534261",
+          "https://openalex.org/W2742947407",
+          "https://openalex.org/W2949999304",
+          "https://openalex.org/W2963758027",
+          "https://openalex.org/W2306941105",
+          "https://openalex.org/W2740168486",
+          "https://openalex.org/W2170738476",
+          "https://openalex.org/W2963506925",
+          "https://openalex.org/W2251135946",
+          "https://openalex.org/W2334889010",
+          "https://openalex.org/W2964167098",
+          "https://openalex.org/W2515462165",
+          "https://openalex.org/W2962826786",
+          "https://openalex.org/W2752172973",
+          "https://openalex.org/W2964010806",
+          "https://openalex.org/W2340954483",
+          "https://openalex.org/W2963042536",
+          "https://openalex.org/W1942214758",
+          "https://openalex.org/W2963963856",
+          "https://openalex.org/W2963167310",
+          "https://openalex.org/W2963970792"
+        ],
+        "transition_description": "Semantic paradigm shift: architectural_shifts: novel architecture, domain_expansion: broader context, domain_expansion: applicable to",
+        "paradigm_significance": 0.8
+      },
+      {
+        "year": 1983,
+        "confidence": 0.5617283950617284,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5617283950617284,
+        "supporting_evidence": [
+          "New focus: language recognition",
+          "New focus: spoken language processing",
+          "New focus: speech processing"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 77.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1984,
+        "confidence": 0.41170778906627964,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.41170778906627964,
+        "supporting_evidence": [
+          "New focus: language model",
+          "New focus: language recognition",
+          "New focus: spoken language processing",
+          "New focus: speech recognition",
+          "New focus: spoken language technology"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 69.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1987,
+        "confidence": 0.5249326145552561,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5249326145552561,
+        "supporting_evidence": [
+          "New focus: machine-readable dictionary",
+          "New focus: knowledge representation and reasoning",
+          "New focus: knowledge-based system",
+          "New focus: semantic evaluation",
+          "New focus: knowledge integration"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1990100773"
+        ],
+        "transition_description": "Research direction shift: 73.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1988,
+        "confidence": 0.48039215686274517,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.48039215686274517,
+        "supporting_evidence": [
+          "New focus: knowledge representation and reasoning",
+          "New focus: knowledge-based system",
+          "New focus: semantic evaluation",
+          "New focus: knowledge integration",
+          "New focus: cognitive science"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 72.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1990,
+        "confidence": 0.6140552995391706,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6140552995391706,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: image representation",
+          "New focus: machine learning",
+          "New focus: spoken language technology",
+          "New focus: communication"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2102381086"
+        ],
+        "transition_description": "Research direction shift: 83.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1991,
+        "confidence": 0.5460294117647059,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5460294117647059,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: reading research",
+          "New focus: machine translation",
+          "New focus: corpus linguistics"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 79.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1992,
+        "confidence": 0.6321008056186738,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6321008056186738,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: data science",
+          "New focus: language processing in the brain",
+          "New focus: reading research",
+          "New focus: psycholinguistics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2068737686"
+        ],
+        "transition_description": "Research direction shift: 87.4% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1993,
+        "confidence": 0.6456922872693481,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6456922872693481,
+        "supporting_evidence": [
+          "New focus: language science",
+          "New focus: semantics",
+          "New focus: lexicography",
+          "New focus: language learning",
+          "New focus: machine translation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2127314673"
+        ],
+        "transition_description": "Research direction shift: 79.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1994,
+        "confidence": 0.42666666666666664,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.42666666666666664,
+        "supporting_evidence": [
+          "New focus: english",
+          "New focus: english language",
+          "New focus: machine learning research",
+          "New focus: semantic evaluation",
+          "New focus: cognitive science"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1993750641",
+          "https://openalex.org/W1990689692",
+          "https://openalex.org/W2100659887",
+          "https://openalex.org/W1533946607"
+        ],
+        "transition_description": "Research direction shift: 66.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1995,
+        "confidence": 0.4376761666144691,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4376761666144691,
+        "supporting_evidence": [
+          "New focus: english",
+          "New focus: language comprehension",
+          "New focus: keyword extraction",
+          "New focus: speech recognition",
+          "New focus: english language"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2165880886",
+          "https://openalex.org/W2101210369",
+          "https://openalex.org/W2053677366",
+          "https://openalex.org/W1987556956",
+          "https://openalex.org/W2085574295"
+        ],
+        "transition_description": "Research direction shift: 69.4% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1996,
+        "confidence": 0.4176245210727969,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4176245210727969,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: language comprehension",
+          "New focus: narrative",
+          "New focus: reading research",
+          "New focus: deep learning"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2096175520",
+          "https://openalex.org/W2161070585",
+          "https://openalex.org/W1996650435"
+        ],
+        "transition_description": "Research direction shift: 75.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1997,
+        "confidence": 0.4353120243531203,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4353120243531203,
+        "supporting_evidence": [
+          "New focus: language comprehension",
+          "New focus: logic in computer science",
+          "New focus: language-based approach",
+          "New focus: fuzzy logic",
+          "New focus: nlp task"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W938539187",
+          "https://openalex.org/W1559870885",
+          "https://openalex.org/W2610179052",
+          "https://openalex.org/W2199803028",
+          "https://openalex.org/W2787893582"
+        ],
+        "transition_description": "Research direction shift: 71.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1998,
+        "confidence": 0.4278758368837492,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4278758368837492,
+        "supporting_evidence": [
+          "New focus: homological algebra",
+          "New focus: automated reasoning",
+          "New focus: string-searching algorithm",
+          "New focus: applied mathematics",
+          "New focus: semantic similarity"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2026992087",
+          "https://openalex.org/W2166776180",
+          "https://openalex.org/W2534712034",
+          "https://openalex.org/W2130337399"
+        ],
+        "transition_description": "Research direction shift: 69.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2000,
+        "confidence": 0.45466405740378346,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.45466405740378346,
+        "supporting_evidence": [
+          "New focus: homological algebra",
+          "New focus: string-searching algorithm",
+          "New focus: applied mathematics",
+          "New focus: semantic similarity",
+          "New focus: numerical algorithm"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1579838312",
+          "https://openalex.org/W1583758360"
+        ],
+        "transition_description": "Research direction shift: 65.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2004,
+        "confidence": 0.40364394488759975,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.40364394488759975,
+        "supporting_evidence": [
+          "New focus: automatic evaluation",
+          "New focus: machine vision",
+          "New focus: large language model",
+          "New focus: string-searching algorithm",
+          "New focus: language comprehension"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2154652894",
+          "https://openalex.org/W1525595230",
+          "https://openalex.org/W1526308488",
+          "https://openalex.org/W2140124448",
+          "https://openalex.org/W2167980479",
+          "https://openalex.org/W2016534914"
+        ],
+        "transition_description": "Research direction shift: 74.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2005,
+        "confidence": 0.41931410883023784,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.41931410883023784,
+        "supporting_evidence": [
+          "New focus: automatic evaluation",
+          "New focus: automated reasoning",
+          "New focus: grammar",
+          "New focus: unsupervised classification",
+          "New focus: keyword extraction"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2152263452",
+          "https://openalex.org/W131533222"
+        ],
+        "transition_description": "Research direction shift: 73.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2006,
+        "confidence": 0.40149136577708006,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.40149136577708006,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: automated reasoning",
+          "New focus: grammar",
+          "New focus: applied linguistics",
+          "New focus: semantic similarity"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1574968832"
+        ],
+        "transition_description": "Research direction shift: 66.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2010,
+        "confidence": 0.4043154039624057,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4043154039624057,
+        "supporting_evidence": [
+          "New focus: semantics",
+          "New focus: supervised learning",
+          "New focus: keyword extraction",
+          "New focus: logic in computer science",
+          "New focus: affective computing"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W182831726",
+          "https://openalex.org/W2126581182",
+          "https://openalex.org/W2165599843",
+          "https://openalex.org/W4239946314",
+          "https://openalex.org/W1410460"
+        ],
+        "transition_description": "Research direction shift: 58.8% new keywords",
+        "paradigm_significance": 0.4
+      }
+    ],
+    "signal_types": [
+      "citation_disruption",
+      "semantic_shift",
+      "direction_volatility"
+    ]
+  },
+  "validated_signals": {
+    "count": 13,
+    "description": "Cross-validated signals with combined evidence",
+    "signals": [
+      {
+        "year": 2011,
+        "confidence": 0.9039653574325106,
+        "signal_type": "validated_semantic_shift",
+        "evidence_strength": 0.4,
+        "supporting_evidence": [
+          "Citation pattern change: 0.130 \u2192 0.383",
+          "architectural_shifts: foundational",
+          "domain_expansion: broader context"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2150009200",
+          "https://openalex.org/W1410460",
+          "https://openalex.org/W2084046180",
+          "https://openalex.org/W2174706414",
+          "https://openalex.org/W2169818249",
+          "https://openalex.org/W2158139315",
+          "https://openalex.org/W1989484209",
+          "https://openalex.org/W2165599843",
+          "https://openalex.org/W2147768505",
+          "https://openalex.org/W2126581182",
+          "https://openalex.org/W1978062397",
+          "https://openalex.org/W179875071",
+          "https://openalex.org/W2997617958",
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2130339025",
+          "https://openalex.org/W2040467972",
+          "https://openalex.org/W22861983",
+          "https://openalex.org/W2153848201",
+          "https://openalex.org/W1743243001",
+          "https://openalex.org/W2135621733",
+          "https://openalex.org/W168564468",
+          "https://openalex.org/W2159457224",
+          "https://openalex.org/W4299828299",
+          "https://openalex.org/W4211186029",
+          "https://openalex.org/W2146089916",
+          "https://openalex.org/W1524333225",
+          "https://openalex.org/W1423339008",
+          "https://openalex.org/W4239946314",
+          "https://openalex.org/W2158899491",
+          "https://openalex.org/W2168041406",
+          "https://openalex.org/W2171928131",
+          "https://openalex.org/W2171278097",
+          "https://openalex.org/W2112420033",
+          "https://openalex.org/W1560147776",
+          "https://openalex.org/W1998042868",
+          "https://openalex.org/W182831726",
+          "https://openalex.org/W1585100903",
+          "https://openalex.org/W1987425720",
+          "https://openalex.org/W1916559533",
+          "https://openalex.org/W2612769033",
+          "https://openalex.org/W2218318129",
+          "https://openalex.org/W2113459411",
+          "https://openalex.org/W4231796555",
+          "https://openalex.org/W196214544",
+          "https://openalex.org/W71795751",
+          "https://openalex.org/W2142159465",
+          "https://openalex.org/W2402268235",
+          "https://openalex.org/W2134800885"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption, semantic_shift",
+        "paradigm_significance": 0.5
+      },
+      {
+        "year": 2013,
+        "confidence": 0.4,
+        "signal_type": "validated_semantic_shift",
+        "evidence_strength": 0.6,
+        "supporting_evidence": [
+          "architectural_shifts: novel architecture",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2095655043",
+          "https://openalex.org/W2153579005",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W1714665356",
+          "https://openalex.org/W2174706414",
+          "https://openalex.org/W2950133940",
+          "https://openalex.org/W2133564696",
+          "https://openalex.org/W2031998113",
+          "https://openalex.org/W2252123671",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W1989484209",
+          "https://openalex.org/W2131571251",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2250879510",
+          "https://openalex.org/W2147768505",
+          "https://openalex.org/W2185175083",
+          "https://openalex.org/W2019759670",
+          "https://openalex.org/W1978062397",
+          "https://openalex.org/W4294170691",
+          "https://openalex.org/W2040467972",
+          "https://openalex.org/W2008806374",
+          "https://openalex.org/W2251803266",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2949541494",
+          "https://openalex.org/W2113772582",
+          "https://openalex.org/W2120615054",
+          "https://openalex.org/W2131744502",
+          "https://openalex.org/W2949547296",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W4299828299",
+          "https://openalex.org/W1981425990",
+          "https://openalex.org/W2096943734",
+          "https://openalex.org/W4211186029",
+          "https://openalex.org/W2252215182",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W1527575280",
+          "https://openalex.org/W2949888546",
+          "https://openalex.org/W2125031621",
+          "https://openalex.org/W2172140247",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W2612769033",
+          "https://openalex.org/W2126725946",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W1614298861",
+          "https://openalex.org/W2250861254",
+          "https://openalex.org/W2950577311",
+          "https://openalex.org/W2251939518",
+          "https://openalex.org/W2252136820",
+          "https://openalex.org/W2402268235",
+          "https://openalex.org/W2141599568",
+          "https://openalex.org/W2962706528",
+          "https://openalex.org/W1922655562"
+        ],
+        "transition_description": "Multi-signal paradigm transition: semantic_shift",
+        "paradigm_significance": 0.6
+      },
+      {
+        "year": 2015,
+        "confidence": 0.8,
+        "signal_type": "validated_semantic_shift",
+        "evidence_strength": 1.0,
+        "supporting_evidence": [
+          "architectural_shifts: foundational",
+          "architectural_shifts: novel architecture",
+          "domain_expansion: applicable to",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W2963758027",
+          "https://openalex.org/W2525778437",
+          "https://openalex.org/W2265846598",
+          "https://openalex.org/W1591706642",
+          "https://openalex.org/W2949999304",
+          "https://openalex.org/W2963226019",
+          "https://openalex.org/W2185175083",
+          "https://openalex.org/W2963840672",
+          "https://openalex.org/W2251803266",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2251135946",
+          "https://openalex.org/W2131744502",
+          "https://openalex.org/W2949547296",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W2144554289",
+          "https://openalex.org/W1536680647",
+          "https://openalex.org/W2963012544",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W1527575280",
+          "https://openalex.org/W2949888546",
+          "https://openalex.org/W2172140247",
+          "https://openalex.org/W2963216553",
+          "https://openalex.org/W2962706528",
+          "https://openalex.org/W1922655562",
+          "https://openalex.org/W2170738476",
+          "https://openalex.org/W2133564696",
+          "https://openalex.org/W2131571251",
+          "https://openalex.org/W2019759670",
+          "https://openalex.org/W2432004435",
+          "https://openalex.org/W2405756170",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W1552847225",
+          "https://openalex.org/W2120615054",
+          "https://openalex.org/W1938755728",
+          "https://openalex.org/W1840435438",
+          "https://openalex.org/W658020064",
+          "https://openalex.org/W2962826786",
+          "https://openalex.org/W2413794162",
+          "https://openalex.org/W2951548327",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2963223306",
+          "https://openalex.org/W1544827683",
+          "https://openalex.org/W2963684088",
+          "https://openalex.org/W2562607067",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W2963625095",
+          "https://openalex.org/W2963373786",
+          "https://openalex.org/W2951534261",
+          "https://openalex.org/W2296283641",
+          "https://openalex.org/W2962965405",
+          "https://openalex.org/W2250879510",
+          "https://openalex.org/W2250966211",
+          "https://openalex.org/W2963042536",
+          "https://openalex.org/W2949541494",
+          "https://openalex.org/W2950178297",
+          "https://openalex.org/W2113772582",
+          "https://openalex.org/W2425121537",
+          "https://openalex.org/W2038043464",
+          "https://openalex.org/W2252215182",
+          "https://openalex.org/W2515462165",
+          "https://openalex.org/W2517194566",
+          "https://openalex.org/W2964167098",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W1942214758",
+          "https://openalex.org/W1663984431",
+          "https://openalex.org/W2963206148",
+          "https://openalex.org/W2193413348",
+          "https://openalex.org/W2346578806",
+          "https://openalex.org/W2460657278",
+          "https://openalex.org/W2963963856",
+          "https://openalex.org/W2963167310",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2343052201",
+          "https://openalex.org/W2327501763",
+          "https://openalex.org/W2340954483",
+          "https://openalex.org/W2962883855",
+          "https://openalex.org/W1514535095",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W1902237438",
+          "https://openalex.org/W2125031621",
+          "https://openalex.org/W2334889010",
+          "https://openalex.org/W2139501017",
+          "https://openalex.org/W2306941105",
+          "https://openalex.org/W2250861254",
+          "https://openalex.org/W2963929190",
+          "https://openalex.org/W2963748441"
+        ],
+        "transition_description": "Multi-signal paradigm transition: semantic_shift",
+        "paradigm_significance": 1.0
+      },
+      {
+        "year": 1983,
+        "confidence": 0.5617283950617284,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5617283950617284,
+        "supporting_evidence": [
+          "New focus: language recognition",
+          "New focus: spoken language processing",
+          "New focus: speech processing"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1987,
+        "confidence": 0.5249326145552561,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5249326145552561,
+        "supporting_evidence": [
+          "New focus: machine-readable dictionary",
+          "New focus: knowledge representation and reasoning",
+          "New focus: knowledge-based system",
+          "New focus: semantic evaluation",
+          "New focus: knowledge integration"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1990100773"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1990,
+        "confidence": 0.6140552995391706,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6140552995391706,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: image representation",
+          "New focus: machine learning",
+          "New focus: spoken language technology",
+          "New focus: communication"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2102381086"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1992,
+        "confidence": 0.6321008056186738,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6321008056186738,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: data science",
+          "New focus: language processing in the brain",
+          "New focus: reading research",
+          "New focus: psycholinguistics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2068737686"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1994,
+        "confidence": 0.42666666666666664,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.42666666666666664,
+        "supporting_evidence": [
+          "New focus: english",
+          "New focus: english language",
+          "New focus: machine learning research",
+          "New focus: semantic evaluation",
+          "New focus: cognitive science"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2100659887",
+          "https://openalex.org/W1990689692",
+          "https://openalex.org/W1533946607",
+          "https://openalex.org/W1993750641"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1996,
+        "confidence": 0.4176245210727969,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4176245210727969,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: language comprehension",
+          "New focus: narrative",
+          "New focus: reading research",
+          "New focus: deep learning"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2161070585",
+          "https://openalex.org/W2096175520",
+          "https://openalex.org/W1996650435"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1998,
+        "confidence": 0.4278758368837492,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4278758368837492,
+        "supporting_evidence": [
+          "New focus: homological algebra",
+          "New focus: automated reasoning",
+          "New focus: string-searching algorithm",
+          "New focus: applied mathematics",
+          "New focus: semantic similarity"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2130337399",
+          "https://openalex.org/W2026992087",
+          "https://openalex.org/W2166776180",
+          "https://openalex.org/W2534712034"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2000,
+        "confidence": 0.45466405740378346,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.45466405740378346,
+        "supporting_evidence": [
+          "New focus: homological algebra",
+          "New focus: string-searching algorithm",
+          "New focus: applied mathematics",
+          "New focus: semantic similarity",
+          "New focus: numerical algorithm"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1579838312",
+          "https://openalex.org/W1583758360"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2004,
+        "confidence": 0.40364394488759975,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40364394488759975,
+        "supporting_evidence": [
+          "New focus: automatic evaluation",
+          "New focus: machine vision",
+          "New focus: large language model",
+          "New focus: string-searching algorithm",
+          "New focus: language comprehension"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2167980479",
+          "https://openalex.org/W1526308488",
+          "https://openalex.org/W2016534914",
+          "https://openalex.org/W1525595230",
+          "https://openalex.org/W2154652894",
+          "https://openalex.org/W2140124448"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2006,
+        "confidence": 0.40149136577708006,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40149136577708006,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: automated reasoning",
+          "New focus: grammar",
+          "New focus: applied linguistics",
+          "New focus: semantic similarity"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1574968832"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      }
+    ],
+    "validation_improvements": {
+      "multi_signal_bonus_applied": true,
+      "temporal_proximity_clustering": true,
+      "evidence_combination": true
+    }
+  },
+  "paradigm_shifts": {
+    "count": 8,
+    "description": "Final paradigm shift signals after significance filtering",
+    "signals": [
+      {
+        "year": 2011,
+        "confidence": 0.9039653574325106,
+        "signal_type": "validated_semantic_shift",
+        "evidence_strength": 0.4,
+        "supporting_evidence": [
+          "Citation pattern change: 0.130 \u2192 0.383",
+          "architectural_shifts: foundational",
+          "domain_expansion: broader context"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2150009200",
+          "https://openalex.org/W1410460",
+          "https://openalex.org/W2084046180",
+          "https://openalex.org/W2174706414",
+          "https://openalex.org/W2169818249",
+          "https://openalex.org/W2158139315",
+          "https://openalex.org/W1989484209",
+          "https://openalex.org/W2165599843",
+          "https://openalex.org/W2147768505",
+          "https://openalex.org/W2126581182",
+          "https://openalex.org/W1978062397",
+          "https://openalex.org/W179875071",
+          "https://openalex.org/W2997617958",
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2130339025",
+          "https://openalex.org/W2040467972",
+          "https://openalex.org/W22861983",
+          "https://openalex.org/W2153848201",
+          "https://openalex.org/W1743243001",
+          "https://openalex.org/W2135621733",
+          "https://openalex.org/W168564468",
+          "https://openalex.org/W2159457224",
+          "https://openalex.org/W4299828299",
+          "https://openalex.org/W4211186029",
+          "https://openalex.org/W2146089916",
+          "https://openalex.org/W1524333225",
+          "https://openalex.org/W1423339008",
+          "https://openalex.org/W4239946314",
+          "https://openalex.org/W2158899491",
+          "https://openalex.org/W2168041406",
+          "https://openalex.org/W2171928131",
+          "https://openalex.org/W2171278097",
+          "https://openalex.org/W2112420033",
+          "https://openalex.org/W1560147776",
+          "https://openalex.org/W1998042868",
+          "https://openalex.org/W182831726",
+          "https://openalex.org/W1585100903",
+          "https://openalex.org/W1987425720",
+          "https://openalex.org/W1916559533",
+          "https://openalex.org/W2612769033",
+          "https://openalex.org/W2218318129",
+          "https://openalex.org/W2113459411",
+          "https://openalex.org/W4231796555",
+          "https://openalex.org/W196214544",
+          "https://openalex.org/W71795751",
+          "https://openalex.org/W2142159465",
+          "https://openalex.org/W2402268235",
+          "https://openalex.org/W2134800885"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption, semantic_shift",
+        "paradigm_significance": 1.0
+      },
+      {
+        "year": 2013,
+        "confidence": 0.4,
+        "signal_type": "validated_semantic_shift",
+        "evidence_strength": 0.6,
+        "supporting_evidence": [
+          "architectural_shifts: novel architecture",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2095655043",
+          "https://openalex.org/W2153579005",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W1714665356",
+          "https://openalex.org/W2174706414",
+          "https://openalex.org/W2950133940",
+          "https://openalex.org/W2133564696",
+          "https://openalex.org/W2031998113",
+          "https://openalex.org/W2252123671",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W1989484209",
+          "https://openalex.org/W2131571251",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2250879510",
+          "https://openalex.org/W2147768505",
+          "https://openalex.org/W2185175083",
+          "https://openalex.org/W2019759670",
+          "https://openalex.org/W1978062397",
+          "https://openalex.org/W4294170691",
+          "https://openalex.org/W2040467972",
+          "https://openalex.org/W2008806374",
+          "https://openalex.org/W2251803266",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2949541494",
+          "https://openalex.org/W2113772582",
+          "https://openalex.org/W2120615054",
+          "https://openalex.org/W2131744502",
+          "https://openalex.org/W2949547296",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W4299828299",
+          "https://openalex.org/W1981425990",
+          "https://openalex.org/W2096943734",
+          "https://openalex.org/W4211186029",
+          "https://openalex.org/W2252215182",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W1527575280",
+          "https://openalex.org/W2949888546",
+          "https://openalex.org/W2125031621",
+          "https://openalex.org/W2172140247",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W2612769033",
+          "https://openalex.org/W2126725946",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W1614298861",
+          "https://openalex.org/W2250861254",
+          "https://openalex.org/W2950577311",
+          "https://openalex.org/W2251939518",
+          "https://openalex.org/W2252136820",
+          "https://openalex.org/W2402268235",
+          "https://openalex.org/W2141599568",
+          "https://openalex.org/W2962706528",
+          "https://openalex.org/W1922655562"
+        ],
+        "transition_description": "Multi-signal paradigm transition: semantic_shift",
+        "paradigm_significance": 0.8999999999999999
+      },
+      {
+        "year": 2015,
+        "confidence": 0.8,
+        "signal_type": "validated_semantic_shift",
+        "evidence_strength": 1.0,
+        "supporting_evidence": [
+          "architectural_shifts: foundational",
+          "architectural_shifts: novel architecture",
+          "domain_expansion: applicable to",
+          "foundational_work: establishes"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W2963758027",
+          "https://openalex.org/W2525778437",
+          "https://openalex.org/W2265846598",
+          "https://openalex.org/W1591706642",
+          "https://openalex.org/W2949999304",
+          "https://openalex.org/W2963226019",
+          "https://openalex.org/W2185175083",
+          "https://openalex.org/W2963840672",
+          "https://openalex.org/W2251803266",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2251135946",
+          "https://openalex.org/W2131744502",
+          "https://openalex.org/W2949547296",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W2144554289",
+          "https://openalex.org/W1536680647",
+          "https://openalex.org/W2963012544",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W1527575280",
+          "https://openalex.org/W2949888546",
+          "https://openalex.org/W2172140247",
+          "https://openalex.org/W2963216553",
+          "https://openalex.org/W2962706528",
+          "https://openalex.org/W1922655562",
+          "https://openalex.org/W2170738476",
+          "https://openalex.org/W2133564696",
+          "https://openalex.org/W2131571251",
+          "https://openalex.org/W2019759670",
+          "https://openalex.org/W2432004435",
+          "https://openalex.org/W2405756170",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W1552847225",
+          "https://openalex.org/W2120615054",
+          "https://openalex.org/W1938755728",
+          "https://openalex.org/W1840435438",
+          "https://openalex.org/W658020064",
+          "https://openalex.org/W2962826786",
+          "https://openalex.org/W2413794162",
+          "https://openalex.org/W2951548327",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2963223306",
+          "https://openalex.org/W1544827683",
+          "https://openalex.org/W2963684088",
+          "https://openalex.org/W2562607067",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W2963625095",
+          "https://openalex.org/W2963373786",
+          "https://openalex.org/W2951534261",
+          "https://openalex.org/W2296283641",
+          "https://openalex.org/W2962965405",
+          "https://openalex.org/W2250879510",
+          "https://openalex.org/W2250966211",
+          "https://openalex.org/W2963042536",
+          "https://openalex.org/W2949541494",
+          "https://openalex.org/W2950178297",
+          "https://openalex.org/W2113772582",
+          "https://openalex.org/W2425121537",
+          "https://openalex.org/W2038043464",
+          "https://openalex.org/W2252215182",
+          "https://openalex.org/W2515462165",
+          "https://openalex.org/W2517194566",
+          "https://openalex.org/W2964167098",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W1942214758",
+          "https://openalex.org/W1663984431",
+          "https://openalex.org/W2963206148",
+          "https://openalex.org/W2193413348",
+          "https://openalex.org/W2346578806",
+          "https://openalex.org/W2460657278",
+          "https://openalex.org/W2963963856",
+          "https://openalex.org/W2963167310",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2343052201",
+          "https://openalex.org/W2327501763",
+          "https://openalex.org/W2340954483",
+          "https://openalex.org/W2962883855",
+          "https://openalex.org/W1514535095",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W1902237438",
+          "https://openalex.org/W2125031621",
+          "https://openalex.org/W2334889010",
+          "https://openalex.org/W2139501017",
+          "https://openalex.org/W2306941105",
+          "https://openalex.org/W2250861254",
+          "https://openalex.org/W2963929190",
+          "https://openalex.org/W2963748441"
+        ],
+        "transition_description": "Multi-signal paradigm transition: semantic_shift",
+        "paradigm_significance": 1.5
+      },
+      {
+        "year": 1994,
+        "confidence": 0.42666666666666664,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.42666666666666664,
+        "supporting_evidence": [
+          "New focus: english",
+          "New focus: english language",
+          "New focus: machine learning research",
+          "New focus: semantic evaluation",
+          "New focus: cognitive science"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2100659887",
+          "https://openalex.org/W1990689692",
+          "https://openalex.org/W1533946607",
+          "https://openalex.org/W1993750641"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1996,
+        "confidence": 0.4176245210727969,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4176245210727969,
+        "supporting_evidence": [
+          "New focus: speech communication",
+          "New focus: language comprehension",
+          "New focus: narrative",
+          "New focus: reading research",
+          "New focus: deep learning"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2161070585",
+          "https://openalex.org/W2096175520",
+          "https://openalex.org/W1996650435"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1998,
+        "confidence": 0.4278758368837492,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4278758368837492,
+        "supporting_evidence": [
+          "New focus: homological algebra",
+          "New focus: automated reasoning",
+          "New focus: string-searching algorithm",
+          "New focus: applied mathematics",
+          "New focus: semantic similarity"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2130337399",
+          "https://openalex.org/W2026992087",
+          "https://openalex.org/W2166776180",
+          "https://openalex.org/W2534712034"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2000,
+        "confidence": 0.45466405740378346,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.45466405740378346,
+        "supporting_evidence": [
+          "New focus: homological algebra",
+          "New focus: string-searching algorithm",
+          "New focus: applied mathematics",
+          "New focus: semantic similarity",
+          "New focus: numerical algorithm"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1579838312",
+          "https://openalex.org/W1583758360"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2004,
+        "confidence": 0.40364394488759975,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.40364394488759975,
+        "supporting_evidence": [
+          "New focus: automatic evaluation",
+          "New focus: machine vision",
+          "New focus: large language model",
+          "New focus: string-searching algorithm",
+          "New focus: language comprehension"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2167980479",
+          "https://openalex.org/W1526308488",
+          "https://openalex.org/W2016534914",
+          "https://openalex.org/W1525595230",
+          "https://openalex.org/W2154652894",
+          "https://openalex.org/W2140124448"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      }
+    ],
+    "filtering_criteria": {
+      "breakthrough_paper_proximity": "Within 2 years",
+      "multi_signal_confidence_boost": ">0.7 threshold",
+      "domain_specific_thresholds": "Applied"
+    }
+  },
+  "transition_evidence": {
+    "count": 8,
+    "description": "Supporting evidence and justifications for paradigm transitions",
+    "evidence": [
+      {
+        "year": 2011,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: computer science",
+          "Emerging keyword: text mining"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by implementing the Latent Dirichlet Allocation (LDA) alg",
+          "The child paper builds on the parent paper by utilizing the concepts of Latent Dirichlet Allocation ",
+          "The child paper builds on the parent paper by enhancing the latent Dirichlet allocation (LDA) model "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2150009200",
+          "https://openalex.org/W1410460",
+          "https://openalex.org/W2084046180",
+          "https://openalex.org/W2174706414",
+          "https://openalex.org/W2169818249"
+        ],
+        "confidence_score": 0.9039653574325106
+      },
+      {
+        "year": 2013,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by proposing a novel biterm topic model (BTM) that addres",
+          "The child paper builds on the parent paper by analyzing the properties of neural machine translation",
+          "The child paper builds on the parent paper by extending the concepts of encoder-decoder architecture"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2095655043",
+          "https://openalex.org/W2153579005",
+          "https://openalex.org/W2102113734",
+          "https://openalex.org/W1714665356",
+          "https://openalex.org/W2174706414"
+        ],
+        "confidence_score": 0.4
+      },
+      {
+        "year": 2015,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by utilizing the word representation techniques developed",
+          "The child paper builds on the parent paper by utilizing the word embeddings generated from the GloVe",
+          "The child paper builds on the foundational concepts of word representation introduced in the parent "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2964199361",
+          "https://openalex.org/W2963758027",
+          "https://openalex.org/W2525778437",
+          "https://openalex.org/W2265846598"
+        ],
+        "confidence_score": 0.8
+      },
+      {
+        "year": 1994,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: language",
+          "Emerging keyword: linguistics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by utilizing the lexical database WordNet as a foundation",
+          "The child paper builds on the parent paper by proposing an unsupervised learning algorithm for word "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2100659887",
+          "https://openalex.org/W1990689692",
+          "https://openalex.org/W1533946607",
+          "https://openalex.org/W1993750641"
+        ],
+        "confidence_score": 0.42666666666666664
+      },
+      {
+        "year": 1996,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: language",
+          "Emerging keyword: computer science"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by utilizing the lexical database WordNet as a foundation",
+          "The child paper builds on the parent paper by applying a maximum entropy approach to natural languag",
+          "The child paper builds on the parent paper by proposing an unsupervised learning algorithm for word "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2161070585",
+          "https://openalex.org/W2096175520",
+          "https://openalex.org/W1996650435"
+        ],
+        "confidence_score": 0.4176245210727969
+      },
+      {
+        "year": 1998,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: computer science",
+          "Emerging keyword: linguistics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by utilizing the WordNet lexical database as a benchmark ",
+          "The child paper builds on the parent paper by introducing a new disambiguation algorithm, context-gr",
+          "The child paper builds on the concepts introduced in the parent paper by proposing a novel disambigu"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2130337399",
+          "https://openalex.org/W2026992087",
+          "https://openalex.org/W2166776180",
+          "https://openalex.org/W2534712034"
+        ],
+        "confidence_score": 0.4278758368837492
+      },
+      {
+        "year": 2000,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: computer science",
+          "Emerging keyword: linguistics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by utilizing the Penn Treebank as a foundational resource",
+          "The child paper builds on the parent paper by applying the maximum-entropy approach described in the",
+          "The child paper builds on the parent paper by utilizing machine learning algorithms for text categor"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1579838312",
+          "https://openalex.org/W1583758360"
+        ],
+        "confidence_score": 0.45466405740378346
+      },
+      {
+        "year": 2004,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: natural language processing",
+          "Emerging keyword: computer science",
+          "Emerging keyword: linguistics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by extending the Latent Dirichlet Allocation (LDA) model ",
+          "The child paper builds on the foundational concepts presented in the parent paper by extending proba",
+          "The child paper, \"RCV1: A New Benchmark Collection for Text Categorization Research,\" builds on the "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2167980479",
+          "https://openalex.org/W1526308488",
+          "https://openalex.org/W2016534914",
+          "https://openalex.org/W1525595230",
+          "https://openalex.org/W2154652894"
+        ],
+        "confidence_score": 0.40364394488759975
+      }
+    ]
+  },
+  "visualization_metadata": {
+    "timeline_data": {
+      "raw_signal_years": [
+        1983,
+        1984,
+        1987,
+        1988,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        2000,
+        2004,
+        2005,
+        2006,
+        2010,
+        2011,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "validated_signal_years": [
+        1983,
+        1987,
+        1990,
+        1992,
+        1994,
+        1996,
+        1998,
+        2000,
+        2004,
+        2006,
+        2011,
+        2013,
+        2015
+      ],
+      "paradigm_shift_years": [
+        1994,
+        1996,
+        1998,
+        2000,
+        2004,
+        2011,
+        2013,
+        2015
+      ]
+    },
+    "confidence_distributions": {
+      "raw_confidence_range": [
+        0,
+        1
+      ],
+      "paradigm_confidence_range": [
+        0,
+        1
+      ]
+    },
+    "signal_type_analysis": {
+      "raw_types": [
+        "citation_disruption",
+        "semantic_shift",
+        "direction_volatility"
+      ],
+      "final_types": [
+        "validated_direction_volatility",
+        "validated_semantic_shift"
+      ]
+    },
+    "filtering_statistics": {
+      "raw_to_validated_retention": 0.5416666666666666,
+      "validated_to_paradigm_retention": 0.6153846153846154,
+      "overall_retention": 0.3333333333333333
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "domain": "Natural Language Processing (NLP)",
+  "historical_periods": [
+    {
+      "period_name": "Symbolic and Rule-Based Approaches",
+      "start_year": 1940,
+      "end_year": 1989,
+      "duration_years": 50,
+      "description": "This initial era was characterized by a focus on symbolic manipulation and hand-crafted linguistic rules, particularly for machine translation and conversational agents.",
+      "representative_developments": [
+        "Machine translation efforts based on explicitly encoded grammatical rules",
+        "Development of rule-based conversational agents (e.g., ELIZA in the 1960s)",
+        "Emphasis on understanding underlying language structure through predefined rules"
+      ]
+    },
+    {
+      "period_name": "Integration of AI and Logico-Grammatical Frameworks",
+      "start_year": 1980,
+      "end_year": 1999,
+      "duration_years": 20,
+      "description": "During this period, NLP research broadened to incorporate insights from artificial intelligence, particularly in logic and formal grammar, combining symbolic reasoning with linguistic rules.",
+      "representative_developments": [
+        "Exploration of formal linguistic theories to improve parsing and language understanding",
+        "Adoption of 'logico-grammatical' styles combining symbolic reasoning with linguistic rules"
+      ]
+    },
+    {
+      "period_name": "Transition to Statistical and Data-Driven Methods",
+      "start_year": 1990,
+      "end_year": 2010,
+      "duration_years": 21,
+      "description": "The rise of large textual corpora and increased computational power led to a significant shift from rule-based to statistical, data-driven approaches, utilizing machine learning techniques for various NLP tasks.",
+      "representative_developments": [
+        "Prevalence of machine learning techniques (e.g., Hidden Markov Models (HMMs), Conditional Random Fields (CRFs))",
+        "Training models using vast linguistic datasets for part-of-speech tagging, named entity recognition, and machine translation",
+        "Availability of annotated corpora and advancements in unsupervised learning methods"
+      ]
+    },
+    {
+      "period_name": "Deep Learning Revolution: Embeddings and Transformers",
+      "start_year": 2010,
+      "end_year": 2025,
+      "duration_years": 16,
+      "description": "This era marked a revolution in NLP with the introduction and widespread adoption of deep learning, enabling end-to-end learning directly from raw text data, driven by advancements in word embeddings and transformer architectures.",
+      "representative_developments": [
+        "Development of word embeddings (e.g., Word2Vec, GloVe)",
+        "Popularity of Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) networks for sequential data",
+        "Development of transformer architectures (e.g., Bidirectional Encoder Representations from Transformers (BERT))",
+        "Advancements with Large Language Models (LLMs) like the GPT series (text generation, summarization, dialogue systems)"
+      ]
+    },
+    {
+      "period_name": "Specialized Applications and Historical/Low-Resource NLP",
+      "start_year": 2015,
+      "end_year": 2025,
+      "duration_years": 11,
+      "description": "Recent research has seen NLP extend into highly specialized domains, including the analysis of historical and low-resource languages, as well as applications in educational tools and digital humanities.",
+      "representative_developments": [
+        "Processing ancient Chinese historical documents for named entity recognition and relation extraction",
+        "Application of NLP to low-resource languages (e.g., Halegannada (Old Kannada)) using unsupervised machine translation and transfer learning",
+        "Generation of event timelines from historical texts and textbooks",
+        "Applications in educational tools and digital humanities research"
+      ]
+    }
+  ]
+}

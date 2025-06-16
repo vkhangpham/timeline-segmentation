@@ -1,0 +1,88 @@
+{
+  "experiment_overview": {
+    "total_experiments": 56,
+    "domains_tested": 8,
+    "conditions_tested": 7,
+    "successful_experiments": 56
+  },
+  "signal_contribution": {
+    "avg_signals_by_condition": {
+      "All_Signals": 12.875,
+      "Citation_Direction": 12.875,
+      "Citation_Only": 0.875,
+      "Citation_Semantic": 3.0,
+      "Direction_Only": 13.25,
+      "Semantic_Direction": 12.75,
+      "Semantic_Only": 2.375
+    },
+    "std_signals_by_condition": {
+      "All_Signals": 6.728139203587954,
+      "Citation_Direction": 7.318030570349609,
+      "Citation_Only": 0.6408699444616557,
+      "Citation_Semantic": 1.5118578920369088,
+      "Direction_Only": 7.478540728549349,
+      "Semantic_Direction": 6.584614100852293,
+      "Semantic_Only": 1.7677669529663689
+    },
+    "avg_segments_by_condition": {
+      "All_Signals": 8.375,
+      "Citation_Direction": 8.375,
+      "Citation_Only": 8.375,
+      "Citation_Semantic": 8.375,
+      "Direction_Only": 8.375,
+      "Semantic_Direction": 8.375,
+      "Semantic_Only": 8.375
+    },
+    "signal_productivity_ranking": {
+      "Direction_Only": 13.25,
+      "All_Signals": 12.875,
+      "Citation_Direction": 12.875,
+      "Semantic_Direction": 12.75,
+      "Citation_Semantic": 3.0,
+      "Semantic_Only": 2.375,
+      "Citation_Only": 0.875
+    }
+  },
+  "filtering_mechanisms": {
+    "subadditive_domains": [
+      "natural_language_processing",
+      "deep_learning",
+      "computer_vision",
+      "machine_learning",
+      "machine_translation",
+      "computer_science",
+      "art",
+      "applied_mathematics"
+    ],
+    "subadditive_ratio": 1.0,
+    "key_insights": [
+      "Subadditive behavior in 8/8 domains",
+      "Algorithm implements temporal proximity clustering (\u00b12 years)",
+      "Multi-signal validation with confidence thresholding",
+      "Paradigm significance filtering removes redundant signals",
+      "Evidence: cross_validate_signals() and filter_for_paradigm_significance()"
+    ]
+  },
+  "domain_analysis": {
+    "signal_variance_by_domain": {
+      "applied_mathematics": 9.546876826630642,
+      "art": 10.274795792200864,
+      "computer_science": 8.706866474772873,
+      "computer_vision": 3.251373336211726,
+      "deep_learning": 3.5050983275386565,
+      "machine_learning": 8.518886580500327,
+      "machine_translation": 1.1126972805283735,
+      "natural_language_processing": 2.70801280154532
+    },
+    "avg_signals_by_domain": {
+      "applied_mathematics": 10.857142857142858,
+      "art": 12.285714285714286,
+      "computer_science": 11.857142857142858,
+      "computer_vision": 5.714285714285714,
+      "deep_learning": 6.571428571428571,
+      "machine_learning": 12.285714285714286,
+      "machine_translation": 1.7142857142857142,
+      "natural_language_processing": 5.0
+    }
+  }
+}

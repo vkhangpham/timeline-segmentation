@@ -1,0 +1,72 @@
+{
+  "domain": "Art Theory Research",
+  "historical_periods": [
+    {
+      "period_name": "Integrated Practice and Early Theoretical Reflection",
+      "start_year": 1800,
+      "end_year": 1900,
+      "duration_years": 100,
+      "description": "From ancient times, theoretical reflections on art were often embedded within artistic practice itself, passed down through workshops and treatises, highlighting the initial organic development of art theory and its intertwining with education.",
+      "representative_developments": [
+        "Theoretical reflection directly informing creative practice in regions like Poland and Ukraine",
+        "Foundational duality shaping early art historical research methodologies"
+      ]
+    },
+    {
+      "period_name": "Academic Formalization and Institutionalization",
+      "start_year": 1900,
+      "end_year": 1950,
+      "duration_years": 50,
+      "description": "The 19th and 20th centuries saw the formalization of art theory as an academic discipline, with the establishment of dedicated departments, journals, and research institutes, systematizing methodologies and fostering scholarly communities.",
+      "representative_developments": [
+        "Institutions like the G. Ibragimov Institute in Tatarstan coordinating research in folklore and art",
+        "Consolidation of theoretical frameworks and fostering scholarly communities"
+      ]
+    },
+    {
+      "period_name": "Paradigm Shifts: From Formalism to Media and Discourse",
+      "start_year": 1960,
+      "end_year": 1999,
+      "duration_years": 40,
+      "description": "This period witnessed significant shifts in theoretical paradigms, moving beyond purely formal analysis to consider the role of media and broader cultural discourses, emphasizing critical theory and the impact of technology on art.",
+      "representative_developments": [
+        "Rise of medium theory (e.g., Friedrich Kittler) exploring how media technologies shape perceptions of time and art",
+        "Victor Burgin's 'The End of Art Theory' (1986) critically interrogating institutional discourse and media's impact on art evaluation"
+      ]
+    },
+    {
+      "period_name": "Transdisciplinary Approaches and Fluid Narrative Construction",
+      "start_year": 1990,
+      "end_year": 2025,
+      "duration_years": 36,
+      "description": "More recent decades have been marked by a strong move towards integrating insights from various disciplines and recognizing the multifaceted, fluid nature of art historical narratives, blending cultural studies, sociology, and media theory with traditional art history.",
+      "representative_developments": [
+        "Transdisciplinary reinterpretations of Victor Burgin's work",
+        "Construction of performance art history in Central and Eastern Europe by 'guardians' (critics, scholars, artists) shaping narratives through interpretation",
+        "Blending cultural studies, sociology, and media theory with traditional art historical methods"
+      ]
+    },
+    {
+      "period_name": "Contextualized Regional and Cultural Studies",
+      "start_year": 2000,
+      "end_year": 2025,
+      "duration_years": 26,
+      "description": "Art theory research continues to be shaped by specific regional and cultural contexts, with studies that delve into localized art forms and their theoretical underpinnings, fostering a dialogue between historical traditions and modern theoretical frameworks.",
+      "representative_developments": [
+        "Analysis of interior design history across different civilizations, adapting theory to local legacies and global trends",
+        "Re-examination of traditional motifs (e.g., cloud shoulder in Qing Dynasty China) through contemporary theories like fractal art"
+      ]
+    },
+    {
+      "period_name": "Globalization Challenges and Modern Educational Integration",
+      "start_year": 2020,
+      "end_year": 2025,
+      "duration_years": 6,
+      "description": "The globalization of art theory research brings new challenges and opportunities, particularly concerning education and the relevance of art theory in a rapidly changing world, driving modernization in teaching methods and professional relevance.",
+      "representative_developments": [
+        "Integration of museum materials into art criticism curricula (e.g., in Ukraine) to modernize teaching methods",
+        "Conferences and seminars (e.g., in Siberia) fostering dialogue on the relevance of art theory in contemporary artistic practice and education"
+      ]
+    }
+  ]
+}
