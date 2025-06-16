@@ -1,0 +1,34 @@
+{
+  "Segment_Count": {
+    "t_statistic": 0.0,
+    "p_value": 1.0,
+    "cohens_d": 0.0,
+    "fixed_mean": 8.458333333333334,
+    "adaptive_mean": 8.458333333333334,
+    "significant": false
+  },
+  "Average_Length": {
+    "t_statistic": -0.0015462231247085959,
+    "p_value": 0.9987729791612636,
+    "cohens_d": 0.000446356168638866,
+    "fixed_mean": 10.318251540126541,
+    "adaptive_mean": 10.319766691641691,
+    "significant": false
+  },
+  "Over_Segmentation_Rate": {
+    "t_statistic": NaN,
+    "p_value": NaN,
+    "cohens_d": 0.0,
+    "fixed_mean": 0.0,
+    "adaptive_mean": 0.0,
+    "significant": false
+  },
+  "Temporal_Error": {
+    "t_statistic": NaN,
+    "p_value": NaN,
+    "cohens_d": 0.0,
+    "fixed_mean": 0.0,
+    "adaptive_mean": 0.0,
+    "significant": false
+  }
+}

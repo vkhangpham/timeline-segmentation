@@ -1,0 +1,88 @@
+{
+  "individual_performance": {
+    "natural_language_processing": {
+      "avg_signals": 3.3333333333333335,
+      "avg_segments": 6.0,
+      "avg_significance": 0.5293050480433883
+    },
+    "deep_learning": {
+      "avg_signals": 5.0,
+      "avg_segments": 8.0,
+      "avg_significance": 0.6594774957224432
+    },
+    "computer_vision": {
+      "avg_signals": 3.6666666666666665,
+      "avg_segments": 7.0,
+      "avg_significance": 0.6403830372472398
+    },
+    "machine_learning": {
+      "avg_signals": 8.666666666666666,
+      "avg_segments": 10.0,
+      "avg_significance": 0.6105387368935564
+    },
+    "machine_translation": {
+      "avg_signals": 1.3333333333333333,
+      "avg_segments": 2.0,
+      "avg_significance": 0.7433054146514099
+    },
+    "computer_science": {
+      "avg_signals": 8.0,
+      "avg_segments": 11.0,
+      "avg_significance": 0.7532313057146355
+    },
+    "art": {
+      "avg_signals": 7.333333333333333,
+      "avg_segments": 12.0,
+      "avg_significance": 0.48929901563708117
+    },
+    "applied_mathematics": {
+      "avg_signals": 6.666666666666667,
+      "avg_segments": 11.0,
+      "avg_significance": 0.5998927892589356
+    }
+  },
+  "combination_performance": {
+    "natural_language_processing": {
+      "avg_signals": 6.25,
+      "avg_segments": 6.0,
+      "avg_significance": 0.5293050480433883
+    },
+    "deep_learning": {
+      "avg_signals": 7.75,
+      "avg_segments": 8.0,
+      "avg_significance": 0.6594774957224432
+    },
+    "computer_vision": {
+      "avg_signals": 7.25,
+      "avg_segments": 7.0,
+      "avg_significance": 0.6403830372472398
+    },
+    "machine_learning": {
+      "avg_signals": 15.0,
+      "avg_segments": 10.0,
+      "avg_significance": 0.6105387368935564
+    },
+    "machine_translation": {
+      "avg_signals": 2.0,
+      "avg_segments": 2.0,
+      "avg_significance": 0.7433054146514098
+    },
+    "computer_science": {
+      "avg_signals": 14.75,
+      "avg_segments": 11.0,
+      "avg_significance": 0.7532313057146355
+    },
+    "art": {
+      "avg_signals": 16.0,
+      "avg_segments": 12.0,
+      "avg_significance": 0.48929901563708117
+    },
+    "applied_mathematics": {
+      "avg_signals": 14.0,
+      "avg_segments": 11.0,
+      "avg_significance": 0.5998927892589356
+    }
+  },
+  "complementarity_evidence": {},
+  "redundancy_evidence": {}
+}

@@ -1,0 +1,2618 @@
+{
+  "metadata": {
+    "domain_name": "applied_mathematics",
+    "analysis_date": "2025-06-16T12:28:23.189483",
+    "analysis_type": "shift_signal_detection",
+    "description": "Paradigm transition detection using multi-source signal fusion",
+    "methodology": {
+      "stage1": "Individual signal detection (citation, semantic, direction)",
+      "stage2": "Cross-validation and confidence scoring",
+      "stage3": "Paradigm significance filtering",
+      "stage4": "Transition evidence generation"
+    }
+  },
+  "raw_signals": {
+    "count": 61,
+    "description": "Raw signals from individual detection methods before validation",
+    "signals": [
+      {
+        "year": 1987,
+        "confidence": 0.22247094061832015,
+        "signal_type": "citation_disruption",
+        "evidence_strength": 0.11123547030916008,
+        "supporting_evidence": [
+          "Influence pattern change: 0.106 \u2192 0.218"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2110603299",
+          "https://openalex.org/W2117178635",
+          "https://openalex.org/W1594563152",
+          "https://openalex.org/W3004157836",
+          "https://openalex.org/W2062523101",
+          "https://openalex.org/W1993267444",
+          "https://openalex.org/W2170316986",
+          "https://openalex.org/W1480730624",
+          "https://openalex.org/W2096305430"
+        ],
+        "transition_description": "Structural break in influence patterns at 1987",
+        "paradigm_significance": 0.6
+      },
+      {
+        "year": 1949,
+        "confidence": 0.765625,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.765625,
+        "supporting_evidence": [
+          "New focus: wavelet theory",
+          "New focus: mathematical theory",
+          "New focus: communication theory",
+          "New focus: mathematical control theory",
+          "New focus: mathematical optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2051203581",
+          "https://openalex.org/W1510355813"
+        ],
+        "transition_description": "Research direction shift: 87.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1950,
+        "confidence": 0.8169934640522876,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.8169934640522876,
+        "supporting_evidence": [
+          "New focus: wavelet theory",
+          "New focus: mathematical theory",
+          "New focus: communication theory",
+          "New focus: mathematical control theory",
+          "New focus: mathematics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2052611179",
+          "https://openalex.org/W1986280275",
+          "https://openalex.org/W2117686912"
+        ],
+        "transition_description": "Research direction shift: 92.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1951,
+        "confidence": 0.7314285714285714,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.7314285714285714,
+        "supporting_evidence": [
+          "New focus: wavelet theory",
+          "New focus: mathematical theory",
+          "New focus: numerical mathematics",
+          "New focus: communication theory",
+          "New focus: mathematical control theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2619609791"
+        ],
+        "transition_description": "Research direction shift: 91.4% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1952,
+        "confidence": 0.8133802816901409,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.8133802816901409,
+        "supporting_evidence": [
+          "New focus: numerical mathematics",
+          "New focus: numerical method for partial differential equation",
+          "New focus: machine learning research",
+          "New focus: numerical analysis",
+          "New focus: approximation theory"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 93.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1957,
+        "confidence": 0.5063291139240508,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5063291139240508,
+        "supporting_evidence": [
+          "New focus: mathematics",
+          "New focus: boundary value problem",
+          "New focus: differential equation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2321998191"
+        ],
+        "transition_description": "Research direction shift: 75.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1959,
+        "confidence": 0.7281553398058253,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.7281553398058253,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: diffusion",
+          "New focus: differential equation",
+          "New focus: transport phenomena",
+          "New focus: combinatorial optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2550093246"
+        ],
+        "transition_description": "Research direction shift: 92.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1960,
+        "confidence": 0.7233273056057866,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.7233273056057866,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: diffusion of innovation",
+          "New focus: mathematical statistic",
+          "New focus: numerical mathematics",
+          "New focus: statistical inference"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2021142183",
+          "https://openalex.org/W1966382716"
+        ],
+        "transition_description": "Research direction shift: 88.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1961,
+        "confidence": 0.44665461121157324,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.44665461121157324,
+        "supporting_evidence": [
+          "New focus: statistical hypothesis test",
+          "New focus: statistics",
+          "New focus: mathematical statistic",
+          "New focus: statistical inference",
+          "New focus: statistical methodology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2152710595"
+        ],
+        "transition_description": "Research direction shift: 67.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1965,
+        "confidence": 0.7308612440191388,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.7308612440191388,
+        "supporting_evidence": [
+          "New focus: combinatorial optimization",
+          "New focus: fluid dynamics",
+          "New focus: nonlinear analysis",
+          "New focus: computational optimization",
+          "New focus: functional analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1966158133",
+          "https://openalex.org/W2105672294",
+          "https://openalex.org/W4230151690",
+          "https://openalex.org/W1996160600"
+        ],
+        "transition_description": "Research direction shift: 88.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1966,
+        "confidence": 0.6365131578947368,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6365131578947368,
+        "supporting_evidence": [
+          "New focus: function theory",
+          "New focus: dynamical system",
+          "New focus: approximation theory",
+          "New focus: operator theory",
+          "New focus: applied physics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2120062331",
+          "https://openalex.org/W2142063750",
+          "https://openalex.org/W2076602648"
+        ],
+        "transition_description": "Research direction shift: 88.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1967,
+        "confidence": 0.6334545454545455,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6334545454545455,
+        "supporting_evidence": [
+          "New focus: numerical method for partial differential equation",
+          "New focus: generalized function",
+          "New focus: function theory",
+          "New focus: differential equation",
+          "New focus: complex function theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2030669316",
+          "https://openalex.org/W2020150158"
+        ],
+        "transition_description": "Research direction shift: 89.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1968,
+        "confidence": 0.660969196093163,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.660969196093163,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: numerical method for partial differential equation",
+          "New focus: generalized function",
+          "New focus: function theory",
+          "New focus: differential equation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1572130436",
+          "https://openalex.org/W2084464066",
+          "https://openalex.org/W2076077791",
+          "https://openalex.org/W2147169375"
+        ],
+        "transition_description": "Research direction shift: 84.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1969,
+        "confidence": 0.6155549765502866,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6155549765502866,
+        "supporting_evidence": [
+          "New focus: numerical algorithm",
+          "New focus: numerical solution",
+          "New focus: partial differential equation",
+          "New focus: deformation",
+          "New focus: crack formation"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 74.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1970,
+        "confidence": 0.6524137931034483,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6524137931034483,
+        "supporting_evidence": [
+          "New focus: deformation",
+          "New focus: crack formation",
+          "New focus: friction",
+          "New focus: strain localization",
+          "New focus: tribology"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 75.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1971,
+        "confidence": 0.6846927775781532,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6846927775781532,
+        "supporting_evidence": [
+          "New focus: deformation",
+          "New focus: machine learning research",
+          "New focus: combinatorial optimization",
+          "New focus: nonlinear analysis",
+          "New focus: crack formation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1559907478",
+          "https://openalex.org/W2056884786"
+        ],
+        "transition_description": "Research direction shift: 80.4% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1972,
+        "confidence": 0.6745874587458746,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6745874587458746,
+        "supporting_evidence": [
+          "New focus: mathematical optimization",
+          "New focus: spectral theory",
+          "New focus: clustering",
+          "New focus: combinatorial optimization",
+          "New focus: computational optimization"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 81.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1973,
+        "confidence": 0.6478744754606824,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6478744754606824,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: mathematical optimization",
+          "New focus: machine vision",
+          "New focus: dynamical system",
+          "New focus: combinatorial optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1981934656",
+          "https://openalex.org/W2042986967"
+        ],
+        "transition_description": "Research direction shift: 84.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1974,
+        "confidence": 0.6050420168067228,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6050420168067228,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: machine vision",
+          "New focus: dynamical system",
+          "New focus: statistical methodology",
+          "New focus: statistical theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2612166593"
+        ],
+        "transition_description": "Research direction shift: 80.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1975,
+        "confidence": 0.571043771043771,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.571043771043771,
+        "supporting_evidence": [
+          "New focus: multiphase flow",
+          "New focus: fluid mechanics",
+          "New focus: hydrodynamic stability",
+          "New focus: fluid science",
+          "New focus: applied physics"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 80.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1979,
+        "confidence": 0.5929608272022271,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5929608272022271,
+        "supporting_evidence": [
+          "New focus: numerical computation",
+          "New focus: numerical method for partial differential equation",
+          "New focus: network science"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 75.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1980,
+        "confidence": 0.6912414450316209,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6912414450316209,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: mathematical optimization",
+          "New focus: numerical method for partial differential equation",
+          "New focus: numerical mathematics",
+          "New focus: statistical model"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2298230951",
+          "https://openalex.org/W2108818539",
+          "https://openalex.org/W2067402622",
+          "https://openalex.org/W2797333853",
+          "https://openalex.org/W1968098666",
+          "https://openalex.org/W2097137621"
+        ],
+        "transition_description": "Research direction shift: 84.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1981,
+        "confidence": 0.8050293563753185,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.8050293563753185,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: mathematical optimization",
+          "New focus: numerical method for partial differential equation",
+          "New focus: applied statistics",
+          "New focus: economics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2744008313",
+          "https://openalex.org/W4230637740",
+          "https://openalex.org/W1985419904",
+          "https://openalex.org/W2029050771",
+          "https://openalex.org/W1971947347",
+          "https://openalex.org/W2006309149",
+          "https://openalex.org/W2111286455",
+          "https://openalex.org/W1958809597"
+        ],
+        "transition_description": "Research direction shift: 95.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1982,
+        "confidence": 0.5374002659574468,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5374002659574468,
+        "supporting_evidence": [
+          "New focus: applied statistics",
+          "New focus: economics",
+          "New focus: macroeconomics",
+          "New focus: quantitative science study",
+          "New focus: statistical methodology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2150593711",
+          "https://openalex.org/W2097897435",
+          "https://openalex.org/W2037612300"
+        ],
+        "transition_description": "Research direction shift: 82.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1983,
+        "confidence": 0.47456877487837246,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.47456877487837246,
+        "supporting_evidence": [
+          "New focus: applied statistics",
+          "New focus: quantitative science study",
+          "New focus: statistical theory",
+          "New focus: sparse representation",
+          "New focus: numerical algorithm"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2163899311",
+          "https://openalex.org/W2582449852"
+        ],
+        "transition_description": "Research direction shift: 76.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1984,
+        "confidence": 0.5721549636803873,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5721549636803873,
+        "supporting_evidence": [
+          "New focus: dynamical system",
+          "New focus: systems modeling",
+          "New focus: transport phenomena",
+          "New focus: sparse representation",
+          "New focus: systems biology"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 72.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1985,
+        "confidence": 0.5933077830188679,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5933077830188679,
+        "supporting_evidence": [
+          "New focus: dynamical system",
+          "New focus: stochastic process",
+          "New focus: sparse representation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2049951355"
+        ],
+        "transition_description": "Research direction shift: 70.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1986,
+        "confidence": 0.568122009569378,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.568122009569378,
+        "supporting_evidence": [
+          "New focus: matrix method",
+          "New focus: matrix theory",
+          "New focus: linear algebra",
+          "New focus: random matrix",
+          "New focus: dynamical system"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2040704490"
+        ],
+        "transition_description": "Research direction shift: 67.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1987,
+        "confidence": 0.5583941605839415,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5583941605839415,
+        "supporting_evidence": [
+          "New focus: matrix theory",
+          "New focus: linear algebra",
+          "New focus: random matrix",
+          "New focus: matrix factorization",
+          "New focus: matrix method"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2117178635"
+        ],
+        "transition_description": "Research direction shift: 74.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1988,
+        "confidence": 0.4347313371616079,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4347313371616079,
+        "supporting_evidence": [
+          "New focus: computational mathematics",
+          "New focus: numerical mathematics",
+          "New focus: numerical algorithm",
+          "New focus: positive semi-definite",
+          "New focus: sampling"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2112440119",
+          "https://openalex.org/W2339378878",
+          "https://openalex.org/W2898519191"
+        ],
+        "transition_description": "Research direction shift: 75.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1989,
+        "confidence": 0.45438464837049747,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.45438464837049747,
+        "supporting_evidence": [
+          "New focus: applied statistics",
+          "New focus: systems engineering",
+          "New focus: computational mathematics",
+          "New focus: quantitative science study",
+          "New focus: stochastic geometry"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2109911863",
+          "https://openalex.org/W1680579736",
+          "https://openalex.org/W1968632832",
+          "https://openalex.org/W2127336290",
+          "https://openalex.org/W2155358697"
+        ],
+        "transition_description": "Research direction shift: 81.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1990,
+        "confidence": 0.40092899800929,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.40092899800929,
+        "supporting_evidence": [
+          "New focus: stochastic calculus",
+          "New focus: ab-initio method",
+          "New focus: differential equation",
+          "New focus: combinatorial optimization",
+          "New focus: partial evaluation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1551360398"
+        ],
+        "transition_description": "Research direction shift: 72.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1992,
+        "confidence": 0.42665094339622645,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.42665094339622645,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: ab-initio method",
+          "New focus: data science",
+          "New focus: partial evaluation",
+          "New focus: design optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2140971281",
+          "https://openalex.org/W2155216327",
+          "https://openalex.org/W2911546748"
+        ],
+        "transition_description": "Research direction shift: 67.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1993,
+        "confidence": 0.4805769230769231,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4805769230769231,
+        "supporting_evidence": [
+          "New focus: nonlinear time series",
+          "New focus: computational fluid dynamic",
+          "New focus: data science",
+          "New focus: chaos theory",
+          "New focus: fluid mechanics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1607633954",
+          "https://openalex.org/W2797532987",
+          "https://openalex.org/W2035983506"
+        ],
+        "transition_description": "Research direction shift: 71.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1995,
+        "confidence": 0.4352318548387097,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4352318548387097,
+        "supporting_evidence": [
+          "New focus: scientific computing",
+          "New focus: computational fluid dynamic",
+          "New focus: economics",
+          "New focus: fluid mechanics",
+          "New focus: bayesian analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1570895503",
+          "https://openalex.org/W4211177544",
+          "https://openalex.org/W2106706098",
+          "https://openalex.org/W4230206799",
+          "https://openalex.org/W1557992730",
+          "https://openalex.org/W3141830910"
+        ],
+        "transition_description": "Research direction shift: 66.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1996,
+        "confidence": 0.49125395152792417,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.49125395152792417,
+        "supporting_evidence": [
+          "New focus: scientific computing",
+          "New focus: parameter estimation",
+          "New focus: computational mechanics",
+          "New focus: bootstrap resampling",
+          "New focus: fractional-order system"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2068484625"
+        ],
+        "transition_description": "Research direction shift: 67.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1997,
+        "confidence": 0.43781406075786966,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.43781406075786966,
+        "supporting_evidence": [
+          "New focus: convex optimization",
+          "New focus: combinatorial optimization",
+          "New focus: engineering",
+          "New focus: distributed system",
+          "New focus: bootstrap resampling"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2054704030",
+          "https://openalex.org/W2914659449",
+          "https://openalex.org/W4298872162",
+          "https://openalex.org/W1990061958"
+        ],
+        "transition_description": "Research direction shift: 63.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1998,
+        "confidence": 0.4189692841537077,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4189692841537077,
+        "supporting_evidence": [
+          "New focus: applied statistics",
+          "New focus: set theory",
+          "New focus: engineering",
+          "New focus: fuzzy logic",
+          "New focus: likelihood-based inference"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1665332082",
+          "https://openalex.org/W2752932982",
+          "https://openalex.org/W2155225996",
+          "https://openalex.org/W2147717514",
+          "https://openalex.org/W1788845434"
+        ],
+        "transition_description": "Research direction shift: 64.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1999,
+        "confidence": 0.48816936488169366,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.48816936488169366,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: structural equation modeling",
+          "New focus: graph analysis",
+          "New focus: statistical mechanic",
+          "New focus: systems engineering"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2119436275",
+          "https://openalex.org/W2097879961",
+          "https://openalex.org/W2122759946"
+        ],
+        "transition_description": "Research direction shift: 72.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2000,
+        "confidence": 0.4260310428107742,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4260310428107742,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: machine vision",
+          "New focus: sparse representation",
+          "New focus: geometric topology",
+          "New focus: geometric analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2122427541",
+          "https://openalex.org/W2053186076",
+          "https://openalex.org/W2090963365",
+          "https://openalex.org/W1608836379",
+          "https://openalex.org/W1516681311",
+          "https://openalex.org/W2013912476",
+          "https://openalex.org/W1490180844"
+        ],
+        "transition_description": "Research direction shift: 68.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2001,
+        "confidence": 0.4205204498461849,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4205204498461849,
+        "supporting_evidence": [
+          "New focus: mathematical physics",
+          "New focus: differential equation",
+          "New focus: machine vision",
+          "New focus: deformation",
+          "New focus: finite model theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2129760210",
+          "https://openalex.org/W1589288858",
+          "https://openalex.org/W2169107902"
+        ],
+        "transition_description": "Research direction shift: 69.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2002,
+        "confidence": 0.4367588932806324,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4367588932806324,
+        "supporting_evidence": [
+          "New focus: differential equation",
+          "New focus: design optimization",
+          "New focus: probability theory",
+          "New focus: bayesian analysis",
+          "New focus: geometric topology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2152195021",
+          "https://openalex.org/W2109364787",
+          "https://openalex.org/W2160337655",
+          "https://openalex.org/W2336416123",
+          "https://openalex.org/W1531532259",
+          "https://openalex.org/W2098693229",
+          "https://openalex.org/W2156718197",
+          "https://openalex.org/W2145113795"
+        ],
+        "transition_description": "Research direction shift: 68.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2003,
+        "confidence": 0.4639284821205302,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4639284821205302,
+        "supporting_evidence": [
+          "New focus: swarm intelligence",
+          "New focus: numerical method for partial differential equation",
+          "New focus: differential equation",
+          "New focus: variational analysis",
+          "New focus: feature detection"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1506342804",
+          "https://openalex.org/W1820051232"
+        ],
+        "transition_description": "Research direction shift: 71.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2004,
+        "confidence": 0.5255681818181819,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5255681818181819,
+        "supporting_evidence": [
+          "New focus: swarm intelligence",
+          "New focus: feature detection",
+          "New focus: deep learning",
+          "New focus: swarm robotics",
+          "New focus: moving object tracking"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1510073064",
+          "https://openalex.org/W2142794782"
+        ],
+        "transition_description": "Research direction shift: 70.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2005,
+        "confidence": 0.5307457607228774,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5307457607228774,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: swarm intelligence",
+          "New focus: feature detection",
+          "New focus: volume parameterization",
+          "New focus: deep learning"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 69.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2006,
+        "confidence": 0.48630136986301375,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.48630136986301375,
+        "supporting_evidence": [
+          "New focus: regression analysis",
+          "New focus: applied probability",
+          "New focus: econometrics"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 58.9% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2007,
+        "confidence": 0.514854874041621,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.514854874041621,
+        "supporting_evidence": [
+          "New focus: convex optimization",
+          "New focus: structural equation modeling",
+          "New focus: complex system",
+          "New focus: regression analysis",
+          "New focus: multi-agent planning"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 65.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2008,
+        "confidence": 0.5397444227853584,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5397444227853584,
+        "supporting_evidence": [
+          "New focus: complex system",
+          "New focus: regression analysis",
+          "New focus: multi-agent planning",
+          "New focus: applied probability",
+          "New focus: network analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1494628843"
+        ],
+        "transition_description": "Research direction shift: 69.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2009,
+        "confidence": 0.5713891698078515,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5713891698078515,
+        "supporting_evidence": [
+          "New focus: image representation",
+          "New focus: data science",
+          "New focus: complex system",
+          "New focus: systems biology",
+          "New focus: computational imaging"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2024165284"
+        ],
+        "transition_description": "Research direction shift: 75.8% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2010,
+        "confidence": 0.4980160161604502,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4980160161604502,
+        "supporting_evidence": [
+          "New focus: machine vision",
+          "New focus: global optimization",
+          "New focus: statistical model",
+          "New focus: computational geometry",
+          "New focus: mathematics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2031611770",
+          "https://openalex.org/W2134843796"
+        ],
+        "transition_description": "Research direction shift: 70.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2011,
+        "confidence": 0.4594168636721828,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.4594168636721828,
+        "supporting_evidence": [
+          "New focus: automatic classification",
+          "New focus: machine vision",
+          "New focus: low-rank approximation",
+          "New focus: algebraic graph theory",
+          "New focus: global optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2146292423",
+          "https://openalex.org/W2117228865",
+          "https://openalex.org/W2145962650",
+          "https://openalex.org/W1575923498",
+          "https://openalex.org/W2128254161",
+          "https://openalex.org/W1565212980",
+          "https://openalex.org/W2125186487",
+          "https://openalex.org/W2140952049",
+          "https://openalex.org/W560409768"
+        ],
+        "transition_description": "Research direction shift: 70.2% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2012,
+        "confidence": 0.5512136988019821,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5512136988019821,
+        "supporting_evidence": [
+          "New focus: automatic classification",
+          "New focus: geometry and topology",
+          "New focus: low-rank approximation",
+          "New focus: statistical methodology",
+          "New focus: combinatorial optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2085067988"
+        ],
+        "transition_description": "Research direction shift: 79.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2013,
+        "confidence": 0.5271943160311502,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5271943160311502,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: geometry and topology",
+          "New focus: multidimensional analysis",
+          "New focus: numerical mathematics",
+          "New focus: regression analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2795656446",
+          "https://openalex.org/W1999052699"
+        ],
+        "transition_description": "Research direction shift: 74.6% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2014,
+        "confidence": 0.5245206920738836,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5245206920738836,
+        "supporting_evidence": [
+          "New focus: geometry and topology",
+          "New focus: geometric analysis",
+          "New focus: 3d computer vision",
+          "New focus: digital image processing",
+          "New focus: topology"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 72.0% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2015,
+        "confidence": 0.6405648708081364,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6405648708081364,
+        "supporting_evidence": [
+          "New focus: stochastic calculus",
+          "New focus: stochastic process",
+          "New focus: stochastic optimization"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 75.7% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2016,
+        "confidence": 0.628005845622426,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.628005845622426,
+        "supporting_evidence": [
+          "New focus: stochastic calculus",
+          "New focus: computational geometry",
+          "New focus: stochastic process",
+          "New focus: stochastic optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1575104486"
+        ],
+        "transition_description": "Research direction shift: 74.4% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2017,
+        "confidence": 0.5303571428571429,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5303571428571429,
+        "supporting_evidence": [
+          "New focus: differential equation",
+          "New focus: stochastic differential equation",
+          "New focus: computational geometry",
+          "New focus: biostatistics",
+          "New focus: neural computation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3141151088",
+          "https://openalex.org/W2963121255",
+          "https://openalex.org/W2593414223"
+        ],
+        "transition_description": "Research direction shift: 67.5% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2018,
+        "confidence": 0.6099744245524297,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.6099744245524297,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: machine vision",
+          "New focus: data science",
+          "New focus: geometric learning",
+          "New focus: image analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2124192278",
+          "https://openalex.org/W2257024953"
+        ],
+        "transition_description": "Research direction shift: 78.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2019,
+        "confidence": 0.5137254901960785,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5137254901960785,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: pattern recognition",
+          "New focus: function space",
+          "New focus: manifold learning",
+          "New focus: low-rank approximation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2965373594",
+          "https://openalex.org/W2969985801"
+        ],
+        "transition_description": "Research direction shift: 77.1% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2020,
+        "confidence": 0.5018092105263159,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.5018092105263159,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: manifold learning",
+          "New focus: uniform manifold approximation",
+          "New focus: feature learning",
+          "New focus: mechanics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2797148637"
+        ],
+        "transition_description": "Research direction shift: 74.3% new keywords",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2021,
+        "confidence": 0.49434274091024655,
+        "signal_type": "direction_volatility",
+        "evidence_strength": 0.49434274091024655,
+        "supporting_evidence": [
+          "New focus: uniform manifold approximation",
+          "New focus: manifold modeling",
+          "New focus: mathematical theory"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Research direction shift: 67.5% new keywords",
+        "paradigm_significance": 0.4
+      }
+    ],
+    "signal_types": [
+      "citation_disruption",
+      "direction_volatility"
+    ]
+  },
+  "validated_signals": {
+    "count": 31,
+    "description": "Cross-validated signals with combined evidence",
+    "signals": [
+      {
+        "year": 1987,
+        "confidence": 0.9808651012022618,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5583941605839415,
+        "supporting_evidence": [
+          "Influence pattern change: 0.106 \u2192 0.218",
+          "New focus: matrix theory",
+          "New focus: linear algebra",
+          "New focus: random matrix",
+          "New focus: matrix factorization",
+          "New focus: matrix method"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2170316986",
+          "https://openalex.org/W1594563152",
+          "https://openalex.org/W3004157836",
+          "https://openalex.org/W2110603299",
+          "https://openalex.org/W1480730624",
+          "https://openalex.org/W2062523101",
+          "https://openalex.org/W1993267444",
+          "https://openalex.org/W2096305430",
+          "https://openalex.org/W2117178635"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption, direction_volatility",
+        "paradigm_significance": 0.6
+      },
+      {
+        "year": 1949,
+        "confidence": 0.765625,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.765625,
+        "supporting_evidence": [
+          "New focus: wavelet theory",
+          "New focus: mathematical theory",
+          "New focus: communication theory",
+          "New focus: mathematical control theory",
+          "New focus: mathematical optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1510355813",
+          "https://openalex.org/W2051203581"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1951,
+        "confidence": 0.7314285714285714,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.7314285714285714,
+        "supporting_evidence": [
+          "New focus: wavelet theory",
+          "New focus: mathematical theory",
+          "New focus: numerical mathematics",
+          "New focus: communication theory",
+          "New focus: mathematical control theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2619609791"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1957,
+        "confidence": 0.5063291139240508,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5063291139240508,
+        "supporting_evidence": [
+          "New focus: mathematics",
+          "New focus: boundary value problem",
+          "New focus: differential equation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2321998191"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1959,
+        "confidence": 0.7281553398058253,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.7281553398058253,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: diffusion",
+          "New focus: differential equation",
+          "New focus: transport phenomena",
+          "New focus: combinatorial optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2550093246"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1961,
+        "confidence": 0.44665461121157324,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.44665461121157324,
+        "supporting_evidence": [
+          "New focus: statistical hypothesis test",
+          "New focus: statistics",
+          "New focus: mathematical statistic",
+          "New focus: statistical inference",
+          "New focus: statistical methodology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2152710595"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1965,
+        "confidence": 0.7308612440191388,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.7308612440191388,
+        "supporting_evidence": [
+          "New focus: combinatorial optimization",
+          "New focus: fluid dynamics",
+          "New focus: nonlinear analysis",
+          "New focus: computational optimization",
+          "New focus: functional analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1966158133",
+          "https://openalex.org/W2105672294",
+          "https://openalex.org/W1996160600",
+          "https://openalex.org/W4230151690"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1967,
+        "confidence": 0.6334545454545455,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6334545454545455,
+        "supporting_evidence": [
+          "New focus: numerical method for partial differential equation",
+          "New focus: generalized function",
+          "New focus: function theory",
+          "New focus: differential equation",
+          "New focus: complex function theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2030669316",
+          "https://openalex.org/W2020150158"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1969,
+        "confidence": 0.6155549765502866,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6155549765502866,
+        "supporting_evidence": [
+          "New focus: numerical algorithm",
+          "New focus: numerical solution",
+          "New focus: partial differential equation",
+          "New focus: deformation",
+          "New focus: crack formation"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1971,
+        "confidence": 0.6846927775781532,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6846927775781532,
+        "supporting_evidence": [
+          "New focus: deformation",
+          "New focus: machine learning research",
+          "New focus: combinatorial optimization",
+          "New focus: nonlinear analysis",
+          "New focus: crack formation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1559907478",
+          "https://openalex.org/W2056884786"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1973,
+        "confidence": 0.6478744754606824,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6478744754606824,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: mathematical optimization",
+          "New focus: machine vision",
+          "New focus: dynamical system",
+          "New focus: combinatorial optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2042986967",
+          "https://openalex.org/W1981934656"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1975,
+        "confidence": 0.571043771043771,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.571043771043771,
+        "supporting_evidence": [
+          "New focus: multiphase flow",
+          "New focus: fluid mechanics",
+          "New focus: hydrodynamic stability",
+          "New focus: fluid science",
+          "New focus: applied physics"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1979,
+        "confidence": 0.5929608272022271,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5929608272022271,
+        "supporting_evidence": [
+          "New focus: numerical computation",
+          "New focus: numerical method for partial differential equation",
+          "New focus: network science"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1981,
+        "confidence": 0.8050293563753185,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.8050293563753185,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: mathematical optimization",
+          "New focus: numerical method for partial differential equation",
+          "New focus: applied statistics",
+          "New focus: economics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2111286455",
+          "https://openalex.org/W2006309149",
+          "https://openalex.org/W2744008313",
+          "https://openalex.org/W1958809597",
+          "https://openalex.org/W1985419904",
+          "https://openalex.org/W4230637740",
+          "https://openalex.org/W2029050771",
+          "https://openalex.org/W1971947347"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1983,
+        "confidence": 0.47456877487837246,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.47456877487837246,
+        "supporting_evidence": [
+          "New focus: applied statistics",
+          "New focus: quantitative science study",
+          "New focus: statistical theory",
+          "New focus: sparse representation",
+          "New focus: numerical algorithm"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2582449852",
+          "https://openalex.org/W2163899311"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1989,
+        "confidence": 0.45438464837049747,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.45438464837049747,
+        "supporting_evidence": [
+          "New focus: applied statistics",
+          "New focus: systems engineering",
+          "New focus: computational mathematics",
+          "New focus: quantitative science study",
+          "New focus: stochastic geometry"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1680579736",
+          "https://openalex.org/W2127336290",
+          "https://openalex.org/W2109911863",
+          "https://openalex.org/W2155358697",
+          "https://openalex.org/W1968632832"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1992,
+        "confidence": 0.42665094339622645,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.42665094339622645,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: ab-initio method",
+          "New focus: data science",
+          "New focus: partial evaluation",
+          "New focus: design optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2911546748",
+          "https://openalex.org/W2155216327",
+          "https://openalex.org/W2140971281"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1995,
+        "confidence": 0.4352318548387097,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4352318548387097,
+        "supporting_evidence": [
+          "New focus: scientific computing",
+          "New focus: computational fluid dynamic",
+          "New focus: economics",
+          "New focus: fluid mechanics",
+          "New focus: bayesian analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1570895503",
+          "https://openalex.org/W1557992730",
+          "https://openalex.org/W4230206799",
+          "https://openalex.org/W2106706098",
+          "https://openalex.org/W4211177544",
+          "https://openalex.org/W3141830910"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1997,
+        "confidence": 0.43781406075786966,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.43781406075786966,
+        "supporting_evidence": [
+          "New focus: convex optimization",
+          "New focus: combinatorial optimization",
+          "New focus: engineering",
+          "New focus: distributed system",
+          "New focus: bootstrap resampling"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2914659449",
+          "https://openalex.org/W1990061958",
+          "https://openalex.org/W4298872162",
+          "https://openalex.org/W2054704030"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 1999,
+        "confidence": 0.48816936488169366,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.48816936488169366,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: structural equation modeling",
+          "New focus: graph analysis",
+          "New focus: statistical mechanic",
+          "New focus: systems engineering"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2097879961",
+          "https://openalex.org/W2122759946",
+          "https://openalex.org/W2119436275"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2001,
+        "confidence": 0.4205204498461849,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4205204498461849,
+        "supporting_evidence": [
+          "New focus: mathematical physics",
+          "New focus: differential equation",
+          "New focus: machine vision",
+          "New focus: deformation",
+          "New focus: finite model theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2169107902",
+          "https://openalex.org/W1589288858",
+          "https://openalex.org/W2129760210"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2003,
+        "confidence": 0.4639284821205302,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4639284821205302,
+        "supporting_evidence": [
+          "New focus: swarm intelligence",
+          "New focus: numerical method for partial differential equation",
+          "New focus: differential equation",
+          "New focus: variational analysis",
+          "New focus: feature detection"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1820051232",
+          "https://openalex.org/W1506342804"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2005,
+        "confidence": 0.5307457607228774,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5307457607228774,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: swarm intelligence",
+          "New focus: feature detection",
+          "New focus: volume parameterization",
+          "New focus: deep learning"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2007,
+        "confidence": 0.514854874041621,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.514854874041621,
+        "supporting_evidence": [
+          "New focus: convex optimization",
+          "New focus: structural equation modeling",
+          "New focus: complex system",
+          "New focus: regression analysis",
+          "New focus: multi-agent planning"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2009,
+        "confidence": 0.5713891698078515,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5713891698078515,
+        "supporting_evidence": [
+          "New focus: image representation",
+          "New focus: data science",
+          "New focus: complex system",
+          "New focus: systems biology",
+          "New focus: computational imaging"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2024165284"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2011,
+        "confidence": 0.4594168636721828,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4594168636721828,
+        "supporting_evidence": [
+          "New focus: automatic classification",
+          "New focus: machine vision",
+          "New focus: low-rank approximation",
+          "New focus: algebraic graph theory",
+          "New focus: global optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1565212980",
+          "https://openalex.org/W2128254161",
+          "https://openalex.org/W1575923498",
+          "https://openalex.org/W2146292423",
+          "https://openalex.org/W560409768",
+          "https://openalex.org/W2125186487",
+          "https://openalex.org/W2145962650",
+          "https://openalex.org/W2117228865",
+          "https://openalex.org/W2140952049"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2013,
+        "confidence": 0.5271943160311502,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5271943160311502,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: geometry and topology",
+          "New focus: multidimensional analysis",
+          "New focus: numerical mathematics",
+          "New focus: regression analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1999052699",
+          "https://openalex.org/W2795656446"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2015,
+        "confidence": 0.6405648708081364,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6405648708081364,
+        "supporting_evidence": [
+          "New focus: stochastic calculus",
+          "New focus: stochastic process",
+          "New focus: stochastic optimization"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2017,
+        "confidence": 0.5303571428571429,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5303571428571429,
+        "supporting_evidence": [
+          "New focus: differential equation",
+          "New focus: stochastic differential equation",
+          "New focus: computational geometry",
+          "New focus: biostatistics",
+          "New focus: neural computation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3141151088",
+          "https://openalex.org/W2593414223",
+          "https://openalex.org/W2963121255"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2019,
+        "confidence": 0.5137254901960785,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5137254901960785,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: pattern recognition",
+          "New focus: function space",
+          "New focus: manifold learning",
+          "New focus: low-rank approximation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2969985801",
+          "https://openalex.org/W2965373594"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      },
+      {
+        "year": 2021,
+        "confidence": 0.49434274091024655,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.49434274091024655,
+        "supporting_evidence": [
+          "New focus: uniform manifold approximation",
+          "New focus: manifold modeling",
+          "New focus: mathematical theory"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.4
+      }
+    ],
+    "validation_improvements": {
+      "multi_signal_bonus_applied": true,
+      "temporal_proximity_clustering": true,
+      "evidence_combination": true
+    }
+  },
+  "paradigm_shifts": {
+    "count": 18,
+    "description": "Final paradigm shift signals after significance filtering",
+    "signals": [
+      {
+        "year": 1987,
+        "confidence": 0.9808651012022618,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5583941605839415,
+        "supporting_evidence": [
+          "Influence pattern change: 0.106 \u2192 0.218",
+          "New focus: matrix theory",
+          "New focus: linear algebra",
+          "New focus: random matrix",
+          "New focus: matrix factorization",
+          "New focus: matrix method"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2170316986",
+          "https://openalex.org/W1594563152",
+          "https://openalex.org/W3004157836",
+          "https://openalex.org/W2110603299",
+          "https://openalex.org/W1480730624",
+          "https://openalex.org/W2062523101",
+          "https://openalex.org/W1993267444",
+          "https://openalex.org/W2096305430",
+          "https://openalex.org/W2117178635"
+        ],
+        "transition_description": "Multi-signal paradigm transition: citation_disruption, direction_volatility",
+        "paradigm_significance": 1.0999999999999999
+      },
+      {
+        "year": 1949,
+        "confidence": 0.765625,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.765625,
+        "supporting_evidence": [
+          "New focus: wavelet theory",
+          "New focus: mathematical theory",
+          "New focus: communication theory",
+          "New focus: mathematical control theory",
+          "New focus: mathematical optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1510355813",
+          "https://openalex.org/W2051203581"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.6000000000000001
+      },
+      {
+        "year": 1951,
+        "confidence": 0.7314285714285714,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.7314285714285714,
+        "supporting_evidence": [
+          "New focus: wavelet theory",
+          "New focus: mathematical theory",
+          "New focus: numerical mathematics",
+          "New focus: communication theory",
+          "New focus: mathematical control theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2619609791"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.6000000000000001
+      },
+      {
+        "year": 1959,
+        "confidence": 0.7281553398058253,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.7281553398058253,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: diffusion",
+          "New focus: differential equation",
+          "New focus: transport phenomena",
+          "New focus: combinatorial optimization"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2550093246"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.6000000000000001
+      },
+      {
+        "year": 1965,
+        "confidence": 0.7308612440191388,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.7308612440191388,
+        "supporting_evidence": [
+          "New focus: combinatorial optimization",
+          "New focus: fluid dynamics",
+          "New focus: nonlinear analysis",
+          "New focus: computational optimization",
+          "New focus: functional analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1966158133",
+          "https://openalex.org/W2105672294",
+          "https://openalex.org/W1996160600",
+          "https://openalex.org/W4230151690"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.8999999999999999
+      },
+      {
+        "year": 1967,
+        "confidence": 0.6334545454545455,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.6334545454545455,
+        "supporting_evidence": [
+          "New focus: numerical method for partial differential equation",
+          "New focus: generalized function",
+          "New focus: function theory",
+          "New focus: differential equation",
+          "New focus: complex function theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2030669316",
+          "https://openalex.org/W2020150158"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1979,
+        "confidence": 0.5929608272022271,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5929608272022271,
+        "supporting_evidence": [
+          "New focus: numerical computation",
+          "New focus: numerical method for partial differential equation",
+          "New focus: network science"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1981,
+        "confidence": 0.8050293563753185,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.8050293563753185,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: mathematical optimization",
+          "New focus: numerical method for partial differential equation",
+          "New focus: applied statistics",
+          "New focus: economics"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2111286455",
+          "https://openalex.org/W2006309149",
+          "https://openalex.org/W2744008313",
+          "https://openalex.org/W1958809597",
+          "https://openalex.org/W1985419904",
+          "https://openalex.org/W4230637740",
+          "https://openalex.org/W2029050771",
+          "https://openalex.org/W1971947347"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.8999999999999999
+      },
+      {
+        "year": 1995,
+        "confidence": 0.4352318548387097,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4352318548387097,
+        "supporting_evidence": [
+          "New focus: scientific computing",
+          "New focus: computational fluid dynamic",
+          "New focus: economics",
+          "New focus: fluid mechanics",
+          "New focus: bayesian analysis"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1570895503",
+          "https://openalex.org/W1557992730",
+          "https://openalex.org/W4230206799",
+          "https://openalex.org/W2106706098",
+          "https://openalex.org/W4211177544",
+          "https://openalex.org/W3141830910"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1997,
+        "confidence": 0.43781406075786966,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.43781406075786966,
+        "supporting_evidence": [
+          "New focus: convex optimization",
+          "New focus: combinatorial optimization",
+          "New focus: engineering",
+          "New focus: distributed system",
+          "New focus: bootstrap resampling"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2914659449",
+          "https://openalex.org/W1990061958",
+          "https://openalex.org/W4298872162",
+          "https://openalex.org/W2054704030"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1999,
+        "confidence": 0.48816936488169366,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.48816936488169366,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: structural equation modeling",
+          "New focus: graph analysis",
+          "New focus: statistical mechanic",
+          "New focus: systems engineering"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2097879961",
+          "https://openalex.org/W2122759946",
+          "https://openalex.org/W2119436275"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2001,
+        "confidence": 0.4205204498461849,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4205204498461849,
+        "supporting_evidence": [
+          "New focus: mathematical physics",
+          "New focus: differential equation",
+          "New focus: machine vision",
+          "New focus: deformation",
+          "New focus: finite model theory"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2169107902",
+          "https://openalex.org/W1589288858",
+          "https://openalex.org/W2129760210"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2003,
+        "confidence": 0.4639284821205302,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.4639284821205302,
+        "supporting_evidence": [
+          "New focus: swarm intelligence",
+          "New focus: numerical method for partial differential equation",
+          "New focus: differential equation",
+          "New focus: variational analysis",
+          "New focus: feature detection"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W1820051232",
+          "https://openalex.org/W1506342804"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2005,
+        "confidence": 0.5307457607228774,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5307457607228774,
+        "supporting_evidence": [
+          "New focus: pattern recognition",
+          "New focus: swarm intelligence",
+          "New focus: feature detection",
+          "New focus: volume parameterization",
+          "New focus: deep learning"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2007,
+        "confidence": 0.514854874041621,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.514854874041621,
+        "supporting_evidence": [
+          "New focus: convex optimization",
+          "New focus: structural equation modeling",
+          "New focus: complex system",
+          "New focus: regression analysis",
+          "New focus: multi-agent planning"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2017,
+        "confidence": 0.5303571428571429,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5303571428571429,
+        "supporting_evidence": [
+          "New focus: differential equation",
+          "New focus: stochastic differential equation",
+          "New focus: computational geometry",
+          "New focus: biostatistics",
+          "New focus: neural computation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3141151088",
+          "https://openalex.org/W2593414223",
+          "https://openalex.org/W2963121255"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2019,
+        "confidence": 0.5137254901960785,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.5137254901960785,
+        "supporting_evidence": [
+          "New focus: statistics",
+          "New focus: pattern recognition",
+          "New focus: function space",
+          "New focus: manifold learning",
+          "New focus: low-rank approximation"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2969985801",
+          "https://openalex.org/W2965373594"
+        ],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2021,
+        "confidence": 0.49434274091024655,
+        "signal_type": "validated_direction_volatility",
+        "evidence_strength": 0.49434274091024655,
+        "supporting_evidence": [
+          "New focus: uniform manifold approximation",
+          "New focus: manifold modeling",
+          "New focus: mathematical theory"
+        ],
+        "contributing_papers": [],
+        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "paradigm_significance": 0.7
+      }
+    ],
+    "filtering_criteria": {
+      "breakthrough_paper_proximity": "Within 2 years",
+      "multi_signal_confidence_boost": ">0.7 threshold",
+      "domain_specific_thresholds": "Applied"
+    }
+  },
+  "transition_evidence": {
+    "count": 18,
+    "description": "Supporting evidence and justifications for paradigm transitions",
+    "evidence": [
+      {
+        "year": 1987,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: numerical analysis",
+          "Emerging keyword: statistics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by applying concepts from information theory, specificall"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2170316986",
+          "https://openalex.org/W1594563152",
+          "https://openalex.org/W3004157836",
+          "https://openalex.org/W2110603299",
+          "https://openalex.org/W1480730624"
+        ],
+        "confidence_score": 0.9808651012022618
+      },
+      {
+        "year": 1949,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: mathematical optimization",
+          "Emerging keyword: spectral theory"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper commemorates and acknowledges the significant impact of the parent paper, \"A Mathema"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1510355813",
+          "https://openalex.org/W2051203581"
+        ],
+        "confidence_score": 0.765625
+      },
+      {
+        "year": 1951,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: mathematical optimization",
+          "Emerging keyword: numerical analysis"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2619609791"
+        ],
+        "confidence_score": 0.7314285714285714
+      },
+      {
+        "year": 1959,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: statistics",
+          "Emerging keyword: computer science"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2550093246"
+        ],
+        "confidence_score": 0.7281553398058253
+      },
+      {
+        "year": 1965,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: numerical analysis",
+          "Emerging keyword: mathematical optimization"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by extending the Hartree-Fock method to derive a new set "
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1966158133",
+          "https://openalex.org/W2105672294",
+          "https://openalex.org/W1996160600",
+          "https://openalex.org/W4230151690"
+        ],
+        "confidence_score": 0.7308612440191388
+      },
+      {
+        "year": 1967,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: numerical analysis",
+          "Emerging keyword: numerical simulation"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2030669316",
+          "https://openalex.org/W2020150158"
+        ],
+        "confidence_score": 0.6334545454545455
+      },
+      {
+        "year": 1979,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: statistics",
+          "Emerging keyword: numerical simulation"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [],
+        "confidence_score": 0.5929608272022271
+      },
+      {
+        "year": 1981,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: statistics",
+          "Emerging keyword: statistical methodology"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the concepts introduced in the parent paper by applying mathematical theor",
+          "The child paper on spectrum estimation and harmonic analysis builds on the theoretical foundations e",
+          "The child paper builds on the concepts introduced in the parent paper by presenting a new method for"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2111286455",
+          "https://openalex.org/W2006309149",
+          "https://openalex.org/W2744008313",
+          "https://openalex.org/W1958809597",
+          "https://openalex.org/W1985419904"
+        ],
+        "confidence_score": 0.8050293563753185
+      },
+      {
+        "year": 1995,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: numerical analysis"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by applying the theoretical framework of self-consistent ",
+          "The child paper builds on the parent paper by applying the concepts of cointegration and error corre",
+          "The child paper, \"Separable dual-space Gaussian pseudopotentials,\" builds on the parent paper, \"Effi"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1570895503",
+          "https://openalex.org/W1557992730",
+          "https://openalex.org/W4230206799",
+          "https://openalex.org/W2106706098",
+          "https://openalex.org/W4211177544"
+        ],
+        "confidence_score": 0.4352318548387097
+      },
+      {
+        "year": 1997,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning research"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by applying the theoretical framework of self-consistent ",
+          "The child paper builds on the parent paper by applying concepts from deterministic nonlinear systems",
+          "The child paper builds on the parent paper by proposing a new method for nonlinear principal compone"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2914659449",
+          "https://openalex.org/W1990061958",
+          "https://openalex.org/W4298872162",
+          "https://openalex.org/W2054704030"
+        ],
+        "confidence_score": 0.43781406075786966
+      },
+      {
+        "year": 1999,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning research"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, \"A Multilinear Singular Value Decomposition,\" builds on the foundational concepts p",
+          "The child paper builds on the parent paper by applying concepts from deterministic nonlinear systems",
+          "The child paper builds on the parent paper by proposing a new method for nonlinear principal compone"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2097879961",
+          "https://openalex.org/W2122759946",
+          "https://openalex.org/W2119436275"
+        ],
+        "confidence_score": 0.48816936488169366
+      },
+      {
+        "year": 2001,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning research"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by expanding the discussion of particle swarm optimizatio",
+          "The child paper builds on the parent paper by adapting the particle swarm algorithm to operate in di",
+          "The child paper, \"A Multilinear Singular Value Decomposition,\" builds on the foundational concepts p"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2169107902",
+          "https://openalex.org/W1589288858",
+          "https://openalex.org/W2129760210"
+        ],
+        "confidence_score": 0.4205204498461849
+      },
+      {
+        "year": 2003,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: mathematical optimization"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by expanding the discussion of particle swarm optimizatio",
+          "The child paper builds on the parent paper by adapting the particle swarm algorithm to operate in di",
+          "The child paper builds on the parent paper by adapting the particle swarm algorithm to operate in di"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1820051232",
+          "https://openalex.org/W1506342804"
+        ],
+        "confidence_score": 0.4639284821205302
+      },
+      {
+        "year": 2005,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: mathematical optimization"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the parent paper by applying concepts from graph theory, specifically the ",
+          "The child paper builds on the theoretical framework established in the parent paper by presenting ne",
+          "The child paper, \"$rm K$-SVD: An Algorithm for Designing Overcomplete Dictionaries for Sparse Repres"
+        ],
+        "breakthrough_papers": [],
+        "confidence_score": 0.5307457607228774
+      },
+      {
+        "year": 2007,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: mathematical optimization"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, which introduces the t-SNE technique for visualizing high-dimensional data, builds ",
+          "The child paper builds on the parent paper by applying concepts from graph theory, specifically the ",
+          "The child paper builds on the theoretical framework established in the parent paper by presenting ne"
+        ],
+        "breakthrough_papers": [],
+        "confidence_score": 0.514854874041621
+      },
+      {
+        "year": 2017,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning research"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper on UMAP builds on the concepts introduced in the parent paper on t-SNE by proposing ",
+          "The child paper on Proximal Policy Optimization (PPO) builds on the foundational concepts of stochas",
+          "The child paper, \"UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction,\" buil"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W3141151088",
+          "https://openalex.org/W2593414223",
+          "https://openalex.org/W2963121255"
+        ],
+        "confidence_score": 0.5303571428571429
+      },
+      {
+        "year": 2019,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning research"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper on UMAP builds on the concepts introduced in the parent paper on t-SNE by proposing ",
+          "The child paper, \"UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction,\" buil"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2969985801",
+          "https://openalex.org/W2965373594"
+        ],
+        "confidence_score": 0.5137254901960785
+      },
+      {
+        "year": 2021,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer science",
+          "Emerging keyword: pattern recognition"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [],
+        "confidence_score": 0.49434274091024655
+      }
+    ]
+  },
+  "visualization_metadata": {
+    "timeline_data": {
+      "raw_signal_years": [
+        1949,
+        1950,
+        1951,
+        1952,
+        1957,
+        1959,
+        1960,
+        1961,
+        1965,
+        1966,
+        1967,
+        1968,
+        1969,
+        1970,
+        1971,
+        1972,
+        1973,
+        1974,
+        1975,
+        1979,
+        1980,
+        1981,
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1992,
+        1993,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "validated_signal_years": [
+        1949,
+        1951,
+        1957,
+        1959,
+        1961,
+        1965,
+        1967,
+        1969,
+        1971,
+        1973,
+        1975,
+        1979,
+        1981,
+        1983,
+        1987,
+        1989,
+        1992,
+        1995,
+        1997,
+        1999,
+        2001,
+        2003,
+        2005,
+        2007,
+        2009,
+        2011,
+        2013,
+        2015,
+        2017,
+        2019,
+        2021
+      ],
+      "paradigm_shift_years": [
+        1949,
+        1951,
+        1959,
+        1965,
+        1967,
+        1979,
+        1981,
+        1987,
+        1995,
+        1997,
+        1999,
+        2001,
+        2003,
+        2005,
+        2007,
+        2017,
+        2019,
+        2021
+      ]
+    },
+    "confidence_distributions": {
+      "raw_confidence_range": [
+        0,
+        1
+      ],
+      "paradigm_confidence_range": [
+        0,
+        1
+      ]
+    },
+    "signal_type_analysis": {
+      "raw_types": [
+        "citation_disruption",
+        "direction_volatility"
+      ],
+      "final_types": [
+        "validated_direction_volatility"
+      ]
+    },
+    "filtering_statistics": {
+      "raw_to_validated_retention": 0.5081967213114754,
+      "validated_to_paradigm_retention": 0.5806451612903226,
+      "overall_retention": 0.29508196721311475
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "domain": "Computer Vision (CV)",
+  "historical_periods": [
+    {
+      "period_name": "Fundamental Image Processing and Handcrafted Features",
+      "start_year": 1960,
+      "end_year": 1999,
+      "duration_years": 40,
+      "description": "This initial period focused on fundamental image processing and pattern recognition, heavily relying on handcrafted features, with later integration of mathematical and statistical methods.",
+      "representative_developments": [
+        "Emergence of computer vision from efforts to interpret visual information",
+        "Early research on low-level image processing (edge detection, image segmentation)",
+        "Development of basic pattern recognition using handcrafted features and rule-based algorithms",
+        "Introduction of mathematical modeling and statistical methods (Markov Random Fields, Bayesian inference) for object recognition and scene understanding (1980s-1990s)"
+      ]
+    },
+    {
+      "period_name": "Machine Learning Integration and Robust Feature Extraction",
+      "start_year": 1990,
+      "end_year": 2010,
+      "duration_years": 21,
+      "description": "This era saw the integration of traditional machine learning techniques and the development of robust feature extraction methods, expanding applications into various real-world problems.",
+      "representative_developments": [
+        "Application of machine learning algorithms (Support Vector Machines (SVMs), decision trees) to image classification and object detection (late 1990s-early 2000s)",
+        "Development of standard feature extraction methods (SIFT, HOG)",
+        "Expansion of applications into medical imaging, industrial automation, and surveillance"
+      ]
+    },
+    {
+      "period_name": "Deep Convolutional Neural Network Revolution",
+      "start_year": 2012,
+      "end_year": 2025,
+      "duration_years": 14,
+      "description": "This period marks a monumental shift, with deep convolutional neural networks (CNNs) leading to unprecedented performance gains and a paradigm shift towards end-to-end learning.",
+      "representative_developments": [
+        "Success of deep CNNs in the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) in 2012",
+        "Shift to end-to-end learning within neural network architectures",
+        "Development of Recurrent Neural Networks (RNNs) for video analysis",
+        "Development of Generative Adversarial Networks (GANs) for image generation and style transfer",
+        "Adaptation of Transformer-based Models from NLP for vision-language integration and large-scale representation learning"
+      ]
+    },
+    {
+      "period_name": "Self-Supervised and Multimodal Learning Advancements",
+      "start_year": 2018,
+      "end_year": 2025,
+      "duration_years": 8,
+      "description": "Recent advancements have focused on learning from vast amounts of unlabeled data through self-supervised learning and integrating information from multiple modalities to achieve richer scene understanding.",
+      "representative_developments": [
+        "Emergence of self-supervised learning (SSL) to learn from unlabeled data via surrogate tasks",
+        "Development of SSL methods including contrastive learning, generative approaches, and clustering-based techniques",
+        "Increasing prominence of joint analysis of audio and video (multimodal learning)",
+        "Applications in audio-visual speech recognition, emotion detection, and cross-modal retrieval"
+      ]
+    },
+    {
+      "period_name": "Interdisciplinary Integration and Diverse Applications",
+      "start_year": 2020,
+      "end_year": 2025,
+      "duration_years": 6,
+      "description": "Computer vision is now a foundational technology across a wide range of interdisciplinary fields, underpinning applications in medicine, environmental science, the arts, and clinical healthcare.",
+      "representative_developments": [
+        "Applications in medicine (automated diagnosis from medical images)",
+        "Applications in environmental science (analyzing digitized natural history collections for climate change research, e.g., Mothra for specimen classification)",
+        "Applications in the arts (art history analysis, digital printmaking, extracting image features for art historians)",
+        "Applications in healthcare (automated detection of disorders like REM Sleep Behavior Disorder from video data)"
+      ]
+    }
+  ]
+}

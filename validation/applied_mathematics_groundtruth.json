@@ -1,0 +1,41 @@
+{
+  "domain": "Applied Mathematics",
+  "historical_periods": [
+    {
+      "period_name": "Formalization of Concepts and Disciplinary Emergence",
+      "start_year": 1900,
+      "end_year": 1949,
+      "duration_years": 50,
+      "description": "This period saw the formalization of key mathematical concepts that would become central to applied mathematics, such as convexity theory, and the discipline's emergence in response to practical needs, particularly in mathematical programming and operations research.",
+      "representative_developments": [
+        "Work of Hermann Minkowski on convex bodies (laying groundwork for optimization)",
+        "Birth of mathematical programming in response to practical needs (e.g., operations research)",
+        "Growing distinction and interconnectedness between pure and applied mathematics"
+      ]
+    },
+    {
+      "period_name": "Post-War Expansion and Institutionalization",
+      "start_year": 1950,
+      "end_year": 1999,
+      "duration_years": 50,
+      "description": "The post-war era witnessed a significant surge in the application of mathematics to a wider range of fields and the institutionalization of applied mathematics as a distinct academic discipline, marked by new sub-disciplines and community building.",
+      "representative_developments": [
+        "Increasing application of mathematics in physics, engineering, economics, and early computer science",
+        "Establishment of new sub-disciplines (mathematical statistics, computational mathematics)",
+        "Increasing number of conferences and academic networks (e.g., Applied Mathematics Meetings) facilitating academia-industry exchange"
+      ]
+    },
+    {
+      "period_name": "Interdisciplinary Integration and Societal Impact",
+      "start_year": 2000,
+      "end_year": 2025,
+      "duration_years": 26,
+      "description": "The current century has seen an increasing integration of applied mathematics with other STEM fields, arts, and humanities, reflecting a strong trend towards interdisciplinary research and its central role in addressing contemporary challenges.",
+      "representative_developments": [
+        "Research encompassing machine learning and data science, mathematical biology, and financial mathematics",
+        "Development of frameworks like STEAM (Science, Technology, Engineering, Art, and Mathematics) for holistic education",
+        "Use of historical artifacts (e.g., math-themed postage stamps) for engagement and highlighting cultural significance"
+      ]
+    }
+  ]
+}

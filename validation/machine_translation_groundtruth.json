@@ -1,0 +1,68 @@
+{
+  "domain": "Machine Translation (MT)",
+  "historical_periods": [
+    {
+      "period_name": "Mechanization and Rule-Based Systems",
+      "start_year": 1940,
+      "end_year": 1969,
+      "duration_years": 30,
+      "description": "This period marked the very beginning of machine translation, driven by the ambition to automate translation using dictionaries and hand-crafted linguistic rules, exemplified by early Cold War efforts.",
+      "representative_developments": [
+        "Origins in the 1940s, motivated by scientific and military needs (US and Soviet Union)",
+        "1954 Georgetown-IBM experiment (first public MT demonstration, Russian to English via rule-based approaches)",
+        "Reliance on dictionaries and hand-crafted linguistic rules"
+      ]
+    },
+    {
+      "period_name": "Complex Rule-Based Systems and Re-evaluation",
+      "start_year": 1960,
+      "end_year": 1989,
+      "duration_years": 30,
+      "description": "This period saw the development of more complex rule-based systems incorporating syntactic and semantic analysis, but faced challenges and a re-evaluation of MT's practicality, though research continued in specific regions.",
+      "representative_developments": [
+        "Development of sophisticated rule-based systems with syntactic and semantic analysis (1960s-1970s)",
+        "1966 ALPAC report concluding MT was not yet practical, leading to funding reduction",
+        "Continued research in Europe and Japan (e.g., SYSTRAN, METEO for restricted domains)"
+      ]
+    },
+    {
+      "period_name": "Statistical Machine Translation (SMT) and Data-Driven Paradigm",
+      "start_year": 1990,
+      "end_year": 2013,
+      "duration_years": 24,
+      "description": "This era marked a significant paradigm shift with the advent of statistical methods, leveraging large bilingual corpora and computational resources to learn translation patterns directly from data.",
+      "representative_developments": [
+        "Rise of statistical methods enabled by large bilingual corpora and computational resources (late 1980s-1990s)",
+        "Development of SMT systems (e.g., IBM’s Candide) utilizing probabilistic models",
+        "Substantial improvements in translation quality for data-rich language pairs",
+        "Advancement with phrase-based SMT for modeling phrase-level translations"
+      ]
+    },
+    {
+      "period_name": "Neural Machine Translation (NMT) and Deep Learning Revolution",
+      "start_year": 2014,
+      "end_year": 2025,
+      "duration_years": 12,
+      "description": "The introduction of deep learning revolutionized MT, leading to unprecedented levels of fluency and accuracy through neural network architectures, notably the Transformer model.",
+      "representative_developments": [
+        "Integration of deep learning and neural networks (RNNs, LSTMs)",
+        "Introduction of the highly influential Transformer architecture (2017) with attention mechanism",
+        "Significant improvements in translation fluency and adequacy for high-resource languages",
+        "Ongoing research into transfer learning, back-translation, and unsupervised methods for low-resource languages"
+      ]
+    },
+    {
+      "period_name": "Large Language Models and Quality Estimation Focus",
+      "start_year": 2020,
+      "end_year": 2025,
+      "duration_years": 6,
+      "description": "The latest phase is characterized by the integration of powerful large language models and a growing focus on robust quality assessment, addressing biases and improving translation for diverse languages.",
+      "representative_developments": [
+        "Integration of Large Language Models (LLMs) and pre-trained models (e.g., BERT, GPT) into MT pipelines",
+        "Enhanced translation quality, including zero-shot and few-shot translation capabilities",
+        "Increasing focus on Machine Translation Quality Estimation (MTQE), evolving from handcrafted features to deep learning/LLM-based approaches",
+        "Active research areas: addressing gender bias, improving translation for low-resource and morphologically complex languages"
+      ]
+    }
+  ]
+}
