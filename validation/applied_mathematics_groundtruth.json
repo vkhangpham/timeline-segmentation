@@ -1,40 +1,69 @@
 {
-  "domain": "Applied Mathematics",
+  "domain": "Applied Mathematics Research",
   "historical_periods": [
     {
-      "period_name": "Formalization of Concepts and Disciplinary Emergence",
-      "start_year": 1900,
-      "end_year": 1949,
-      "duration_years": 50,
-      "description": "This period saw the formalization of key mathematical concepts that would become central to applied mathematics, such as convexity theory, and the discipline's emergence in response to practical needs, particularly in mathematical programming and operations research.",
+      "period_name": "The Age of Calculus and Classical Mechanics",
+      "start_year": 1600,
+      "end_year": 1750,
+      "duration_years": 151,
+      "description": "This period marks the birth of modern applied mathematics, driven by the need to understand natural phenomena, particularly celestial mechanics. The paradigm shift was the systematic application of mathematical analysis, specifically calculus, to solve physical problems. Key figures like Isaac Newton and Gottfried Wilhelm Leibniz independently developed calculus, providing powerful tools to describe motion and change. This laid the foundation for mathematical modeling of the physical world.",
       "representative_developments": [
-        "Work of Hermann Minkowski on convex bodies (laying groundwork for optimization)",
-        "Birth of mathematical programming in response to practical needs (e.g., operations research)",
-        "Growing distinction and interconnectedness between pure and applied mathematics"
+        "René Descartes, La Géométrie (1637): Introduced analytic geometry, linking algebra and geometry.",
+        "Gottfried Wilhelm Leibniz, Nova Methodus pro Maximis et Minimis (1684): First published paper on differential calculus.",
+        "Isaac Newton, Philosophiæ Naturalis Principia Mathematica (1687): Presented laws of motion, universal gravitation, and calculus applied to physical problems."
       ]
     },
     {
-      "period_name": "Post-War Expansion and Institutionalization",
-      "start_year": 1950,
-      "end_year": 1999,
-      "duration_years": 50,
-      "description": "The post-war era witnessed a significant surge in the application of mathematics to a wider range of fields and the institutionalization of applied mathematics as a distinct academic discipline, marked by new sub-disciplines and community building.",
+      "period_name": "Analytical Methods and Continuum Physics",
+      "start_year": 1800,
+      "end_year": 1900,
+      "duration_years": 101,
+      "description": "The 19th century witnessed a significant expansion of applied mathematics beyond classical mechanics, with a focus on analytical methods for complex physical systems. The paradigm shift was the development of sophisticated mathematical tools like Fourier series and vector calculus, enabling the rigorous formulation and solution of problems in continuum mechanics (fluid dynamics, elasticity) and electromagnetism. This period solidified the role of partial differential equations as a central tool.",
       "representative_developments": [
-        "Increasing application of mathematics in physics, engineering, economics, and early computer science",
-        "Establishment of new sub-disciplines (mathematical statistics, computational mathematics)",
-        "Increasing number of conferences and academic networks (e.g., Applied Mathematics Meetings) facilitating academia-industry exchange"
+        "Joseph Fourier, Théorie analytique de la chaleur (1822): Introduced Fourier series for solving heat conduction problems.",
+        "Augustin-Louis Cauchy, Exercices de mathématiques (1826-1829): Contributed significantly to continuum mechanics, including the concept of stress.",
+        "James Clerk Maxwell, A Treatise on Electricity and Magnetism (1873): Unified electromagnetism through a set of partial differential equations.",
+        "Willard Gibbs & Edwin Bidwell Wilson, Vector Analysis (1901, based on late 19th-century work): Standardized vector calculus notation, crucial for physics and engineering."
       ]
     },
     {
-      "period_name": "Interdisciplinary Integration and Societal Impact",
+      "period_name": "The Computational Revolution and Operations Research",
+      "start_year": 1940,
+      "end_year": 1970,
+      "duration_years": 31,
+      "description": "This period was characterized by a profound paradigm shift driven by the advent of electronic computers and the demands of World War II. New fields like Operations Research emerged to optimize complex systems, while numerical analysis became critical for solving problems intractable by analytical methods. Game theory offered mathematical frameworks for strategic decision-making. The ability to perform rapid calculations fundamentally changed the scope and methodology of applied mathematics.",
+      "representative_developments": [
+        "John von Neumann and Oskar Morgenstern, Theory of Games and Economic Behavior (1944): Laid the foundation for game theory.",
+        "George Dantzig, Simplex method (1947): Developed a groundbreaking algorithm for linear programming.",
+        "John von Neumann and Herman Goldstine, Numerical Inverting of Matrices of High Order (1947): A seminal work in modern numerical analysis, addressing computational challenges.",
+        "The rise of Control Theory in the late 1950s/early 1960s: Focused on designing systems with desired behaviors, often involving feedback mechanisms."
+      ]
+    },
+    {
+      "period_name": "Nonlinear Dynamics, Chaos, and Computational Science",
+      "start_year": 1970,
+      "end_year": 2000,
+      "duration_years": 31,
+      "description": "With increasing computational power, applied mathematics underwent a paradigm shift towards the study of complex, nonlinear phenomena. Fields like chaos theory and fractal geometry emerged, demonstrating that seemingly simple deterministic systems could exhibit unpredictable behavior. This period emphasized computational modeling and simulation as essential tools for exploring systems where analytical solutions were impossible, bridging mathematics with new frontiers in physics, biology, and engineering.",
+      "representative_developments": [
+        "Edward Lorenz, Deterministic Nonperiodic Flow (1963): Identified the 'butterfly effect' and laid groundwork for chaos theory.",
+        "Mitchell Feigenbaum, Quantitative Universality for a Class of Nonlinear Transformations (1978): Discovered universal constants in chaotic systems.",
+        "Benoit Mandelbrot, The Fractal Geometry of Nature (1982): Popularized fractal concepts and their widespread occurrence in nature."
+      ]
+    },
+    {
+      "period_name": "Data-Driven Approaches and Complex Systems",
       "start_year": 2000,
       "end_year": 2025,
       "duration_years": 26,
-      "description": "The current century has seen an increasing integration of applied mathematics with other STEM fields, arts, and humanities, reflecting a strong trend towards interdisciplinary research and its central role in addressing contemporary challenges.",
+      "description": "The early 21st century has seen a significant paradigm shift, driven by the explosion of data and advancements in computing. Applied mathematics is increasingly integrated with statistics and computer science to address problems in areas like machine learning, network science, and mathematical biology. The focus has moved towards developing algorithms and models that can extract insights from massive datasets, understand emergent properties in complex systems, and quantify uncertainty in predictions. This era emphasizes interdisciplinary collaboration and computational scalability.",
       "representative_developments": [
-        "Research encompassing machine learning and data science, mathematical biology, and financial mathematics",
-        "Development of frameworks like STEAM (Science, Technology, Engineering, Art, and Mathematics) for holistic education",
-        "Use of historical artifacts (e.g., math-themed postage stamps) for engagement and highlighting cultural significance"
+        "Rise of Deep Learning (2010s): Enabled by advancements in neural networks (e.g., Convolutional Neural Networks, Recurrent Neural Networks) and increased computational power (GPUs), revolutionizing fields like image recognition and natural language processing.",
+        "Alfred M. Bruckstein, David L. Donoho, Michael Elad, Sparse Representations in Redundant Systems (2009): Influential work in compressed sensing, showing efficient signal acquisition and reconstruction.",
+        "David Watts and Steven Strogatz, Collective dynamics of 'small-world' networks (1998): Introduced the 'small-world' network model.",
+        "Albert-László Barabási and Réka Albert, Emergence of scaling in random networks (1999): Introduced the 'scale-free' network model.",
+        "Increased application of mathematical modeling in Systems Biology: Development of quantitative, predictive models for biological processes, from cellular dynamics to epidemiology (e.g., advanced SIR/SEIR models for disease spread).",
+        "Widespread adoption of Uncertainty Quantification (UQ) methods: Integration of Monte Carlo methods, Bayesian statistics, and sensitivity analysis into complex models across science and engineering to account for data and model uncertainties."
       ]
     }
   ]

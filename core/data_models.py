@@ -25,7 +25,7 @@ class Paper:
     
     def __post_init__(self):
         """Validate paper data after initialization."""
-        if self.pub_year < 1800 or self.pub_year > 2030:
+        if self.pub_year < 0 or self.pub_year > 2030:
             raise ValueError(f"Invalid publication year: {self.pub_year}")
         if self.cited_by_count < 0:
             raise ValueError(f"Invalid citation count: {self.cited_by_count}")

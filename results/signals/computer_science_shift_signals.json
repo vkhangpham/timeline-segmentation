@@ -1,7 +1,7 @@
 {
   "metadata": {
     "domain_name": "computer_science",
-    "analysis_date": "2025-06-16T12:32:59.107719",
+    "analysis_date": "2025-06-18T11:04:33.357654",
     "analysis_type": "shift_signal_detection",
     "description": "Paradigm transition detection using multi-source signal fusion",
     "methodology": {
@@ -16,473 +16,6 @@
     "description": "Raw signals from individual detection methods before validation",
     "signals": [
       {
-        "year": 2012,
-        "confidence": 0.29267275884387095,
-        "signal_type": "citation_disruption",
-        "evidence_strength": 0.14633637942193548,
-        "supporting_evidence": [
-          "Influence pattern change: 0.177 \u2192 0.323"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2163605009",
-          "https://openalex.org/W2101234009",
-          "https://openalex.org/W2128880918",
-          "https://openalex.org/W4294214983",
-          "https://openalex.org/W2150066425",
-          "https://openalex.org/W1990170643",
-          "https://openalex.org/W2162098634",
-          "https://openalex.org/W2118246710",
-          "https://openalex.org/W2170747616",
-          "https://openalex.org/W1998025025",
-          "https://openalex.org/W2146395539",
-          "https://openalex.org/W1904365287",
-          "https://openalex.org/W6908809",
-          "https://openalex.org/W2114623221"
-        ],
-        "transition_description": "Structural break in influence patterns at 2012",
-        "paradigm_significance": 0.6
-      },
-      {
-        "year": 2001,
-        "confidence": 0.4,
-        "signal_type": "semantic_shift",
-        "evidence_strength": 0.4,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "domain_expansion: broader context"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2126105956",
-          "https://openalex.org/W2099111195",
-          "https://openalex.org/W2152195021",
-          "https://openalex.org/W1631356911",
-          "https://openalex.org/W1678356000",
-          "https://openalex.org/W2764347725",
-          "https://openalex.org/W2036149274",
-          "https://openalex.org/W2121947440",
-          "https://openalex.org/W2053186076",
-          "https://openalex.org/W1563088657",
-          "https://openalex.org/W2163352848",
-          "https://openalex.org/W2109364787",
-          "https://openalex.org/W2167667767",
-          "https://openalex.org/W2038721957",
-          "https://openalex.org/W2160337655",
-          "https://openalex.org/W2067191022",
-          "https://openalex.org/W2166244948",
-          "https://openalex.org/W2104846640",
-          "https://openalex.org/W2116040950",
-          "https://openalex.org/W2128016314",
-          "https://openalex.org/W2164418313",
-          "https://openalex.org/W2999905431",
-          "https://openalex.org/W2162598825",
-          "https://openalex.org/W2132216432",
-          "https://openalex.org/W2042281163",
-          "https://openalex.org/W2074682976",
-          "https://openalex.org/W2136145671",
-          "https://openalex.org/W2170102584",
-          "https://openalex.org/W2159024459",
-          "https://openalex.org/W2118020653",
-          "https://openalex.org/W2165874743",
-          "https://openalex.org/W2099244020",
-          "https://openalex.org/W3038067977",
-          "https://openalex.org/W2038669746",
-          "https://openalex.org/W2143516773",
-          "https://openalex.org/W2154010459",
-          "https://openalex.org/W1985479415",
-          "https://openalex.org/W2172000360",
-          "https://openalex.org/W2121606987",
-          "https://openalex.org/W2137813581",
-          "https://openalex.org/W2057175746",
-          "https://openalex.org/W2064853889",
-          "https://openalex.org/W2130660124",
-          "https://openalex.org/W2168676717",
-          "https://openalex.org/W1993885071",
-          "https://openalex.org/W2037521346",
-          "https://openalex.org/W2152826865",
-          "https://openalex.org/W2098693229"
-        ],
-        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, domain_expansion: broader context",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2002,
-        "confidence": 0.4,
-        "signal_type": "semantic_shift",
-        "evidence_strength": 0.4,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "domain_expansion: broader context"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2009435671",
-          "https://openalex.org/W2126105956",
-          "https://openalex.org/W2099111195",
-          "https://openalex.org/W2152195021",
-          "https://openalex.org/W1631356911",
-          "https://openalex.org/W1678356000",
-          "https://openalex.org/W2764347725",
-          "https://openalex.org/W2163352848",
-          "https://openalex.org/W2109364787",
-          "https://openalex.org/W1506342804",
-          "https://openalex.org/W2160337655",
-          "https://openalex.org/W2067191022",
-          "https://openalex.org/W2102258543",
-          "https://openalex.org/W2166244948",
-          "https://openalex.org/W2104846640",
-          "https://openalex.org/W2116040950",
-          "https://openalex.org/W2128016314",
-          "https://openalex.org/W2999905431",
-          "https://openalex.org/W2122683221",
-          "https://openalex.org/W2132216432",
-          "https://openalex.org/W2042281163",
-          "https://openalex.org/W2074682976",
-          "https://openalex.org/W2165744313",
-          "https://openalex.org/W2136145671",
-          "https://openalex.org/W2170102584",
-          "https://openalex.org/W2159024459",
-          "https://openalex.org/W2118020653",
-          "https://openalex.org/W2140199336",
-          "https://openalex.org/W2165874743",
-          "https://openalex.org/W2099244020",
-          "https://openalex.org/W3038067977",
-          "https://openalex.org/W2097308346",
-          "https://openalex.org/W1533162639",
-          "https://openalex.org/W2143516773",
-          "https://openalex.org/W2154010459",
-          "https://openalex.org/W2102625004",
-          "https://openalex.org/W1985479415",
-          "https://openalex.org/W2998216295",
-          "https://openalex.org/W2172000360",
-          "https://openalex.org/W2131846894",
-          "https://openalex.org/W2121606987",
-          "https://openalex.org/W2137813581",
-          "https://openalex.org/W2057175746",
-          "https://openalex.org/W1990911977",
-          "https://openalex.org/W1989702938",
-          "https://openalex.org/W2131726714",
-          "https://openalex.org/W2168676717",
-          "https://openalex.org/W1993885071",
-          "https://openalex.org/W2099040451",
-          "https://openalex.org/W2037521346",
-          "https://openalex.org/W2152826865",
-          "https://openalex.org/W2135505702",
-          "https://openalex.org/W2098693229"
-        ],
-        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, domain_expansion: broader context",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2014,
-        "confidence": 0.6,
-        "signal_type": "semantic_shift",
-        "evidence_strength": 0.7,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "domain_expansion: broader context",
-          "foundational_work: establishes"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2962835968",
-          "https://openalex.org/W1686810756",
-          "https://openalex.org/W2097117768",
-          "https://openalex.org/W2095705004",
-          "https://openalex.org/W2250539671",
-          "https://openalex.org/W1903029394",
-          "https://openalex.org/W2102605133",
-          "https://openalex.org/W1536680647",
-          "https://openalex.org/W1836465849",
-          "https://openalex.org/W2953106684",
-          "https://openalex.org/W2949117887",
-          "https://openalex.org/W2157331557",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W1614298861",
-          "https://openalex.org/W1677182931",
-          "https://openalex.org/W2613718673",
-          "https://openalex.org/W2130942839",
-          "https://openalex.org/W2950577311",
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W1832693441",
-          "https://openalex.org/W1959608418",
-          "https://openalex.org/W4297734170",
-          "https://openalex.org/W1924770834",
-          "https://openalex.org/W2099085143",
-          "https://openalex.org/W2109255472",
-          "https://openalex.org/W2125389028",
-          "https://openalex.org/W2143612262",
-          "https://openalex.org/W2173248099",
-          "https://openalex.org/W2963207607",
-          "https://openalex.org/W2054692642",
-          "https://openalex.org/W4311415873",
-          "https://openalex.org/W1902237438",
-          "https://openalex.org/W1522734439",
-          "https://openalex.org/W3099206234",
-          "https://openalex.org/W2963684088",
-          "https://openalex.org/W2134295053",
-          "https://openalex.org/W2123442489",
-          "https://openalex.org/W2964153729",
-          "https://openalex.org/W2950635152",
-          "https://openalex.org/W2963840672",
-          "https://openalex.org/W2173520492",
-          "https://openalex.org/W1834627138",
-          "https://openalex.org/W2110999179",
-          "https://openalex.org/W1901616594",
-          "https://openalex.org/W2251939518",
-          "https://openalex.org/W2145287260",
-          "https://openalex.org/W2016053056",
-          "https://openalex.org/W1983364832",
-          "https://openalex.org/W1895577753",
-          "https://openalex.org/W2000982976"
-        ],
-        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, domain_expansion: broader context, foundational_work: establishes",
-        "paradigm_significance": 0.7
-      },
-      {
-        "year": 2015,
-        "confidence": 0.6,
-        "signal_type": "semantic_shift",
-        "evidence_strength": 0.7,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "architectural_shifts: novel architecture",
-          "domain_expansion: broader context"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2194775991",
-          "https://openalex.org/W2962835968",
-          "https://openalex.org/W1686810756",
-          "https://openalex.org/W2097117768",
-          "https://openalex.org/W2095705004",
-          "https://openalex.org/W2250539671",
-          "https://openalex.org/W1903029394",
-          "https://openalex.org/W2963037989",
-          "https://openalex.org/W2102605133",
-          "https://openalex.org/W2183341477",
-          "https://openalex.org/W1536680647",
-          "https://openalex.org/W1836465849",
-          "https://openalex.org/W2953106684",
-          "https://openalex.org/W2949117887",
-          "https://openalex.org/W2157331557",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W1677182931",
-          "https://openalex.org/W2613718673",
-          "https://openalex.org/W2130942839",
-          "https://openalex.org/W2964015378",
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W1832693441",
-          "https://openalex.org/W1959608418",
-          "https://openalex.org/W2557283755",
-          "https://openalex.org/W4297734170",
-          "https://openalex.org/W1924770834",
-          "https://openalex.org/W2099085143",
-          "https://openalex.org/W2271840356",
-          "https://openalex.org/W2340897893",
-          "https://openalex.org/W2109255472",
-          "https://openalex.org/W2953384591",
-          "https://openalex.org/W2295107390",
-          "https://openalex.org/W2125389028",
-          "https://openalex.org/W2173248099",
-          "https://openalex.org/W2963207607",
-          "https://openalex.org/W2054692642",
-          "https://openalex.org/W1902237438",
-          "https://openalex.org/W1522734439",
-          "https://openalex.org/W1885185971",
-          "https://openalex.org/W3099206234",
-          "https://openalex.org/W2963684088",
-          "https://openalex.org/W2134295053",
-          "https://openalex.org/W2123442489",
-          "https://openalex.org/W2964153729",
-          "https://openalex.org/W2962914239",
-          "https://openalex.org/W2950635152",
-          "https://openalex.org/W2963840672",
-          "https://openalex.org/W2173520492",
-          "https://openalex.org/W1834627138",
-          "https://openalex.org/W2110999179",
-          "https://openalex.org/W1901616594",
-          "https://openalex.org/W2402144811",
-          "https://openalex.org/W2174661749",
-          "https://openalex.org/W2242218935",
-          "https://openalex.org/W2416799949",
-          "https://openalex.org/W2145287260",
-          "https://openalex.org/W2279098554",
-          "https://openalex.org/W2016053056",
-          "https://openalex.org/W1895577753",
-          "https://openalex.org/W2000982976",
-          "https://openalex.org/W2964043796",
-          "https://openalex.org/W2963748441"
-        ],
-        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, architectural_shifts: novel architecture, domain_expansion: broader context",
-        "paradigm_significance": 0.7
-      },
-      {
-        "year": 2016,
-        "confidence": 0.6,
-        "signal_type": "semantic_shift",
-        "evidence_strength": 0.8999999999999999,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "architectural_shifts: novel architecture",
-          "foundational_work: establishes"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2194775991",
-          "https://openalex.org/W2097117768",
-          "https://openalex.org/W2963446712",
-          "https://openalex.org/W2618530766",
-          "https://openalex.org/W1903029394",
-          "https://openalex.org/W2963037989",
-          "https://openalex.org/W639708223",
-          "https://openalex.org/W2183341477",
-          "https://openalex.org/W2099471712",
-          "https://openalex.org/W2041902442",
-          "https://openalex.org/W1536680647",
-          "https://openalex.org/W2963150697",
-          "https://openalex.org/W1836465849",
-          "https://openalex.org/W2953106684",
-          "https://openalex.org/W2963351448",
-          "https://openalex.org/W2565639579",
-          "https://openalex.org/W2949117887",
-          "https://openalex.org/W2962793481",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W2963073614",
-          "https://openalex.org/W2963881378",
-          "https://openalex.org/W2570343428",
-          "https://openalex.org/W1677182931",
-          "https://openalex.org/W2613718673",
-          "https://openalex.org/W2531409750",
-          "https://openalex.org/W2962858109",
-          "https://openalex.org/W2964015378",
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W2560023338",
-          "https://openalex.org/W4297775537",
-          "https://openalex.org/W2963470893",
-          "https://openalex.org/W2557283755",
-          "https://openalex.org/W2099085143",
-          "https://openalex.org/W2549139847",
-          "https://openalex.org/W2271840356",
-          "https://openalex.org/W2340897893",
-          "https://openalex.org/W2493916176",
-          "https://openalex.org/W2109255472",
-          "https://openalex.org/W2953384591",
-          "https://openalex.org/W2612445135",
-          "https://openalex.org/W2962862931",
-          "https://openalex.org/W2295107390",
-          "https://openalex.org/W2560609797",
-          "https://openalex.org/W2173248099",
-          "https://openalex.org/W2963207607",
-          "https://openalex.org/W2395611524",
-          "https://openalex.org/W1902237438",
-          "https://openalex.org/W2964350391",
-          "https://openalex.org/W1522734439",
-          "https://openalex.org/W1885185971",
-          "https://openalex.org/W3099206234",
-          "https://openalex.org/W2963684088",
-          "https://openalex.org/W2963524571",
-          "https://openalex.org/W2134295053",
-          "https://openalex.org/W2962914239",
-          "https://openalex.org/W2951464304",
-          "https://openalex.org/W2508457857",
-          "https://openalex.org/W2963840672",
-          "https://openalex.org/W2630837129",
-          "https://openalex.org/W2173520492",
-          "https://openalex.org/W1834627138",
-          "https://openalex.org/W2963857521",
-          "https://openalex.org/W1901616594",
-          "https://openalex.org/W2402144811",
-          "https://openalex.org/W2174661749",
-          "https://openalex.org/W2963121255",
-          "https://openalex.org/W2242218935",
-          "https://openalex.org/W2416799949",
-          "https://openalex.org/W4297733535",
-          "https://openalex.org/W2950354111",
-          "https://openalex.org/W2577537660",
-          "https://openalex.org/W2279098554",
-          "https://openalex.org/W2559085405",
-          "https://openalex.org/W1895577753",
-          "https://openalex.org/W2964043796",
-          "https://openalex.org/W2963748441"
-        ],
-        "transition_description": "Semantic paradigm shift: architectural_shifts: foundational, architectural_shifts: novel architecture, foundational_work: establishes",
-        "paradigm_significance": 0.8999999999999999
-      },
-      {
-        "year": 2017,
-        "confidence": 0.4,
-        "signal_type": "semantic_shift",
-        "evidence_strength": 0.6,
-        "supporting_evidence": [
-          "architectural_shifts: novel architecture",
-          "foundational_work: establishes"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2194775991",
-          "https://openalex.org/W2963446712",
-          "https://openalex.org/W2896457183",
-          "https://openalex.org/W2618530766",
-          "https://openalex.org/W2963037989",
-          "https://openalex.org/W639708223",
-          "https://openalex.org/W2183341477",
-          "https://openalex.org/W2099471712",
-          "https://openalex.org/W2041902442",
-          "https://openalex.org/W2963150697",
-          "https://openalex.org/W2891378911",
-          "https://openalex.org/W2963351448",
-          "https://openalex.org/W2565639579",
-          "https://openalex.org/W2752782242",
-          "https://openalex.org/W2962793481",
-          "https://openalex.org/W2412782625",
-          "https://openalex.org/W2963163009",
-          "https://openalex.org/W2963073614",
-          "https://openalex.org/W2963881378",
-          "https://openalex.org/W2570343428",
-          "https://openalex.org/W2531409750",
-          "https://openalex.org/W2962858109",
-          "https://openalex.org/W2964015378",
-          "https://openalex.org/W2560023338",
-          "https://openalex.org/W4297775537",
-          "https://openalex.org/W2963470893",
-          "https://openalex.org/W2557283755",
-          "https://openalex.org/W2549139847",
-          "https://openalex.org/W2963091558",
-          "https://openalex.org/W2271840356",
-          "https://openalex.org/W2340897893",
-          "https://openalex.org/W2493916176",
-          "https://openalex.org/W2953384591",
-          "https://openalex.org/W2612445135",
-          "https://openalex.org/W2962862931",
-          "https://openalex.org/W2295107390",
-          "https://openalex.org/W1560724230",
-          "https://openalex.org/W2560609797",
-          "https://openalex.org/W2395611524",
-          "https://openalex.org/W2964350391",
-          "https://openalex.org/W1885185971",
-          "https://openalex.org/W2963524571",
-          "https://openalex.org/W2962914239",
-          "https://openalex.org/W2951464304",
-          "https://openalex.org/W2508457857",
-          "https://openalex.org/W2963125010",
-          "https://openalex.org/W2630837129",
-          "https://openalex.org/W2963857521",
-          "https://openalex.org/W2402144811",
-          "https://openalex.org/W2174661749",
-          "https://openalex.org/W2963121255",
-          "https://openalex.org/W2242218935",
-          "https://openalex.org/W2962785568",
-          "https://openalex.org/W2416799949",
-          "https://openalex.org/W4297733535",
-          "https://openalex.org/W2950354111",
-          "https://openalex.org/W2577537660",
-          "https://openalex.org/W4210727445",
-          "https://openalex.org/W2279098554",
-          "https://openalex.org/W2559085405",
-          "https://openalex.org/W2889326414",
-          "https://openalex.org/W2257024953",
-          "https://openalex.org/W2964043796",
-          "https://openalex.org/W2963748441"
-        ],
-        "transition_description": "Semantic paradigm shift: architectural_shifts: novel architecture, foundational_work: establishes",
-        "paradigm_significance": 0.6
-      },
-      {
         "year": 1962,
         "confidence": 0.9121212121212121,
         "signal_type": "direction_volatility",
@@ -493,7 +26,7 @@
           "New focus: applied mathematics"
         ],
         "contributing_papers": [],
-        "transition_description": "Research direction shift: 97.7% new keywords",
+        "transition_description": "Research direction shift: 97.7% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -502,15 +35,15 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.9223529411764706,
         "supporting_evidence": [
-          "New focus: image analysis",
+          "New focus: applied mathematics",
           "New focus: machine learning research",
-          "New focus: quantitative science study",
-          "New focus: applied mathematics"
+          "New focus: image analysis",
+          "New focus: quantitative science study"
         ],
         "contributing_papers": [
           "https://openalex.org/W2171074980"
         ],
-        "transition_description": "Research direction shift: 98.0% new keywords",
+        "transition_description": "Research direction shift: 98.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -519,15 +52,15 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.8365384615384616,
         "supporting_evidence": [
-          "New focus: image analysis",
+          "New focus: applied mathematics",
           "New focus: machine learning research",
-          "New focus: applied mathematics"
+          "New focus: image analysis"
         ],
         "contributing_papers": [
           "https://openalex.org/W2122111042",
           "https://openalex.org/W1991133427"
         ],
-        "transition_description": "Research direction shift: 92.3% new keywords",
+        "transition_description": "Research direction shift: 92.3% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -536,14 +69,14 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.9119999999999999,
         "supporting_evidence": [
+          "New focus: computational imaging",
+          "New focus: computer vision",
+          "New focus: digital image processing",
           "New focus: pattern recognition",
-          "New focus: image representation",
-          "New focus: image analysis",
-          "New focus: machine vision",
-          "New focus: image classification"
+          "New focus: image representation"
         ],
         "contributing_papers": [],
-        "transition_description": "Research direction shift: 96.0% new keywords",
+        "transition_description": "Research direction shift: 96.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -552,16 +85,16 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.7739651416122004,
         "supporting_evidence": [
-          "New focus: pattern recognition",
-          "New focus: image representation",
           "New focus: computational imaging",
-          "New focus: image analysis",
-          "New focus: machine vision"
+          "New focus: computer vision",
+          "New focus: digital image processing",
+          "New focus: pattern recognition",
+          "New focus: image representation"
         ],
         "contributing_papers": [
           "https://openalex.org/W2165612380"
         ],
-        "transition_description": "Research direction shift: 90.7% new keywords",
+        "transition_description": "Research direction shift: 90.7% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -570,12 +103,12 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5227272727272728,
         "supporting_evidence": [
-          "New focus: information retrieval",
           "New focus: image classification",
-          "New focus: machine learning research"
+          "New focus: machine learning research",
+          "New focus: information retrieval"
         ],
         "contributing_papers": [],
-        "transition_description": "Research direction shift: 76.7% new keywords",
+        "transition_description": "Research direction shift: 76.7% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -584,16 +117,16 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.8616211374832065,
         "supporting_evidence": [
-          "New focus: image representation",
+          "New focus: quantification",
+          "New focus: computational imaging",
+          "New focus: computer vision",
           "New focus: quantization (signal processing)",
-          "New focus: image analysis",
-          "New focus: machine vision",
-          "New focus: quantification"
+          "New focus: digital image processing"
         ],
         "contributing_papers": [
           "https://openalex.org/W2103504761"
         ],
-        "transition_description": "Research direction shift: 96.1% new keywords",
+        "transition_description": "Research direction shift: 96.1% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -602,14 +135,14 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.7371007371007371,
         "supporting_evidence": [
-          "New focus: digital signature",
           "New focus: cryptography",
-          "New focus: cryptosystem",
+          "New focus: digital signature",
           "New focus: public key infrastructure",
+          "New focus: cryptosystem",
           "New focus: data security"
         ],
         "contributing_papers": [],
-        "transition_description": "Research direction shift: 81.1% new keywords",
+        "transition_description": "Research direction shift: 81.1% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -618,12 +151,12 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.590625,
         "supporting_evidence": [
-          "New focus: detection technique",
           "New focus: bioinformatics",
+          "New focus: detection technique",
           "New focus: program analysis"
         ],
         "contributing_papers": [],
-        "transition_description": "Research direction shift: 84.4% new keywords",
+        "transition_description": "Research direction shift: 84.4% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -632,17 +165,17 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5515103548344545,
         "supporting_evidence": [
-          "New focus: detection technique",
-          "New focus: deformation",
-          "New focus: image communication",
+          "New focus: deep learning",
+          "New focus: geometric modeling",
+          "New focus: 3d printing",
           "New focus: 3d reconstruction",
-          "New focus: computer-aided design"
+          "New focus: geometry processing"
         ],
         "contributing_papers": [
           "https://openalex.org/W2053289371",
           "https://openalex.org/W1672666614"
         ],
-        "transition_description": "Research direction shift: 85.0% new keywords",
+        "transition_description": "Research direction shift: 85.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -651,11 +184,11 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.6744471744471744,
         "supporting_evidence": [
-          "New focus: pattern recognition",
-          "New focus: image representation",
-          "New focus: deformation",
-          "New focus: applied mathematics",
-          "New focus: numerical analysis"
+          "New focus: geometric modeling",
+          "New focus: 3d printing",
+          "New focus: 3d reconstruction",
+          "New focus: geometry processing",
+          "New focus: pattern recognition"
         ],
         "contributing_papers": [
           "https://openalex.org/W2132984323",
@@ -664,7 +197,7 @@
           "https://openalex.org/W2018044188",
           "https://openalex.org/W2014767176"
         ],
-        "transition_description": "Research direction shift: 92.4% new keywords",
+        "transition_description": "Research direction shift: 92.4% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -673,16 +206,16 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.73828125,
         "supporting_evidence": [
-          "New focus: pattern recognition",
-          "New focus: scientific computing",
-          "New focus: systems engineering",
-          "New focus: deformation",
+          "New focus: complex system",
+          "New focus: geometric modeling",
+          "New focus: modeling and simulation",
+          "New focus: 3d printing",
           "New focus: 3d reconstruction"
         ],
         "contributing_papers": [
           "https://openalex.org/W1996021349"
         ],
-        "transition_description": "Research direction shift: 87.5% new keywords",
+        "transition_description": "Research direction shift: 87.5% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -691,14 +224,14 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.6472303206997084,
         "supporting_evidence": [
-          "New focus: wavelet theory",
           "New focus: scientific computing",
           "New focus: digital signal processing",
-          "New focus: statistical signal processing",
-          "New focus: wavelet"
+          "New focus: wavelet",
+          "New focus: modeling and simulation",
+          "New focus: statistical signal processing"
         ],
         "contributing_papers": [],
-        "transition_description": "Research direction shift: 77.6% new keywords",
+        "transition_description": "Research direction shift: 77.6% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -707,16 +240,16 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.6829573934837092,
         "supporting_evidence": [
-          "New focus: character recognition",
-          "New focus: signal processing",
           "New focus: combinatorial optimization",
-          "New focus: wavelet theory",
-          "New focus: statistical signal processing"
+          "New focus: digital signal processing",
+          "New focus: signal processing",
+          "New focus: statistical signal processing",
+          "New focus: character recognition"
         ],
         "contributing_papers": [
           "https://openalex.org/W2062024414"
         ],
-        "transition_description": "Research direction shift: 82.7% new keywords",
+        "transition_description": "Research direction shift: 82.7% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -725,11 +258,11 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.612230215827338,
         "supporting_evidence": [
-          "New focus: statistics",
           "New focus: data science",
-          "New focus: genetics",
           "New focus: combinatorial optimization",
-          "New focus: genetic engineering"
+          "New focus: genetic algorithm",
+          "New focus: evolutionary computation",
+          "New focus: statistics"
         ],
         "contributing_papers": [
           "https://openalex.org/W2019207321",
@@ -737,7 +270,7 @@
           "https://openalex.org/W1816720378",
           "https://openalex.org/W3113109455"
         ],
-        "transition_description": "Research direction shift: 79.9% new keywords",
+        "transition_description": "Research direction shift: 79.9% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -746,16 +279,16 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5054155740508494,
         "supporting_evidence": [
-          "New focus: statistics",
-          "New focus: genetics",
-          "New focus: inference",
+          "New focus: logic in computer science",
+          "New focus: genetic algorithm",
           "New focus: artificial intelligence",
-          "New focus: logic in computer science"
+          "New focus: evolutionary computation",
+          "New focus: statistics"
         ],
         "contributing_papers": [
           "https://openalex.org/W2116661285"
         ],
-        "transition_description": "Research direction shift: 79.9% new keywords",
+        "transition_description": "Research direction shift: 79.9% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -764,10 +297,10 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5473684210526316,
         "supporting_evidence": [
-          "New focus: mathematical optimization",
-          "New focus: supervised learning",
+          "New focus: logic in computer science",
+          "New focus: artificial intelligence",
           "New focus: machine learning tool",
-          "New focus: cognitive science",
+          "New focus: automated machine learning",
           "New focus: inference"
         ],
         "contributing_papers": [
@@ -779,7 +312,7 @@
           "https://openalex.org/W2000359198",
           "https://openalex.org/W1825077972"
         ],
-        "transition_description": "Research direction shift: 80.0% new keywords",
+        "transition_description": "Research direction shift: 80.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -788,16 +321,16 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.6069556415169373,
         "supporting_evidence": [
-          "New focus: fuzzy optimization",
-          "New focus: cognitive science",
-          "New focus: fuzzy pattern recognition",
+          "New focus: neural networks",
+          "New focus: fuzzy computing",
+          "New focus: modeling and simulation",
           "New focus: sparse neural network",
-          "New focus: neuroscience"
+          "New focus: neural network (machine learning)"
         ],
         "contributing_papers": [
           "https://openalex.org/W2117812871"
         ],
-        "transition_description": "Research direction shift: 81.9% new keywords",
+        "transition_description": "Research direction shift: 81.9% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -806,37 +339,18 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5354322040894955,
         "supporting_evidence": [
-          "New focus: numerical analysis",
+          "New focus: neural networks",
           "New focus: sparse neural network",
-          "New focus: neuroscience",
-          "New focus: numerical algorithm",
-          "New focus: distributed system"
+          "New focus: reinforcement learning",
+          "New focus: distributed system",
+          "New focus: digital signal processing"
         ],
         "contributing_papers": [
           "https://openalex.org/W2064675550",
           "https://openalex.org/W2131774270",
           "https://openalex.org/W2339500526"
         ],
-        "transition_description": "Research direction shift: 74.9% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 1998,
-        "confidence": 0.48982354363065017,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.48982354363065017,
-        "supporting_evidence": [
-          "New focus: knowledge representation and reasoning",
-          "New focus: combinatorial optimization",
-          "New focus: set theory",
-          "New focus: multi-agent learning",
-          "New focus: intelligent systems"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2124776405",
-          "https://openalex.org/W1515851193"
-        ],
-        "transition_description": "Research direction shift: 69.0% new keywords",
+        "transition_description": "Research direction shift: 74.9% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -845,18 +359,18 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5502197178360422,
         "supporting_evidence": [
-          "New focus: statistics",
-          "New focus: image representation",
-          "New focus: quantum technology",
+          "New focus: mathematics",
           "New focus: combinatorial optimization",
-          "New focus: sequential decision making"
+          "New focus: scene understanding",
+          "New focus: deep reinforcement learning",
+          "New focus: quantum technology"
         ],
         "contributing_papers": [
           "https://openalex.org/W1967073510",
           "https://openalex.org/W2095721433",
           "https://openalex.org/W2141224535"
         ],
-        "transition_description": "Research direction shift: 76.6% new keywords",
+        "transition_description": "Research direction shift: 76.6% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -865,18 +379,18 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5342457283014201,
         "supporting_evidence": [
-          "New focus: image representation",
-          "New focus: quantum technology",
           "New focus: combinatorial optimization",
-          "New focus: sequence assembly",
-          "New focus: sequence analysis"
+          "New focus: scene understanding",
+          "New focus: evolutionary computation",
+          "New focus: clustering",
+          "New focus: quantum technology"
         ],
         "contributing_papers": [
           "https://openalex.org/W2164418313",
           "https://openalex.org/W2064853889",
           "https://openalex.org/W2130660124"
         ],
-        "transition_description": "Research direction shift: 75.3% new keywords",
+        "transition_description": "Research direction shift: 75.3% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -885,17 +399,17 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5364769056508789,
         "supporting_evidence": [
-          "New focus: wireless network",
-          "New focus: pattern mining",
           "New focus: support vector machine",
+          "New focus: evolutionary computation",
           "New focus: quantum technology",
-          "New focus: control optimization"
+          "New focus: automated sequencer traces",
+          "New focus: sequence assembly"
         ],
         "contributing_papers": [
           "https://openalex.org/W2764347725",
           "https://openalex.org/W1993885071"
         ],
-        "transition_description": "Research direction shift: 76.0% new keywords",
+        "transition_description": "Research direction shift: 76.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -904,68 +418,18 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.505702986186737,
         "supporting_evidence": [
-          "New focus: wireless network",
-          "New focus: design optimization",
           "New focus: dimensionality reduction",
-          "New focus: optimization problem",
-          "New focus: image segmentation"
+          "New focus: design optimization",
+          "New focus: image segmentation",
+          "New focus: wireless network",
+          "New focus: graph theory"
         ],
         "contributing_papers": [
           "https://openalex.org/W2152195021",
           "https://openalex.org/W2109364787",
           "https://openalex.org/W2172000360"
         ],
-        "transition_description": "Research direction shift: 69.9% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2003,
-        "confidence": 0.4858205485820548,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4858205485820548,
-        "supporting_evidence": [
-          "New focus: mobile computing",
-          "New focus: image classification",
-          "New focus: communications system",
-          "New focus: feature detection",
-          "New focus: quantum communication"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1506342804",
-          "https://openalex.org/W2102258543",
-          "https://openalex.org/W2097308346",
-          "https://openalex.org/W1533162639",
-          "https://openalex.org/W2102625004",
-          "https://openalex.org/W2998216295",
-          "https://openalex.org/W1989702938",
-          "https://openalex.org/W2099040451",
-          "https://openalex.org/W2135505702"
-        ],
-        "transition_description": "Research direction shift: 72.6% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2004,
-        "confidence": 0.48627032791255664,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.48627032791255664,
-        "supporting_evidence": [
-          "New focus: automatic classification",
-          "New focus: mobile computing",
-          "New focus: image classification",
-          "New focus: sparse representation",
-          "New focus: feature detection"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2132629607",
-          "https://openalex.org/W2138825607",
-          "https://openalex.org/W2158266834",
-          "https://openalex.org/W1548802052",
-          "https://openalex.org/W1985588649",
-          "https://openalex.org/W2145482038",
-          "https://openalex.org/W1971040550"
-        ],
-        "transition_description": "Research direction shift: 73.5% new keywords",
+        "transition_description": "Research direction shift: 69.9% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -974,11 +438,11 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5011247154537251,
         "supporting_evidence": [
-          "New focus: mixture analysis",
-          "New focus: automatic classification",
-          "New focus: machine vision",
-          "New focus: sequence alignment",
-          "New focus: image classification"
+          "New focus: deep learning",
+          "New focus: feature detection",
+          "New focus: statistical software",
+          "New focus: data and information visualization",
+          "New focus: information visualization"
         ],
         "contributing_papers": [
           "https://openalex.org/W2161969291",
@@ -988,7 +452,7 @@
           "https://openalex.org/W2177274842",
           "https://openalex.org/W2153233077"
         ],
-        "transition_description": "Research direction shift: 77.3% new keywords",
+        "transition_description": "Research direction shift: 77.3% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -997,58 +461,18 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.503534897713598,
         "supporting_evidence": [
-          "New focus: mixture analysis",
-          "New focus: biometrics",
+          "New focus: statistical software",
+          "New focus: data and information visualization",
+          "New focus: information visualization",
           "New focus: combinatorial optimization",
-          "New focus: cognitive science",
-          "New focus: statistical learning theory"
+          "New focus: unmanned aerial vehicle"
         ],
         "contributing_papers": [
           "https://openalex.org/W2160547390",
           "https://openalex.org/W2162915993",
           "https://openalex.org/W2163808566"
         ],
-        "transition_description": "Research direction shift: 70.4% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2007,
-        "confidence": 0.4739508992292321,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4739508992292321,
-        "supporting_evidence": [
-          "New focus: scientific computing",
-          "New focus: model compression",
-          "New focus: automated reasoning",
-          "New focus: signal processing",
-          "New focus: combinatorial optimization"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1663973292",
-          "https://openalex.org/W273955616",
-          "https://openalex.org/W1583837637",
-          "https://openalex.org/W2143381319"
-        ],
-        "transition_description": "Research direction shift: 64.2% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2009,
-        "confidence": 0.4431617832255898,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4431617832255898,
-        "supporting_evidence": [
-          "New focus: supervised learning",
-          "New focus: predictive analytics",
-          "New focus: statistical signal processing",
-          "New focus: classification method",
-          "New focus: neural network (machine learning)"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1511986666",
-          "https://openalex.org/W2116341502"
-        ],
-        "transition_description": "Research direction shift: 59.3% new keywords",
+        "transition_description": "Research direction shift: 70.4% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -1057,14 +481,14 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5202511658649432,
         "supporting_evidence": [
-          "New focus: pattern mining",
-          "New focus: supervised learning",
-          "New focus: search technology",
+          "New focus: mathematics",
           "New focus: predictive analytics",
-          "New focus: collaborative information retrieval"
+          "New focus: statistical inference",
+          "New focus: information science",
+          "New focus: data stream mining"
         ],
         "contributing_papers": [],
-        "transition_description": "Research direction shift: 73.0% new keywords",
+        "transition_description": "Research direction shift: 73.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -1073,11 +497,11 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.5556776355545788,
         "supporting_evidence": [
-          "New focus: automatic classification",
+          "New focus: statistical software",
+          "New focus: data and information visualization",
+          "New focus: information visualization",
           "New focus: cloud computing",
-          "New focus: cloud resource management",
-          "New focus: pattern mining",
-          "New focus: cloud-based integration"
+          "New focus: mathematics"
         ],
         "contributing_papers": [
           "https://openalex.org/W2006617902",
@@ -1085,26 +509,7 @@
           "https://openalex.org/W2145962650",
           "https://openalex.org/W1969353942"
         ],
-        "transition_description": "Research direction shift: 78.0% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2012,
-        "confidence": 0.4671627906976744,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4671627906976744,
-        "supporting_evidence": [
-          "New focus: molecular biology",
-          "New focus: cloud computing",
-          "New focus: cloud resource management",
-          "New focus: cloud-based integration",
-          "New focus: sequence alignment"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2128880918",
-          "https://openalex.org/W2170747616"
-        ],
-        "transition_description": "Research direction shift: 74.4% new keywords",
+        "transition_description": "Research direction shift: 78.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -1113,11 +518,11 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.551734591409462,
         "supporting_evidence": [
-          "New focus: computational genomics",
           "New focus: information technology",
-          "New focus: cognitive science",
-          "New focus: hierarchical classification",
-          "New focus: convolutional neural network"
+          "New focus: natural language processing",
+          "New focus: genome biology",
+          "New focus: convolutional neural network",
+          "New focus: computational genomics"
         ],
         "contributing_papers": [
           "https://openalex.org/W1614298861",
@@ -1126,7 +531,7 @@
           "https://openalex.org/W2251939518",
           "https://openalex.org/W1983364832"
         ],
-        "transition_description": "Research direction shift: 73.1% new keywords",
+        "transition_description": "Research direction shift: 73.1% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -1136,10 +541,10 @@
         "evidence_strength": 0.5924159021406727,
         "supporting_evidence": [
           "New focus: word representations",
-          "New focus: speech communication",
-          "New focus: computational genomics",
-          "New focus: linguistics",
-          "New focus: language model"
+          "New focus: natural language processing",
+          "New focus: genome biology",
+          "New focus: vector space",
+          "New focus: speech technology"
         ],
         "contributing_papers": [
           "https://openalex.org/W2962835968",
@@ -1158,7 +563,7 @@
           "https://openalex.org/W2145287260",
           "https://openalex.org/W2016053056"
         ],
-        "transition_description": "Research direction shift: 77.3% new keywords",
+        "transition_description": "Research direction shift: 77.3% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
@@ -1167,11 +572,11 @@
         "signal_type": "direction_volatility",
         "evidence_strength": 0.550439024390244,
         "supporting_evidence": [
-          "New focus: word representations",
+          "New focus: semantic parsing",
           "New focus: mobile computing",
-          "New focus: computational genomics",
-          "New focus: adversarial machine learning",
-          "New focus: large-scale image recognition"
+          "New focus: neural networks",
+          "New focus: auto-encoding variational bayes",
+          "New focus: transfer learning"
         ],
         "contributing_papers": [
           "https://openalex.org/W2097117768",
@@ -1195,705 +600,791 @@
           "https://openalex.org/W1901616594",
           "https://openalex.org/W1895577753"
         ],
-        "transition_description": "Research direction shift: 74.0% new keywords",
+        "transition_description": "Research direction shift: 74.0% new keywords (threshold=0.50)",
         "paradigm_significance": 0.4
       },
       {
-        "year": 2016,
-        "confidence": 0.49188008735358346,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.49188008735358346,
+        "year": 1953,
+        "confidence": 0.8,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.24,
         "supporting_evidence": [
-          "New focus: word representations",
-          "New focus: human-level performance",
-          "New focus: scene analysis",
-          "New focus: wireless network",
-          "New focus: mobile computing"
+          "Citation burst or sustained growth pattern"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2194775991",
-          "https://openalex.org/W2963037989",
-          "https://openalex.org/W2340897893",
-          "https://openalex.org/W1885185971",
-          "https://openalex.org/W2242218935",
-          "https://openalex.org/W2279098554",
-          "https://openalex.org/W2964043796",
-          "https://openalex.org/W2963748441"
+          "https://openalex.org/W2056760934"
         ],
-        "transition_description": "Research direction shift: 70.9% new keywords",
-        "paradigm_significance": 0.4
+        "transition_description": "CPSD paradigm shift detection at 1953 (confidence=0.800)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1960,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation burst or sustained growth pattern"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2105934661",
+          "https://openalex.org/W1966382716"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1960 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1965,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation burst or sustained growth pattern"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2171074980",
+          "https://openalex.org/W2061171222"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1965 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1973,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation burst or sustained growth pattern"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2044465660",
+          "https://openalex.org/W3017143921",
+          "https://openalex.org/W2109488193",
+          "https://openalex.org/W2142384583"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1973 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1978,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation burst or sustained growth pattern"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W4232836212",
+          "https://openalex.org/W2128160875"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1978 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1982,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation burst or sustained growth pattern"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2150593711",
+          "https://openalex.org/W2124181495",
+          "https://openalex.org/W1597739853"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1982 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1986,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.3,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected",
+          "Citation burst or sustained growth pattern"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2145023731",
+          "https://openalex.org/W4300402905",
+          "https://openalex.org/W1492221128",
+          "https://openalex.org/W2071637551",
+          "https://openalex.org/W2080267935",
+          "https://openalex.org/W1491178396",
+          "https://openalex.org/W2024135760"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1986 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1989,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation burst or sustained growth pattern"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2033943395",
+          "https://openalex.org/W2132984323",
+          "https://openalex.org/W1766888123",
+          "https://openalex.org/W1996109622",
+          "https://openalex.org/W2147800946",
+          "https://openalex.org/W1555915743",
+          "https://openalex.org/W2018044188",
+          "https://openalex.org/W2014767176"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1989 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1992,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2125055259",
+          "https://openalex.org/W2062024414",
+          "https://openalex.org/W2148534890",
+          "https://openalex.org/W1576818901",
+          "https://openalex.org/W2087347434",
+          "https://openalex.org/W2078146328",
+          "https://openalex.org/W1996672843",
+          "https://openalex.org/W1980569376"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1992 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1995,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2122410182",
+          "https://openalex.org/W2146842127",
+          "https://openalex.org/W4388297464",
+          "https://openalex.org/W2130416410",
+          "https://openalex.org/W2119567691",
+          "https://openalex.org/W2124344619",
+          "https://openalex.org/W1898259180",
+          "https://openalex.org/W166315768",
+          "https://openalex.org/W2126512988",
+          "https://openalex.org/W2000359198",
+          "https://openalex.org/W1825077972"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1995 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 1999,
+        "confidence": 0.5,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.15,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2124386111",
+          "https://openalex.org/W2099574482",
+          "https://openalex.org/W2106334424",
+          "https://openalex.org/W1967073510",
+          "https://openalex.org/W2110659753",
+          "https://openalex.org/W2095721433",
+          "https://openalex.org/W2126554879",
+          "https://openalex.org/W1493688518",
+          "https://openalex.org/W2141224535",
+          "https://openalex.org/W1604938182",
+          "https://openalex.org/W2097879961"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 1999 (confidence=0.500)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2002,
+        "confidence": 0.30000000000000004,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.09000000000000001,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2126105956",
+          "https://openalex.org/W2152195021",
+          "https://openalex.org/W1631356911",
+          "https://openalex.org/W2163352848",
+          "https://openalex.org/W2109364787",
+          "https://openalex.org/W2160337655",
+          "https://openalex.org/W2067191022",
+          "https://openalex.org/W2166244948",
+          "https://openalex.org/W2104846640",
+          "https://openalex.org/W2128016314",
+          "https://openalex.org/W2999905431",
+          "https://openalex.org/W2136145671",
+          "https://openalex.org/W2170102584",
+          "https://openalex.org/W2159024459",
+          "https://openalex.org/W2118020653",
+          "https://openalex.org/W2099244020",
+          "https://openalex.org/W3038067977",
+          "https://openalex.org/W2172000360",
+          "https://openalex.org/W2121606987",
+          "https://openalex.org/W2057175746",
+          "https://openalex.org/W2168676717",
+          "https://openalex.org/W2098693229"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 2002 (confidence=0.300)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2005,
+        "confidence": 0.30000000000000004,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.09000000000000001,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2161969291",
+          "https://openalex.org/W2121863487",
+          "https://openalex.org/W2122825543",
+          "https://openalex.org/W2164598857",
+          "https://openalex.org/W4211049957",
+          "https://openalex.org/W1746819321",
+          "https://openalex.org/W2171960770",
+          "https://openalex.org/W2154053567",
+          "https://openalex.org/W2061326496",
+          "https://openalex.org/W2129131372",
+          "https://openalex.org/W2177274842",
+          "https://openalex.org/W2097073572",
+          "https://openalex.org/W2153233077"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 2005 (confidence=0.300)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2008,
+        "confidence": 0.30000000000000004,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.09000000000000001,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2187089797",
+          "https://openalex.org/W2119667497",
+          "https://openalex.org/W4213009331",
+          "https://openalex.org/W2047417387",
+          "https://openalex.org/W1565377632",
+          "https://openalex.org/W2127847431",
+          "https://openalex.org/W2097726431",
+          "https://openalex.org/W2025768430",
+          "https://openalex.org/W2021520922",
+          "https://openalex.org/W1831050183",
+          "https://openalex.org/W2118585731"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 2008 (confidence=0.300)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2011,
+        "confidence": 0.30000000000000004,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.09000000000000001,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2149992227",
+          "https://openalex.org/W2006617902",
+          "https://openalex.org/W2146292423",
+          "https://openalex.org/W2117228865",
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2145962650",
+          "https://openalex.org/W1747388711",
+          "https://openalex.org/W1969353942",
+          "https://openalex.org/W1575923498",
+          "https://openalex.org/W2138122982",
+          "https://openalex.org/W2158899491"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 2011 (confidence=0.300)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2014,
+        "confidence": 0.30000000000000004,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.09000000000000001,
+        "supporting_evidence": [
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2962835968",
+          "https://openalex.org/W1686810756",
+          "https://openalex.org/W2095705004",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2102605133",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W1959608418",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W1924770834",
+          "https://openalex.org/W2125389028",
+          "https://openalex.org/W2054692642",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2964153729",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2110999179",
+          "https://openalex.org/W2145287260",
+          "https://openalex.org/W2016053056",
+          "https://openalex.org/W2000982976"
+        ],
+        "transition_description": "CPSD paradigm shift detection at 2014 (confidence=0.300)",
+        "paradigm_significance": 0.7
       },
       {
         "year": 2017,
-        "confidence": 0.4700239808153477,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4700239808153477,
+        "confidence": 0.30000000000000004,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.09000000000000001,
         "supporting_evidence": [
-          "New focus: explainable ai",
-          "New focus: human-level performance",
-          "New focus: scene analysis",
-          "New focus: wireless network",
-          "New focus: knowledge representation and reasoning"
+          "Citation acceleration/deceleration pattern detected"
         ],
         "contributing_papers": [
           "https://openalex.org/W2963446712",
+          "https://openalex.org/W2618530766",
           "https://openalex.org/W639708223",
           "https://openalex.org/W2099471712",
+          "https://openalex.org/W2041902442",
           "https://openalex.org/W2963150697",
           "https://openalex.org/W2963351448",
           "https://openalex.org/W2565639579",
           "https://openalex.org/W2962793481",
           "https://openalex.org/W2963073614",
           "https://openalex.org/W2963881378",
+          "https://openalex.org/W2570343428",
+          "https://openalex.org/W2531409750",
           "https://openalex.org/W2962858109",
           "https://openalex.org/W2560023338",
           "https://openalex.org/W4297775537",
           "https://openalex.org/W2963470893",
+          "https://openalex.org/W2549139847",
           "https://openalex.org/W2493916176",
           "https://openalex.org/W2612445135",
+          "https://openalex.org/W2962862931",
+          "https://openalex.org/W2560609797",
           "https://openalex.org/W2395611524",
           "https://openalex.org/W2964350391",
+          "https://openalex.org/W2963524571",
+          "https://openalex.org/W2951464304",
+          "https://openalex.org/W2508457857",
           "https://openalex.org/W2630837129",
-          "https://openalex.org/W2963121255"
+          "https://openalex.org/W2963857521",
+          "https://openalex.org/W2963121255",
+          "https://openalex.org/W4297733535",
+          "https://openalex.org/W2950354111",
+          "https://openalex.org/W2577537660",
+          "https://openalex.org/W2559085405"
         ],
-        "transition_description": "Research direction shift: 71.9% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2019,
-        "confidence": 0.4230769230769231,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4230769230769231,
-        "supporting_evidence": [
-          "New focus: biomedical engineering",
-          "New focus: graph analysis",
-          "New focus: high resolution",
-          "New focus: systems engineering",
-          "New focus: manifold learning"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2962770929"
-        ],
-        "transition_description": "Research direction shift: 70.5% new keywords",
-        "paradigm_significance": 0.4
+        "transition_description": "CPSD paradigm shift detection at 2017 (confidence=0.300)",
+        "paradigm_significance": 0.7
       },
       {
         "year": 2020,
-        "confidence": 0.4028515369522564,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4028515369522564,
+        "confidence": 0.30000000000000004,
+        "signal_type": "citation_disruption_cpsd",
+        "evidence_strength": 0.09000000000000001,
         "supporting_evidence": [
-          "New focus: manifold learning",
-          "New focus: approximation theory",
-          "New focus: feature construction",
-          "New focus: language engineering",
-          "New focus: multi-view geometry"
+          "Citation acceleration/deceleration pattern detected"
         ],
         "contributing_papers": [
+          "https://openalex.org/W3099878876",
           "https://openalex.org/W3103145119",
-          "https://openalex.org/W3035524453"
+          "https://openalex.org/W2963420686",
+          "https://openalex.org/W3094502228",
+          "https://openalex.org/W3018757597",
+          "https://openalex.org/W3035524453",
+          "https://openalex.org/W3096831136",
+          "https://openalex.org/W3083406432",
+          "https://openalex.org/W3005680577"
         ],
-        "transition_description": "Research direction shift: 63.3% new keywords",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2021,
-        "confidence": 0.4225757783568783,
-        "signal_type": "direction_volatility",
-        "evidence_strength": 0.4225757783568783,
-        "supporting_evidence": [
-          "New focus: computational neuroscience",
-          "New focus: visual reasoning",
-          "New focus: statistical software",
-          "New focus: neuroimaging",
-          "New focus: language engineering"
-        ],
-        "contributing_papers": [],
-        "transition_description": "Research direction shift: 56.5% new keywords",
-        "paradigm_significance": 0.4
+        "transition_description": "CPSD paradigm shift detection at 2020 (confidence=0.300)",
+        "paradigm_significance": 0.7
       }
     ],
     "signal_types": [
-      "citation_disruption",
-      "semantic_shift",
+      "citation_disruption_cpsd",
       "direction_volatility"
     ]
   },
   "validated_signals": {
-    "count": 21,
+    "count": 10,
     "description": "Cross-validated signals with combined evidence",
     "signals": [
       {
-        "year": 2012,
-        "confidence": 0.9598355495415454,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4671627906976744,
-        "supporting_evidence": [
-          "Influence pattern change: 0.177 \u2192 0.323",
-          "New focus: molecular biology",
-          "New focus: cloud computing",
-          "New focus: cloud resource management",
-          "New focus: cloud-based integration",
-          "New focus: sequence alignment"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1904365287",
-          "https://openalex.org/W1990170643",
-          "https://openalex.org/W2170747616",
-          "https://openalex.org/W2118246710",
-          "https://openalex.org/W2150066425",
-          "https://openalex.org/W2114623221",
-          "https://openalex.org/W2163605009",
-          "https://openalex.org/W6908809",
-          "https://openalex.org/W4294214983",
-          "https://openalex.org/W2162098634",
-          "https://openalex.org/W1998025025",
-          "https://openalex.org/W2146395539",
-          "https://openalex.org/W2101234009",
-          "https://openalex.org/W2128880918"
-        ],
-        "transition_description": "Multi-signal paradigm transition: citation_disruption, direction_volatility",
-        "paradigm_significance": 0.6
-      },
-      {
-        "year": 2001,
+        "year": 1965,
         "confidence": 1.0,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5364769056508789,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.2223529411764706,
         "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "domain_expansion: broader context",
-          "New focus: wireless network",
-          "New focus: pattern mining",
-          "New focus: support vector machine",
-          "New focus: quantum technology",
-          "New focus: control optimization"
+          "New focus: machine learning research",
+          "New focus: quantitative science study",
+          "New focus: applied mathematics",
+          "New focus: image analysis",
+          "Citation burst or sustained growth pattern"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2121606987",
-          "https://openalex.org/W2121947440",
-          "https://openalex.org/W2098693229",
-          "https://openalex.org/W2764347725",
-          "https://openalex.org/W2164418313",
-          "https://openalex.org/W1993885071",
-          "https://openalex.org/W2166244948",
-          "https://openalex.org/W2038721957",
-          "https://openalex.org/W2099244020",
-          "https://openalex.org/W2160337655",
-          "https://openalex.org/W2172000360",
-          "https://openalex.org/W2154010459",
-          "https://openalex.org/W2053186076",
-          "https://openalex.org/W2064853889",
-          "https://openalex.org/W2118020653",
-          "https://openalex.org/W2067191022",
-          "https://openalex.org/W2116040950",
-          "https://openalex.org/W2168676717",
-          "https://openalex.org/W1985479415",
-          "https://openalex.org/W2130660124",
-          "https://openalex.org/W2109364787",
-          "https://openalex.org/W2152826865",
-          "https://openalex.org/W2152195021",
-          "https://openalex.org/W2074682976",
-          "https://openalex.org/W2057175746",
-          "https://openalex.org/W2104846640",
-          "https://openalex.org/W2099111195",
-          "https://openalex.org/W1631356911",
-          "https://openalex.org/W2038669746",
-          "https://openalex.org/W2143516773",
-          "https://openalex.org/W2036149274",
-          "https://openalex.org/W2126105956",
-          "https://openalex.org/W2136145671",
-          "https://openalex.org/W2170102584",
-          "https://openalex.org/W1563088657",
-          "https://openalex.org/W2037521346",
-          "https://openalex.org/W2165874743",
-          "https://openalex.org/W2999905431",
-          "https://openalex.org/W2162598825",
-          "https://openalex.org/W3038067977",
-          "https://openalex.org/W2128016314",
-          "https://openalex.org/W2132216432",
-          "https://openalex.org/W2163352848",
-          "https://openalex.org/W2167667767",
-          "https://openalex.org/W2137813581",
-          "https://openalex.org/W2042281163",
-          "https://openalex.org/W1678356000",
-          "https://openalex.org/W2159024459"
+          "https://openalex.org/W2171074980",
+          "https://openalex.org/W2061171222"
         ],
-        "transition_description": "Multi-signal paradigm transition: semantic_shift, direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2014,
-        "confidence": 1.0,
-        "signal_type": "validated_semantic_shift",
-        "evidence_strength": 0.7,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "domain_expansion: broader context",
-          "foundational_work: establishes",
-          "New focus: word representations",
-          "New focus: speech communication",
-          "New focus: computational genomics",
-          "New focus: linguistics",
-          "New focus: language model"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W2110999179",
-          "https://openalex.org/W2125389028",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W2099085143",
-          "https://openalex.org/W1677182931",
-          "https://openalex.org/W2130942839",
-          "https://openalex.org/W2016053056",
-          "https://openalex.org/W2095705004",
-          "https://openalex.org/W4311415873",
-          "https://openalex.org/W1903029394",
-          "https://openalex.org/W2963840672",
-          "https://openalex.org/W2145287260",
-          "https://openalex.org/W2173520492",
-          "https://openalex.org/W2000982976",
-          "https://openalex.org/W1836465849",
-          "https://openalex.org/W2250539671",
-          "https://openalex.org/W1686810756",
-          "https://openalex.org/W1832693441",
-          "https://openalex.org/W2949117887",
-          "https://openalex.org/W2953106684",
-          "https://openalex.org/W1924770834",
-          "https://openalex.org/W2963207607",
-          "https://openalex.org/W1536680647",
-          "https://openalex.org/W2134295053",
-          "https://openalex.org/W2097117768",
-          "https://openalex.org/W2109255472",
-          "https://openalex.org/W1834627138",
-          "https://openalex.org/W2950635152",
-          "https://openalex.org/W2157331557",
-          "https://openalex.org/W1983364832",
-          "https://openalex.org/W1902237438",
-          "https://openalex.org/W2143612262",
-          "https://openalex.org/W2964153729",
-          "https://openalex.org/W2962835968",
-          "https://openalex.org/W4297734170",
-          "https://openalex.org/W2613718673",
-          "https://openalex.org/W1522734439",
-          "https://openalex.org/W1901616594",
-          "https://openalex.org/W2123442489",
-          "https://openalex.org/W2102605133",
-          "https://openalex.org/W1614298861",
-          "https://openalex.org/W2173248099",
-          "https://openalex.org/W1959608418",
-          "https://openalex.org/W2963684088",
-          "https://openalex.org/W2950577311",
-          "https://openalex.org/W2251939518",
-          "https://openalex.org/W1895577753",
-          "https://openalex.org/W2054692642",
-          "https://openalex.org/W3099206234"
-        ],
-        "transition_description": "Multi-signal paradigm transition: semantic_shift, direction_volatility",
+        "transition_description": "Direction-driven paradigm shift at 1965 (citation validated)",
         "paradigm_significance": 0.7
       },
       {
-        "year": 2016,
-        "confidence": 1.0,
-        "signal_type": "validated_semantic_shift",
-        "evidence_strength": 0.8999999999999999,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "architectural_shifts: novel architecture",
-          "foundational_work: establishes",
-          "New focus: word representations",
-          "New focus: human-level performance",
-          "New focus: scene analysis",
-          "New focus: wireless network",
-          "New focus: mobile computing"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W2395611524",
-          "https://openalex.org/W2242218935",
-          "https://openalex.org/W2183341477",
-          "https://openalex.org/W2963121255",
-          "https://openalex.org/W2565639579",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W2099085143",
-          "https://openalex.org/W4297733535",
-          "https://openalex.org/W2963881378",
-          "https://openalex.org/W2099471712",
-          "https://openalex.org/W1677182931",
-          "https://openalex.org/W2963470893",
-          "https://openalex.org/W2963524571",
-          "https://openalex.org/W2962793481",
-          "https://openalex.org/W2416799949",
-          "https://openalex.org/W2963073614",
-          "https://openalex.org/W2560023338",
-          "https://openalex.org/W2531409750",
-          "https://openalex.org/W2612445135",
-          "https://openalex.org/W639708223",
-          "https://openalex.org/W1903029394",
-          "https://openalex.org/W2493916176",
-          "https://openalex.org/W2963840672",
-          "https://openalex.org/W2174661749",
-          "https://openalex.org/W2041902442",
-          "https://openalex.org/W2173520492",
-          "https://openalex.org/W1836465849",
-          "https://openalex.org/W2577537660",
-          "https://openalex.org/W2964015378",
-          "https://openalex.org/W2949117887",
-          "https://openalex.org/W2402144811",
-          "https://openalex.org/W2194775991",
-          "https://openalex.org/W2953106684",
-          "https://openalex.org/W2963207607",
-          "https://openalex.org/W2963037989",
-          "https://openalex.org/W2953384591",
-          "https://openalex.org/W1536680647",
-          "https://openalex.org/W2963351448",
-          "https://openalex.org/W2097117768",
-          "https://openalex.org/W2109255472",
-          "https://openalex.org/W2962862931",
-          "https://openalex.org/W2549139847",
-          "https://openalex.org/W2963150697",
-          "https://openalex.org/W2134295053",
-          "https://openalex.org/W2557283755",
-          "https://openalex.org/W2340897893",
-          "https://openalex.org/W1834627138",
-          "https://openalex.org/W2618530766",
-          "https://openalex.org/W2964043796",
-          "https://openalex.org/W1902237438",
-          "https://openalex.org/W2570343428",
-          "https://openalex.org/W1522734439",
-          "https://openalex.org/W2613718673",
-          "https://openalex.org/W2962914239",
-          "https://openalex.org/W2964350391",
-          "https://openalex.org/W4297775537",
-          "https://openalex.org/W2951464304",
-          "https://openalex.org/W1901616594",
-          "https://openalex.org/W2950354111",
-          "https://openalex.org/W2559085405",
-          "https://openalex.org/W2173248099",
-          "https://openalex.org/W2963446712",
-          "https://openalex.org/W2295107390",
-          "https://openalex.org/W2963684088",
-          "https://openalex.org/W2508457857",
-          "https://openalex.org/W2630837129",
-          "https://openalex.org/W1895577753",
-          "https://openalex.org/W2963857521",
-          "https://openalex.org/W1885185971",
-          "https://openalex.org/W2279098554",
-          "https://openalex.org/W2963748441",
-          "https://openalex.org/W2271840356",
-          "https://openalex.org/W2560609797",
-          "https://openalex.org/W2962858109",
-          "https://openalex.org/W3099206234"
-        ],
-        "transition_description": "Multi-signal paradigm transition: semantic_shift, direction_volatility",
-        "paradigm_significance": 0.8999999999999999
-      },
-      {
-        "year": 1962,
-        "confidence": 0.9121212121212121,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.9121212121212121,
-        "supporting_evidence": [
-          "New focus: machine learning research",
-          "New focus: quantitative science study",
-          "New focus: applied mathematics"
-        ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 1965,
-        "confidence": 0.9223529411764706,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.9223529411764706,
-        "supporting_evidence": [
-          "New focus: image analysis",
-          "New focus: machine learning research",
-          "New focus: quantitative science study",
-          "New focus: applied mathematics"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2171074980"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
         "year": 1967,
-        "confidence": 0.8365384615384616,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.8365384615384616,
+        "confidence": 1.0,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.1365384615384615,
         "supporting_evidence": [
-          "New focus: image analysis",
+          "New focus: applied mathematics",
           "New focus: machine learning research",
-          "New focus: applied mathematics"
+          "New focus: image analysis",
+          "Citation burst or sustained growth pattern"
         ],
         "contributing_papers": [
           "https://openalex.org/W2122111042",
-          "https://openalex.org/W1991133427"
+          "https://openalex.org/W1991133427",
+          "https://openalex.org/W2171074980",
+          "https://openalex.org/W2061171222"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
+        "transition_description": "Direction-driven paradigm shift at 1967 (citation validated)",
+        "paradigm_significance": 0.7
       },
       {
-        "year": 1974,
-        "confidence": 0.9119999999999999,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.9119999999999999,
+        "year": 1975,
+        "confidence": 1.0,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.212,
         "supporting_evidence": [
+          "New focus: computational imaging",
+          "New focus: computer vision",
+          "New focus: digital image processing",
           "New focus: pattern recognition",
           "New focus: image representation",
-          "New focus: image analysis",
-          "New focus: machine vision",
-          "New focus: image classification"
-        ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 1976,
-        "confidence": 0.5227272727272728,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5227272727272728,
-        "supporting_evidence": [
-          "New focus: information retrieval",
           "New focus: image classification",
-          "New focus: machine learning research"
-        ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 1983,
-        "confidence": 0.8616211374832065,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.8616211374832065,
-        "supporting_evidence": [
-          "New focus: image representation",
-          "New focus: quantization (signal processing)",
-          "New focus: image analysis",
-          "New focus: machine vision",
-          "New focus: quantification"
+          "New focus: machine learning research",
+          "New focus: information retrieval",
+          "Citation burst or sustained growth pattern"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2103504761"
+          "https://openalex.org/W2109488193",
+          "https://openalex.org/W2044465660",
+          "https://openalex.org/W2142384583",
+          "https://openalex.org/W3017143921",
+          "https://openalex.org/W2165612380"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
+        "transition_description": "Direction-driven paradigm shift at 1975 (citation validated)",
+        "paradigm_significance": 0.7
       },
       {
         "year": 1986,
-        "confidence": 0.7371007371007371,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.7371007371007371,
+        "confidence": 1.0,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.1616211374832064,
         "supporting_evidence": [
-          "New focus: digital signature",
+          "New focus: quantification",
+          "New focus: computational imaging",
+          "New focus: computer vision",
+          "New focus: quantization (signal processing)",
+          "New focus: digital image processing",
           "New focus: cryptography",
-          "New focus: cryptosystem",
+          "New focus: digital signature",
           "New focus: public key infrastructure",
+          "New focus: cryptosystem",
           "New focus: data security"
         ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 1988,
-        "confidence": 0.5515103548344545,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5515103548344545,
-        "supporting_evidence": [
-          "New focus: detection technique",
-          "New focus: deformation",
-          "New focus: image communication",
-          "New focus: 3d reconstruction",
-          "New focus: computer-aided design"
-        ],
         "contributing_papers": [
-          "https://openalex.org/W2053289371",
-          "https://openalex.org/W1672666614"
+          "https://openalex.org/W2103504761",
+          "https://openalex.org/W2071637551",
+          "https://openalex.org/W1491178396",
+          "https://openalex.org/W2145023731",
+          "https://openalex.org/W2024135760",
+          "https://openalex.org/W1492221128",
+          "https://openalex.org/W2080267935",
+          "https://openalex.org/W4300402905"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
+        "transition_description": "Direction-driven paradigm shift at 1986 (citation validated)",
+        "paradigm_significance": 1.1
       },
       {
         "year": 1990,
-        "confidence": 0.73828125,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.73828125,
+        "confidence": 0.9588852986930094,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.03828125,
         "supporting_evidence": [
+          "New focus: deep learning",
+          "New focus: geometric modeling",
+          "New focus: 3d printing",
+          "New focus: 3d reconstruction",
+          "New focus: geometry processing",
           "New focus: pattern recognition",
+          "New focus: complex system",
+          "New focus: modeling and simulation",
           "New focus: scientific computing",
-          "New focus: systems engineering",
-          "New focus: deformation",
-          "New focus: 3d reconstruction"
+          "New focus: digital signal processing"
         ],
         "contributing_papers": [
-          "https://openalex.org/W1996021349"
+          "https://openalex.org/W2147800946",
+          "https://openalex.org/W2014767176",
+          "https://openalex.org/W1672666614",
+          "https://openalex.org/W1555915743",
+          "https://openalex.org/W1766888123",
+          "https://openalex.org/W2062024414",
+          "https://openalex.org/W2132984323",
+          "https://openalex.org/W2033943395",
+          "https://openalex.org/W2053289371",
+          "https://openalex.org/W1996109622",
+          "https://openalex.org/W1996021349",
+          "https://openalex.org/W2018044188"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
+        "transition_description": "Direction-driven paradigm shift at 1990 (citation validated)",
+        "paradigm_significance": 0.7
       },
       {
-        "year": 1992,
-        "confidence": 0.6829573934837092,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.6829573934837092,
+        "year": 1995,
+        "confidence": 0.8614804113074503,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.9122302158273381,
         "supporting_evidence": [
-          "New focus: character recognition",
-          "New focus: signal processing",
+          "New focus: data science",
           "New focus: combinatorial optimization",
-          "New focus: wavelet theory",
-          "New focus: statistical signal processing"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2062024414"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 1994,
-        "confidence": 0.5054155740508494,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5054155740508494,
-        "supporting_evidence": [
+          "New focus: genetic algorithm",
+          "New focus: evolutionary computation",
           "New focus: statistics",
-          "New focus: genetics",
-          "New focus: inference",
+          "New focus: logic in computer science",
           "New focus: artificial intelligence",
-          "New focus: logic in computer science"
+          "New focus: machine learning tool",
+          "New focus: automated machine learning",
+          "New focus: inference"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2116661285"
+          "https://openalex.org/W1825077972",
+          "https://openalex.org/W2116661285",
+          "https://openalex.org/W1816720378",
+          "https://openalex.org/W2122410182",
+          "https://openalex.org/W2019207321",
+          "https://openalex.org/W2146842127",
+          "https://openalex.org/W2166559705",
+          "https://openalex.org/W2131774270",
+          "https://openalex.org/W2124344619",
+          "https://openalex.org/W4388297464",
+          "https://openalex.org/W2126512988",
+          "https://openalex.org/W166315768",
+          "https://openalex.org/W1898259180",
+          "https://openalex.org/W2000359198",
+          "https://openalex.org/W2117812871",
+          "https://openalex.org/W2339500526",
+          "https://openalex.org/W2119567691",
+          "https://openalex.org/W2064675550",
+          "https://openalex.org/W2130416410",
+          "https://openalex.org/W3113109455"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
+        "transition_description": "Direction-driven paradigm shift at 1995 (citation validated)",
+        "paradigm_significance": 1.1
       },
       {
-        "year": 1996,
-        "confidence": 0.6069556415169373,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.6069556415169373,
+        "year": 2001,
+        "confidence": 0.8316613344937696,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.8502197178360422,
         "supporting_evidence": [
-          "New focus: fuzzy optimization",
-          "New focus: cognitive science",
-          "New focus: fuzzy pattern recognition",
-          "New focus: sparse neural network",
-          "New focus: neuroscience"
+          "New focus: mathematics",
+          "New focus: combinatorial optimization",
+          "New focus: scene understanding",
+          "New focus: deep reinforcement learning",
+          "New focus: quantum technology",
+          "New focus: evolutionary computation",
+          "New focus: clustering",
+          "New focus: support vector machine",
+          "New focus: automated sequencer traces",
+          "New focus: sequence assembly"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2117812871"
+          "https://openalex.org/W2141224535",
+          "https://openalex.org/W2064853889",
+          "https://openalex.org/W2130660124",
+          "https://openalex.org/W1993885071",
+          "https://openalex.org/W2095721433",
+          "https://openalex.org/W2106334424",
+          "https://openalex.org/W1493688518",
+          "https://openalex.org/W1604938182",
+          "https://openalex.org/W2124386111",
+          "https://openalex.org/W2097879961",
+          "https://openalex.org/W2164418313",
+          "https://openalex.org/W2172000360",
+          "https://openalex.org/W2109364787",
+          "https://openalex.org/W1967073510",
+          "https://openalex.org/W2764347725",
+          "https://openalex.org/W2099574482",
+          "https://openalex.org/W2110659753",
+          "https://openalex.org/W2152195021",
+          "https://openalex.org/W2126554879"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
+        "transition_description": "Direction-driven paradigm shift at 2001 (citation validated)",
+        "paradigm_significance": 1.1
       },
       {
-        "year": 2003,
-        "confidence": 0.4858205485820548,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4858205485820548,
+        "year": 2006,
+        "confidence": 0.8023298065836615,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.8035348977135981,
         "supporting_evidence": [
-          "New focus: mobile computing",
-          "New focus: image classification",
-          "New focus: communications system",
+          "New focus: deep learning",
           "New focus: feature detection",
-          "New focus: quantum communication"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2102625004",
-          "https://openalex.org/W2097308346",
-          "https://openalex.org/W1533162639",
-          "https://openalex.org/W1506342804",
-          "https://openalex.org/W2998216295",
-          "https://openalex.org/W2135505702",
-          "https://openalex.org/W1989702938",
-          "https://openalex.org/W2099040451",
-          "https://openalex.org/W2102258543"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2005,
-        "confidence": 0.5011247154537251,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5011247154537251,
-        "supporting_evidence": [
-          "New focus: mixture analysis",
-          "New focus: automatic classification",
-          "New focus: machine vision",
-          "New focus: sequence alignment",
-          "New focus: image classification"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2171960770",
-          "https://openalex.org/W2164598857",
-          "https://openalex.org/W2121863487",
-          "https://openalex.org/W2161969291",
-          "https://openalex.org/W2153233077",
-          "https://openalex.org/W2177274842"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2007,
-        "confidence": 0.4739508992292321,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4739508992292321,
-        "supporting_evidence": [
-          "New focus: scientific computing",
-          "New focus: model compression",
-          "New focus: automated reasoning",
-          "New focus: signal processing",
-          "New focus: combinatorial optimization"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W273955616",
-          "https://openalex.org/W2143381319",
-          "https://openalex.org/W1583837637",
-          "https://openalex.org/W1663973292"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2019,
-        "confidence": 0.4230769230769231,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4230769230769231,
-        "supporting_evidence": [
-          "New focus: biomedical engineering",
-          "New focus: graph analysis",
-          "New focus: high resolution",
-          "New focus: systems engineering",
-          "New focus: manifold learning"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2962770929"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
-      },
-      {
-        "year": 2021,
-        "confidence": 0.4225757783568783,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4225757783568783,
-        "supporting_evidence": [
-          "New focus: computational neuroscience",
-          "New focus: visual reasoning",
           "New focus: statistical software",
-          "New focus: neuroimaging",
-          "New focus: language engineering"
+          "New focus: data and information visualization",
+          "New focus: information visualization",
+          "New focus: combinatorial optimization",
+          "New focus: unmanned aerial vehicle",
+          "Citation acceleration/deceleration pattern detected"
         ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.4
+        "contributing_papers": [
+          "https://openalex.org/W2177274842",
+          "https://openalex.org/W2154053567",
+          "https://openalex.org/W2163808566",
+          "https://openalex.org/W2122825543",
+          "https://openalex.org/W2121863487",
+          "https://openalex.org/W2171960770",
+          "https://openalex.org/W4211049957",
+          "https://openalex.org/W2164598857",
+          "https://openalex.org/W1746819321",
+          "https://openalex.org/W2161969291",
+          "https://openalex.org/W2162915993",
+          "https://openalex.org/W2129131372",
+          "https://openalex.org/W2097073572",
+          "https://openalex.org/W2153233077",
+          "https://openalex.org/W2061326496",
+          "https://openalex.org/W2160547390"
+        ],
+        "transition_description": "Direction-driven paradigm shift at 2006 (citation validated)",
+        "paradigm_significance": 0.7
+      },
+      {
+        "year": 2013,
+        "confidence": 0.8550198237424143,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.8924159021406728,
+        "supporting_evidence": [
+          "New focus: mathematics",
+          "New focus: predictive analytics",
+          "New focus: statistical inference",
+          "New focus: information science",
+          "New focus: data stream mining",
+          "New focus: statistical software",
+          "New focus: data and information visualization",
+          "New focus: information visualization",
+          "New focus: cloud computing",
+          "New focus: information technology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2138122982",
+          "https://openalex.org/W2145287260",
+          "https://openalex.org/W2143612262",
+          "https://openalex.org/W2251939518",
+          "https://openalex.org/W2962835968",
+          "https://openalex.org/W2158899491",
+          "https://openalex.org/W1969353942",
+          "https://openalex.org/W2964153729",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W2950577311",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2054692642",
+          "https://openalex.org/W2016053056",
+          "https://openalex.org/W2149992227",
+          "https://openalex.org/W1575923498",
+          "https://openalex.org/W1686810756",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2102605133",
+          "https://openalex.org/W1614298861",
+          "https://openalex.org/W2006617902",
+          "https://openalex.org/W2146292423",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2117228865",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2110999179",
+          "https://openalex.org/W1747388711",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W1983364832",
+          "https://openalex.org/W2145962650"
+        ],
+        "transition_description": "Direction-driven paradigm shift at 2013 (citation validated)",
+        "paradigm_significance": 1.1
+      },
+      {
+        "year": 2015,
+        "confidence": 0.850439024390244,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.850439024390244,
+        "supporting_evidence": [
+          "New focus: semantic parsing",
+          "New focus: mobile computing",
+          "New focus: neural networks",
+          "New focus: auto-encoding variational bayes",
+          "New focus: transfer learning",
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2613718673",
+          "https://openalex.org/W1834627138",
+          "https://openalex.org/W2145287260",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W2962835968",
+          "https://openalex.org/W2964153729",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W2109255472",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2134295053",
+          "https://openalex.org/W2054692642",
+          "https://openalex.org/W2016053056",
+          "https://openalex.org/W1686810756",
+          "https://openalex.org/W1924770834",
+          "https://openalex.org/W2963684088",
+          "https://openalex.org/W2095705004",
+          "https://openalex.org/W2953106684",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W1536680647",
+          "https://openalex.org/W2125389028",
+          "https://openalex.org/W1901616594",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W1895577753",
+          "https://openalex.org/W1677182931",
+          "https://openalex.org/W1902237438",
+          "https://openalex.org/W1903029394",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2110999179",
+          "https://openalex.org/W2963207607",
+          "https://openalex.org/W1522734439",
+          "https://openalex.org/W2000982976",
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W3099206234",
+          "https://openalex.org/W2963840672",
+          "https://openalex.org/W1959608418",
+          "https://openalex.org/W2097117768",
+          "https://openalex.org/W2099085143",
+          "https://openalex.org/W2102605133"
+        ],
+        "transition_description": "Direction-driven paradigm shift at 2015 (citation validated)",
+        "paradigm_significance": 1.1
       }
     ],
     "validation_improvements": {
@@ -1903,522 +1394,367 @@
     }
   },
   "paradigm_shifts": {
-    "count": 18,
+    "count": 10,
     "description": "Final paradigm shift signals after significance filtering",
     "signals": [
       {
-        "year": 2012,
-        "confidence": 0.9598355495415454,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4671627906976744,
-        "supporting_evidence": [
-          "Influence pattern change: 0.177 \u2192 0.323",
-          "New focus: molecular biology",
-          "New focus: cloud computing",
-          "New focus: cloud resource management",
-          "New focus: cloud-based integration",
-          "New focus: sequence alignment"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1904365287",
-          "https://openalex.org/W1990170643",
-          "https://openalex.org/W2170747616",
-          "https://openalex.org/W2118246710",
-          "https://openalex.org/W2150066425",
-          "https://openalex.org/W2114623221",
-          "https://openalex.org/W2163605009",
-          "https://openalex.org/W6908809",
-          "https://openalex.org/W4294214983",
-          "https://openalex.org/W2162098634",
-          "https://openalex.org/W1998025025",
-          "https://openalex.org/W2146395539",
-          "https://openalex.org/W2101234009",
-          "https://openalex.org/W2128880918"
-        ],
-        "transition_description": "Multi-signal paradigm transition: citation_disruption, direction_volatility",
-        "paradigm_significance": 1.0999999999999999
-      },
-      {
-        "year": 2001,
-        "confidence": 1.0,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5364769056508789,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "domain_expansion: broader context",
-          "New focus: wireless network",
-          "New focus: pattern mining",
-          "New focus: support vector machine",
-          "New focus: quantum technology",
-          "New focus: control optimization"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2121606987",
-          "https://openalex.org/W2121947440",
-          "https://openalex.org/W2098693229",
-          "https://openalex.org/W2764347725",
-          "https://openalex.org/W2164418313",
-          "https://openalex.org/W1993885071",
-          "https://openalex.org/W2166244948",
-          "https://openalex.org/W2038721957",
-          "https://openalex.org/W2099244020",
-          "https://openalex.org/W2160337655",
-          "https://openalex.org/W2172000360",
-          "https://openalex.org/W2154010459",
-          "https://openalex.org/W2053186076",
-          "https://openalex.org/W2064853889",
-          "https://openalex.org/W2118020653",
-          "https://openalex.org/W2067191022",
-          "https://openalex.org/W2116040950",
-          "https://openalex.org/W2168676717",
-          "https://openalex.org/W1985479415",
-          "https://openalex.org/W2130660124",
-          "https://openalex.org/W2109364787",
-          "https://openalex.org/W2152826865",
-          "https://openalex.org/W2152195021",
-          "https://openalex.org/W2074682976",
-          "https://openalex.org/W2057175746",
-          "https://openalex.org/W2104846640",
-          "https://openalex.org/W2099111195",
-          "https://openalex.org/W1631356911",
-          "https://openalex.org/W2038669746",
-          "https://openalex.org/W2143516773",
-          "https://openalex.org/W2036149274",
-          "https://openalex.org/W2126105956",
-          "https://openalex.org/W2136145671",
-          "https://openalex.org/W2170102584",
-          "https://openalex.org/W1563088657",
-          "https://openalex.org/W2037521346",
-          "https://openalex.org/W2165874743",
-          "https://openalex.org/W2999905431",
-          "https://openalex.org/W2162598825",
-          "https://openalex.org/W3038067977",
-          "https://openalex.org/W2128016314",
-          "https://openalex.org/W2132216432",
-          "https://openalex.org/W2163352848",
-          "https://openalex.org/W2167667767",
-          "https://openalex.org/W2137813581",
-          "https://openalex.org/W2042281163",
-          "https://openalex.org/W1678356000",
-          "https://openalex.org/W2159024459"
-        ],
-        "transition_description": "Multi-signal paradigm transition: semantic_shift, direction_volatility",
-        "paradigm_significance": 0.8999999999999999
-      },
-      {
-        "year": 2014,
-        "confidence": 1.0,
-        "signal_type": "validated_semantic_shift",
-        "evidence_strength": 0.7,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "domain_expansion: broader context",
-          "foundational_work: establishes",
-          "New focus: word representations",
-          "New focus: speech communication",
-          "New focus: computational genomics",
-          "New focus: linguistics",
-          "New focus: language model"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W2110999179",
-          "https://openalex.org/W2125389028",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W2099085143",
-          "https://openalex.org/W1677182931",
-          "https://openalex.org/W2130942839",
-          "https://openalex.org/W2016053056",
-          "https://openalex.org/W2095705004",
-          "https://openalex.org/W4311415873",
-          "https://openalex.org/W1903029394",
-          "https://openalex.org/W2963840672",
-          "https://openalex.org/W2145287260",
-          "https://openalex.org/W2173520492",
-          "https://openalex.org/W2000982976",
-          "https://openalex.org/W1836465849",
-          "https://openalex.org/W2250539671",
-          "https://openalex.org/W1686810756",
-          "https://openalex.org/W1832693441",
-          "https://openalex.org/W2949117887",
-          "https://openalex.org/W2953106684",
-          "https://openalex.org/W1924770834",
-          "https://openalex.org/W2963207607",
-          "https://openalex.org/W1536680647",
-          "https://openalex.org/W2134295053",
-          "https://openalex.org/W2097117768",
-          "https://openalex.org/W2109255472",
-          "https://openalex.org/W1834627138",
-          "https://openalex.org/W2950635152",
-          "https://openalex.org/W2157331557",
-          "https://openalex.org/W1983364832",
-          "https://openalex.org/W1902237438",
-          "https://openalex.org/W2143612262",
-          "https://openalex.org/W2964153729",
-          "https://openalex.org/W2962835968",
-          "https://openalex.org/W4297734170",
-          "https://openalex.org/W2613718673",
-          "https://openalex.org/W1522734439",
-          "https://openalex.org/W1901616594",
-          "https://openalex.org/W2123442489",
-          "https://openalex.org/W2102605133",
-          "https://openalex.org/W1614298861",
-          "https://openalex.org/W2173248099",
-          "https://openalex.org/W1959608418",
-          "https://openalex.org/W2963684088",
-          "https://openalex.org/W2950577311",
-          "https://openalex.org/W2251939518",
-          "https://openalex.org/W1895577753",
-          "https://openalex.org/W2054692642",
-          "https://openalex.org/W3099206234"
-        ],
-        "transition_description": "Multi-signal paradigm transition: semantic_shift, direction_volatility",
-        "paradigm_significance": 1.2
-      },
-      {
-        "year": 2016,
-        "confidence": 1.0,
-        "signal_type": "validated_semantic_shift",
-        "evidence_strength": 0.8999999999999999,
-        "supporting_evidence": [
-          "architectural_shifts: foundational",
-          "architectural_shifts: novel architecture",
-          "foundational_work: establishes",
-          "New focus: word representations",
-          "New focus: human-level performance",
-          "New focus: scene analysis",
-          "New focus: wireless network",
-          "New focus: mobile computing"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W2395611524",
-          "https://openalex.org/W2242218935",
-          "https://openalex.org/W2183341477",
-          "https://openalex.org/W2963121255",
-          "https://openalex.org/W2565639579",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W2099085143",
-          "https://openalex.org/W4297733535",
-          "https://openalex.org/W2963881378",
-          "https://openalex.org/W2099471712",
-          "https://openalex.org/W1677182931",
-          "https://openalex.org/W2963470893",
-          "https://openalex.org/W2963524571",
-          "https://openalex.org/W2962793481",
-          "https://openalex.org/W2416799949",
-          "https://openalex.org/W2963073614",
-          "https://openalex.org/W2560023338",
-          "https://openalex.org/W2531409750",
-          "https://openalex.org/W2612445135",
-          "https://openalex.org/W639708223",
-          "https://openalex.org/W1903029394",
-          "https://openalex.org/W2493916176",
-          "https://openalex.org/W2963840672",
-          "https://openalex.org/W2174661749",
-          "https://openalex.org/W2041902442",
-          "https://openalex.org/W2173520492",
-          "https://openalex.org/W1836465849",
-          "https://openalex.org/W2577537660",
-          "https://openalex.org/W2964015378",
-          "https://openalex.org/W2949117887",
-          "https://openalex.org/W2402144811",
-          "https://openalex.org/W2194775991",
-          "https://openalex.org/W2953106684",
-          "https://openalex.org/W2963207607",
-          "https://openalex.org/W2963037989",
-          "https://openalex.org/W2953384591",
-          "https://openalex.org/W1536680647",
-          "https://openalex.org/W2963351448",
-          "https://openalex.org/W2097117768",
-          "https://openalex.org/W2109255472",
-          "https://openalex.org/W2962862931",
-          "https://openalex.org/W2549139847",
-          "https://openalex.org/W2963150697",
-          "https://openalex.org/W2134295053",
-          "https://openalex.org/W2557283755",
-          "https://openalex.org/W2340897893",
-          "https://openalex.org/W1834627138",
-          "https://openalex.org/W2618530766",
-          "https://openalex.org/W2964043796",
-          "https://openalex.org/W1902237438",
-          "https://openalex.org/W2570343428",
-          "https://openalex.org/W1522734439",
-          "https://openalex.org/W2613718673",
-          "https://openalex.org/W2962914239",
-          "https://openalex.org/W2964350391",
-          "https://openalex.org/W4297775537",
-          "https://openalex.org/W2951464304",
-          "https://openalex.org/W1901616594",
-          "https://openalex.org/W2950354111",
-          "https://openalex.org/W2559085405",
-          "https://openalex.org/W2173248099",
-          "https://openalex.org/W2963446712",
-          "https://openalex.org/W2295107390",
-          "https://openalex.org/W2963684088",
-          "https://openalex.org/W2508457857",
-          "https://openalex.org/W2630837129",
-          "https://openalex.org/W1895577753",
-          "https://openalex.org/W2963857521",
-          "https://openalex.org/W1885185971",
-          "https://openalex.org/W2279098554",
-          "https://openalex.org/W2963748441",
-          "https://openalex.org/W2271840356",
-          "https://openalex.org/W2560609797",
-          "https://openalex.org/W2962858109",
-          "https://openalex.org/W3099206234"
-        ],
-        "transition_description": "Multi-signal paradigm transition: semantic_shift, direction_volatility",
-        "paradigm_significance": 1.4
-      },
-      {
-        "year": 1962,
-        "confidence": 0.9121212121212121,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.9121212121212121,
-        "supporting_evidence": [
-          "New focus: machine learning research",
-          "New focus: quantitative science study",
-          "New focus: applied mathematics"
-        ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.6000000000000001
-      },
-      {
         "year": 1965,
-        "confidence": 0.9223529411764706,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.9223529411764706,
+        "confidence": 1.0,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.2223529411764706,
         "supporting_evidence": [
-          "New focus: image analysis",
           "New focus: machine learning research",
           "New focus: quantitative science study",
-          "New focus: applied mathematics"
+          "New focus: applied mathematics",
+          "New focus: image analysis",
+          "Citation burst or sustained growth pattern"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2171074980"
+          "https://openalex.org/W2171074980",
+          "https://openalex.org/W2061171222"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.6000000000000001
+        "transition_description": "Direction-driven paradigm shift at 1965 (citation validated)",
+        "paradigm_significance": 0.7
       },
       {
         "year": 1967,
-        "confidence": 0.8365384615384616,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.8365384615384616,
+        "confidence": 1.0,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.1365384615384615,
         "supporting_evidence": [
-          "New focus: image analysis",
+          "New focus: applied mathematics",
           "New focus: machine learning research",
-          "New focus: applied mathematics"
+          "New focus: image analysis",
+          "Citation burst or sustained growth pattern"
         ],
         "contributing_papers": [
           "https://openalex.org/W2122111042",
-          "https://openalex.org/W1991133427"
+          "https://openalex.org/W1991133427",
+          "https://openalex.org/W2171074980",
+          "https://openalex.org/W2061171222"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.6000000000000001
+        "transition_description": "Direction-driven paradigm shift at 1967 (citation validated)",
+        "paradigm_significance": 0.7
       },
       {
-        "year": 1974,
-        "confidence": 0.9119999999999999,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.9119999999999999,
+        "year": 1975,
+        "confidence": 1.0,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.212,
         "supporting_evidence": [
+          "New focus: computational imaging",
+          "New focus: computer vision",
+          "New focus: digital image processing",
           "New focus: pattern recognition",
           "New focus: image representation",
-          "New focus: image analysis",
-          "New focus: machine vision",
-          "New focus: image classification"
-        ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.6000000000000001
-      },
-      {
-        "year": 1983,
-        "confidence": 0.8616211374832065,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.8616211374832065,
-        "supporting_evidence": [
-          "New focus: image representation",
-          "New focus: quantization (signal processing)",
-          "New focus: image analysis",
-          "New focus: machine vision",
-          "New focus: quantification"
+          "New focus: image classification",
+          "New focus: machine learning research",
+          "New focus: information retrieval",
+          "Citation burst or sustained growth pattern"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2103504761"
+          "https://openalex.org/W2109488193",
+          "https://openalex.org/W2044465660",
+          "https://openalex.org/W2142384583",
+          "https://openalex.org/W3017143921",
+          "https://openalex.org/W2165612380"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.8999999999999999
+        "transition_description": "Direction-driven paradigm shift at 1975 (citation validated)",
+        "paradigm_significance": 0.7
       },
       {
         "year": 1986,
-        "confidence": 0.7371007371007371,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.7371007371007371,
+        "confidence": 1.0,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.1616211374832064,
         "supporting_evidence": [
-          "New focus: digital signature",
+          "New focus: quantification",
+          "New focus: computational imaging",
+          "New focus: computer vision",
+          "New focus: quantization (signal processing)",
+          "New focus: digital image processing",
           "New focus: cryptography",
-          "New focus: cryptosystem",
+          "New focus: digital signature",
           "New focus: public key infrastructure",
+          "New focus: cryptosystem",
           "New focus: data security"
         ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.8999999999999999
-      },
-      {
-        "year": 1988,
-        "confidence": 0.5515103548344545,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5515103548344545,
-        "supporting_evidence": [
-          "New focus: detection technique",
-          "New focus: deformation",
-          "New focus: image communication",
-          "New focus: 3d reconstruction",
-          "New focus: computer-aided design"
-        ],
         "contributing_papers": [
-          "https://openalex.org/W2053289371",
-          "https://openalex.org/W1672666614"
+          "https://openalex.org/W2103504761",
+          "https://openalex.org/W2071637551",
+          "https://openalex.org/W1491178396",
+          "https://openalex.org/W2145023731",
+          "https://openalex.org/W2024135760",
+          "https://openalex.org/W1492221128",
+          "https://openalex.org/W2080267935",
+          "https://openalex.org/W4300402905"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.7
+        "transition_description": "Direction-driven paradigm shift at 1986 (citation validated)",
+        "paradigm_significance": 1.1
       },
       {
         "year": 1990,
-        "confidence": 0.73828125,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.73828125,
+        "confidence": 0.9588852986930094,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 1.03828125,
         "supporting_evidence": [
+          "New focus: deep learning",
+          "New focus: geometric modeling",
+          "New focus: 3d printing",
+          "New focus: 3d reconstruction",
+          "New focus: geometry processing",
           "New focus: pattern recognition",
+          "New focus: complex system",
+          "New focus: modeling and simulation",
           "New focus: scientific computing",
-          "New focus: systems engineering",
-          "New focus: deformation",
-          "New focus: 3d reconstruction"
+          "New focus: digital signal processing"
         ],
         "contributing_papers": [
-          "https://openalex.org/W1996021349"
+          "https://openalex.org/W2147800946",
+          "https://openalex.org/W2014767176",
+          "https://openalex.org/W1672666614",
+          "https://openalex.org/W1555915743",
+          "https://openalex.org/W1766888123",
+          "https://openalex.org/W2062024414",
+          "https://openalex.org/W2132984323",
+          "https://openalex.org/W2033943395",
+          "https://openalex.org/W2053289371",
+          "https://openalex.org/W1996109622",
+          "https://openalex.org/W1996021349",
+          "https://openalex.org/W2018044188"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.6000000000000001
+        "transition_description": "Direction-driven paradigm shift at 1990 (citation validated)",
+        "paradigm_significance": 0.7
       },
       {
-        "year": 1992,
-        "confidence": 0.6829573934837092,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.6829573934837092,
+        "year": 1995,
+        "confidence": 0.8614804113074503,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.9122302158273381,
         "supporting_evidence": [
-          "New focus: character recognition",
-          "New focus: signal processing",
+          "New focus: data science",
           "New focus: combinatorial optimization",
-          "New focus: wavelet theory",
-          "New focus: statistical signal processing"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2062024414"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.7
-      },
-      {
-        "year": 1994,
-        "confidence": 0.5054155740508494,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.5054155740508494,
-        "supporting_evidence": [
+          "New focus: genetic algorithm",
+          "New focus: evolutionary computation",
           "New focus: statistics",
-          "New focus: genetics",
-          "New focus: inference",
+          "New focus: logic in computer science",
           "New focus: artificial intelligence",
-          "New focus: logic in computer science"
+          "New focus: machine learning tool",
+          "New focus: automated machine learning",
+          "New focus: inference"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2116661285"
+          "https://openalex.org/W1825077972",
+          "https://openalex.org/W2116661285",
+          "https://openalex.org/W1816720378",
+          "https://openalex.org/W2122410182",
+          "https://openalex.org/W2019207321",
+          "https://openalex.org/W2146842127",
+          "https://openalex.org/W2166559705",
+          "https://openalex.org/W2131774270",
+          "https://openalex.org/W2124344619",
+          "https://openalex.org/W4388297464",
+          "https://openalex.org/W2126512988",
+          "https://openalex.org/W166315768",
+          "https://openalex.org/W1898259180",
+          "https://openalex.org/W2000359198",
+          "https://openalex.org/W2117812871",
+          "https://openalex.org/W2339500526",
+          "https://openalex.org/W2119567691",
+          "https://openalex.org/W2064675550",
+          "https://openalex.org/W2130416410",
+          "https://openalex.org/W3113109455"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.7
+        "transition_description": "Direction-driven paradigm shift at 1995 (citation validated)",
+        "paradigm_significance": 1.1
       },
       {
-        "year": 1996,
-        "confidence": 0.6069556415169373,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.6069556415169373,
+        "year": 2001,
+        "confidence": 0.8316613344937696,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.8502197178360422,
         "supporting_evidence": [
-          "New focus: fuzzy optimization",
-          "New focus: cognitive science",
-          "New focus: fuzzy pattern recognition",
-          "New focus: sparse neural network",
-          "New focus: neuroscience"
+          "New focus: mathematics",
+          "New focus: combinatorial optimization",
+          "New focus: scene understanding",
+          "New focus: deep reinforcement learning",
+          "New focus: quantum technology",
+          "New focus: evolutionary computation",
+          "New focus: clustering",
+          "New focus: support vector machine",
+          "New focus: automated sequencer traces",
+          "New focus: sequence assembly"
         ],
         "contributing_papers": [
-          "https://openalex.org/W2117812871"
+          "https://openalex.org/W2141224535",
+          "https://openalex.org/W2064853889",
+          "https://openalex.org/W2130660124",
+          "https://openalex.org/W1993885071",
+          "https://openalex.org/W2095721433",
+          "https://openalex.org/W2106334424",
+          "https://openalex.org/W1493688518",
+          "https://openalex.org/W1604938182",
+          "https://openalex.org/W2124386111",
+          "https://openalex.org/W2097879961",
+          "https://openalex.org/W2164418313",
+          "https://openalex.org/W2172000360",
+          "https://openalex.org/W2109364787",
+          "https://openalex.org/W1967073510",
+          "https://openalex.org/W2764347725",
+          "https://openalex.org/W2099574482",
+          "https://openalex.org/W2110659753",
+          "https://openalex.org/W2152195021",
+          "https://openalex.org/W2126554879"
         ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.7
+        "transition_description": "Direction-driven paradigm shift at 2001 (citation validated)",
+        "paradigm_significance": 1.1
       },
       {
-        "year": 2003,
-        "confidence": 0.4858205485820548,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4858205485820548,
+        "year": 2006,
+        "confidence": 0.8023298065836615,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.8035348977135981,
         "supporting_evidence": [
-          "New focus: mobile computing",
-          "New focus: image classification",
-          "New focus: communications system",
+          "New focus: deep learning",
           "New focus: feature detection",
-          "New focus: quantum communication"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2102625004",
-          "https://openalex.org/W2097308346",
-          "https://openalex.org/W1533162639",
-          "https://openalex.org/W1506342804",
-          "https://openalex.org/W2998216295",
-          "https://openalex.org/W2135505702",
-          "https://openalex.org/W1989702938",
-          "https://openalex.org/W2099040451",
-          "https://openalex.org/W2102258543"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.7
-      },
-      {
-        "year": 2019,
-        "confidence": 0.4230769230769231,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4230769230769231,
-        "supporting_evidence": [
-          "New focus: biomedical engineering",
-          "New focus: graph analysis",
-          "New focus: high resolution",
-          "New focus: systems engineering",
-          "New focus: manifold learning"
-        ],
-        "contributing_papers": [
-          "https://openalex.org/W2962770929"
-        ],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
-        "paradigm_significance": 0.7
-      },
-      {
-        "year": 2021,
-        "confidence": 0.4225757783568783,
-        "signal_type": "validated_direction_volatility",
-        "evidence_strength": 0.4225757783568783,
-        "supporting_evidence": [
-          "New focus: computational neuroscience",
-          "New focus: visual reasoning",
           "New focus: statistical software",
-          "New focus: neuroimaging",
-          "New focus: language engineering"
+          "New focus: data and information visualization",
+          "New focus: information visualization",
+          "New focus: combinatorial optimization",
+          "New focus: unmanned aerial vehicle",
+          "Citation acceleration/deceleration pattern detected"
         ],
-        "contributing_papers": [],
-        "transition_description": "Multi-signal paradigm transition: direction_volatility",
+        "contributing_papers": [
+          "https://openalex.org/W2177274842",
+          "https://openalex.org/W2154053567",
+          "https://openalex.org/W2163808566",
+          "https://openalex.org/W2122825543",
+          "https://openalex.org/W2121863487",
+          "https://openalex.org/W2171960770",
+          "https://openalex.org/W4211049957",
+          "https://openalex.org/W2164598857",
+          "https://openalex.org/W1746819321",
+          "https://openalex.org/W2161969291",
+          "https://openalex.org/W2162915993",
+          "https://openalex.org/W2129131372",
+          "https://openalex.org/W2097073572",
+          "https://openalex.org/W2153233077",
+          "https://openalex.org/W2061326496",
+          "https://openalex.org/W2160547390"
+        ],
+        "transition_description": "Direction-driven paradigm shift at 2006 (citation validated)",
         "paradigm_significance": 0.7
+      },
+      {
+        "year": 2013,
+        "confidence": 0.8550198237424143,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.8924159021406728,
+        "supporting_evidence": [
+          "New focus: mathematics",
+          "New focus: predictive analytics",
+          "New focus: statistical inference",
+          "New focus: information science",
+          "New focus: data stream mining",
+          "New focus: statistical software",
+          "New focus: data and information visualization",
+          "New focus: information visualization",
+          "New focus: cloud computing",
+          "New focus: information technology"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2138122982",
+          "https://openalex.org/W2145287260",
+          "https://openalex.org/W2143612262",
+          "https://openalex.org/W2251939518",
+          "https://openalex.org/W2962835968",
+          "https://openalex.org/W2158899491",
+          "https://openalex.org/W1969353942",
+          "https://openalex.org/W2964153729",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W2950577311",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2054692642",
+          "https://openalex.org/W2016053056",
+          "https://openalex.org/W2149992227",
+          "https://openalex.org/W1575923498",
+          "https://openalex.org/W1686810756",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W2102605133",
+          "https://openalex.org/W1614298861",
+          "https://openalex.org/W2006617902",
+          "https://openalex.org/W2146292423",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W2117228865",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2110999179",
+          "https://openalex.org/W1747388711",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W1983364832",
+          "https://openalex.org/W2145962650"
+        ],
+        "transition_description": "Direction-driven paradigm shift at 2013 (citation validated)",
+        "paradigm_significance": 1.1
+      },
+      {
+        "year": 2015,
+        "confidence": 0.850439024390244,
+        "signal_type": "direction_primary_validated",
+        "evidence_strength": 0.850439024390244,
+        "supporting_evidence": [
+          "New focus: semantic parsing",
+          "New focus: mobile computing",
+          "New focus: neural networks",
+          "New focus: auto-encoding variational bayes",
+          "New focus: transfer learning",
+          "Citation acceleration/deceleration pattern detected"
+        ],
+        "contributing_papers": [
+          "https://openalex.org/W2613718673",
+          "https://openalex.org/W1834627138",
+          "https://openalex.org/W2145287260",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W2962835968",
+          "https://openalex.org/W2964153729",
+          "https://openalex.org/W4297734170",
+          "https://openalex.org/W1832693441",
+          "https://openalex.org/W2109255472",
+          "https://openalex.org/W2123442489",
+          "https://openalex.org/W2134295053",
+          "https://openalex.org/W2054692642",
+          "https://openalex.org/W2016053056",
+          "https://openalex.org/W1686810756",
+          "https://openalex.org/W1924770834",
+          "https://openalex.org/W2963684088",
+          "https://openalex.org/W2095705004",
+          "https://openalex.org/W2953106684",
+          "https://openalex.org/W2250539671",
+          "https://openalex.org/W1536680647",
+          "https://openalex.org/W2125389028",
+          "https://openalex.org/W1901616594",
+          "https://openalex.org/W2950635152",
+          "https://openalex.org/W1895577753",
+          "https://openalex.org/W1677182931",
+          "https://openalex.org/W1902237438",
+          "https://openalex.org/W1903029394",
+          "https://openalex.org/W2130942839",
+          "https://openalex.org/W2110999179",
+          "https://openalex.org/W2963207607",
+          "https://openalex.org/W1522734439",
+          "https://openalex.org/W2000982976",
+          "https://openalex.org/W2964308564",
+          "https://openalex.org/W2157331557",
+          "https://openalex.org/W3099206234",
+          "https://openalex.org/W2963840672",
+          "https://openalex.org/W1959608418",
+          "https://openalex.org/W2097117768",
+          "https://openalex.org/W2099085143",
+          "https://openalex.org/W2102605133"
+        ],
+        "transition_description": "Direction-driven paradigm shift at 2015 (citation validated)",
+        "paradigm_significance": 1.1
       }
     ],
     "filtering_criteria": {
@@ -2428,31 +1764,130 @@
     }
   },
   "transition_evidence": {
-    "count": 18,
+    "count": 10,
     "description": "Supporting evidence and justifications for paradigm transitions",
     "evidence": [
       {
-        "year": 2012,
+        "year": 1965,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: computer science",
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: function minimization"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2171074980",
+          "https://openalex.org/W2061171222"
+        ],
+        "confidence_score": 1.0
+      },
+      {
+        "year": 1967,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: computer science",
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: computer engineering"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [],
+        "breakthrough_papers": [
+          "https://openalex.org/W2122111042",
+          "https://openalex.org/W1991133427",
+          "https://openalex.org/W2171074980",
+          "https://openalex.org/W2061171222"
+        ],
+        "confidence_score": 1.0
+      },
+      {
+        "year": 1975,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning research",
+          "Emerging keyword: applied mathematics"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper, \"New directions in cryptography,\" builds on the foundational concepts of algorithms"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2109488193",
+          "https://openalex.org/W2044465660",
+          "https://openalex.org/W2142384583",
+          "https://openalex.org/W3017143921",
+          "https://openalex.org/W2165612380"
+        ],
+        "confidence_score": 1.0
+      },
+      {
+        "year": 1986,
         "disruption_patterns": [],
         "emergence_patterns": [
           "Emerging keyword: computer science",
           "Emerging keyword: machine learning",
-          "Emerging keyword: deep learning"
+          "Emerging keyword: image analysis"
         ],
         "cross_domain_influences": [],
         "methodological_changes": [
-          "The child paper builds on the concepts introduced in the parent paper by applying gradient-based lea",
-          "The child paper builds on the parent paper by utilizing the concepts of visual recognition and objec",
-          "The child paper on 3D Convolutional Neural Networks for Human Action Recognition builds on the found"
+          "The child paper builds on the concepts introduced in the parent paper by proposing a new signature s",
+          "The child paper builds on the parent paper by proposing a new signature scheme and a public key cryp",
+          "The child paper builds on the parent paper by proposing a new signature scheme and a public key cryp"
         ],
         "breakthrough_papers": [
-          "https://openalex.org/W1904365287",
-          "https://openalex.org/W1990170643",
-          "https://openalex.org/W2170747616",
-          "https://openalex.org/W2118246710",
-          "https://openalex.org/W2150066425"
+          "https://openalex.org/W2103504761",
+          "https://openalex.org/W2071637551",
+          "https://openalex.org/W1491178396",
+          "https://openalex.org/W2145023731",
+          "https://openalex.org/W2024135760"
         ],
-        "confidence_score": 0.9598355495415454
+        "confidence_score": 1.0
+      },
+      {
+        "year": 1990,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: computer science",
+          "Emerging keyword: applied mathematics",
+          "Emerging keyword: pattern recognition"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the concepts introduced in the parent paper by extending the theory of mul"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W2147800946",
+          "https://openalex.org/W2014767176",
+          "https://openalex.org/W1672666614",
+          "https://openalex.org/W1555915743",
+          "https://openalex.org/W1766888123"
+        ],
+        "confidence_score": 0.9588852986930094
+      },
+      {
+        "year": 1995,
+        "disruption_patterns": [],
+        "emergence_patterns": [
+          "Emerging keyword: computer science",
+          "Emerging keyword: machine learning",
+          "Emerging keyword: machine learning research"
+        ],
+        "cross_domain_influences": [],
+        "methodological_changes": [
+          "The child paper builds on the concepts introduced in the parent paper by applying wavelet theory to ",
+          "The child paper builds on the parent paper by extending the Newton-Raphson style search technique fo",
+          "The child paper builds on the concepts introduced in the parent paper by providing an alternative ex"
+        ],
+        "breakthrough_papers": [
+          "https://openalex.org/W1825077972",
+          "https://openalex.org/W2116661285",
+          "https://openalex.org/W1816720378",
+          "https://openalex.org/W2122410182",
+          "https://openalex.org/W2019207321"
+        ],
+        "confidence_score": 0.8614804113074503
       },
       {
         "year": 2001,
@@ -2469,186 +1904,16 @@
           "The child paper, \"A New Heuristic Optimization Algorithm: Harmony Search,\" builds on the foundationa"
         ],
         "breakthrough_papers": [
-          "https://openalex.org/W2121606987",
-          "https://openalex.org/W2121947440",
-          "https://openalex.org/W2098693229",
-          "https://openalex.org/W2764347725",
-          "https://openalex.org/W2164418313"
+          "https://openalex.org/W2141224535",
+          "https://openalex.org/W2064853889",
+          "https://openalex.org/W2130660124",
+          "https://openalex.org/W1993885071",
+          "https://openalex.org/W2095721433"
         ],
-        "confidence_score": 1.0
+        "confidence_score": 0.8316613344937696
       },
       {
-        "year": 2014,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: machine learning",
-          "Emerging keyword: deep learning"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper, \"Show and tell: A neural image caption generator,\" builds on the foundational conce",
-          "The child paper builds on the parent paper by proposing a new activation function, the Parametric Li",
-          "The child paper, \"Distilling the Knowledge in a Neural Network,\" builds on the concepts introduced i"
-        ],
-        "breakthrough_papers": [
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W2110999179",
-          "https://openalex.org/W2125389028",
-          "https://openalex.org/W2964308564",
-          "https://openalex.org/W2099085143"
-        ],
-        "confidence_score": 1.0
-      },
-      {
-        "year": 2016,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: machine learning",
-          "Emerging keyword: deep learning"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper, \"Densely Connected Convolutional Networks,\" builds on the concepts introduced in th",
-          "The child paper builds on the parent paper by utilizing deep convolutional neural networks for image",
-          "The child paper, \"Focal Loss for Dense Object Detection,\" builds on the foundational concepts introd"
-        ],
-        "breakthrough_papers": [
-          "https://openalex.org/W1821462560",
-          "https://openalex.org/W2395611524",
-          "https://openalex.org/W2242218935",
-          "https://openalex.org/W2183341477",
-          "https://openalex.org/W2963121255"
-        ],
-        "confidence_score": 1.0
-      },
-      {
-        "year": 1962,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: applied mathematics",
-          "Emerging keyword: machine learning research"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [],
-        "breakthrough_papers": [],
-        "confidence_score": 0.9121212121212121
-      },
-      {
-        "year": 1965,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: applied mathematics",
-          "Emerging keyword: function minimization"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [],
-        "breakthrough_papers": [
-          "https://openalex.org/W2171074980"
-        ],
-        "confidence_score": 0.9223529411764706
-      },
-      {
-        "year": 1967,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: applied mathematics",
-          "Emerging keyword: computer engineering"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [],
-        "breakthrough_papers": [
-          "https://openalex.org/W2122111042",
-          "https://openalex.org/W1991133427"
-        ],
-        "confidence_score": 0.8365384615384616
-      },
-      {
-        "year": 1974,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: applied mathematics",
-          "Emerging keyword: image analysis"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [],
-        "breakthrough_papers": [],
-        "confidence_score": 0.9119999999999999
-      },
-      {
-        "year": 1983,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: machine learning research",
-          "Emerging keyword: computational imaging"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [],
-        "breakthrough_papers": [
-          "https://openalex.org/W2103504761"
-        ],
-        "confidence_score": 0.8616211374832065
-      },
-      {
-        "year": 1986,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: machine learning",
-          "Emerging keyword: image analysis"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper builds on the concepts introduced in the parent paper by proposing a new signature s",
-          "The child paper builds on the parent paper by proposing a new signature scheme and a public key cryp",
-          "The child paper builds on the parent paper by proposing a new signature scheme and a public key cryp"
-        ],
-        "breakthrough_papers": [],
-        "confidence_score": 0.7371007371007371
-      },
-      {
-        "year": 1988,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: image analysis",
-          "Emerging keyword: machine learning"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper builds on the concepts introduced in the parent paper by extending the theory of mul"
-        ],
-        "breakthrough_papers": [
-          "https://openalex.org/W2053289371",
-          "https://openalex.org/W1672666614"
-        ],
-        "confidence_score": 0.5515103548344545
-      },
-      {
-        "year": 1990,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: applied mathematics",
-          "Emerging keyword: pattern recognition"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper builds on the concepts introduced in the parent paper by extending the theory of mul"
-        ],
-        "breakthrough_papers": [
-          "https://openalex.org/W1996021349"
-        ],
-        "confidence_score": 0.73828125
-      },
-      {
-        "year": 1992,
+        "year": 2006,
         "disruption_patterns": [],
         "emergence_patterns": [
           "Emerging keyword: computer science",
@@ -2657,77 +1922,21 @@
         ],
         "cross_domain_influences": [],
         "methodological_changes": [
-          "The child paper builds on the concepts introduced in the parent paper by applying wavelet theory to ",
-          "The child paper builds on the concepts introduced in the parent paper by applying the principles of "
+          "The child paper builds on the parent paper by introducing a fast learning algorithm for deep belief ",
+          "The child paper, \"MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition,\" builds on",
+          "The child paper, \"Clustering by Passing Messages Between Data Points,\" builds on the concepts of inf"
         ],
         "breakthrough_papers": [
-          "https://openalex.org/W2062024414"
+          "https://openalex.org/W2177274842",
+          "https://openalex.org/W2154053567",
+          "https://openalex.org/W2163808566",
+          "https://openalex.org/W2122825543",
+          "https://openalex.org/W2121863487"
         ],
-        "confidence_score": 0.6829573934837092
+        "confidence_score": 0.8023298065836615
       },
       {
-        "year": 1994,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: machine learning",
-          "Emerging keyword: machine learning research"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper builds on the concepts introduced in the parent paper by applying wavelet theory to ",
-          "The child paper builds on the concepts introduced in the parent paper by applying wavelet theory to ",
-          "The child paper builds on the parent paper by extending the Newton-Raphson style search technique fo"
-        ],
-        "breakthrough_papers": [
-          "https://openalex.org/W2116661285"
-        ],
-        "confidence_score": 0.5054155740508494
-      },
-      {
-        "year": 1996,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: machine learning",
-          "Emerging keyword: machine learning research"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper on bidirectional recurrent neural networks builds on the foundational concepts of ne",
-          "The child paper, \"Eigenfaces vs. Fisherfaces,\" builds on the parent paper, \"Eigenfaces for Recogniti",
-          "The child paper, \"Eigenfaces vs. Fisherfaces,\" builds on the concepts presented in the parent paper,"
-        ],
-        "breakthrough_papers": [
-          "https://openalex.org/W2117812871"
-        ],
-        "confidence_score": 0.6069556415169373
-      },
-      {
-        "year": 2003,
-        "disruption_patterns": [],
-        "emergence_patterns": [
-          "Emerging keyword: computer science",
-          "Emerging keyword: machine learning",
-          "Emerging keyword: image analysis"
-        ],
-        "cross_domain_influences": [],
-        "methodological_changes": [
-          "The child paper builds on the concepts of object recognition and shape matching introduced in the pa",
-          "The child paper builds on the parent paper by introducing a new optimizer based on particle swarm th",
-          "The child paper builds on the parent paper by introducing a novel approach to shape matching and obj"
-        ],
-        "breakthrough_papers": [
-          "https://openalex.org/W2102625004",
-          "https://openalex.org/W2097308346",
-          "https://openalex.org/W1533162639",
-          "https://openalex.org/W1506342804",
-          "https://openalex.org/W2998216295"
-        ],
-        "confidence_score": 0.4858205485820548
-      },
-      {
-        "year": 2019,
+        "year": 2013,
         "disruption_patterns": [],
         "emergence_patterns": [
           "Emerging keyword: computer science",
@@ -2736,17 +1945,21 @@
         ],
         "cross_domain_influences": [],
         "methodological_changes": [
-          "The child paper, \"Squeeze-and-Excitation Networks,\" builds on the concepts introduced in the parent ",
-          "The child paper, \"MobileNetV2: Inverted Residuals and Linear Bottlenecks,\" builds on the foundationa",
-          "The child paper, \"Squeeze-and-Excitation Networks,\" builds on the concepts introduced in the parent "
+          "The child paper builds on the concepts of neural network architectures introduced in the parent pape",
+          "The child paper builds on the parent paper by applying the principles of Convolutional Neural Networ",
+          "The child paper builds on the concepts introduced in the parent paper by applying gradient-based lea"
         ],
         "breakthrough_papers": [
-          "https://openalex.org/W2962770929"
+          "https://openalex.org/W3216401400",
+          "https://openalex.org/W2138122982",
+          "https://openalex.org/W2145287260",
+          "https://openalex.org/W2143612262",
+          "https://openalex.org/W2251939518"
         ],
-        "confidence_score": 0.4230769230769231
+        "confidence_score": 0.8550198237424143
       },
       {
-        "year": 2021,
+        "year": 2015,
         "disruption_patterns": [],
         "emergence_patterns": [
           "Emerging keyword: computer science",
@@ -2755,24 +1968,35 @@
         ],
         "cross_domain_influences": [],
         "methodological_changes": [
-          "The child paper, \"Swin Transformer: Hierarchical Vision Transformer using Shifted Windows,\" builds o",
-          "The child paper, \"Squeeze-and-Excitation Networks,\" builds on the concepts introduced in the parent ",
-          "The child paper, \"An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale,\" build"
+          "The child paper, \"V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentati",
+          "The child paper, \"Show and tell: A neural image caption generator,\" builds on the foundational conce",
+          "The child paper builds on the parent paper by proposing a new activation function, the Parametric Li"
         ],
-        "breakthrough_papers": [],
-        "confidence_score": 0.4225757783568783
+        "breakthrough_papers": [
+          "https://openalex.org/W2613718673",
+          "https://openalex.org/W1834627138",
+          "https://openalex.org/W2145287260",
+          "https://openalex.org/W2173520492",
+          "https://openalex.org/W2962835968"
+        ],
+        "confidence_score": 0.850439024390244
       }
     ]
   },
   "visualization_metadata": {
     "timeline_data": {
       "raw_signal_years": [
+        1953,
+        1960,
         1962,
         1965,
         1967,
+        1973,
         1974,
         1975,
         1976,
+        1978,
+        1982,
         1983,
         1986,
         1987,
@@ -2786,98 +2010,69 @@
         1995,
         1996,
         1997,
-        1998,
         1999,
         2000,
         2001,
         2002,
-        2003,
-        2004,
         2005,
         2006,
-        2007,
-        2009,
+        2008,
         2010,
         2011,
-        2012,
         2013,
         2014,
         2015,
-        2016,
         2017,
-        2019,
-        2020,
-        2021
+        2020
       ],
       "validated_signal_years": [
-        1962,
         1965,
         1967,
-        1974,
-        1976,
-        1983,
+        1975,
         1986,
-        1988,
         1990,
-        1992,
-        1994,
-        1996,
+        1995,
         2001,
-        2003,
-        2005,
-        2007,
-        2012,
-        2014,
-        2016,
-        2019,
-        2021
+        2006,
+        2013,
+        2015
       ],
       "paradigm_shift_years": [
-        1962,
         1965,
         1967,
-        1974,
-        1983,
+        1975,
         1986,
-        1988,
         1990,
-        1992,
-        1994,
-        1996,
+        1995,
         2001,
-        2003,
-        2012,
-        2014,
-        2016,
-        2019,
-        2021
+        2006,
+        2013,
+        2015
       ]
     },
     "confidence_distributions": {
       "raw_confidence_range": [
-        0,
-        1
+        0.0,
+        1.0
       ],
       "paradigm_confidence_range": [
-        0,
+        0.0,
         1.0
       ]
     },
     "signal_type_analysis": {
       "raw_types": [
-        "citation_disruption",
-        "semantic_shift",
+        "citation_disruption_cpsd",
         "direction_volatility"
       ],
       "final_types": [
-        "validated_direction_volatility",
-        "validated_semantic_shift"
+        "direction_primary_validated"
       ]
     },
     "filtering_statistics": {
-      "raw_to_validated_retention": 0.4375,
-      "validated_to_paradigm_retention": 0.8571428571428571,
-      "overall_retention": 0.375
+      "raw_to_validated_retention": 0.20833333333333334,
+      "validated_to_paradigm_retention": 1.0,
+      "overall_retention": 0.20833333333333334
     }
   }
 }

@@ -1,69 +1,87 @@
 {
-  "domain": "Computer Vision (CV)",
+  "domain": "Computer Vision Research",
   "historical_periods": [
     {
-      "period_name": "Fundamental Image Processing and Handcrafted Features",
-      "start_year": 1960,
-      "end_year": 1999,
-      "duration_years": 40,
-      "description": "This initial period focused on fundamental image processing and pattern recognition, heavily relying on handcrafted features, with later integration of mathematical and statistical methods.",
+      "period_name": "Early Foundations: Perceptual Grouping & Symbolic AI",
+      "start_year": 1950,
+      "end_year": 1979,
+      "duration_years": 30,
+      "description": "This era laid the fundamental groundwork for computer vision, moving from basic digital image processing to early attempts at understanding and interpreting visual information. Research focused on simulating human visual perception, symbolic AI approaches for scene understanding, and initial efforts to reconstruct 3D information from 2D images. Key contributions include the conceptualization of neural networks, basic image analysis techniques, and the 'Blocks World' problem, which highlighted the complexities of machine perception.",
       "representative_developments": [
-        "Emergence of computer vision from efforts to interpret visual information",
-        "Early research on low-level image processing (edge detection, image segmentation)",
-        "Development of basic pattern recognition using handcrafted features and rule-based algorithms",
-        "Introduction of mathematical modeling and statistical methods (Markov Random Fields, Bayesian inference) for object recognition and scene understanding (1980s-1990s)"
+        "Frank Rosenblatt's Perceptron (1958)",
+        "Oliver Selfridge's Pandemonium (1959)",
+        "Larry Roberts' 'Machine Perception of Three-Dimensional Solids' (1963)",
+        "MIT Summer Vision Project (1966)",
+        "Woodrow W. Bledsoe and I. Kanter's facial recognition system (1967)",
+        "Ivan Sutherland's 'Sword of Damocles' (1968)",
+        "Azriel Rosenfeld's contributions to digital image processing, including graph representation of images (1969, 1972)",
+        "Hough Transform (1972)",
+        "Michael A. Fischler and Robert A. Elschlager's 'The Representation and Recognition of Pictorial Structures' (1973)",
+        "Kunihiko Fukushima's Cognitron (1975)",
+        "David Marr's 'Early Processing of Visual Information' (1976)",
+        "David Marr's 'Representing Visual Information' (1977)",
+        "David Marr and Ellen Hildreth's 'Theory of Edge Detection' (1980)"
       ]
     },
     {
-      "period_name": "Machine Learning Integration and Robust Feature Extraction",
-      "start_year": 1990,
-      "end_year": 2010,
-      "duration_years": 21,
-      "description": "This era saw the integration of traditional machine learning techniques and the development of robust feature extraction methods, expanding applications into various real-world problems.",
+      "period_name": "Model-Based and Geometric Vision",
+      "start_year": 1980,
+      "end_year": 1995,
+      "duration_years": 16,
+      "description": "Building on early foundations, this period saw a paradigm shift towards more structured and rigorous approaches. The emphasis was on explicit 3D models, geometric reasoning, and robust low-level feature extraction. David Marr's computational theory of vision, advocating for a hierarchical approach from primal sketch to 3D models, was highly influential. Developments included foundational algorithms for edge detection, optical flow, and initial attempts at 3D reconstruction and object recognition based on geometric primitives.",
       "representative_developments": [
-        "Application of machine learning algorithms (Support Vector Machines (SVMs), decision trees) to image classification and object detection (late 1990s-early 2000s)",
-        "Development of standard feature extraction methods (SIFT, HOG)",
-        "Expansion of applications into medical imaging, industrial automation, and surveillance"
+        "Kunihiko Fukushima's Neocognitron (1980)",
+        "David Marr and Ellen Hildreth's 'Theory of Edge Detection' (1980)",
+        "Bruce D. Lucas and Takeo Kanade's 'An Iterative Image Registration Technique with an Application to Stereo Vision' (Lucas-Kanade Method) (1981)",
+        "David Marr's influential book 'Vision: A Computational Investigation into the Human Representation and Processing of Visual Information' (1982)",
+        "Establishment of the Conference on Computer Vision and Pattern Recognition (CVPR) (1983)",
+        "John Canny's 'A Computational Approach to Edge Detection' (Canny Edge Detector) (1986)",
+        "Lawrence Sirovich and Michael Kirby's 'Low-dimensional procedure for the characterization of human faces' (Eigenfaces) (1987)",
+        "Irving Biederman's 'Recognition-by-components: A theory of human image understanding' (1987)",
+        "Michael Kass, Andrew Witkin, and Demetri Terzopoulos's 'Snakes: Active Contour Models' (1988)"
       ]
     },
     {
-      "period_name": "Deep Convolutional Neural Network Revolution",
+      "period_name": "Feature-Based and Statistical Machine Learning",
+      "start_year": 1996,
+      "end_year": 2007,
+      "duration_years": 12,
+      "description": "This era shifted focus to developing highly robust and invariant local features, coupled with statistical machine learning techniques for classification and recognition. The aim was to create representations that could withstand variations in viewpoint, illumination, and scale. The rise of support vector machines (SVMs) and the development of powerful feature descriptors like SIFT marked this period.",
+      "representative_developments": [
+        "Yann LeCun et al.'s 'Gradient-based learning applied to document recognition' (LeNet) (1998)",
+        "Paul Viola and Michael Jones' 'Rapid Object Detection using a Boosted Cascade of Simple Features' (Viola-Jones Face Detector) (2001)",
+        "David G. Lowe's 'Distinctive Image Features from Scale-Invariant Keypoints' (SIFT) (2004)",
+        "Navneet Dalal and Bill Triggs' 'Histograms of Oriented Gradients for Human Detection' (HOG) (2005)",
+        "Herbert Bay et al.'s 'SURF: Speeded Up Robust Features' (2006)",
+        "Launch of the PASCAL Visual Object Classes (VOC) Challenge (2005)"
+      ]
+    },
+    {
+      "period_name": "Dataset-Driven Machine Learning & Early Deep Learning",
+      "start_year": 2008,
+      "end_year": 2011,
+      "duration_years": 4,
+      "description": "This transitional period was characterized by the increasing availability of large-scale datasets and significant advancements in computational power. While traditional machine learning methods were still dominant, the groundwork for the deep learning revolution was being laid. The creation of massive labeled datasets like ImageNet played a crucial role in enabling the training of much deeper neural networks than previously possible, setting the stage for the next paradigm shift.",
+      "representative_developments": [
+        "Creation of the ImageNet dataset, led by Fei-Fei Li (2009)"
+      ]
+    },
+    {
+      "period_name": "Deep Learning Revolution",
       "start_year": 2012,
       "end_year": 2025,
       "duration_years": 14,
-      "description": "This period marks a monumental shift, with deep convolutional neural networks (CNNs) leading to unprecedented performance gains and a paradigm shift towards end-to-end learning.",
+      "description": "Beginning with the breakthrough performance of AlexNet, this period witnessed a dramatic paradigm shift, with Convolutional Neural Networks (CNNs) and later Transformer architectures dominating computer vision. Driven by vast datasets, powerful GPUs, and innovative network designs, deep learning achieved unprecedented accuracy across a wide range of tasks, including image classification, object detection, segmentation, and generation. This era is defined by end-to-end learning, representation learning from data, and a move away from hand-crafted features.",
       "representative_developments": [
-        "Success of deep CNNs in the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) in 2012",
-        "Shift to end-to-end learning within neural network architectures",
-        "Development of Recurrent Neural Networks (RNNs) for video analysis",
-        "Development of Generative Adversarial Networks (GANs) for image generation and style transfer",
-        "Adaptation of Transformer-based Models from NLP for vision-language integration and large-scale representation learning"
-      ]
-    },
-    {
-      "period_name": "Self-Supervised and Multimodal Learning Advancements",
-      "start_year": 2018,
-      "end_year": 2025,
-      "duration_years": 8,
-      "description": "Recent advancements have focused on learning from vast amounts of unlabeled data through self-supervised learning and integrating information from multiple modalities to achieve richer scene understanding.",
-      "representative_developments": [
-        "Emergence of self-supervised learning (SSL) to learn from unlabeled data via surrogate tasks",
-        "Development of SSL methods including contrastive learning, generative approaches, and clustering-based techniques",
-        "Increasing prominence of joint analysis of audio and video (multimodal learning)",
-        "Applications in audio-visual speech recognition, emotion detection, and cross-modal retrieval"
-      ]
-    },
-    {
-      "period_name": "Interdisciplinary Integration and Diverse Applications",
-      "start_year": 2020,
-      "end_year": 2025,
-      "duration_years": 6,
-      "description": "Computer vision is now a foundational technology across a wide range of interdisciplinary fields, underpinning applications in medicine, environmental science, the arts, and clinical healthcare.",
-      "representative_developments": [
-        "Applications in medicine (automated diagnosis from medical images)",
-        "Applications in environmental science (analyzing digitized natural history collections for climate change research, e.g., Mothra for specimen classification)",
-        "Applications in the arts (art history analysis, digital printmaking, extracting image features for art historians)",
-        "Applications in healthcare (automated detection of disorders like REM Sleep Behavior Disorder from video data)"
+        "Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton's 'ImageNet Classification with Deep Convolutional Neural Networks' (AlexNet) (2012)",
+        "Karen Simonyan and Andrew Zisserman's 'Very Deep Convolutional Networks for Large-Scale Image Recognition' (VGG) (2014)",
+        "Christian Szegedy et al.'s 'Going Deeper with Convolutions' (GoogLeNet / Inception) (2014)",
+        "Kaiming He et al.'s 'Deep Residual Learning for Image Recognition' (ResNet) (2015)",
+        "Shaoqing Ren et al.'s 'Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks' (2015)",
+        "Joseph Redmon et al.'s 'You Only Look Once: Unified, Real-Time Object Detection' (YOLO) (2016)",
+        "Kaiming He et al.'s 'Mask R-CNN' (2017)",
+        "Mingxing Tan and Quoc V. Le's 'EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks' (2019)",
+        "Alexey Dosovitskiy et al.'s 'An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale' (Vision Transformer - ViT) (2020)"
       ]
     }
   ]

@@ -1,0 +1,58 @@
+{
+  "individual_performance": {
+    "natural_language_processing": {
+      "avg_signals": 3.5,
+      "avg_segments": 5.0,
+      "avg_significance": 0.5049700615538575
+    },
+    "deep_learning": {
+      "avg_signals": 5.5,
+      "avg_segments": 7.0,
+      "avg_significance": 0.5328240486817954
+    },
+    "computer_vision": {
+      "avg_signals": 3.5,
+      "avg_segments": 6.0,
+      "avg_significance": 0.4824909621883759
+    },
+    "machine_learning": {
+      "avg_signals": 11.0,
+      "avg_segments": 10.0,
+      "avg_significance": 0.5303059211984449
+    },
+    "machine_translation": {
+      "avg_signals": 1.5,
+      "avg_segments": 2.0,
+      "avg_significance": 0.44999838097748723
+    }
+  },
+  "combination_performance": {
+    "natural_language_processing": {
+      "avg_signals": 7.0,
+      "avg_segments": 5.0,
+      "avg_significance": 0.5049700615538575
+    },
+    "deep_learning": {
+      "avg_signals": 9.0,
+      "avg_segments": 7.0,
+      "avg_significance": 0.5328240486817954
+    },
+    "computer_vision": {
+      "avg_signals": 7.0,
+      "avg_segments": 6.0,
+      "avg_significance": 0.4824909621883759
+    },
+    "machine_learning": {
+      "avg_signals": 19.0,
+      "avg_segments": 10.0,
+      "avg_significance": 0.5303059211984449
+    },
+    "machine_translation": {
+      "avg_signals": 3.0,
+      "avg_segments": 2.0,
+      "avg_significance": 0.44999838097748723
+    }
+  },
+  "complementarity_evidence": {},
+  "redundancy_evidence": {}
+}

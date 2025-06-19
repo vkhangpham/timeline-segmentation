@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "experiment_name": "Citation Detection Improvement Comparison",
+    "experiment_date": "2025-06-17T01:10:29.814640",
+    "target_domains": [
+      "applied_mathematics",
+      "computer_science",
+      "machine_learning",
+      "deep_learning"
+    ],
+    "methods_compared": [
+      "original",
+      "improved"
+    ],
+    "focus": "Citation signal detection under-sensitivity fix"
+  },
+  "domain_results": {
+    "applied_mathematics": {
+      "error": "'DataFrame' object has no attribute 'papers'",
+      "status": "failed"
+    },
+    "computer_science": {
+      "error": "'DataFrame' object has no attribute 'papers'",
+      "status": "failed"
+    },
+    "machine_learning": {
+      "error": "'DataFrame' object has no attribute 'papers'",
+      "status": "failed"
+    },
+    "deep_learning": {
+      "error": "'DataFrame' object has no attribute 'papers'",
+      "status": "failed"
+    }
+  },
+  "summary_statistics": {},
+  "improvement_analysis": {}
+}

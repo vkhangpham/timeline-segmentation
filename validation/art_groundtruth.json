@@ -2,70 +2,58 @@
   "domain": "Art Theory Research",
   "historical_periods": [
     {
-      "period_name": "Integrated Practice and Early Theoretical Reflection",
-      "start_year": 1800,
-      "end_year": 1900,
-      "duration_years": 100,
-      "description": "From ancient times, theoretical reflections on art were often embedded within artistic practice itself, passed down through workshops and treatises, highlighting the initial organic development of art theory and its intertwining with education.",
-      "representative_developments": [
-        "Theoretical reflection directly informing creative practice in regions like Poland and Ukraine",
-        "Foundational duality shaping early art historical research methodologies"
-      ]
-    },
-    {
-      "period_name": "Academic Formalization and Institutionalization",
+      "period_name": "Early 20th Century Movements",
       "start_year": 1900,
-      "end_year": 1950,
-      "duration_years": 50,
-      "description": "The 19th and 20th centuries saw the formalization of art theory as an academic discipline, with the establishment of dedicated departments, journals, and research institutes, systematizing methodologies and fostering scholarly communities.",
+      "end_year": 1945,
+      "duration_years": 45,
+      "description": "The early 20th century was characterized by revolutionary artistic movements that broke decisively from representational art and explored new dimensions of reality, emotion, and the unconscious. Cubism (c. 1905–1939, core 1907–1914), invented by Pablo Picasso and Georges Braque, rejected traditional aesthetics, breaking down objects into geometric shapes to depict multiple perspectives simultaneously. Expressionism (c. 1890–1939, core 1905–1930) originated primarily in Germany, characterized by vibrant, emotionally charged colors and energetic brushstrokes, seeking to represent inner emotions. Surrealism (c. 1924–1945, core 1920s–1950s), founded by André Breton in 1924, was a cultural and philosophical revolution heavily influenced by Sigmund Freud's psychoanalytic theories, seeking to explore the unconscious mind, dreams, and the irrational. Breton's *Manifesto of Surrealism* (1924) defined Surrealism as 'pure psychic automatism.'",
       "representative_developments": [
-        "Institutions like the G. Ibragimov Institute in Tatarstan coordinating research in folklore and art",
-        "Consolidation of theoretical frameworks and fostering scholarly communities"
+        "Cubism (core 1907–1914)",
+        "Expressionism (core 1905–1930)",
+        "Surrealism (core 1924–1945)",
+        "André Breton's *Manifesto of Surrealism* (1924)"
       ]
     },
     {
-      "period_name": "Paradigm Shifts: From Formalism to Media and Discourse",
-      "start_year": 1960,
-      "end_year": 1999,
-      "duration_years": 40,
-      "description": "This period witnessed significant shifts in theoretical paradigms, moving beyond purely formal analysis to consider the role of media and broader cultural discourses, emphasizing critical theory and the impact of technology on art.",
+      "period_name": "Post-War Modernism",
+      "start_year": 1945,
+      "end_year": 1970,
+      "duration_years": 25,
+      "description": "The mid-20th century saw American art gain international prominence and a continued radical redefinition of artistic practice and theory. Abstract Expressionism (c. 1945–1960) emerged in the United States, with artists like Jackson Pollock focusing on expressing emotions and the subconscious through abstract forms. Harold Rosenberg (1906–1978) coined the term 'action painting' in his 1952 essay 'The American Action Painters,' viewing the canvas as 'an arena in which to act.' Clement Greenberg (1909–1994), another influential critic, advocated a formalist aesthetic in his essay 'Modernist Painting' (1961), arguing that painting should be self-critical, focusing on flatness and color. Pop Art (c. 1956–1969) emerged as a reaction, reintroducing recognizable subject matter from popular culture, with Richard Hamilton famously listing its characteristics in 1957. Minimalism (c. 1960–1975) developed with a focus on simplicity and geometric forms, with Donald Judd (1928–1994) articulating its theory in 'Specific Objects' (1964). Conceptual Art (c. 1960s onwards) emphasized ideas over visual forms, with Sol LeWitt (1928–2007) stating in his 1967 essay 'Paragraphs on Conceptual Art' that 'the idea itself... is as much of a work of art as any finished product.'",
       "representative_developments": [
-        "Rise of medium theory (e.g., Friedrich Kittler) exploring how media technologies shape perceptions of time and art",
-        "Victor Burgin's 'The End of Art Theory' (1986) critically interrogating institutional discourse and media's impact on art evaluation"
+        "Abstract Expressionism (1945–1960)",
+        "Harold Rosenberg's 'The American Action Painters' (1952)",
+        "Clement Greenberg's 'Modernist Painting' (1961)",
+        "Pop Art (1956–1969)",
+        "Donald Judd's 'Specific Objects' (1964)",
+        "Conceptual Art (1960s onwards)",
+        "Sol LeWitt's 'Paragraphs on Conceptual Art' (1967)"
       ]
     },
     {
-      "period_name": "Transdisciplinary Approaches and Fluid Narrative Construction",
-      "start_year": 1990,
+      "period_name": "Postmodernism and Critical Theory",
+      "start_year": 1970,
       "end_year": 2025,
-      "duration_years": 36,
-      "description": "More recent decades have been marked by a strong move towards integrating insights from various disciplines and recognizing the multifaceted, fluid nature of art historical narratives, blending cultural studies, sociology, and media theory with traditional art history.",
+      "duration_years": 55,
+      "description": "The late 20th century saw the rise of Postmodernism, a broad intellectual and cultural movement that profoundly impacted art theory by questioning universal truths, grand narratives, and established systems of knowledge and power. Jean-François Lyotard (1924–1998), in *The Postmodern Condition: A Report on Knowledge* (1979), analyzed the commodification of knowledge and diagnosed a 'crisis of knowledge,' arguing that grand narratives were being dismantled. Jacques Derrida (1930–2004), through his theory of deconstruction (emerging in the 1970s), asserted that there is no single intrinsic meaning in a work, but rather multiple, often conflicting interpretations. Michel Foucault (1926–1984) introduced the concept of 'power-knowledge,' arguing that power is intricately linked to knowledge, shaping and reproducing it in accordance with its intentions.",
       "representative_developments": [
-        "Transdisciplinary reinterpretations of Victor Burgin's work",
-        "Construction of performance art history in Central and Eastern Europe by 'guardians' (critics, scholars, artists) shaping narratives through interpretation",
-        "Blending cultural studies, sociology, and media theory with traditional art historical methods"
+        "Jean-François Lyotard's *The Postmodern Condition* (1979)",
+        "Jacques Derrida's deconstruction (emerging 1970s)",
+        "Michel Foucault's 'power-knowledge' concept"
       ]
     },
     {
-      "period_name": "Contextualized Regional and Cultural Studies",
-      "start_year": 2000,
+      "period_name": "Identity Politics, Globalization, and Digital Art",
+      "start_year": 1970,
       "end_year": 2025,
-      "duration_years": 26,
-      "description": "Art theory research continues to be shaped by specific regional and cultural contexts, with studies that delve into localized art forms and their theoretical underpinnings, fostering a dialogue between historical traditions and modern theoretical frameworks.",
+      "duration_years": 55,
+      "description": "Contemporary art theory is deeply engaged with issues of identity, globalization, and technological advancements, leading to new forms of artistic expression and critical frameworks. Identity Politics became a central theme, addressing issues of personal and cultural identity, race, gender, and social inequality. Feminist art theory, exemplified by Linda Nochlin's influential 1971 essay 'Why Have There Been No Great Women Artists?' and Griselda Pollock's *Vision and Difference* (1988), challenged the male-centric art historical canon. Postcolonial theory, with Edward Said's *Orientalism* (1978) and Homi Bhabha's *The Location of Culture* (1994), explored themes of resistance and challenged Eurocentric knowledge systems. Relational Aesthetics (emerging in the 1990s), defined by Nicolas Bourriaud in his 1998 book *Esthétique relationnelle*, takes 'the whole of human relations and their social context' as its point of departure. Digital Art and New Media Art represent a significant development, reflecting the impact of technology on art creation, dissemination, and criticism.",
       "representative_developments": [
-        "Analysis of interior design history across different civilizations, adapting theory to local legacies and global trends",
-        "Re-examination of traditional motifs (e.g., cloud shoulder in Qing Dynasty China) through contemporary theories like fractal art"
-      ]
-    },
-    {
-      "period_name": "Globalization Challenges and Modern Educational Integration",
-      "start_year": 2020,
-      "end_year": 2025,
-      "duration_years": 6,
-      "description": "The globalization of art theory research brings new challenges and opportunities, particularly concerning education and the relevance of art theory in a rapidly changing world, driving modernization in teaching methods and professional relevance.",
-      "representative_developments": [
-        "Integration of museum materials into art criticism curricula (e.g., in Ukraine) to modernize teaching methods",
-        "Conferences and seminars (e.g., in Siberia) fostering dialogue on the relevance of art theory in contemporary artistic practice and education"
+        "Linda Nochlin's 'Why Have There Been No Great Women Artists?' (1971)",
+        "Edward Said's *Orientalism* (1978)",
+        "Griselda Pollock's *Vision and Difference* (1988)",
+        "Homi Bhabha's *The Location of Culture* (1994)",
+        "Nicolas Bourriaud's *Esthétique relationnelle* (1998)"
       ]
     }
   ]

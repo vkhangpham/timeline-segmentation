@@ -1,0 +1,64 @@
+{
+  "subadditive_domains": [
+    "natural_language_processing",
+    "deep_learning",
+    "computer_vision",
+    "machine_learning",
+    "machine_translation"
+  ],
+  "combination_effects": {
+    "natural_language_processing": {
+      "citation_count": 1,
+      "semantic_count": 0,
+      "direction_count": 6,
+      "expected_sum": 7,
+      "combined_count": 0,
+      "is_subadditive": true,
+      "reduction_rate": 1.0
+    },
+    "deep_learning": {
+      "citation_count": 1,
+      "semantic_count": 0,
+      "direction_count": 10,
+      "expected_sum": 11,
+      "combined_count": 0,
+      "is_subadditive": true,
+      "reduction_rate": 1.0
+    },
+    "computer_vision": {
+      "citation_count": 0,
+      "semantic_count": 0,
+      "direction_count": 7,
+      "expected_sum": 7,
+      "combined_count": 0,
+      "is_subadditive": true,
+      "reduction_rate": 1.0
+    },
+    "machine_learning": {
+      "citation_count": 1,
+      "semantic_count": 0,
+      "direction_count": 21,
+      "expected_sum": 22,
+      "combined_count": 0,
+      "is_subadditive": true,
+      "reduction_rate": 1.0
+    },
+    "machine_translation": {
+      "citation_count": 0,
+      "semantic_count": 0,
+      "direction_count": 3,
+      "expected_sum": 3,
+      "combined_count": 0,
+      "is_subadditive": true,
+      "reduction_rate": 1.0
+    }
+  },
+  "signal_reduction_patterns": {},
+  "filtering_insights": [
+    "Subadditive behavior in 5/5 domains",
+    "Algorithm implements temporal proximity clustering (\u00b12 years)",
+    "Multi-signal validation with confidence thresholding",
+    "Paradigm significance filtering removes redundant signals",
+    "Evidence: cross_validate_signals() and filter_for_paradigm_significance()"
+  ]
+}

@@ -2,64 +2,80 @@
   "domain": "Natural Language Processing (NLP)",
   "historical_periods": [
     {
-      "period_name": "Symbolic and Rule-Based Approaches",
-      "start_year": 1940,
-      "end_year": 1989,
-      "duration_years": 50,
-      "description": "This initial era was characterized by a focus on symbolic manipulation and hand-crafted linguistic rules, particularly for machine translation and conversational agents.",
+      "period_name": "Rule-Based and Symbolic NLP",
+      "start_year": 1950,
+      "end_year": 1985,
+      "duration_years": 36,
+      "description": "Early NLP systems relied on hand-crafted linguistic rules, grammars, and symbolic representations to process language. This approach was characterized by a deep understanding of linguistic theory but struggled with the inherent ambiguity, variability, and scalability of natural language.",
       "representative_developments": [
-        "Machine translation efforts based on explicitly encoded grammatical rules",
-        "Development of rule-based conversational agents (e.g., ELIZA in the 1960s)",
-        "Emphasis on understanding underlying language structure through predefined rules"
+        "Georgetown-IBM experiment (1954)",
+        "ELIZA (Joseph Weizenbaum, 1966)",
+        "SHRDLU (Terry Winograd, 1970)"
       ]
     },
     {
-      "period_name": "Integration of AI and Logico-Grammatical Frameworks",
-      "start_year": 1980,
-      "end_year": 1999,
+      "period_name": "Statistical NLP and Data-Driven Approaches",
+      "start_year": 1986,
+      "end_year": 2005,
       "duration_years": 20,
-      "description": "During this period, NLP research broadened to incorporate insights from artificial intelligence, particularly in logic and formal grammar, combining symbolic reasoning with linguistic rules.",
+      "description": "This era marked a significant paradigm shift from rule-based systems to data-driven methods. Advances in computational power and the availability of large text corpora (like the Penn Treebank) enabled the development of probabilistic models that learned patterns directly from data. This approach offered greater robustness to ambiguity and better scalability.",
       "representative_developments": [
-        "Exploration of formal linguistic theories to improve parsing and language understanding",
-        "Adoption of 'logico-grammatical' styles combining symbolic reasoning with linguistic rules"
+        "N-gram models",
+        "Hidden Markov Models (HMMs)",
+        "Statistical Machine Translation (SMT)",
+        "Penn Treebank (Marcus et al., 1993)"
       ]
     },
     {
-      "period_name": "Transition to Statistical and Data-Driven Methods",
-      "start_year": 1990,
-      "end_year": 2010,
-      "duration_years": 21,
-      "description": "The rise of large textual corpora and increased computational power led to a significant shift from rule-based to statistical, data-driven approaches, utilizing machine learning techniques for various NLP tasks.",
+      "period_name": "Feature-Rich Machine Learning",
+      "start_year": 1998,
+      "end_year": 2014,
+      "duration_years": 17,
+      "description": "Building upon statistical foundations, this period saw the widespread adoption of more sophisticated machine learning algorithms. These models, while still heavily reliant on manual feature engineering (extracting linguistic features like n-grams, part-of-speech tags, syntactic dependencies), offered improved discriminative power and generalization capabilities compared to simpler probabilistic models.",
       "representative_developments": [
-        "Prevalence of machine learning techniques (e.g., Hidden Markov Models (HMMs), Conditional Random Fields (CRFs))",
-        "Training models using vast linguistic datasets for part-of-speech tagging, named entity recognition, and machine translation",
-        "Availability of annotated corpora and advancements in unsupervised learning methods"
+        "Support Vector Machines (SVMs)",
+        "Maximum Entropy (MaxEnt) models",
+        "Conditional Random Fields (CRFs)"
       ]
     },
     {
-      "period_name": "Deep Learning Revolution: Embeddings and Transformers",
-      "start_year": 2010,
+      "period_name": "Deep Learning Revolution",
+      "start_year": 2012,
+      "end_year": 2017,
+      "duration_years": 6,
+      "description": "This period saw the widespread adoption of neural networks, moving beyond shallow models. Key developments included word embeddings, which allowed words to be represented as dense vectors capturing semantic relationships, and recurrent neural networks (RNNs), particularly LSTMs, which were effective at modeling sequential data and long-range dependencies. This significantly reduced the need for manual feature engineering.",
+      "representative_developments": [
+        "Word2Vec (Mikolov et al., 2013)",
+        "GloVe (Pennington et al., 2014)",
+        "LSTM (Hochreiter & Schmidhuber, 1997)",
+        "Early Neural Machine Translation (Sutskever et al., 2014; Bahdanau et al., 2014)"
+      ]
+    },
+    {
+      "period_name": "Attention and Transformers",
+      "start_year": 2017,
+      "end_year": 2019,
+      "duration_years": 3,
+      "description": "This era was defined by the introduction of attention mechanisms, which allowed models to weigh the importance of different parts of the input sequence, and the Transformer architecture, which completely revolutionized sequence modeling by replacing recurrent layers with self-attention. This enabled unprecedented parallelization and the development of large-scale pre-trained language models.",
+      "representative_developments": [
+        "Attention Mechanism (Bahdanau et al., 2014)",
+        "Transformer (Vaswani et al., 2017)",
+        "ELMo (Peters et al., 2018)",
+        "BERT (Devlin et al., 2018)",
+        "GPT-1 (Radford et al., 2018)"
+      ]
+    },
+    {
+      "period_name": "Large Language Models (LLMs) and Generative AI",
+      "start_year": 2020,
       "end_year": 2025,
-      "duration_years": 16,
-      "description": "This era marked a revolution in NLP with the introduction and widespread adoption of deep learning, enabling end-to-end learning directly from raw text data, driven by advancements in word embeddings and transformer architectures.",
+      "duration_years": 6,
+      "description": "Characterized by the scaling of Transformer-based models to billions of parameters, leading to unprecedented capabilities in text generation, understanding, and reasoning. This period focuses on few-shot/zero-shot learning, emergent abilities, and multimodal integration, pushing the boundaries of what AI can achieve in language tasks.",
       "representative_developments": [
-        "Development of word embeddings (e.g., Word2Vec, GloVe)",
-        "Popularity of Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) networks for sequential data",
-        "Development of transformer architectures (e.g., Bidirectional Encoder Representations from Transformers (BERT))",
-        "Advancements with Large Language Models (LLMs) like the GPT series (text generation, summarization, dialogue systems)"
-      ]
-    },
-    {
-      "period_name": "Specialized Applications and Historical/Low-Resource NLP",
-      "start_year": 2015,
-      "end_year": 2025,
-      "duration_years": 11,
-      "description": "Recent research has seen NLP extend into highly specialized domains, including the analysis of historical and low-resource languages, as well as applications in educational tools and digital humanities.",
-      "representative_developments": [
-        "Processing ancient Chinese historical documents for named entity recognition and relation extraction",
-        "Application of NLP to low-resource languages (e.g., Halegannada (Old Kannada)) using unsupervised machine translation and transfer learning",
-        "Generation of event timelines from historical texts and textbooks",
-        "Applications in educational tools and digital humanities research"
+        "GPT-3 (Brown et al., 2020)",
+        "PaLM (Chowdhery et al., 2022)",
+        "LLaMA (Touvron et al., 2023)",
+        "GPT-4 (OpenAI, 2023)"
       ]
     }
   ]

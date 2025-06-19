@@ -1,150 +1,1004 @@
 """
-Shift Signal Detection for Research Timeline Modeling.
+Shift Signal Detection for Research Timeline Modeling
 
-This module implements sophisticated paradigm transition detection using rich data sources
-and advanced change point detection methods. Part of Phase 9 fundamental framework that
-separates shift signals (paradigm transitions) from period signals (stability characterization).
+This module implements paradigm transition detection using a simplified, optimized approach:
 
-Based on comprehensive literature review and Phase 8 baseline analysis, this module combines:
-- ruptures library for robust change point detection
-- Enhanced semantic analysis using citation descriptions and breakthrough papers
-- Multi-signal fusion for paradigm vs technical innovation distinction
+ARCHITECTURE (Phase 12 Optimized):
+1. PRIMARY: Research direction changes detect paradigm shifts
+2. SECONDARY: Citation gradient analysis validates and boosts confidence  
+3. SIMPLIFIED: Clean signal hierarchy with predictable granularity control
+4. RESTRICTED: Breakthrough paper validation removed (too permissive)
+
+KEY FEATURES:
+- Direction-driven paradigm detection (primary method)
+- Gradient-only CPSD citation validation (F1=0.437 > ensemble F1=0.355)  
+- Temporal clustering with fixed algorithm for predictable behavior
+- Citation-only validation logic for higher precision
+- Breakthrough paper validation REMOVED to reduce false positives
 
 Follows functional programming principles with pure functions and immutable data structures.
 """
 
 import numpy as np
-import pandas as pd
-from typing import List, Dict, Tuple, Optional, Set
+from typing import List, Dict, Tuple, Optional, Set, Any
 from collections import defaultdict, Counter
 import json
 from pathlib import Path
-import dataclasses
+from scipy import stats
 
-# Import ruptures for change point detection
-import ruptures as rpt
-
-# Import our data models
 from .data_models import (
-    Paper, CitationRelation as Citation, DomainData, 
-    ChangePointWithPapers, ShiftSignal, TransitionEvidence
+    Paper,
+    DomainData,
+    ShiftSignal,
+    TransitionEvidence,
 )
 
 
-# Pure function to load paradigm patterns
-def load_paradigm_patterns() -> Dict[str, List[str]]:
-    """Load domain-specific paradigm shift patterns."""
-    # Enhanced semantic patterns based on Phase 8 success
-    patterns = {
-        'architectural_shifts': [
-            'introduces new architecture', 'revolutionary approach', 'novel architecture',
-            'paradigm shift', 'breakthrough', 'first to', 'pioneer', 'foundational'
-        ],
-        'methodological_shifts': [
-            'solves the problem of', 'enables training of', 'overcomes limitations',
-            'fundamentally changes', 'transforms', 'revolutionizes'
-        ],
-        'domain_expansion': [
-            'first application to', 'generalizes across', 'extends to',
-            'applicable to', 'broader context'
-        ],
-        'foundational_work': [
-            'lays the foundation', 'seminal contribution', 'establishes',
-            'defines', 'creates framework', 'theoretical basis'
-        ]
-    }
-    return patterns
+# =============================================================================
+# UTILITY FUNCTIONS - Pure helper functions
+# =============================================================================
 
+def adaptive_threshold(data: np.ndarray, method: str) -> float:
+    """
+    Calculate adaptive thresholds based on data characteristics (pure function).
+
+    Args:
+        data: Input data array
+        method: Threshold method ('gradient' or 'acceleration')
+
+    Returns:
+        Adaptive threshold value
+    """
+    if len(data) == 0:
+        return 0.0
+
+    data_std = np.std(data)
+
+    if method == "gradient":
+        # For gradient: threshold based on standard deviation
+        return data_std * 1.5
+    elif method == "acceleration":
+        # For acceleration: threshold based on median absolute deviation
+        mad = np.median(np.abs(data - np.median(data)))
+        return mad * 2.0
+    else:
+        return data_std
+
+
+def moving_average(data: np.ndarray, window: int) -> np.ndarray:
+    """
+    Pure function for calculating moving average.
+
+    Args:
+        data: Input data array
+        window: Window size for averaging
+
+    Returns:
+        Moving average array
+    """
+    if window >= len(data):
+        return np.array([np.mean(data)] * len(data))
+
+    result = []
+    for i in range(len(data) - window + 1):
+        result.append(np.mean(data[i : i + window]))
+    return np.array(result)
+
+
+def cluster_and_validate_shifts(
+    shifts: List[int], years_array: np.ndarray, min_segment_length: int = 3
+) -> List[int]:
+    """
+    Pure function to cluster nearby shifts and validate temporal spacing.
+
+    Args:
+        shifts: List of detected shift years
+        years_array: Array of all years
+        min_segment_length: Minimum years between shifts
+
+    Returns:
+        Filtered and validated shifts
+    """
+    if not shifts:
+        return []
+
+    shifts = sorted(list(set(shifts)))
+
+    # Remove shifts too close together
+    filtered_shifts = [shifts[0]]
+
+    for shift in shifts[1:]:
+        if shift - filtered_shifts[-1] >= min_segment_length:
+            filtered_shifts.append(shift)
+
+    # Validate shifts are within years range
+    min_year = min(years_array)
+    max_year = max(years_array)
+
+    valid_shifts = [s for s in filtered_shifts if min_year <= s <= max_year]
+
+    return valid_shifts
+
+
+# =============================================================================
+# CITATION ANALYSIS - Gradient-only CPSD (Phase 11 Optimized)
+# =============================================================================
+
+def detect_citation_acceleration_shifts(
+    citations: np.ndarray, years_array: np.ndarray
+) -> List[int]:
+    """
+    Gradient-only citation analysis for paradigm shift detection.
+    
+    PHASE 11 OPTIMIZATION: Proven optimal method (F1=0.437) compared to 
+    complex ensemble approaches (F1=0.355).
+
+    Detects paradigm shifts through:
+    - Multi-scale gradient analysis (1, 3, 5-year windows)
+    - First derivative (acceleration/deceleration)
+    - Second derivative (inflection points)
+    - Adaptive thresholds based on data characteristics
+
+    Args:
+        citations: Citation counts array
+        years_array: Corresponding years array
+
+    Returns:
+        List of detected shift years
+    """
+    shifts = []
+
+    # Multi-scale gradient analysis - captures different paradigm shift patterns
+    for window in [1, 3, 5]:  # 1-year: sudden breaks, 3-year: transitions, 5-year: gradual evolution
+        if len(citations) <= window:
+            continue
+
+        # Smooth the series for this scale
+        if window > 1:
+            smoothed = moving_average(citations, window)
+            # Pad to maintain length
+            smoothed = np.pad(smoothed, (window // 2, window // 2), mode="edge")
+            smoothed = smoothed[: len(citations)]
+        else:
+            smoothed = citations
+
+        # First derivative (gradient) - detects acceleration/deceleration
+        gradient = np.gradient(smoothed)
+
+        # Second derivative (acceleration) - detects inflection points
+        acceleration = np.gradient(gradient)
+
+        # Adaptive thresholds based on series characteristics
+        grad_threshold = adaptive_threshold(gradient, "gradient")
+        accel_threshold = adaptive_threshold(acceleration, "acceleration")
+
+        # Find significant changes
+        significant_grads = np.where(np.abs(gradient) > grad_threshold)[0]
+        significant_accels = np.where(np.abs(acceleration) > accel_threshold)[0]
+
+        # Combine and filter
+        candidates = np.union1d(significant_grads, significant_accels)
+
+        # Convert indices to years and filter
+        for idx in candidates:
+            if idx < len(years_array):
+                year = years_array[idx]
+                if year not in shifts:
+                    shifts.append(year)
+
+    # Temporal clustering and validation
+    return cluster_and_validate_shifts(shifts, years_array)
+
+
+def detect_citation_structural_breaks(
+    domain_data: DomainData, domain_name: str
+) -> List[ShiftSignal]:
+    """
+    CPSD Gradient-Only Citation Validation - Phase 11 optimized.
+
+    PHASE 11 RESEARCH CONCLUSION: Gradient-only approach achieves optimal 
+    performance (F1=0.437) compared to complex ensemble methods (F1=0.355).
+
+    This provides citation-based validation for direction-detected paradigm shifts
+    using multi-scale gradient analysis specifically designed for citation time series.
+
+    Args:
+        domain_data: Domain data with papers and citations
+        domain_name: Domain name for logging
+
+    Returns:
+        List of gradient-based citation validation signals
+    """
+    print(f"    🔍 CPSD GRADIENT-ONLY CITATION VALIDATION for {domain_name}")
+
+    # Create citation time series from domain data
+    citation_series = defaultdict(float)
+
+    # Aggregate citations by year
+    for paper in domain_data.papers:
+        year = paper.pub_year
+        citation_series[year] += paper.cited_by_count
+
+    if not citation_series:
+        print(f"    ⚠️ No citation data found for {domain_name}")
+        return []
+
+    # Prepare data for gradient analysis
+    years = sorted(citation_series.keys())
+    citation_values = np.array([citation_series[year] for year in years])
+    years_array = np.array(years)
+
+    print(
+        f"    🔬 Citation time series: {len(years)} years ({min(years)}-{max(years)})"
+    )
+    print(
+        f"    📊 Citation range: {min(citation_values):,.0f} - {max(citation_values):,.0f}"
+    )
+
+    # Apply gradient-only CPSD algorithm
+    try:
+        # Phase 11 optimal configuration: gradient-only detection
+        gradient_shifts = detect_citation_acceleration_shifts(
+            citation_values, years_array
+        )
+
+        print(f"    📊 CPSD GRADIENT-ONLY Results:")
+        print(f"        🎯 Gradient shifts detected: {len(gradient_shifts)}")
+        print(f"        📈 Performance: Gradient-only (F1=0.437) > Ensemble (F1=0.355)")
+
+        # Convert to ShiftSignal objects
+        signals = []
+        for shift_year in gradient_shifts:
+            confidence = 0.7  # Standard confidence for gradient detection
+
+            # Find contributing papers
+            contributing_papers = tuple(
+                p.id for p in domain_data.papers if p.pub_year == shift_year
+            )
+
+            # Supporting evidence for gradient detection
+            supporting_evidence = [
+                "Citation acceleration/deceleration pattern detected",
+                "Multi-scale gradient analysis (1, 3, 5-year windows)",
+                "First and second derivative significance testing"
+            ]
+
+            # Evidence strength for gradient-only method
+            evidence_strength = min(confidence * 0.8, 1.0)
+
+            print(
+                f"      ✅ {shift_year}: confidence={confidence:.3f}, evidence_strength={evidence_strength:.3f}"
+            )
+
+            # Create citation validation signal
+            signals.append(
+                ShiftSignal(
+                    year=shift_year,
+                    confidence=confidence,
+                    signal_type="citation_gradient_cpsd",
+                    evidence_strength=evidence_strength,
+                    supporting_evidence=tuple(supporting_evidence),
+                    contributing_papers=contributing_papers,
+                    transition_description=f"CPSD gradient-only paradigm shift detection at {shift_year} (confidence={confidence:.3f})",
+                    paradigm_significance=0.8,  # Higher significance for proven method
+                )
+            )
+
+        print(
+            f"    🏆 CPSD GRADIENT-ONLY COMPLETE: {len(signals)} citation validation signals ready"
+        )
+
+        return signals
+
+    except Exception as e:
+        print(f"    ⚠️ CPSD detection failed: {e}")
+        # Following project guideline: fail fast, no fallbacks
+        raise RuntimeError(f"CPSD citation detection failed for {domain_name}: {e}")
+
+
+# =============================================================================
+# DIRECTION ANALYSIS - Primary paradigm detection
+# =============================================================================
+
+def detect_research_direction_changes(
+    domain_data: DomainData, 
+    detection_threshold: float = 0.4, 
+    return_analysis_data: bool = False
+) -> List[ShiftSignal]:
+    """
+    PRIMARY: Detect paradigm shifts through research direction changes.
+    
+    This is the main method for paradigm detection, using keyword evolution 
+    and research focus changes to identify fundamental paradigm transitions.
+
+    Args:
+        domain_data: Domain data with papers and citations
+        detection_threshold: Direction change score threshold (lower = more sensitive)
+                           0.2 = High sensitivity (fine-grained)
+                           0.4 = Medium sensitivity (balanced, default)  
+                           0.6 = Low sensitivity (coarse-grained)
+        return_analysis_data: If True, returns tuple for visualization
+
+    Returns:
+        List of direction-based paradigm shift signals, or tuple with analysis data
+    """
+    signals = []
+
+    # Group papers by year and analyze keyword evolution
+    year_keywords = defaultdict(list)
+    for paper in domain_data.papers:
+        year_keywords[paper.pub_year].extend(paper.keywords)
+
+    years = sorted(year_keywords.keys())
+    if len(years) < 5:
+        if return_analysis_data:
+            return [], {"years": [], "overlap": [], "novelty": [], "direction_score": [], "novel_keywords": [], "top_keywords": [], "threshold": detection_threshold}
+        return []
+
+    print(f"    🎛️  Direction detection threshold: {detection_threshold:.2f} (lower = more sensitive)")
+
+    # Initialize analysis data for visualization if requested
+    analysis_data = {
+        "years": [],
+        "overlap": [],
+        "novelty": [],
+        "direction_score": [],
+        "novel_keywords": [],  # Enhanced: list of novel keywords for each year
+        "top_keywords": [],    # Enhanced: list of top current keywords for each year
+        "threshold": detection_threshold
+    }
+
+    # Analyze keyword evolution using sliding windows
+    window_size = 3
+    for i in range(window_size, len(years)):
+        year = years[i]
+
+        # Current window keywords
+        current_keywords = []
+        for y in years[i - window_size : i]:
+            current_keywords.extend(year_keywords[y])
+
+        # Previous window keywords
+        prev_keywords = []
+        for y in years[max(0, i - window_size * 2) : i - window_size]:
+            prev_keywords.extend(year_keywords[y])
+
+        if not current_keywords or not prev_keywords:
+            continue
+
+        # Calculate keyword overlap and novelty
+        current_set = set(current_keywords)
+        prev_set = set(prev_keywords)
+
+        if len(prev_set) == 0:
+            continue
+
+        overlap = len(current_set & prev_set) / len(prev_set)
+        novelty = len(current_set - prev_set) / len(current_set) if current_set else 0
+
+        # Direction change score: high novelty + low overlap indicates paradigm shift
+        direction_change_score = novelty * (1 - overlap)
+
+        # Collect detailed analysis data for visualization (regardless of threshold)
+        if return_analysis_data:
+            new_keywords = current_set - prev_set
+            keyword_frequencies = Counter(current_keywords)
+            
+            # Get significant novel keywords (appearing at least 2 times)
+            significant_novel = [kw for kw in new_keywords if keyword_frequencies[kw] >= 2]
+            
+            # Get top current keywords by frequency
+            top_current = [kw for kw, count in keyword_frequencies.most_common(10)]
+            
+            analysis_data["years"].append(year)
+            analysis_data["overlap"].append(overlap)
+            analysis_data["novelty"].append(novelty)
+            analysis_data["direction_score"].append(direction_change_score)
+            analysis_data["novel_keywords"].append(significant_novel[:8])  # Top 8 novel keywords for display
+            analysis_data["top_keywords"].append(top_current[:8])          # Top 8 current keywords for display
+
+        # Apply configurable threshold for granularity control
+        if direction_change_score > detection_threshold:
+            # Validate significance with keyword frequency analysis
+            new_keywords = current_set - prev_set
+            keyword_frequencies = Counter(current_keywords)
+            significant_new = [
+                kw for kw in new_keywords if keyword_frequencies[kw] >= 2
+            ]
+
+            # Require multiple significant new keywords for paradigm shift
+            if len(significant_new) >= 3:
+                confidence = min(direction_change_score, 1.0)
+                contributing_papers = tuple(
+                    p.id
+                    for p in domain_data.papers
+                    if p.pub_year == year
+                    and any(kw in p.keywords for kw in significant_new)
+                )
+
+                # Create enhanced description with keyword data
+                top_current_keywords = [kw for kw, count in keyword_frequencies.most_common(10)]
+                enhanced_description = (
+                    f"Research direction shift: {novelty:.1%} new keywords (threshold={detection_threshold:.2f}) | "
+                    f"Novel keywords: {', '.join(significant_new[:5])} | "
+                    f"Top keywords: {', '.join(top_current_keywords[:5])}"
+                )
+
+                signals.append(
+                    ShiftSignal(
+                        year=year,
+                        confidence=confidence,
+                        signal_type="direction_volatility",
+                        evidence_strength=direction_change_score,
+                        supporting_evidence=tuple(
+                            [f"Novel focus: {kw}" for kw in significant_new[:5]] +
+                            [f"Top current: {kw}" for kw in top_current_keywords[:5]]
+                        ),
+                        contributing_papers=contributing_papers,
+                        transition_description=enhanced_description,
+                        paradigm_significance=0.4,
+                    )
+                )
+
+    print(f"    📊 Direction signals detected: {len(signals)} (threshold={detection_threshold:.2f})")
+    
+    if return_analysis_data:
+        return signals, analysis_data
+    return signals
+
+
+# =============================================================================
+# TEMPORAL CLUSTERING - Fixed algorithm for predictable behavior
+# =============================================================================
+
+def cluster_direction_signals_by_proximity(
+    signals: List[ShiftSignal], 
+    sensitivity_config
+) -> List[ShiftSignal]:
+    """
+    Cluster direction signals within temporal proximity into coherent paradigm shifts.
+    
+    FIXED ALGORITHM: Uses cluster START year for comparison (not end year) to 
+    prevent endless chaining and ensure predictable granularity behavior.
+    
+    Args:
+        signals: Raw direction signals to cluster
+        sensitivity_config: Configuration with clustering window
+        
+    Returns:
+        Clustered signals representing distinct paradigm shifts
+    """
+    if not signals:
+        return []
+    
+    adaptive_window = sensitivity_config.clustering_window
+    
+    print(f"    🔗 TEMPORAL CLUSTERING: {len(signals)} raw direction signals")
+    print(f"    🎛️  Clustering window: {adaptive_window} years")
+    
+    # Sort by year
+    sorted_signals = sorted(signals, key=lambda s: s.year)
+    
+    clustered = []
+    current_cluster = [sorted_signals[0]]
+    
+    for signal in sorted_signals[1:]:
+        # FIXED: Compare with cluster START (current_cluster[0]) not end (current_cluster[-1])
+        if signal.year - current_cluster[0].year <= adaptive_window:
+            # Add to current cluster
+            current_cluster.append(signal)
+            print(f"      📎 Adding {signal.year} to cluster starting {current_cluster[0].year}")
+        else:
+            # Finalize current cluster and start new one
+            cluster_representative = merge_cluster_into_single_signal(current_cluster)
+            clustered.append(cluster_representative)
+            if len(current_cluster) > 1:
+                cluster_years = ', '.join(str(s.year) for s in current_cluster)
+                print(f"      ✅ Cluster MERGED [{cluster_years}] → paradigm shift at {cluster_representative.year}")
+            else:
+                print(f"      ✅ Single signal {current_cluster[0].year} → paradigm shift")
+            current_cluster = [signal]
+    
+    # Add final cluster
+    if current_cluster:
+        cluster_representative = merge_cluster_into_single_signal(current_cluster)
+        clustered.append(cluster_representative)
+        if len(current_cluster) > 1:
+            cluster_years = ', '.join(str(s.year) for s in current_cluster)
+            print(f"      ✅ Final cluster MERGED [{cluster_years}] → paradigm shift at {cluster_representative.year}")
+        else:
+            print(f"      ✅ Final single signal {current_cluster[0].year} → paradigm shift")
+    
+    print(f"    🎯 CLUSTERING COMPLETE: {len(signals)} signals → {len(clustered)} paradigm shifts")
+    return clustered
+
+
+def merge_cluster_into_single_signal(cluster: List[ShiftSignal]) -> ShiftSignal:
+    """
+    Merge multiple temporal signals into representative paradigm shift.
+    
+    Strategy: Use middle year as representative, combine evidence and confidence.
+    
+    Args:
+        cluster: List of signals in temporal proximity
+        
+    Returns:
+        Single representative paradigm shift signal
+    """
+    if len(cluster) == 1:
+        return cluster[0]
+    
+    # Use middle year as representative
+    representative_year = cluster[len(cluster)//2].year
+    
+    # Combine confidence (mean for stability)
+    combined_confidence = float(np.mean([s.confidence for s in cluster]))
+    
+    # Combine evidence strength (max for best evidence)
+    combined_evidence_strength = float(np.max([s.evidence_strength for s in cluster]))
+    
+    # Combine supporting evidence (top pieces from all signals)
+    combined_evidence = []
+    for s in cluster:
+        combined_evidence.extend(s.supporting_evidence)
+    # Remove duplicates and keep top 10
+    unique_evidence = list(dict.fromkeys(combined_evidence))[:10]
+    
+    # Combine contributing papers
+    all_papers = set()
+    for s in cluster:
+        all_papers.update(s.contributing_papers)
+    
+    # Enhanced paradigm significance
+    combined_paradigm_significance = float(np.max([s.paradigm_significance for s in cluster]))
+    
+    # Create clustering description preserving keyword data
+    best_signal = max(cluster, key=lambda s: s.evidence_strength)
+    years_span = f"{cluster[0].year}-{cluster[-1].year}" if len(cluster) > 1 else str(cluster[0].year)
+    clustering_suffix = f" | Clustered ({years_span}): {len(cluster)} signals merged"
+    
+    # Preserve original keyword data and add clustering info
+    if "Novel keywords:" in best_signal.transition_description:
+        transition_description = best_signal.transition_description + clustering_suffix
+    else:
+        transition_description = f"Clustered paradigm shift ({years_span}): {len(cluster)} direction signals merged"
+    
+    return ShiftSignal(
+        year=representative_year,
+        confidence=combined_confidence,
+        signal_type="direction_clustered",
+        evidence_strength=combined_evidence_strength,
+        supporting_evidence=tuple(unique_evidence),
+        contributing_papers=tuple(all_papers),
+        transition_description=transition_description,
+        paradigm_significance=combined_paradigm_significance
+    )
+
+
+# =============================================================================
+# VALIDATION LOGIC - Consistent threshold with score boosting
+# =============================================================================
+
+def validate_direction_with_citation(
+    direction_signals: List[ShiftSignal],
+    citation_signals: List[ShiftSignal], 
+    domain_data: DomainData,
+    domain_name: str,
+    sensitivity_config
+) -> List[ShiftSignal]:
+    """
+    Direction-citation validation with consistent threshold logic.
+    
+    SIMPLIFIED VALIDATION LOGIC: All signals use the same validation threshold,
+    with citation support providing score boost only.
+    
+    Logic:
+    1. Start with clustered direction signals as paradigm candidates
+    2. Check for citation support within ±2 years → +0.3 confidence boost
+    3. Apply consistent validation threshold to all boosted signals
+    
+    Args:
+        direction_signals: Primary direction change signals
+        citation_signals: Secondary citation validation signals
+        domain_data: Domain data for context
+        domain_name: Domain name for logging
+        sensitivity_config: Configuration with boost values and thresholds
+        
+    Returns:
+        List of validated paradigm shift signals
+    """
+    print(f"  🔄 DIRECTION-CITATION VALIDATION:")
+    print(f"    🔍 DEBUG: Input validation parameters:")
+    print(f"      📊 Direction signals to validate: {len(direction_signals)}")
+    print(f"      🔗 Citation signals for validation: {len(citation_signals)}")
+    print(f"      🎯 Validation threshold: {sensitivity_config.validation_threshold:.3f}")
+    print(f"      📈 Citation boost: {sensitivity_config.citation_boost:.3f}")
+    print(f"      ⚠️ Breakthrough paper validation REMOVED (too permissive)")
+    
+    if not direction_signals:
+        print(f"    ⚠️ No direction signals detected - no paradigm shifts")
+        return []
+    
+    validated_paradigms = []
+    
+    for idx, direction_signal in enumerate(direction_signals):
+        year = direction_signal.year
+        
+        print(f"    🎯 EVALUATING direction signal {idx+1}/{len(direction_signals)}: {year}")
+        print(f"      📊 Base confidence: {direction_signal.confidence:.3f}")
+        print(f"      🏷️  Signal type: {direction_signal.signal_type}")
+        
+        # Start with direction signal base confidence
+        base_confidence = direction_signal.confidence
+        paradigm_score = direction_signal.paradigm_significance
+        supporting_evidence = list(direction_signal.supporting_evidence)
+        contributing_papers = set(direction_signal.contributing_papers)
+        
+        # Check for citation support within ±2 years
+        citation_support = False
+        citation_years_nearby = []
+        for citation_signal in citation_signals:
+            if abs(citation_signal.year - year) <= 2:
+                citation_support = True
+                citation_years_nearby.append(citation_signal.year)
+                supporting_evidence.extend(citation_signal.supporting_evidence)
+                contributing_papers.update(citation_signal.contributing_papers)
+                print(f"      🔍 Citation validation found: {citation_signal.year} (±2 years from {year})")
+        
+        if citation_support:
+            print(f"      ✅ Citation support: YES (nearby years: {citation_years_nearby})")
+        else:
+            print(f"      ❌ Citation support: NO")
+        
+        # Calculate final confidence with additive score boosting (citation only)
+        confidence_boosts = 0.0
+        
+        if citation_support:
+            confidence_boosts += sensitivity_config.citation_boost
+            print(f"      📈 Citation boost applied: +{sensitivity_config.citation_boost:.2f}")
+        
+        # Apply boosts to confidence score (capped at 1.0)
+        final_confidence = min(base_confidence + confidence_boosts, 1.0)
+        final_paradigm_score = paradigm_score + confidence_boosts
+        
+        # Use consistent validation threshold for all signals
+        threshold = sensitivity_config.validation_threshold
+            
+        print(f"      📊 FINAL CALCULATION:")
+        print(f"        Base confidence: {base_confidence:.3f}")
+        print(f"        Total boosts: +{confidence_boosts:.3f}")
+        print(f"        Final confidence: {final_confidence:.3f}")
+        print(f"        Validation threshold: {threshold:.3f}")
+        print(f"        Result: {'PASS' if final_confidence >= threshold else 'FAIL'}")
+        
+        if final_confidence >= threshold:
+            # Preserve keyword data from original description
+            original_description = direction_signal.transition_description
+            validation_suffix = " (citation validated)" if citation_support else ""
+            
+            validated_signal = ShiftSignal(
+                year=year,
+                confidence=final_confidence,
+                signal_type="direction_primary_validated" if citation_support else "direction_primary_only",
+                evidence_strength=direction_signal.evidence_strength + (sensitivity_config.citation_boost if citation_support else 0),
+                supporting_evidence=tuple(supporting_evidence[:10]),
+                contributing_papers=tuple(contributing_papers),
+                transition_description=original_description + validation_suffix,
+                paradigm_significance=final_paradigm_score
+            )
+            
+            validated_paradigms.append(validated_signal)
+            
+            # Build validation type description
+            validation_type = "CITATION VALIDATED" if citation_support else "DIRECTION ONLY"
+                
+            print(f"      ✅ ACCEPTED ({validation_type}): {year}")
+        else:
+            print(f"      ❌ FILTERED: {year} confidence {final_confidence:.3f} < threshold {threshold:.3f}")
+    
+    print(f"    🏆 VALIDATION COMPLETE: {len(validated_paradigms)} paradigm shifts validated")
+    print(f"    📅 Validated years: {[s.year for s in validated_paradigms] if validated_paradigms else 'None'}")
+    return validated_paradigms
+
+
+# =============================================================================
+# MAIN DETECTION PIPELINE
+# =============================================================================
 
 def detect_shift_signals(
-    domain_data: DomainData, 
+    domain_data: DomainData,
     domain_name: str,
+    sensitivity_config,
     use_citation: bool = True,
-    use_semantic: bool = True,
     use_direction: bool = True,
-    semantic_confidence_nudge: float = 0.0,
-    semantic_temporal_nudge: int = 0,
-    precomputed_signals: Optional[Dict[str, List[ShiftSignal]]] = None
-) -> Tuple[List[ShiftSignal], List[TransitionEvidence]]:
+    precomputed_signals: Optional[Dict[str, List[ShiftSignal]]] = None,
+) -> Tuple[List[ShiftSignal], List[TransitionEvidence], Dict[str, Any]]:
     """
-    Main function for detecting paradigm transition signals.
+    Main paradigm shift detection pipeline.
     
-    Implements multi-source signal fusion with paradigm significance filtering.
+    SIMPLIFIED ARCHITECTURE:
+    1. Direction signals detect paradigm shifts (primary) 
+    2. Temporal clustering prevents over-segmentation
+    3. Citation signals validate and boost confidence (secondary)
+    4. Breakthrough paper validation REMOVED (too permissive)
     
     Args:
         domain_data: Domain data with papers and citations
-        domain_name: Name of the domain for configuration
-        use_citation: Whether to use citation disruption signal
-        use_semantic: Whether to use semantic shift signal
-        use_direction: Whether to use research direction signal
-        semantic_confidence_nudge: Pct to nudge semantic signal confidence
-        semantic_temporal_nudge: Years to nudge semantic signal timing
-        precomputed_signals: Optional dict of pre-computed raw signals to bypass detection
-        
+        domain_name: Name of the domain
+        sensitivity_config: Configuration for thresholds and parameters
+        use_citation: Whether to use citation validation
+        use_direction: Whether to use direction signals
+        precomputed_signals: Optional pre-computed signals
+
     Returns:
-        Tuple of (paradigm_shifts, transition_evidence)
+        Tuple of (paradigm_shifts, transition_evidence, clustering_metadata)
     """
     print(f"\n🔍 SHIFT SIGNAL DETECTION: {domain_name}")
-    print(f"  Configuration: Citation={use_citation}, Semantic={use_semantic}, Direction={use_direction}")
-    print(f"  Nudges: Semantic Confidence={semantic_confidence_nudge}, Semantic Temporal={semantic_temporal_nudge}")
+    print(f"  🎯 PRIMARY: Direction signals (paradigm detection)")
+    print(f"  🔗 CLUSTERING: Temporal proximity filtering")
+    print(f"  🔍 SECONDARY: Citation signals (validation)")
+    print(f"  🎛️  THRESHOLD: {sensitivity_config.detection_threshold:.2f}")
+    print(f"  🎛️  CLUSTERING WINDOW: {sensitivity_config.clustering_window} years")
+    print(f"  🎛️  VALIDATION THRESHOLD: {sensitivity_config.validation_threshold:.2f}")
     print("=" * 60)
-    
-    # Stage 1: Individual signal detection
+
+    # Stage 1: Primary Detection - Direction Signals 
     if precomputed_signals:
         print("  ⚡️ Using pre-computed raw signals.")
-        citation_disruptions = precomputed_signals.get('citation', []) if use_citation else []
-        semantic_shifts = precomputed_signals.get('semantic', []) if use_semantic else []
-        direction_volatility = precomputed_signals.get('direction', []) if use_direction else []
+        raw_direction_signals = (
+            precomputed_signals.get("direction", []) if use_direction else []
+        )
+        citation_signals = (
+            precomputed_signals.get("citation", []) if use_citation else []
+        )
     else:
-        citation_disruptions = detect_citation_structural_breaks(domain_data, domain_name) if use_citation else []
-        semantic_shifts = detect_vocabulary_regime_changes(domain_data) if use_semantic else []
-        direction_volatility = detect_research_direction_changes(domain_data) if use_direction else []
-    
-    # Apply nudges for sensitivity analysis
-    if semantic_confidence_nudge != 0.0 and semantic_shifts:
-        print(f"  ⚡️ Nudging semantic confidence by {semantic_confidence_nudge*100:.0f}%")
-        semantic_shifts = [
-            dataclasses.replace(s, confidence=min(s.confidence * (1 + semantic_confidence_nudge), 1.0))
-            for s in semantic_shifts
-        ]
+        # PRIMARY: Research direction changes detect paradigm shifts
+        raw_direction_signals = (
+            detect_research_direction_changes(domain_data, detection_threshold=sensitivity_config.detection_threshold) if use_direction else []
+        )
+        
+        # SECONDARY: Citation patterns for validation
+        citation_signals = (
+            detect_citation_structural_breaks(domain_data, domain_name)
+            if use_citation
+            else []
+        )
 
-    if semantic_temporal_nudge != 0 and semantic_shifts:
-        print(f"  ⚡️ Nudging semantic temporal by {semantic_temporal_nudge} year(s)")
-        semantic_shifts = [
-            dataclasses.replace(s, year=s.year + semantic_temporal_nudge)
-            for s in semantic_shifts
-        ]
-            
-    print(f"  📊 Citation disruptions: {len(citation_disruptions)}")
-    print(f"  📊 Semantic shifts: {len(semantic_shifts)}")
-    print(f"  📊 Direction volatility: {len(direction_volatility)}")
+    print(f"  🎯 RAW Direction signals: {len(raw_direction_signals)}")
+    if raw_direction_signals:
+        print(f"    📅 Raw direction years: {[s.year for s in raw_direction_signals]}")
+        print(f"    📈 Raw direction confidences: {[f'{s.confidence:.3f}' for s in raw_direction_signals]}")
     
-    # Stage 2: Signal validation and confidence scoring
-    all_signals = citation_disruptions + semantic_shifts + direction_volatility
-    validated_signals = cross_validate_signals(all_signals, domain_data)
-    
-    print(f"  ✅ Validated signals: {len(validated_signals)}")
-    
-    # Stage 3: Paradigm vs technical distinction
-    paradigm_shifts = filter_for_paradigm_significance(validated_signals, domain_data, domain_name)
-    
-    print(f"  🎯 Paradigm shifts identified: {len(paradigm_shifts)}")
-    
-    # Stage 4: Transition evidence generation
-    transition_evidence = generate_transition_justifications(paradigm_shifts, domain_data)
-    
-    print(f"  📋 Transition evidence generated: {len(transition_evidence)}")
-    
-    # Stage 5: Save shift signals for visualization
-    save_shift_signals_for_visualization(
-        raw_signals=all_signals,
-        validated_signals=validated_signals, 
-        paradigm_shifts=paradigm_shifts,
-        transition_evidence=transition_evidence,
-        domain_name=domain_name
+    # Stage 2: Temporal Clustering for direction signals
+    clustered_direction_signals = (
+        cluster_direction_signals_by_proximity(raw_direction_signals, sensitivity_config) 
+        if raw_direction_signals else []
     )
     
-    return paradigm_shifts, transition_evidence
+    print(f"  🔗 CLUSTERED Direction signals: {len(clustered_direction_signals)}")
+    if clustered_direction_signals:
+        print(f"    📅 Clustered direction years: {[s.year for s in clustered_direction_signals]}")
+        print(f"    📈 Clustered direction confidences: {[f'{s.confidence:.3f}' for s in clustered_direction_signals]}")
+    print(f"  🔍 Citation validation signals: {len(citation_signals)}")
+    if citation_signals:
+        print(f"    📅 Citation years: {[s.year for s in citation_signals]}")
+    
+    # Create clustering metadata for visualization
+    clustering_metadata = create_clustering_metadata(
+        raw_direction_signals, clustered_direction_signals, citation_signals, sensitivity_config
+    )
+    
+    # Stage 3: Direction-Citation Validation
+    paradigm_shifts = validate_direction_with_citation(
+        clustered_direction_signals, citation_signals, domain_data, domain_name, sensitivity_config
+    )
+
+    print(f"  ✅ Final validated paradigm shifts: {len(paradigm_shifts)}")
+    if paradigm_shifts:
+        print(f"    📅 Final paradigm shift years: {[s.year for s in paradigm_shifts]}")
+        print(f"    🏷️  Final signal types: {[s.signal_type for s in paradigm_shifts]}")
+        print(f"    📈 Final confidences: {[f'{s.confidence:.3f}' for s in paradigm_shifts]}")
+    else:
+        print(f"    ⚠️  NO paradigm shifts validated!")
+
+    # Stage 4: Generate transition evidence
+    transition_evidence = generate_transition_justifications(
+        paradigm_shifts, domain_data
+    )
+
+    print(f"  📋 Transition evidence generated: {len(transition_evidence)}")
+
+    # Stage 5: Save results for visualization
+    save_shift_signals_for_visualization(
+        raw_signals=raw_direction_signals + citation_signals,
+        validated_signals=paradigm_shifts,
+        paradigm_shifts=paradigm_shifts,
+        transition_evidence=transition_evidence,
+        domain_name=domain_name,
+    )
+
+    return paradigm_shifts, transition_evidence, clustering_metadata
+
+
+# =============================================================================
+# SUPPORTING FUNCTIONS
+# =============================================================================
+
+def create_clustering_metadata(
+    raw_direction_signals: List[ShiftSignal],
+    clustered_direction_signals: List[ShiftSignal], 
+    citation_signals: List[ShiftSignal],
+    sensitivity_config
+) -> Dict[str, Any]:
+    """
+    Create clustering metadata for visualization.
+    
+    Args:
+        raw_direction_signals: Original direction signals before clustering
+        clustered_direction_signals: Direction signals after clustering
+        citation_signals: Citation validation signals
+        sensitivity_config: Configuration used
+        
+    Returns:
+        Dict containing visualization metadata
+    """
+    # Create signal lookup by year
+    raw_signal_by_year = {signal.year: signal for signal in raw_direction_signals}
+    
+    # Analyze clustering relationships
+    clustering_relationships = []
+    for clustered_signal in clustered_direction_signals:
+        cluster_info = {
+            'representative_year': clustered_signal.year,
+            'evidence_strength': clustered_signal.evidence_strength,
+            'confidence': clustered_signal.confidence,
+            'transition_description': clustered_signal.transition_description,
+            'contributing_years': [],
+            'is_clustered': False,
+            'cluster_span': None,
+            'merge_count': 0
+        }
+        
+        # Parse clustering information from description
+        if "Clustered" in clustered_signal.transition_description and "(" in clustered_signal.transition_description:
+            try:
+                desc = clustered_signal.transition_description
+                range_part = desc.split("(")[1].split(")")[0]
+                if "-" in range_part:
+                    start_year, end_year = map(int, range_part.split("-"))
+                    cluster_info['cluster_span'] = (start_year, end_year)
+                    
+                    # Find contributing raw signals
+                    contributing_years = []
+                    for year in range(start_year, end_year + 1):
+                        if year in raw_signal_by_year:
+                            contributing_years.append(year)
+                    
+                    cluster_info['contributing_years'] = sorted(contributing_years)
+                    cluster_info['is_clustered'] = len(contributing_years) > 1
+                    cluster_info['merge_count'] = len(contributing_years)
+                else:
+                    # Single signal
+                    cluster_info['contributing_years'] = [clustered_signal.year]
+                    cluster_info['merge_count'] = 1
+            except:
+                # Fallback - treat as single signal
+                cluster_info['contributing_years'] = [clustered_signal.year]
+                cluster_info['merge_count'] = 1
+        else:
+            # Single signal (not clustered)
+            cluster_info['contributing_years'] = [clustered_signal.year]
+            cluster_info['merge_count'] = 1
+        
+        clustering_relationships.append(cluster_info)
+    
+    # Create comprehensive metadata
+    metadata = {
+        'raw_direction_signals': raw_direction_signals,
+        'clustered_direction_signals': clustered_direction_signals,
+        'citation_signals': citation_signals,
+        'sensitivity_config': sensitivity_config,
+        'clustering_relationships': clustering_relationships,
+        'raw_signal_by_year': raw_signal_by_year,
+        'clustering_summary': {
+            'total_raw_signals': len(raw_direction_signals),
+            'total_clustered_signals': len(clustered_direction_signals),
+            'clustering_window': sensitivity_config.clustering_window,
+            'detection_threshold': sensitivity_config.detection_threshold,
+            'reduction_ratio': len(raw_direction_signals) / max(len(clustered_direction_signals), 1),
+            'merge_statistics': {
+                'single_signals': sum(1 for rel in clustering_relationships if rel['merge_count'] == 1),
+                'merged_signals': sum(1 for rel in clustering_relationships if rel['merge_count'] > 1),
+                'max_merge_count': max((rel['merge_count'] for rel in clustering_relationships), default=0),
+                'total_raw_signals_merged': sum(rel['merge_count'] for rel in clustering_relationships)
+            }
+        }
+    }
+    
+    return metadata
+
+
+# DEPRECATED: Breakthrough paper validation removed as too permissive
+# def load_breakthrough_papers(domain_data: DomainData, domain_name: str) -> List[Paper]:
+#     """
+#     Load breakthrough papers for significance weighting.
+#     
+#     DEPRECATED: Breakthrough paper validation has been removed from the pipeline
+#     as it was making validation too permissive. Only citation validation is now used.
+#     """
+#     return []
+
+
+def generate_transition_justifications(
+    paradigm_shifts: List[ShiftSignal], domain_data: DomainData
+) -> List[TransitionEvidence]:
+    """
+    Generate detailed evidence for each paradigm transition.
+
+    Args:
+        paradigm_shifts: List of paradigm shift signals
+        domain_data: Domain data
+
+    Returns:
+        List of transition evidence
+    """
+    transition_evidence = []
+
+    for signal in paradigm_shifts:
+        # Analyze papers around the transition year
+        window_papers = [
+            p for p in domain_data.papers if abs(p.pub_year - signal.year) <= 2
+        ]
+
+        # Extract evidence patterns
+        disruption_patterns = []
+        emergence_patterns = []
+        methodological_changes = []
+
+        # Analyze keywords for patterns
+        all_keywords = []
+        for paper in window_papers:
+            all_keywords.extend(paper.keywords)
+
+        keyword_counts = Counter(all_keywords)
+        top_keywords = [kw for kw, count in keyword_counts.most_common(5)]
+
+        if top_keywords:
+            emergence_patterns.extend(
+                [f"Emerging keyword: {kw}" for kw in top_keywords[:3]]
+            )
+
+        # Analyze semantic descriptions for patterns
+        semantic_patterns = []
+        for citation in domain_data.citations:
+            if (
+                abs(citation.citing_year - signal.year) <= 1
+                and citation.semantic_description
+            ):
+                desc = citation.semantic_description.lower()
+                if any(
+                    word in desc
+                    for word in ["introduces", "novel", "new", "breakthrough"]
+                ):
+                    semantic_patterns.append(citation.semantic_description[:100])
+
+        if semantic_patterns:
+            methodological_changes.extend(semantic_patterns[:3])
+
+        # Create transition evidence
+        evidence = TransitionEvidence(
+            year=signal.year,
+            disruption_patterns=tuple(disruption_patterns),
+            emergence_patterns=tuple(emergence_patterns),
+            cross_domain_influences=tuple(),
+            methodological_changes=tuple(methodological_changes),
+            breakthrough_papers=signal.contributing_papers[:5],
+            confidence_score=signal.confidence,
+        )
+
+        transition_evidence.append(evidence)
+
+    return transition_evidence
 
 
 def save_shift_signals_for_visualization(
@@ -153,897 +1007,118 @@ def save_shift_signals_for_visualization(
     paradigm_shifts: List[ShiftSignal],
     transition_evidence: List[TransitionEvidence],
     domain_name: str,
-    output_dir: str = "results/signals"
+    output_dir: str = "results/signals",
 ) -> str:
     """
-    Save all shift signal detection results for visualization and analysis.
-    
+    Save shift signal detection results for visualization.
+
     Args:
-        raw_signals: Raw signals from individual detection methods
+        raw_signals: Raw signals from detection methods
         validated_signals: Cross-validated signals
         paradigm_shifts: Final paradigm shift signals
-        transition_evidence: Supporting evidence for transitions
+        transition_evidence: Supporting evidence
         domain_name: Name of the domain
-        output_dir: Directory to save signal files
-        
+        output_dir: Directory to save files
+
     Returns:
-        Path to the saved shift signals file
+        Path to the saved file
     """
     from pathlib import Path
     from datetime import datetime
     import json
-    
+
     # Ensure output directory exists
     Path(output_dir).mkdir(parents=True, exist_ok=True)
-    
+
     def serialize_shift_signal(signal: ShiftSignal) -> Dict:
-        """Convert ShiftSignal to serializable dictionary"""
+        """Convert ShiftSignal to dictionary"""
         return {
-            'year': signal.year,
-            'confidence': signal.confidence,
-            'signal_type': signal.signal_type,
-            'evidence_strength': signal.evidence_strength,
-            'supporting_evidence': list(signal.supporting_evidence),
-            'contributing_papers': list(signal.contributing_papers),
-            'transition_description': signal.transition_description,
-            'paradigm_significance': signal.paradigm_significance
+            "year": int(signal.year),
+            "confidence": float(signal.confidence),
+            "signal_type": str(signal.signal_type),
+            "evidence_strength": float(signal.evidence_strength),
+            "supporting_evidence": list(signal.supporting_evidence),
+            "contributing_papers": list(signal.contributing_papers),
+            "transition_description": str(signal.transition_description),
+            "paradigm_significance": float(signal.paradigm_significance),
         }
-    
+
     def serialize_transition_evidence(evidence: TransitionEvidence) -> Dict:
-        """Convert TransitionEvidence to serializable dictionary"""
+        """Convert TransitionEvidence to dictionary"""
         return {
-            'year': evidence.year,
-            'disruption_patterns': list(evidence.disruption_patterns),
-            'emergence_patterns': list(evidence.emergence_patterns),
-            'cross_domain_influences': list(evidence.cross_domain_influences),
-            'methodological_changes': list(evidence.methodological_changes),
-            'breakthrough_papers': list(evidence.breakthrough_papers),
-            'confidence_score': evidence.confidence_score
+            "year": int(evidence.year),
+            "disruption_patterns": list(evidence.disruption_patterns),
+            "emergence_patterns": list(evidence.emergence_patterns),
+            "cross_domain_influences": list(evidence.cross_domain_influences),
+            "methodological_changes": list(evidence.methodological_changes),
+            "breakthrough_papers": list(evidence.breakthrough_papers),
+            "confidence_score": float(evidence.confidence_score),
         }
-    
-    # Create comprehensive shift signals dataset
+
+    # Create comprehensive dataset
     shift_signals_data = {
-        'metadata': {
-            'domain_name': domain_name,
-            'analysis_date': datetime.now().isoformat(),
-            'analysis_type': 'shift_signal_detection',
-            'description': 'Paradigm transition detection using multi-source signal fusion',
-            'methodology': {
-                'stage1': 'Individual signal detection (citation, semantic, direction)',
-                'stage2': 'Cross-validation and confidence scoring',
-                'stage3': 'Paradigm significance filtering',
-                'stage4': 'Transition evidence generation'
-            }
-        },
-        'raw_signals': {
-            'count': len(raw_signals),
-            'description': 'Raw signals from individual detection methods before validation',
-            'signals': [serialize_shift_signal(s) for s in raw_signals],
-            'signal_types': list(set(s.signal_type for s in raw_signals))
-        },
-        'validated_signals': {
-            'count': len(validated_signals),
-            'description': 'Cross-validated signals with combined evidence',
-            'signals': [serialize_shift_signal(s) for s in validated_signals],
-            'validation_improvements': {
-                'multi_signal_bonus_applied': True,
-                'temporal_proximity_clustering': True,
-                'evidence_combination': True
-            }
-        },
-        'paradigm_shifts': {
-            'count': len(paradigm_shifts),
-            'description': 'Final paradigm shift signals after significance filtering',
-            'signals': [serialize_shift_signal(s) for s in paradigm_shifts],
-            'filtering_criteria': {
-                'breakthrough_paper_proximity': 'Within 2 years',
-                'multi_signal_confidence_boost': '>0.7 threshold',
-                'domain_specific_thresholds': 'Applied'
-            }
-        },
-        'transition_evidence': {
-            'count': len(transition_evidence),
-            'description': 'Supporting evidence and justifications for paradigm transitions',
-            'evidence': [serialize_transition_evidence(e) for e in transition_evidence]
-        },
-        'visualization_metadata': {
-            'timeline_data': {
-                'raw_signal_years': sorted(list(set(s.year for s in raw_signals))),
-                'validated_signal_years': sorted(list(set(s.year for s in validated_signals))),
-                'paradigm_shift_years': sorted(list(set(s.year for s in paradigm_shifts)))
+        "metadata": {
+            "domain_name": domain_name,
+            "analysis_date": datetime.now().isoformat(),
+            "analysis_type": "shift_signal_detection",
+            "description": "Paradigm transition detection using direction-citation hierarchy",
+            "methodology": {
+                "stage1": "Direction signal detection (primary)",
+                "stage2": "Temporal clustering (fixed algorithm)",
+                "stage3": "Citation validation (gradient-only CPSD)",
+                "stage4": "Consistent threshold validation with score boosting",
             },
-            'confidence_distributions': {
-                'raw_confidence_range': [
-                    min([s.confidence for s in raw_signals] + [0]), 
-                    max([s.confidence for s in raw_signals] + [1])
+        },
+        "raw_signals": {
+            "count": len(raw_signals),
+            "description": "Raw signals before clustering and validation",
+            "signals": [serialize_shift_signal(s) for s in raw_signals],
+            "signal_types": list(set(s.signal_type for s in raw_signals)),
+        },
+        "validated_signals": {
+            "count": len(validated_signals),
+            "description": "Final validated paradigm shifts",
+            "signals": [serialize_shift_signal(s) for s in validated_signals],
+        },
+        "paradigm_shifts": {
+            "count": len(paradigm_shifts),
+            "description": "Final paradigm shift signals",
+            "signals": [serialize_shift_signal(s) for s in paradigm_shifts],
+        },
+        "transition_evidence": {
+            "count": len(transition_evidence),
+            "description": "Supporting evidence for paradigm transitions",
+            "evidence": [serialize_transition_evidence(e) for e in transition_evidence],
+        },
+        "visualization_metadata": {
+            "timeline_data": {
+                "raw_signal_years": sorted(list(set(int(s.year) for s in raw_signals))),
+                "paradigm_shift_years": sorted(
+                    list(set(int(s.year) for s in paradigm_shifts))
+                ),
+            },
+            "confidence_distributions": {
+                "raw_confidence_range": [
+                    float(min([s.confidence for s in raw_signals] + [0])),
+                    float(max([s.confidence for s in raw_signals] + [1])),
                 ],
-                'paradigm_confidence_range': [
-                    min([s.confidence for s in paradigm_shifts] + [0]), 
-                    max([s.confidence for s in paradigm_shifts] + [1])
-                ]
+                "paradigm_confidence_range": [
+                    float(min([s.confidence for s in paradigm_shifts] + [0])),
+                    float(max([s.confidence for s in paradigm_shifts] + [1])),
+                ],
             },
-            'signal_type_analysis': {
-                'raw_types': list(set(s.signal_type for s in raw_signals)),
-                'final_types': list(set(s.signal_type for s in paradigm_shifts))
-            },
-            'filtering_statistics': {
-                'raw_to_validated_retention': len(validated_signals) / max(len(raw_signals), 1),
-                'validated_to_paradigm_retention': len(paradigm_shifts) / max(len(validated_signals), 1),
-                'overall_retention': len(paradigm_shifts) / max(len(raw_signals), 1)
-            }
-        }
+        },
     }
-    
+
     # Save to file
     output_file = f"{output_dir}/{domain_name}_shift_signals.json"
-    with open(output_file, 'w') as f:
+    with open(output_file, "w") as f:
         json.dump(shift_signals_data, f, indent=2)
-    
-    print(f"  📊 SHIFT SIGNALS SAVED FOR VISUALIZATION:")
+
+    print(f"  📊 RESULTS SAVED:")
     print(f"      📁 File: {output_file}")
     print(f"      🔍 Raw signals: {len(raw_signals)}")
-    print(f"      ✅ Validated signals: {len(validated_signals)}")
     print(f"      🎯 Paradigm shifts: {len(paradigm_shifts)}")
     print(f"      📋 Transition evidence: {len(transition_evidence)}")
-    
+
     return output_file
-
-
-def estimate_optimal_penalty(normalized_series: np.ndarray, domain_name: str) -> float:
-    """
-    FUNDAMENTAL SOLUTION: Data-driven penalty estimation for structural break detection.
-    
-    Automatically determines optimal penalty based on series characteristics:
-    - Series variance and volatility
-    - Signal-to-noise ratio
-    - Temporal density
-    - Domain-specific patterns
-    
-    UPDATED: Reduced over-segmentation by favoring paradigm significance over sensitivity
-    
-    Args:
-        normalized_series: Normalized time series data
-        domain_name: Domain name for logging
-        
-    Returns:
-        Optimal penalty value for PELT algorithm
-    """
-    try:
-        # Calculate data characteristics
-        series_variance = np.var(normalized_series)
-        series_mean = np.mean(normalized_series)
-        series_std = np.std(normalized_series)
-        
-        # Signal-to-noise ratio estimation
-        signal_strength = series_mean / (series_std + 1e-6)
-        
-        # Temporal volatility (adjacent differences)
-        if len(normalized_series) > 1:
-            temporal_volatility = np.mean(np.abs(np.diff(normalized_series)))
-        else:
-            temporal_volatility = 0.0
-        
-        # Coefficient of variation
-        cv = series_std / (series_mean + 1e-6)
-        
-        # Data density (non-zero ratio)
-        non_zero_ratio = np.count_nonzero(normalized_series) / len(normalized_series)
-        
-        print(f"    📊 Data characteristics: variance={series_variance:.3f}, SNR={signal_strength:.3f}, volatility={temporal_volatility:.3f}, CV={cv:.3f}, density={non_zero_ratio:.3f}")
-        
-        # FUNDAMENTAL ALGORITHM: Adaptive penalty based on data characteristics
-        # UPDATED: Higher base penalties to reduce over-segmentation
-        
-        # Base penalty inversely related to signal strength and density
-        # INCREASED: More conservative base penalty calculation
-        base_penalty = 2.0 / (signal_strength + 0.2) * (1.2 / (non_zero_ratio + 0.2))
-        
-        # Adjust for temporal volatility (high volatility = lower penalty for sensitivity)
-        # REDUCED: Less penalty reduction for volatility to prevent over-segmentation
-        volatility_factor = 1.0 / (temporal_volatility * 5 + 1.0)  # Was 10, now 5
-        
-        # Adjust for coefficient of variation (high variation = lower penalty)
-        # MODERATED: Less aggressive CV adjustment
-        cv_factor = 1.0 / (cv + 0.8)  # Was 0.5, now 0.8
-        
-        # Series length adjustment (longer series can handle lower penalties)
-        # CONSERVATIVE: Less penalty reduction for longer series
-        length_factor = max(0.7, 1.0 - (len(normalized_series) - 20) / 200.0)  # Was 0.5, 10, 100
-        
-        # Combine factors
-        adaptive_penalty = base_penalty * volatility_factor * cv_factor * length_factor
-        
-        # Ensure reasonable bounds - INCREASED minimum for paradigm significance
-        optimal_penalty = np.clip(adaptive_penalty, 0.8, 6.0)  # Was 0.05-3.0, now 0.8-6.0
-        
-        print(f"    🎯 Adaptive penalty calculation: base={base_penalty:.3f}, volatility_factor={volatility_factor:.3f}, cv_factor={cv_factor:.3f}, length_factor={length_factor:.3f}")
-        print(f"    ✅ Optimal penalty: {optimal_penalty:.3f} (ANTI-OVERSEGMENTATION)")
-        
-        return optimal_penalty
-        
-    except Exception as e:
-        print(f"    ⚠️ Penalty estimation failed: {e}, using conservative fallback")
-        # Fallback to conservative penalty for paradigm detection
-        return max(1.0, np.median(normalized_series) * 4.0)  # Was 0.1, 2.0
-
-
-def detect_citation_structural_breaks(domain_data: DomainData, domain_name: str) -> List[ShiftSignal]:
-    """
-    Detect structural breaks in citation patterns using ruptures.
-    
-    FUNDAMENTAL SOLUTION: Data-driven penalty selection and dense time series analysis
-    UPDATED: Reduced over-segmentation with paradigm-focused thresholds
-    
-    Args:
-        domain_data: Domain data with papers and citations
-        domain_name: Domain name for logging
-        
-    Returns:
-        List of citation disruption signals
-    """
-    # Create DENSE citation time series (fill gaps with zeros)
-    citation_series = defaultdict(float)
-    influence_series = defaultdict(float)
-    
-    # Get full year range 
-    all_years = [p.pub_year for p in domain_data.papers]
-    min_year, max_year = min(all_years), max(all_years)
-    
-    # Create dense series with zeros for missing years
-    for year in range(min_year, max_year + 1):
-        citation_series[year] = 0.0
-        influence_series[year] = 0.0
-    
-    # Fill in actual citation data
-    for paper in domain_data.papers:
-        year = paper.pub_year
-        citation_series[year] += paper.cited_by_count
-        # Influence score: citation count weighted by recency
-        recency_weight = 1.0 / (2025 - year + 1)
-        influence_series[year] += paper.cited_by_count * recency_weight
-    
-    # Prepare DENSE data for ruptures
-    years = sorted(citation_series.keys())
-    citation_values = [citation_series[year] for year in years]
-    influence_values = [influence_series[year] for year in years]
-    
-    print(f"    🔬 Dense time series: {len(years)} years ({min_year}-{max_year})")
-    print(f"    📊 Citation range: {min(citation_values):,.0f} - {max(citation_values):,.0f}")
-    
-    # Use ruptures PELT algorithm for optimal segmentation
-    signals = []
-    
-    # Citation structural breaks with DATA-DRIVEN penalty selection
-    if len(citation_values) >= 5 and max(citation_values) > 0:
-        try:
-            # Normalize values for stability
-            normalized_citations = np.array(citation_values) / max(citation_values)
-            
-            # FUNDAMENTAL SOLUTION: Data-driven penalty estimation
-            optimal_penalty = estimate_optimal_penalty(normalized_citations, domain_name)
-            
-            algo = rpt.Pelt(model="l2").fit(normalized_citations.reshape(-1, 1))
-            change_points = algo.predict(pen=optimal_penalty)
-            
-            print(f"    📍 Data-driven penalty {optimal_penalty:.3f}: {len(change_points)-1} change points detected")
-            
-            # UPDATED: Conservative confidence threshold for paradigm significance
-            series_volatility = np.std(normalized_citations)
-            dynamic_threshold = max(0.1, series_volatility * 0.8)  # Was 0.02, 0.5
-            
-            print(f"    🎯 Dynamic confidence threshold: {dynamic_threshold:.3f} (ANTI-OVERSEGMENTATION, based on volatility={series_volatility:.3f})")
-            
-            # Convert to ShiftSignal objects with PARADIGM-FOCUSED confidence threshold
-            accepted_change_points = []
-            for cp_idx in change_points[:-1]:  # Exclude last point (end of series)
-                if 0 < cp_idx < len(years):
-                    year = years[cp_idx]
-                    
-                    # MINIMUM PERIOD ENFORCEMENT: Ensure at least 4 years between change points
-                    if accepted_change_points and year - accepted_change_points[-1] < 4:
-                        print(f"      ❌ {year}: Too close to previous change point ({accepted_change_points[-1]}) - minimum 4-year gap required")
-                        continue
-                    
-                    # Calculate confidence based on magnitude of change
-                    before_mean = np.mean(normalized_citations[max(0, cp_idx-3):cp_idx])
-                    after_mean = np.mean(normalized_citations[cp_idx:min(len(normalized_citations), cp_idx+3)])
-                    change_magnitude = abs(after_mean - before_mean)
-                    
-                    # REDUCED: Less confidence inflation for realistic assessment
-                    confidence = min(change_magnitude * 1.2, 1.0)  # Was 2.0, now 1.2
-                    
-                    # PARADIGM-FOCUSED confidence threshold
-                    if confidence > dynamic_threshold:
-                        contributing_papers = tuple(p.id for p in domain_data.papers if p.pub_year == year)
-                        
-                        print(f"      ✅ {year}: magnitude={change_magnitude:.3f}, confidence={confidence:.3f}")
-                        
-                        signals.append(ShiftSignal(
-                            year=year,
-                            confidence=confidence,
-                            signal_type="citation_disruption",
-                            evidence_strength=change_magnitude,
-                            supporting_evidence=(f"Citation pattern change: {before_mean:.3f} → {after_mean:.3f}",),
-                            contributing_papers=contributing_papers,
-                            transition_description=f"Structural break in citation patterns at {year}",
-                            paradigm_significance=0.5  # Initial neutral significance
-                        ))
-                        accepted_change_points.append(year)
-                    else:
-                        print(f"      ❌ {year}: magnitude={change_magnitude:.3f}, confidence={confidence:.3f} (below paradigm threshold {dynamic_threshold:.3f})")
-                    
-        except Exception as e:
-            print(f"    ⚠️ Citation structural break detection failed: {e}")
-    
-    # Influence structural breaks with DATA-DRIVEN parameters
-    if len(influence_values) >= 5 and max(influence_values) > 0:
-        try:
-            normalized_influence = np.array(influence_values) / max(influence_values)
-            
-            # Data-driven penalty for influence (slightly higher)
-            influence_penalty = estimate_optimal_penalty(normalized_influence, domain_name) * 1.2
-            
-            algo = rpt.Pelt(model="l2").fit(normalized_influence.reshape(-1, 1))
-            change_points = algo.predict(pen=influence_penalty)
-            
-            # Adaptive threshold for influence
-            influence_volatility = np.std(normalized_influence)
-            influence_threshold = max(0.03, influence_volatility * 0.6)
-            
-            for cp_idx in change_points[:-1]:
-                if 0 < cp_idx < len(years):
-                    year = years[cp_idx]
-                    
-                    # Avoid duplicates from citation analysis
-                    if not any(s.year == year and s.signal_type == "citation_disruption" for s in signals):
-                        before_mean = np.mean(normalized_influence[max(0, cp_idx-3):cp_idx])
-                        after_mean = np.mean(normalized_influence[cp_idx:min(len(normalized_influence), cp_idx+3)])
-                        change_magnitude = abs(after_mean - before_mean)
-                        
-                        confidence = min(change_magnitude * 2.0, 1.0)
-                        
-                        # ADAPTIVE confidence threshold for influence
-                        if confidence > influence_threshold:
-                            contributing_papers = tuple(p.id for p in domain_data.papers if p.pub_year == year)
-                            
-                            print(f"      ✅ {year} (influence): magnitude={change_magnitude:.3f}, confidence={confidence:.3f}")
-                            
-                            signals.append(ShiftSignal(
-                                year=year,
-                                confidence=confidence,
-                                signal_type="citation_disruption",
-                                evidence_strength=change_magnitude,
-                                supporting_evidence=(f"Influence pattern change: {before_mean:.3f} → {after_mean:.3f}",),
-                                contributing_papers=contributing_papers,
-                                transition_description=f"Structural break in influence patterns at {year}",
-                                paradigm_significance=0.6  # Slightly higher for influence patterns
-                            ))
-                            
-        except Exception as e:
-            print(f"    ⚠️ Influence structural break detection failed: {e}")
-    
-    print(f"    🎯 Total citation disruption signals: {len(signals)}")
-    return signals
-
-
-def detect_vocabulary_regime_changes(domain_data: DomainData) -> List[ShiftSignal]:
-    """
-    Detect semantic vocabulary shifts using enhanced patterns from Phase 8.
-    
-    Leverages rich citation descriptions and content abstracts.
-    
-    Args:
-        domain_data: Domain data with papers and citations
-        
-    Returns:
-        List of semantic shift signals
-    """
-    signals = []
-    paradigm_patterns = load_paradigm_patterns()
-    
-    # Analyze semantic descriptions from citations
-    year_descriptions = defaultdict(list)
-    for citation in domain_data.citations:
-        if citation.semantic_description:
-            year_descriptions[citation.citing_year].append(citation.semantic_description.lower())
-    
-    # Analyze paradigm patterns across time windows
-    years = sorted(year_descriptions.keys())
-    window_size = 3
-    
-    for i in range(window_size, len(years) - window_size):
-        year = years[i]
-        
-        # Current window semantic patterns
-        current_window = []
-        for y in years[i-window_size//2:i+window_size//2+1]:
-            current_window.extend(year_descriptions[y])
-        
-        # Previous window
-        prev_window = []
-        for y in years[max(0, i-window_size):i]:
-            prev_window.extend(year_descriptions[y])
-        
-        if not current_window or not prev_window:
-            continue
-        
-        # Extract paradigm patterns
-        current_patterns = extract_enhanced_semantic_patterns(current_window, paradigm_patterns)
-        prev_patterns = extract_enhanced_semantic_patterns(prev_window, paradigm_patterns)
-        
-        # Detect emerging paradigm patterns
-        novel_patterns = []
-        paradigm_score = 0.0
-        
-        for pattern_type, patterns in current_patterns.items():
-            for pattern, count in patterns.items():
-                prev_count = prev_patterns.get(pattern_type, {}).get(pattern, 0)
-                
-                # Significant emergence or amplification
-                if count >= 2 and (prev_count == 0 or count > prev_count * 2):
-                    novel_patterns.append(f"{pattern_type}: {pattern}")
-                    # Higher paradigm significance for architectural and foundational patterns
-                    if pattern_type in ['architectural_shifts', 'foundational_work']:
-                        paradigm_score += 0.3
-                    elif pattern_type in ['methodological_shifts']:
-                        paradigm_score += 0.2
-                    else:
-                        paradigm_score += 0.1
-        
-        # Create signal if significant patterns detected
-        if len(novel_patterns) >= 2:  # Require multiple patterns for significance
-            confidence = min(len(novel_patterns) / 5.0, 1.0)  # Scale confidence
-            paradigm_significance = min(paradigm_score, 1.0)
-            contributing_papers = tuple(p.id for p in domain_data.papers 
-                                       if abs(p.pub_year - year) <= 1)
-            
-            signals.append(ShiftSignal(
-                year=year,
-                confidence=confidence,
-                signal_type="semantic_shift",
-                evidence_strength=paradigm_score,
-                supporting_evidence=tuple(novel_patterns[:5]),  # Top 5 patterns
-                contributing_papers=contributing_papers,
-                transition_description=f"Semantic paradigm shift: {', '.join(novel_patterns[:3])}",
-                paradigm_significance=paradigm_significance
-            ))
-    
-    return signals
-
-
-def extract_enhanced_semantic_patterns(descriptions: List[str], paradigm_patterns: Dict[str, List[str]]) -> Dict[str, Dict[str, int]]:
-    """Extract enhanced semantic patterns using Phase 8 paradigm indicators."""
-    patterns = {category: {} for category in paradigm_patterns.keys()}
-    
-    for desc in descriptions:
-        for category, keywords in paradigm_patterns.items():
-            for keyword in keywords:
-                if keyword in desc:
-                    patterns[category][keyword] = patterns[category].get(keyword, 0) + 1
-    
-    return patterns
-
-
-def detect_research_direction_changes(domain_data: DomainData) -> List[ShiftSignal]:
-    """
-    Detect changes in research directions using keyword and topic volatility.
-    
-    Args:
-        domain_data: Domain data with papers and citations
-        
-    Returns:
-        List of direction volatility signals
-    """
-    signals = []
-    
-    # Group papers by year and analyze keyword evolution
-    year_keywords = defaultdict(list)
-    for paper in domain_data.papers:
-        year_keywords[paper.pub_year].extend(paper.keywords)
-    
-    years = sorted(year_keywords.keys())
-    if len(years) < 5:
-        return []
-    
-    # Calculate keyword diversity and volatility
-    window_size = 3
-    for i in range(window_size, len(years)):
-        year = years[i]
-        
-        # Current window keywords
-        current_keywords = []
-        for y in years[i-window_size:i]:
-            current_keywords.extend(year_keywords[y])
-        
-        # Previous window keywords
-        prev_keywords = []
-        for y in years[max(0, i-window_size*2):i-window_size]:
-            prev_keywords.extend(year_keywords[y])
-        
-        if not current_keywords or not prev_keywords:
-            continue
-        
-        # Calculate keyword overlap and novelty
-        current_set = set(current_keywords)
-        prev_set = set(prev_keywords)
-        
-        if len(prev_set) == 0:
-            continue
-            
-        overlap = len(current_set & prev_set) / len(prev_set)
-        novelty = len(current_set - prev_set) / len(current_set) if current_set else 0
-        
-        # High novelty + low overlap indicates direction change
-        direction_change_score = novelty * (1 - overlap)
-        
-        if direction_change_score > 0.4:  # Threshold for significant direction change
-            # Count frequency of new keywords to assess significance
-            new_keywords = current_set - prev_set
-            keyword_frequencies = Counter(current_keywords)
-            significant_new = [kw for kw in new_keywords if keyword_frequencies[kw] >= 2]
-            
-            if len(significant_new) >= 3:  # Multiple significant new keywords
-                confidence = min(direction_change_score, 1.0)
-                contributing_papers = tuple(p.id for p in domain_data.papers 
-                                           if p.pub_year == year and 
-                                           any(kw in p.keywords for kw in significant_new))
-                
-                signals.append(ShiftSignal(
-                    year=year,
-                    confidence=confidence,
-                    signal_type="direction_volatility",
-                    evidence_strength=direction_change_score,
-                    supporting_evidence=tuple(f"New focus: {kw}" for kw in significant_new[:5]),
-                    contributing_papers=contributing_papers,
-                    transition_description=f"Research direction shift: {novelty:.1%} new keywords",
-                    paradigm_significance=0.4  # Moderate paradigm significance for direction changes
-                ))
-    
-    return signals
-
-
-def cross_validate_signals(signals: List[ShiftSignal], domain_data: DomainData) -> List[ShiftSignal]:
-    """
-    Cross-validate signals using multiple evidence sources and temporal proximity.
-    
-    Args:
-        signals: List of detected signals
-        domain_data: Domain data for validation
-        
-    Returns:
-        List of validated signals
-    """
-    if not signals:
-        return []
-    
-    # Group signals by year (within 2-year window)
-    signal_groups = defaultdict(list)
-    for signal in signals:
-        signal_groups[signal.year].append(signal)
-        # Also add to nearby years for clustering
-        signal_groups[signal.year - 1].append(signal)
-        signal_groups[signal.year + 1].append(signal)
-    
-    validated_signals = []
-    processed_years = set()
-    
-    for year, year_signals in signal_groups.items():
-        if year in processed_years or len(year_signals) < 1:
-            continue
-        
-        # Find the year with the most signals in the cluster
-        cluster_signals = defaultdict(list)
-        for signal in year_signals:
-            cluster_signals[signal.year].append(signal)
-        
-        # Get the year with maximum signals
-        best_year = max(cluster_signals.keys(), key=lambda y: len(cluster_signals[y]))
-        best_signals = cluster_signals[best_year]
-        
-        if len(best_signals) >= 1:  # At least one signal required
-            # Combine evidence from multiple signal types
-            combined_confidence = 0.0
-            combined_evidence = []
-            combined_papers = set()
-            max_paradigm_significance = 0.0
-            
-            signal_types = set()
-            for signal in best_signals:
-                signal_types.add(signal.signal_type)
-                combined_confidence += signal.confidence
-                combined_evidence.extend(signal.supporting_evidence)
-                combined_papers.update(signal.contributing_papers)
-                max_paradigm_significance = max(max_paradigm_significance, signal.paradigm_significance)
-            
-            # Multi-signal bonus for cross-validation
-            multi_signal_bonus = 0.2 * (len(signal_types) - 1)
-            final_confidence = min(combined_confidence + multi_signal_bonus, 1.0)
-            
-            # Create validated signal
-            primary_signal = max(best_signals, key=lambda s: s.confidence)
-            
-            validated_signal = ShiftSignal(
-                year=best_year,
-                confidence=final_confidence,
-                signal_type=f"validated_{primary_signal.signal_type}",
-                evidence_strength=primary_signal.evidence_strength,
-                supporting_evidence=tuple(combined_evidence[:10]),  # Top 10 pieces of evidence
-                contributing_papers=tuple(combined_papers),
-                transition_description=f"Multi-signal paradigm transition: {', '.join(signal_types)}",
-                paradigm_significance=max_paradigm_significance
-            )
-            
-            validated_signals.append(validated_signal)
-            
-            # Mark nearby years as processed to avoid duplicates
-            for y in range(best_year - 2, best_year + 3):
-                processed_years.add(y)
-    
-    return validated_signals
-
-
-def filter_for_paradigm_significance(signals: List[ShiftSignal], domain_data: DomainData, domain_name: str) -> List[ShiftSignal]:
-    """
-    Filter signals for paradigm significance using breakthrough papers and domain context.
-    
-    Implements Trial 3: Hierarchical Paradigm Filtering
-    
-    Args:
-        signals: List of validated signals
-        domain_data: Domain data
-        domain_name: Domain name for configuration
-        
-    Returns:
-        List of paradigm shift signals
-    """
-    if not signals:
-        return []
-    
-    # Load breakthrough papers for domain
-    breakthrough_papers = load_breakthrough_papers(domain_data, domain_name)
-    breakthrough_years = {p.pub_year for p in breakthrough_papers}
-    
-    paradigm_shifts = []
-    
-    for signal in signals:
-        paradigm_score = signal.paradigm_significance
-        
-        # Boost significance for signals near breakthrough papers
-        nearby_breakthroughs = [year for year in breakthrough_years 
-                              if abs(year - signal.year) <= 2]
-        if nearby_breakthroughs:
-            paradigm_score += 0.3
-            
-        # Boost significance for strong multi-signal evidence
-        if signal.signal_type.startswith("validated_") and signal.confidence > 0.7:
-            paradigm_score += 0.2
-        
-        # Apply domain-specific significance thresholds (lowered for better recall)
-        significance_threshold = {
-            'natural_language_processing': 0.5,  # Was 0.8 → improved recall
-            'deep_learning': 0.4,               # Was 0.6 → better detection
-            'computer_vision': 0.4,             # Was 0.5 → enhanced sensitivity
-            'machine_translation': 0.4,         # Was 0.5 → improved coverage
-            'machine_learning': 0.3             # Was 0.4 → maximum sensitivity
-        }
-        
-        threshold = significance_threshold.get(domain_name, 0.5)
-        
-        if paradigm_score >= threshold:
-            # Update signal with final paradigm score
-            paradigm_signal = ShiftSignal(
-                year=signal.year,
-                confidence=signal.confidence,
-                signal_type=signal.signal_type,
-                evidence_strength=signal.evidence_strength,
-                supporting_evidence=signal.supporting_evidence,
-                contributing_papers=signal.contributing_papers,
-                transition_description=signal.transition_description,
-                paradigm_significance=paradigm_score
-            )
-            paradigm_shifts.append(paradigm_signal)
-    
-    return paradigm_shifts
-
-
-def load_breakthrough_papers(domain_data: DomainData, domain_name: str) -> List[Paper]:
-    """
-    Load breakthrough papers for significance weighting.
-    
-    Args:
-        domain_data: Domain data
-        domain_name: Domain name
-        
-    Returns:
-        List of breakthrough papers
-    """
-    try:
-        # Construct file path for breakthrough papers
-        breakthrough_file = Path(f"resources/{domain_name}/{domain_name}_breakthrough_papers.jsonl")
-        
-        if not breakthrough_file.exists():
-            print(f"    ⚠️ Breakthrough papers file not found: {breakthrough_file}")
-            return []
-        
-        # Load breakthrough paper IDs
-        breakthrough_ids = set()
-        with open(breakthrough_file, 'r') as f:
-            for line in f:
-                if line.strip():
-                    paper_data = json.loads(line.strip())
-                    paper_id = paper_data.get('openalex_id', '')
-                    if paper_id:
-                        breakthrough_ids.add(paper_id)
-        
-        # Filter papers that are breakthrough papers
-        breakthrough_papers = [p for p in domain_data.papers if p.id in breakthrough_ids]
-        
-        print(f"    📚 Loaded {len(breakthrough_papers)} breakthrough papers from {len(breakthrough_ids)} IDs")
-        return breakthrough_papers
-        
-    except Exception as e:
-        print(f"    ⚠️ Error loading breakthrough papers: {e}")
-        return []
-
-
-def generate_transition_justifications(paradigm_shifts: List[ShiftSignal], 
-                                      domain_data: DomainData) -> List[TransitionEvidence]:
-    """
-    Generate detailed evidence for each paradigm transition.
-    
-    Args:
-        paradigm_shifts: List of paradigm shift signals
-        domain_data: Domain data
-        
-    Returns:
-        List of transition evidence
-    """
-    transition_evidence = []
-    
-    for signal in paradigm_shifts:
-        # Analyze papers around the transition year
-        window_papers = [p for p in domain_data.papers 
-                        if abs(p.pub_year - signal.year) <= 2]
-        
-        # Extract evidence patterns
-        disruption_patterns = []
-        emergence_patterns = []
-        methodological_changes = []
-        
-        # Analyze keywords for patterns
-        all_keywords = []
-        for paper in window_papers:
-            all_keywords.extend(paper.keywords)
-        
-        keyword_counts = Counter(all_keywords)
-        top_keywords = [kw for kw, count in keyword_counts.most_common(5)]
-        
-        if top_keywords:
-            emergence_patterns.extend([f"Emerging keyword: {kw}" for kw in top_keywords[:3]])
-        
-        # Analyze semantic descriptions for patterns
-        semantic_patterns = []
-        for citation in domain_data.citations:
-            if (abs(citation.citing_year - signal.year) <= 1 and 
-                citation.semantic_description):
-                desc = citation.semantic_description.lower()
-                if any(word in desc for word in ['introduces', 'novel', 'new', 'breakthrough']):
-                    semantic_patterns.append(citation.semantic_description[:100])
-        
-        if semantic_patterns:
-            methodological_changes.extend(semantic_patterns[:3])
-        
-        # Create transition evidence
-        evidence = TransitionEvidence(
-            year=signal.year,
-            disruption_patterns=tuple(disruption_patterns),
-            emergence_patterns=tuple(emergence_patterns),
-            cross_domain_influences=tuple(),  # Could be enhanced in future
-            methodological_changes=tuple(methodological_changes),
-            breakthrough_papers=signal.contributing_papers[:5],  # Top 5 contributing papers
-            confidence_score=signal.confidence
-        )
-        
-        transition_evidence.append(evidence)
-    
-    return transition_evidence
-
-
-def convert_to_change_points(shift_signals: List[ShiftSignal]) -> List[ChangePointWithPapers]:
-    """
-    Convert shift signals to change points for compatibility with existing pipeline.
-    
-    Args:
-        shift_signals: List of shift signals
-        
-    Returns:
-        List of change points with papers
-    """
-    change_points = []
-    
-    for signal in shift_signals:
-        change_point = ChangePointWithPapers(
-            year=signal.year,
-            confidence=signal.confidence,
-            method="enhanced_shift_signal",
-            signal_type=signal.signal_type,
-            description=signal.transition_description,
-            supporting_evidence=signal.supporting_evidence,
-            contributing_papers=signal.contributing_papers
-        )
-        change_points.append(change_point)
-    
-    return change_points
-
-
-def detect_paradigm_shifts_trial1(domain: str, papers_data: List[Dict],
-                                 semantic_data: Optional[List[Dict]] = None,
-                                 breakthrough_papers: Optional[List[Dict]] = None) -> List[Dict]:
-    """
-    Legacy function for detecting paradigm shifts (Trial 1 compatibility).
-    
-    Args:
-        domain: Domain name
-        papers_data: List of paper dictionaries
-        semantic_data: Optional semantic data
-        breakthrough_papers: Optional breakthrough papers
-        
-    Returns:
-        List of paradigm shift dictionaries
-    """
-    # Convert to domain data format
-    papers = []
-    for paper_dict in papers_data:
-        paper = Paper(
-            id=paper_dict.get('id', ''),
-            title=paper_dict.get('title', ''),
-            content=paper_dict.get('content', ''),
-            pub_year=paper_dict.get('pub_year', 0),
-            cited_by_count=paper_dict.get('cited_by_count', 0),
-            keywords=tuple(paper_dict.get('keywords', [])),
-            children=tuple(paper_dict.get('children', [])),
-            description=paper_dict.get('description', '')
-        )
-        papers.append(paper)
-    
-    # Create domain data
-    citations = []
-    if semantic_data:
-        for sem_data in semantic_data:
-            citation = Citation(
-                citing_paper_id=sem_data.get('citing_paper_id', ''),
-                cited_paper_id=sem_data.get('cited_paper_id', ''),
-                citing_year=sem_data.get('citing_year', 0),
-                cited_year=sem_data.get('cited_year', 0),
-                semantic_description=sem_data.get('semantic_description', '')
-            )
-            citations.append(citation)
-    
-    year_range = (min(p.pub_year for p in papers), max(p.pub_year for p in papers)) if papers else (0, 0)
-    
-    domain_data = DomainData(
-        domain_name=domain,
-        papers=tuple(papers),
-        citations=tuple(citations),
-        graph_nodes=tuple(),
-        year_range=year_range,
-        total_papers=len(papers)
-    )
-    
-    # Detect shift signals
-    shift_signals, _ = detect_shift_signals(domain_data, domain)
-    
-    # Convert to dictionary format for legacy compatibility
-    results = []
-    for signal in shift_signals:
-        result = {
-            'year': signal.year,
-            'confidence': signal.confidence,
-            'type': signal.signal_type,
-            'description': signal.transition_description,
-            'evidence': list(signal.supporting_evidence),
-            'paradigm_significance': signal.paradigm_significance
-        }
-        results.append(result)
-    
-    return results
