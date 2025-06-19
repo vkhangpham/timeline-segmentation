@@ -28,7 +28,7 @@ import networkx as nx
 sys.path.append(str(Path(__file__).parent.parent))
 
 from core.data_processing import process_domain_data
-from core.change_detection import detect_changes, create_improved_segments_with_confidence
+from core.change_detection import detect_changes, create_segments_with_confidence
 from core.period_signal_detection import characterize_periods
 from core.segment_merging import analyze_merging_opportunities
 from core.data_models import DomainData, PeriodCharacterization, ShiftSignal
@@ -63,7 +63,7 @@ def run_nlp_merging_analysis():
     change_detection_result = detect_changes(domain_data)
     change_years = [cp.year for cp in change_detection_result.change_points]
     
-    segments = create_improved_segments_with_confidence(
+    segments = create_segments_with_confidence(
         change_years,
         domain_data.year_range,
         change_detection_result.statistical_significance,

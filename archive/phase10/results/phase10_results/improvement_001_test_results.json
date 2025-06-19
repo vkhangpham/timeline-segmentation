@@ -1,0 +1,238 @@
+{
+  "metadata": {
+    "test_date": "2025-06-16T17:51:41.082909",
+    "test_type": "improvement_001_citation_detection_fixes",
+    "algorithm_version": "phase10_improved",
+    "description": "IMPROVEMENT-001: Citation Detection Fundamental Fixes",
+    "baseline_comparison": true
+  },
+  "improvement_results": {
+    "natural_language_processing": {
+      "domain_name": "natural_language_processing",
+      "signal_count": 1,
+      "signal_years": [
+        2013
+      ],
+      "confidence_scores": [
+        1.0
+      ],
+      "evidence_strength": [
+        0.5370442783763953
+      ],
+      "paradigm_significance": [
+        1.0
+      ],
+      "computational_time": 0.05149507522583008,
+      "peak_memory_mb": 0.23274803161621094,
+      "total_papers": 440,
+      "year_range": [
+        1951,
+        2023
+      ],
+      "years_span": 73,
+      "improvement_version": "phase10_improvement_001",
+      "avg_confidence": 1.0,
+      "max_confidence": 1.0,
+      "min_confidence": 1.0,
+      "avg_evidence_strength": 0.5370442783763953,
+      "avg_paradigm_significance": 1.0
+    },
+    "deep_learning": {
+      "domain_name": "deep_learning",
+      "signal_count": 1,
+      "signal_years": [
+        2013
+      ],
+      "confidence_scores": [
+        0.8297207037873693
+      ],
+      "evidence_strength": [
+        0.41486035189368464
+      ],
+      "paradigm_significance": [
+        1.0
+      ],
+      "computational_time": 0.020914793014526367,
+      "peak_memory_mb": 0.19404029846191406,
+      "total_papers": 447,
+      "year_range": [
+        1973,
+        2021
+      ],
+      "years_span": 49,
+      "improvement_version": "phase10_improvement_001",
+      "avg_confidence": 0.8297207037873693,
+      "max_confidence": 0.8297207037873693,
+      "min_confidence": 0.8297207037873693,
+      "avg_evidence_strength": 0.41486035189368464,
+      "avg_paradigm_significance": 1.0
+    },
+    "computer_vision": {
+      "domain_name": "computer_vision",
+      "signal_count": 0,
+      "signal_years": [],
+      "confidence_scores": [],
+      "evidence_strength": [],
+      "paradigm_significance": [],
+      "computational_time": 0.008500337600708008,
+      "peak_memory_mb": 0.023748397827148438,
+      "total_papers": 471,
+      "year_range": [
+        1962,
+        2023
+      ],
+      "years_span": 62,
+      "improvement_version": "phase10_improvement_001",
+      "avg_confidence": 0.0,
+      "max_confidence": 0.0,
+      "min_confidence": 0.0,
+      "avg_evidence_strength": 0.0,
+      "avg_paradigm_significance": 0.0
+    },
+    "machine_learning": {
+      "domain_name": "machine_learning",
+      "signal_count": 1,
+      "signal_years": [
+        2014
+      ],
+      "confidence_scores": [
+        1.0
+      ],
+      "evidence_strength": [
+        0.5094032698368519
+      ],
+      "paradigm_significance": [
+        1.0999999999999999
+      ],
+      "computational_time": 0.05161595344543457,
+      "peak_memory_mb": 0.6985359191894531,
+      "total_papers": 454,
+      "year_range": [
+        1950,
+        2023
+      ],
+      "years_span": 74,
+      "improvement_version": "phase10_improvement_001",
+      "avg_confidence": 1.0,
+      "max_confidence": 1.0,
+      "min_confidence": 1.0,
+      "avg_evidence_strength": 0.5094032698368519,
+      "avg_paradigm_significance": 1.0999999999999999
+    },
+    "machine_translation": {
+      "domain_name": "machine_translation",
+      "signal_count": 0,
+      "signal_years": [],
+      "confidence_scores": [],
+      "evidence_strength": [],
+      "paradigm_significance": [],
+      "computational_time": 0.0024192333221435547,
+      "peak_memory_mb": 0.019990921020507812,
+      "total_papers": 225,
+      "year_range": [
+        1992,
+        2021
+      ],
+      "years_span": 30,
+      "improvement_version": "phase10_improvement_001",
+      "avg_confidence": 0.0,
+      "max_confidence": 0.0,
+      "min_confidence": 0.0,
+      "avg_evidence_strength": 0.0,
+      "avg_paradigm_significance": 0.0
+    }
+  },
+  "comparison_analysis": {
+    "methodology": "IMPROVEMENT-001: Citation Detection Fundamental Fixes",
+    "improvements_implemented": [
+      "Removed useless penalty optimization (proven p=1.0000)",
+      "Sparse time series (eliminates signal dilution)",
+      "Lower confidence thresholds (0.03 vs 0.1+ baseline)",
+      "Enhanced sensitivity (2.0x vs 1.2x confidence scaling)",
+      "Reduced minimum gap (3 vs 4 years)"
+    ],
+    "domain_comparisons": {
+      "natural_language_processing": {
+        "baseline_signals": 0,
+        "improved_signals": 1,
+        "signal_improvement": 1,
+        "signal_improvement_pct": 100.0,
+        "baseline_time": 0.05938410758972168,
+        "improved_time": 0.05149507522583008,
+        "time_change": -0.007889032363891602,
+        "time_change_pct": -13.284753588276624,
+        "memory_change_mb": -0.0009250640869140625,
+        "baseline_years": [],
+        "improved_years": [
+          2013
+        ]
+      },
+      "deep_learning": {
+        "baseline_signals": 0,
+        "improved_signals": 1,
+        "signal_improvement": 1,
+        "signal_improvement_pct": 100.0,
+        "baseline_time": 0.022684812545776367,
+        "improved_time": 0.020914793014526367,
+        "time_change": -0.00177001953125,
+        "time_change_pct": -7.802663247396134,
+        "memory_change_mb": -0.0003070831298828125,
+        "baseline_years": [],
+        "improved_years": [
+          2013
+        ]
+      },
+      "computer_vision": {
+        "baseline_signals": 0,
+        "improved_signals": 0,
+        "signal_improvement": 0,
+        "signal_improvement_pct": 0.0,
+        "baseline_time": 0.013093233108520508,
+        "improved_time": 0.008500337600708008,
+        "time_change": -0.0045928955078125,
+        "time_change_pct": -35.078391026458114,
+        "memory_change_mb": -0.001720428466796875,
+        "baseline_years": [],
+        "improved_years": []
+      },
+      "machine_learning": {
+        "baseline_signals": 0,
+        "improved_signals": 1,
+        "signal_improvement": 1,
+        "signal_improvement_pct": 100.0,
+        "baseline_time": 0.05601215362548828,
+        "improved_time": 0.05161595344543457,
+        "time_change": -0.004396200180053711,
+        "time_change_pct": -7.848654078627007,
+        "memory_change_mb": -0.00033473968505859375,
+        "baseline_years": [],
+        "improved_years": [
+          2014
+        ]
+      },
+      "machine_translation": {
+        "baseline_signals": 0,
+        "improved_signals": 0,
+        "signal_improvement": 0,
+        "signal_improvement_pct": 0.0,
+        "baseline_time": 0.0045850276947021484,
+        "improved_time": 0.0024192333221435547,
+        "time_change": -0.0021657943725585938,
+        "time_change_pct": -47.236233165202016,
+        "memory_change_mb": -0.0003833770751953125,
+        "baseline_years": [],
+        "improved_years": []
+      }
+    },
+    "overall_improvements": {
+      "total_baseline_signals": 0,
+      "total_improved_signals": 3,
+      "total_signal_improvement": 3,
+      "avg_signal_improvement": 0.6,
+      "total_time_change_s": -0.020813941955566406,
+      "avg_time_change_s": -0.004162788391113281,
+      "domains_tested": 5,
+      "domains_with_improvements": 3
+    }
+  }
+}

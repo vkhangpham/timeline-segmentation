@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "experiment_name": "Phase 11 Comprehensive Citation Analysis",
+    "experiment_date": "2025-06-17T01:19:46.758958",
+    "total_domains": 8,
+    "research_questions": [
+      "Why are citation detection improvements minimal?",
+      "Is PELT fundamentally limited for citation analysis?",
+      "What alternative algorithms work better?",
+      "Are there domain-specific patterns?"
+    ]
+  },
+  "domain_analyses": {
+    "applied_mathematics": {
+      "properties": {
+        "domain_name": "applied_mathematics",
+        "temporal_coverage": 130,
+        "data_density": 0.6384615384615384,
+        "sparsity_level": 0.3615384615384616,
+        "citation_range": [
+          3645.0,
+          326067.0
+        ],
+        "citation_variance": 2408324384.211352,
+        "citation_skewness": 2.4294272561031054,
+        "citation_kurtosis": 9.968806912417742,
+        "zero_years_count": 47,
+        "max_gap_years": 20,
+        "avg_gap_years": 1.5731707317073171,
+        "sparse_volatility": 56689.12792592014,
+        "dense_volatility": 45369.86775494233,
+        "has_exponential_growth": 

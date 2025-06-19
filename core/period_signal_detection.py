@@ -94,7 +94,7 @@ def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> L
         # Build previous periods context for progression
         previous_periods = []
         for prev_char in period_characterizations:
-            previous_periods.append((prev_char.topic_label, prev_char.topic_description))
+            previous_periods.append((start_year, end_year, prev_char.topic_label, prev_char.topic_description))
         
         # Generate period label and description using FOCUSED CONTEXT
         period_label, period_description = generate_period_label_and_description(

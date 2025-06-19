@@ -1,0 +1,36 @@
+{
+  "experimental_overview": {
+    "total_experiments": 30,
+    "domains_tested": 5,
+    "conditions_tested": 6,
+    "fixed_conditions": 15,
+    "adaptive_conditions": 15
+  },
+  "performance_comparison": {
+    "fixed_method_stats": {
+      "avg_segments": 0.0,
+      "avg_length": 0.0,
+      "avg_over_seg": 0.0,
+      "avg_temporal_error": 999.0
+    },
+    "adaptive_method_stats": {
+      "avg_segments": 0.0,
+      "avg_length": 0.0,
+      "avg_over_seg": 0.0,
+      "avg_temporal_error": 999.0
+    }
+  },
+  "best_performing_conditions": {
+    "lowest_over_segmentation": {
+      "Condition": "Fixed_Low",
+      "Domain": "natural_language_processing",
+      "Over_Segmentation_Rate": 0.0
+    },
+    "lowest_temporal_error": {
+      "Condition": "Fixed_Low",
+      "Domain": "natural_language_processing",
+      "Temporal_Error": 999.0
+    },
+    "optimal_segment_count": {}
+  }
+}

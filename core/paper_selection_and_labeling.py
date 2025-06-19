@@ -121,7 +121,7 @@ def select_representative_papers(period_papers: List[Dict],
     #     if len(selected_papers) < 8 or paper['year'] not in years_selected:
     #         selected_papers.append(paper)
     
-    selected_papers = unique_papers[:5]
+    selected_papers = unique_papers[:8]
     
     return selected_papers
 
@@ -162,12 +162,16 @@ def load_period_context(papers: List[Dict], start_year: int, end_year: int) -> D
         if isinstance(keywords, list):
             all_keywords.extend(keywords)
         
+        # Remove the part from the description that starts with "Topic: "
+        if description and "Topic: " in description:
+            description = description.split("Topic: ")[0].strip()
+        
         # Get paper description
         if description and len(description.strip()) > 30:
             paper_descriptions.append({
                 'title': title,
                 'year': year,
-                'description': description.strip()[:300],  # Limit to 300 chars
+                'description': description,  # Limit to 300 chars
                 'citation_count': citation_count
             })
     
@@ -185,7 +189,7 @@ def load_period_context(papers: List[Dict], start_year: int, end_year: int) -> D
     }
 
 
-def generate_period_label_and_description(themes: List[str], 
+def generate_period_label_and_description(themes: List[str],
                                          representative_papers: List[Dict], 
                                          start_year: int, end_year: int,
                                          previous_periods: List[Tuple[str, str]] = None,
@@ -222,52 +226,87 @@ def generate_period_label_and_description(themes: List[str],
     # This prevents LLM from referencing papers not shown in the representative papers list
     papers_to_use = representative_papers  # Always use representative papers for consistency
     context = load_period_context(papers_to_use, start_year, end_year)
+    domain_name = domain_name.replace("_", " ").title()
     
     # Build previous periods context string
     previous_context = ""
     if previous_periods:
         previous_context = "\n\nPREVIOUS PERIODS FOR CONTEXT:\n"
-        for i, (prev_label, prev_desc) in enumerate(previous_periods, 1):
-            previous_context += f"Period {i}: {prev_label}\n{prev_desc}\n\n"
+        for i, (start_year, end_year, prev_label, prev_desc) in enumerate(previous_periods, 1):
+            previous_context += f"Period {start_year}-{end_year}: {prev_label}\n\n"
     
-    # Balanced prompt: specific requirements but DeepSeek R1 optimized
-    prompt = f"""<task_description>
-You are a research historian specializing in the evolution of science and technology. Your task is to analyze a set of representative papers from a specific time period in the domain of {domain_name} and identify the key research paradigms or methodological trends that defined that era. Some periods may have a single dominant theme, while others may feature multiple, co-existing lines of research.
+    # ENHANCED GEMMA 3 PROMPT: Following official prompt engineering guidelines
+    prompt = f"""You are an expert scientific historian specializing in research paradigm analysis. Your task is to conduct a comprehensive analysis of the evolution of **{domain_name}** research during the **{start_year}-{end_year}** period.
 
-Your goal is to produce a concise, descriptive label for the period and a detailed explanation that captures the essence of the research, using the provided papers as evidence.
-</task_description>
+---
 
-<period_data>
-**Period:** {start_year}-{end_year}
-**Domain:** {domain_name}
+### **CORE MISSION:**
+Identify and characterize the fundamental research paradigm that unified the scientific community's approach during this specific time. A **paradigm** represents the shared philosophical framework, methodological principles, and underlying assumptions that guided researchers' problem-solving strategies and research directions.
 
-**Representative Papers:**
-{chr(10).join([f"- {paper['title']} ({paper['year']})" for paper in context.get('paper_descriptions', [])])}
+---
 
-**Top Keywords:**
-{context.get('keywords', [])[2:12]}
-</period_data>
+### **ANALYTICAL DATA:**
+* **Research Period:** {start_year}-{end_year}
+* **Scientific Domain:** {domain_name}
+* **Analysis Context:** Historical paradigm identification based on representative scholarly works
 
+#### **Representative Research Papers for Analysis:**
+{chr(10).join([f"• **{paper['title']}** ({paper.get('year', 'Unknown')}): {paper.get('description') or paper.get('abstract', '')}" for paper in context.get('paper_descriptions', [])])}
+
+#### **Previous Periods for Context:**
 {previous_context}
 
-<instructions>
-1.  **Analyze and Synthesize:** Review the paper titles and keywords to identify the primary research thrusts of the period. Determine if there is one dominant paradigm or several parallel themes.
-2.  **Craft a Descriptive Label:** Create a label (3-7 words) that accurately summarizes the key research paradigm(s). If there are multiple important themes, the label should reflect this complexity. Note that the label should describe the natural evolution of the field, not conflict with previous periods.
-3.  **Write a Detailed Description:** Compose a 3-4 sentence description that explains the paradigm(s).
-    -   Clearly define the main research themes.
-    -   Cite specific paper titles as *evidence* to illustrate these themes. Explain *how* a paper is representative of a theme.
-    -   If there are multiple themes, describe how they relate to each other (e.g., are they competing, complementary, or independent?).
-    -   Provide historical context, explaining how this period's research evolved from previous ones.
-4.  **Format the Output:** Respond with a single JSON object containing two keys: "label" and "description".
-</instructions>
-"""
+---
 
-    # FAIL-FAST: No try-catch blocks, let any error immediately terminate execution
-    response = query_llm_structured(prompt, PeriodLabelResponse, model="deepseek-r1:8b-0528-qwen3-q4_K_M")
+### **SYSTEMATIC ANALYSIS METHODOLOGY:**
+
+1.  **Cross-Paper Pattern Recognition:**
+    * Examine each representative paper to identify recurring methodological themes.
+    * Look for shared theoretical frameworks, experimental approaches, and conceptual foundations.
+    * Identify common assumptions about how problems should be approached in **{domain_name}**.
+
+2.  **Paradigmatic Synthesis:**
+    * Determine the overarching philosophical approach that unifies these research efforts.
+    * Identify what fundamental principles or methodologies distinguish this period from other eras.
+    * Consider how the research community's collective thinking shaped the field's direction.
+
+3.  **Historical Contextualization:**
+    * Analyze how this paradigm emerged from or built upon previous research traditions.
+    * Assess the paradigm's influence on subsequent research developments.
+    * Evaluate the paradigm's lasting impact on **{domain_name}** methodology.
+
+4.  **Paradigm Characterization:**
+    * Synthesize a concise, descriptive label (3-7 words maximum) that captures the essence of the paradigmatic approach.
+    * Ensure the label reflects the consensus methodology visible across the representative papers and uses **{domain_name}**-specific terminology.
+    * Develop a comprehensive explanation (2-3 sentences maximum) that demonstrates deep understanding of the paradigm's foundations.
+
+---
+
+### **EXPECTED DELIVERABLE CHARACTERISTICS:**
+
+* **Paradigm Label:** A precise, technically accurate descriptor (3-7 words maximum) that captures the fundamental methodological or philosophical approach shared across papers, reflects **{domain_name}**-specific terminology, and demonstrates clear consensus among the representative research works.
+
+* **Paradigm Description:** A detailed technical explanation (2-3 sentences maximum) of the fundamental research approach and its defining characteristics, with specific references to representative papers as supporting evidence. It should clearly articulate how this paradigm influenced research methodology and field development, showing technical depth and comprehensive understanding of its foundations.
+
+---
+
+### **RESPONSE FORMATTING REQUIREMENTS:**
+Generate your analysis **only** in the following structured JSON format. **Do not include any additional text, explanations, or conversational fillers before or after the JSON.**
+
+```json
+{{
+  "label": "Paradigm Name",
+  "description": "Detailed technical explanation with paper references"
+}}"""
+
+    response = query_llm_structured(prompt, PeriodLabelResponse, model="gemma3:4b-it-qat")
     
-    # Extract validated response
+    # Extract and validate response
     label = response.label
     description = response.description
+    
+    if not label or not description:
+        raise ValueError(f"Missing label or description in response: {response}")
     
     return label, description
 

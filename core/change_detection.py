@@ -7,21 +7,24 @@ research paradigm shifts using rich citation network and semantic data.
 
 import numpy as np
 from dataclasses import dataclass
-from typing import List, Tuple
+from typing import List, Tuple, TYPE_CHECKING
 
 from .data_models import (
     DomainData, ChangePoint, ChangeDetectionResult
 )
 from .shift_signal_detection import detect_shift_signals
 
+if TYPE_CHECKING:
+    from .integration import SensitivityConfig
 
 
-def detect_changes(domain_data: DomainData) -> ChangeDetectionResult:
+def detect_changes(domain_data: DomainData, sensitivity_config: 'SensitivityConfig') -> ChangeDetectionResult:
     """
-    Perform paradigm shift detection using Enhanced Shift Signal Detection.
+    Perform paradigm shift detection using Enhanced Shift Signal Detection with centralized sensitivity control.
     
     Args:
         domain_data: Domain data with papers and rich citations
+        sensitivity_config: Centralized sensitivity configuration controlling all thresholds
         
     Returns:
         Change detection results with paradigm shifts
@@ -29,8 +32,12 @@ def detect_changes(domain_data: DomainData) -> ChangeDetectionResult:
     # Get domain file name for configuration
     domain_file_name = domain_data.domain_name.lower().replace(' ', '_')
     
-    # Detect paradigm shifts using enhanced algorithm (functional approach)
-    shift_signals, transition_evidence = detect_shift_signals(domain_data, domain_file_name)
+    # Detect paradigm shifts using enhanced algorithm with sensitivity configuration
+    shift_signals, transition_evidence, clustering_metadata = detect_shift_signals(
+        domain_data, 
+        domain_file_name, 
+        sensitivity_config=sensitivity_config
+    )
     
     # Convert shift signals to change points for compatibility
     change_points = []
@@ -65,7 +72,7 @@ def detect_changes(domain_data: DomainData) -> ChangeDetectionResult:
     )
 
 
-def create_improved_segments_with_confidence(change_years: List[int], time_range: Tuple[int, int], 
+def create_segments_with_confidence(change_years: List[int], time_range: Tuple[int, int], 
                                            statistical_significance: float = 0.5,
                                            domain_name: str = "") -> List[List[int]]:
     """
@@ -151,7 +158,7 @@ def create_improved_segments(change_years: List[int], time_range: Tuple[int, int
     Kept for compatibility and comparison purposes.
     """
     # Redirect to new implementation with default parameters
-    return create_improved_segments_with_confidence(change_years, time_range, statistical_significance=0.5)
+    return create_segments_with_confidence(change_years, time_range, statistical_significance=0.5)
 
 
 def merge_segments_with_confidence(segments: List[List[int]], min_length: int, 

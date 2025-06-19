@@ -72,7 +72,7 @@ def calculate_adaptive_timeout(prompt: str, model: str = "qwen2.5:3b") -> int:
     }
     
     # Get model-specific factor (default to 2.0 for unknown models)
-    model_factor = 2.0
+    model_factor = 4.0
     for model_key, factor in model_factors.items():
         if model_key in model:
             model_factor = factor
@@ -121,9 +121,8 @@ def query_llm(prompt: str,
         "prompt": prompt,
         "stream": False,
         "options": {
-            "temperature": 0.6,     # DeepSeek R1 recommended: 0.5-0.7 (0.6 optimal)
-            "top_p": 0.95,          # DeepSeek R1 recommended: 0.95
-            "max_tokens": 128000
+            "temperature": 0.1,
+            "top_p": 0.95
         }
     }
     

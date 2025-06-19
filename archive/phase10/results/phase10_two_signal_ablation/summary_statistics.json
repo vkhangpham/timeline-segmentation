@@ -1,0 +1,63 @@
+{
+  "experiment_overview": {
+    "total_experiments": 15,
+    "domains_tested": 5,
+    "conditions_tested": 3,
+    "successful_experiments": 15
+  },
+  "signal_contribution": {
+    "avg_signals_by_condition": {
+      "Citation_Direction": 9.0,
+      "Citation_Only": 0.6,
+      "Direction_Only": 9.4
+    },
+    "std_signals_by_condition": {
+      "Citation_Direction": 6.0,
+      "Citation_Only": 0.5477225575051661,
+      "Direction_Only": 6.9498201415576215
+    },
+    "avg_segments_by_condition": {
+      "Citation_Direction": 6.0,
+      "Citation_Only": 6.0,
+      "Direction_Only": 6.0
+    },
+    "signal_productivity_ranking": {
+      "Direction_Only": 9.4,
+      "Citation_Direction": 9.0,
+      "Citation_Only": 0.6
+    }
+  },
+  "filtering_mechanisms": {
+    "subadditive_domains": [
+      "natural_language_processing",
+      "deep_learning",
+      "computer_vision",
+      "machine_learning",
+      "machine_translation"
+    ],
+    "subadditive_ratio": 1.0,
+    "key_insights": [
+      "Subadditive behavior in 5/5 domains",
+      "Algorithm implements temporal proximity clustering (\u00b12 years)",
+      "Multi-signal validation with confidence thresholding",
+      "Paradigm significance filtering removes redundant signals",
+      "Evidence: cross_validate_signals() and filter_for_paradigm_significance()"
+    ]
+  },
+  "domain_analysis": {
+    "signal_variance_by_domain": {
+      "computer_vision": 4.041451884327381,
+      "deep_learning": 4.932882862316247,
+      "machine_learning": 11.015141094572204,
+      "machine_translation": 1.7320508075688772,
+      "natural_language_processing": 3.214550253664318
+    },
+    "avg_signals_by_domain": {
+      "computer_vision": 4.666666666666667,
+      "deep_learning": 6.666666666666667,
+      "machine_learning": 13.666666666666666,
+      "machine_translation": 2.0,
+      "natural_language_processing": 4.666666666666667
+    }
+  }
+}
