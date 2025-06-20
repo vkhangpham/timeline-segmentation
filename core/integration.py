@@ -13,7 +13,6 @@ from typing import Dict, List, Tuple, Optional, Any
 import numpy as np
 import json
 from datetime import datetime
-from dataclasses import dataclass
 
 from .data_models import (
     DomainData, ChangeDetectionResult, TimelineAnalysisResult
@@ -23,140 +22,7 @@ from .data_processing import process_domain_data
 from .segment_modeling import model_segments
 from .segment_merging import merge_similar_segments
 from .shift_signal_detection import detect_shift_signals
-
-
-@dataclass
-class SensitivityConfig:
-    """
-    Centralized sensitivity configuration with directly adjustable parameters.
-    
-    All parameters are directly configurable for maximum flexibility.
-    Granularity level provides convenient presets but parameters can be overridden.
-    
-    Core Parameters:
-    - detection_threshold: Minimum score needed to detect a direction signal (lower = more sensitive)
-    - validation_threshold: Minimum score needed to validate signals (consistent for all signals)
-    - citation_boost: Confidence boost given to signals with citation support
-    - clustering_window: Temporal window for clustering direction signals (years)
-    - breakthrough_bonus: DEPRECATED - breakthrough paper validation removed (too permissive)
-    """
-    
-    # Directly adjustable parameters with defaults
-    detection_threshold: float = 0.4      # Direction signal detection threshold
-    validation_threshold: float = 0.7     # Consistent validation threshold for all signals
-    citation_boost: float = 0.3           # Citation support confidence boost
-    clustering_window: int = 3            # Temporal clustering window (years)
-    breakthrough_bonus: float = 0.4       # DEPRECATED - breakthrough validation removed
-    granularity: int = 3                  # Granularity level (for preset interface)
-    
-    def __init__(self, 
-                 granularity: int = 3,
-                 detection_threshold: Optional[float] = None,
-                 validation_threshold: Optional[float] = None,
-                 citation_boost: Optional[float] = None,
-                 clustering_window: Optional[int] = None,
-                 breakthrough_bonus: Optional[float] = None):
-        """
-        Initialize sensitivity configuration with optional parameter overrides.
-        
-        Args:
-            granularity: 1-5 scale for convenient presets (1=coarse, 5=fine)
-            detection_threshold: Override detection threshold (None = use granularity preset)
-            validation_threshold: Override validation threshold (None = use granularity preset)
-            citation_boost: Override citation boost (None = use granularity preset)
-            clustering_window: Override clustering window (None = use granularity preset)
-            breakthrough_bonus: Override breakthrough bonus (None = use granularity preset)
-        """
-        if not 1 <= granularity <= 5:
-            raise ValueError("Granularity must be between 1 and 5")
-            
-        self.granularity = granularity
-        
-        # Apply granularity presets first
-        granularity_presets = self._get_granularity_presets(granularity)
-        
-        # Set parameters using presets or overrides
-        self.detection_threshold = detection_threshold if detection_threshold is not None else granularity_presets['detection_threshold']
-        self.validation_threshold = validation_threshold if validation_threshold is not None else granularity_presets['validation_threshold']
-        self.citation_boost = citation_boost if citation_boost is not None else granularity_presets['citation_boost']
-        self.clustering_window = clustering_window if clustering_window is not None else granularity_presets['clustering_window']
-        self.breakthrough_bonus = breakthrough_bonus if breakthrough_bonus is not None else granularity_presets['breakthrough_bonus']
-    
-    @staticmethod
-    def _get_granularity_presets(granularity: int) -> Dict[str, Any]:
-        """
-        Get parameter presets for a given granularity level.
-        
-        PREDICTABLE RELATIONSHIP: Lower granularity number → More segments
-        1 (ultra_coarse) ≥ 2 (coarse) ≥ 3 (balanced) ≥ 4 (fine) ≥ 5 (ultra_fine)
-        """
-        presets = {
-            1: {  # Ultra-coarse: Very high thresholds, minimal sensitivity
-                'detection_threshold': 0.6,
-                'validation_threshold': 0.9,
-                'citation_boost': 0.2,
-                'clustering_window': 4,
-                'breakthrough_bonus': 0.2
-            },
-            2: {  # Coarse: High thresholds, low sensitivity
-                'detection_threshold': 0.5,
-                'validation_threshold': 0.85,
-                'citation_boost': 0.3,
-                'clustering_window': 4,
-                'breakthrough_bonus': 0.3
-            },
-            3: {  # Balanced: Moderate thresholds, balanced sensitivity
-                'detection_threshold': 0.4,
-                'validation_threshold': 0.8,
-                'citation_boost': 0.3,
-                'clustering_window': 3,
-                'breakthrough_bonus': 0.3
-            },
-            4: {  # Fine: Low thresholds, high sensitivity
-                'detection_threshold': 0.3,
-                'validation_threshold': 0.75,
-                'citation_boost': 0.3,
-                'clustering_window': 2,
-                'breakthrough_bonus': 0.3
-            },
-            5: {  # Ultra-fine: Very low thresholds, maximum sensitivity
-                'detection_threshold': 0.2,
-                'validation_threshold': 0.7,
-                'citation_boost': 0.3,
-                'clustering_window': 2,
-                'breakthrough_bonus': 0.3
-            }
-        }
-        return presets[granularity]
-    
-    @classmethod
-    def create_custom(cls, 
-                      detection_threshold: float,
-                      validation_threshold: float,
-                      citation_boost: float = 0.3,
-                      clustering_window: int = 3,
-                      breakthrough_bonus: float = 0.4) -> 'SensitivityConfig':
-        """
-        Create a fully custom configuration bypassing granularity presets.
-        
-        Args:
-            detection_threshold: Direction signal detection threshold
-            validation_threshold: Consistent validation threshold for all signals
-            citation_boost: Citation support confidence boost
-            clustering_window: Temporal clustering window (years)
-            breakthrough_bonus: Breakthrough proximity confidence boost
-            
-        Returns:
-            Custom SensitivityConfig instance
-        """
-        config = cls.__new__(cls)  # Create without calling __init__
-        config.granularity = 0  # Mark as custom (outside 1-5 range)
-        config.detection_threshold = detection_threshold
-        config.validation_threshold = validation_threshold
-        config.citation_boost = citation_boost
-        config.clustering_window = clustering_window
-        config.breakthrough_bonus = breakthrough_bonus
-        return config
+from .algorithm_config import ComprehensiveAlgorithmConfig
 
 
 def timeline_analysis(
@@ -178,7 +44,7 @@ def timeline_analysis(
         enable_segment_merging: Whether to perform segment merging post-processing
         similarity_threshold: Threshold for semantic similarity in merging (0.0-1.0)
         weak_signal_threshold: Threshold for weak shift signals in merging (0.0-1.0)
-        granularity: Timeline granularity control (1-5) for sensitivity configuration
+        granularity: Timeline granularity control (1-5) for comprehensive algorithm configuration
         
     Returns:
         Timeline analysis results with period characterizations and optional merging
@@ -202,11 +68,11 @@ def timeline_analysis(
         print(f"\n🔄 SEGMENT MERGING POST-PROCESSING")
         print("=" * 50)
         
-        # Create sensitivity config for shift signal detection
-        sensitivity_config = SensitivityConfig(granularity=granularity)
+        # Create comprehensive algorithm config for shift signal detection
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
         
         # Get shift signals for boundary analysis
-        shift_signals, _, _ = detect_shift_signals(domain_data, domain_data.domain_name, sensitivity_config)
+        shift_signals, _, _ = detect_shift_signals(domain_data, domain_data.domain_name, algorithm_config)
         
         # Perform intelligent segment merging
         merging_result = merge_similar_segments(
@@ -253,19 +119,23 @@ def timeline_analysis(
     )
 
 
-def run_change_detection(domain_name: str, granularity: int = 3, sensitivity_config: Optional[SensitivityConfig] = None) -> Tuple[Optional[Dict], Optional[ChangeDetectionResult]]:
+def run_change_detection(
+    domain_name: str, 
+    granularity: int = 3, 
+    algorithm_config: Optional[ComprehensiveAlgorithmConfig] = None
+) -> Tuple[Optional[Dict], Optional[ChangeDetectionResult]]:
     """
-    Run change point detection and segmentation for a domain with flexible parameter control.
+    Run change point detection and segmentation for a domain with comprehensive algorithm configuration.
     
     Args:
         domain_name: Name of the domain to process
-        granularity: Timeline granularity control - integer 1-5 (used if sensitivity_config is None):
-                    1 = ultra_coarse (fewest segments)
-                    2 = coarse
+        granularity: Timeline granularity control - integer 1-5 (used if algorithm_config is None):
+                    1 = ultra_fine (most segments)
+                    2 = fine
                     3 = balanced (default)  
-                    4 = fine
-                    5 = ultra_fine (most segments)
-        sensitivity_config: Optional custom sensitivity configuration (overrides granularity)
+                    4 = coarse
+                    5 = ultra_coarse (fewest segments)
+        algorithm_config: Optional comprehensive algorithm configuration (overrides granularity)
         
     Returns:
         Tuple of (segmentation_results, change_detection_result)
@@ -275,34 +145,29 @@ def run_change_detection(domain_name: str, granularity: int = 3, sensitivity_con
     
     # Map granularity integer to descriptive names for logging
     granularity_names = {
-        1: "ultra_coarse",
-        2: "coarse", 
+        1: "ultra_fine",
+        2: "fine", 
         3: "balanced",
-        4: "fine",
-        5: "ultra_fine"
+        4: "coarse",
+        5: "ultra_coarse"
     }
     
-    granularity_name = granularity_names.get(granularity, "unknown")
-    
-    # Create or use sensitivity configuration
-    if sensitivity_config is None:
-        sensitivity_config = SensitivityConfig(granularity=int(granularity))
-    
-    # Update granularity for logging if custom config is used
-    if hasattr(sensitivity_config, 'granularity') and sensitivity_config.granularity == 0:
-        granularity_name = "custom"
+    # Create or use comprehensive algorithm configuration
+    if algorithm_config is None:
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=int(granularity))
+        granularity_name = granularity_names.get(granularity, "unknown")
     else:
-        granularity_name = granularity_names.get(sensitivity_config.granularity, "unknown")
+        granularity = algorithm_config.granularity
+        granularity_name = granularity_names.get(granularity, "custom")
     
-    print(f"🎛️  SENSITIVITY CONFIGURATION:")
-    if sensitivity_config.granularity == 0:
-        print(f"    Type: Custom configuration")
-    else:
-        print(f"    Type: Granularity preset (level={sensitivity_config.granularity})")
-    print(f"    Detection threshold: {sensitivity_config.detection_threshold:.2f}")
-    print(f"    Clustering window: {sensitivity_config.clustering_window} years")
-    print(f"    Citation boost: {sensitivity_config.citation_boost:.2f}")
-    print(f"    Validation threshold: {sensitivity_config.validation_threshold:.2f}")
+    print(f"🎛️  COMPREHENSIVE ALGORITHM CONFIGURATION:")
+    print(f"    Granularity: {granularity_name} (level={granularity})")
+    print(f"    Direction threshold: {algorithm_config.direction_threshold:.2f}")
+    print(f"    Clustering window: {algorithm_config.clustering_window} years")
+    print(f"    Citation boost: {algorithm_config.citation_boost:.2f}")
+    print(f"    Validation threshold: {algorithm_config.validation_threshold:.2f}")
+    print(f"    Citation support window: ±{algorithm_config.citation_support_window} years")
+    print(f"    Advanced params: keyword_freq={algorithm_config.keyword_min_frequency}, min_keywords={algorithm_config.min_significant_keywords}")
     
     # Load domain data
     result = process_domain_data(domain_name)
@@ -313,9 +178,9 @@ def run_change_detection(domain_name: str, granularity: int = 3, sensitivity_con
     domain_data = result.domain_data
     print(f"📊 Loading {domain_name} data...")
     
-    # Run change detection with sensitivity configuration
+    # Run change detection with comprehensive algorithm configuration
     print(f"🔍 Detecting change points...")
-    change_result = detect_changes(domain_data, sensitivity_config=sensitivity_config)
+    change_result = detect_changes(domain_data, algorithm_config=algorithm_config)
     
     # Extract change point years
     change_years = sorted([cp.year for cp in change_result.change_points])
@@ -332,11 +197,15 @@ def run_change_detection(domain_name: str, granularity: int = 3, sensitivity_con
     results = {
         'domain_name': domain_name,
         'granularity': granularity,
-        'sensitivity_config': {
-            'detection_threshold': sensitivity_config.detection_threshold,
-            'clustering_window': sensitivity_config.clustering_window,
-            'citation_boost': sensitivity_config.citation_boost,
-            'validation_threshold': sensitivity_config.validation_threshold
+        'configuration_type': 'Comprehensive Algorithm Configuration',
+        'algorithm_config': {
+            'direction_threshold': algorithm_config.direction_threshold,
+            'clustering_window': algorithm_config.clustering_window,
+            'citation_boost': algorithm_config.citation_boost,
+            'validation_threshold': algorithm_config.validation_threshold,
+            'citation_support_window': algorithm_config.citation_support_window,
+            'keyword_min_frequency': algorithm_config.keyword_min_frequency,
+            'min_significant_keywords': algorithm_config.min_significant_keywords
         },
         'time_range': list(domain_data.year_range),
         'change_points': change_years,
@@ -345,7 +214,7 @@ def run_change_detection(domain_name: str, granularity: int = 3, sensitivity_con
         'method_details': {
             'change_points_detected': len(change_result.change_points),
             'burst_periods_detected': len(change_result.burst_periods),
-            'methods_used': ['enhanced_shift_signal_with_sensitivity']
+            'methods_used': ['enhanced_shift_signal_with_comprehensive_config']
         }
     }
     
@@ -422,6 +291,7 @@ def save_comprehensive_results(
             'analysis_date': datetime.now().isoformat(),
             'time_range': domain_data.year_range,
             'total_papers_analyzed': len(domain_data.papers),
+            'configuration_type': segmentation_data.get('configuration_type', 'Comprehensive Algorithm Configuration'),
             'methodology': {
                 'shift_detection': 'Enhanced Shift Signal Detection',
                 'period_characterization': 'Temporal Network Stability Analysis',
@@ -434,7 +304,8 @@ def save_comprehensive_results(
             'change_points': segmentation_data.get('change_points', []),
             'segments': segmentation_data.get('segments', []),
             'statistical_significance': segmentation_data.get('statistical_significance', 0),
-            'method_details': segmentation_data.get('method_details', {})
+            'method_details': segmentation_data.get('method_details', {}),
+            'algorithm_config': segmentation_data.get('algorithm_config', {})
         },
         'timeline_analysis': {
             'original_period_characterizations': [

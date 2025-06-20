@@ -15,16 +15,16 @@ from .data_models import (
 from .shift_signal_detection import detect_shift_signals
 
 if TYPE_CHECKING:
-    from .integration import SensitivityConfig
+    from .algorithm_config import ComprehensiveAlgorithmConfig
 
 
-def detect_changes(domain_data: DomainData, sensitivity_config: 'SensitivityConfig') -> ChangeDetectionResult:
+def detect_changes(domain_data: DomainData, algorithm_config: 'ComprehensiveAlgorithmConfig') -> ChangeDetectionResult:
     """
-    Perform paradigm shift detection using Enhanced Shift Signal Detection with centralized sensitivity control.
+    Perform paradigm shift detection using Enhanced Shift Signal Detection with comprehensive algorithm configuration.
     
     Args:
         domain_data: Domain data with papers and rich citations
-        sensitivity_config: Centralized sensitivity configuration controlling all thresholds
+        algorithm_config: Comprehensive algorithm configuration controlling all parameters
         
     Returns:
         Change detection results with paradigm shifts
@@ -32,11 +32,11 @@ def detect_changes(domain_data: DomainData, sensitivity_config: 'SensitivityConf
     # Get domain file name for configuration
     domain_file_name = domain_data.domain_name.lower().replace(' ', '_')
     
-    # Detect paradigm shifts using enhanced algorithm with sensitivity configuration
+    # Detect paradigm shifts using enhanced algorithm with comprehensive algorithm configuration
     shift_signals, transition_evidence, clustering_metadata = detect_shift_signals(
         domain_data, 
         domain_file_name, 
-        sensitivity_config=sensitivity_config
+        algorithm_config=algorithm_config
     )
     
     # Convert shift signals to change points for compatibility
