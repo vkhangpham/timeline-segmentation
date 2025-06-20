@@ -16,6 +16,7 @@ import argparse
 import time
 
 from core.utils import discover_available_domains, ensure_results_directory
+from core.algorithm_config import ComprehensiveAlgorithmConfig
 from core.integration import run_change_detection, run_timeline_analysis
 import json
 
@@ -93,33 +94,51 @@ def display_results_summary(domain_name: str, timeline_file: str):
         print(f"❌ Error displaying results: {str(e)}")
 
 
-def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granularity: int = 3) -> bool:
-    """Run complete analysis for a single domain with configurable granularity."""
+def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None) -> bool:
+    """Run complete analysis for a single domain with comprehensive algorithm configuration."""
+    
+    # Create comprehensive configuration
+    if algorithm_config is None:
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
     
     # Map granularity integer to descriptive names for logging
     granularity_names = {
-        1: "ultra_coarse",
-        2: "coarse", 
+        1: "ultra_fine",
+        2: "fine", 
         3: "balanced",
-        4: "fine",
-        5: "ultra_fine"
+        4: "coarse",
+        5: "ultra_coarse"
     }
     
-    granularity_name = granularity_names.get(granularity, f"level_{granularity}")
+    granularity_name = granularity_names.get(algorithm_config.granularity, f"level_{algorithm_config.granularity}")
     
     if segmentation_only:
         print(f"\n🔍 RUNNING SEGMENTATION ONLY: {domain_name.upper()}")
-        print(f"🎛️  Granularity: {granularity_name} (level {granularity})")
+        print(f"🎛️  Configuration: {granularity_name} (granularity {algorithm_config.granularity})")
         print("=" * 60)
     else:
         print(f"\n🚀 RUNNING COMPLETE ANALYSIS: {domain_name.upper()}")
-        print(f"🎛️  Granularity: {granularity_name} (level {granularity})")
+        print(f"🎛️  Configuration: {granularity_name} (granularity {algorithm_config.granularity})")
         print("=" * 60)
+    
+    # Display comprehensive configuration details
+    print(f"📊 COMPREHENSIVE ALGORITHM CONFIGURATION:")
+    print(f"  Direction Threshold: {algorithm_config.direction_threshold:.3f}")
+    print(f"  Clustering Window: {algorithm_config.clustering_window} years")
+    print(f"  Validation Threshold: {algorithm_config.validation_threshold:.3f}")
+    print(f"  Citation Boost: {algorithm_config.citation_boost:.3f}")
+    print(f"  Citation Support Window: ±{algorithm_config.citation_support_window} years")
+    print(f"  Keyword Min Frequency: {algorithm_config.keyword_min_frequency}")
+    print(f"  Min Significant Keywords: {algorithm_config.min_significant_keywords}")
     
     start_time = time.time()
     
-    # Step 1: Change point detection and segmentation with granularity control
-    segmentation_results, change_detection_result = run_change_detection(domain_name, granularity=granularity)
+    # Step 1: Change point detection and segmentation with comprehensive configuration
+    segmentation_results, change_detection_result = run_change_detection(
+        domain_name, 
+        granularity=algorithm_config.granularity, 
+        algorithm_config=algorithm_config
+    )
     if not segmentation_results:
         return False
     
@@ -144,8 +163,12 @@ def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granu
     return True
 
 
-def run_all_domains(segmentation_only: bool = False, granularity: int = 3):
-    """Run analysis for all available domains with configurable granularity."""
+def run_all_domains(segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None):
+    """Run analysis for all available domains with comprehensive algorithm configuration."""
+    
+    # Create comprehensive configuration
+    if algorithm_config is None:
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
     
     # Dynamically discover domains from resources directory
     domains = discover_available_domains()
@@ -158,15 +181,16 @@ def run_all_domains(segmentation_only: bool = False, granularity: int = 3):
     
     analysis_type = "SEGMENTATION" if segmentation_only else "ANALYSIS"
     print(f"🌍 RUNNING CROSS-DOMAIN {analysis_type}")
-    print(f"🎛️  Granularity: {granularity}")
+    print(f"🎛️  Comprehensive Configuration: Granularity {algorithm_config.granularity}")
+    print(f"🔧  Advanced Parameters: {len([f for f in algorithm_config.__dataclass_fields__])} total parameters")
     print("=" * 50)
-    print(f"Analyzing {len(domains)} domains with Timeline Analysis Framework...")
+    print(f"Analyzing {len(domains)} domains with Enhanced Timeline Analysis Framework...")
     print(f"Discovered domains: {', '.join(domains)}")
     print()
     
     for domain in domains:
         print(f"\n📊 Processing domain {len(successful_domains) + 1}/{len(domains)}: {domain}")
-        success = run_domain_analysis(domain, segmentation_only, granularity)
+        success = run_domain_analysis(domain, segmentation_only, granularity, algorithm_config)
         if success:
             successful_domains.append(domain)
     
@@ -184,6 +208,7 @@ def run_all_domains(segmentation_only: bool = False, granularity: int = 3):
             print(f"\n📁 Results saved in 'results/' directory:")
             print(f"  • Comprehensive analysis: {len(successful_domains)} files")
             print(f"\n🎯 Timeline analysis with period characterization complete!")
+            print(f"🔧 Used comprehensive configuration with {len([f for f in algorithm_config.__dataclass_fields__])} parameters")
         else:
             print(f"\n🔍 Segmentation testing complete!")
     
@@ -197,10 +222,10 @@ def run_all_domains(segmentation_only: bool = False, granularity: int = 3):
 
 
 def main():
-    """Main pipeline execution."""
+    """Main pipeline execution with comprehensive algorithm configuration."""
     
     parser = argparse.ArgumentParser(
-        description="Scientific Literature Timeline Analysis Pipeline",
+        description="Scientific Literature Timeline Analysis Pipeline with Comprehensive Algorithm Configuration",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -209,8 +234,11 @@ Examples:
   python run_timeline_analysis.py --domain art
   python run_timeline_analysis.py --domain natural_language_processing
   python run_timeline_analysis.py --domain all
+  python run_timeline_analysis.py --domain computer_vision --granularity 1
+  python run_timeline_analysis.py --domain all --granularity 5
 
 Available domains are automatically discovered from the resources/ directory.
+Comprehensive configuration provides access to 27+ algorithm parameters.
         """
     )
     
@@ -232,20 +260,71 @@ Available domains are automatically discovered from the resources/ directory.
         type=int,
         default=3,
         choices=[1, 2, 3, 4, 5],
-        help='Timeline granularity control: 1 (ultra_coarse, fewest segments), 2 (coarse), 3 (balanced, default), 4 (fine), 5 (ultra_fine, most segments)'
+        help='Timeline granularity control: 1 (ultra_fine, most segments), 2 (fine), 3 (balanced, default), 4 (coarse), 5 (ultra_coarse, fewest segments)'
+    )
+    
+    # Advanced configuration options
+    parser.add_argument(
+        '--direction-threshold',
+        type=float,
+        default=None,
+        help='Override direction detection threshold (0.1-0.8, lower = more sensitive)'
+    )
+    
+    parser.add_argument(
+        '--validation-threshold', 
+        type=float,
+        default=None,
+        help='Override validation threshold (0.5-0.95, higher = more stringent)'
+    )
+    
+    parser.add_argument(
+        '--citation-boost',
+        type=float,
+        default=None,
+        help='Override citation support boost (0.0-1.0)'
+    )
+    
+    parser.add_argument(
+        '--clustering-window',
+        type=int,
+        default=None,
+        help='Override clustering window in years (1-10)'
     )
     
     args = parser.parse_args()
+    
+    # Create comprehensive algorithm configuration
+    overrides = {}
+    if args.direction_threshold is not None:
+        overrides['direction_threshold'] = args.direction_threshold
+    if args.validation_threshold is not None:
+        overrides['validation_threshold'] = args.validation_threshold  
+    if args.citation_boost is not None:
+        overrides['citation_boost'] = args.citation_boost
+    if args.clustering_window is not None:
+        overrides['clustering_window'] = args.clustering_window
+    
+    if overrides:
+        print(f"🔧 Using custom parameter overrides: {overrides}")
+        algorithm_config = ComprehensiveAlgorithmConfig.create_custom(
+            granularity=args.granularity,
+            overrides=overrides
+        )
+    else:
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=args.granularity)
     
     # Ensure results directory exists
     ensure_results_directory()
     
     print("🧪 SCIENTIFIC LITERATURE TIMELINE ANALYSIS")
-    print("Enhanced Shift Signal Detection + Temporal Network Period Analysis")
+    print("Enhanced Shift Signal Detection + Comprehensive Parameter Configuration")
     print("=" * 70)
+    print(f"🔧 Configuration System: {len([f for f in algorithm_config.__dataclass_fields__])} parameters available")
+    print(f"📊 Active Configuration: {algorithm_config.get_configuration_summary()}")
     
     if args.domain == 'all':
-        success = run_all_domains(args.segmentation_only, args.granularity)
+        success = run_all_domains(args.segmentation_only, args.granularity, algorithm_config)
     else:
         available_domains = discover_available_domains()
         if args.domain not in available_domains:
@@ -253,10 +332,11 @@ Available domains are automatically discovered from the resources/ directory.
             print(f"Available domains: {', '.join(available_domains)}")
             return False
         
-        success = run_domain_analysis(args.domain, args.segmentation_only, args.granularity)
+        success = run_domain_analysis(args.domain, args.segmentation_only, args.granularity, algorithm_config)
     
     if success:
         print(f"\n🎉 Analysis complete! Check the 'results/' directory for outputs.")
+        print(f"🔧 Comprehensive configuration with {len([f for f in algorithm_config.__dataclass_fields__])} parameters successfully applied!")
     else:
         print(f"\n❌ Analysis failed. Check error messages above.")
     

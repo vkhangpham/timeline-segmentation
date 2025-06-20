@@ -38,7 +38,7 @@ from .data_models import (
 # UTILITY FUNCTIONS - Pure helper functions
 # =============================================================================
 
-def adaptive_threshold(data: np.ndarray, method: str) -> float:
+def citation_adaptive_threshold(data: np.ndarray, method: str) -> float:
     """
     Calculate adaptive thresholds based on data characteristics (pure function).
 
@@ -169,8 +169,8 @@ def detect_citation_acceleration_shifts(
         acceleration = np.gradient(gradient)
 
         # Adaptive thresholds based on series characteristics
-        grad_threshold = adaptive_threshold(gradient, "gradient")
-        accel_threshold = adaptive_threshold(acceleration, "acceleration")
+        grad_threshold = citation_adaptive_threshold(gradient, "gradient")
+        accel_threshold = citation_adaptive_threshold(acceleration, "acceleration")
 
         # Find significant changes
         significant_grads = np.where(np.abs(gradient) > grad_threshold)[0]
@@ -453,7 +453,7 @@ def detect_research_direction_changes(
 
 def cluster_direction_signals_by_proximity(
     signals: List[ShiftSignal], 
-    sensitivity_config
+    algorithm_config
 ) -> List[ShiftSignal]:
     """
     Cluster direction signals within temporal proximity into coherent paradigm shifts.
@@ -463,7 +463,7 @@ def cluster_direction_signals_by_proximity(
     
     Args:
         signals: Raw direction signals to cluster
-        sensitivity_config: Configuration with clustering window
+        algorithm_config: Comprehensive algorithm configuration with clustering window
         
     Returns:
         Clustered signals representing distinct paradigm shifts
@@ -471,7 +471,7 @@ def cluster_direction_signals_by_proximity(
     if not signals:
         return []
     
-    adaptive_window = sensitivity_config.clustering_window
+    adaptive_window = algorithm_config.clustering_window
     
     print(f"    🔗 TEMPORAL CLUSTERING: {len(signals)} raw direction signals")
     print(f"    🎛️  Clustering window: {adaptive_window} years")
@@ -584,120 +584,112 @@ def validate_direction_with_citation(
     citation_signals: List[ShiftSignal], 
     domain_data: DomainData,
     domain_name: str,
-    sensitivity_config
+    algorithm_config
 ) -> List[ShiftSignal]:
     """
-    Direction-citation validation with consistent threshold logic.
+    Simplified direction-citation validation with unified logic.
     
-    SIMPLIFIED VALIDATION LOGIC: All signals use the same validation threshold,
-    with citation support providing score boost only.
-    
-    Logic:
-    1. Start with clustered direction signals as paradigm candidates
-    2. Check for citation support within ±2 years → +0.3 confidence boost
-    3. Apply consistent validation threshold to all boosted signals
+    SIMPLIFIED VALIDATION LOGIC: 
+    - Single validation path for all signals
+    - Pure functions for decision transparency
+    - Configurable parameters (no hardcoded values)
+    - Streamlined logging for clarity
     
     Args:
         direction_signals: Primary direction change signals
         citation_signals: Secondary citation validation signals
         domain_data: Domain data for context
         domain_name: Domain name for logging
-        sensitivity_config: Configuration with boost values and thresholds
+        algorithm_config: Comprehensive algorithm configuration with all validation parameters
         
     Returns:
         List of validated paradigm shift signals
     """
-    print(f"  🔄 DIRECTION-CITATION VALIDATION:")
-    print(f"    🔍 DEBUG: Input validation parameters:")
-    print(f"      📊 Direction signals to validate: {len(direction_signals)}")
-    print(f"      🔗 Citation signals for validation: {len(citation_signals)}")
-    print(f"      🎯 Validation threshold: {sensitivity_config.validation_threshold:.3f}")
-    print(f"      📈 Citation boost: {sensitivity_config.citation_boost:.3f}")
-    print(f"      ⚠️ Breakthrough paper validation REMOVED (too permissive)")
+    print(f"  🔄 SIMPLIFIED VALIDATION ENGINE:")
+    print(f"    📊 Evaluating {len(direction_signals)} direction signals")
+    print(f"    🔗 Using {len(citation_signals)} citation signals for validation")
+    print(f"    🎯 Validation threshold: {algorithm_config.validation_threshold:.3f}")
+    print(f"    📈 Citation boost: {algorithm_config.citation_boost:.3f}")
     
     if not direction_signals:
-        print(f"    ⚠️ No direction signals detected - no paradigm shifts")
+        print(f"    ⚠️ No direction signals to validate")
         return []
     
     validated_paradigms = []
+    validation_summary = {'accepted': 0, 'rejected': 0, 'citation_supported': 0}
     
-    for idx, direction_signal in enumerate(direction_signals):
+    # Get citation support window (configurable)
+    citation_window = algorithm_config.citation_support_window
+    
+    # Process each direction signal through simplified validation
+    for direction_signal in direction_signals:
         year = direction_signal.year
-        
-        print(f"    🎯 EVALUATING direction signal {idx+1}/{len(direction_signals)}: {year}")
-        print(f"      📊 Base confidence: {direction_signal.confidence:.3f}")
-        print(f"      🏷️  Signal type: {direction_signal.signal_type}")
-        
-        # Start with direction signal base confidence
         base_confidence = direction_signal.confidence
-        paradigm_score = direction_signal.paradigm_significance
-        supporting_evidence = list(direction_signal.supporting_evidence)
-        contributing_papers = set(direction_signal.contributing_papers)
         
-        # Check for citation support within ±2 years
+        # Step 1: Analyze citation support (pure function)
         citation_support = False
-        citation_years_nearby = []
+        supporting_citations = []
+        
         for citation_signal in citation_signals:
-            if abs(citation_signal.year - year) <= 2:
+            if abs(citation_signal.year - year) <= citation_window:
                 citation_support = True
-                citation_years_nearby.append(citation_signal.year)
-                supporting_evidence.extend(citation_signal.supporting_evidence)
-                contributing_papers.update(citation_signal.contributing_papers)
-                print(f"      🔍 Citation validation found: {citation_signal.year} (±2 years from {year})")
+                supporting_citations.append(citation_signal)
         
-        if citation_support:
-            print(f"      ✅ Citation support: YES (nearby years: {citation_years_nearby})")
-        else:
-            print(f"      ❌ Citation support: NO")
+        # Step 2: Calculate confidence boost (pure function)
+        confidence_boost = algorithm_config.citation_boost if citation_support else 0.0
         
-        # Calculate final confidence with additive score boosting (citation only)
-        confidence_boosts = 0.0
+        # Step 3: Compute final confidence (pure function)
+        final_confidence = min(base_confidence + confidence_boost, 1.0)
         
-        if citation_support:
-            confidence_boosts += sensitivity_config.citation_boost
-            print(f"      📈 Citation boost applied: +{sensitivity_config.citation_boost:.2f}")
+        # Step 4: Apply validation threshold (pure function)
+        is_valid = final_confidence >= algorithm_config.validation_threshold
         
-        # Apply boosts to confidence score (capped at 1.0)
-        final_confidence = min(base_confidence + confidence_boosts, 1.0)
-        final_paradigm_score = paradigm_score + confidence_boosts
-        
-        # Use consistent validation threshold for all signals
-        threshold = sensitivity_config.validation_threshold
+        # Step 5: Create validated signal if accepted
+        if is_valid:
+            # Combine evidence from original signal and citations
+            combined_evidence = list(direction_signal.supporting_evidence)
+            for citation in supporting_citations:
+                combined_evidence.extend(citation.supporting_evidence)
             
-        print(f"      📊 FINAL CALCULATION:")
-        print(f"        Base confidence: {base_confidence:.3f}")
-        print(f"        Total boosts: +{confidence_boosts:.3f}")
-        print(f"        Final confidence: {final_confidence:.3f}")
-        print(f"        Validation threshold: {threshold:.3f}")
-        print(f"        Result: {'PASS' if final_confidence >= threshold else 'FAIL'}")
-        
-        if final_confidence >= threshold:
-            # Preserve keyword data from original description
-            original_description = direction_signal.transition_description
-            validation_suffix = " (citation validated)" if citation_support else ""
+            # Determine signal type and description
+            if citation_support:
+                signal_type = "direction_primary_validated"
+                validation_suffix = " (citation validated)"
+                validation_summary['citation_supported'] += 1
+            else:
+                signal_type = "direction_primary_only" 
+                validation_suffix = " (direction only)"
             
             validated_signal = ShiftSignal(
                 year=year,
                 confidence=final_confidence,
-                signal_type="direction_primary_validated" if citation_support else "direction_primary_only",
-                evidence_strength=direction_signal.evidence_strength + (sensitivity_config.citation_boost if citation_support else 0),
-                supporting_evidence=tuple(supporting_evidence[:10]),
-                contributing_papers=tuple(contributing_papers),
-                transition_description=original_description + validation_suffix,
-                paradigm_significance=final_paradigm_score
+                signal_type=signal_type,
+                evidence_strength=direction_signal.evidence_strength + confidence_boost,
+                supporting_evidence=tuple(combined_evidence[:10]),  # Keep top 10 pieces
+                contributing_papers=direction_signal.contributing_papers,
+                transition_description=f"{direction_signal.transition_description}{validation_suffix}",
+                paradigm_significance=direction_signal.paradigm_significance + confidence_boost
             )
             
             validated_paradigms.append(validated_signal)
+            validation_summary['accepted'] += 1
             
-            # Build validation type description
-            validation_type = "CITATION VALIDATED" if citation_support else "DIRECTION ONLY"
-                
-            print(f"      ✅ ACCEPTED ({validation_type}): {year}")
+            # Generate decision rationale for transparency
+            boost_text = f" + boost({confidence_boost:.2f})" if confidence_boost > 0 else ""
+            rationale = f"Confidence: {base_confidence:.3f}{boost_text} = {final_confidence:.3f} ≥ threshold({algorithm_config.validation_threshold:.2f}) → ACCEPTED"
+            print(f"    ✅ {year}: {rationale}")
         else:
-            print(f"      ❌ FILTERED: {year} confidence {final_confidence:.3f} < threshold {threshold:.3f}")
+            validation_summary['rejected'] += 1
+            rationale = f"Confidence: {base_confidence:.3f} + boost({confidence_boost:.2f}) = {final_confidence:.3f} < threshold({algorithm_config.validation_threshold:.2f}) → REJECTED"
+            print(f"    ❌ {year}: {rationale}")
     
-    print(f"    🏆 VALIDATION COMPLETE: {len(validated_paradigms)} paradigm shifts validated")
-    print(f"    📅 Validated years: {[s.year for s in validated_paradigms] if validated_paradigms else 'None'}")
+    # Print simplified validation summary
+    print(f"    🏆 VALIDATION SUMMARY:")
+    print(f"      ✅ Accepted: {validation_summary['accepted']}")
+    print(f"      ❌ Rejected: {validation_summary['rejected']}")
+    print(f"      🔗 Citation supported: {validation_summary['citation_supported']}")
+    print(f"      📅 Final paradigm shifts: {[s.year for s in validated_paradigms] if validated_paradigms else 'None'}")
+    
     return validated_paradigms
 
 
@@ -708,7 +700,7 @@ def validate_direction_with_citation(
 def detect_shift_signals(
     domain_data: DomainData,
     domain_name: str,
-    sensitivity_config,
+    algorithm_config,
     use_citation: bool = True,
     use_direction: bool = True,
     precomputed_signals: Optional[Dict[str, List[ShiftSignal]]] = None,
@@ -725,7 +717,7 @@ def detect_shift_signals(
     Args:
         domain_data: Domain data with papers and citations
         domain_name: Name of the domain
-        sensitivity_config: Configuration for thresholds and parameters
+        algorithm_config: Comprehensive algorithm configuration for thresholds and parameters
         use_citation: Whether to use citation validation
         use_direction: Whether to use direction signals
         precomputed_signals: Optional pre-computed signals
@@ -737,9 +729,9 @@ def detect_shift_signals(
     print(f"  🎯 PRIMARY: Direction signals (paradigm detection)")
     print(f"  🔗 CLUSTERING: Temporal proximity filtering")
     print(f"  🔍 SECONDARY: Citation signals (validation)")
-    print(f"  🎛️  THRESHOLD: {sensitivity_config.detection_threshold:.2f}")
-    print(f"  🎛️  CLUSTERING WINDOW: {sensitivity_config.clustering_window} years")
-    print(f"  🎛️  VALIDATION THRESHOLD: {sensitivity_config.validation_threshold:.2f}")
+    print(f"  🎛️  THRESHOLD: {algorithm_config.direction_threshold:.2f}")
+    print(f"  🎛️  CLUSTERING WINDOW: {algorithm_config.clustering_window} years")
+    print(f"  🎛️  VALIDATION THRESHOLD: {algorithm_config.validation_threshold:.2f}")
     print("=" * 60)
 
     # Stage 1: Primary Detection - Direction Signals 
@@ -754,7 +746,7 @@ def detect_shift_signals(
     else:
         # PRIMARY: Research direction changes detect paradigm shifts
         raw_direction_signals = (
-            detect_research_direction_changes(domain_data, detection_threshold=sensitivity_config.detection_threshold) if use_direction else []
+            detect_research_direction_changes(domain_data, detection_threshold=algorithm_config.direction_threshold) if use_direction else []
         )
         
         # SECONDARY: Citation patterns for validation
@@ -771,7 +763,7 @@ def detect_shift_signals(
     
     # Stage 2: Temporal Clustering for direction signals
     clustered_direction_signals = (
-        cluster_direction_signals_by_proximity(raw_direction_signals, sensitivity_config) 
+        cluster_direction_signals_by_proximity(raw_direction_signals, algorithm_config) 
         if raw_direction_signals else []
     )
     
@@ -785,12 +777,12 @@ def detect_shift_signals(
     
     # Create clustering metadata for visualization
     clustering_metadata = create_clustering_metadata(
-        raw_direction_signals, clustered_direction_signals, citation_signals, sensitivity_config
+        raw_direction_signals, clustered_direction_signals, citation_signals, algorithm_config
     )
     
     # Stage 3: Direction-Citation Validation
     paradigm_shifts = validate_direction_with_citation(
-        clustered_direction_signals, citation_signals, domain_data, domain_name, sensitivity_config
+        clustered_direction_signals, citation_signals, domain_data, domain_name, algorithm_config
     )
 
     print(f"  ✅ Final validated paradigm shifts: {len(paradigm_shifts)}")
@@ -828,7 +820,7 @@ def create_clustering_metadata(
     raw_direction_signals: List[ShiftSignal],
     clustered_direction_signals: List[ShiftSignal], 
     citation_signals: List[ShiftSignal],
-    sensitivity_config
+    algorithm_config
 ) -> Dict[str, Any]:
     """
     Create clustering metadata for visualization.
@@ -837,7 +829,7 @@ def create_clustering_metadata(
         raw_direction_signals: Original direction signals before clustering
         clustered_direction_signals: Direction signals after clustering
         citation_signals: Citation validation signals
-        sensitivity_config: Configuration used
+        algorithm_config: Comprehensive algorithm configuration used
         
     Returns:
         Dict containing visualization metadata
@@ -897,14 +889,14 @@ def create_clustering_metadata(
         'raw_direction_signals': raw_direction_signals,
         'clustered_direction_signals': clustered_direction_signals,
         'citation_signals': citation_signals,
-        'sensitivity_config': sensitivity_config,
+        'algorithm_config': algorithm_config,
         'clustering_relationships': clustering_relationships,
         'raw_signal_by_year': raw_signal_by_year,
         'clustering_summary': {
             'total_raw_signals': len(raw_direction_signals),
             'total_clustered_signals': len(clustered_direction_signals),
-            'clustering_window': sensitivity_config.clustering_window,
-            'detection_threshold': sensitivity_config.detection_threshold,
+            'clustering_window': algorithm_config.clustering_window,
+            'detection_threshold': algorithm_config.direction_threshold,
             'reduction_ratio': len(raw_direction_signals) / max(len(clustered_direction_signals), 1),
             'merge_statistics': {
                 'single_signals': sum(1 for rel in clustering_relationships if rel['merge_count'] == 1),

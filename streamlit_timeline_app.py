@@ -13,7 +13,7 @@ import time
 # Import core algorithm modules
 from core.data_loader import discover_available_domains
 from core.data_processing import process_domain_data
-from core.integration import SensitivityConfig
+from core.algorithm_config import ComprehensiveAlgorithmConfig
 from core.shift_signal_detection import (
     detect_shift_signals,
     detect_research_direction_changes,
@@ -111,13 +111,13 @@ def extract_citation_time_series(
 
 
 def run_algorithm_with_params(
-    domain_data: DomainData, domain_name: str, sensitivity_config: SensitivityConfig
+    domain_data: DomainData, domain_name: str, algorithm_config: ComprehensiveAlgorithmConfig
 ) -> Tuple[Any, Any, List[List[int]], Dict]:
     """Run the algorithm with specified parameters and return all signal data for visualization."""
 
     # Get raw direction signals data WITH analysis data for visualization
     raw_direction_signals, keyword_analysis = detect_research_direction_changes(
-        domain_data, sensitivity_config.detection_threshold, return_analysis_data=True
+        domain_data, algorithm_config.direction_threshold, return_analysis_data=True
     )
 
     # Get citation signals
@@ -133,7 +133,7 @@ def run_algorithm_with_params(
     shift_signals, transition_evidence, clustering_metadata = detect_shift_signals(
         domain_data,
         domain_name,
-        sensitivity_config=sensitivity_config,
+        algorithm_config=algorithm_config,
         precomputed_signals=precomputed_signals,
     )
 
@@ -165,7 +165,7 @@ def create_comprehensive_validation_plot(
     domain_name: str,
     validated_signals: List,
     enhanced_signal_data: Dict,
-    sensitivity_config: SensitivityConfig,
+    algorithm_config: ComprehensiveAlgorithmConfig,
     domain_data: DomainData,
 ):
     """Create a comprehensive visualization showing the complete validation process."""
@@ -420,7 +420,7 @@ def create_comprehensive_validation_plot(
             
             confidence_boosts = 0.0
             if citation_support:
-                confidence_boosts += sensitivity_config.citation_boost
+                confidence_boosts += algorithm_config.citation_boost
 
             final_confidence = min(base_confidence + confidence_boosts, 1.0)
             status = "Filtered"
@@ -440,13 +440,13 @@ def create_comprehensive_validation_plot(
         
         boost_info = []
         if citation_support:
-            boost_info.append(f"Citation: +{sensitivity_config.citation_boost:.2f}")
+            boost_info.append(f"Citation: +{algorithm_config.citation_boost:.2f}")
 
         if boost_info:
             hover_text += f"<b>Boosts:</b> {', '.join(boost_info)}<br>"
             
         hover_text += f"<b>Final Confidence:</b> {final_confidence:.3f}<br>"
-        hover_text += f"<b>Threshold:</b> {sensitivity_config.validation_threshold:.3f}<br>"
+        hover_text += f"<b>Threshold:</b> {algorithm_config.validation_threshold:.3f}<br>"
         hover_text += f"<b>Status:</b> {status}"
         
         all_direction_hover.append(hover_text)
@@ -485,9 +485,9 @@ def create_comprehensive_validation_plot(
 
     # Validation threshold line
     fig.add_hline(
-        y=sensitivity_config.validation_threshold,
+        y=algorithm_config.validation_threshold,
         line=dict(color="red", width=2, dash="dash"),
-        annotation_text=f"Validation Threshold ({sensitivity_config.validation_threshold:.2f})",
+        annotation_text=f"Validation Threshold ({algorithm_config.validation_threshold:.2f})",
         annotation_position="top left",
         row=3,
     )
@@ -514,7 +514,7 @@ def create_improved_segments_plot(
     segments: List[List[int]],
     domain_data: DomainData,
     shift_signals: List,
-    sensitivity_config: SensitivityConfig,
+    algorithm_config: ComprehensiveAlgorithmConfig,
 ):
     """Create an improved timeline visualization showing segments with better details."""
 
@@ -603,9 +603,9 @@ def create_improved_segments_plot(
         )
 
     # Add summary annotation
-    summary_text = f"Configuration: Granularity {sensitivity_config.granularity} | "
-    summary_text += f"Detection: {sensitivity_config.detection_threshold:.2f} | "
-    summary_text += f"Validation: {sensitivity_config.validation_threshold:.2f}<br>"
+    summary_text = f"Configuration: Granularity {algorithm_config.granularity} | "
+    summary_text += f"Detection: {algorithm_config.direction_threshold:.2f} | "
+    summary_text += f"Validation: {algorithm_config.validation_threshold:.2f}<br>"
     summary_text += (
         f"Results: {len(segments)} periods, {len(shift_signals)} paradigm shifts"
     )
@@ -728,6 +728,245 @@ def create_enhanced_keyword_heatmap(
     return fig
 
 
+def create_decision_tree_analysis(
+    domain_name: str,
+    validated_signals: List,
+    enhanced_signal_data: Dict,
+    algorithm_config: ComprehensiveAlgorithmConfig,
+    domain_data: DomainData,
+):
+    """Create comprehensive decision tree analysis for algorithm transparency."""
+    
+    clustering_metadata = enhanced_signal_data.get("clustering_metadata", {})
+    clustered_direction_signals = clustering_metadata.get('clustered_direction_signals', [])
+    citation_signals = clustering_metadata.get("citation_signals", [])
+    
+    # Extract decision details for each signal
+    decision_details = []
+    validated_years = {s.year for s in validated_signals}
+    
+    for direction_signal in clustered_direction_signals:
+        year = direction_signal.year
+        base_confidence = direction_signal.confidence
+        
+        # Check for citation support
+        citation_support = any(abs(cs.year - year) <= 2 for cs in citation_signals)
+        citation_years = [cs.year for cs in citation_signals if abs(cs.year - year) <= 2]
+        
+        # Calculate confidence boosts
+        confidence_boosts = 0.0
+        boost_details = []
+        
+        if citation_support:
+            confidence_boosts += algorithm_config.citation_boost
+            boost_details.append(f"Citation Support (+{algorithm_config.citation_boost:.2f})")
+        
+        # Final confidence calculation
+        final_confidence = min(base_confidence + confidence_boosts, 1.0)
+        
+        # Decision outcome
+        is_validated = year in validated_years
+        decision_outcome = "ACCEPTED" if is_validated else "REJECTED"
+        
+        # Decision rationale
+        if final_confidence >= algorithm_config.validation_threshold:
+            if is_validated:
+                rationale = f"✅ Passed threshold ({final_confidence:.3f} ≥ {algorithm_config.validation_threshold:.3f})"
+            else:
+                rationale = f"🔄 Should pass but not in final results - check algorithm"
+        else:
+            rationale = f"❌ Below threshold ({final_confidence:.3f} < {algorithm_config.validation_threshold:.3f})"
+        
+        decision_details.append({
+            'year': year,
+            'base_confidence': base_confidence,
+            'citation_support': citation_support,
+            'citation_years': citation_years,
+            'confidence_boosts': confidence_boosts,
+            'boost_details': boost_details,
+            'final_confidence': final_confidence,
+            'threshold': algorithm_config.validation_threshold,
+            'decision_outcome': decision_outcome,
+            'rationale': rationale,
+            'signal_type': direction_signal.signal_type,
+            'evidence_strength': direction_signal.evidence_strength,
+            'supporting_evidence': list(direction_signal.supporting_evidence)[:3]
+        })
+    
+    return decision_details
+
+
+def create_decision_flow_diagram(decision_details: List[Dict], domain_name: str):
+    """Create a decision flow diagram showing the algorithm's decision process."""
+    
+    fig = go.Figure()
+    
+    # Create a flowchart-style visualization
+    y_positions = list(range(len(decision_details)))
+    years = [d['year'] for d in decision_details]
+    base_confidences = [d['base_confidence'] for d in decision_details]
+    final_confidences = [d['final_confidence'] for d in decision_details]
+    outcomes = [d['decision_outcome'] for d in decision_details]
+    
+    # Base confidence bars
+    fig.add_trace(go.Bar(
+        x=base_confidences,
+        y=y_positions,
+        orientation='h',
+        name='Base Confidence',
+        marker_color='lightblue',
+        opacity=0.7,
+        text=[f"Base: {conf:.3f}" for conf in base_confidences],
+        textposition='inside',
+        hovertemplate="<b>Year:</b> %{customdata}<br>" +
+                      "<b>Base Confidence:</b> %{x:.3f}<extra></extra>",
+        customdata=years
+    ))
+    
+    # Final confidence bars
+    fig.add_trace(go.Bar(
+        x=final_confidences,
+        y=y_positions,
+        orientation='h',
+        name='Final Confidence',
+        marker_color=['green' if outcome == 'ACCEPTED' else 'red' for outcome in outcomes],
+        opacity=0.8,
+        text=[f"Final: {conf:.3f}" for conf in final_confidences],
+        textposition='inside',
+        hovertemplate="<b>Year:</b> %{customdata}<br>" +
+                      "<b>Final Confidence:</b> %{x:.3f}<br>" +
+                      "<b>Outcome:</b> %{text}<extra></extra>",
+        customdata=years
+    ))
+    
+    # Add threshold line
+    threshold = decision_details[0]['threshold'] if decision_details else 0.8
+    fig.add_vline(
+        x=threshold,
+        line=dict(color="red", width=3, dash="dash"),
+        annotation_text=f"Validation Threshold ({threshold:.2f})"
+    )
+    
+    fig.update_layout(
+        title=f"Decision Flow Analysis: {domain_name.replace('_', ' ').title()}",
+        xaxis_title="Confidence Score",
+        yaxis_title="Signals (by chronological order)",
+        yaxis=dict(
+            tickmode='array',
+            tickvals=y_positions,
+            ticktext=[f"{year} ({outcome})" for year, outcome in zip(years, outcomes)]
+        ),
+        height=max(400, len(decision_details) * 40),
+        barmode='overlay',
+        showlegend=True
+    )
+    
+    return fig
+
+
+def create_parameter_sensitivity_analysis(decision_details: List[Dict], algorithm_config: ComprehensiveAlgorithmConfig):
+    """Create parameter sensitivity analysis showing how changes affect outcomes."""
+    
+    if not decision_details:
+        return go.Figure()
+    
+    # Test different threshold values
+    test_thresholds = np.arange(0.5, 1.0, 0.05)
+    sensitivity_results = []
+    
+    for threshold in test_thresholds:
+        accepted_count = sum(1 for d in decision_details if d['final_confidence'] >= threshold)
+        sensitivity_results.append({
+            'threshold': threshold,
+            'accepted_signals': accepted_count,
+            'acceptance_rate': accepted_count / len(decision_details)
+        })
+    
+    fig = make_subplots(
+        rows=2, cols=1,
+        subplot_titles=("Threshold Impact on Signal Acceptance", "Boost Impact Analysis"),
+        vertical_spacing=0.12
+    )
+    
+    # Threshold sensitivity
+    thresholds = [r['threshold'] for r in sensitivity_results]
+    accepted_counts = [r['accepted_signals'] for r in sensitivity_results]
+    
+    fig.add_trace(go.Scatter(
+        x=thresholds,
+        y=accepted_counts,
+        mode='lines+markers',
+        name='Accepted Signals',
+        line=dict(color='blue', width=3),
+        marker=dict(size=8),
+        hovertemplate="<b>Threshold:</b> %{x:.2f}<br>" +
+                      "<b>Accepted Signals:</b> %{y}<extra></extra>"
+    ), row=1, col=1)
+    
+    # Current threshold marker
+    current_threshold = algorithm_config.validation_threshold
+    current_accepted = sum(1 for d in decision_details if d['final_confidence'] >= current_threshold)
+    
+    fig.add_trace(go.Scatter(
+        x=[current_threshold],
+        y=[current_accepted],
+        mode='markers',
+        name='Current Setting',
+        marker=dict(size=15, color='red', symbol='star'),
+        hovertemplate="<b>Current Threshold:</b> %{x:.2f}<br>" +
+                      "<b>Current Accepted:</b> %{y}<extra></extra>"
+    ), row=1, col=1)
+    
+    # Boost impact analysis
+    boost_values = np.arange(0.0, 0.6, 0.05)
+    boost_impact = []
+    
+    for boost in boost_values:
+        # Recalculate with different boost
+        new_accepted = 0
+        for d in decision_details:
+            new_final_confidence = min(d['base_confidence'] + (boost if d['citation_support'] else 0), 1.0)
+            if new_final_confidence >= current_threshold:
+                new_accepted += 1
+        boost_impact.append(new_accepted)
+    
+    fig.add_trace(go.Scatter(
+        x=boost_values,
+        y=boost_impact,
+        mode='lines+markers',
+        name='Citation Boost Impact',
+        line=dict(color='green', width=3),
+        marker=dict(size=6),
+        hovertemplate="<b>Citation Boost:</b> %{x:.2f}<br>" +
+                      "<b>Accepted Signals:</b> %{y}<extra></extra>"
+    ), row=2, col=1)
+    
+    # Current boost marker
+    current_boost = algorithm_config.citation_boost
+    fig.add_trace(go.Scatter(
+        x=[current_boost],
+        y=[current_accepted],
+        mode='markers',
+        name='Current Boost',
+        marker=dict(size=15, color='red', symbol='star'),
+        hovertemplate="<b>Current Boost:</b> %{x:.2f}<br>" +
+                      "<b>Current Accepted:</b> %{y}<extra></extra>"
+    ), row=2, col=1)
+    
+    fig.update_layout(
+        title="Parameter Sensitivity Analysis",
+        height=600,
+        showlegend=True
+    )
+    
+    fig.update_xaxes(title_text="Validation Threshold", row=1, col=1)
+    fig.update_xaxes(title_text="Citation Boost Value", row=2, col=1)
+    fig.update_yaxes(title_text="Accepted Signals", row=1, col=1)
+    fig.update_yaxes(title_text="Accepted Signals", row=2, col=1)
+    
+    return fig
+
+
 def main():
     """Main Streamlit application."""
 
@@ -748,9 +987,14 @@ def main():
 
     # Configuration mode
     st.sidebar.subheader("⚙️ Configuration Mode")
-    use_advanced = st.sidebar.checkbox("🔬 Advanced Parameter Control", value=False)
+    config_mode = st.sidebar.radio(
+        "Configuration Type",
+        ["🎯 Simple (Granularity)", "🔬 Advanced (All Parameters)"],
+        index=0,
+        help="Choose configuration complexity level"
+    )
 
-    if not use_advanced:
+    if config_mode == "🎯 Simple (Granularity)":
         # Simple granularity interface
         st.sidebar.subheader("🎯 Granularity Level")
         granularity = st.sidebar.slider(
@@ -762,95 +1006,165 @@ def main():
             help="Primary control for segment count. Lower values = more segments.",
         )
 
-        # Create sensitivity config from granularity
-        sensitivity_config = SensitivityConfig(granularity=granularity)
+        # Create comprehensive config from granularity
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
 
         # Display the derived parameters
         st.sidebar.info(
             f"""
-        **Derived Parameters:**
-        - Detection Threshold: {sensitivity_config.detection_threshold:.2f}
-        - Clustering Window: {sensitivity_config.clustering_window} years
-        - Validation Threshold: {sensitivity_config.validation_threshold:.2f}
-        - Citation Boost: {sensitivity_config.citation_boost:.2f}
+        **Comprehensive Configuration ({len([f for f in algorithm_config.__dataclass_fields__])} parameters):**
+        - Direction Threshold: {algorithm_config.direction_threshold:.2f}
+        - Clustering Window: {algorithm_config.clustering_window} years
+        - Validation Threshold: {algorithm_config.validation_threshold:.2f}
+        - Citation Boost: {algorithm_config.citation_boost:.2f}
+        - Citation Support Window: ±{algorithm_config.citation_support_window} years
+        - Keyword Min Frequency: {algorithm_config.keyword_min_frequency}
         """
         )
 
-    else:
-        # Advanced parameter controls
-        st.sidebar.subheader("🎯 Direct Parameter Control")
-
-        detection_threshold = st.sidebar.slider(
-            "Detection Threshold",
-            min_value=0.1,
-            max_value=0.8,
-            value=0.4,
-            step=0.05,
-            help="Lower values = more sensitive detection",
-        )
-
-        clustering_window = st.sidebar.slider(
-            "Clustering Window (Years)",
+    elif config_mode == "🔬 Advanced (All Parameters)":
+        # Advanced parameter controls with comprehensive config
+        st.sidebar.subheader("🔬 Comprehensive Parameter Control")
+        
+        granularity = st.sidebar.slider(
+            "Base Granularity",
             min_value=1,
-            max_value=10,
+            max_value=5,
             value=3,
             step=1,
-            help="Window for grouping nearby signals",
+            help="Base granularity level for presets",
         )
+        
+        # Create expandable sections for parameter groups
+        with st.sidebar.expander("🎯 Detection Parameters", expanded=True):
+            direction_threshold = st.sidebar.slider(
+                "Direction Threshold",
+                min_value=0.1,
+                max_value=0.8,
+                value=0.4,
+                step=0.05,
+                help="Lower values = more sensitive detection",
+            )
+            
+            direction_window_years = st.sidebar.slider(
+                "Direction Window (Years)",
+                min_value=1,
+                max_value=10,
+                value=3,
+                step=1,
+                help="Sliding window size for keyword evolution analysis",
+            )
+            
+            keyword_min_frequency = st.sidebar.slider(
+                "Keyword Min Frequency",
+                min_value=1,
+                max_value=5,
+                value=2,
+                step=1,
+                help="Minimum frequency for keyword significance",
+            )
+            
+            min_significant_keywords = st.sidebar.slider(
+                "Min Significant Keywords",
+                min_value=1,
+                max_value=10,
+                value=3,
+                step=1,
+                help="Minimum number of significant new keywords for paradigm shift",
+            )
 
-        validation_threshold = st.sidebar.slider(
-            "Validation Threshold",
-            min_value=0.5,
-            max_value=0.95,
-            value=0.9,
-            step=0.05,
-            help="Consistent threshold for all signals",
+        with st.sidebar.expander("🔗 Citation Parameters"):
+            citation_boost = st.sidebar.slider(
+                "Citation Support Boost",
+                min_value=0.1,
+                max_value=0.6,
+                value=0.3,
+                step=0.05,
+                help="Score boost for citation support",
+            )
+            
+            citation_support_window = st.sidebar.slider(
+                "Citation Support Window",
+                min_value=1,
+                max_value=5,
+                value=2,
+                step=1,
+                help="Time window (±years) for citation support validation",
+            )
+            
+            citation_gradient_multiplier = st.sidebar.slider(
+                "Citation Gradient Multiplier",
+                min_value=1.0,
+                max_value=3.0,
+                value=1.5,
+                step=0.1,
+                help="Multiplier for gradient threshold in citation analysis",
+            )
+
+        with st.sidebar.expander("🕒 Temporal Parameters"):
+            clustering_window = st.sidebar.slider(
+                "Clustering Window (Years)",
+                min_value=1,
+                max_value=10,
+                value=3,
+                step=1,
+                help="Window for grouping nearby signals",
+            )
+            
+            validation_threshold = st.sidebar.slider(
+                "Validation Threshold",
+                min_value=0.5,
+                max_value=0.95,
+                value=0.8,
+                step=0.05,
+                help="Consistent threshold for all signals",
+            )
+
+        # Create comprehensive config with overrides
+        overrides = {
+            'direction_threshold': direction_threshold,
+            'direction_window_years': direction_window_years,
+            'keyword_min_frequency': keyword_min_frequency,
+            'min_significant_keywords': min_significant_keywords,
+            'citation_boost': citation_boost,
+            'citation_support_window': citation_support_window,
+            'citation_gradient_multiplier': citation_gradient_multiplier,
+            'clustering_window': clustering_window,
+            'validation_threshold': validation_threshold,
+        }
+        
+        algorithm_config = ComprehensiveAlgorithmConfig.create_custom(
+            granularity=granularity,
+            overrides=overrides
         )
-
-        citation_boost = st.sidebar.slider(
-            "Citation Support Boost",
-            min_value=0.1,
-            max_value=0.6,
-            value=0.3,
-            step=0.05,
-            help="Score boost for citation support",
-        )
-
-        # Create custom sensitivity config
-        sensitivity_config = SensitivityConfig.create_custom(
-            detection_threshold=detection_threshold,
-            validation_threshold=validation_threshold,
-            citation_boost=citation_boost,
-            clustering_window=clustering_window,
-        )
-
     # Get domain data
     domain_data = domain_data_dict[selected_domain]
 
     # Run algorithm
     with st.spinner("🔄 Running algorithm..."):
         shift_signals, transition_evidence, segments, enhanced_signal_data = (
-            run_algorithm_with_params(domain_data, selected_domain, sensitivity_config)
+            run_algorithm_with_params(domain_data, selected_domain, algorithm_config)
         )
 
     # Main visualization tabs
-    tab1, tab2 = st.tabs(
+    tab1, tab2, tab3 = st.tabs(
         [
             "🔬 Analysis Overview",
-            "🔍 Keyword Evolution",
+            "🔍 Keyword Evolution", 
+            "🌳 Decision Tree Analysis",
         ]
     )
 
     with tab1:
         st.subheader("Complete Validation Process Visualization")
         validation_fig = create_comprehensive_validation_plot(
-            selected_domain, shift_signals, enhanced_signal_data, sensitivity_config, domain_data
+            selected_domain, shift_signals, enhanced_signal_data, algorithm_config, domain_data
         )
         st.plotly_chart(validation_fig, use_container_width=True)
 
         st.subheader("Timeline Segmentation Results")
         segments_fig = create_improved_segments_plot(
-            selected_domain, segments, domain_data, shift_signals, sensitivity_config
+            selected_domain, segments, domain_data, shift_signals, algorithm_config
         )
         st.plotly_chart(segments_fig, use_container_width=True)
 
@@ -940,6 +1254,174 @@ def main():
                 st.info("No paradigm shifts detected to analyze keyword changes.")
         else:
             st.warning("Insufficient keyword data for evolution analysis.")
+
+    with tab3:
+        st.subheader("🌳 Algorithm Decision Tree Analysis")
+        st.markdown("**Complete transparency into how the algorithm makes decisions**")
+        
+        # Generate decision analysis
+        decision_details = create_decision_tree_analysis(
+            selected_domain, shift_signals, enhanced_signal_data, algorithm_config, domain_data
+        )
+        
+        if decision_details:
+            # Decision Flow Diagram
+            st.markdown("### 🔄 Decision Flow Visualization")
+            decision_flow_fig = create_decision_flow_diagram(decision_details, selected_domain)
+            st.plotly_chart(decision_flow_fig, use_container_width=True)
+            
+            # Parameter Sensitivity Analysis
+            st.markdown("### 📊 Parameter Sensitivity Analysis")
+            sensitivity_fig = create_parameter_sensitivity_analysis(decision_details, algorithm_config)
+            st.plotly_chart(sensitivity_fig, use_container_width=True)
+            
+            # Detailed Decision Breakdown Table
+            st.markdown("### 📋 Detailed Decision Breakdown")
+            
+            # Prepare data for table
+            table_data = []
+            for detail in decision_details:
+                table_data.append({
+                    'Year': detail['year'],
+                    'Base Confidence': f"{detail['base_confidence']:.3f}",
+                    'Citation Support': "✅ Yes" if detail['citation_support'] else "❌ No",
+                    'Confidence Boosts': f"+{detail['confidence_boosts']:.3f}" if detail['confidence_boosts'] > 0 else "None",
+                    'Final Confidence': f"{detail['final_confidence']:.3f}",
+                    'Threshold': f"{detail['threshold']:.3f}",
+                    'Decision': detail['decision_outcome'],
+                    'Rationale': detail['rationale']
+                })
+            
+            df_decisions = pd.DataFrame(table_data)
+            
+            # Color-code the table
+            def color_decision(val):
+                if 'ACCEPTED' in str(val):
+                    return 'background-color: #d4edda'
+                elif 'REJECTED' in str(val):
+                    return 'background-color: #f8d7da'
+                return ''
+            
+            # Apply styling and display
+            styled_df = df_decisions.style.applymap(color_decision, subset=['Decision'])
+            st.dataframe(styled_df, use_container_width=True, hide_index=True)
+            
+            # Interactive "What-If" Analysis
+            st.markdown("### 🎯 Interactive What-If Analysis")
+            st.markdown("**Explore how parameter changes would affect decisions without re-running the algorithm**")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                test_detection_threshold = st.slider(
+                    "Test Detection Threshold",
+                    min_value=0.1, max_value=0.8, value=algorithm_config.direction_threshold, step=0.05,
+                    help="How would changing detection threshold affect initial signal detection?"
+                )
+                
+                test_validation_threshold = st.slider(
+                    "Test Validation Threshold", 
+                    min_value=0.5, max_value=0.95, value=algorithm_config.validation_threshold, step=0.05,
+                    help="How would changing validation threshold affect final acceptance?"
+                )
+            
+            with col2:
+                test_citation_boost = st.slider(
+                    "Test Citation Boost",
+                    min_value=0.0, max_value=0.6, value=algorithm_config.citation_boost, step=0.05,
+                    help="How would changing citation boost affect confidence?"
+                )
+                
+                test_clustering_window = st.slider(
+                    "Test Clustering Window",
+                    min_value=1, max_value=10, value=algorithm_config.clustering_window, step=1,
+                    help="How would changing clustering window affect temporal grouping?"
+                )
+            
+            # Calculate what-if results
+            if st.button("🔄 Calculate What-If Results"):
+                what_if_results = []
+                
+                for detail in decision_details:
+                    # Recalculate with new parameters
+                    new_final_confidence = min(
+                        detail['base_confidence'] + (test_citation_boost if detail['citation_support'] else 0), 
+                        1.0
+                    )
+                    new_decision = "ACCEPTED" if new_final_confidence >= test_validation_threshold else "REJECTED"
+                    
+                    change_indicator = ""
+                    if new_decision != detail['decision_outcome']:
+                        if new_decision == "ACCEPTED":
+                            change_indicator = "📈 Now Accepted"
+                        else:
+                            change_indicator = "📉 Now Rejected"
+                    else:
+                        change_indicator = "➡️ No Change"
+                    
+                    what_if_results.append({
+                        'Year': detail['year'],
+                        'Original Decision': detail['decision_outcome'],
+                        'New Final Confidence': f"{new_final_confidence:.3f}",
+                        'New Decision': new_decision,
+                        'Change': change_indicator
+                    })
+                
+                df_what_if = pd.DataFrame(what_if_results)
+                
+                # Color-code changes
+                def color_change(val):
+                    if 'Now Accepted' in str(val):
+                        return 'background-color: #d1ecf1; color: #0c5460'
+                    elif 'Now Rejected' in str(val):
+                        return 'background-color: #f8d7da; color: #721c24'
+                    return ''
+                
+                styled_what_if = df_what_if.style.applymap(color_change, subset=['Change'])
+                st.dataframe(styled_what_if, use_container_width=True, hide_index=True)
+                
+                # Summary of changes
+                changes_count = sum(1 for r in what_if_results if 'No Change' not in r['Change'])
+                if changes_count > 0:
+                    st.info(f"💡 **Impact Summary**: {changes_count} out of {len(what_if_results)} signals would change decisions with these parameters")
+                else:
+                    st.success("✅ **No Impact**: These parameter changes would not affect any decisions")
+            
+            # Algorithm Configuration Summary
+            st.markdown("### ⚙️ Current Algorithm Configuration")
+            config_col1, config_col2 = st.columns(2)
+            
+            with config_col1:
+                st.metric("Direction Threshold", f"{algorithm_config.direction_threshold:.2f}")
+                st.metric("Clustering Window", f"{algorithm_config.clustering_window} years")
+            
+            with config_col2:
+                st.metric("Validation Threshold", f"{algorithm_config.validation_threshold:.2f}")
+                st.metric("Citation Boost", f"{algorithm_config.citation_boost:.2f}")
+            
+            # Decision Summary Statistics
+            accepted_count = sum(1 for d in decision_details if d['decision_outcome'] == 'ACCEPTED')
+            citation_supported = sum(1 for d in decision_details if d['citation_support'])
+            
+            st.markdown("### 📈 Decision Summary Statistics")
+            
+            metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
+            
+            with metric_col1:
+                st.metric("Total Signals Evaluated", len(decision_details))
+            
+            with metric_col2:
+                st.metric("Signals Accepted", accepted_count)
+            
+            with metric_col3:
+                st.metric("Citation Supported", citation_supported)
+            
+            with metric_col4:
+                acceptance_rate = (accepted_count / len(decision_details)) * 100 if decision_details else 0
+                st.metric("Acceptance Rate", f"{acceptance_rate:.1f}%")
+                
+        else:
+            st.info("No signals detected to analyze. Try adjusting the algorithm parameters to detect signals.")
 
 
 if __name__ == "__main__":
