@@ -1,58 +1,46 @@
 {
   "consensus_difference_weights": {
     "final_combination_weights": {
-      "consensus_weight": 0.9,
-      "difference_weight": 0.1,
-      "description": "Test configuration: cons0.9_diff0.1"
+      "consensus_weight": 0.8,
+      "difference_weight": 0.2,
+      "description": "Final score = 0.8 × consensus + 0.2 × difference (as per paper methodology)"
     },
     "consensus_internal_weights": {
       "c1_keyword_jaccard": 0.4,
       "c2_tfidf_cohesion": 0.4,
       "c3_citation_density": 0.2,
-      "description": "Consensus = 0.4\u00d7C1 + 0.4\u00d7C2 + 0.2\u00d7C3 (emphasizes textual coherence over citations)"
+      "description": "Consensus = 0.4×C1 + 0.4×C2 + 0.2×C3 (emphasizes textual coherence over citations)"
     },
     "difference_internal_weights": {
       "d1_keyword_js": 0.4,
       "d2_centroid_distance": 0.4,
       "d3_cross_citation_ratio": 0.2,
-      "description": "Difference = 0.4\u00d7D1 + 0.4\u00d7D2 + 0.2\u00d7(1-D3) (emphasizes content distinction over citation patterns)"
+      "description": "Difference = 0.4×D1 + 0.4×D2 + 0.2×(1-D3) (emphasizes content distinction over citation patterns)"
     }
   },
   "optimization_parameters": {
-    "direction_threshold_bounds": [
-      0.1,
-      0.4
-    ],
-    "validation_threshold_bounds": [
-      0.3,
-      0.45
-    ],
-    "similarity_min_segment_length_bounds": [
-      3,
-      5
-    ],
-    "similarity_max_segment_length_bounds": [
-      10,
-      30
-    ],
+    "direction_threshold_bounds": [0.1, 0.4],
+    "validation_threshold_bounds": [0.3, 0.45],
+    "similarity_min_segment_length_bounds": [3, 5],
+    "similarity_max_segment_length_bounds": [10, 30],
     "description": "Parameter bounds for Bayesian optimization as established in paper"
   },
   "evaluation_framework": {
     "framework_name": "Phase 15 Consensus-Difference Metrics",
-    "objective_function": "L = 0.8 \u00d7 Q_cons + 0.2 \u00d7 Q_diff",
+    "objective_function": "L = 0.8 × Q_cons + 0.2 × Q_diff",
     "transparency_required": true,
     "fail_fast_enabled": true,
     "description": "Centralized configuration ensures all optimization and baseline comparison methods use identical weighting schemes"
   },
   "metadata": {
-    "created_date": "2025-06-23",
+    "created_date": "2024-12-22",
     "purpose": "Centralize all consensus-difference optimization weights to ensure consistency across baseline comparison and Bayesian optimization",
     "affected_files": [
       "core/consensus_difference_metrics.py",
-      "compare_with_baselines.py",
+      "compare_with_baselines.py", 
       "optimize_segmentation_bayesian.py"
     ],
     "validation_status": "Verified against paper methodology (Section 2.6)",
     "notes": "This configuration fixes the weighting inconsistency discovered between Bayesian optimization (0.5/0.5) and paper specification (0.8/0.2)"
   }
-}
+} 
