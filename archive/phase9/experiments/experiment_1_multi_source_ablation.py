@@ -106,7 +106,7 @@ class MultiSourceAblationExperiment:
         
         for domain in self.domains:
             try:
-                gt_file = f"validation/{domain}_groundtruth.json"
+                gt_file = f"validation/{domain}_gemini.json"
                 with open(gt_file, 'r') as f:
                     gt_data = json.load(f)
                     

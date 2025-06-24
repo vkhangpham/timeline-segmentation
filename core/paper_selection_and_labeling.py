@@ -299,7 +299,7 @@ Generate your analysis **only** in the following structured JSON format. **Do no
   "description": "Detailed technical explanation with paper references"
 }}"""
 
-    response = query_llm_structured(prompt, PeriodLabelResponse, model="gemma3:4b-it-qat")
+    response = query_llm_structured(prompt, PeriodLabelResponse, model="qwen3:8b")
     
     # Extract and validate response
     label = response.label

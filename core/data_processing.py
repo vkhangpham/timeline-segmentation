@@ -145,8 +145,8 @@ def load_citation_graph(file_path: str, paper_year_map: Dict[str, int]) -> Tuple
         
         # Log filtering results
         if invalid_count > 0:
-            print(f"⚠️  Filtered out {invalid_count} temporally invalid citations from graph")
-        print(f"✅ Loaded {len(citations)} rich citations and {len(graph_nodes)} graph nodes")
+            print(f"Filtered out {invalid_count} temporally invalid citations from graph")
+        print(f"Loaded {len(citations)} rich citations and {len(graph_nodes)} graph nodes")
         
         return tuple(citations), tuple(graph_nodes)
     
@@ -420,13 +420,48 @@ def create_data_subset(
     )
 
 
-def process_domain_data(domain_name: str, data_directory: str = "resources") -> ProcessingResult:
+def filter_papers_by_minimum_yearly_count(papers: Tuple[Paper, ...], min_papers_per_year: int = 5) -> Tuple[Paper, ...]:
+    """
+    Filter papers to only include years with sufficient paper count.
+    
+    Args:
+        papers: Original papers tuple
+        min_papers_per_year: Minimum number of papers required per year
+        
+    Returns:
+        Filtered papers tuple containing only years with enough papers
+    """
+    from collections import Counter
+    
+    # Count papers per year
+    papers_per_year = Counter(p.pub_year for p in papers)
+    
+    # Get years with sufficient papers
+    valid_years = {year for year, count in papers_per_year.items() if count >= min_papers_per_year}
+    
+    # Filter papers to only include valid years
+    filtered_papers = tuple(p for p in papers if p.pub_year in valid_years)
+    
+    # Log filtering results
+    original_years = len(papers_per_year)
+    filtered_years = len(valid_years)
+    removed_papers = len(papers) - len(filtered_papers)
+    
+    print(f"Year filtering: {original_years} → {filtered_years} years (removed {removed_papers} papers from sparse years)")
+    
+    return filtered_papers
+
+
+def process_domain_data(domain_name: str, data_directory: str = "resources", 
+                       min_papers_per_year: int = 5, apply_year_filtering: bool = True) -> ProcessingResult:
     """
     Process data for a single domain including rich citation graph.
     
     Args:
         domain_name: Name of the domain to process
         data_directory: Directory containing domain data
+        min_papers_per_year: Minimum papers required per year (if filtering enabled)
+        apply_year_filtering: Whether to filter years with insufficient papers
         
     Returns:
         ProcessingResult with success status and data
@@ -440,6 +475,17 @@ def process_domain_data(domain_name: str, data_directory: str = "resources") -> 
         
         # Load papers
         papers = load_papers_from_json(str(json_path))
+        print(f"Raw {domain_name}: {len(papers)} papers")
+        
+        # Apply year filtering if requested
+        if apply_year_filtering:
+            papers = filter_papers_by_minimum_yearly_count(papers, min_papers_per_year)
+            
+            # Check if we still have sufficient data after filtering
+            if len(papers) == 0:
+                raise ValueError(f"No papers remaining for {domain_name} after year filtering (min {min_papers_per_year} papers/year)")
+        
+        print(f"Final {domain_name}: {len(papers)} papers")
         
         # Create year mapping for citation graph processing
         paper_year_map = {p.id: p.pub_year for p in papers}
@@ -447,7 +493,7 @@ def process_domain_data(domain_name: str, data_directory: str = "resources") -> 
         # Load rich citation graph
         citations, graph_nodes = load_citation_graph(str(graph_path), paper_year_map)
         
-        # Calculate statistics
+        # Calculate statistics (on filtered data)
         statistics = calculate_statistics(papers, domain_name)
         
         # Create domain data

@@ -11,298 +11,246 @@ Following Phase 13 principle: Maximum developer flexibility with transparent par
 from dataclasses import dataclass, field, fields
 from typing import Dict, List, Any, Optional
 import warnings
+import os
+import json
+
+
+def load_optimized_parameters() -> Dict[str, Dict[str, float]]:
+    """Load optimized parameters from JSON file."""
+    optimized_params_file = "results/optimized_parameters_bayesian.json"
+    
+    if not os.path.exists(optimized_params_file):
+        return {}
+    
+    try:
+        with open(optimized_params_file, 'r') as f:
+            data = json.load(f)
+        return data.get('consensus_difference_optimized_parameters', {})
+    except Exception:
+        return {}
 
 
 @dataclass
 class ComprehensiveAlgorithmConfig:
     """
-    Centralized configuration for all timeline segmentation algorithm parameters.
+    Comprehensive configuration for timeline segmentation algorithm.
     
-    Provides both convenient presets via granularity levels and granular control
-    for developers who need specific parameter adjustment.
+    This class centralizes all algorithm parameters with sensible defaults and granularity-based presets.
+    Supports both convenience (granularity levels) and precision (individual parameter control).
     
-    Features:
-    - All hardcoded parameters centralized
-    - Granularity presets (1-5) for convenience  
-    - Parameter validation and consistency checking
-    - Backward compatibility with existing interfaces
-    - Domain-specific adaptation framework
+    Key Features:
+    - 14 configurable parameters covering all algorithm aspects
+    - 5 granularity levels (1=ultra-coarse to 5=ultra-fine) 
+    - Domain-specific optimization integration
+    - Comprehensive parameter validation
+    - Transparent decision rationale
     """
     
-    # === GRANULARITY CONTROL ===
-    granularity: int = 3  # 1-5 scale for convenient presets
-    
-    # === DIRECTION DETECTION PARAMETERS ===
-    direction_window_years: int = 3
+    # Core Detection Parameters
+    granularity: int = 3
     direction_threshold: float = 0.4
-    keyword_min_frequency: int = 2
-    min_significant_keywords: int = 3
-    novelty_weight: float = 1.0
-    overlap_weight: float = 1.0
-    
-    # === CITATION ANALYSIS PARAMETERS ===
-    citation_support_window: int = 2  # ±years
-    citation_boost: float = 0.3
-    citation_gradient_multiplier: float = 1.5
-    citation_acceleration_multiplier: float = 2.0
-    multi_scale_windows: List[int] = field(default_factory=lambda: [1, 3, 5])
-    
-    # === TEMPORAL CLUSTERING PARAMETERS ===
-    clustering_window: int = 3
-    cluster_method: str = "start_year_comparison"  # vs "end_year_comparison"
-    merge_strategy: str = "representative_year"    # vs "weighted_average"
-    
-    # === VALIDATION PARAMETERS ===
     validation_threshold: float = 0.7
-    consistent_threshold_mode: bool = True  # Use same threshold for all signals
-    breakthrough_validation: bool = False   # Removed as "too permissive"
     
-    # === SEGMENTATION PARAMETERS ===
-    segment_length_thresholds: List[int] = field(default_factory=lambda: [4, 6, 8])
-    statistical_significance_breakpoints: List[float] = field(default_factory=lambda: [0.4, 0.5])
-    max_segment_length_conservative: int = 50
-    max_segment_length_standard: int = 100
-    merge_preference: str = "backward"  # vs "forward" vs "shortest"
+    # Keyword Analysis Parameters
+    keyword_min_frequency: int = 2
+    min_significant_keywords: int = 2
+    keyword_filtering_enabled: bool = True
+    keyword_min_papers_ratio: float = 0.25
     
-    # === PERFORMANCE PARAMETERS ===
-    memory_efficient_mode: bool = False
-    batch_processing_size: int = 1000
-    enable_parallel_processing: bool = False
+    # Citation Analysis Parameters
+    citation_boost: float = 0.8
+    citation_support_window: int = 2
     
-    # === DOMAIN ADAPTATION PARAMETERS ===
-    domain_specific_calibration: bool = False
-    adaptive_window_sizing: bool = False
-    auto_threshold_tuning: bool = False
+    # Temporal Window Parameters
+    direction_window_size: int = 3
+    citation_analysis_scales: List[int] = field(default_factory=lambda: [1, 3, 5])
+    
+    # Similarity Segmentation Parameters
+    similarity_min_segment_length: int = 3
+    similarity_max_segment_length: int = 50
+    
+    # System Parameters
+    domain_name: Optional[str] = None
     
     def __post_init__(self):
-        """Apply granularity presets and validate configuration."""
-        if 1 <= self.granularity <= 5:
-            self._apply_granularity_presets()
+        """Initialize configuration with domain-specific optimization and granularity scaling."""
+        # Load optimized parameters if available
+        optimized_params = load_optimized_parameters()
+        
+        # Apply domain-specific optimization if available
+        if self.domain_name and self.domain_name in optimized_params:
+            base_params = optimized_params[self.domain_name]
+            
+            # Scale detection parameters based on granularity
+            scaled_params = self._scale_parameters_from_baseline(
+                base_params['direction_threshold'],
+                base_params['validation_threshold'],
+                self.granularity
+            )
+            
+            self.direction_threshold = scaled_params['direction_threshold']
+            self.validation_threshold = scaled_params['validation_threshold']
+            
+            # Apply optimized similarity parameters directly (no granularity scaling)
+            if 'similarity_min_segment_length' in base_params:
+                self.similarity_min_segment_length = base_params['similarity_min_segment_length']
+            if 'similarity_max_segment_length' in base_params:
+                self.similarity_max_segment_length = base_params['similarity_max_segment_length']
+        else:
+            # Use granularity-based scaling from defaults
+            if self.granularity != 3:  # Only scale if not baseline granularity
+                scaled_params = self._scale_parameters_from_baseline(
+                    self.direction_threshold,
+                    self.validation_threshold,
+                    self.granularity
+                )
+                self.direction_threshold = scaled_params['direction_threshold']
+                self.validation_threshold = scaled_params['validation_threshold']
+        # Validate all parameters
         self._validate_parameters()
     
-    def _apply_granularity_presets(self):
-        """Apply convenient granularity presets while allowing overrides."""
-        presets = self._get_granularity_presets()
+    def _scale_parameters_from_baseline(self, base_direction: float, base_validation: float, granularity: int) -> Dict[str, float]:
+        """Scale parameters from optimized baseline based on granularity level."""
+        # Granularity scaling factors
+        # granularity 1 = ultra-coarse (higher thresholds, fewer signals)
+        # granularity 3 = balanced (baseline)
+        # granularity 5 = ultra-fine (lower thresholds, more signals)
         
-        # Only apply preset if parameter wasn't explicitly overridden
-        if hasattr(self, '_user_overrides'):
-            for param, value in presets.items():
-                if param not in self._user_overrides:
-                    setattr(self, param, value)
-        else:
-            # First initialization - apply all presets
-            for param, value in presets.items():
-                setattr(self, param, value)
-    
-    def _get_granularity_presets(self) -> Dict[str, Any]:
-        """
-        Get parameter presets for granularity level.
+        direction_multipliers = {1: 1.5, 2: 1.25, 3: 1.0, 4: 0.75, 5: 0.6}
+        validation_multipliers = {1: 1.1, 2: 1.05, 3: 1.0, 4: 0.95, 5: 0.8}
         
-        Granularity Levels:
-        1 (Ultra-fine): Most segments, highest sensitivity
-        2 (Fine): High sensitivity  
-        3 (Balanced): Default, moderate sensitivity
-        4 (Coarse): Lower sensitivity
-        5 (Ultra-coarse): Fewest segments, lowest sensitivity
-        """
-        presets = {
-            1: {  # Ultra-fine: Most segments
-                'direction_threshold': 0.2,
-                'clustering_window': 2,
-                'validation_threshold': 0.7,
-                'citation_boost': 0.3
-            },
-            2: {  # Fine
-                'direction_threshold': 0.3,
-                'clustering_window': 2,
-                'validation_threshold': 0.75,
-                'citation_boost': 0.3
-            },
-            3: {  # Balanced (default)
-                'direction_threshold': 0.4,
-                'clustering_window': 3,
-                'validation_threshold': 0.8,
-                'citation_boost': 0.3
-            },
-            4: {  # Coarse
-                'direction_threshold': 0.5,
-                'clustering_window': 4,
-                'validation_threshold': 0.85,
-                'citation_boost': 0.3
-            },
-            5: {  # Ultra-coarse: Fewest segments
-                'direction_threshold': 0.6,
-                'clustering_window': 4,
-                'validation_threshold': 0.9,
-                'citation_boost': 0.2
-            }
+        direction_mult = direction_multipliers.get(granularity, 1.0)
+        validation_mult = validation_multipliers.get(granularity, 1.0)
+        
+        scaled_direction = min(0.9, max(0.1, base_direction * direction_mult))
+        scaled_validation = min(0.95, max(0.3, base_validation * validation_mult))
+        
+        return {
+            'direction_threshold': scaled_direction,
+            'validation_threshold': scaled_validation
         }
-        return presets[self.granularity]
     
     def _validate_parameters(self):
-        """Validate parameter values and logical consistency."""
-        # Range validations
-        if not 0.1 <= self.direction_threshold <= 0.8:
-            raise ValueError(f"direction_threshold must be 0.1-0.8, got {self.direction_threshold}")
+        """Validate all parameter values and relationships."""
+        # Granularity validation
+        if not 1 <= self.granularity <= 5:
+            raise ValueError(f"granularity must be 1-5, got {self.granularity}")
         
-        if not 1 <= self.clustering_window <= 10:
-            raise ValueError(f"clustering_window must be 1-10 years, got {self.clustering_window}")
-            
-        if not 0.5 <= self.validation_threshold <= 0.95:
-            raise ValueError(f"validation_threshold must be 0.5-0.95, got {self.validation_threshold}")
-            
-        if not 1 <= self.citation_support_window <= 10:
-            raise ValueError(f"citation_support_window must be 1-10 years, got {self.citation_support_window}")
+        # Threshold validations
+        if not 0.1 <= self.direction_threshold <= 0.9:
+            raise ValueError(f"direction_threshold must be 0.1-0.9, got {self.direction_threshold}")
         
+        if not 0.3 <= self.validation_threshold <= 0.95:
+            raise ValueError(f"validation_threshold must be 0.3-0.95, got {self.validation_threshold}")
+        
+        # Keyword validations
+        if not 1 <= self.keyword_min_frequency <= 10:
+            raise ValueError(f"keyword_min_frequency must be 1-10, got {self.keyword_min_frequency}")
+        
+        if not 1 <= self.min_significant_keywords <= 20:
+            raise ValueError(f"min_significant_keywords must be 1-20, got {self.min_significant_keywords}")
+        
+        if not 0.01 <= self.keyword_min_papers_ratio <= 0.5:
+            raise ValueError(f"keyword_min_papers_ratio must be 0.01-0.5, got {self.keyword_min_papers_ratio}")
+        
+        # Citation validations
         if not 0.0 <= self.citation_boost <= 1.0:
             raise ValueError(f"citation_boost must be 0.0-1.0, got {self.citation_boost}")
         
-        # Logical consistency validations
-        if self.clustering_window >= self.direction_window_years * 2:
-            warnings.warn(f"clustering_window ({self.clustering_window}) >= 2x direction_window ({self.direction_window_years})")
+        if not 1 <= self.citation_support_window <= 10:
+            raise ValueError(f"citation_support_window must be 1-10, got {self.citation_support_window}")
         
-        if self.segment_length_thresholds != sorted(self.segment_length_thresholds):
-            raise ValueError("segment_length_thresholds must be in ascending order")
-            
-        if self.statistical_significance_breakpoints != sorted(self.statistical_significance_breakpoints):
-            raise ValueError("statistical_significance_breakpoints must be in ascending order")
+        # Temporal Window validations
+        if not 1 <= self.direction_window_size <= 10:
+            raise ValueError(f"direction_window_size must be 1-10, got {self.direction_window_size}")
+        
+        if not self.citation_analysis_scales or not all(1 <= scale <= 10 for scale in self.citation_analysis_scales):
+            raise ValueError(f"citation_analysis_scales must be non-empty list with values 1-10, got {self.citation_analysis_scales}")
+        
+        # Similarity segmentation validations
+        if not 1 <= self.similarity_min_segment_length <= 20:
+            raise ValueError(f"similarity_min_segment_length must be 1-20, got {self.similarity_min_segment_length}")
+        
+        if not 10 <= self.similarity_max_segment_length <= 100:
+            raise ValueError(f"similarity_max_segment_length must be 10-100, got {self.similarity_max_segment_length}")
+        
+        if self.similarity_min_segment_length >= self.similarity_max_segment_length:
+            raise ValueError("similarity_min_segment_length must be < similarity_max_segment_length")
     
     @classmethod
-    def create_custom(cls, 
-                      granularity: int = 3,
-                      overrides: Optional[Dict[str, Any]] = None) -> 'ComprehensiveAlgorithmConfig':
+    def create_custom(cls, granularity: int = 3, domain_name: Optional[str] = None, 
+                     overrides: Optional[Dict[str, Any]] = None) -> 'ComprehensiveAlgorithmConfig':
         """
         Create configuration with custom parameter overrides.
         
         Args:
             granularity: Base granularity level (1-5)
+            domain_name: Domain name for optimization lookup
             overrides: Dictionary of parameter overrides
             
         Returns:
-            Custom configuration instance
-            
-        Example:
-            config = ComprehensiveAlgorithmConfig.create_custom(
-                granularity=3,
-                overrides={
-                    'direction_threshold': 0.35,
-                    'clustering_window': 2,
-                    'citation_boost': 0.4
-                }
-            )
+            Configured ComprehensiveAlgorithmConfig instance
         """
-        config = cls(granularity=granularity)
+        # Start with granularity-based configuration
+        config = cls(granularity=granularity, domain_name=domain_name)
         
+        # Apply overrides if provided
         if overrides:
-            config._user_overrides = set(overrides.keys())
-            for param, value in overrides.items():
-                if hasattr(config, param):
-                    setattr(config, param, value)
+            for param_name, value in overrides.items():
+                if hasattr(config, param_name):
+                    setattr(config, param_name, value)
                 else:
-                    raise ValueError(f"Unknown parameter: {param}")
+                    raise ValueError(f"Unknown parameter: {param_name}")
             
             # Re-validate after overrides
             config._validate_parameters()
         
         return config
     
-    @classmethod 
-    def create_domain_specific(cls,
-                              domain_name: str,
-                              base_granularity: int = 3) -> 'ComprehensiveAlgorithmConfig':
-        """
-        Create domain-specific configuration with optimized parameters.
-        
-        Args:
-            domain_name: Name of domain for optimization
-            base_granularity: Base granularity level
-            
-        Returns:
-            Domain-optimized configuration
-        """
-        # Domain-specific parameter optimizations
-        domain_optimizations = {
-            'computer_vision': {
-                'direction_threshold': 0.35,  # CV evolves rapidly
-                'clustering_window': 2,       # Shorter paradigm cycles
-                'citation_boost': 0.4         # Strong citation patterns
-            },
-            'natural_language_processing': {
-                'direction_threshold': 0.3,   # Very dynamic field
-                'clustering_window': 2,       # Rapid evolution
-                'citation_boost': 0.35
-            },
-            'applied_mathematics': {
-                'direction_threshold': 0.5,   # More stable field
-                'clustering_window': 5,       # Longer paradigm cycles
-                'citation_boost': 0.25        # Citation patterns less clear
-            },
-            'art': {
-                'direction_threshold': 0.6,   # Very stable
-                'clustering_window': 8,       # Long paradigm cycles
-                'citation_boost': 0.2         # Weak citation patterns
-            }
+    def get_rationale(self) -> str:
+        """Get human-readable rationale for current configuration."""
+        granularity_descriptions = {
+            1: "ultra_coarse",
+            2: "coarse", 
+            3: "balanced",
+            4: "fine",
+            5: "ultra_fine"
         }
         
-        overrides = domain_optimizations.get(domain_name.lower(), {})
+        description = granularity_descriptions.get(self.granularity, "custom")
         
-        return cls.create_custom(
-            granularity=base_granularity,
-            overrides=overrides
-        )
+        rationale_parts = [
+            f"Algorithm Configuration (Granularity {self.granularity} for {self.domain_name or 'unknown'}):",
+            f"  Detection: threshold={self.direction_threshold:.3f}",
+            f"  Validation: threshold={self.validation_threshold:.3f}, boost={self.citation_boost}",
+            f"  Keywords: min_freq={self.keyword_min_frequency}, min_significant={self.min_significant_keywords}",
+            f"  Similarity Segmentation: min_length={self.similarity_min_segment_length}y, max_length={self.similarity_max_segment_length}y"
+        ]
+        
+        # Add optimization status
+        optimized_params = load_optimized_parameters()
+        if self.domain_name and self.domain_name in optimized_params:
+            rationale_parts.append(f"  🎯 Using Bayesian-optimized parameters for {self.domain_name}")
+        else:
+            rationale_parts.append(f"  📊 Scaled from optimized baseline (granularity {self.granularity})")
+        
+        return "\n".join(rationale_parts)
     
-    def to_dict(self) -> Dict[str, Any]:
-        """Export configuration as dictionary for serialization."""
-        return {field.name: getattr(self, field.name) for field in fields(self)}
-    
+    def __str__(self) -> str:
+        """String representation showing key parameters."""
+        return (f"ComprehensiveAlgorithmConfig(granularity={self.granularity}, "
+                f"direction_threshold={self.direction_threshold:.3f}, "
+                f"validation_threshold={self.validation_threshold:.3f})")
+
     def get_configuration_summary(self) -> str:
-        """Generate human-readable configuration summary."""
-        summary = f"Algorithm Configuration (Granularity {self.granularity}):\n"
-        summary += f"  Detection: threshold={self.direction_threshold:.2f}, window={self.direction_window_years}y\n"
-        summary += f"  Clustering: window={self.clustering_window}y, method={self.cluster_method}\n"
-        summary += f"  Validation: threshold={self.validation_threshold:.2f}, boost={self.citation_boost:.2f}\n"
-        summary += f"  Segmentation: lengths={self.segment_length_thresholds}, max_length={self.max_segment_length_standard}\n"
-        
-        if self.domain_specific_calibration:
-            summary += f"  Domain Adaptation: ENABLED\n"
-        if self.memory_efficient_mode:
-            summary += f"  Performance: Memory efficient mode\n"
-            
-        return summary
-    
-    def get_parameter_explanations(self) -> Dict[str, str]:
-        """Get detailed explanations for all parameters."""
-        explanations = {
-            # Direction Detection
-            'direction_threshold': 'Minimum score needed to detect a direction signal (lower = more sensitive)',
-            'direction_window_years': 'Sliding window size for keyword evolution analysis',
-            'keyword_min_frequency': 'Minimum frequency for keyword significance',
-            'min_significant_keywords': 'Minimum number of significant new keywords for paradigm shift',
-            
-            # Citation Analysis  
-            'citation_support_window': 'Time window (±years) for citation support validation',
-            'citation_boost': 'Confidence boost given to signals with citation support',
-            'citation_gradient_multiplier': 'Multiplier for gradient threshold in citation analysis',
-            'citation_acceleration_multiplier': 'Multiplier for acceleration threshold in citation analysis',
-            
-            # Temporal Clustering
-            'clustering_window': 'Temporal window for clustering direction signals (years)',
-            'cluster_method': 'Method for temporal clustering (start_year_comparison vs end_year_comparison)',
-            'merge_strategy': 'Strategy for merging clustered signals (representative_year vs weighted_average)',
-            
-            # Validation
-            'validation_threshold': 'Minimum score needed to validate signals (consistent for all signals)',
-            'consistent_threshold_mode': 'Whether to use same threshold for all signal types',
-            
-            # Segmentation
-            'segment_length_thresholds': 'Minimum segment lengths based on statistical significance [4,6,8]',
-            'statistical_significance_breakpoints': 'Breakpoints for significance-based calibration [0.4,0.5]',
-            'max_segment_length_conservative': 'Maximum segment length for low significance domains',
-            'max_segment_length_standard': 'Maximum segment length for standard domains',
-            'merge_preference': 'Preference for segment merging direction (backward/forward/shortest)'
-        }
-        
-        return explanations
+        """Get a concise summary of the current configuration."""
+        return (
+            f"granularity={self.granularity}, "
+            f"direction_threshold={self.direction_threshold:.3f}, "
+            f"validation_threshold={self.validation_threshold:.3f}, "
+            f"keyword_min_frequency={self.keyword_min_frequency}, "
+            f"min_significant_keywords={self.min_significant_keywords}"
+        )
 
 
 # ============================================================================
@@ -311,7 +259,7 @@ class ComprehensiveAlgorithmConfig:
 
 def create_default_config() -> ComprehensiveAlgorithmConfig:
     """Create default algorithm configuration."""
-    return ComprehensiveAlgorithmConfig(granularity=3)
+    return ComprehensiveAlgorithmConfig()
 
 
 def validate_parameter_combination(config: ComprehensiveAlgorithmConfig) -> List[str]:
@@ -327,18 +275,8 @@ def validate_parameter_combination(config: ComprehensiveAlgorithmConfig) -> List
     messages = []
     
     # Check for potentially problematic combinations
-    if config.direction_threshold > 0.6 and config.clustering_window < 3:
-        messages.append("High direction threshold with small clustering window may miss paradigm shifts")
-    
     if config.validation_threshold > 0.9 and config.citation_boost < 0.3:
         messages.append("Very high validation threshold with low citation boost may be too restrictive")
-    
-    if config.clustering_window > config.direction_window_years * 2:
-        messages.append("Clustering window much larger than direction window may cause unexpected behavior")
-    
-    # Check for efficiency concerns
-    if not config.memory_efficient_mode and config.batch_processing_size < 500:
-        messages.append("Small batch size without memory efficient mode may impact performance")
     
     return messages
 
@@ -353,7 +291,7 @@ def get_recommended_config_for_domain(domain_name: str) -> ComprehensiveAlgorith
     Returns:
         Recommended configuration
     """
-    return ComprehensiveAlgorithmConfig.create_domain_specific(domain_name)
+    return ComprehensiveAlgorithmConfig(domain_name=domain_name)
 
 
 def export_config_to_file(config: ComprehensiveAlgorithmConfig, filepath: str) -> None:
@@ -366,7 +304,21 @@ def export_config_to_file(config: ComprehensiveAlgorithmConfig, filepath: str) -
     """
     import json
     
-    config_dict = config.to_dict()
+    config_dict = {
+        'granularity': config.granularity,
+        'direction_threshold': config.direction_threshold,
+        'validation_threshold': config.validation_threshold,
+        'keyword_min_frequency': config.keyword_min_frequency,
+        'min_significant_keywords': config.min_significant_keywords,
+        'keyword_filtering_enabled': config.keyword_filtering_enabled,
+        'keyword_min_papers_ratio': config.keyword_min_papers_ratio,
+        'citation_boost': config.citation_boost,
+        'citation_support_window': config.citation_support_window,
+        'similarity_min_segment_length': config.similarity_min_segment_length,
+        'similarity_max_segment_length': config.similarity_max_segment_length,
+        'domain_name': config.domain_name
+    }
+    
     config_dict['_metadata'] = {
         'config_type': 'ComprehensiveAlgorithmConfig',
         'version': '1.0',

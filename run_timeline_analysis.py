@@ -19,11 +19,12 @@ from core.utils import discover_available_domains, ensure_results_directory
 from core.algorithm_config import ComprehensiveAlgorithmConfig
 from core.integration import run_change_detection, run_timeline_analysis
 import json
+import os
 
 def display_segmentation_summary(domain_name: str, segmentation_results: dict, change_detection_result):
     """Display a summary of the segmentation results only."""
     
-    print(f"\n📊 SEGMENTATION SUMMARY: {domain_name}")
+    print(f"\nSEGMENTATION SUMMARY: {domain_name}")
     print("=" * 40)
     
     try:
@@ -94,44 +95,64 @@ def display_results_summary(domain_name: str, timeline_file: str):
         print(f"❌ Error displaying results: {str(e)}")
 
 
-def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None) -> bool:
-    """Run complete analysis for a single domain with comprehensive algorithm configuration."""
+def load_optimized_parameters_if_available(domain_name: str, params_file: str = None) -> dict:
+    """Load optimized parameters if available."""
+    optimized_params_file = params_file or "results/optimized_parameters.json"
     
-    # Create comprehensive configuration
-    if algorithm_config is None:
-        algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
-    
-    # Map granularity integer to descriptive names for logging
-    granularity_names = {
-        1: "ultra_fine",
-        2: "fine", 
-        3: "balanced",
-        4: "coarse",
-        5: "ultra_coarse"
-    }
-    
-    granularity_name = granularity_names.get(algorithm_config.granularity, f"level_{algorithm_config.granularity}")
-    
-    if segmentation_only:
-        print(f"\n🔍 RUNNING SEGMENTATION ONLY: {domain_name.upper()}")
-        print(f"🎛️  Configuration: {granularity_name} (granularity {algorithm_config.granularity})")
-        print("=" * 60)
+    if os.path.exists(optimized_params_file):
+        try:
+            with open(optimized_params_file, 'r') as f:
+                data = json.load(f)
+            
+            optimized_params = data.get('consensus_difference_optimized_parameters', {})
+            if domain_name in optimized_params:
+                print(f"📁 Using optimized parameters for {domain_name}: {optimized_params[domain_name]}")
+                print(f"📄 Loaded from: {optimized_params_file}")
+                return optimized_params[domain_name]
+            else:
+                print(f"⚠️ No optimized parameters found for {domain_name} in {optimized_params_file}, using defaults")
+                return {}
+        except Exception as e:
+            print(f"❌ Error loading optimized parameters from {optimized_params_file}: {e}")
+            return {}
     else:
-        print(f"\n🚀 RUNNING COMPLETE ANALYSIS: {domain_name.upper()}")
-        print(f"🎛️  Configuration: {granularity_name} (granularity {algorithm_config.granularity})")
-        print("=" * 60)
-    
-    # Display comprehensive configuration details
-    print(f"📊 COMPREHENSIVE ALGORITHM CONFIGURATION:")
-    print(f"  Direction Threshold: {algorithm_config.direction_threshold:.3f}")
-    print(f"  Clustering Window: {algorithm_config.clustering_window} years")
-    print(f"  Validation Threshold: {algorithm_config.validation_threshold:.3f}")
-    print(f"  Citation Boost: {algorithm_config.citation_boost:.3f}")
-    print(f"  Citation Support Window: ±{algorithm_config.citation_support_window} years")
-    print(f"  Keyword Min Frequency: {algorithm_config.keyword_min_frequency}")
-    print(f"  Min Significant Keywords: {algorithm_config.min_significant_keywords}")
-    
+        print(f"⚠️ No optimized parameters file found at {optimized_params_file}, using defaults")
+        return {}
+
+
+def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None, optimized_params_file: str = None) -> bool:
+    """Run complete analysis for a single domain with comprehensive algorithm configuration."""
     start_time = time.time()
+    
+    # Load optimized parameters if available
+    optimized_params = load_optimized_parameters_if_available(domain_name, optimized_params_file)
+    
+    # Update algorithm config with optimized parameters if available
+    if optimized_params and algorithm_config:
+        # Get all current config values as a base
+        config_kwargs = {
+            'granularity': algorithm_config.granularity,
+            'domain_name': domain_name,
+            'direction_threshold': algorithm_config.direction_threshold,
+            'validation_threshold': algorithm_config.validation_threshold,
+            'keyword_min_frequency': algorithm_config.keyword_min_frequency,
+            'min_significant_keywords': algorithm_config.min_significant_keywords,
+            'keyword_filtering_enabled': algorithm_config.keyword_filtering_enabled,
+            'keyword_min_papers_ratio': algorithm_config.keyword_min_papers_ratio,
+            'citation_boost': algorithm_config.citation_boost,
+            'citation_support_window': algorithm_config.citation_support_window,
+            'similarity_min_segment_length': algorithm_config.similarity_min_segment_length,
+            'similarity_max_segment_length': algorithm_config.similarity_max_segment_length,
+        }
+        
+        # Dynamically override with any available optimized parameters
+        for param_name, param_value in optimized_params.items():
+            if param_name in config_kwargs:
+                config_kwargs[param_name] = param_value
+                print(f"   🔧 Using optimized {param_name}: {param_value}")
+        
+        algorithm_config = ComprehensiveAlgorithmConfig(**config_kwargs)
+        print(f"🎯 Using optimized algorithm config: dir={algorithm_config.direction_threshold:.3f}, val={algorithm_config.validation_threshold:.3f}, sim_length={algorithm_config.similarity_min_segment_length}-{algorithm_config.similarity_max_segment_length}")
     
     # Step 1: Change point detection and segmentation with comprehensive configuration
     segmentation_results, change_detection_result = run_change_detection(
@@ -163,10 +184,10 @@ def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granu
     return True
 
 
-def run_all_domains(segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None):
+def run_all_domains(segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None, optimized_params_file: str = None):
     """Run analysis for all available domains with comprehensive algorithm configuration."""
     
-    # Create comprehensive configuration
+    # Create comprehensive configuration (will be overridden per domain)
     if algorithm_config is None:
         algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
     
@@ -182,7 +203,7 @@ def run_all_domains(segmentation_only: bool = False, granularity: int = 3, algor
     analysis_type = "SEGMENTATION" if segmentation_only else "ANALYSIS"
     print(f"🌍 RUNNING CROSS-DOMAIN {analysis_type}")
     print(f"🎛️  Comprehensive Configuration: Granularity {algorithm_config.granularity}")
-    print(f"🔧  Advanced Parameters: {len([f for f in algorithm_config.__dataclass_fields__])} total parameters")
+    print(f"🔧  Algorithm Parameters: {len([f for f in algorithm_config.__dataclass_fields__])} total parameters")
     print("=" * 50)
     print(f"Analyzing {len(domains)} domains with Enhanced Timeline Analysis Framework...")
     print(f"Discovered domains: {', '.join(domains)}")
@@ -190,7 +211,9 @@ def run_all_domains(segmentation_only: bool = False, granularity: int = 3, algor
     
     for domain in domains:
         print(f"\n📊 Processing domain {len(successful_domains) + 1}/{len(domains)}: {domain}")
-        success = run_domain_analysis(domain, segmentation_only, granularity, algorithm_config)
+        # Create domain-specific configuration for optimization
+        domain_config = ComprehensiveAlgorithmConfig(granularity=granularity, domain_name=domain)
+        success = run_domain_analysis(domain, segmentation_only, granularity, domain_config, optimized_params_file)
         if success:
             successful_domains.append(domain)
     
@@ -236,9 +259,11 @@ Examples:
   python run_timeline_analysis.py --domain all
   python run_timeline_analysis.py --domain computer_vision --granularity 1
   python run_timeline_analysis.py --domain all --granularity 5
+  python run_timeline_analysis.py --domain deep_learning --optimized-params-file results/my_custom_params.json
+  python run_timeline_analysis.py --domain all --optimized-params-file results/optimized_parameters_bayesian.json
 
 Available domains are automatically discovered from the resources/ directory.
-Comprehensive configuration provides access to 27+ algorithm parameters.
+Comprehensive configuration provides access to 12 core algorithm parameters.
         """
     )
     
@@ -286,11 +311,13 @@ Comprehensive configuration provides access to 27+ algorithm parameters.
     )
     
     parser.add_argument(
-        '--clustering-window',
-        type=int,
+        '--optimized-params-file',
+        type=str,
         default=None,
-        help='Override clustering window in years (1-10)'
+        help='Path to optimized parameters JSON file (default: results/optimized_parameters.json)'
     )
+    
+
     
     args = parser.parse_args()
     
@@ -302,29 +329,27 @@ Comprehensive configuration provides access to 27+ algorithm parameters.
         overrides['validation_threshold'] = args.validation_threshold  
     if args.citation_boost is not None:
         overrides['citation_boost'] = args.citation_boost
-    if args.clustering_window is not None:
-        overrides['clustering_window'] = args.clustering_window
+    
+    # Determine domain name for configuration
+    domain_for_config = args.domain if args.domain != 'all' else None
     
     if overrides:
         print(f"🔧 Using custom parameter overrides: {overrides}")
         algorithm_config = ComprehensiveAlgorithmConfig.create_custom(
             granularity=args.granularity,
+            domain_name=domain_for_config,
             overrides=overrides
         )
     else:
-        algorithm_config = ComprehensiveAlgorithmConfig(granularity=args.granularity)
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=args.granularity, domain_name=domain_for_config)
     
     # Ensure results directory exists
     ensure_results_directory()
     
-    print("🧪 SCIENTIFIC LITERATURE TIMELINE ANALYSIS")
-    print("Enhanced Shift Signal Detection + Comprehensive Parameter Configuration")
-    print("=" * 70)
-    print(f"🔧 Configuration System: {len([f for f in algorithm_config.__dataclass_fields__])} parameters available")
-    print(f"📊 Active Configuration: {algorithm_config.get_configuration_summary()}")
+    print(f"Active Configuration: {algorithm_config.get_configuration_summary()}")
     
     if args.domain == 'all':
-        success = run_all_domains(args.segmentation_only, args.granularity, algorithm_config)
+        success = run_all_domains(args.segmentation_only, args.granularity, algorithm_config, args.optimized_params_file)
     else:
         available_domains = discover_available_domains()
         if args.domain not in available_domains:
@@ -332,14 +357,8 @@ Comprehensive configuration provides access to 27+ algorithm parameters.
             print(f"Available domains: {', '.join(available_domains)}")
             return False
         
-        success = run_domain_analysis(args.domain, args.segmentation_only, args.granularity, algorithm_config)
-    
-    if success:
-        print(f"\n🎉 Analysis complete! Check the 'results/' directory for outputs.")
-        print(f"🔧 Comprehensive configuration with {len([f for f in algorithm_config.__dataclass_fields__])} parameters successfully applied!")
-    else:
-        print(f"\n❌ Analysis failed. Check error messages above.")
-    
+        success = run_domain_analysis(args.domain, args.segmentation_only, args.granularity, algorithm_config, args.optimized_params_file)
+
     return success
 
 
