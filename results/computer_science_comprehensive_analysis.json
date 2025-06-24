@@ -1,0 +1,1359 @@
+{
+  "analysis_metadata": {
+    "domain_name": "computer_science",
+    "analysis_date": "2025-06-22T22:59:03.431970",
+    "time_range": [
+      1986,
+      2020
+    ],
+    "total_papers_analyzed": 411,
+    "configuration_type": "Comprehensive Algorithm Configuration",
+    "methodology": {
+      "shift_detection": "Enhanced Shift Signal Detection",
+      "period_characterization": "Temporal Network Stability Analysis",
+      "segment_merging": "Semantic Similarity & Weak Signal Analysis",
+      "change_points_detected": 3,
+      "statistical_significance": 0.5360338345864663
+    }
+  },
+  "segmentation_results": {
+    "change_points": [
+      1992,
+      1993,
+      2015
+    ],
+    "segments": [
+      [
+        1986,
+        1992
+      ],
+      [
+        1992,
+        1994
+      ],
+      [
+        1994,
+        2020
+      ]
+    ],
+    "statistical_significance": 0.5360338345864663,
+    "method_details": {
+      "change_points_detected": 3,
+      "burst_periods_detected": 0,
+      "methods_used": [
+        "enhanced_shift_signal_with_comprehensive_config"
+      ]
+    },
+    "algorithm_config": {
+      "direction_threshold": 0.28842158802870177,
+      "citation_boost": 0.8,
+      "validation_threshold": 0.4525214767992157,
+      "citation_support_window": 2,
+      "similarity_min_segment_length": 3,
+      "similarity_max_segment_length": 24,
+      "keyword_min_frequency": 2,
+      "min_significant_keywords": 2
+    }
+  },
+  "timeline_analysis": {
+    "original_period_characterizations": [
+      {
+        "period": [
+          1986,
+          1992
+        ],
+        "topic_label": "Formalism and Algorithmic Rigor",
+        "topic_description": "The 1986-1992 Computer Science paradigm emphasized formal mathematical models and algorithmic precision, as seen in 'Adaptive Filter Theory' (1986) and 'Compilers: Principles, Techniques, and Tools' (1986), which focused on rigorous theoretical foundations and systematic algorithm design. This period prioritized structured problem-solving through well-defined computational frameworks, reflecting a shift toward algorithmic rigor and formalism over heuristic approaches.",
+        "network_stability": 0.3206393200295639,
+        "community_persistence": 0.652829707681849,
+        "flow_stability": 0.5617811260932297,
+        "centrality_consensus": 0.995013841953208,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W4300402905",
+            "title": "Parallel Distributed Processing",
+            "year": 1986,
+            "citation_count": 13688,
+            "score": 0.24817159182963947,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the concept of connectionism, a theory in cognitive science that posits the human mind operates through a massively parallel architecture of interconnected neural units, challenging traditional symbolic computation models. It explores how mental processes arise from the interactions of these units and presents foundational ideas and applications related to perception, memory, language, and thought in the context of neurocomputing.\n\nTopic: distributed system, parallel processing, computer science, distributed data processing, distributed computing, distributed processing, parallel computing, distributed query processing",
+            "keywords": [
+              "distributed system",
+              "parallel processing",
+              "computer science",
+              "distributed data processing",
+              "distributed computing",
+              "distributed processing",
+              "parallel computing",
+              "distributed query processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2145023731",
+            "title": "A Computational Approach to Edge Detection",
+            "year": 1986,
+            "citation_count": 26409,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article presents a computational approach to edge detection, focusing on defining precise criteria for detecting and localizing edges in images while minimizing assumptions about the solution's form. It discusses the mathematical foundations of edge detection, explores the trade-offs between performance goals, and introduces a method for improving detection across varying signal-to-noise ratios through feature synthesis.\n\nTopic: computational imaging, edge detection, computer science, edge computing, detection technique",
+            "keywords": [
+              "computational imaging",
+              "edge detection",
+              "computer science",
+              "edge computing",
+              "detection technique"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1492221128",
+            "title": "Adaptive Filter Theory",
+            "year": 1986,
+            "citation_count": 13062,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article on Adaptive Filter Theory provides a comprehensive overview of various concepts and techniques related to adaptive filtering, including stochastic processes, Wiener filters, and least-mean-square methods, while also addressing advanced topics such as Kalman filters, blind deconvolution, and the effects of finite precision. It serves as a resource for understanding the theoretical foundations and practical applications of adaptive algorithms in signal processing and applied mathematics.\n\nTopic: computer science, filter (signal processing), spatial filtering, theoretical computer science, adaptive algorithm, adaptive filter, applied mathematics, filter design, adaptive filter theory",
+            "keywords": [
+              "computer science",
+              "filter (signal processing)",
+              "spatial filtering",
+              "theoretical computer science",
+              "adaptive algorithm",
+              "adaptive filter",
+              "applied mathematics",
+              "filter design",
+              "adaptive filter theory"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2071637551",
+            "title": "APACHE II-A Severity of Disease Classification System",
+            "year": 1986,
+            "citation_count": 10402,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the APACHE II-A severity of disease classification system, detailing its application in disease assessment and diagnosis through advanced methodologies in medical image computing, bioinformatics, and machine learning. It highlights the system's role in improving disease detection and classification within the fields of health informatics and biomedical research.\n\nTopic: disease classification, disease assessment, medical image computing, bioinformatics, biostatistics, biomedical informatics, diagnostic system, disease detection, health informatics, computer science, diagnosis, machine learning, classification method, data science, apache ii-a severity, disease classification system, image analysis",
+            "keywords": [
+              "disease classification",
+              "disease assessment",
+              "medical image computing",
+              "bioinformatics",
+              "biostatistics",
+              "biomedical informatics",
+              "diagnostic system",
+              "disease detection",
+              "health informatics",
+              "computer science",
+              "diagnosis",
+              "machine learning",
+              "classification method",
+              "data science",
+              "apache ii-a severity",
+              "disease classification system",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2080267935",
+            "title": "Graph-Based Algorithms for Boolean Function Manipulation",
+            "year": 1986,
+            "citation_count": 8830,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "This article introduces a novel data structure for representing Boolean functions using directed acyclic graphs, along with a set of efficient manipulation algorithms. The authors demonstrate the practicality of their approach through experimental results in logic design verification, highlighting the efficiency of their algorithms in typical applications.\n\nTopic: computer science, graph theory, boolean function manipulation, graph algorithm, boolean function, graph-based algorithms",
+            "keywords": [
+              "computer science",
+              "graph theory",
+              "boolean function manipulation",
+              "graph algorithm",
+              "boolean function",
+              "graph-based algorithms"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1491178396",
+            "title": "Compilers: Principles, Techniques, and Tools",
+            "year": 1986,
+            "citation_count": 8154,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article \"Compilers: Principles, Techniques, and Tools\" provides a comprehensive overview of compiler design and implementation, covering essential topics such as syntax-directed translation, lexical analysis, parsing techniques, intermediate code generation, and optimization strategies. It serves as a foundational resource for understanding the principles of compiler technology and its applications in computer science and software engineering.\n\nTopic: compiler technology, computer science, computational engineering, software engineering, dynamic compilation, theory of computation, applied mathematics, numerical algorithm, system software, formal technique, software analysis, numerical analysis, program analysis, optimizing compiler, parallelizing compiler, statistical software, computational optimization, computer engineering",
+            "keywords": [
+              "compiler technology",
+              "computer science",
+              "computational engineering",
+              "software engineering",
+              "dynamic compilation",
+              "theory of computation",
+              "applied mathematics",
+              "numerical algorithm",
+              "system software",
+              "formal technique",
+              "software analysis",
+              "numerical analysis",
+              "program analysis",
+              "optimizing compiler",
+              "parallelizing compiler",
+              "statistical software",
+              "computational optimization",
+              "computer engineering"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2024135760",
+            "title": "Images of Organization",
+            "year": 1986,
+            "citation_count": 5305,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article \"Images of Organization\" explores various metaphors and frameworks for understanding organizations, ranging from mechanistic and organismic perspectives to cultural, political, and psychological dimensions. It examines how these images influence organizational behavior, structure, and development, while also addressing the implications for practice and the challenges of navigating complex organizational dynamics.\n\nTopic: image analysis, computer science, organizational behavior, organization study, visual culture, image communication, organizational system, image representation, organization development, organizational theory, art history, organizational characteristic, organizational communication, organizational research, organizational structure",
+            "keywords": [
+              "image analysis",
+              "computer science",
+              "organizational behavior",
+              "organization study",
+              "visual culture",
+              "image communication",
+              "organizational system",
+              "image representation",
+              "organization development",
+              "organizational theory",
+              "art history",
+              "organizational characteristic",
+              "organizational communication",
+              "organizational research",
+              "organizational structure"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2033943395",
+            "title": "User Acceptance of Computer Technology: A Comparison of Two Theoretical Models",
+            "year": 1989,
+            "citation_count": 22273,
+            "score": 0.21817159182963947,
+            "is_breakthrough": false,
+            "abstract": "The article explores user acceptance of computer technology by comparing two theoretical models, highlighting the factors that influence individuals' intentions to use technology, such as perceived usefulness and ease of use. Through a longitudinal study, it reveals significant correlations between users' intentions and actual usage over time, suggesting practical implications for improving technology adoption in organizations.\n\nTopic: computer science, human-computer interaction, information technology, technology, model comparison, user acceptance, computer technology, user experience, technology adoption, psychology, technology acceptance model, user perception, theoretical models",
+            "keywords": [
+              "computer science",
+              "human-computer interaction",
+              "information technology",
+              "technology",
+              "model comparison",
+              "user acceptance",
+              "computer technology",
+              "user experience",
+              "technology adoption",
+              "psychology",
+              "technology acceptance model",
+              "user perception",
+              "theoretical models"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.0019230769230769232,
+          "number_of_nodes": 40,
+          "number_of_edges": 3,
+          "average_clustering": 0.0,
+          "number_of_components": 37,
+          "degree_centralization": 0.022941970310391364
+        },
+        "confidence": 0.9421813835548473
+      },
+      {
+        "period": [
+          1992,
+          1994
+        ],
+        "topic_label": "Formalism and Algorithmic Rigor",
+        "topic_description": "The 1992-1994 period in Computer Science was characterized by a paradigm emphasizing formal mathematical models, algorithmic precision, and rigorous computational methods, as seen in works like 'Numerical Recipes in C' and 'Training feedforward networks with the Marquardt algorithm,' which focused on optimizing numerical stability and convergence. This paradigm also reflected a growing integration of theoretical foundations with practical applications, exemplified by 'Ideal spatial adaptation by wavelet shrinkage' and 'Highly dynamic Destination-Sequenced Distance-Vector routing (DSDV) for mobile computers,' which combined mathematical rigor with real-world problem-solving.",
+        "network_stability": 0.3005050505050505,
+        "community_persistence": 0.6177230046948357,
+        "flow_stability": 0.538081349069264,
+        "centrality_consensus": 0.9950873591705438,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2062024414",
+            "title": "Ten lectures on wavelets",
+            "year": 1992,
+            "citation_count": 15933,
+            "score": 0.24890884798656565,
+            "is_breakthrough": false,
+            "abstract": "The article \"Ten Lectures on Wavelets\" provides a comprehensive overview of wavelet theory, covering essential topics such as the continuous and discrete wavelet transforms, orthonormal bases, multiresolution analysis, and their applications in computer science and signal processing. It serves as a foundational resource for understanding the mathematical principles and practical implications of wavelets in various fields.\n\nTopic: wavelet theory, wavelet, computer science, signal processing",
+            "keywords": [
+              "wavelet theory",
+              "wavelet",
+              "computer science",
+              "signal processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1554663460",
+            "title": "Neural networks for pattern recognition",
+            "year": 1994,
+            "citation_count": 19427,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "This article provides a comprehensive overview of feed-forward neural networks in the context of statistical pattern recognition, covering essential concepts, modeling techniques, error functions, and learning algorithms, while also including over 100 exercises for practical application. It serves as a valuable resource for professionals and students in fields such as computer science, machine learning, and data science.\n\nTopic: image analysis, pattern recognition, computer science, convolutional neural network, neural architecture search, machine learning, recurrent neural network, sparse neural network, cognitive science, temporal pattern recognition, data science, computational intelligence, deep learning, neural networks, machine learning research, neural network (machine learning), machine vision",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "convolutional neural network",
+              "neural architecture search",
+              "machine learning",
+              "recurrent neural network",
+              "sparse neural network",
+              "cognitive science",
+              "temporal pattern recognition",
+              "data science",
+              "computational intelligence",
+              "deep learning",
+              "neural networks",
+              "machine learning research",
+              "neural network (machine learning)",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2170120409",
+            "title": "Numerical recipes in C",
+            "year": 1994,
+            "citation_count": 15924,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses \"Numerical Recipes in C,\" a comprehensive resource on numerical computation and algorithms, covering topics such as numerical methods for partial differential equations and numerical analysis, and includes bibliographical references, appendices, and indexes for further exploration. It serves as a guide for applied mathematics and numerical simulation techniques, particularly for users of IBM PC and compatible systems.\n\nTopic: computer science, numerical computation, numerical mathematics, numerical method for partial differential equation, applied mathematics, numerical algorithm, numerical analysis, numerical recipes, numerical simulation",
+            "keywords": [
+              "computer science",
+              "numerical computation",
+              "numerical mathematics",
+              "numerical method for partial differential equation",
+              "applied mathematics",
+              "numerical algorithm",
+              "numerical analysis",
+              "numerical recipes",
+              "numerical simulation"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2158940042",
+            "title": "Ideal spatial adaptation by wavelet shrinkage",
+            "year": 1994,
+            "citation_count": 7497,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses a novel approach to spatially adaptive estimation using selective wavelet reconstruction, which enhances the performance of estimators like variable-knot splines and piecewise-polynomial fits. It introduces a practical method called RiskShrink that optimally shrinks empirical coefficients, demonstrating that it achieves near-ideal performance based solely on data, with guarantees that are nearly optimal within its class of procedures.\n\nTopic: digital image processing, space-time processing, pattern recognition, computational imaging, information fusion, neuroscience, wavelet shrinkage, digital signal processing, computer science, adaptation, domain adaptation, multimodal signal processing, wavelet, geography, spatial filtering, statistical signal processing, ideal spatial adaptation, image analysis",
+            "keywords": [
+              "digital image processing",
+              "space-time processing",
+              "pattern recognition",
+              "computational imaging",
+              "information fusion",
+              "neuroscience",
+              "wavelet shrinkage",
+              "digital signal processing",
+              "computer science",
+              "adaptation",
+              "domain adaptation",
+              "multimodal signal processing",
+              "wavelet",
+              "geography",
+              "spatial filtering",
+              "statistical signal processing",
+              "ideal spatial adaptation",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2155482699",
+            "title": "Training feedforward networks with the Marquardt algorithm",
+            "year": 1994,
+            "citation_count": 7302,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the application of the Marquardt algorithm for nonlinear least squares in training feedforward neural networks, demonstrating its efficiency compared to a conjugate gradient variable learning rate algorithm on various function approximation tasks, particularly for networks with a few hundred weights.\n\nTopic: computer science, marquardt algorithm, feedforward networks, machine learning",
+            "keywords": [
+              "computer science",
+              "marquardt algorithm",
+              "feedforward networks",
+              "machine learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2107878631",
+            "title": "Learning long-term dependencies with gradient descent is difficult",
+            "year": 1994,
+            "citation_count": 7064,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the challenges of training recurrent neural networks (RNNs) using gradient descent for tasks involving long-term dependencies in input/output sequences, highlighting the difficulties that arise as the duration of these dependencies increases. It also explores the trade-offs between efficient learning and retaining information over extended periods, suggesting potential alternatives to standard gradient-based methods.\n\nTopic: gradient descent, computer science, long-term dependencies, machine learning",
+            "keywords": [
+              "gradient descent",
+              "computer science",
+              "long-term dependencies",
+              "machine learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2124651399",
+            "title": "Highly dynamic Destination-Sequenced Distance-Vector routing (DSDV) for mobile computers",
+            "year": 1994,
+            "citation_count": 6771,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel routing protocol for ad-hoc networks, specifically designed for mobile computers, which utilizes a dynamic Destination-Sequenced Distance-Vector (DSDV) approach. It addresses the limitations of traditional Bellman-Ford mechanisms in handling broken links and proposes modifications to enhance routing efficiency and support for network-layer and MAC-layer interactions.\n\nTopic: systems engineering, trajectory planning, network routing, distributed system, computer engineering, networked system design, mobile computers, route planning, scalable routing, wireless sensor network, network routing algorithm, control optimization, computer science, drone, wireless communication, communications system, mobile computing, navigation",
+            "keywords": [
+              "systems engineering",
+              "trajectory planning",
+              "network routing",
+              "distributed system",
+              "computer engineering",
+              "networked system design",
+              "mobile computers",
+              "route planning",
+              "scalable routing",
+              "wireless sensor network",
+              "network routing algorithm",
+              "control optimization",
+              "computer science",
+              "drone",
+              "wireless communication",
+              "communications system",
+              "mobile computing",
+              "navigation"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2130103520",
+            "title": "Good features to track",
+            "year": 1994,
+            "citation_count": 6599,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the challenges of selecting and tracking effective features in vision systems, proposing a new optimal construction criterion for feature selection that enhances tracking performance by addressing issues like occlusions and disocclusions. It introduces an advanced algorithm that builds on previous methods to improve feature detection under affine image transformations, validated through simulation experiments.\n\nTopic: pattern recognition, computer science, remote sensing, image analysis, information fusion, feature detection, data science, moving object tracking, feature (computer vision), localization, systems engineering, machine vision, digital image processing, object tracking, visual surveillance, computer vision, multimedia retrieval, good features, vehicular technology",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "remote sensing",
+              "image analysis",
+              "information fusion",
+              "feature detection",
+              "data science",
+              "moving object tracking",
+              "feature (computer vision)",
+              "localization",
+              "systems engineering",
+              "machine vision",
+              "digital image processing",
+              "object tracking",
+              "visual surveillance",
+              "computer vision",
+              "multimedia retrieval",
+              "good features",
+              "vehicular technology"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.0036231884057971015,
+          "number_of_nodes": 24,
+          "number_of_edges": 2,
+          "average_clustering": 0.0,
+          "number_of_components": 22,
+          "degree_centralization": 0.08695652173913043
+        },
+        "confidence": 0.930965132888909
+      },
+      {
+        "period": [
+          1994,
+          2020
+        ],
+        "topic_label": "Deep Learning Formalism and Algorithmic Optimization",
+        "topic_description": "This paradigm is characterized by the development and optimization of deep neural network architectures, emphasizing formal mathematical frameworks, algorithmic efficiency, and empirical validation through large-scale datasets. Key works like 'Very Deep Convolutional Networks' (2014) and 'Batch Normalization' (2015) exemplify this approach, focusing on improving model depth, computational efficiency, and training methodologies to achieve state-of-the-art performance in tasks such as image recognition and object detection.",
+        "network_stability": 0.2700193199972513,
+        "community_persistence": 0.47453951032568276,
+        "flow_stability": 0.6094486482361453,
+        "centrality_consensus": 0.9950031924941356,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2962835968",
+            "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+            "year": 2014,
+            "citation_count": 49225,
+            "score": 0.2508140128930014,
+            "is_breakthrough": true,
+            "abstract": "The article explores the impact of increasing the depth of convolutional networks on accuracy in large-scale image recognition, demonstrating that using very small (3x3) convolution filters can significantly enhance performance with networks of 16-19 weight layers. The findings contributed to a successful submission in the ImageNet Challenge 2014, securing top placements, and the authors have made their best-performing models publicly available for further research in deep learning and computer vision.\n\nTopic: digital image processing, automatic classification, deep convolutional networks, computer science, machine learning research, deep learning, pattern recognition, machine vision, image representation, large-scale image recognition, large-scale datasets, computational imaging, machine learning, data science, cognitive science, computational intelligence, convolutional neural network, feature detection, unsupervised machine learning, image analysis",
+            "keywords": [
+              "digital image processing",
+              "automatic classification",
+              "deep convolutional networks",
+              "computer science",
+              "machine learning research",
+              "deep learning",
+              "pattern recognition",
+              "machine vision",
+              "image representation",
+              "large-scale image recognition",
+              "large-scale datasets",
+              "computational imaging",
+              "machine learning",
+              "data science",
+              "cognitive science",
+              "computational intelligence",
+              "convolutional neural network",
+              "feature detection",
+              "unsupervised machine learning",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2102605133",
+            "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+            "year": 2014,
+            "citation_count": 24628,
+            "score": 0.2504637380856345,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with domain-specific fine-tuning when labeled data is limited.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "fuzzy set",
+              "image analysis",
+              "information fusion",
+              "accurate object detection",
+              "feature detection",
+              "cognitive science",
+              "object detection",
+              "data science",
+              "object categorization",
+              "computational imaging",
+              "localization",
+              "deep learning",
+              "machine vision",
+              "rich feature hierarchies",
+              "semantic segmentation",
+              "object recognition",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2097117768",
+            "title": "Going deeper with convolutions",
+            "year": 2015,
+            "citation_count": 40093,
+            "score": 0.24726342759424116,
+            "is_breakthrough": true,
+            "abstract": "The article introduces the Inception architecture, specifically the GoogLeNet model, which achieved state-of-the-art results in the 2014 ImageNet competition by optimizing the depth and width of convolutional neural networks while maintaining computational efficiency, leveraging multi-scale processing principles.\n\nTopic: image analysis, computational imaging, computer science, information fusion, convolutional neural network, large language model, deep reinforcement learning, machine learning, applied mathematics, sparse neural network, data science, neural computation, deep learning, computational intelligence, machine learning research, deepfakes, neural network (machine learning), machine vision",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "information fusion",
+              "convolutional neural network",
+              "large language model",
+              "deep reinforcement learning",
+              "machine learning",
+              "applied mathematics",
+              "sparse neural network",
+              "data science",
+              "neural computation",
+              "deep learning",
+              "computational intelligence",
+              "machine learning research",
+              "deepfakes",
+              "neural network (machine learning)",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1903029394",
+            "title": "Fully convolutional networks for semantic segmentation",
+            "year": 2015,
+            "citation_count": 28292,
+            "score": 0.24562884836754537,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and reports significant performance improvements on benchmark datasets like PASCAL VOC and NYUDv2.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "image segmentation",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "convolutional networks",
+              "cognitive science",
+              "data science",
+              "computational imaging",
+              "scene understanding",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "semantic segmentation",
+              "medical image computing",
+              "feature extraction",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2107878631",
+            "title": "Learning long-term dependencies with gradient descent is difficult",
+            "year": 1994,
+            "citation_count": 7064,
+            "score": 0.24325122652808123,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the challenges of training recurrent neural networks (RNNs) using gradient descent for tasks involving long-term dependencies in input/output sequences, highlighting the difficulties that arise as the duration of these dependencies increases. It also explores the trade-offs between efficient learning and retaining information over extended periods, suggesting potential alternatives to standard gradient-based methods.\n\nTopic: gradient descent, computer science, long-term dependencies, machine learning",
+            "keywords": [
+              "gradient descent",
+              "computer science",
+              "long-term dependencies",
+              "machine learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1677182931",
+            "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+            "year": 2015,
+            "citation_count": 14420,
+            "score": 0.24155751453020596,
+            "is_breakthrough": true,
+            "abstract": "The article explores advancements in rectifier networks for image classification, introducing the Parametric Linear Unit (PReLU) to enhance model fitting with minimal computational cost and risk of overfitting. It also presents a robust initialization method for training deep models, achieving a groundbreaking 4.94% top-5 test error on the ImageNet 2012 dataset, surpassing human-level performance for the first time.\n\nTopic: digital image processing, sparse neural network, imagenet classification, computer science, machine learning research, deep learning, machine vision, adversarial machine learning, image representation, human-level performance, human image synthesis, computational imaging, geometric learning, machine learning, data science, computer vision, cognitive science, computational intelligence, convolutional neural network, image analysis",
+            "keywords": [
+              "digital image processing",
+              "sparse neural network",
+              "imagenet classification",
+              "computer science",
+              "machine learning research",
+              "deep learning",
+              "machine vision",
+              "adversarial machine learning",
+              "image representation",
+              "human-level performance",
+              "human image synthesis",
+              "computational imaging",
+              "geometric learning",
+              "machine learning",
+              "data science",
+              "computer vision",
+              "cognitive science",
+              "computational intelligence",
+              "convolutional neural network",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1836465849",
+            "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+            "year": 2015,
+            "citation_count": 19668,
+            "score": 0.24114181550915878,
+            "is_breakthrough": true,
+            "abstract": "The article discusses Batch Normalization, a technique designed to address the issue of internal covariate shift in deep neural networks, which complicates training by altering the distribution of layer inputs. By normalizing these inputs as part of the model architecture, Batch Normalization accelerates training, allows for higher learning rates, and can even reduce the need for regularization methods like Dropout, ultimately achieving significant improvements in accuracy for image classification tasks.\n\nTopic: neural network (machine learning), internal covariate shift, batch normalization, computer science, machine learning, deep learning, data science",
+            "keywords": [
+              "neural network (machine learning)",
+              "internal covariate shift",
+              "batch normalization",
+              "computer science",
+              "machine learning",
+              "deep learning",
+              "data science"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1536680647",
+            "title": "Fast R-CNN",
+            "year": 2015,
+            "citation_count": 20208,
+            "score": 0.23874732596142484,
+            "is_breakthrough": true,
+            "abstract": "The article presents Fast R-CNN, an advanced method for object detection that enhances the efficiency and accuracy of the original R-CNN by utilizing deep convolutional networks, achieving significant improvements in training and testing speeds. Implemented in Python and C++, Fast R-CNN is available as open-source software and demonstrates superior performance on the PASCAL VOC 2012 dataset.\n\nTopic: computational imaging, machine vision, natural language processing, neural network (machine learning), cognitive science, computer science, recurrent neural network, convolutional neural network, machine learning, deep reinforcement learning, machine learning research, object detection, deep learning, data science, object recognition, image analysis",
+            "keywords": [
+              "computational imaging",
+              "machine vision",
+              "natural language processing",
+              "neural network (machine learning)",
+              "cognitive science",
+              "computer science",
+              "recurrent neural network",
+              "convolutional neural network",
+              "machine learning",
+              "deep reinforcement learning",
+              "machine learning research",
+              "object detection",
+              "deep learning",
+              "data science",
+              "object recognition",
+              "image analysis"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.006115871969530506,
+          "number_of_nodes": 370,
+          "number_of_edges": 835,
+          "average_clustering": 0.14398629075465688,
+          "number_of_components": 131,
+          "degree_centralization": 0.12121479910451279
+        },
+        "confidence": 0.9178320276109561
+      }
+    ],
+    "final_period_characterizations": [
+      {
+        "period": [
+          1986,
+          1992
+        ],
+        "topic_label": "Formalism and Algorithmic Rigor",
+        "topic_description": "The 1986-1992 Computer Science paradigm emphasized formal mathematical models and algorithmic precision, as seen in 'Adaptive Filter Theory' (1986) and 'Compilers: Principles, Techniques, and Tools' (1986), which focused on rigorous theoretical foundations and systematic algorithm design. This period prioritized structured problem-solving through well-defined computational frameworks, reflecting a shift toward algorithmic rigor and formalism over heuristic approaches.",
+        "network_stability": 0.3206393200295639,
+        "community_persistence": 0.652829707681849,
+        "flow_stability": 0.5617811260932297,
+        "centrality_consensus": 0.995013841953208,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W4300402905",
+            "title": "Parallel Distributed Processing",
+            "year": 1986,
+            "citation_count": 13688,
+            "score": 0.24817159182963947,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the concept of connectionism, a theory in cognitive science that posits the human mind operates through a massively parallel architecture of interconnected neural units, challenging traditional symbolic computation models. It explores how mental processes arise from the interactions of these units and presents foundational ideas and applications related to perception, memory, language, and thought in the context of neurocomputing.\n\nTopic: distributed system, parallel processing, computer science, distributed data processing, distributed computing, distributed processing, parallel computing, distributed query processing",
+            "keywords": [
+              "distributed system",
+              "parallel processing",
+              "computer science",
+              "distributed data processing",
+              "distributed computing",
+              "distributed processing",
+              "parallel computing",
+              "distributed query processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2145023731",
+            "title": "A Computational Approach to Edge Detection",
+            "year": 1986,
+            "citation_count": 26409,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article presents a computational approach to edge detection, focusing on defining precise criteria for detecting and localizing edges in images while minimizing assumptions about the solution's form. It discusses the mathematical foundations of edge detection, explores the trade-offs between performance goals, and introduces a method for improving detection across varying signal-to-noise ratios through feature synthesis.\n\nTopic: computational imaging, edge detection, computer science, edge computing, detection technique",
+            "keywords": [
+              "computational imaging",
+              "edge detection",
+              "computer science",
+              "edge computing",
+              "detection technique"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1492221128",
+            "title": "Adaptive Filter Theory",
+            "year": 1986,
+            "citation_count": 13062,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article on Adaptive Filter Theory provides a comprehensive overview of various concepts and techniques related to adaptive filtering, including stochastic processes, Wiener filters, and least-mean-square methods, while also addressing advanced topics such as Kalman filters, blind deconvolution, and the effects of finite precision. It serves as a resource for understanding the theoretical foundations and practical applications of adaptive algorithms in signal processing and applied mathematics.\n\nTopic: computer science, filter (signal processing), spatial filtering, theoretical computer science, adaptive algorithm, adaptive filter, applied mathematics, filter design, adaptive filter theory",
+            "keywords": [
+              "computer science",
+              "filter (signal processing)",
+              "spatial filtering",
+              "theoretical computer science",
+              "adaptive algorithm",
+              "adaptive filter",
+              "applied mathematics",
+              "filter design",
+              "adaptive filter theory"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2071637551",
+            "title": "APACHE II-A Severity of Disease Classification System",
+            "year": 1986,
+            "citation_count": 10402,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the APACHE II-A severity of disease classification system, detailing its application in disease assessment and diagnosis through advanced methodologies in medical image computing, bioinformatics, and machine learning. It highlights the system's role in improving disease detection and classification within the fields of health informatics and biomedical research.\n\nTopic: disease classification, disease assessment, medical image computing, bioinformatics, biostatistics, biomedical informatics, diagnostic system, disease detection, health informatics, computer science, diagnosis, machine learning, classification method, data science, apache ii-a severity, disease classification system, image analysis",
+            "keywords": [
+              "disease classification",
+              "disease assessment",
+              "medical image computing",
+              "bioinformatics",
+              "biostatistics",
+              "biomedical informatics",
+              "diagnostic system",
+              "disease detection",
+              "health informatics",
+              "computer science",
+              "diagnosis",
+              "machine learning",
+              "classification method",
+              "data science",
+              "apache ii-a severity",
+              "disease classification system",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2080267935",
+            "title": "Graph-Based Algorithms for Boolean Function Manipulation",
+            "year": 1986,
+            "citation_count": 8830,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "This article introduces a novel data structure for representing Boolean functions using directed acyclic graphs, along with a set of efficient manipulation algorithms. The authors demonstrate the practicality of their approach through experimental results in logic design verification, highlighting the efficiency of their algorithms in typical applications.\n\nTopic: computer science, graph theory, boolean function manipulation, graph algorithm, boolean function, graph-based algorithms",
+            "keywords": [
+              "computer science",
+              "graph theory",
+              "boolean function manipulation",
+              "graph algorithm",
+              "boolean function",
+              "graph-based algorithms"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1491178396",
+            "title": "Compilers: Principles, Techniques, and Tools",
+            "year": 1986,
+            "citation_count": 8154,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article \"Compilers: Principles, Techniques, and Tools\" provides a comprehensive overview of compiler design and implementation, covering essential topics such as syntax-directed translation, lexical analysis, parsing techniques, intermediate code generation, and optimization strategies. It serves as a foundational resource for understanding the principles of compiler technology and its applications in computer science and software engineering.\n\nTopic: compiler technology, computer science, computational engineering, software engineering, dynamic compilation, theory of computation, applied mathematics, numerical algorithm, system software, formal technique, software analysis, numerical analysis, program analysis, optimizing compiler, parallelizing compiler, statistical software, computational optimization, computer engineering",
+            "keywords": [
+              "compiler technology",
+              "computer science",
+              "computational engineering",
+              "software engineering",
+              "dynamic compilation",
+              "theory of computation",
+              "applied mathematics",
+              "numerical algorithm",
+              "system software",
+              "formal technique",
+              "software analysis",
+              "numerical analysis",
+              "program analysis",
+              "optimizing compiler",
+              "parallelizing compiler",
+              "statistical software",
+              "computational optimization",
+              "computer engineering"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2024135760",
+            "title": "Images of Organization",
+            "year": 1986,
+            "citation_count": 5305,
+            "score": 0.23705053621339722,
+            "is_breakthrough": true,
+            "abstract": "The article \"Images of Organization\" explores various metaphors and frameworks for understanding organizations, ranging from mechanistic and organismic perspectives to cultural, political, and psychological dimensions. It examines how these images influence organizational behavior, structure, and development, while also addressing the implications for practice and the challenges of navigating complex organizational dynamics.\n\nTopic: image analysis, computer science, organizational behavior, organization study, visual culture, image communication, organizational system, image representation, organization development, organizational theory, art history, organizational characteristic, organizational communication, organizational research, organizational structure",
+            "keywords": [
+              "image analysis",
+              "computer science",
+              "organizational behavior",
+              "organization study",
+              "visual culture",
+              "image communication",
+              "organizational system",
+              "image representation",
+              "organization development",
+              "organizational theory",
+              "art history",
+              "organizational characteristic",
+              "organizational communication",
+              "organizational research",
+              "organizational structure"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2033943395",
+            "title": "User Acceptance of Computer Technology: A Comparison of Two Theoretical Models",
+            "year": 1989,
+            "citation_count": 22273,
+            "score": 0.21817159182963947,
+            "is_breakthrough": false,
+            "abstract": "The article explores user acceptance of computer technology by comparing two theoretical models, highlighting the factors that influence individuals' intentions to use technology, such as perceived usefulness and ease of use. Through a longitudinal study, it reveals significant correlations between users' intentions and actual usage over time, suggesting practical implications for improving technology adoption in organizations.\n\nTopic: computer science, human-computer interaction, information technology, technology, model comparison, user acceptance, computer technology, user experience, technology adoption, psychology, technology acceptance model, user perception, theoretical models",
+            "keywords": [
+              "computer science",
+              "human-computer interaction",
+              "information technology",
+              "technology",
+              "model comparison",
+              "user acceptance",
+              "computer technology",
+              "user experience",
+              "technology adoption",
+              "psychology",
+              "technology acceptance model",
+              "user perception",
+              "theoretical models"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.0019230769230769232,
+          "number_of_nodes": 40,
+          "number_of_edges": 3,
+          "average_clustering": 0.0,
+          "number_of_components": 37,
+          "degree_centralization": 0.022941970310391364
+        },
+        "confidence": 0.9421813835548473
+      },
+      {
+        "period": [
+          1992,
+          1994
+        ],
+        "topic_label": "Formalism and Algorithmic Rigor",
+        "topic_description": "The 1992-1994 period in Computer Science was characterized by a paradigm emphasizing formal mathematical models, algorithmic precision, and rigorous computational methods, as seen in works like 'Numerical Recipes in C' and 'Training feedforward networks with the Marquardt algorithm,' which focused on optimizing numerical stability and convergence. This paradigm also reflected a growing integration of theoretical foundations with practical applications, exemplified by 'Ideal spatial adaptation by wavelet shrinkage' and 'Highly dynamic Destination-Sequenced Distance-Vector routing (DSDV) for mobile computers,' which combined mathematical rigor with real-world problem-solving.",
+        "network_stability": 0.3005050505050505,
+        "community_persistence": 0.6177230046948357,
+        "flow_stability": 0.538081349069264,
+        "centrality_consensus": 0.9950873591705438,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2062024414",
+            "title": "Ten lectures on wavelets",
+            "year": 1992,
+            "citation_count": 15933,
+            "score": 0.24890884798656565,
+            "is_breakthrough": false,
+            "abstract": "The article \"Ten Lectures on Wavelets\" provides a comprehensive overview of wavelet theory, covering essential topics such as the continuous and discrete wavelet transforms, orthonormal bases, multiresolution analysis, and their applications in computer science and signal processing. It serves as a foundational resource for understanding the mathematical principles and practical implications of wavelets in various fields.\n\nTopic: wavelet theory, wavelet, computer science, signal processing",
+            "keywords": [
+              "wavelet theory",
+              "wavelet",
+              "computer science",
+              "signal processing"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1554663460",
+            "title": "Neural networks for pattern recognition",
+            "year": 1994,
+            "citation_count": 19427,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "This article provides a comprehensive overview of feed-forward neural networks in the context of statistical pattern recognition, covering essential concepts, modeling techniques, error functions, and learning algorithms, while also including over 100 exercises for practical application. It serves as a valuable resource for professionals and students in fields such as computer science, machine learning, and data science.\n\nTopic: image analysis, pattern recognition, computer science, convolutional neural network, neural architecture search, machine learning, recurrent neural network, sparse neural network, cognitive science, temporal pattern recognition, data science, computational intelligence, deep learning, neural networks, machine learning research, neural network (machine learning), machine vision",
+            "keywords": [
+              "image analysis",
+              "pattern recognition",
+              "computer science",
+              "convolutional neural network",
+              "neural architecture search",
+              "machine learning",
+              "recurrent neural network",
+              "sparse neural network",
+              "cognitive science",
+              "temporal pattern recognition",
+              "data science",
+              "computational intelligence",
+              "deep learning",
+              "neural networks",
+              "machine learning research",
+              "neural network (machine learning)",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2170120409",
+            "title": "Numerical recipes in C",
+            "year": 1994,
+            "citation_count": 15924,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses \"Numerical Recipes in C,\" a comprehensive resource on numerical computation and algorithms, covering topics such as numerical methods for partial differential equations and numerical analysis, and includes bibliographical references, appendices, and indexes for further exploration. It serves as a guide for applied mathematics and numerical simulation techniques, particularly for users of IBM PC and compatible systems.\n\nTopic: computer science, numerical computation, numerical mathematics, numerical method for partial differential equation, applied mathematics, numerical algorithm, numerical analysis, numerical recipes, numerical simulation",
+            "keywords": [
+              "computer science",
+              "numerical computation",
+              "numerical mathematics",
+              "numerical method for partial differential equation",
+              "applied mathematics",
+              "numerical algorithm",
+              "numerical analysis",
+              "numerical recipes",
+              "numerical simulation"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2158940042",
+            "title": "Ideal spatial adaptation by wavelet shrinkage",
+            "year": 1994,
+            "citation_count": 7497,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses a novel approach to spatially adaptive estimation using selective wavelet reconstruction, which enhances the performance of estimators like variable-knot splines and piecewise-polynomial fits. It introduces a practical method called RiskShrink that optimally shrinks empirical coefficients, demonstrating that it achieves near-ideal performance based solely on data, with guarantees that are nearly optimal within its class of procedures.\n\nTopic: digital image processing, space-time processing, pattern recognition, computational imaging, information fusion, neuroscience, wavelet shrinkage, digital signal processing, computer science, adaptation, domain adaptation, multimodal signal processing, wavelet, geography, spatial filtering, statistical signal processing, ideal spatial adaptation, image analysis",
+            "keywords": [
+              "digital image processing",
+              "space-time processing",
+              "pattern recognition",
+              "computational imaging",
+              "information fusion",
+              "neuroscience",
+              "wavelet shrinkage",
+              "digital signal processing",
+              "computer science",
+              "adaptation",
+              "domain adaptation",
+              "multimodal signal processing",
+              "wavelet",
+              "geography",
+              "spatial filtering",
+              "statistical signal processing",
+              "ideal spatial adaptation",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2155482699",
+            "title": "Training feedforward networks with the Marquardt algorithm",
+            "year": 1994,
+            "citation_count": 7302,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the application of the Marquardt algorithm for nonlinear least squares in training feedforward neural networks, demonstrating its efficiency compared to a conjugate gradient variable learning rate algorithm on various function approximation tasks, particularly for networks with a few hundred weights.\n\nTopic: computer science, marquardt algorithm, feedforward networks, machine learning",
+            "keywords": [
+              "computer science",
+              "marquardt algorithm",
+              "feedforward networks",
+              "machine learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2107878631",
+            "title": "Learning long-term dependencies with gradient descent is difficult",
+            "year": 1994,
+            "citation_count": 7064,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the challenges of training recurrent neural networks (RNNs) using gradient descent for tasks involving long-term dependencies in input/output sequences, highlighting the difficulties that arise as the duration of these dependencies increases. It also explores the trade-offs between efficient learning and retaining information over extended periods, suggesting potential alternatives to standard gradient-based methods.\n\nTopic: gradient descent, computer science, long-term dependencies, machine learning",
+            "keywords": [
+              "gradient descent",
+              "computer science",
+              "long-term dependencies",
+              "machine learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2124651399",
+            "title": "Highly dynamic Destination-Sequenced Distance-Vector routing (DSDV) for mobile computers",
+            "year": 1994,
+            "citation_count": 6771,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel routing protocol for ad-hoc networks, specifically designed for mobile computers, which utilizes a dynamic Destination-Sequenced Distance-Vector (DSDV) approach. It addresses the limitations of traditional Bellman-Ford mechanisms in handling broken links and proposes modifications to enhance routing efficiency and support for network-layer and MAC-layer interactions.\n\nTopic: systems engineering, trajectory planning, network routing, distributed system, computer engineering, networked system design, mobile computers, route planning, scalable routing, wireless sensor network, network routing algorithm, control optimization, computer science, drone, wireless communication, communications system, mobile computing, navigation",
+            "keywords": [
+              "systems engineering",
+              "trajectory planning",
+              "network routing",
+              "distributed system",
+              "computer engineering",
+              "networked system design",
+              "mobile computers",
+              "route planning",
+              "scalable routing",
+              "wireless sensor network",
+              "network routing algorithm",
+              "control optimization",
+              "computer science",
+              "drone",
+              "wireless communication",
+              "communications system",
+              "mobile computing",
+              "navigation"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2130103520",
+            "title": "Good features to track",
+            "year": 1994,
+            "citation_count": 6599,
+            "score": 0.24167315027657654,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the challenges of selecting and tracking effective features in vision systems, proposing a new optimal construction criterion for feature selection that enhances tracking performance by addressing issues like occlusions and disocclusions. It introduces an advanced algorithm that builds on previous methods to improve feature detection under affine image transformations, validated through simulation experiments.\n\nTopic: pattern recognition, computer science, remote sensing, image analysis, information fusion, feature detection, data science, moving object tracking, feature (computer vision), localization, systems engineering, machine vision, digital image processing, object tracking, visual surveillance, computer vision, multimedia retrieval, good features, vehicular technology",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "remote sensing",
+              "image analysis",
+              "information fusion",
+              "feature detection",
+              "data science",
+              "moving object tracking",
+              "feature (computer vision)",
+              "localization",
+              "systems engineering",
+              "machine vision",
+              "digital image processing",
+              "object tracking",
+              "visual surveillance",
+              "computer vision",
+              "multimedia retrieval",
+              "good features",
+              "vehicular technology"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.0036231884057971015,
+          "number_of_nodes": 24,
+          "number_of_edges": 2,
+          "average_clustering": 0.0,
+          "number_of_components": 22,
+          "degree_centralization": 0.08695652173913043
+        },
+        "confidence": 0.930965132888909
+      },
+      {
+        "period": [
+          1994,
+          2020
+        ],
+        "topic_label": "Deep Learning Formalism and Algorithmic Optimization",
+        "topic_description": "This paradigm is characterized by the development and optimization of deep neural network architectures, emphasizing formal mathematical frameworks, algorithmic efficiency, and empirical validation through large-scale datasets. Key works like 'Very Deep Convolutional Networks' (2014) and 'Batch Normalization' (2015) exemplify this approach, focusing on improving model depth, computational efficiency, and training methodologies to achieve state-of-the-art performance in tasks such as image recognition and object detection.",
+        "network_stability": 0.2700193199972513,
+        "community_persistence": 0.47453951032568276,
+        "flow_stability": 0.6094486482361453,
+        "centrality_consensus": 0.9950031924941356,
+        "representative_papers": [
+          {
+            "id": "https://openalex.org/W2962835968",
+            "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+            "year": 2014,
+            "citation_count": 49225,
+            "score": 0.2508140128930014,
+            "is_breakthrough": true,
+            "abstract": "The article explores the impact of increasing the depth of convolutional networks on accuracy in large-scale image recognition, demonstrating that using very small (3x3) convolution filters can significantly enhance performance with networks of 16-19 weight layers. The findings contributed to a successful submission in the ImageNet Challenge 2014, securing top placements, and the authors have made their best-performing models publicly available for further research in deep learning and computer vision.\n\nTopic: digital image processing, automatic classification, deep convolutional networks, computer science, machine learning research, deep learning, pattern recognition, machine vision, image representation, large-scale image recognition, large-scale datasets, computational imaging, machine learning, data science, cognitive science, computational intelligence, convolutional neural network, feature detection, unsupervised machine learning, image analysis",
+            "keywords": [
+              "digital image processing",
+              "automatic classification",
+              "deep convolutional networks",
+              "computer science",
+              "machine learning research",
+              "deep learning",
+              "pattern recognition",
+              "machine vision",
+              "image representation",
+              "large-scale image recognition",
+              "large-scale datasets",
+              "computational imaging",
+              "machine learning",
+              "data science",
+              "cognitive science",
+              "computational intelligence",
+              "convolutional neural network",
+              "feature detection",
+              "unsupervised machine learning",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2102605133",
+            "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+            "year": 2014,
+            "citation_count": 24628,
+            "score": 0.2504637380856345,
+            "is_breakthrough": true,
+            "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with domain-specific fine-tuning when labeled data is limited.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "fuzzy set",
+              "image analysis",
+              "information fusion",
+              "accurate object detection",
+              "feature detection",
+              "cognitive science",
+              "object detection",
+              "data science",
+              "object categorization",
+              "computational imaging",
+              "localization",
+              "deep learning",
+              "machine vision",
+              "rich feature hierarchies",
+              "semantic segmentation",
+              "object recognition",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2097117768",
+            "title": "Going deeper with convolutions",
+            "year": 2015,
+            "citation_count": 40093,
+            "score": 0.24726342759424116,
+            "is_breakthrough": true,
+            "abstract": "The article introduces the Inception architecture, specifically the GoogLeNet model, which achieved state-of-the-art results in the 2014 ImageNet competition by optimizing the depth and width of convolutional neural networks while maintaining computational efficiency, leveraging multi-scale processing principles.\n\nTopic: image analysis, computational imaging, computer science, information fusion, convolutional neural network, large language model, deep reinforcement learning, machine learning, applied mathematics, sparse neural network, data science, neural computation, deep learning, computational intelligence, machine learning research, deepfakes, neural network (machine learning), machine vision",
+            "keywords": [
+              "image analysis",
+              "computational imaging",
+              "computer science",
+              "information fusion",
+              "convolutional neural network",
+              "large language model",
+              "deep reinforcement learning",
+              "machine learning",
+              "applied mathematics",
+              "sparse neural network",
+              "data science",
+              "neural computation",
+              "deep learning",
+              "computational intelligence",
+              "machine learning research",
+              "deepfakes",
+              "neural network (machine learning)",
+              "machine vision"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1903029394",
+            "title": "Fully convolutional networks for semantic segmentation",
+            "year": 2015,
+            "citation_count": 28292,
+            "score": 0.24562884836754537,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and reports significant performance improvements on benchmark datasets like PASCAL VOC and NYUDv2.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis",
+            "keywords": [
+              "pattern recognition",
+              "computer science",
+              "machine learning",
+              "image segmentation",
+              "image analysis",
+              "information fusion",
+              "convolutional neural network",
+              "convolutional networks",
+              "cognitive science",
+              "data science",
+              "computational imaging",
+              "scene understanding",
+              "deep learning",
+              "machine learning research",
+              "machine vision",
+              "semantic segmentation",
+              "medical image computing",
+              "feature extraction",
+              "computer vision",
+              "scene analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W2107878631",
+            "title": "Learning long-term dependencies with gradient descent is difficult",
+            "year": 1994,
+            "citation_count": 7064,
+            "score": 0.24325122652808123,
+            "is_breakthrough": true,
+            "abstract": "The article discusses the challenges of training recurrent neural networks (RNNs) using gradient descent for tasks involving long-term dependencies in input/output sequences, highlighting the difficulties that arise as the duration of these dependencies increases. It also explores the trade-offs between efficient learning and retaining information over extended periods, suggesting potential alternatives to standard gradient-based methods.\n\nTopic: gradient descent, computer science, long-term dependencies, machine learning",
+            "keywords": [
+              "gradient descent",
+              "computer science",
+              "long-term dependencies",
+              "machine learning"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1677182931",
+            "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+            "year": 2015,
+            "citation_count": 14420,
+            "score": 0.24155751453020596,
+            "is_breakthrough": true,
+            "abstract": "The article explores advancements in rectifier networks for image classification, introducing the Parametric Linear Unit (PReLU) to enhance model fitting with minimal computational cost and risk of overfitting. It also presents a robust initialization method for training deep models, achieving a groundbreaking 4.94% top-5 test error on the ImageNet 2012 dataset, surpassing human-level performance for the first time.\n\nTopic: digital image processing, sparse neural network, imagenet classification, computer science, machine learning research, deep learning, machine vision, adversarial machine learning, image representation, human-level performance, human image synthesis, computational imaging, geometric learning, machine learning, data science, computer vision, cognitive science, computational intelligence, convolutional neural network, image analysis",
+            "keywords": [
+              "digital image processing",
+              "sparse neural network",
+              "imagenet classification",
+              "computer science",
+              "machine learning research",
+              "deep learning",
+              "machine vision",
+              "adversarial machine learning",
+              "image representation",
+              "human-level performance",
+              "human image synthesis",
+              "computational imaging",
+              "geometric learning",
+              "machine learning",
+              "data science",
+              "computer vision",
+              "cognitive science",
+              "computational intelligence",
+              "convolutional neural network",
+              "image analysis"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1836465849",
+            "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+            "year": 2015,
+            "citation_count": 19668,
+            "score": 0.24114181550915878,
+            "is_breakthrough": true,
+            "abstract": "The article discusses Batch Normalization, a technique designed to address the issue of internal covariate shift in deep neural networks, which complicates training by altering the distribution of layer inputs. By normalizing these inputs as part of the model architecture, Batch Normalization accelerates training, allows for higher learning rates, and can even reduce the need for regularization methods like Dropout, ultimately achieving significant improvements in accuracy for image classification tasks.\n\nTopic: neural network (machine learning), internal covariate shift, batch normalization, computer science, machine learning, deep learning, data science",
+            "keywords": [
+              "neural network (machine learning)",
+              "internal covariate shift",
+              "batch normalization",
+              "computer science",
+              "machine learning",
+              "deep learning",
+              "data science"
+            ]
+          },
+          {
+            "id": "https://openalex.org/W1536680647",
+            "title": "Fast R-CNN",
+            "year": 2015,
+            "citation_count": 20208,
+            "score": 0.23874732596142484,
+            "is_breakthrough": true,
+            "abstract": "The article presents Fast R-CNN, an advanced method for object detection that enhances the efficiency and accuracy of the original R-CNN by utilizing deep convolutional networks, achieving significant improvements in training and testing speeds. Implemented in Python and C++, Fast R-CNN is available as open-source software and demonstrates superior performance on the PASCAL VOC 2012 dataset.\n\nTopic: computational imaging, machine vision, natural language processing, neural network (machine learning), cognitive science, computer science, recurrent neural network, convolutional neural network, machine learning, deep reinforcement learning, machine learning research, object detection, deep learning, data science, object recognition, image analysis",
+            "keywords": [
+              "computational imaging",
+              "machine vision",
+              "natural language processing",
+              "neural network (machine learning)",
+              "cognitive science",
+              "computer science",
+              "recurrent neural network",
+              "convolutional neural network",
+              "machine learning",
+              "deep reinforcement learning",
+              "machine learning research",
+              "object detection",
+              "deep learning",
+              "data science",
+              "object recognition",
+              "image analysis"
+            ]
+          }
+        ],
+        "network_metrics": {
+          "density": 0.006115871969530506,
+          "number_of_nodes": 370,
+          "number_of_edges": 835,
+          "average_clustering": 0.14398629075465688,
+          "number_of_components": 131,
+          "degree_centralization": 0.12121479910451279
+        },
+        "confidence": 0.9178320276109561
+      }
+    ],
+    "unified_confidence": 0.9303261813515707,
+    "narrative_evolution": "1986-1992: Formalism and Algorithmic Rigor\n\u2192 1992-1994: Formalism and Algorithmic Rigor\n\u2192 1994-2020: Deep Learning Formalism and Algorithmic Optimization"
+  },
+  "segment_merging": {
+    "merging_performed": true,
+    "original_segments": 3,
+    "final_segments": 3,
+    "merge_decisions": [],
+    "merging_summary": "No merging performed - all segments sufficiently distinct"
+  }
+}

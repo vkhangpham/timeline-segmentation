@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "validation_date": "2025-06-23T21:49:03.628648",
+    "validation_time_seconds": 0.7719109058380127,
+    "domains_evaluated": 8,
+    "total_paradigm_shifts": 39
+  },
+  "overall_metrics": {
+    "f1_score_2yr": 0.05769230769230768,
+    "precision_2yr": 0.04615384615384615,
+    "recall_2yr": 0.07692307692307693
+  },
+  "domain_results": {
+    "computer_vision": {
+      "domain_name": "computer_vision",
+      "reference_shifts": [
+        1975,
+        1990,
+        2005,
+        2025
+      ],
+      "detected_shifts": [],
+      "precision_2yr": 0.0,
+      "recall_2yr": 0.0,
+      "f1_score_2yr": 0.0,
+      "paradigm_count_detected": 0,
+      "paradigm_count_reference": 4
+    },
+    "deep_learning": {
+      "domain_name": "deep_learning",
+      "reference_shifts": [
+        1969,
+        1995,
+        2012,
+        2017,
+        2025
+      ],
+      "detected_shifts": [],
+      "precision_2yr": 0.0,
+      "recall_2yr": 0.0,
+      "f1_score_2yr": 0.0,
+      "paradigm_count_detected": 0,
+      "paradigm_count_reference": 5
+    },
+    "machine_learning": {
+      "domain_name": "machine_learning",
+      "reference_shifts": [
+        1960,
+        1980,
+        1995,
+        2010,
+        2025
+      ],
+      "detected_shifts": [],
+      "precision_2yr": 0.0,
+      "recall_2yr": 0.0,
+      "f1_score_2yr": 0.0,
+      "paradigm_count_detected": 0,
+      "paradigm_count_reference": 5
+    },
+    "computer_science": {
+      "domain_name": "computer_science",
+      "reference_shifts": [
+        1948,
+        1965,
+        1975,
+        1990,
+        2010,
+        2025
+      ],
+      "detected_shifts": [],
+      "precision_2yr": 0.0,
+      "recall_2yr": 0.0,
+      "f1_score_2yr": 0.0,
+      "paradigm_count_detected": 0,
+      "paradigm_count_reference": 6
+    },
+    "applied_mathematics": {
+      "domain_name": "applied_mathematics",
+      "reference_shifts": [
+        1900,
+        1939,
+        1945,
+        1970,
+        2000,
+        2025
+      ],
+      "detected_shifts": [
+        1941,
+        1945,
+        1962,
+        1979,
+        1980,
+        1982,
+        1984,
+        1986,
+        2001,
+        2004
+      ],
+      "precision_2yr": 0.3,
+      "recall_2yr": 0.5,
+      "f1_score_2yr": 0.37499999999999994,
+      "paradigm_count_detected": 10,
+      "paradigm_count_reference": 6
+    },
+    "natural_language_processing": {
+      "domain_name": "natural_language_processing",
+      "reference_shifts": [
+        1970,
+        1990,
+        2010,
+        2025
+      ],
+      "detected_shifts": [],
+      "precision_2yr": 0.0,
+      "recall_2yr": 0.0,
+      "f1_score_2yr": 0.0,
+      "paradigm_count_detected": 0,
+      "paradigm_count_reference": 4
+    },
+    "machine_translation": {
+      "domain_name": "machine_translation",
+      "reference_shifts": [
+        1966,
+        1988,
+        2014,
+        2025
+      ],
+      "detected_shifts": [],
+      "precision_2yr": 0.0,
+      "recall_2yr": 0.0,
+      "f1_score_2yr": 0.0,
+      "paradigm_count_detected": 0,
+      "paradigm_count_reference": 4
+    },
+    "art": {
+      "domain_name": "art",
+      "reference_shifts": [
+        1600,
+        1750,
+        1886,
+        1945,
+        2025
+      ],
+      "detected_shifts": [],
+      "precision_2yr": 0.0,
+      "recall_2yr": 0.0,
+      "f1_score_2yr": 0.0,
+      "paradigm_count_detected": 0,
+      "paradigm_count_reference": 5
+    }
+  }
+}

@@ -723,16 +723,16 @@ def visualize_timeline_comparison(domain_name: str,
     # Ensure output directory exists
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     
-    # Load generated results and ground truth
+    # Load generated results and reference data
     generated_data = load_generated_timeline_data(domain_name, results_dir)
-    ground_truth_data = load_ground_truth_data(domain_name, validation_dir)
+    reference_data = load_reference_data(domain_name)
     
     if not generated_data:
         print(f"❌ No generated timeline data found for {domain_name}")
         return ""
     
-    if not ground_truth_data:
-        print(f"❌ No ground truth data found for {domain_name}")
+    if not reference_data:
+        print(f"❌ No reference data found for {domain_name}")
         return ""
     
     # Create comprehensive comparison visualization
@@ -740,27 +740,27 @@ def visualize_timeline_comparison(domain_name: str,
     
     # Main timeline comparison (top section)
     ax_comparison = plt.subplot2grid((5, 4), (0, 0), colspan=4, rowspan=2)
-    create_timeline_comparison_plot(ax_comparison, generated_data, ground_truth_data, domain_name)
+    create_timeline_comparison_plot(ax_comparison, generated_data, reference_data, domain_name)
     
     # Detailed metrics comparison (middle section)
     ax_metrics = plt.subplot2grid((5, 4), (2, 0), colspan=2)
-    create_metrics_comparison_plot(ax_metrics, generated_data, ground_truth_data)
+    create_metrics_comparison_plot(ax_metrics, generated_data, reference_data)
     
     # Period accuracy analysis (middle right)
     ax_accuracy = plt.subplot2grid((5, 4), (2, 2), colspan=2)
-    create_accuracy_analysis_plot(ax_accuracy, generated_data, ground_truth_data)
+    create_accuracy_analysis_plot(ax_accuracy, generated_data, reference_data)
     
     # Boundary detection analysis (bottom left)
     ax_boundaries = plt.subplot2grid((5, 4), (3, 0), colspan=2)
-    create_boundary_detection_plot(ax_boundaries, generated_data, ground_truth_data)
+    create_boundary_detection_plot(ax_boundaries, generated_data, reference_data)
     
     # Performance summary (bottom right)
     ax_performance = plt.subplot2grid((5, 4), (3, 2), colspan=2)
-    create_performance_summary_plot(ax_performance, generated_data, ground_truth_data)
+    create_performance_summary_plot(ax_performance, generated_data, reference_data)
     
     # Detailed statistics table (bottom row)
     ax_stats = plt.subplot2grid((5, 4), (4, 0), colspan=4)
-    create_detailed_comparison_table(ax_stats, generated_data, ground_truth_data, domain_name)
+    create_detailed_comparison_table(ax_stats, generated_data, reference_data, domain_name)
     
     plt.tight_layout()
     
@@ -770,9 +770,9 @@ def visualize_timeline_comparison(domain_name: str,
     plt.close()
     
     # Create additional detailed visualizations
-    create_period_alignment_visualization(generated_data, ground_truth_data, domain_name, output_dir)
-    create_signal_validation_visualization(generated_data, ground_truth_data, domain_name, output_dir)
-    create_performance_metrics_dashboard(generated_data, ground_truth_data, domain_name, output_dir)
+    create_period_alignment_visualization(generated_data, reference_data, domain_name, output_dir)
+    create_signal_validation_visualization(generated_data, reference_data, domain_name, output_dir)
+    create_performance_metrics_dashboard(generated_data, reference_data, domain_name, output_dir)
     
     print(f"  ✅ Timeline comparison saved: {output_file}")
     return output_file
@@ -799,39 +799,39 @@ def load_generated_timeline_data(domain_name: str, results_dir: str) -> Optional
         return None
 
 
-def load_ground_truth_data(domain_name: str, validation_dir: str) -> Optional[Dict]:
-    """Load ground truth timeline data."""
-    gt_file = Path(f"{validation_dir}/{domain_name}_groundtruth.json")
-    if not gt_file.exists():
-        print(f"  ⚠️ Ground truth file not found: {gt_file}")
+def load_reference_data(domain_name: str, validation_dir: str = "data/references") -> Optional[Dict]:
+    """Load reference timeline data from data/references."""
+    ref_file = Path(f"{validation_dir}/{domain_name}_gemini.json")
+    if not ref_file.exists():
+        print(f"  ⚠️ Reference file not found: {ref_file}")
         return None
-    
+
     try:
-        with open(gt_file, 'r') as f:
+        with open(ref_file, 'r') as f:
             data = json.load(f)
         
         periods = data.get('historical_periods', [])
-        print(f"  📚 Loaded ground truth: {len(periods)} historical periods")
+        print(f"  📚 Loaded reference data: {len(periods)} historical periods")
         return data
     except Exception as e:
-        print(f"  ❌ Error loading ground truth: {e}")
+        print(f"  ❌ Error loading reference data: {e}")
         return None
 
 
-def create_timeline_comparison_plot(ax, generated_data: Dict, ground_truth_data: Dict, domain_name: str):
-    """Create side-by-side timeline comparison showing generated vs ground truth periods."""
-    ax.set_title(f'{domain_name.replace("_", " ").title()} - Timeline Comparison: Generated vs Ground Truth', 
+def create_timeline_comparison_plot(ax, generated_data: Dict, reference_data: Dict, domain_name: str):
+    """Create side-by-side timeline comparison showing generated vs reference periods."""
+    ax.set_title(f'{domain_name.replace("_", " ").title()} - Timeline Comparison: Generated vs Reference', 
                 fontsize=16, fontweight='bold', pad=20)
     
     # Extract data
     generated_periods = generated_data.get('timeline_analysis', {}).get('original_period_characterizations', [])
-    gt_periods = ground_truth_data.get('historical_periods', [])
+    ref_periods = reference_data.get('historical_periods', [])
     
     # Determine timeline bounds
     all_years = []
     for period in generated_periods:
         all_years.extend(period['period'])
-    for period in gt_periods:
+    for period in ref_periods:
         all_years.extend([period['start_year'], period['end_year']])
     
     if not all_years:
@@ -840,9 +840,9 @@ def create_timeline_comparison_plot(ax, generated_data: Dict, ground_truth_data:
     
     min_year, max_year = min(all_years), max(all_years)
     
-    # Plot ground truth periods (top half)
-    gt_colors = plt.cm.Set1(np.linspace(0, 1, len(gt_periods)))
-    for i, (period, color) in enumerate(zip(gt_periods, gt_colors)):
+    # Plot reference periods (top half)
+    ref_colors = plt.cm.Set1(np.linspace(0, 1, len(ref_periods)))
+    for i, (period, color) in enumerate(zip(ref_periods, ref_colors)):
         start_year = period['start_year']
         end_year = period['end_year']
         duration = end_year - start_year + 1
@@ -899,13 +899,13 @@ def create_timeline_comparison_plot(ax, generated_data: Dict, ground_truth_data:
     
     # Formatting
     ax.set_xlim(min_year - 5, max_year + 15)
-    ax.set_ylim(0, max(len(generated_periods) * 0.25 + 0.8, len(gt_periods) * 0.25 + 1.4))
+    ax.set_ylim(0, max(len(generated_periods) * 0.25 + 0.8, len(ref_periods) * 0.25 + 1.4))
     ax.set_xlabel('Year', fontsize=12, fontweight='bold')
     ax.set_ylabel('Timeline Periods', fontsize=12, fontweight='bold')
     ax.grid(True, alpha=0.3)
     
     # Add section labels
-    ax.text(min_year - 3, len(gt_periods) * 0.25 + 1.3, 'GROUND\nTRUTH', 
+    ax.text(min_year - 3, len(ref_periods) * 0.25 + 1.3, 'REFERENCE\nDATA', 
            ha='center', va='center', fontsize=12, fontweight='bold',
            bbox=dict(boxstyle="round,pad=0.5", facecolor='lightblue', alpha=0.8))
     ax.text(min_year - 3, len(generated_periods) * 0.25 / 2 + 0.3, 'GENERATED', 
@@ -914,7 +914,7 @@ def create_timeline_comparison_plot(ax, generated_data: Dict, ground_truth_data:
     
     # Add legend
     legend_elements = [
-        patches.Patch(color='lightblue', alpha=0.7, label='Ground Truth Periods'),
+        patches.Patch(color='lightblue', alpha=0.7, label='Reference Periods'),
         patches.Patch(color='lightgreen', alpha=0.7, label='Generated Periods'),
         plt.Line2D([0], [0], color='red', linestyle='--', linewidth=2, label='Detected Change Points')
     ]

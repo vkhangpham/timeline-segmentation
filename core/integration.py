@@ -17,12 +17,14 @@ from datetime import datetime
 from .data_models import (
     DomainData, ChangeDetectionResult, TimelineAnalysisResult
 )
-from .change_detection import detect_changes, create_segments_with_confidence
+from .change_detection import detect_changes
 from .data_processing import process_domain_data
 from .segment_modeling import model_segments
 from .segment_merging import merge_similar_segments
 from .shift_signal_detection import detect_shift_signals
 from .algorithm_config import ComprehensiveAlgorithmConfig
+from .similarity_segmentation import create_similarity_based_segments
+from .keyword_utils import extract_year_keywords
 
 
 def timeline_analysis(
@@ -72,7 +74,7 @@ def timeline_analysis(
         algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
         
         # Get shift signals for boundary analysis
-        shift_signals, _, _ = detect_shift_signals(domain_data, domain_data.domain_name, algorithm_config)
+        shift_signals = detect_shift_signals(domain_data, domain_data.domain_name, algorithm_config)
         
         # Perform intelligent segment merging
         merging_result = merge_similar_segments(
@@ -86,15 +88,15 @@ def timeline_analysis(
         merged_period_characterizations = list(merging_result.merged_segments)
         
         print(f"✅ Segment merging completed:")
-        print(f"    Original segments: {len(period_characterizations)}")
-        print(f"    Merged segments: {len(merged_period_characterizations)}")
-        print(f"    Merging decisions: {len(merging_result.merge_decisions)}")
-        print(f"    Summary: {merging_result.merging_summary}")
+        print(f"Original segments: {len(period_characterizations)}")
+        print(f"Merged segments: {len(merged_period_characterizations)}")
+        print(f"Merging decisions: {len(merging_result.merge_decisions)}")
+        print(f"Summary: {merging_result.merging_summary}")
     else:
         if not enable_segment_merging:
-            print(f"    ℹ️ Segment merging disabled")
+            print(f"ℹ️ Segment merging disabled")
         else:
-            print(f"    ℹ️ Segment merging skipped - insufficient segments ({len(period_characterizations)})")
+            print(f"ℹ️ Segment merging skipped - insufficient segments ({len(period_characterizations)})")
     
     # Step 3: Calculate unified confidence using final merged segments
     if merged_period_characterizations:
@@ -145,53 +147,58 @@ def run_change_detection(
     
     # Map granularity integer to descriptive names for logging
     granularity_names = {
-        1: "ultra_fine",
-        2: "fine", 
+        1: "ultra_coarse",
+        2: "coarse", 
         3: "balanced",
-        4: "coarse",
-        5: "ultra_coarse"
+        4: "fine",
+        5: "ultra_fine"
     }
     
-    # Create or use comprehensive algorithm configuration
-    if algorithm_config is None:
-        algorithm_config = ComprehensiveAlgorithmConfig(granularity=int(granularity))
-        granularity_name = granularity_names.get(granularity, "unknown")
-    else:
-        granularity = algorithm_config.granularity
-        granularity_name = granularity_names.get(granularity, "custom")
-    
-    print(f"🎛️  COMPREHENSIVE ALGORITHM CONFIGURATION:")
-    print(f"    Granularity: {granularity_name} (level={granularity})")
-    print(f"    Direction threshold: {algorithm_config.direction_threshold:.2f}")
-    print(f"    Clustering window: {algorithm_config.clustering_window} years")
-    print(f"    Citation boost: {algorithm_config.citation_boost:.2f}")
-    print(f"    Validation threshold: {algorithm_config.validation_threshold:.2f}")
-    print(f"    Citation support window: ±{algorithm_config.citation_support_window} years")
-    print(f"    Advanced params: keyword_freq={algorithm_config.keyword_min_frequency}, min_keywords={algorithm_config.min_significant_keywords}")
-    
-    # Load domain data
+    # Load domain data first (needed for adaptive parameters)
     result = process_domain_data(domain_name)
     if not result.success:
         print(f"❌ Error loading {domain_name}: {result.error_message}")
         return None, None
     
     domain_data = result.domain_data
-    print(f"📊 Loading {domain_name} data...")
     
+    # Create or use comprehensive algorithm configuration
+    if algorithm_config is None:
+        algorithm_config = ComprehensiveAlgorithmConfig(granularity=int(granularity))
+    else:
+        granularity = algorithm_config.granularity
+
     # Run change detection with comprehensive algorithm configuration
-    print(f"🔍 Detecting change points...")
-    change_result = detect_changes(domain_data, algorithm_config=algorithm_config)
+    print(f"\n=== CHANGE DETECTION ===\n")
+    change_result, shift_signals = detect_changes(domain_data, algorithm_config=algorithm_config)
     
     # Extract change point years
     change_years = sorted([cp.year for cp in change_result.change_points])
     
-    # Convert change points to segments with improved logic (deduplication + merging)
-    segments = create_segments_with_confidence(
-        change_years, 
-        domain_data.year_range, 
-        statistical_significance=change_result.statistical_significance, 
-        domain_name=domain_name
-    )
+    # Create segments using similarity segmentation (IMPROVEMENT-002)
+    print(f"\n=== SIMILARITY SEGMENTATION ===\n")
+    if shift_signals:
+        # Extract year keywords for similarity analysis
+        year_keywords = extract_year_keywords(domain_data)
+        
+        # Create similarity-based segments with length controls
+        similarity_segments, similarity_metadata = create_similarity_based_segments(
+            shift_signals, 
+            year_keywords, 
+            domain_data,
+            min_segment_length=algorithm_config.similarity_min_segment_length,
+            max_segment_length=algorithm_config.similarity_max_segment_length
+        )
+        
+        # Convert to expected format
+        segments = [[start, end] for start, end in similarity_segments]
+        
+        print(f"✅ Created {len(segments)} similarity-based segments")
+        print(f"📅 Signal years: {[s.year for s in shift_signals]}")
+        print(f"📏 Segment ranges: {[(s[0], s[1]) for s in segments]}")
+    else:
+        print(f"⚠️  No validated signals found - falling back to single segment")
+        segments = [[domain_data.year_range[0], domain_data.year_range[1]]]
     
     # Prepare results (return as dict instead of saving to file)
     results = {
@@ -200,10 +207,11 @@ def run_change_detection(
         'configuration_type': 'Comprehensive Algorithm Configuration',
         'algorithm_config': {
             'direction_threshold': algorithm_config.direction_threshold,
-            'clustering_window': algorithm_config.clustering_window,
             'citation_boost': algorithm_config.citation_boost,
             'validation_threshold': algorithm_config.validation_threshold,
             'citation_support_window': algorithm_config.citation_support_window,
+            'similarity_min_segment_length': algorithm_config.similarity_min_segment_length,
+            'similarity_max_segment_length': algorithm_config.similarity_max_segment_length,
             'keyword_min_frequency': algorithm_config.keyword_min_frequency,
             'min_significant_keywords': algorithm_config.min_significant_keywords
         },
@@ -218,8 +226,8 @@ def run_change_detection(
         }
     }
     
-    print(f"📈 Detected {len(change_years)} change points")
-    print(f"📋 Created {len(segments)} timeline segments")
+    print(f"Detected {len(change_years)} change points")
+    print(f"Created {len(segments)} timeline segments")
     
     return results, change_result
 

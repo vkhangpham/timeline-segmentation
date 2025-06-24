@@ -133,7 +133,7 @@ class AdaptivePenaltyExperiment:
         
         for domain in self.domains:
             try:
-                validation_file = f"validation/{domain}_groundtruth.json" 
+                validation_file = f"validation/{domain}_gemini.json" 
                 with open(validation_file, 'r') as f:
                     data = json.load(f)
                 

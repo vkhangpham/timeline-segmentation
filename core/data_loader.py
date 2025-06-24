@@ -145,6 +145,39 @@ def discover_available_domains(resources_dir: str = "resources",
     return {k: sorted(v) for k, v in domains.items()}
 
 
+def filter_years_by_paper_count(df: pd.DataFrame, min_papers_per_year: int = 5) -> pd.DataFrame:
+    """
+    Filter domain data to only include years with sufficient papers.
+    
+    Args:
+        df: Domain data DataFrame
+        min_papers_per_year: Minimum number of papers required per year
+        
+    Returns:
+        Filtered DataFrame containing only years with enough papers
+    """
+    if 'year' not in df.columns:
+        return df
+    
+    # Count papers per year
+    papers_per_year = df['year'].value_counts()
+    
+    # Get years with sufficient papers
+    valid_years = papers_per_year[papers_per_year >= min_papers_per_year].index
+    
+    # Filter DataFrame to only include valid years
+    filtered_df = df[df['year'].isin(valid_years)].copy()
+    
+    # Log filtering results
+    original_years = len(papers_per_year)
+    filtered_years = len(valid_years)
+    removed_papers = len(df) - len(filtered_df)
+    
+    print(f"Year filtering: {original_years} → {filtered_years} years (removed {removed_papers} papers from sparse years)")
+    
+    return filtered_df
+
+
 def convert_keywords_to_list(keywords_str: str) -> List[str]:
     """
     Convert pipe-separated keyword string to list.
@@ -251,7 +284,9 @@ def validate_domain_data(df: pd.DataFrame, domain: str) -> Tuple[bool, List[str]
 
 def load_and_validate_domain_data(domain: str, 
                                 prefer_source: str = "csv",
-                                validate: bool = True) -> pd.DataFrame:
+                                validate: bool = True,
+                                min_papers_per_year: int = 5,
+                                apply_year_filtering: bool = True) -> pd.DataFrame:
     """
     Load and optionally validate domain data.
     
@@ -259,15 +294,29 @@ def load_and_validate_domain_data(domain: str,
         domain: Domain name
         prefer_source: Preferred data source ('csv' or 'json')
         validate: Whether to run validation checks
+        min_papers_per_year: Minimum papers required per year (if filtering enabled)
+        apply_year_filtering: Whether to filter years with insufficient papers
         
     Returns:
-        Validated domain data DataFrame
+        Validated and filtered domain data DataFrame
         
     Raises:
         ValueError: If validation fails
     """
     # Load data
     df = load_domain_data(domain, prefer_source=prefer_source)
+    
+    # Print original statistics
+    original_stats = get_domain_statistics(df)
+    print(f"Raw {domain}: {original_stats['total_papers']} papers ({original_stats['year_range'][0]}-{original_stats['year_range'][1]})")
+    
+    # Apply year filtering if requested
+    if apply_year_filtering:
+        df = filter_years_by_paper_count(df, min_papers_per_year)
+        
+        # Check if we still have sufficient data after filtering
+        if len(df) == 0:
+            raise ValueError(f"No data remaining for {domain} after year filtering (min {min_papers_per_year} papers/year)")
     
     # Validate if requested
     if validate:
@@ -278,8 +327,8 @@ def load_and_validate_domain_data(domain: str,
         if issues:
             print(f"⚠️  Data validation warnings for {domain}: {'; '.join(issues)}")
     
-    # Print basic statistics
-    stats = get_domain_statistics(df)
-    print(f"✅ Loaded {domain}: {stats['total_papers']} papers ({stats['year_range'][0]}-{stats['year_range'][1]}) - Avg citations: {stats['avg_citations']:.0f}")
+    # Print final statistics
+    final_stats = get_domain_statistics(df)
+    print(f"Final {domain}: {final_stats['total_papers']} papers ({final_stats['year_range'][0]}-{final_stats['year_range'][1]}) - Avg citations: {final_stats['avg_citations']:.0f}")
     
     return df 
