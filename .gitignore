@@ -70,3 +70,5 @@ archive/
 *cache*
 dev_journal_phase*.md
 results/
+web-app/
+logs/
