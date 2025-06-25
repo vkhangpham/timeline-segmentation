@@ -69,7 +69,11 @@ archive/
 .cursor*
 *cache*
 dev_journal_phase*.md
-results/
+results/signals/
+results/timelines/
+results/optimization/
+results/baseline_comparision/
+results/validation/
 web-app/
 logs/
 
