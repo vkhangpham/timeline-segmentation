@@ -29,7 +29,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from scipy.spatial.distance import jensenshannon
 import math
 
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.data_models import Paper
 from core.text_vectorization import tfidf_embeddings, contextual_embeddings
 
@@ -360,7 +360,7 @@ def evaluate_segmentation_quality(
     difference_weights: Tuple[float, float, float] = None,
     final_combination_weights: Tuple[float, float] = None,
     aggregation_method: str = None,
-    algorithm_config: 'ComprehensiveAlgorithmConfig' = None
+    algorithm_config: 'AlgorithmConfig' = None
 ) -> SegmentationEvaluationResult:
     """
     Comprehensive evaluation of segmentation quality using optimized metrics.

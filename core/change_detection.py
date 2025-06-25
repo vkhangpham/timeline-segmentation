@@ -15,10 +15,10 @@ from .data_models import (
 from .shift_signal_detection import detect_shift_signals
 
 if TYPE_CHECKING:
-    from .algorithm_config import ComprehensiveAlgorithmConfig
+    from .algorithm_config import AlgorithmConfig
 
 
-def detect_changes(domain_data: DomainData, algorithm_config: 'ComprehensiveAlgorithmConfig') -> Tuple[ChangeDetectionResult, List[ShiftSignal]]:
+def detect_changes(domain_data: DomainData, algorithm_config: 'AlgorithmConfig') -> Tuple[ChangeDetectionResult, List[ShiftSignal]]:
     """
     Perform paradigm shift detection using Enhanced Shift Signal Detection with comprehensive algorithm configuration.
     

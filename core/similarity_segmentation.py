@@ -302,7 +302,7 @@ def enforce_minimum_segment_length(
     segments = [(start, end, signal_year) for start, end, signal_year in initial_segments]
     merge_decisions = []
     
-    print(f"Enforcing minimum segment length: {min_segment_length} years")
+    print(f"Minimum segment length: {min_segment_length} years")
     print(f"Initial segments: {len(segments)}")
     
     i = 0
@@ -314,9 +314,6 @@ def enforce_minimum_segment_length(
             # Segment is acceptable, move to next
             i += 1
             continue
-        
-        # Segment is too short, need to merge
-        print(f"Segment {start}-{end} ({segment_length} years) is too short")
         
         # Determine merge direction
         can_merge_left = i > 0
@@ -464,8 +461,6 @@ def enforce_minimum_segment_length(
         for failure in validation_failures:
             print(f"{failure}")
         raise ValueError(f"Segments shorter than min length: {validation_failures}")
-    else:
-        print(f"Minimum segment length validation passed")
     
     return final_segments, merge_decisions
 

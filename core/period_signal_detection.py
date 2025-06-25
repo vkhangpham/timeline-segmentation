@@ -145,14 +145,6 @@ def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> L
               f"persistence={community_persistence:.3f}, confidence={confidence:.3f}")
         print(f"    {period_label}: {period_description}")
     
-    # Save period signals for visualization
-    save_period_signals_for_visualization(
-        period_characterizations=period_characterizations,
-        period_analysis_data=period_analysis_data,
-        domain_name=domain_name,
-        segments=segments
-    )
-    
     return period_characterizations
 
 
@@ -525,71 +517,3 @@ def calculate_confidence(network_stability: float, community_persistence: float,
     final_confidence = min(1.0, base_confidence + paper_bonus + connectivity_bonus)
     
     return final_confidence
-
-
-def save_period_signals_for_visualization(
-    period_characterizations: List[PeriodCharacterization],
-    period_analysis_data: List[Dict],
-    domain_name: str,
-    segments: List[Tuple[int, int]],
-    output_dir: str = "results/signals"
-) -> str:
-    """
-    Save period signal detection results for visualization.
-    
-    Args:
-        period_characterizations: Final period characterizations
-        period_analysis_data: Detailed analysis data for each period
-        domain_name: Name of the domain
-        segments: Original time segments from shift detection
-        output_dir: Directory to save signal files
-        
-    Returns:
-        Path to the saved period signals file
-    """
-    from pathlib import Path
-    from datetime import datetime
-    import json
-    
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    
-    def serialize_period_characterization(char: PeriodCharacterization) -> Dict:
-        """Convert PeriodCharacterization to essential dictionary"""
-        return {
-            'period': char.period,
-            'topic_label': char.topic_label,
-            'network_stability': char.network_stability,
-            'confidence': char.confidence,
-            'representative_papers': [
-                {
-                    'title': paper.get('title', ''),
-                    'year': paper.get('year', 0),
-                    'citation_count': paper.get('citation_count', 0)
-                } for paper in list(char.representative_papers)[:3]  # Top 3 only
-            ]
-        }
-    
-    period_signals_data = {
-        'domain_name': domain_name,
-        'analysis_date': datetime.now().isoformat(),
-        'segments': [{'start_year': s[0], 'end_year': s[1]} for s in segments],
-        'characterizations': [serialize_period_characterization(c) for c in period_characterizations],
-        'confidence_stats': {
-            'mean': sum(c.confidence for c in period_characterizations) / max(len(period_characterizations), 1),
-            'min': min([c.confidence for c in period_characterizations] + [0]),
-            'max': max([c.confidence for c in period_characterizations] + [1])
-        },
-        'analysis_stats': {
-            'total_papers': sum(d['num_papers'] for d in period_analysis_data),
-            'avg_stability': sum(d['network_stability'] for d in period_analysis_data) / max(len(period_analysis_data), 1)
-        }
-    }
-    
-    output_file = f"{output_dir}/{domain_name}_period_signals.json"
-    with open(output_file, 'w') as f:
-        json.dump(period_signals_data, f, indent=2)
-    
-    print(f"Period signals saved: {output_file}")
-    print(f"Segments: {len(segments)}, Characterizations: {len(period_characterizations)}")
-    
-    return output_file
