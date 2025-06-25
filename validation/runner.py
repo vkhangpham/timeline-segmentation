@@ -18,7 +18,7 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.shift_signal_detection import detect_shift_signals
 from core.data_processing import process_domain_data
 from validation.core import load_reference_data_from_files, evaluate_shifts_against_reference
@@ -105,7 +105,7 @@ class ValidationFramework:
         reference = self.reference_data[domain_name]
         
         # Run algorithm with domain-specific optimized parameters
-        config = ComprehensiveAlgorithmConfig(granularity=3, domain_name=domain_name)
+        config = AlgorithmConfig(granularity=3, domain_name=domain_name)
         detected_shifts = detect_shift_signals(domain_data, domain_name, config)
         
         # Evaluate performance
@@ -176,12 +176,19 @@ class ValidationFramework:
             }
         }
         
+        # Save timestamped version
         output_file = output_dir / f"validation_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        
         with open(output_file, 'w') as f:
             json.dump(output_data, f, indent=2)
         
+        # Save latest version in results root
+        latest_path = Path("results/validation.json")
+        latest_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(latest_path, 'w') as f:
+            json.dump(output_data, f, indent=2)
+        
         print(f"💾 Results saved: {output_file}")
+        print(f"💾 Latest version saved: {latest_path}")
     
     def _count_total_shifts(self) -> int:
         """Count total paradigm shifts across all domains."""
