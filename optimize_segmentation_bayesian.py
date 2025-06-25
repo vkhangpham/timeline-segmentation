@@ -46,7 +46,7 @@ except ImportError:
 
 from core.data_loader import load_domain_data
 from core.data_models import DomainData, Paper
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.consensus_difference_metrics import (
     evaluate_segmentation_quality,
     SegmentationEvaluationResult,
@@ -99,7 +99,7 @@ def _get_config_weights_for_metadata():
 
 
 # Path to store consensus-difference-optimized parameters (Bayesian optimization)
-CONSENSUS_DIFFERENCE_PARAMS_FILE = "results/optimized_parameters_bayesian.json"
+CONSENSUS_DIFFERENCE_PARAMS_FILE = "results/optimization/optimized_parameters_bayesian.json"
 
 
 class SuppressOutput:
@@ -160,13 +160,13 @@ def research_vector_to_config(
     validation_threshold: float, 
     similarity_min_segment_length: int,
     similarity_max_segment_length: int,
-    base_config: Optional[ComprehensiveAlgorithmConfig] = None
-) -> ComprehensiveAlgorithmConfig:
+    base_config: Optional[AlgorithmConfig] = None
+) -> AlgorithmConfig:
     """Convert parameter values to algorithm configuration."""
     if base_config is None:
-        base_config = ComprehensiveAlgorithmConfig()
+        base_config = AlgorithmConfig()
 
-    return ComprehensiveAlgorithmConfig(
+    return AlgorithmConfig(
         granularity=base_config.granularity,
         direction_threshold=float(direction_threshold),
         validation_threshold=float(validation_threshold),
@@ -187,7 +187,7 @@ def consensus_difference_evaluation_bayesian(
     params: List[float],
     domain_data: DomainData,
     domain_name: str,
-    base_config: Optional[ComprehensiveAlgorithmConfig] = None,
+    base_config: Optional[AlgorithmConfig] = None,
 ) -> float:
     """
     Consensus & Difference evaluation function for Bayesian optimization.
@@ -265,7 +265,7 @@ def optimize_consensus_difference_parameters_bayesian(
     domain_name: str,
     max_evaluations: int = 100,
     random_seed: int = None,
-    base_config: Optional[ComprehensiveAlgorithmConfig] = None,
+    base_config: Optional[AlgorithmConfig] = None,
 ) -> Dict[str, Any]:
     """
     Optimize parameters using Bayesian optimization for consensus-difference metrics.
@@ -525,10 +525,18 @@ def save_consensus_difference_optimized_parameters(
         },
     }
 
+    # Save timestamped version
     with open(base_name, "w") as f:
         json.dump(save_data, f, indent=2)
 
+    # Save latest version in results root
+    latest_path = "results/optimized_parameters_bayesian.json"
+    os.makedirs("results", exist_ok=True)
+    with open(latest_path, "w") as f:
+        json.dump(save_data, f, indent=2)
+
     print(f"💾 Consensus-difference-optimized parameters saved to {base_name}")
+    print(f"💾 Latest version saved to {latest_path}")
     print(f"📋 Detailed explanations saved for {len(detailed_evaluations)} domains")
 
 
@@ -663,7 +671,7 @@ def optimize_single_domain(
             print(f"📚 Processed {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]})")
 
         # Build base configuration with keyword ratio override
-        base_config_override = ComprehensiveAlgorithmConfig(
+        base_config_override = AlgorithmConfig(
             keyword_min_papers_ratio=keyword_ratio,
             keyword_filtering_enabled=True,
             domain_name=domain_name,

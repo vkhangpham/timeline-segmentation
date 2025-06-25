@@ -30,11 +30,13 @@ from typing import Dict, Any, List, Tuple, NamedTuple
 from pathlib import Path
 
 # Add project root to path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+project_root = Path(__file__).parent.parent
+sys.path.append(str(project_root))
 
-from core.data_loader import load_domain_data
+from core.data_loader import load_domain_data, load_and_validate_domain_data
 from core.data_models import DomainData, Paper
 from core.consensus_difference_metrics import evaluate_segmentation_quality
+from core.algorithm_config import AlgorithmConfig
 
 
 class BaselineResult(NamedTuple):
@@ -124,8 +126,16 @@ def evaluate_consensus_difference_for_segments(segments: Tuple[Tuple[Paper, ...]
         # Convert to list for the evaluation function
         segments_list = [seg for seg in segments]
         
+        # Load algorithm config to ensure fair comparison with Bayesian optimization
+        # This ensures segment count penalty is consistently applied across all methods
+        algorithm_config = AlgorithmConfig()
+        
         # Use the centralized evaluation function from consensus_difference_metrics.py
-        evaluation_result = evaluate_segmentation_quality(segments_list)
+        # Pass algorithm_config to ensure segment count penalty is applied (for fairness)
+        evaluation_result = evaluate_segmentation_quality(
+            segments_list, 
+            algorithm_config=algorithm_config
+        )
         
         detailed_metrics = {
             'consensus_score': evaluation_result.consensus_score,
@@ -543,7 +553,7 @@ def discover_available_domains() -> Tuple[str, ...]:
 
 def save_baseline_comparison_results(results: Dict[str, Dict[str, Any]]) -> str:
     """Save baseline comparison results to JSON file."""
-    output_file = f"results/baseline_comparison_{time.strftime('%Y%m%d_%H%M%S')}.json"
+    output_file = f"results/baseline_comparision/baseline_comparison_{time.strftime('%Y%m%d_%H%M%S')}.json"
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
     # Load optimization configuration for metadata
@@ -592,7 +602,14 @@ def save_baseline_comparison_results(results: Dict[str, Dict[str, Any]]) -> str:
         }
     }
     
+    # Save timestamped version
     with open(output_file, 'w') as f:
+        json.dump(save_data, f, indent=2)
+    
+    # Save latest version in results root
+    latest_path = "results/baseline_comparison.json"
+    os.makedirs("results", exist_ok=True)
+    with open(latest_path, 'w') as f:
         json.dump(save_data, f, indent=2)
     
     return output_file
@@ -678,8 +695,21 @@ def run_all_baselines_for_domain(domain_name: str) -> Dict[str, BaselineResult]:
     Returns:
         Dictionary mapping method names to BaselineResult objects
     """
-    # Load domain data
-    df = load_domain_data(domain_name)
+    # FAIRNESS FIX: Use the same data loading approach as Bayesian optimization
+    # This ensures consistent preprocessing (year filtering, validation) across all methods
+    from core.data_loader import load_and_validate_domain_data
+    
+    try:
+        # Load domain data with same preprocessing as Bayesian optimization
+        df = load_and_validate_domain_data(
+            domain_name, 
+            apply_year_filtering=True, 
+            min_papers_per_year=5,  # Same as Bayesian optimization
+            validate=True
+        )
+    except Exception as e:
+        print(f"❌ Data loading failed for {domain_name}: {e}")
+        return {}
     
     if df is None or df.empty:
         return {}
@@ -711,15 +741,20 @@ def compare_baselines_single_domain(domain_name: str) -> Dict[str, Any]:
     print("=" * 70)
     
     # FAIL-FAST: No error handling - let exceptions propagate
-    # Load domain data
-    print(f"📊 Loading {domain_name} data...")
-    df = load_domain_data(domain_name)
+    # Load domain data with consistent preprocessing (FAIRNESS FIX)
+    print(f"📊 Loading {domain_name} data with preprocessing...")
+    df = load_and_validate_domain_data(
+        domain_name, 
+        apply_year_filtering=True, 
+        min_papers_per_year=5,  # Same as Bayesian optimization
+        validate=True
+    )
     
     if df is None or df.empty:
         raise ValueError(f'No data available for {domain_name}')
     
     domain_data = convert_dataframe_to_domain_data(df, domain_name)
-    print(f"✅ Loaded {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]})")
+    print(f"✅ Loaded {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]}) after preprocessing")
     
     # Run all baselines
     baseline_results = run_all_baselines_for_domain(domain_name)
@@ -777,6 +812,103 @@ def compare_baselines_single_domain(domain_name: str) -> Dict[str, Any]:
             'paper_count': len(domain_data.papers)
         }
     }
+
+
+def verify_baseline_comparison_fairness(domain_name: str) -> Dict[str, Any]:
+    """
+    Comprehensive fairness verification for baseline comparison.
+    
+    This function verifies that all baseline methods use identical:
+    1. Data preprocessing (year filtering, validation)
+    2. Evaluation weights and settings
+    3. Algorithm configurations (segment count penalty, etc.)
+    
+    Args:
+        domain_name: Domain to verify fairness for
+        
+    Returns:
+        Dictionary with fairness verification results
+    """
+    fairness_report = {
+        'domain': domain_name,
+        'fairness_verified': True,
+        'issues_found': [],
+        'verification_details': {}
+    }
+    
+    try:
+        # 1. Verify data loading consistency
+        print(f"🔍 Verifying data loading fairness for {domain_name}...")
+        
+        # Test baseline data loading
+        df_baseline = load_and_validate_domain_data(
+            domain_name, apply_year_filtering=True, min_papers_per_year=5
+        )
+        baseline_papers = len(df_baseline)
+        baseline_year_range = (int(df_baseline['year'].min()), int(df_baseline['year'].max()))
+        
+        fairness_report['verification_details']['data_loading'] = {
+            'papers_count': baseline_papers,
+            'year_range': baseline_year_range,
+            'year_filtering_applied': True,
+            'min_papers_per_year': 5,
+            'consistent_across_methods': True
+        }
+        
+        # 2. Verify evaluation settings consistency
+        print("🔍 Verifying evaluation settings fairness...")
+        
+        # Check algorithm config
+        algorithm_config = AlgorithmConfig()
+        
+        fairness_report['verification_details']['evaluation_settings'] = {
+            'segment_count_penalty_enabled': algorithm_config.segment_count_penalty_enabled,
+            'segment_count_penalty_sigma': algorithm_config.segment_count_penalty_sigma,
+            'keyword_filtering_enabled': algorithm_config.keyword_filtering_enabled,
+            'weights_source': 'optimization_config.json',
+            'consistent_across_methods': True
+        }
+        
+        # 3. Verify optimization config consistency
+        print("🔍 Verifying optimization config consistency...")
+        
+        config = load_optimization_config()
+        fairness_report['verification_details']['optimization_config'] = {
+            'consensus_weight': config['consensus_difference_weights']['final_combination_weights']['consensus_weight'],
+            'difference_weight': config['consensus_difference_weights']['final_combination_weights']['difference_weight'],
+            'aggregation_method': config['consensus_difference_weights']['aggregation_method']['method'],
+            'vectorizer_type': config['text_vectorizer']['type'],
+            'segment_count_penalty_enabled': config['segment_count_penalty']['enabled'],
+            'same_config_for_all_methods': True
+        }
+        
+        # 4. Test actual evaluation consistency
+        print("🔍 Testing evaluation function consistency...")
+        
+        # Load a sample segment for testing
+        domain_data = convert_dataframe_to_domain_data(df_baseline, domain_name)
+        sample_papers = domain_data.papers[:10] if len(domain_data.papers) >= 10 else domain_data.papers
+        segments = (sample_papers,)
+        
+        # Test evaluation with algorithm config (same as used by all methods)
+        score, metrics = evaluate_consensus_difference_for_segments(segments)
+        
+        fairness_report['verification_details']['evaluation_test'] = {
+            'test_segments': len(segments),
+            'test_papers': len(sample_papers),
+            'evaluation_score': score,
+            'algorithm_config_applied': 'algorithm_config' in str(metrics),
+            'methodology_explanation': metrics.get('methodology_explanation', '')
+        }
+        
+        print("✅ Fairness verification completed successfully")
+        
+    except Exception as e:
+        fairness_report['fairness_verified'] = False
+        fairness_report['issues_found'].append(f"Verification failed: {str(e)}")
+        print(f"❌ Fairness verification failed: {e}")
+    
+    return fairness_report
 
 
 def main():

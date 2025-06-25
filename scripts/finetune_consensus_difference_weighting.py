@@ -26,7 +26,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from core.data_loader import load_domain_data
 from core.data_models import DomainData, Paper
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.consensus_difference_metrics import consensus_score, difference_score
 from core.integration import run_change_detection
 from optimize_segmentation_bayesian import (
@@ -53,7 +53,7 @@ class WeightingExperiment:
 
 def evaluate_consensus_difference_score_weighted(
     domain_data: DomainData, 
-    config: ComprehensiveAlgorithmConfig,
+    config: AlgorithmConfig,
     consensus_weight: float = 0.6,
     difference_weight: float = 0.4
 ) -> Tuple[float, Dict[str, Any]]:
@@ -202,7 +202,7 @@ def test_weighting_strategy(
         if result.get("optimization_successful", False):
             # Get detailed evaluation with best parameters
             best_params = result["best_parameters"]
-            config = ComprehensiveAlgorithmConfig(
+            config = AlgorithmConfig(
                 direction_threshold=best_params["direction_threshold"],
                 validation_threshold=best_params["validation_threshold"],
                 similarity_min_segment_length=best_params["similarity_min_segment_length"],
