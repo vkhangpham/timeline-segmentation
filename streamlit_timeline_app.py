@@ -27,7 +27,7 @@ from streamlit_components import (
 )
 
 # Core algorithm imports
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 
 # Configure Streamlit page
 st.set_page_config(
@@ -110,7 +110,7 @@ def main():
         )
 
         # Create comprehensive config from granularity - now uses optimized parameters from file
-        algorithm_config = ComprehensiveAlgorithmConfig(
+        algorithm_config = AlgorithmConfig(
             granularity=granularity,
             domain_name=selected_domain  # Pass domain name for optimized parameter loading
         )
@@ -193,7 +193,7 @@ def main():
             "similarity_max_segment_length": similarity_max_segment_length,
         }
 
-        algorithm_config = ComprehensiveAlgorithmConfig.create_custom(
+        algorithm_config = AlgorithmConfig.create_custom(
             granularity=3,  # Use balanced defaults for non-essential parameters
             overrides=essential_overrides,
             domain_name=selected_domain  # Pass domain name for optimized parameter loading

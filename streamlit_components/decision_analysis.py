@@ -12,7 +12,7 @@ from plotly.subplots import make_subplots
 from collections import Counter, defaultdict
 from typing import Dict, List, Optional
 
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.data_models import DomainData
 
 
@@ -20,7 +20,7 @@ def create_decision_tree_analysis(
     domain_name: str,
     validated_signals: List,
     enhanced_signal_data: Dict,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     domain_data: DomainData,
 ) -> List[Dict]:
     """Create comprehensive decision tree analysis for algorithm transparency."""
@@ -194,7 +194,7 @@ def create_decision_flow_diagram(
 
 
 def create_parameter_sensitivity_analysis(
-    decision_details: List[Dict], algorithm_config: ComprehensiveAlgorithmConfig
+    decision_details: List[Dict], algorithm_config: AlgorithmConfig
 ) -> go.Figure:
     """Create parameter sensitivity analysis showing how changes affect outcomes."""
 
@@ -332,7 +332,7 @@ def create_parameter_sensitivity_analysis(
 
 def create_keyword_filtering_impact_analysis(
     domain_name: str,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     enhanced_signal_data: Dict,
     domain_data: DomainData,
 ) -> Optional[Dict]:

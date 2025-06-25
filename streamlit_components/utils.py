@@ -11,7 +11,7 @@ import numpy as np
 # Core algorithm imports
 from core.data_loader import discover_available_domains
 from core.data_processing import process_domain_data
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.shift_signal_detection import (
     detect_shift_signals,
     detect_research_direction_changes,
@@ -52,7 +52,7 @@ def load_all_domains() -> Dict[str, DomainData]:
 def run_algorithm_with_params(
     domain_data: DomainData,
     domain_name: str,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
 ) -> Tuple[Any, Any, List[List[int]], Dict]:
     """Run the algorithm with specified parameters and return all signal data for visualization."""
 

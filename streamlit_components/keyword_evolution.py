@@ -12,14 +12,14 @@ import plotly.express as px
 from collections import defaultdict, Counter
 from typing import Dict, List, Optional
 
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.data_models import DomainData
 
 
 def prepare_keyword_evolution_data(
     domain_data: DomainData,
     top_n: int = 12,
-    algorithm_config: Optional[ComprehensiveAlgorithmConfig] = None,
+    algorithm_config: Optional[AlgorithmConfig] = None,
     enhanced_signal_data: Optional[Dict] = None,
 ) -> pd.DataFrame:
     """Prepares data for keyword evolution visualizations with optional keyword filtering."""
