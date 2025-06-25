@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "0.01": {
+      "mean_score": 0.5309252292840005,
+      "domains": {
+        "art": 0.4858533208499012,
+        "computer_science": 0.5192799334437718,
+        "computer_vision": 0.47431690055904535,
+        "applied_mathematics": 0.6365151754569061,
+        "machine_learning": 0.5875804197090332,
+        "machine_translation": 0.48452500973933454,
+        "deep_learning": 0.4269062943294259,
+        "natural_language_processing": 0.6324247801845866
+      },
+      "param_file": "optimized_parameters_bayesian_kwr01.json"
+    },
+    "0.05": {
+      "mean_score": 0.534811225808302,
+      "domains": {
+        "art": 0.4858533208499012,
+        "computer_science": 0.5223818340642821,
+        "computer_vision": 0.47431690055904535,
+        "applied_mathematics": 0.6365151754569061,
+        "machine_learning": 0.5875804197090332,
+        "machine_translation": 0.48452500973933454,
+        "deep_learning": 0.4269062943294259,
+        "natural_language_processing": 0.6604108517584872
+      },
+      "param_file": "optimized_parameters_bayesian_kwr05.json"
+    },
+    "0.10": {
+      "mean_score": 0.48908602868828815,
+      "domains": {
+        "art": 0.5246792339105373,
+        "computer_science": 0.5268344419772486,
+        "computer_vision": 0.4955566408880283,
+        "applied_mathematics": 0.6569086853611399,
+        "machine_learning": 0.5725168578405004,
+        "machine_translation": 0.5013872349212466,
+        "deep_learning": 0.005812034423537089,
+        "natural_language_processing": 0.6289931001840673
+      },
+      "param_file": "optimized_parameters_bayesian_kwr10.json"
+    },
+    "0.15": {
+      "mean_score": 0.48672333016202585,
+      "domains": {
+        "art": 0.5252537859664826,
+        "computer_science": 0.5418580224153388,
+        "computer_vision": 0.5316208164913333,
+        "applied_mathematics": 0.6559694013722551,
+        "machine_translation": 0.46269467589136654,
+        "machine_learning": 0.5550285458754498,
+        "deep_learning": 0.005812034423537089,
+        "natural_language_processing": 0.6155493588604436
+      },
+      "param_file": "optimized_parameters_bayesian_kwr15.json"
+    },
+    "0.20": {
+      "mean_score": 0.46948924850134843,
+      "domains": {
+        "computer_science": 0.5301970878671003,
+        "art": 0.4908521592736557,
+        "computer_vision": 0.4766277927903234,
+        "applied_mathematics": 0.6810805642949734,
+        "machine_learning": 0.5191526875273379,
+        "machine_translation": 0.4769786781431688,
+        "deep_learning": 0.005812034423537089,
+        "natural_language_processing": 0.5752129836906911
+      },
+      "param_file": "optimized_parameters_bayesian_kwr20.json"
+    }
+  },
+  "generated": "20250623_231834"
+}

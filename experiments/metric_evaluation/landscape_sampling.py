@@ -22,7 +22,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import NearestNeighbors
 
 from core.data_processing import process_domain_data
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.integration import run_change_detection
 from core.consensus_difference_metrics import evaluate_segmentation_quality
 
@@ -116,7 +116,7 @@ def evaluate_single_point(domain_name: str, params: Dict[str, float]) -> Landsca
     domain_data = result.domain_data
     
     # Create configuration
-    config = ComprehensiveAlgorithmConfig(
+    config = AlgorithmConfig(
         direction_threshold=params['direction_threshold'],
         validation_threshold=params['validation_threshold'],
         similarity_min_segment_length=params['min_segment_length'],

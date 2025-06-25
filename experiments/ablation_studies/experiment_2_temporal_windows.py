@@ -25,7 +25,7 @@ from experiment_utils import (
     ExperimentResult, save_experiment_results, print_experiment_summary,
     calculate_statistical_significance, TEST_DOMAINS
 )
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 
 
 # Direction window configurations to test
@@ -50,9 +50,9 @@ CITATION_SCALE_CONFIGS = [
 
 
 def create_direction_window_config(
-    base_config: ComprehensiveAlgorithmConfig,
+    base_config: AlgorithmConfig,
     window_size: int
-) -> ComprehensiveAlgorithmConfig:
+) -> AlgorithmConfig:
     """
     Create algorithm configuration with modified direction window settings.
     
@@ -70,13 +70,13 @@ def create_direction_window_config(
     # Update direction window parameters
     config_dict['direction_window_size'] = window_size
     
-    return ComprehensiveAlgorithmConfig(**config_dict)
+    return AlgorithmConfig(**config_dict)
 
 
 def create_citation_scale_config(
-    base_config: ComprehensiveAlgorithmConfig,
+    base_config: AlgorithmConfig,
     citation_scales: List[int]
-) -> ComprehensiveAlgorithmConfig:
+) -> AlgorithmConfig:
     """
     Create algorithm configuration with modified citation scale settings.
     
@@ -94,13 +94,13 @@ def create_citation_scale_config(
     # Update citation scale parameters
     config_dict['citation_analysis_scales'] = citation_scales
     
-    return ComprehensiveAlgorithmConfig(**config_dict)
+    return AlgorithmConfig(**config_dict)
 
 
 def run_direction_window_analysis(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run direction window analysis for a single domain.
@@ -165,7 +165,7 @@ def run_direction_window_analysis(
 def run_citation_scale_analysis(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run citation scale analysis for a single domain.
@@ -347,7 +347,7 @@ def run_temporal_window_experiment() -> str:
         raise ValueError(f"Failed to load test domains: {str(e)}")
     
     # Use default algorithm configuration as baseline
-    base_config = ComprehensiveAlgorithmConfig(granularity=3)
+    base_config = AlgorithmConfig(granularity=3)
     
     # Run experiment for all domains
     all_results = []

@@ -27,7 +27,7 @@ from experiment_utils import (
     ExperimentResult, save_experiment_results, print_experiment_summary,
     calculate_statistical_significance, TEST_DOMAINS
 )
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 
 
 # Keyword filtering configurations to test
@@ -42,9 +42,9 @@ FILTERING_CONFIGS = [
 
 
 def create_filtering_config(
-    base_config: ComprehensiveAlgorithmConfig,
+    base_config: AlgorithmConfig,
     min_papers_ratio: float
-) -> ComprehensiveAlgorithmConfig:
+) -> AlgorithmConfig:
     """
     Create algorithm configuration with modified keyword filtering settings.
     
@@ -63,7 +63,7 @@ def create_filtering_config(
     config_dict['keyword_min_papers_ratio'] = min_papers_ratio
     config_dict['keyword_filtering_enabled'] = min_papers_ratio > 0.0
     
-    return ComprehensiveAlgorithmConfig(**config_dict)
+    return AlgorithmConfig(**config_dict)
 
 
 def analyze_keyword_retention(
@@ -127,7 +127,7 @@ def analyze_keyword_retention(
 def run_filtering_analysis_single_domain(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run keyword filtering analysis for a single domain.
@@ -322,7 +322,7 @@ def run_keyword_filtering_experiment() -> str:
         raise ValueError(f"Failed to load test domains: {str(e)}")
     
     # Use default algorithm configuration as baseline
-    base_config = ComprehensiveAlgorithmConfig(granularity=3)
+    base_config = AlgorithmConfig(granularity=3)
     
     # Run experiment for all domains
     all_results = []
