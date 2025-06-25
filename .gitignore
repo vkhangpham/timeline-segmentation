@@ -72,3 +72,10 @@ dev_journal_phase*.md
 results/
 web-app/
 logs/
+
+# Large model files and embeddings
+*.pt
+*.pth
+*embeddings*.pt
+*embeddings*.pth
+concept_embeddings_*.pt
