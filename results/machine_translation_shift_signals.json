@@ -1,0 +1,695 @@
+{
+  "domain_name": "machine_translation",
+  "analysis_date": "2025-06-25T18:02:19.837419",
+  "time_range": [
+    1962,
+    2023
+  ],
+  "total_papers": 511,
+  "signals": [
+    {
+      "year": 1976,
+      "confidence": 0.4600397238248369,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4600397238248369,
+      "supporting_evidence": [
+        "Novel focus: syntactic structure",
+        "Novel focus: english language",
+        "Novel focus: english sentences",
+        "Novel focus: semantic evaluation",
+        "Novel focus: semantic analysis (linguistics)",
+        "Top current: machine translation",
+        "Top current: language",
+        "Top current: natural language processing",
+        "Top current: translation studies",
+        "Top current: linguistics"
+      ],
+      "transition_description": "66.0% new keywords (threshold=0.10) | Novel keywords: syntactic structure, english language, english sentences, semantic evaluation, semantic analysis (linguistics) | Top keywords: machine translation, language, natural language processing, translation studies, linguistics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1977,
+      "confidence": 0.432003585835948,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.432003585835948,
+      "supporting_evidence": [
+        "Novel focus: communication",
+        "Novel focus: language engineering",
+        "Novel focus: semantic evaluation",
+        "Novel focus: semantic analysis (linguistics)",
+        "Novel focus: language model",
+        "Top current: machine translation",
+        "Top current: language",
+        "Top current: translation studies",
+        "Top current: natural language processing",
+        "Top current: linguistics"
+      ],
+      "transition_description": "62.9% new keywords (threshold=0.10) | Novel keywords: communication, language engineering, semantic evaluation, semantic analysis (linguistics), language model | Top keywords: machine translation, language, translation studies, natural language processing, linguistics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1981,
+      "confidence": 0.4696984295211485,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4696984295211485,
+      "supporting_evidence": [
+        "Novel focus: computational lexicology",
+        "Novel focus: multimodal translation",
+        "Novel focus: lexical semantics",
+        "Novel focus: data science",
+        "Top current: machine translation",
+        "Top current: translation studies",
+        "Top current: linguistics",
+        "Top current: language",
+        "Top current: natural language processing"
+      ],
+      "transition_description": "70.1% new keywords (threshold=0.10) | Novel keywords: computational lexicology, multimodal translation, lexical semantics, data science | Top keywords: machine translation, translation studies, linguistics, language, natural language processing (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1982,
+      "confidence": 0.5017182130584192,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5017182130584192,
+      "supporting_evidence": [
+        "Novel focus: computational lexicology",
+        "Novel focus: interpretation",
+        "Novel focus: lexical semantics",
+        "Novel focus: machine translation system",
+        "Novel focus: data science",
+        "Top current: machine translation",
+        "Top current: linguistics",
+        "Top current: translation studies",
+        "Top current: computer science",
+        "Top current: natural language processing"
+      ],
+      "transition_description": "71.6% new keywords (threshold=0.10) | Novel keywords: computational lexicology, interpretation, lexical semantics, machine translation system, data science | Top keywords: machine translation, linguistics, translation studies, computer science, natural language processing (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1983,
+      "confidence": 0.48076923076923084,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.48076923076923084,
+      "supporting_evidence": [
+        "Novel focus: poetics",
+        "Novel focus: visual metaphor",
+        "Novel focus: machine translation system",
+        "Novel focus: speech recognition",
+        "Novel focus: engineering",
+        "Top current: machine translation",
+        "Top current: translation studies",
+        "Top current: natural language processing",
+        "Top current: linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "71.4% new keywords (threshold=0.10) | Novel keywords: poetics, visual metaphor, machine translation system, speech recognition, engineering | Top keywords: machine translation, translation studies, natural language processing, linguistics, language (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1984,
+      "confidence": 0.45190963279122814,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.45190963279122814,
+      "supporting_evidence": [
+        "Novel focus: machine learning",
+        "Novel focus: human-computer interaction",
+        "Novel focus: text recognition",
+        "Novel focus: corpus linguistics",
+        "Novel focus: character recognition",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: computational linguistics"
+      ],
+      "transition_description": "70.1% new keywords (threshold=0.10) | Novel keywords: machine learning, human-computer interaction, text recognition, corpus linguistics, character recognition | Top keywords: machine translation, natural language processing, computer science, linguistics, computational linguistics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1989,
+      "confidence": 0.7107843137254901,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7107843137254901,
+      "supporting_evidence": [
+        "Novel focus: speech translation",
+        "Novel focus: programming language",
+        "Novel focus: east asian studies",
+        "Novel focus: english",
+        "Novel focus: speech communication",
+        "Top current: machine translation",
+        "Top current: linguistics",
+        "Top current: computer science",
+        "Top current: natural language processing",
+        "Top current: language"
+      ],
+      "transition_description": "69.4% new keywords (threshold=0.10) | Novel keywords: speech translation, programming language, east asian studies, english, speech communication | Top keywords: machine translation, linguistics, computer science, natural language processing, language (citation validated)",
+      "paradigm_significance": 0.7159041394335512
+    },
+    {
+      "year": 1990,
+      "confidence": 0.9097802463173147,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9097802463173147,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: speech translation",
+        "Novel focus: structural linguistics",
+        "Novel focus: text processing",
+        "Novel focus: interpretation",
+        "Top current: machine translation",
+        "Top current: language",
+        "Top current: linguistics",
+        "Top current: natural language processing",
+        "Top current: computational linguistics"
+      ],
+      "transition_description": "74.0% new keywords (threshold=0.10) | Novel keywords: systems engineering, speech translation, structural linguistics, text processing, interpretation | Top keywords: machine translation, language, linguistics, natural language processing, computational linguistics (citation validated)",
+      "paradigm_significance": 0.8043467761410288
+    },
+    {
+      "year": 1991,
+      "confidence": 0.9488659793814431,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9488659793814431,
+      "supporting_evidence": [
+        "Novel focus: structural linguistics",
+        "Novel focus: computational lexicology",
+        "Novel focus: multimodal translation",
+        "Novel focus: interpretation",
+        "Novel focus: text normalization",
+        "Top current: machine translation",
+        "Top current: linguistics",
+        "Top current: language",
+        "Top current: computer science",
+        "Top current: computational linguistics"
+      ],
+      "transition_description": "67.0% new keywords (threshold=0.10) | Novel keywords: structural linguistics, computational lexicology, multimodal translation, interpretation, text normalization | Top keywords: machine translation, linguistics, language, computer science, computational linguistics (citation validated)",
+      "paradigm_significance": 0.8217182130584192
+    },
+    {
+      "year": 1992,
+      "confidence": 0.8935634328358208,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8935634328358208,
+      "supporting_evidence": [
+        "Novel focus: modular pdp networks",
+        "Novel focus: structural linguistics",
+        "Novel focus: general linguistics",
+        "Novel focus: link type",
+        "Novel focus: distributional semantics",
+        "Top current: machine translation",
+        "Top current: linguistics",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: language"
+      ],
+      "transition_description": "69.4% new keywords (threshold=0.10) | Novel keywords: modular pdp networks, structural linguistics, general linguistics, link type, distributional semantics | Top keywords: machine translation, linguistics, natural language processing, computer science, language (citation validated)",
+      "paradigm_significance": 0.7971393034825871
+    },
+    {
+      "year": 1993,
+      "confidence": 0.8184077312471238,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8184077312471238,
+      "supporting_evidence": [
+        "Novel focus: modular pdp networks",
+        "Novel focus: knowledge discovery",
+        "Novel focus: comparative literature",
+        "Novel focus: machine learning research",
+        "Novel focus: syntax",
+        "Top current: machine translation",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: natural language processing",
+        "Top current: computational linguistics"
+      ],
+      "transition_description": "71.7% new keywords (threshold=0.10) | Novel keywords: modular pdp networks, knowledge discovery, comparative literature, machine learning research, syntax | Top keywords: machine translation, computer science, linguistics, natural language processing, computational linguistics (citation validated)",
+      "paradigm_significance": 0.7637367694431662
+    },
+    {
+      "year": 1995,
+      "confidence": 0.4373445273631841,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4373445273631841,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: neural network (machine learning)",
+        "Novel focus: machine learning research",
+        "Novel focus: applied mathematics",
+        "Novel focus: knowledge base",
+        "Top current: machine translation",
+        "Top current: linguistics",
+        "Top current: natural language processing",
+        "Top current: computational linguistics",
+        "Top current: computer science"
+      ],
+      "transition_description": "67.4% new keywords (threshold=0.10) | Novel keywords: information fusion, neural network (machine learning), machine learning research, applied mathematics, knowledge base | Top keywords: machine translation, linguistics, natural language processing, computational linguistics, computer science (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1997,
+      "confidence": 0.6776061776061777,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6776061776061777,
+      "supporting_evidence": [
+        "Novel focus: technology",
+        "Novel focus: proper noun translations",
+        "Novel focus: cross-language retrieval",
+        "Novel focus: knowledge base",
+        "Novel focus: scene interpretation",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "61.2% new keywords (threshold=0.10) | Novel keywords: technology, proper noun translations, cross-language retrieval, knowledge base, scene interpretation | Top keywords: machine translation, natural language processing, computer science, linguistics, language (citation validated)",
+      "paradigm_significance": 0.7011583011583012
+    },
+    {
+      "year": 1998,
+      "confidence": 0.7197841726618704,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7197841726618704,
+      "supporting_evidence": [
+        "Novel focus: proper noun translations",
+        "Novel focus: human-computer interaction",
+        "Novel focus: cross-language retrieval",
+        "Novel focus: human-machine interaction",
+        "Novel focus: automation",
+        "Top current: machine translation",
+        "Top current: language",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics"
+      ],
+      "transition_description": "62.6% new keywords (threshold=0.10) | Novel keywords: proper noun translations, human-computer interaction, cross-language retrieval, human-machine interaction, automation | Top keywords: machine translation, language, natural language processing, computer science, linguistics (citation validated)",
+      "paradigm_significance": 0.7199040767386091
+    },
+    {
+      "year": 1999,
+      "confidence": 0.8166155771035346,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8166155771035346,
+      "supporting_evidence": [
+        "Novel focus: multilingualism",
+        "Novel focus: video interpretation",
+        "Novel focus: computer animation",
+        "Novel focus: translational research",
+        "Novel focus: deep learning",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: computer science",
+        "Top current: computer-assisted translation"
+      ],
+      "transition_description": "64.3% new keywords (threshold=0.10) | Novel keywords: multilingualism, video interpretation, computer animation, translational research, deep learning | Top keywords: machine translation, natural language processing, language, computer science, computer-assisted translation (citation validated)",
+      "paradigm_significance": 0.7629402564904598
+    },
+    {
+      "year": 2000,
+      "confidence": 0.7644616467276565,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7644616467276565,
+      "supporting_evidence": [
+        "Novel focus: multilingualism",
+        "Novel focus: text processing",
+        "Novel focus: speech synthesis",
+        "Novel focus: text normalization",
+        "Top current: machine translation",
+        "Top current: language",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: computer-assisted translation",
+        "Citation acceleration/deceleration pattern detected"
+      ],
+      "transition_description": "61.2% new keywords (threshold=0.10) | Novel keywords: multilingualism, text processing, speech synthesis, text normalization | Top keywords: machine translation, language, natural language processing, computer science, computer-assisted translation (citation validated)",
+      "paradigm_significance": 0.7397607318789585
+    },
+    {
+      "year": 2001,
+      "confidence": 0.7922132881929751,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7922132881929751,
+      "supporting_evidence": [
+        "Novel focus: multilingualism",
+        "Novel focus: speech technology",
+        "Novel focus: language engineering",
+        "Novel focus: spoken language processing",
+        "Top current: machine translation",
+        "Top current: language",
+        "Top current: natural language processing",
+        "Top current: computer-assisted translation",
+        "Top current: translation studies",
+        "Citation acceleration/deceleration pattern detected"
+      ],
+      "transition_description": "58.8% new keywords (threshold=0.10) | Novel keywords: multilingualism, speech technology, language engineering, spoken language processing | Top keywords: machine translation, language, natural language processing, computer-assisted translation, translation studies (citation validated)",
+      "paradigm_significance": 0.7520947947524335
+    },
+    {
+      "year": 2002,
+      "confidence": 0.6736823425022184,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6736823425022184,
+      "supporting_evidence": [
+        "Novel focus: speech technology",
+        "Novel focus: multimodal translation",
+        "Novel focus: nlp task",
+        "Novel focus: spoken language processing",
+        "Top current: machine translation",
+        "Top current: language",
+        "Top current: computer science",
+        "Top current: translation studies",
+        "Top current: computational linguistics",
+        "Citation acceleration/deceleration pattern detected"
+      ],
+      "transition_description": "58.2% new keywords (threshold=0.10) | Novel keywords: speech technology, multimodal translation, nlp task, spoken language processing | Top keywords: machine translation, language, computer science, translation studies, computational linguistics (citation validated)",
+      "paradigm_significance": 0.6994143744454304
+    },
+    {
+      "year": 2003,
+      "confidence": 0.7665283899403681,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7665283899403681,
+      "supporting_evidence": [
+        "Novel focus: speech technology",
+        "Novel focus: large language model",
+        "Novel focus: general linguistics",
+        "Novel focus: distributional semantics",
+        "Novel focus: language corpus",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: computational linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "67.7% new keywords (threshold=0.10) | Novel keywords: speech technology, large language model, general linguistics, distributional semantics, language corpus | Top keywords: machine translation, natural language processing, computer science, computational linguistics, language (citation validated)",
+      "paradigm_significance": 0.7406792844179414
+    },
+    {
+      "year": 2004,
+      "confidence": 0.9771428571428573,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9771428571428573,
+      "supporting_evidence": [
+        "Novel focus: semantic evaluation",
+        "Novel focus: knowledge discovery",
+        "Novel focus: large language model",
+        "Novel focus: machine learning research",
+        "Novel focus: applied linguistics",
+        "Top current: machine translation",
+        "Top current: computer science",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: linguistics"
+      ],
+      "transition_description": "81.0% new keywords (threshold=0.10) | Novel keywords: semantic evaluation, knowledge discovery, large language model, machine learning research, applied linguistics | Top keywords: machine translation, computer science, natural language processing, language, linguistics (citation validated)",
+      "paradigm_significance": 0.8342857142857144
+    },
+    {
+      "year": 2005,
+      "confidence": 0.8598917117867555,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8598917117867555,
+      "supporting_evidence": [
+        "Novel focus: general linguistics",
+        "Novel focus: biomedical informatics",
+        "Novel focus: machine translation quality",
+        "Novel focus: deep learning",
+        "Novel focus: automatic evaluation",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: computational linguistics"
+      ],
+      "transition_description": "75.5% new keywords (threshold=0.10) | Novel keywords: general linguistics, biomedical informatics, machine translation quality, deep learning, automatic evaluation | Top keywords: machine translation, natural language processing, computer science, linguistics, computational linguistics (citation validated)",
+      "paradigm_significance": 0.7821740941274469
+    },
+    {
+      "year": 2006,
+      "confidence": 0.4535338345864662,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4535338345864662,
+      "supporting_evidence": [
+        "Novel focus: cognitive science",
+        "Novel focus: bioinformatics",
+        "Novel focus: iterative decoding",
+        "Novel focus: statistics",
+        "Novel focus: language learning",
+        "Top current: machine translation",
+        "Top current: computer science",
+        "Top current: natural language processing",
+        "Top current: computational linguistics",
+        "Top current: language model"
+      ],
+      "transition_description": "69.3% new keywords (threshold=0.10) | Novel keywords: cognitive science, bioinformatics, iterative decoding, statistics, language learning | Top keywords: machine translation, computer science, natural language processing, computational linguistics, language model (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2008,
+      "confidence": 0.7511450381679391,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7511450381679391,
+      "supporting_evidence": [
+        "Novel focus: syntactic parsing",
+        "Novel focus: cognitive science",
+        "Novel focus: language engineering",
+        "Novel focus: specialized translation",
+        "Novel focus: applied mathematics",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "62.6% new keywords (threshold=0.10) | Novel keywords: syntactic parsing, cognitive science, language engineering, specialized translation, applied mathematics | Top keywords: machine translation, natural language processing, computer science, linguistics, language (citation validated)",
+      "paradigm_significance": 0.7338422391857508
+    },
+    {
+      "year": 2009,
+      "confidence": 0.6830999999999999,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6830999999999999,
+      "supporting_evidence": [
+        "Novel focus: keyword extraction",
+        "Novel focus: large language model",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: computer science",
+        "Top current: translation studies",
+        "Citation acceleration/deceleration pattern detected",
+        "Multi-scale gradient analysis (1, 3, 5-year windows)",
+        "First and second derivative significance testing"
+      ],
+      "transition_description": "57.5% new keywords (threshold=0.10) | Novel keywords: keyword extraction, large language model | Top keywords: machine translation, natural language processing, language, computer science, translation studies (citation validated)",
+      "paradigm_significance": 0.7036
+    },
+    {
+      "year": 2011,
+      "confidence": 0.7433206106870228,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7433206106870228,
+      "supporting_evidence": [
+        "Novel focus: clinical translation",
+        "Novel focus: spoken language processing",
+        "Novel focus: automated reasoning",
+        "Novel focus: computational intelligence",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: language",
+        "Citation acceleration/deceleration pattern detected"
+      ],
+      "transition_description": "66.0% new keywords (threshold=0.10) | Novel keywords: clinical translation, spoken language processing, automated reasoning, computational intelligence | Top keywords: machine translation, natural language processing, computer science, linguistics, language (citation validated)",
+      "paradigm_significance": 0.730364715860899
+    },
+    {
+      "year": 2012,
+      "confidence": 0.6902255639097744,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6902255639097744,
+      "supporting_evidence": [
+        "Novel focus: clinical translation",
+        "Novel focus: spoken language processing",
+        "Novel focus: machine translation systems",
+        "Novel focus: speech communication",
+        "Novel focus: natural language generation",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "63.9% new keywords (threshold=0.10) | Novel keywords: clinical translation, spoken language processing, machine translation systems, speech communication, natural language generation | Top keywords: machine translation, natural language processing, computer science, linguistics, language (citation validated)",
+      "paradigm_significance": 0.7067669172932332
+    },
+    {
+      "year": 2013,
+      "confidence": 0.8121025641025642,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8121025641025642,
+      "supporting_evidence": [
+        "Novel focus: human-computer interaction",
+        "Novel focus: cross-language retrieval",
+        "Novel focus: language generation",
+        "Novel focus: syntax",
+        "Novel focus: speech communication",
+        "Top current: machine translation",
+        "Top current: computer science",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: linguistics"
+      ],
+      "transition_description": "71.3% new keywords (threshold=0.10) | Novel keywords: human-computer interaction, cross-language retrieval, language generation, syntax, speech communication | Top keywords: machine translation, computer science, natural language processing, language, linguistics (citation validated)",
+      "paradigm_significance": 0.760934472934473
+    },
+    {
+      "year": 2014,
+      "confidence": 0.7969798657718121,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7969798657718121,
+      "supporting_evidence": [
+        "Novel focus: cognitive science",
+        "Novel focus: human-computer interaction",
+        "Novel focus: cross-language retrieval",
+        "Novel focus: language generation",
+        "Novel focus: syntax",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: language",
+        "Top current: linguistics"
+      ],
+      "transition_description": "67.1% new keywords (threshold=0.10) | Novel keywords: cognitive science, human-computer interaction, cross-language retrieval, language generation, syntax | Top keywords: machine translation, natural language processing, computer science, language, linguistics (citation validated)",
+      "paradigm_significance": 0.7542132736763609
+    },
+    {
+      "year": 2015,
+      "confidence": 0.45044687189672294,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.45044687189672294,
+      "supporting_evidence": [
+        "Novel focus: convolutional neural network",
+        "Novel focus: multilingualism",
+        "Novel focus: semantics",
+        "Novel focus: autoencoders",
+        "Novel focus: rnn encoder-decoder",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "34.0% new keywords (threshold=0.10) | Novel keywords: convolutional neural network, multilingualism, semantics, autoencoders, rnn encoder-decoder | Top keywords: machine translation, natural language processing, computer science, linguistics, language (citation validated)",
+      "paradigm_significance": 0.6001986097318769
+    },
+    {
+      "year": 2017,
+      "confidence": 0.8243690329898856,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8243690329898856,
+      "supporting_evidence": [
+        "Novel focus: convolutional neural network",
+        "Novel focus: rnn encoder-decoder",
+        "Novel focus: video understanding",
+        "Novel focus: neural network (machine learning)",
+        "Novel focus: sequential learning",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: language"
+      ],
+      "transition_description": "66.9% new keywords (threshold=0.10) | Novel keywords: convolutional neural network, rnn encoder-decoder, video understanding, neural network (machine learning), sequential learning | Top keywords: machine translation, natural language processing, computer science, machine learning, language (citation validated)",
+      "paradigm_significance": 0.7663862368843937
+    },
+    {
+      "year": 2020,
+      "confidence": 0.586375395228514,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.586375395228514,
+      "supporting_evidence": [
+        "Novel focus: cross-language retrieval",
+        "Novel focus: cycle-consistent adversarial networks",
+        "Novel focus: question answering",
+        "Novel focus: specialized translation",
+        "Novel focus: applied linguistics",
+        "Top current: machine translation",
+        "Top current: computer science",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: deep learning"
+      ],
+      "transition_description": "57.8% new keywords (threshold=0.10) | Novel keywords: cross-language retrieval, cycle-consistent adversarial networks, question answering, specialized translation, applied linguistics | Top keywords: machine translation, computer science, natural language processing, language, deep learning (citation validated)",
+      "paradigm_significance": 0.6606112867682284
+    },
+    {
+      "year": 2021,
+      "confidence": 0.4967301473230328,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.4967301473230328,
+      "supporting_evidence": [
+        "Novel focus: language testing",
+        "Novel focus: universal sentence encoder",
+        "Novel focus: english",
+        "Novel focus: second language learning",
+        "Novel focus: cross-language perspective",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: language model",
+        "Top current: language"
+      ],
+      "transition_description": "46.3% new keywords (threshold=0.10) | Novel keywords: language testing, universal sentence encoder, english, second language learning, cross-language perspective | Top keywords: machine translation, natural language processing, computer science, language model, language (citation validated)",
+      "paradigm_significance": 0.6207689543657924
+    },
+    {
+      "year": 2022,
+      "confidence": 0.6184143222506393,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6184143222506393,
+      "supporting_evidence": [
+        "Novel focus: cross-language retrieval",
+        "Novel focus: language generation",
+        "Novel focus: second language learning",
+        "Novel focus: natural language generation",
+        "Novel focus: cross-language perspective",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: language model",
+        "Top current: language"
+      ],
+      "transition_description": "56.5% new keywords (threshold=0.10) | Novel keywords: cross-language retrieval, language generation, second language learning, natural language generation, cross-language perspective | Top keywords: machine translation, natural language processing, computer science, language model, language (citation validated)",
+      "paradigm_significance": 0.674850809889173
+    },
+    {
+      "year": 2023,
+      "confidence": 0.633256029684601,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.633256029684601,
+      "supporting_evidence": [
+        "Novel focus: social media",
+        "Novel focus: human-computer interaction",
+        "Novel focus: classics",
+        "Novel focus: speech communication",
+        "Novel focus: speech recognition",
+        "Top current: machine translation",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: language",
+        "Top current: language model"
+      ],
+      "transition_description": "63.1% new keywords (threshold=0.10) | Novel keywords: social media, human-computer interaction, classics, speech communication, speech recognition | Top keywords: machine translation, natural language processing, computer science, language, language model (citation validated)",
+      "paradigm_significance": 0.6814471243042672
+    }
+  ],
+  "summary": {
+    "total_signals": 34,
+    "paradigm_shifts": 26,
+    "avg_confidence": 0.679494426086311
+  }
+}

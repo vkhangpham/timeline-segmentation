@@ -1,0 +1,256 @@
+{
+  "domain_name": "deep_learning",
+  "analysis_date": "2025-06-25T18:00:43.457362",
+  "time_range": [
+    1995,
+    2020
+  ],
+  "total_papers": 410,
+  "signals": [
+    {
+      "year": 2002,
+      "confidence": 0.3849403122130395,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.3849403122130395,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: object detection",
+        "Novel focus: functional imaging",
+        "Novel focus: fuzzy system",
+        "Novel focus: brain imaging",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: data science",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "79.4% new keywords (threshold=0.36) | Novel keywords: information fusion, object detection, functional imaging, fuzzy system, brain imaging | Top keywords: deep learning, computer science, machine learning, data science, machine learning research (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2003,
+      "confidence": 0.42984890533456677,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.42984890533456677,
+      "supporting_evidence": [
+        "Novel focus: functional imaging",
+        "Novel focus: digital image processing",
+        "Novel focus: supervised learning",
+        "Novel focus: image classification",
+        "Novel focus: brain imaging",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: data science",
+        "Top current: machine learning research",
+        "Top current: pattern recognition"
+      ],
+      "transition_description": "79.2% new keywords (threshold=0.36) | Novel keywords: functional imaging, digital image processing, supervised learning, image classification, brain imaging | Top keywords: deep learning, computer science, data science, machine learning research, pattern recognition (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2004,
+      "confidence": 0.470063694267516,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.470063694267516,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: digital image processing",
+        "Novel focus: supervised learning",
+        "Novel focus: image classification",
+        "Novel focus: localization",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: pattern recognition",
+        "Top current: image analysis",
+        "Top current: data science"
+      ],
+      "transition_description": "70.3% new keywords (threshold=0.36) | Novel keywords: systems engineering, digital image processing, supervised learning, image classification, localization | Top keywords: deep learning, computer science, pattern recognition, image analysis, data science (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2005,
+      "confidence": 0.4664736537348002,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4664736537348002,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: sequence analysis",
+        "Novel focus: digital image processing",
+        "Novel focus: image classification",
+        "Novel focus: localization",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: pattern recognition",
+        "Top current: machine learning",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "67.5% new keywords (threshold=0.36) | Novel keywords: systems engineering, sequence analysis, digital image processing, image classification, localization | Top keywords: deep learning, computer science, pattern recognition, machine learning, machine learning research (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2006,
+      "confidence": 0.4034782608695652,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4034782608695652,
+      "supporting_evidence": [
+        "Novel focus: vision recognition",
+        "Novel focus: classification method",
+        "Novel focus: learning to rank",
+        "Novel focus: facial recognition system",
+        "Novel focus: sparse representation",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: pattern recognition",
+        "Top current: machine vision"
+      ],
+      "transition_description": "58.0% new keywords (threshold=0.36) | Novel keywords: vision recognition, classification method, learning to rank, facial recognition system, sparse representation | Top keywords: deep learning, computer science, machine learning, pattern recognition, machine vision (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2007,
+      "confidence": 0.40010517090271686,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.40010517090271686,
+      "supporting_evidence": [
+        "Novel focus: text recognition",
+        "Novel focus: text mining",
+        "Novel focus: classification method",
+        "Novel focus: learning to rank",
+        "Novel focus: linguistics",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: machine vision",
+        "Top current: pattern recognition"
+      ],
+      "transition_description": "62.0% new keywords (threshold=0.36) | Novel keywords: text recognition, text mining, classification method, learning to rank, linguistics | Top keywords: deep learning, computer science, machine learning, machine vision, pattern recognition (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2009,
+      "confidence": 0.7632557692923215,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7632557692923215,
+      "supporting_evidence": [
+        "Novel focus: text recognition",
+        "Novel focus: genomics",
+        "Novel focus: learning to rank",
+        "Novel focus: linguistics",
+        "Novel focus: microbiology",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: machine learning research",
+        "Top current: data science"
+      ],
+      "transition_description": "69.3% new keywords (threshold=0.36) | Novel keywords: text recognition, genomics, learning to rank, linguistics, microbiology | Top keywords: deep learning, computer science, machine learning, machine learning research, data science (citation validated)",
+      "paradigm_significance": 0.739224786352143
+    },
+    {
+      "year": 2010,
+      "confidence": 0.7649655172413793,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7649655172413793,
+      "supporting_evidence": [
+        "Novel focus: neural network (machine learning)",
+        "Novel focus: image classification",
+        "Novel focus: genomics",
+        "Novel focus: linguistics",
+        "Novel focus: microbiology",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: data science",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "67.8% new keywords (threshold=0.36) | Novel keywords: neural network (machine learning), image classification, genomics, linguistics, microbiology | Top keywords: deep learning, computer science, machine learning, data science, machine learning research (citation validated)",
+      "paradigm_significance": 0.739984674329502
+    },
+    {
+      "year": 2011,
+      "confidence": 0.7361963190184049,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7361963190184049,
+      "supporting_evidence": [
+        "Novel focus: deep network",
+        "Novel focus: recurrent neural network",
+        "Novel focus: genomics",
+        "Novel focus: metatranscriptomics",
+        "Novel focus: hierarchical classification",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: data science",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "66.7% new keywords (threshold=0.36) | Novel keywords: deep network, recurrent neural network, genomics, metatranscriptomics, hierarchical classification | Top keywords: deep learning, computer science, machine learning, data science, machine learning research (citation validated)",
+      "paradigm_significance": 0.72719836400818
+    },
+    {
+      "year": 2012,
+      "confidence": 0.7067713567839196,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7067713567839196,
+      "supporting_evidence": [
+        "Novel focus: deep network",
+        "Novel focus: hierarchical classification",
+        "Novel focus: object categorization",
+        "Novel focus: feature learning",
+        "Novel focus: unsupervised feature",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: image analysis",
+        "Top current: data science"
+      ],
+      "transition_description": "58.8% new keywords (threshold=0.36) | Novel keywords: deep network, hierarchical classification, object categorization, feature learning, unsupervised feature | Top keywords: deep learning, computer science, machine learning, image analysis, data science (citation validated)",
+      "paradigm_significance": 0.7141206030150754
+    },
+    {
+      "year": 2013,
+      "confidence": 0.8029347028613352,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8029347028613352,
+      "supporting_evidence": [
+        "Novel focus: deep network",
+        "Novel focus: object categorization",
+        "Novel focus: computer stereo vision",
+        "Novel focus: unsupervised feature",
+        "Novel focus: feature (computer vision)",
+        "Top current: deep learning",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: data science",
+        "Top current: image analysis"
+      ],
+      "transition_description": "68.1% new keywords (threshold=0.36) | Novel keywords: deep network, object categorization, computer stereo vision, unsupervised feature, feature (computer vision) | Top keywords: deep learning, computer science, machine learning, data science, image analysis (citation validated)",
+      "paradigm_significance": 0.7568598679383712
+    },
+    {
+      "year": 2014,
+      "confidence": 0.8507936507936509,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8507936507936509,
+      "supporting_evidence": [
+        "Novel focus: voice recognition",
+        "Novel focus: speech technology",
+        "Novel focus: spoken language technology",
+        "Novel focus: 3d computer vision",
+        "Novel focus: vision recognition",
+        "Top current: deep learning",
+        "Top current: machine learning",
+        "Top current: computer science",
+        "Top current: data science",
+        "Top current: image analysis"
+      ],
+      "transition_description": "66.7% new keywords (threshold=0.36) | Novel keywords: voice recognition, speech technology, spoken language technology, 3d computer vision, vision recognition | Top keywords: deep learning, machine learning, computer science, data science, image analysis (citation validated)",
+      "paradigm_significance": 0.7781305114638448
+    }
+  ],
+  "summary": {
+    "total_signals": 12,
+    "paradigm_shifts": 6,
+    "avg_confidence": 0.5983189427761012
+  }
+}

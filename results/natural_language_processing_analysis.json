@@ -1,0 +1,247 @@
+{
+  "domain_name": "natural_language_processing",
+  "analysis_date": "2025-06-25T18:03:39.210516",
+  "time_range": [
+    1957,
+    2024
+  ],
+  "total_papers": 617,
+  "statistical_significance": 0.6637333485904569,
+  "change_points": [
+    1977,
+    1980,
+    1983,
+    1986,
+    1988,
+    1990,
+    1991,
+    1992,
+    1997,
+    2000
+  ],
+  "segments": [
+    [
+      1957,
+      1977
+    ],
+    [
+      1978,
+      1981
+    ],
+    [
+      1982,
+      1986
+    ],
+    [
+      1987,
+      1990
+    ],
+    [
+      1991,
+      1993
+    ],
+    [
+      1994,
+      1997
+    ],
+    [
+      1998,
+      2024
+    ]
+  ],
+  "periods": [
+    {
+      "period": [
+        1957,
+        1977
+      ],
+      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "network_stability": 0.26025360395810077,
+      "representative_papers": [
+        {
+          "title": "How to do things with words",
+          "year": 1962,
+          "citations": 0
+        },
+        {
+          "title": "ELIZA\u2014a computer program for the study of natural language communication between man and machine",
+          "year": 1966,
+          "citations": 0
+        },
+        {
+          "title": "A Statistical Approach to Mechanized Encoding and Searching of Literary Information",
+          "year": 1957,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8039844827642961
+    },
+    {
+      "period": [
+        1978,
+        1981
+      ],
+      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "network_stability": 0.250811262228585,
+      "representative_papers": [
+        {
+          "title": "Dynamic programming algorithm optimization for spoken word recognition",
+          "year": 1978,
+          "citations": 0
+        },
+        {
+          "title": "Toward a model of text comprehension and production.",
+          "year": 1978,
+          "citations": 0
+        },
+        {
+          "title": "Comparison of parametric representations for monosyllabic word recognition in continuously spoken sentences",
+          "year": 1980,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8749598714927702
+    },
+    {
+      "period": [
+        1982,
+        1986
+      ],
+      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "network_stability": 0.320502037204933,
+      "representative_papers": [
+        {
+          "title": "An overview of the KL-ONE Knowledge Representation System",
+          "year": 1985,
+          "citations": 0
+        },
+        {
+          "title": "Ways with Words",
+          "year": 1983,
+          "citations": 0
+        },
+        {
+          "title": "ELIZA \u2014 a computer program for the study of natural language communication between man and machine",
+          "year": 1983,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8466438468709913
+    },
+    {
+      "period": [
+        1987,
+        1990
+      ],
+      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "network_stability": 0.3261273782469057,
+      "representative_papers": [
+        {
+          "title": "A stochastic parts program and noun phrase parser for unrestricted text",
+          "year": 1988,
+          "citations": 0
+        },
+        {
+          "title": "Why a Diagram is (Sometimes) Worth Ten Thousand Words",
+          "year": 1987,
+          "citations": 0
+        },
+        {
+          "title": "Estimation of probabilities from sparse data for the language model component of a speech recognizer",
+          "year": 1987,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.6966286322152739
+    },
+    {
+      "period": [
+        1991,
+        1993
+      ],
+      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "network_stability": 0.2588075880758807,
+      "representative_papers": [
+        {
+          "title": "Class-based n -gram models of natural language",
+          "year": 1992,
+          "citations": 0
+        },
+        {
+          "title": "Semantic priming effects in visual word recognition : A selective review of current findings and theories",
+          "year": 1991,
+          "citations": 0
+        },
+        {
+          "title": "Automatic acquisition of hyponyms from large text corpora",
+          "year": 1992,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8251659817071159
+    },
+    {
+      "period": [
+        1994,
+        1997
+      ],
+      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "network_stability": 0.2901468044656003,
+      "representative_papers": [
+        {
+          "title": "Are Good Texts Always Better? Interactions of Text Coherence, Background Knowledge, and Levels of Understanding in Learning From Text",
+          "year": 1996,
+          "citations": 0
+        },
+        {
+          "title": "A trainable document summarizer",
+          "year": 1995,
+          "citations": 0
+        },
+        {
+          "title": "Robust text-independent speaker identification using Gaussian mixture speaker models",
+          "year": 1995,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8237686474844282
+    },
+    {
+      "period": [
+        1998,
+        2024
+      ],
+      "topic_label": "Distributional Semantic Modeling",
+      "network_stability": 0.33410528140208734,
+      "representative_papers": [
+        {
+          "title": "Distributed Representations of Words and Phrases and their Compositionality",
+          "year": 2013,
+          "citations": 0
+        },
+        {
+          "title": "Glove: Global Vectors for Word Representation",
+          "year": 2014,
+          "citations": 0
+        },
+        {
+          "title": "Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank",
+          "year": 2013,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.847249090343504
+    }
+  ],
+  "unified_confidence": 0.8169143646969114,
+  "algorithm_config": {
+    "direction_threshold": 0.39947161806109377,
+    "citation_boost": 0.8,
+    "validation_threshold": 0.3026165858213599,
+    "citation_support_window": 2,
+    "similarity_min_segment_length": 3,
+    "similarity_max_segment_length": 26,
+    "keyword_min_frequency": 2,
+    "min_significant_keywords": 2
+  }
+}

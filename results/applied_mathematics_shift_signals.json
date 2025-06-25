@@ -1,0 +1,2391 @@
+{
+  "domain_name": "applied_mathematics",
+  "analysis_date": "2025-06-25T17:57:21.949985",
+  "time_range": [
+    1833,
+    2024
+  ],
+  "total_papers": 949,
+  "signals": [
+    {
+      "year": 1860,
+      "confidence": 0.5160472972972973,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5160472972972973,
+      "supporting_evidence": [
+        "Novel focus: differential analysis",
+        "Novel focus: algebraic number theory",
+        "Novel focus: general system",
+        "Novel focus: earth science",
+        "Novel focus: geometry of number",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: analytic number theory",
+        "Top current: dynamical system",
+        "Top current: numerical mathematics"
+      ],
+      "transition_description": "81.2% new keywords (threshold=0.35) | Novel keywords: differential analysis, algebraic number theory, general system, earth science, geometry of number | Top keywords: applied mathematics, mathematics, analytic number theory, dynamical system, numerical mathematics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1869,
+      "confidence": 0.510700324653813,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.510700324653813,
+      "supporting_evidence": [
+        "Novel focus: algebraic analysis",
+        "Novel focus: geometry of number",
+        "Novel focus: nonlinear analysis",
+        "Novel focus: definite integral",
+        "Novel focus: mathematical theory",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical analysis",
+        "Top current: dynamical system",
+        "Top current: number theory"
+      ],
+      "transition_description": "72.9% new keywords (threshold=0.35) | Novel keywords: algebraic analysis, geometry of number, nonlinear analysis, definite integral, mathematical theory | Top keywords: applied mathematics, mathematics, numerical analysis, dynamical system, number theory (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1870,
+      "confidence": 0.47165532879818595,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.47165532879818595,
+      "supporting_evidence": [
+        "Novel focus: homological algebra",
+        "Novel focus: algebraic analysis",
+        "Novel focus: algebraic geometry",
+        "Novel focus: linear algebra",
+        "Novel focus: homogenization (chemistry)",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: differential equation",
+        "Top current: dynamical system",
+        "Top current: geometric analysis"
+      ],
+      "transition_description": "66.7% new keywords (threshold=0.35) | Novel keywords: homological algebra, algebraic analysis, algebraic geometry, linear algebra, homogenization (chemistry) | Top keywords: applied mathematics, mathematics, differential equation, dynamical system, geometric analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1876,
+      "confidence": 0.48181818181818187,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.48181818181818187,
+      "supporting_evidence": [
+        "Novel focus: numerical linear algebra",
+        "Novel focus: homogenization (chemistry)",
+        "Novel focus: linear algebra",
+        "Novel focus: geometric topology",
+        "Novel focus: homological algebra",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: differential equation",
+        "Top current: algebraic analysis",
+        "Top current: geometric analysis"
+      ],
+      "transition_description": "65.5% new keywords (threshold=0.35) | Novel keywords: numerical linear algebra, homogenization (chemistry), linear algebra, geometric topology, homological algebra | Top keywords: applied mathematics, mathematics, differential equation, algebraic analysis, geometric analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1883,
+      "confidence": 0.4782551570095913,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4782551570095913,
+      "supporting_evidence": [
+        "Novel focus: solid mechanics",
+        "Novel focus: homological algebra",
+        "Novel focus: harmonic analysis",
+        "Novel focus: knot theory",
+        "Novel focus: geometric topology",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: differential equation",
+        "Top current: geometric analysis",
+        "Top current: numerical simulation"
+      ],
+      "transition_description": "67.8% new keywords (threshold=0.35) | Novel keywords: solid mechanics, homological algebra, harmonic analysis, knot theory, geometric topology | Top keywords: applied mathematics, mathematics, differential equation, geometric analysis, numerical simulation (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1884,
+      "confidence": 0.4743217054263566,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4743217054263566,
+      "supporting_evidence": [
+        "Novel focus: solid mechanics",
+        "Novel focus: harmonic analysis",
+        "Novel focus: functional analysis",
+        "Novel focus: function space",
+        "Novel focus: general system",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: applied physics",
+        "Top current: numerical simulation",
+        "Top current: geometric analysis"
+      ],
+      "transition_description": "68.8% new keywords (threshold=0.35) | Novel keywords: solid mechanics, harmonic analysis, functional analysis, function space, general system | Top keywords: applied mathematics, mathematics, applied physics, numerical simulation, geometric analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1886,
+      "confidence": 0.5149396058486968,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5149396058486968,
+      "supporting_evidence": [
+        "Novel focus: solid mechanics",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: extremal combinatorics",
+        "Novel focus: abstract interpretation",
+        "Novel focus: facies analysis",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: mathematics",
+        "Top current: differential equation",
+        "Top current: global analysis"
+      ],
+      "transition_description": "75.5% new keywords (threshold=0.35) | Novel keywords: solid mechanics, combinatorial optimization, extremal combinatorics, abstract interpretation, facies analysis | Top keywords: applied mathematics, numerical analysis, mathematics, differential equation, global analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1887,
+      "confidence": 0.43142204591898065,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.43142204591898065,
+      "supporting_evidence": [
+        "Novel focus: combinatorial optimization",
+        "Novel focus: fluid mechanics",
+        "Novel focus: fluid flow",
+        "Novel focus: extremal combinatorics",
+        "Novel focus: abstract interpretation",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical analysis",
+        "Top current: numerical mathematics",
+        "Top current: differential equation"
+      ],
+      "transition_description": "68.8% new keywords (threshold=0.35) | Novel keywords: combinatorial optimization, fluid mechanics, fluid flow, extremal combinatorics, abstract interpretation | Top keywords: applied mathematics, mathematics, numerical analysis, numerical mathematics, differential equation (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1891,
+      "confidence": 0.35583726415094336,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.35583726415094336,
+      "supporting_evidence": [
+        "Novel focus: geometric modeling",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: fluid-structure interaction",
+        "Novel focus: extremal combinatorics",
+        "Novel focus: combinatorics",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: mathematics",
+        "Top current: numerical mathematics",
+        "Top current: mathematical optimization"
+      ],
+      "transition_description": "64.2% new keywords (threshold=0.35) | Novel keywords: geometric modeling, combinatorial optimization, fluid-structure interaction, extremal combinatorics, combinatorics | Top keywords: applied mathematics, numerical analysis, mathematics, numerical mathematics, mathematical optimization (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1892,
+      "confidence": 0.4543269230769231,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4543269230769231,
+      "supporting_evidence": [
+        "Novel focus: fluid-structure interaction",
+        "Novel focus: operator theory",
+        "Novel focus: architecture",
+        "Top current: applied mathematics",
+        "Top current: fluid dynamics",
+        "Top current: fluid mechanics",
+        "Top current: fluid flow",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "65.6% new keywords (threshold=0.35) | Novel keywords: fluid-structure interaction, operator theory, architecture | Top keywords: applied mathematics, fluid dynamics, fluid mechanics, fluid flow, numerical analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1898,
+      "confidence": 0.4438343628460306,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4438343628460306,
+      "supporting_evidence": [
+        "Novel focus: fluid-structure interaction",
+        "Novel focus: architecture",
+        "Top current: applied mathematics",
+        "Top current: fluid flow",
+        "Top current: fluid dynamics",
+        "Top current: fluid mechanics",
+        "Top current: stability"
+      ],
+      "transition_description": "64.5% new keywords (threshold=0.35) | Novel keywords: fluid-structure interaction, architecture | Top keywords: applied mathematics, fluid flow, fluid dynamics, fluid mechanics, stability (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1900,
+      "confidence": 0.5005,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5005,
+      "supporting_evidence": [
+        "Novel focus: geometry",
+        "Novel focus: environmental fluid mechanic",
+        "Novel focus: mathematical analysis",
+        "Novel focus: geometry and topology",
+        "Novel focus: discrete geometry",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: fluid dynamics",
+        "Top current: geometry and topology",
+        "Top current: differential geometry"
+      ],
+      "transition_description": "70.4% new keywords (threshold=0.35) | Novel keywords: geometry, environmental fluid mechanic, mathematical analysis, geometry and topology, discrete geometry | Top keywords: applied mathematics, mathematics, fluid dynamics, geometry and topology, differential geometry (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1901,
+      "confidence": 0.5059207839934667,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5059207839934667,
+      "supporting_evidence": [
+        "Novel focus: probabilistic graph theory",
+        "Novel focus: probability theory",
+        "Novel focus: geometry",
+        "Novel focus: rheological constitutive equation",
+        "Novel focus: environmental fluid mechanic",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: applied physics",
+        "Top current: fluid dynamics",
+        "Top current: integral geometry"
+      ],
+      "transition_description": "74.7% new keywords (threshold=0.35) | Novel keywords: probabilistic graph theory, probability theory, geometry, rheological constitutive equation, environmental fluid mechanic | Top keywords: applied mathematics, mathematics, applied physics, fluid dynamics, integral geometry (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1902,
+      "confidence": 0.4710265821376932,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4710265821376932,
+      "supporting_evidence": [
+        "Novel focus: probabilistic graph theory",
+        "Novel focus: probability theory",
+        "Novel focus: computational geometry",
+        "Novel focus: rheological constitutive equation",
+        "Novel focus: partial differential equation",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: geometry and topology",
+        "Top current: spectral theory",
+        "Top current: applied physics"
+      ],
+      "transition_description": "74.7% new keywords (threshold=0.35) | Novel keywords: probabilistic graph theory, probability theory, computational geometry, rheological constitutive equation, partial differential equation | Top keywords: applied mathematics, mathematics, geometry and topology, spectral theory, applied physics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1903,
+      "confidence": 0.4389461077844311,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4389461077844311,
+      "supporting_evidence": [
+        "Novel focus: knot theory",
+        "Novel focus: computational geometry",
+        "Novel focus: rheological constitutive equation",
+        "Novel focus: complex analysis",
+        "Novel focus: computational fluid dynamic",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: applied physics",
+        "Top current: geometric analysis",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "71.3% new keywords (threshold=0.35) | Novel keywords: knot theory, computational geometry, rheological constitutive equation, complex analysis, computational fluid dynamic | Top keywords: applied mathematics, mathematics, applied physics, geometric analysis, numerical analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1904,
+      "confidence": 0.5334538878842676,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5334538878842676,
+      "supporting_evidence": [
+        "Novel focus: comparative analysis",
+        "Novel focus: pure mathematics",
+        "Novel focus: mathematical programming",
+        "Novel focus: computational mechanics",
+        "Novel focus: complex analysis",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: mathematical analysis",
+        "Top current: spectral theory",
+        "Top current: mathematical science"
+      ],
+      "transition_description": "71.4% new keywords (threshold=0.35) | Novel keywords: comparative analysis, pure mathematics, mathematical programming, computational mechanics, complex analysis | Top keywords: applied mathematics, mathematics, mathematical analysis, spectral theory, mathematical science (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1905,
+      "confidence": 0.4562022339800117,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4562022339800117,
+      "supporting_evidence": [
+        "Novel focus: comparative analysis",
+        "Novel focus: geometry processing",
+        "Novel focus: dynamical analysis",
+        "Novel focus: gas dynamic",
+        "Novel focus: mathematical programming",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical analysis",
+        "Top current: spectral theory",
+        "Top current: mathematical analysis"
+      ],
+      "transition_description": "66.0% new keywords (threshold=0.35) | Novel keywords: comparative analysis, geometry processing, dynamical analysis, gas dynamic, mathematical programming | Top keywords: applied mathematics, mathematics, numerical analysis, spectral theory, mathematical analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1906,
+      "confidence": 0.4214274154393915,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4214274154393915,
+      "supporting_evidence": [
+        "Novel focus: reference frame",
+        "Novel focus: geometry processing",
+        "Novel focus: dynamical analysis",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: gas dynamic",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: mathematical analysis",
+        "Top current: geometric analysis",
+        "Top current: discrete mathematics"
+      ],
+      "transition_description": "62.8% new keywords (threshold=0.35) | Novel keywords: reference frame, geometry processing, dynamical analysis, combinatorial optimization, gas dynamic | Top keywords: applied mathematics, mathematics, mathematical analysis, geometric analysis, discrete mathematics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1908,
+      "confidence": 0.4853074141048825,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4853074141048825,
+      "supporting_evidence": [
+        "Novel focus: geometry processing",
+        "Novel focus: dynamical analysis",
+        "Novel focus: gas dynamic",
+        "Novel focus: dynamical theory",
+        "Novel focus: geometric algorithm",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: geometric analysis",
+        "Top current: algebraic geometry",
+        "Top current: geometric topology"
+      ],
+      "transition_description": "71.5% new keywords (threshold=0.35) | Novel keywords: geometry processing, dynamical analysis, gas dynamic, dynamical theory, geometric algorithm | Top keywords: applied mathematics, mathematics, geometric analysis, algebraic geometry, geometric topology (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1909,
+      "confidence": 0.504311278651588,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.504311278651588,
+      "supporting_evidence": [
+        "Novel focus: geometric modeling",
+        "Novel focus: discrete differential geometry",
+        "Novel focus: ergodic theory",
+        "Novel focus: calculus of variation",
+        "Novel focus: geometry and topology",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: geometric analysis",
+        "Top current: algebraic geometry",
+        "Top current: spectral theory"
+      ],
+      "transition_description": "72.0% new keywords (threshold=0.35) | Novel keywords: geometric modeling, discrete differential geometry, ergodic theory, calculus of variation, geometry and topology | Top keywords: applied mathematics, mathematics, geometric analysis, algebraic geometry, spectral theory (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1912,
+      "confidence": 0.5106597280510323,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5106597280510323,
+      "supporting_evidence": [
+        "Novel focus: geometric modeling",
+        "Novel focus: discrete differential geometry",
+        "Novel focus: type theory",
+        "Novel focus: geometric singular perturbation theory",
+        "Novel focus: algebraic number theory",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical mathematics",
+        "Top current: geometric topology",
+        "Top current: spectral theory"
+      ],
+      "transition_description": "72.7% new keywords (threshold=0.35) | Novel keywords: geometric modeling, discrete differential geometry, type theory, geometric singular perturbation theory, algebraic number theory | Top keywords: applied mathematics, mathematics, numerical mathematics, geometric topology, spectral theory (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1914,
+      "confidence": 0.54952169291719,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.54952169291719,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: geometric singular perturbation theory",
+        "Novel focus: generalized function",
+        "Novel focus: negative type",
+        "Novel focus: partial differential equation",
+        "Top current: applied mathematics",
+        "Top current: numerical mathematics",
+        "Top current: mathematics",
+        "Top current: differential equation",
+        "Top current: spectral theory"
+      ],
+      "transition_description": "71.8% new keywords (threshold=0.35) | Novel keywords: systems engineering, geometric singular perturbation theory, generalized function, negative type, partial differential equation | Top keywords: applied mathematics, numerical mathematics, mathematics, differential equation, spectral theory (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1916,
+      "confidence": 0.4274389405672914,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4274389405672914,
+      "supporting_evidence": [
+        "Novel focus: generalized function",
+        "Novel focus: negative type",
+        "Novel focus: discrete integrable system",
+        "Novel focus: approximation method",
+        "Novel focus: function theory",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: differential equation",
+        "Top current: numerical mathematics",
+        "Top current: nonlinear analysis"
+      ],
+      "transition_description": "63.3% new keywords (threshold=0.35) | Novel keywords: generalized function, negative type, discrete integrable system, approximation method, function theory | Top keywords: applied mathematics, mathematics, differential equation, numerical mathematics, nonlinear analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1917,
+      "confidence": 0.4872425041333393,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4872425041333393,
+      "supporting_evidence": [
+        "Novel focus: condensed matter",
+        "Novel focus: molecular liquid",
+        "Novel focus: systems biology",
+        "Novel focus: discrete integrable system",
+        "Novel focus: mathematical analysis",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: differential equation",
+        "Top current: ordinary differential equation",
+        "Top current: boundary value problem"
+      ],
+      "transition_description": "67.6% new keywords (threshold=0.35) | Novel keywords: condensed matter, molecular liquid, systems biology, discrete integrable system, mathematical analysis | Top keywords: applied mathematics, mathematics, differential equation, ordinary differential equation, boundary value problem (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1918,
+      "confidence": 0.5624748895138609,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5624748895138609,
+      "supporting_evidence": [
+        "Novel focus: chemical engineering",
+        "Novel focus: probabilistic system",
+        "Novel focus: imprecise probability",
+        "Novel focus: fluid mechanics",
+        "Novel focus: simple liquid",
+        "Top current: applied mathematics",
+        "Top current: applied physics",
+        "Top current: mathematics",
+        "Top current: fluid flow",
+        "Top current: fluid dynamics"
+      ],
+      "transition_description": "75.2% new keywords (threshold=0.35) | Novel keywords: chemical engineering, probabilistic system, imprecise probability, fluid mechanics, simple liquid | Top keywords: applied mathematics, applied physics, mathematics, fluid flow, fluid dynamics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1919,
+      "confidence": 0.5233394679605153,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5233394679605153,
+      "supporting_evidence": [
+        "Novel focus: chemical engineering",
+        "Novel focus: probabilistic system",
+        "Novel focus: imprecise probability",
+        "Novel focus: simple liquid",
+        "Novel focus: uncertainty quantification",
+        "Top current: applied mathematics",
+        "Top current: applied physics",
+        "Top current: fluid flow",
+        "Top current: fluid dynamics",
+        "Top current: fluid mechanics"
+      ],
+      "transition_description": "71.3% new keywords (threshold=0.35) | Novel keywords: chemical engineering, probabilistic system, imprecise probability, simple liquid, uncertainty quantification | Top keywords: applied mathematics, applied physics, fluid flow, fluid dynamics, fluid mechanics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1921,
+      "confidence": 0.35467625899280575,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.35467625899280575,
+      "supporting_evidence": [
+        "Novel focus: applied probability",
+        "Novel focus: probabilistic system",
+        "Novel focus: imprecise probability",
+        "Novel focus: solution (chemistry)",
+        "Novel focus: certain inequalities",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: partial differential equation",
+        "Top current: differential equation",
+        "Top current: ordinary differential equation"
+      ],
+      "transition_description": "56.7% new keywords (threshold=0.35) | Novel keywords: applied probability, probabilistic system, imprecise probability, solution (chemistry), certain inequalities | Top keywords: applied mathematics, numerical analysis, partial differential equation, differential equation, ordinary differential equation (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1923,
+      "confidence": 0.34849027330230337,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.34849027330230337,
+      "supporting_evidence": [
+        "Novel focus: biostatistics",
+        "Novel focus: certain inequalities",
+        "Novel focus: numerical method for partial differential equation",
+        "Novel focus: time series",
+        "Novel focus: mathematical statistic",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: numerical analysis",
+        "Top current: partial differential equation"
+      ],
+      "transition_description": "57.9% new keywords (threshold=0.35) | Novel keywords: biostatistics, certain inequalities, numerical method for partial differential equation, time series, mathematical statistic | Top keywords: applied mathematics, mathematics, statistics, numerical analysis, partial differential equation (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1927,
+      "confidence": 0.49652278177458037,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.49652278177458037,
+      "supporting_evidence": [
+        "Novel focus: algebraic number theory",
+        "Novel focus: analytic number theory",
+        "Novel focus: transport phenomena",
+        "Novel focus: multiphase flow",
+        "Novel focus: theoretical mathematics",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: fluid dynamics",
+        "Top current: fluid flow",
+        "Top current: fluid mechanics"
+      ],
+      "transition_description": "72.7% new keywords (threshold=0.35) | Novel keywords: algebraic number theory, analytic number theory, transport phenomena, multiphase flow, theoretical mathematics | Top keywords: applied mathematics, mathematics, fluid dynamics, fluid flow, fluid mechanics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1928,
+      "confidence": 0.5954241071428572,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5954241071428572,
+      "supporting_evidence": [
+        "Novel focus: adaptation",
+        "Novel focus: evolutionary biology",
+        "Novel focus: analytic number theory",
+        "Novel focus: mathematical theory",
+        "Novel focus: artificial selection",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical mathematics",
+        "Top current: numerical analysis",
+        "Top current: fluid flow"
+      ],
+      "transition_description": "77.3% new keywords (threshold=0.35) | Novel keywords: adaptation, evolutionary biology, analytic number theory, mathematical theory, artificial selection | Top keywords: applied mathematics, mathematics, numerical mathematics, numerical analysis, fluid flow (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1929,
+      "confidence": 0.5162688614540467,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5162688614540467,
+      "supporting_evidence": [
+        "Novel focus: adaptation",
+        "Novel focus: evolutionary biology",
+        "Novel focus: nonlinear science",
+        "Novel focus: artificial selection",
+        "Novel focus: transport phenomena",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical simulation",
+        "Top current: applied physics",
+        "Top current: spectral theory"
+      ],
+      "transition_description": "71.9% new keywords (threshold=0.35) | Novel keywords: adaptation, evolutionary biology, nonlinear science, artificial selection, transport phenomena | Top keywords: applied mathematics, mathematics, numerical simulation, applied physics, spectral theory (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1930,
+      "confidence": 0.5115907274180655,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5115907274180655,
+      "supporting_evidence": [
+        "Novel focus: adaptation",
+        "Novel focus: evolutionary biology",
+        "Novel focus: nonlinear science",
+        "Novel focus: functional analysis",
+        "Novel focus: approximation theory",
+        "Top current: applied mathematics",
+        "Top current: spectral theory",
+        "Top current: fluid dynamics",
+        "Top current: fluid mechanics",
+        "Top current: theoretical mathematics"
+      ],
+      "transition_description": "71.1% new keywords (threshold=0.35) | Novel keywords: adaptation, evolutionary biology, nonlinear science, functional analysis, approximation theory | Top keywords: applied mathematics, spectral theory, fluid dynamics, fluid mechanics, theoretical mathematics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1931,
+      "confidence": 0.5423076923076924,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5423076923076924,
+      "supporting_evidence": [
+        "Novel focus: pure mathematics",
+        "Novel focus: nonlinear science",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: functional analysis",
+        "Novel focus: differential equation",
+        "Top current: applied mathematics",
+        "Top current: spectral theory",
+        "Top current: fluid dynamics",
+        "Top current: fluid mechanics",
+        "Top current: mathematics"
+      ],
+      "transition_description": "73.8% new keywords (threshold=0.35) | Novel keywords: pure mathematics, nonlinear science, numerical linear algebra, functional analysis, differential equation | Top keywords: applied mathematics, spectral theory, fluid dynamics, fluid mechanics, mathematics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1932,
+      "confidence": 0.6164609053497943,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.6164609053497943,
+      "supporting_evidence": [
+        "Novel focus: solid mechanics",
+        "Novel focus: pure mathematics",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: algebraic number theory",
+        "Novel focus: partial differential equation",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: fluid dynamics",
+        "Top current: fluid mechanics"
+      ],
+      "transition_description": "77.8% new keywords (threshold=0.35) | Novel keywords: solid mechanics, pure mathematics, numerical linear algebra, algebraic number theory, partial differential equation | Top keywords: applied mathematics, mathematics, statistics, fluid dynamics, fluid mechanics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1934,
+      "confidence": 0.4606981081801225,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4606981081801225,
+      "supporting_evidence": [
+        "Novel focus: solid mechanics",
+        "Novel focus: probability theory",
+        "Novel focus: boundary layer",
+        "Novel focus: mathematical analysis",
+        "Novel focus: computer science",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: numerical analysis",
+        "Top current: numerical mathematics"
+      ],
+      "transition_description": "68.3% new keywords (threshold=0.35) | Novel keywords: solid mechanics, probability theory, boundary layer, mathematical analysis, computer science | Top keywords: applied mathematics, mathematics, statistics, numerical analysis, numerical mathematics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1935,
+      "confidence": 0.4734693877551021,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4734693877551021,
+      "supporting_evidence": [
+        "Novel focus: solid mechanics",
+        "Novel focus: probability theory",
+        "Novel focus: estimation theory",
+        "Novel focus: bayesian analysis",
+        "Novel focus: nonlinear analysis",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: fluid flow",
+        "Top current: solid mechanics"
+      ],
+      "transition_description": "70.7% new keywords (threshold=0.35) | Novel keywords: solid mechanics, probability theory, estimation theory, bayesian analysis, nonlinear analysis | Top keywords: applied mathematics, mathematics, statistics, fluid flow, solid mechanics (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1937,
+      "confidence": 0.8864495798319328,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8864495798319328,
+      "supporting_evidence": [
+        "Novel focus: estimation theory",
+        "Novel focus: bayesian analysis",
+        "Novel focus: nonlinear analysis",
+        "Novel focus: rheology",
+        "Novel focus: calculus of variation",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: fluid flow",
+        "Top current: fluid dynamics"
+      ],
+      "transition_description": "71.3% new keywords (threshold=0.35) | Novel keywords: estimation theory, bayesian analysis, nonlinear analysis, rheology, calculus of variation | Top keywords: applied mathematics, mathematics, statistics, fluid flow, fluid dynamics (citation validated)",
+      "paradigm_significance": 0.7939775910364146
+    },
+    {
+      "year": 1938,
+      "confidence": 0.7791366906474819,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7791366906474819,
+      "supporting_evidence": [
+        "Novel focus: philosophy of mathematics",
+        "Novel focus: statistical mechanic",
+        "Novel focus: viscous fluid",
+        "Novel focus: geometric analysis",
+        "Novel focus: mathematical logic",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: approximation theory",
+        "Top current: numerical method for partial differential equation",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "63.3% new keywords (threshold=0.35) | Novel keywords: philosophy of mathematics, statistical mechanic, viscous fluid, geometric analysis, mathematical logic | Top keywords: applied mathematics, mathematics, approximation theory, numerical method for partial differential equation, numerical analysis (citation validated)",
+      "paradigm_significance": 0.7462829736211032
+    },
+    {
+      "year": 1939,
+      "confidence": 0.7948893843251587,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7948893843251587,
+      "supporting_evidence": [
+        "Novel focus: formal mathematical reasoning",
+        "Novel focus: foundation of mathematics",
+        "Novel focus: mathematical science",
+        "Novel focus: pure mathematics",
+        "Novel focus: statistical mechanic",
+        "Top current: applied mathematics",
+        "Top current: numerical simulation",
+        "Top current: mathematics",
+        "Top current: numerical analysis",
+        "Top current: statistics"
+      ],
+      "transition_description": "63.0% new keywords (threshold=0.35) | Novel keywords: formal mathematical reasoning, foundation of mathematics, mathematical science, pure mathematics, statistical mechanic | Top keywords: applied mathematics, numerical simulation, mathematics, numerical analysis, statistics (citation validated)",
+      "paradigm_significance": 0.7532841708111817
+    },
+    {
+      "year": 1941,
+      "confidence": 0.8756612712198975,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8756612712198975,
+      "supporting_evidence": [
+        "Novel focus: formal mathematical reasoning",
+        "Novel focus: pure mathematics",
+        "Novel focus: topology",
+        "Novel focus: boundary layer",
+        "Novel focus: ordinary differential equation",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: spectral theory",
+        "Top current: partial differential equation",
+        "Top current: numerical simulation"
+      ],
+      "transition_description": "71.1% new keywords (threshold=0.35) | Novel keywords: formal mathematical reasoning, pure mathematics, topology, boundary layer, ordinary differential equation | Top keywords: applied mathematics, mathematics, spectral theory, partial differential equation, numerical simulation (citation validated)",
+      "paradigm_significance": 0.7891827872088433
+    },
+    {
+      "year": 1942,
+      "confidence": 0.6885000000000001,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6885000000000001,
+      "supporting_evidence": [
+        "Novel focus: operator algebra",
+        "Novel focus: set theory",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical simulation",
+        "Top current: mathematical analysis",
+        "Top current: partial differential equation",
+        "Citation acceleration/deceleration pattern detected",
+        "Multi-scale gradient analysis (1, 3, 5-year windows)",
+        "First and second derivative significance testing"
+      ],
+      "transition_description": "67.5% new keywords (threshold=0.35) | Novel keywords: operator algebra, set theory | Top keywords: applied mathematics, mathematics, numerical simulation, mathematical analysis, partial differential equation (citation validated)",
+      "paradigm_significance": 0.7060000000000001
+    },
+    {
+      "year": 1943,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0089965397923875,
+      "supporting_evidence": [
+        "Novel focus: theory of computation",
+        "Novel focus: operator algebra",
+        "Novel focus: computer science",
+        "Novel focus: theoretical computer science",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: fluid dynamics",
+        "Top current: fluid mechanics",
+        "Top current: spectral theory",
+        "Citation acceleration/deceleration pattern detected"
+      ],
+      "transition_description": "79.4% new keywords (threshold=0.35) | Novel keywords: theory of computation, operator algebra, computer science, theoretical computer science | Top keywords: applied mathematics, mathematics, fluid dynamics, fluid mechanics, spectral theory (citation validated)",
+      "paradigm_significance": 0.8484429065743945
+    },
+    {
+      "year": 1944,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.260963384589245,
+      "supporting_evidence": [
+        "Novel focus: chemical engineering",
+        "Novel focus: thermal engineering",
+        "Novel focus: friction",
+        "Novel focus: theory of computation",
+        "Novel focus: rheology",
+        "Top current: applied mathematics",
+        "Top current: mechanical engineering",
+        "Top current: mathematics",
+        "Top current: applied physics",
+        "Top current: computer science"
+      ],
+      "transition_description": "84.2% new keywords (threshold=0.35) | Novel keywords: chemical engineering, thermal engineering, friction, theory of computation, rheology | Top keywords: applied mathematics, mechanical engineering, mathematics, applied physics, computer science (citation validated)",
+      "paradigm_significance": 0.9604281709285534
+    },
+    {
+      "year": 1945,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0323529411764705,
+      "supporting_evidence": [
+        "Novel focus: stochastic phenomenon",
+        "Novel focus: chemical engineering",
+        "Novel focus: thermal engineering",
+        "Novel focus: friction",
+        "Novel focus: stochastic calculus",
+        "Top current: applied mathematics",
+        "Top current: mechanical engineering",
+        "Top current: applied physics",
+        "Top current: mathematical optimization",
+        "Top current: optical properties"
+      ],
+      "transition_description": "76.5% new keywords (threshold=0.35) | Novel keywords: stochastic phenomenon, chemical engineering, thermal engineering, friction, stochastic calculus | Top keywords: applied mathematics, mechanical engineering, applied physics, mathematical optimization, optical properties (citation validated)",
+      "paradigm_significance": 0.8588235294117648
+    },
+    {
+      "year": 1947,
+      "confidence": 0.9998401534526855,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9998401534526855,
+      "supporting_evidence": [
+        "Novel focus: solid mechanics",
+        "Novel focus: matrix theory",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: thermal engineering",
+        "Novel focus: earth science",
+        "Top current: applied mathematics",
+        "Top current: applied physics",
+        "Top current: mechanical engineering",
+        "Top current: spectral theory",
+        "Top current: mathematical optimization"
+      ],
+      "transition_description": "75.5% new keywords (threshold=0.35) | Novel keywords: solid mechanics, matrix theory, numerical linear algebra, thermal engineering, earth science | Top keywords: applied mathematics, applied physics, mechanical engineering, spectral theory, mathematical optimization (citation validated)",
+      "paradigm_significance": 0.844373401534527
+    },
+    {
+      "year": 1948,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.17605537195236,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: numerical mathematics",
+        "Novel focus: quantum chemistry",
+        "Novel focus: probabilistic graph theory",
+        "Novel focus: nonlinear system",
+        "Top current: applied mathematics",
+        "Top current: applied physics",
+        "Top current: spectral theory",
+        "Top current: quantum chemistry",
+        "Top current: graph theory"
+      ],
+      "transition_description": "83.3% new keywords (threshold=0.35) | Novel keywords: systems engineering, numerical mathematics, quantum chemistry, probabilistic graph theory, nonlinear system | Top keywords: applied mathematics, applied physics, spectral theory, quantum chemistry, graph theory (citation validated)",
+      "paradigm_significance": 0.9226912764232712
+    },
+    {
+      "year": 1949,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0396593026350813,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: combinatorial theory",
+        "Novel focus: information theory",
+        "Novel focus: nonlinear system",
+        "Novel focus: thermodynamics",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: spectral theory",
+        "Top current: applied physics",
+        "Top current: graph theory"
+      ],
+      "transition_description": "79.2% new keywords (threshold=0.35) | Novel keywords: systems engineering, combinatorial theory, information theory, nonlinear system, thermodynamics | Top keywords: applied mathematics, mathematics, spectral theory, applied physics, graph theory (citation validated)",
+      "paradigm_significance": 0.8620708011711473
+    },
+    {
+      "year": 1950,
+      "confidence": 0.952325581395349,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.952325581395349,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: information theory",
+        "Novel focus: thermodynamics",
+        "Novel focus: dislocation interaction",
+        "Novel focus: machine learning research",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: spectral theory",
+        "Top current: mathematical optimization"
+      ],
+      "transition_description": "74.9% new keywords (threshold=0.35) | Novel keywords: systems engineering, information theory, thermodynamics, dislocation interaction, machine learning research | Top keywords: applied mathematics, mathematics, statistics, spectral theory, mathematical optimization (citation validated)",
+      "paradigm_significance": 0.8232558139534885
+    },
+    {
+      "year": 1951,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0040985221674876,
+      "supporting_evidence": [
+        "Novel focus: information theory",
+        "Novel focus: fluid mechanics",
+        "Novel focus: machine learning research",
+        "Novel focus: fluid flow",
+        "Novel focus: estimation theory",
+        "Top current: applied mathematics",
+        "Top current: mathematical optimization",
+        "Top current: spectral theory",
+        "Top current: mathematics",
+        "Top current: fluid flow"
+      ],
+      "transition_description": "74.5% new keywords (threshold=0.35) | Novel keywords: information theory, fluid mechanics, machine learning research, fluid flow, estimation theory | Top keywords: applied mathematics, mathematical optimization, spectral theory, mathematics, fluid flow (citation validated)",
+      "paradigm_significance": 0.8462660098522168
+    },
+    {
+      "year": 1952,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0300622171945704,
+      "supporting_evidence": [
+        "Novel focus: fluid mechanics",
+        "Novel focus: machine learning research",
+        "Novel focus: computational optimization",
+        "Novel focus: estimation theory",
+        "Novel focus: functional analysis",
+        "Top current: applied mathematics",
+        "Top current: mathematical optimization",
+        "Top current: statistics",
+        "Top current: numerical analysis",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "74.0% new keywords (threshold=0.35) | Novel keywords: fluid mechanics, machine learning research, computational optimization, estimation theory, functional analysis | Top keywords: applied mathematics, mathematical optimization, statistics, numerical analysis, machine learning research (citation validated)",
+      "paradigm_significance": 0.8578054298642535
+    },
+    {
+      "year": 1953,
+      "confidence": 0.9747508305647843,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9747508305647843,
+      "supporting_evidence": [
+        "Novel focus: finite universe",
+        "Novel focus: fluid mechanics",
+        "Novel focus: minimized iterations",
+        "Novel focus: computational optimization",
+        "Novel focus: probability theory",
+        "Top current: applied mathematics",
+        "Top current: statistical theory",
+        "Top current: mathematical optimization",
+        "Top current: numerical analysis",
+        "Top current: numerical method for partial differential equation"
+      ],
+      "transition_description": "71.4% new keywords (threshold=0.35) | Novel keywords: finite universe, fluid mechanics, minimized iterations, computational optimization, probability theory | Top keywords: applied mathematics, statistical theory, mathematical optimization, numerical analysis, numerical method for partial differential equation (citation validated)",
+      "paradigm_significance": 0.8332225913621264
+    },
+    {
+      "year": 1954,
+      "confidence": 0.9428764044943819,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9428764044943819,
+      "supporting_evidence": [
+        "Novel focus: finite universe",
+        "Novel focus: quantitative science study",
+        "Novel focus: minimized iterations",
+        "Novel focus: probability theory",
+        "Novel focus: low-rank approximation",
+        "Top current: applied mathematics",
+        "Top current: applied physics",
+        "Top current: statistical theory",
+        "Top current: mathematical optimization",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "70.8% new keywords (threshold=0.35) | Novel keywords: finite universe, quantitative science study, minimized iterations, probability theory, low-rank approximation | Top keywords: applied mathematics, applied physics, statistical theory, mathematical optimization, numerical analysis (citation validated)",
+      "paradigm_significance": 0.8190561797752809
+    },
+    {
+      "year": 1955,
+      "confidence": 0.9326721556886226,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9326721556886226,
+      "supporting_evidence": [
+        "Novel focus: finite universe",
+        "Novel focus: probability theory",
+        "Novel focus: sampling",
+        "Novel focus: sampling theory",
+        "Novel focus: sampling (statistics)",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: statistical theory",
+        "Top current: numerical simulation",
+        "Top current: mathematics"
+      ],
+      "transition_description": "70.1% new keywords (threshold=0.35) | Novel keywords: finite universe, probability theory, sampling, sampling theory, sampling (statistics) | Top keywords: applied mathematics, numerical analysis, statistical theory, numerical simulation, mathematics (citation validated)",
+      "paradigm_significance": 0.8145209580838323
+    },
+    {
+      "year": 1956,
+      "confidence": 0.8785630613041782,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8785630613041782,
+      "supporting_evidence": [
+        "Novel focus: thermal engineering",
+        "Novel focus: economics",
+        "Novel focus: formal methods",
+        "Novel focus: computational physic",
+        "Novel focus: stochastic optimization",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: applied physics",
+        "Top current: dynamical system",
+        "Top current: numerical simulation"
+      ],
+      "transition_description": "71.1% new keywords (threshold=0.35) | Novel keywords: thermal engineering, economics, formal methods, computational physic, stochastic optimization | Top keywords: applied mathematics, numerical analysis, applied physics, dynamical system, numerical simulation (citation validated)",
+      "paradigm_significance": 0.7904724716907459
+    },
+    {
+      "year": 1957,
+      "confidence": 0.8584387316900994,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8584387316900994,
+      "supporting_evidence": [
+        "Novel focus: numerical mathematics",
+        "Novel focus: optimization problem",
+        "Novel focus: numerical algorithm",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: economics",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: numerical simulation",
+        "Top current: mathematics",
+        "Top current: applied physics"
+      ],
+      "transition_description": "70.2% new keywords (threshold=0.35) | Novel keywords: numerical mathematics, optimization problem, numerical algorithm, combinatorial optimization, economics | Top keywords: applied mathematics, numerical analysis, numerical simulation, mathematics, applied physics (citation validated)",
+      "paradigm_significance": 0.7815283251955998
+    },
+    {
+      "year": 1958,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0371594838492029,
+      "supporting_evidence": [
+        "Novel focus: diffusion process",
+        "Novel focus: optimization problem",
+        "Novel focus: numerical algorithm",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: network optimization",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: mathematical optimization",
+        "Top current: numerical simulation",
+        "Top current: applied physics"
+      ],
+      "transition_description": "78.9% new keywords (threshold=0.35) | Novel keywords: diffusion process, optimization problem, numerical algorithm, combinatorial optimization, network optimization | Top keywords: applied mathematics, numerical analysis, mathematical optimization, numerical simulation, applied physics (citation validated)",
+      "paradigm_significance": 0.8609597705996458
+    },
+    {
+      "year": 1959,
+      "confidence": 0.8578628668607797,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8578628668607797,
+      "supporting_evidence": [
+        "Novel focus: diffusion process",
+        "Novel focus: systems engineering",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: network optimization",
+        "Novel focus: diffusion of innovation",
+        "Top current: applied mathematics",
+        "Top current: numerical simulation",
+        "Top current: numerical analysis",
+        "Top current: mathematical optimization",
+        "Top current: nonlinear dynamic"
+      ],
+      "transition_description": "69.0% new keywords (threshold=0.35) | Novel keywords: diffusion process, systems engineering, combinatorial optimization, network optimization, diffusion of innovation | Top keywords: applied mathematics, numerical simulation, numerical analysis, mathematical optimization, nonlinear dynamic (citation validated)",
+      "paradigm_significance": 0.7812723852714577
+    },
+    {
+      "year": 1960,
+      "confidence": 0.6802383869889719,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6802383869889719,
+      "supporting_evidence": [
+        "Novel focus: parameter identification",
+        "Novel focus: vehicle routing problem",
+        "Novel focus: statistical inference",
+        "Top current: applied mathematics",
+        "Top current: mathematical optimization",
+        "Top current: computer science",
+        "Top current: stochastic process",
+        "Top current: nonlinear dynamic",
+        "Citation acceleration/deceleration pattern detected",
+        "Multi-scale gradient analysis (1, 3, 5-year windows)"
+      ],
+      "transition_description": "61.2% new keywords (threshold=0.35) | Novel keywords: parameter identification, vehicle routing problem, statistical inference | Top keywords: applied mathematics, mathematical optimization, computer science, stochastic process, nonlinear dynamic (citation validated)",
+      "paradigm_significance": 0.7023281719950987
+    },
+    {
+      "year": 1961,
+      "confidence": 0.8890020976925381,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8890020976925381,
+      "supporting_evidence": [
+        "Novel focus: quantitative science study",
+        "Novel focus: parameter identification",
+        "Novel focus: high-dimensional statistics",
+        "Novel focus: statistical methodology",
+        "Novel focus: computational science",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: statistics",
+        "Top current: biostatistics"
+      ],
+      "transition_description": "64.5% new keywords (threshold=0.35) | Novel keywords: quantitative science study, parameter identification, high-dimensional statistics, statistical methodology, computational science | Top keywords: applied mathematics, computer science, mathematical optimization, statistics, biostatistics (citation validated)",
+      "paradigm_significance": 0.7951120434189058
+    },
+    {
+      "year": 1962,
+      "confidence": 0.9996095275283093,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9996095275283093,
+      "supporting_evidence": [
+        "Novel focus: quantitative science study",
+        "Novel focus: machine learning research",
+        "Novel focus: uncertainty analysis",
+        "Novel focus: asymptotic analysis",
+        "Novel focus: approximation theory",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: statistics",
+        "Top current: computer science",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "68.4% new keywords (threshold=0.35) | Novel keywords: quantitative science study, machine learning research, uncertainty analysis, asymptotic analysis, approximation theory | Top keywords: applied mathematics, numerical analysis, statistics, computer science, machine learning research (citation validated)",
+      "paradigm_significance": 0.8442709011236931
+    },
+    {
+      "year": 1963,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0128462464873544,
+      "supporting_evidence": [
+        "Novel focus: numerical algorithm",
+        "Novel focus: quantitative science study",
+        "Novel focus: uncertainty analysis",
+        "Novel focus: asymptotic analysis",
+        "Novel focus: nonlinear analysis",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: numerical analysis",
+        "Top current: numerical algorithm"
+      ],
+      "transition_description": "73.0% new keywords (threshold=0.35) | Novel keywords: numerical algorithm, quantitative science study, uncertainty analysis, asymptotic analysis, nonlinear analysis | Top keywords: applied mathematics, computer science, mathematical optimization, numerical analysis, numerical algorithm (citation validated)",
+      "paradigm_significance": 0.8501538873277131
+    },
+    {
+      "year": 1964,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.006461780929866,
+      "supporting_evidence": [
+        "Novel focus: nonlinear science",
+        "Novel focus: nonlinear analysis",
+        "Novel focus: stochastic process",
+        "Novel focus: differential geometry",
+        "Novel focus: geometric analysis",
+        "Top current: applied mathematics",
+        "Top current: mathematical optimization",
+        "Top current: computer science",
+        "Top current: numerical mathematics",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "76.5% new keywords (threshold=0.35) | Novel keywords: nonlinear science, nonlinear analysis, stochastic process, differential geometry, geometric analysis | Top keywords: applied mathematics, mathematical optimization, computer science, numerical mathematics, numerical analysis (citation validated)",
+      "paradigm_significance": 0.8473163470799405
+    },
+    {
+      "year": 1965,
+      "confidence": 0.9390992427261857,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9390992427261857,
+      "supporting_evidence": [
+        "Novel focus: algebraic logic",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: estimation theory",
+        "Novel focus: geometric topology",
+        "Novel focus: stochastic process",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: computational optimization",
+        "Top current: mathematics"
+      ],
+      "transition_description": "79.3% new keywords (threshold=0.35) | Novel keywords: algebraic logic, combinatorial optimization, estimation theory, geometric topology, stochastic process | Top keywords: applied mathematics, computer science, mathematical optimization, computational optimization, mathematics (citation validated)",
+      "paradigm_significance": 0.8173774412116381
+    },
+    {
+      "year": 1966,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.033270769534723,
+      "supporting_evidence": [
+        "Novel focus: function minimization",
+        "Novel focus: fluid mechanics",
+        "Novel focus: fluid flow",
+        "Novel focus: fourier expansion",
+        "Novel focus: estimation theory",
+        "Top current: applied mathematics",
+        "Top current: mathematical optimization",
+        "Top current: statistics",
+        "Top current: numerical analysis",
+        "Top current: fluid dynamics"
+      ],
+      "transition_description": "78.0% new keywords (threshold=0.35) | Novel keywords: function minimization, fluid mechanics, fluid flow, fourier expansion, estimation theory | Top keywords: applied mathematics, mathematical optimization, statistics, numerical analysis, fluid dynamics (citation validated)",
+      "paradigm_significance": 0.8592314531265436
+    },
+    {
+      "year": 1967,
+      "confidence": 0.9346031746031747,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9346031746031747,
+      "supporting_evidence": [
+        "Novel focus: function minimization",
+        "Novel focus: fourier expansion",
+        "Novel focus: functional analysis",
+        "Novel focus: generalized function",
+        "Novel focus: operator theory",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: mathematical optimization",
+        "Top current: mathematics",
+        "Top current: statistics"
+      ],
+      "transition_description": "73.1% new keywords (threshold=0.35) | Novel keywords: function minimization, fourier expansion, functional analysis, generalized function, operator theory | Top keywords: applied mathematics, numerical analysis, mathematical optimization, mathematics, statistics (citation validated)",
+      "paradigm_significance": 0.8153791887125221
+    },
+    {
+      "year": 1968,
+      "confidence": 0.800139011752812,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.800139011752812,
+      "supporting_evidence": [
+        "Novel focus: fourier expansion",
+        "Novel focus: generalized function",
+        "Novel focus: asymptotic analysis",
+        "Novel focus: computational physic",
+        "Novel focus: representation theory",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: mathematics",
+        "Top current: numerical simulation",
+        "Top current: numerical method for partial differential equation"
+      ],
+      "transition_description": "64.0% new keywords (threshold=0.35) | Novel keywords: fourier expansion, generalized function, asymptotic analysis, computational physic, representation theory | Top keywords: applied mathematics, numerical analysis, mathematics, numerical simulation, numerical method for partial differential equation (citation validated)",
+      "paradigm_significance": 0.7556173385568054
+    },
+    {
+      "year": 1970,
+      "confidence": 0.9728379486532519,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9728379486532519,
+      "supporting_evidence": [
+        "Novel focus: numerical algorithm",
+        "Novel focus: asymptotic analysis",
+        "Novel focus: scientific computing",
+        "Novel focus: numerical solution",
+        "Novel focus: partial differential equation",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: numerical analysis",
+        "Top current: numerical simulation",
+        "Top current: numerical method for partial differential equation"
+      ],
+      "transition_description": "71.7% new keywords (threshold=0.35) | Novel keywords: numerical algorithm, asymptotic analysis, scientific computing, numerical solution, partial differential equation | Top keywords: applied mathematics, mathematics, numerical analysis, numerical simulation, numerical method for partial differential equation (citation validated)",
+      "paradigm_significance": 0.8323724216236675
+    },
+    {
+      "year": 1971,
+      "confidence": 0.8937282229965157,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8937282229965157,
+      "supporting_evidence": [
+        "Novel focus: scientific computing",
+        "Novel focus: friction",
+        "Novel focus: vector space model",
+        "Novel focus: strain localization",
+        "Novel focus: numerical computation",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: computer science",
+        "Top current: numerical simulation",
+        "Top current: numerical method for partial differential equation"
+      ],
+      "transition_description": "69.5% new keywords (threshold=0.35) | Novel keywords: scientific computing, friction, vector space model, strain localization, numerical computation | Top keywords: applied mathematics, numerical analysis, computer science, numerical simulation, numerical method for partial differential equation (citation validated)",
+      "paradigm_significance": 0.797212543554007
+    },
+    {
+      "year": 1972,
+      "confidence": 0.8502439024390245,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8502439024390245,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: principal component analysis",
+        "Novel focus: clustering",
+        "Novel focus: friction",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: computer science",
+        "Top current: numerical simulation",
+        "Top current: statistics"
+      ],
+      "transition_description": "73.8% new keywords (threshold=0.35) | Novel keywords: systems engineering, combinatorial optimization, principal component analysis, clustering, friction | Top keywords: applied mathematics, numerical analysis, computer science, numerical simulation, statistics (citation validated)",
+      "paradigm_significance": 0.7778861788617887
+    },
+    {
+      "year": 1973,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0613884107860012,
+      "supporting_evidence": [
+        "Novel focus: turbulence modeling",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: fluid mechanics",
+        "Novel focus: principal component analysis",
+        "Novel focus: nonlinear science",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: statistics",
+        "Top current: numerical analysis",
+        "Top current: mathematical optimization"
+      ],
+      "transition_description": "78.3% new keywords (threshold=0.35) | Novel keywords: turbulence modeling, combinatorial optimization, fluid mechanics, principal component analysis, nonlinear science | Top keywords: applied mathematics, computer science, statistics, numerical analysis, mathematical optimization (citation validated)",
+      "paradigm_significance": 0.8717281825715562
+    },
+    {
+      "year": 1974,
+      "confidence": 0.9911614965664219,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9911614965664219,
+      "supporting_evidence": [
+        "Novel focus: turbulence modeling",
+        "Novel focus: fluid mechanics",
+        "Novel focus: nonlinear science",
+        "Novel focus: fluid flow",
+        "Novel focus: clustering",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "77.2% new keywords (threshold=0.35) | Novel keywords: turbulence modeling, fluid mechanics, nonlinear science, fluid flow, clustering | Top keywords: applied mathematics, computer science, mathematics, statistics, numerical analysis (citation validated)",
+      "paradigm_significance": 0.8405162206961876
+    },
+    {
+      "year": 1975,
+      "confidence": 0.939305389221557,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.939305389221557,
+      "supporting_evidence": [
+        "Novel focus: turbulence modeling",
+        "Novel focus: fluid mechanics",
+        "Novel focus: fluid flow",
+        "Novel focus: applied statistics",
+        "Novel focus: unsteady flow",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: fluid dynamics",
+        "Top current: mathematics"
+      ],
+      "transition_description": "68.3% new keywords (threshold=0.35) | Novel keywords: turbulence modeling, fluid mechanics, fluid flow, applied statistics, unsteady flow | Top keywords: applied mathematics, computer science, mathematical optimization, fluid dynamics, mathematics (citation validated)",
+      "paradigm_significance": 0.8174690618762477
+    },
+    {
+      "year": 1976,
+      "confidence": 0.9102990033222592,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9102990033222592,
+      "supporting_evidence": [
+        "Novel focus: numerical algorithm",
+        "Novel focus: applied statistics",
+        "Novel focus: mathematical statistic",
+        "Novel focus: computational complexity",
+        "Novel focus: computational statistic",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: applied statistics"
+      ],
+      "transition_description": "69.8% new keywords (threshold=0.35) | Novel keywords: numerical algorithm, applied statistics, mathematical statistic, computational complexity, computational statistic | Top keywords: applied mathematics, statistics, computer science, mathematical optimization, applied statistics (citation validated)",
+      "paradigm_significance": 0.804577334809893
+    },
+    {
+      "year": 1977,
+      "confidence": 0.9315907393577296,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9315907393577296,
+      "supporting_evidence": [
+        "Novel focus: inverse problems",
+        "Novel focus: control optimization",
+        "Novel focus: algebraic graph theory",
+        "Novel focus: fuzzy logic",
+        "Novel focus: network analysis",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: statistics",
+        "Top current: applied physics",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "69.2% new keywords (threshold=0.35) | Novel keywords: inverse problems, control optimization, algebraic graph theory, fuzzy logic, network analysis | Top keywords: applied mathematics, computer science, statistics, applied physics, machine learning research (citation validated)",
+      "paradigm_significance": 0.8140403286034354
+    },
+    {
+      "year": 1978,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0369415016121604,
+      "supporting_evidence": [
+        "Novel focus: spectral theory",
+        "Novel focus: numerical method for partial differential equation",
+        "Novel focus: biostatistics",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: statistics",
+        "Top current: machine learning research",
+        "Top current: biostatistics",
+        "Citation acceleration/deceleration pattern detected",
+        "Multi-scale gradient analysis (1, 3, 5-year windows)"
+      ],
+      "transition_description": "71.8% new keywords (threshold=0.35) | Novel keywords: spectral theory, numerical method for partial differential equation, biostatistics | Top keywords: applied mathematics, computer science, statistics, machine learning research, biostatistics (citation validated)",
+      "paradigm_significance": 0.8608628896054046
+    },
+    {
+      "year": 1979,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0611799466260008,
+      "supporting_evidence": [
+        "Novel focus: spectral theory",
+        "Novel focus: partial differential equation",
+        "Novel focus: mathematical analysis",
+        "Novel focus: numerical method for partial differential equation",
+        "Novel focus: numerical computation",
+        "Top current: applied mathematics",
+        "Top current: numerical simulation",
+        "Top current: numerical method for partial differential equation",
+        "Top current: numerical analysis",
+        "Top current: applied physics"
+      ],
+      "transition_description": "73.0% new keywords (threshold=0.35) | Novel keywords: spectral theory, partial differential equation, mathematical analysis, numerical method for partial differential equation, numerical computation | Top keywords: applied mathematics, numerical simulation, numerical method for partial differential equation, numerical analysis, applied physics (citation validated)",
+      "paradigm_significance": 0.8716355318337782
+    },
+    {
+      "year": 1980,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.1142467000455167,
+      "supporting_evidence": [
+        "Novel focus: numerical mathematics",
+        "Novel focus: functional analysis",
+        "Novel focus: partial differential equation",
+        "Novel focus: mathematics",
+        "Novel focus: mathematical analysis",
+        "Top current: applied mathematics",
+        "Top current: mathematical optimization",
+        "Top current: numerical simulation",
+        "Top current: numerical analysis",
+        "Top current: numerical computation"
+      ],
+      "transition_description": "76.9% new keywords (threshold=0.35) | Novel keywords: numerical mathematics, functional analysis, partial differential equation, mathematics, mathematical analysis | Top keywords: applied mathematics, mathematical optimization, numerical simulation, numerical analysis, numerical computation (citation validated)",
+      "paradigm_significance": 0.8952207555757852
+    },
+    {
+      "year": 1981,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.1472064777327935,
+      "supporting_evidence": [
+        "Novel focus: optimization problem",
+        "Novel focus: financial econometrics",
+        "Novel focus: macroeconomics",
+        "Novel focus: computational optimization",
+        "Novel focus: estimation theory",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: numerical simulation",
+        "Top current: mathematical optimization",
+        "Top current: statistical methodology"
+      ],
+      "transition_description": "84.7% new keywords (threshold=0.35) | Novel keywords: optimization problem, financial econometrics, macroeconomics, computational optimization, estimation theory | Top keywords: applied mathematics, statistics, numerical simulation, mathematical optimization, statistical methodology (citation validated)",
+      "paradigm_significance": 0.9098695456590193
+    },
+    {
+      "year": 1982,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0719798234552331,
+      "supporting_evidence": [
+        "Novel focus: optimization problem",
+        "Novel focus: financial econometrics",
+        "Novel focus: macroeconomics",
+        "Novel focus: econometric method",
+        "Novel focus: earth science",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: mathematical optimization",
+        "Top current: statistical methodology",
+        "Top current: economics"
+      ],
+      "transition_description": "82.6% new keywords (threshold=0.35) | Novel keywords: optimization problem, financial econometrics, macroeconomics, econometric method, earth science | Top keywords: applied mathematics, statistics, mathematical optimization, statistical methodology, economics (citation validated)",
+      "paradigm_significance": 0.8764354770912148
+    },
+    {
+      "year": 1983,
+      "confidence": 0.9158480074142725,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9158480074142725,
+      "supporting_evidence": [
+        "Novel focus: quantitative science study",
+        "Novel focus: principal component analysis",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: applied statistics",
+        "Novel focus: sparse representation",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: statistical methodology",
+        "Top current: economics",
+        "Top current: computer science"
+      ],
+      "transition_description": "73.5% new keywords (threshold=0.35) | Novel keywords: quantitative science study, principal component analysis, numerical linear algebra, applied statistics, sparse representation | Top keywords: applied mathematics, statistics, statistical methodology, economics, computer science (citation validated)",
+      "paradigm_significance": 0.8070435588507878
+    },
+    {
+      "year": 1984,
+      "confidence": 0.9891356127545141,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9891356127545141,
+      "supporting_evidence": [
+        "Novel focus: principal component analysis",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: transport phenomena",
+        "Novel focus: sparse representation",
+        "Novel focus: systems modeling",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: machine learning research",
+        "Top current: numerical method for partial differential equation",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "70.1% new keywords (threshold=0.35) | Novel keywords: principal component analysis, numerical linear algebra, transport phenomena, sparse representation, systems modeling | Top keywords: applied mathematics, statistics, machine learning research, numerical method for partial differential equation, numerical analysis (citation validated)",
+      "paradigm_significance": 0.8396158278908952
+    },
+    {
+      "year": 1986,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0300729927007302,
+      "supporting_evidence": [
+        "Novel focus: function space",
+        "Novel focus: general system",
+        "Novel focus: sparse representation",
+        "Novel focus: nonlinear time series",
+        "Novel focus: time series",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: machine learning research",
+        "Top current: computer science",
+        "Top current: statistical theory"
+      ],
+      "transition_description": "71.5% new keywords (threshold=0.35) | Novel keywords: function space, general system, sparse representation, nonlinear time series, time series | Top keywords: applied mathematics, statistics, machine learning research, computer science, statistical theory (citation validated)",
+      "paradigm_significance": 0.8578102189781023
+    },
+    {
+      "year": 1987,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.037663698271346,
+      "supporting_evidence": [
+        "Novel focus: chaotic mixing",
+        "Novel focus: nonlinear science",
+        "Novel focus: function space",
+        "Novel focus: general system",
+        "Novel focus: partial differential equation",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: statistical theory",
+        "Top current: computer science",
+        "Top current: mathematics"
+      ],
+      "transition_description": "77.2% new keywords (threshold=0.35) | Novel keywords: chaotic mixing, nonlinear science, function space, general system, partial differential equation | Top keywords: applied mathematics, statistics, statistical theory, computer science, mathematics (citation validated)",
+      "paradigm_significance": 0.8611838658983761
+    },
+    {
+      "year": 1988,
+      "confidence": 0.9286372333640422,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9286372333640422,
+      "supporting_evidence": [
+        "Novel focus: geometric modeling",
+        "Novel focus: geometry processing",
+        "Novel focus: sampling",
+        "Novel focus: computational geometry",
+        "Novel focus: applied statistics",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: statistical inference",
+        "Top current: computational statistic",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "77.7% new keywords (threshold=0.35) | Novel keywords: geometric modeling, geometry processing, sampling, computational geometry, applied statistics | Top keywords: applied mathematics, statistics, statistical inference, computational statistic, machine learning research (citation validated)",
+      "paradigm_significance": 0.8127276592729077
+    },
+    {
+      "year": 1989,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0101544541678429,
+      "supporting_evidence": [
+        "Novel focus: geometric modeling",
+        "Novel focus: numerical mathematics",
+        "Novel focus: geometry processing",
+        "Novel focus: numerical algorithm",
+        "Novel focus: computational optimization",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: statistical methodology",
+        "Top current: numerical analysis",
+        "Top current: computer science"
+      ],
+      "transition_description": "78.5% new keywords (threshold=0.35) | Novel keywords: geometric modeling, numerical mathematics, geometry processing, numerical algorithm, computational optimization | Top keywords: applied mathematics, statistics, statistical methodology, numerical analysis, computer science (citation validated)",
+      "paradigm_significance": 0.848957535185708
+    },
+    {
+      "year": 1990,
+      "confidence": 0.7623802505526895,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7623802505526895,
+      "supporting_evidence": [
+        "Novel focus: regression analysis",
+        "Novel focus: complex analysis",
+        "Novel focus: stochastic calculus",
+        "Novel focus: mathematical analysis",
+        "Novel focus: engineering",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: statistics",
+        "Top current: mathematical optimization",
+        "Top current: statistical methodology"
+      ],
+      "transition_description": "64.4% new keywords (threshold=0.35) | Novel keywords: regression analysis, complex analysis, stochastic calculus, mathematical analysis, engineering | Top keywords: applied mathematics, numerical analysis, statistics, mathematical optimization, statistical methodology (citation validated)",
+      "paradigm_significance": 0.7388356669123065
+    },
+    {
+      "year": 1991,
+      "confidence": 0.7151823668328522,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7151823668328522,
+      "supporting_evidence": [
+        "Novel focus: modeling and simulation",
+        "Novel focus: design optimization",
+        "Novel focus: regression analysis",
+        "Novel focus: deterministic dynamical system",
+        "Novel focus: global optimization",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: statistics",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "61.1% new keywords (threshold=0.35) | Novel keywords: modeling and simulation, design optimization, regression analysis, deterministic dynamical system, global optimization | Top keywords: applied mathematics, computer science, mathematical optimization, statistics, numerical analysis (citation validated)",
+      "paradigm_significance": 0.7178588297034899
+    },
+    {
+      "year": 1992,
+      "confidence": 0.8140365268160874,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8140365268160874,
+      "supporting_evidence": [
+        "Novel focus: digital image processing",
+        "Novel focus: design optimization",
+        "Novel focus: automatic control",
+        "Novel focus: functional analysis",
+        "Novel focus: statistical model",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: statistics",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "71.2% new keywords (threshold=0.35) | Novel keywords: digital image processing, design optimization, automatic control, functional analysis, statistical model | Top keywords: applied mathematics, computer science, mathematical optimization, statistics, machine learning research (citation validated)",
+      "paradigm_significance": 0.7617940119182611
+    },
+    {
+      "year": 1993,
+      "confidence": 0.924844977263332,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.924844977263332,
+      "supporting_evidence": [
+        "Novel focus: active control",
+        "Novel focus: machine learning",
+        "Novel focus: digital image processing",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: model selection",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: statistics",
+        "Top current: mathematical optimization",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "76.4% new keywords (threshold=0.35) | Novel keywords: active control, machine learning, digital image processing, numerical linear algebra, model selection | Top keywords: applied mathematics, computer science, statistics, mathematical optimization, numerical analysis (citation validated)",
+      "paradigm_significance": 0.8110422121170364
+    },
+    {
+      "year": 1994,
+      "confidence": 0.7517374517374515,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7517374517374515,
+      "supporting_evidence": [
+        "Novel focus: active control",
+        "Novel focus: machine learning",
+        "Novel focus: quantitative science study",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: fractional-order system",
+        "Top current: applied mathematics",
+        "Top current: statistics",
+        "Top current: numerical analysis",
+        "Top current: computer science",
+        "Top current: applied physics"
+      ],
+      "transition_description": "70.2% new keywords (threshold=0.35) | Novel keywords: active control, machine learning, quantitative science study, numerical linear algebra, fractional-order system | Top keywords: applied mathematics, statistics, numerical analysis, computer science, applied physics (citation validated)",
+      "paradigm_significance": 0.734105534105534
+    },
+    {
+      "year": 1995,
+      "confidence": 0.8802044553558852,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8802044553558852,
+      "supporting_evidence": [
+        "Novel focus: network science",
+        "Novel focus: fractional-order system",
+        "Novel focus: economics",
+        "Novel focus: scientific computing",
+        "Novel focus: decision theory",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: numerical simulation",
+        "Top current: numerical mathematics",
+        "Top current: computer science"
+      ],
+      "transition_description": "69.1% new keywords (threshold=0.35) | Novel keywords: network science, fractional-order system, economics, scientific computing, decision theory | Top keywords: applied mathematics, numerical analysis, numerical simulation, numerical mathematics, computer science (citation validated)",
+      "paradigm_significance": 0.7912019801581712
+    },
+    {
+      "year": 1996,
+      "confidence": 0.9705284552845527,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9705284552845527,
+      "supporting_evidence": [
+        "Novel focus: parameter estimation",
+        "Novel focus: estimation theory",
+        "Novel focus: finite element method",
+        "Novel focus: mathematical programming",
+        "Novel focus: fractional-order system",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: numerical mathematics",
+        "Top current: numerical simulation",
+        "Top current: statistics"
+      ],
+      "transition_description": "69.4% new keywords (threshold=0.35) | Novel keywords: parameter estimation, estimation theory, finite element method, mathematical programming, fractional-order system | Top keywords: applied mathematics, numerical analysis, numerical mathematics, numerical simulation, statistics (citation validated)",
+      "paradigm_significance": 0.8313459801264679
+    },
+    {
+      "year": 1997,
+      "confidence": 0.8060695780903036,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8060695780903036,
+      "supporting_evidence": [
+        "Novel focus: mathematical programming",
+        "Novel focus: convex optimization",
+        "Novel focus: econometric method",
+        "Novel focus: distributed system",
+        "Novel focus: approximation method",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: numerical mathematics"
+      ],
+      "transition_description": "62.7% new keywords (threshold=0.35) | Novel keywords: mathematical programming, convex optimization, econometric method, distributed system, approximation method | Top keywords: applied mathematics, numerical analysis, computer science, mathematical optimization, numerical mathematics (citation validated)",
+      "paradigm_significance": 0.7582531458179127
+    },
+    {
+      "year": 1998,
+      "confidence": 0.7628051284391113,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7628051284391113,
+      "supporting_evidence": [
+        "Novel focus: machine learning research",
+        "Novel focus: bootstrap resampling",
+        "Novel focus: parameter identification",
+        "Novel focus: theory of computation",
+        "Novel focus: engineering",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: computational optimization",
+        "Top current: machine learning research",
+        "Top current: computer science"
+      ],
+      "transition_description": "63.9% new keywords (threshold=0.35) | Novel keywords: machine learning research, bootstrap resampling, parameter identification, theory of computation, engineering | Top keywords: applied mathematics, numerical analysis, computational optimization, machine learning research, computer science (citation validated)",
+      "paradigm_significance": 0.739024501528494
+    },
+    {
+      "year": 1999,
+      "confidence": 0.8954128440366973,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8954128440366973,
+      "supporting_evidence": [
+        "Novel focus: geometric modeling",
+        "Novel focus: mathematical model",
+        "Novel focus: fluid mechanics",
+        "Novel focus: modeling and simulation",
+        "Novel focus: low-rank approximation",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: systems engineering",
+        "Top current: numerical analysis",
+        "Top current: mathematics"
+      ],
+      "transition_description": "73.4% new keywords (threshold=0.35) | Novel keywords: geometric modeling, mathematical model, fluid mechanics, modeling and simulation, low-rank approximation | Top keywords: applied mathematics, computer science, systems engineering, numerical analysis, mathematics (citation validated)",
+      "paradigm_significance": 0.79796126401631
+    },
+    {
+      "year": 2000,
+      "confidence": 0.7353019395662341,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7353019395662341,
+      "supporting_evidence": [
+        "Novel focus: bootstrap methods",
+        "Novel focus: combinatorial theory",
+        "Novel focus: fluid mechanics",
+        "Novel focus: numerical linear algebra",
+        "Novel focus: geometric topology",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematics",
+        "Top current: statistics",
+        "Top current: systems engineering"
+      ],
+      "transition_description": "66.8% new keywords (threshold=0.35) | Novel keywords: bootstrap methods, combinatorial theory, fluid mechanics, numerical linear algebra, geometric topology | Top keywords: applied mathematics, computer science, mathematics, statistics, systems engineering (citation validated)",
+      "paradigm_significance": 0.7268008620294374
+    },
+    {
+      "year": 2001,
+      "confidence": 0.8041804180418042,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8041804180418042,
+      "supporting_evidence": [
+        "Novel focus: digital image processing",
+        "Novel focus: nonlinear science",
+        "Novel focus: fluid flow",
+        "Novel focus: mathematical programming",
+        "Novel focus: numerical linear algebra",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematics",
+        "Top current: machine learning research",
+        "Top current: statistics"
+      ],
+      "transition_description": "70.0% new keywords (threshold=0.35) | Novel keywords: digital image processing, nonlinear science, fluid flow, mathematical programming, numerical linear algebra | Top keywords: applied mathematics, computer science, mathematics, machine learning research, statistics (citation validated)",
+      "paradigm_significance": 0.7574135191296908
+    },
+    {
+      "year": 2002,
+      "confidence": 0.8375806999660211,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8375806999660211,
+      "supporting_evidence": [
+        "Novel focus: digital image processing",
+        "Novel focus: design optimization",
+        "Novel focus: mathematical programming",
+        "Novel focus: performance evaluation",
+        "Novel focus: geometric topology",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: mathematics",
+        "Top current: graph theory"
+      ],
+      "transition_description": "70.0% new keywords (threshold=0.35) | Novel keywords: digital image processing, design optimization, mathematical programming, performance evaluation, geometric topology | Top keywords: applied mathematics, computer science, machine learning research, mathematics, graph theory (citation validated)",
+      "paradigm_significance": 0.7722580888737872
+    },
+    {
+      "year": 2003,
+      "confidence": 0.8770262930896777,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8770262930896777,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: trajectory optimization",
+        "Novel focus: machine learning",
+        "Novel focus: knowledge discovery",
+        "Novel focus: harmonic analysis",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: image analysis",
+        "Top current: machine learning"
+      ],
+      "transition_description": "72.9% new keywords (threshold=0.35) | Novel keywords: information fusion, trajectory optimization, machine learning, knowledge discovery, harmonic analysis | Top keywords: applied mathematics, computer science, machine learning research, image analysis, machine learning (citation validated)",
+      "paradigm_significance": 0.7897894635954124
+    },
+    {
+      "year": 2004,
+      "confidence": 0.9752678298132844,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9752678298132844,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: numerical algorithm",
+        "Novel focus: knowledge discovery",
+        "Novel focus: evolutionary computation",
+        "Novel focus: harmonic analysis",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: machine learning",
+        "Top current: mathematical optimization"
+      ],
+      "transition_description": "73.6% new keywords (threshold=0.35) | Novel keywords: information fusion, numerical algorithm, knowledge discovery, evolutionary computation, harmonic analysis | Top keywords: applied mathematics, computer science, machine learning research, machine learning, mathematical optimization (citation validated)",
+      "paradigm_significance": 0.8334523688059042
+    },
+    {
+      "year": 2005,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.0432860844383478,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: homological algebra",
+        "Novel focus: nonlinear system",
+        "Novel focus: knowledge discovery",
+        "Novel focus: evolutionary computation",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: machine learning",
+        "Top current: data science"
+      ],
+      "transition_description": "76.1% new keywords (threshold=0.35) | Novel keywords: information fusion, homological algebra, nonlinear system, knowledge discovery, evolutionary computation | Top keywords: applied mathematics, computer science, machine learning research, machine learning, data science (citation validated)",
+      "paradigm_significance": 0.8636827041948213
+    },
+    {
+      "year": 2006,
+      "confidence": 0.9429322491325225,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9429322491325225,
+      "supporting_evidence": [
+        "Novel focus: numerical mathematics",
+        "Novel focus: homological algebra",
+        "Novel focus: analytic combinatorics",
+        "Novel focus: statistical inference",
+        "Novel focus: reproducing kernel method",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: numerical analysis",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "68.4% new keywords (threshold=0.35) | Novel keywords: numerical mathematics, homological algebra, analytic combinatorics, statistical inference, reproducing kernel method | Top keywords: applied mathematics, computer science, mathematical optimization, numerical analysis, machine learning research (citation validated)",
+      "paradigm_significance": 0.8190809996144545
+    },
+    {
+      "year": 2007,
+      "confidence": 0.9924715909090908,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9924715909090908,
+      "supporting_evidence": [
+        "Novel focus: diffusion process",
+        "Novel focus: combinatorial theory",
+        "Novel focus: numerical mathematics",
+        "Novel focus: homological algebra",
+        "Novel focus: structural equation modeling",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: numerical analysis",
+        "Top current: pattern recognition"
+      ],
+      "transition_description": "71.4% new keywords (threshold=0.35) | Novel keywords: diffusion process, combinatorial theory, numerical mathematics, homological algebra, structural equation modeling | Top keywords: applied mathematics, computer science, mathematical optimization, numerical analysis, pattern recognition (citation validated)",
+      "paradigm_significance": 0.8410984848484848
+    },
+    {
+      "year": 2008,
+      "confidence": 0.9768959435626102,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9768959435626102,
+      "supporting_evidence": [
+        "Novel focus: finite element method",
+        "Novel focus: materials science",
+        "Novel focus: complex system",
+        "Novel focus: numerical computation",
+        "Novel focus: electrical engineering",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: numerical analysis",
+        "Top current: mathematical optimization",
+        "Top current: numerical simulation"
+      ],
+      "transition_description": "69.0% new keywords (threshold=0.35) | Novel keywords: finite element method, materials science, complex system, numerical computation, electrical engineering | Top keywords: applied mathematics, computer science, numerical analysis, mathematical optimization, numerical simulation (citation validated)",
+      "paradigm_significance": 0.8341759749167157
+    },
+    {
+      "year": 2009,
+      "confidence": 0.8770278734732226,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8770278734732226,
+      "supporting_evidence": [
+        "Novel focus: finite element method",
+        "Novel focus: sampling",
+        "Novel focus: complex system",
+        "Novel focus: systems biology",
+        "Novel focus: matrix factorization",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: computational science",
+        "Top current: numerical simulation",
+        "Top current: statistics"
+      ],
+      "transition_description": "68.3% new keywords (threshold=0.35) | Novel keywords: finite element method, sampling, complex system, systems biology, matrix factorization | Top keywords: applied mathematics, computer science, computational science, numerical simulation, statistics (citation validated)",
+      "paradigm_significance": 0.789790165988099
+    },
+    {
+      "year": 2010,
+      "confidence": 0.9934136771300447,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9934136771300447,
+      "supporting_evidence": [
+        "Novel focus: probabilistic system",
+        "Novel focus: algorithmic development",
+        "Novel focus: evolutionary computation",
+        "Novel focus: principal component analysis",
+        "Novel focus: sampling",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: mathematical optimization",
+        "Top current: numerical analysis",
+        "Top current: statistics"
+      ],
+      "transition_description": "76.2% new keywords (threshold=0.35) | Novel keywords: probabilistic system, algorithmic development, evolutionary computation, principal component analysis, sampling | Top keywords: applied mathematics, computer science, mathematical optimization, numerical analysis, statistics (citation validated)",
+      "paradigm_significance": 0.8415171898355754
+    },
+    {
+      "year": 2011,
+      "confidence": 0.965597667638484,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.965597667638484,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: optimization problem",
+        "Novel focus: machine learning",
+        "Novel focus: algorithmic development",
+        "Novel focus: evolutionary computation",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: statistics",
+        "Top current: numerical analysis",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "78.4% new keywords (threshold=0.35) | Novel keywords: information fusion, optimization problem, machine learning, algorithmic development, evolutionary computation | Top keywords: applied mathematics, computer science, statistics, numerical analysis, machine learning research (citation validated)",
+      "paradigm_significance": 0.8291545189504373
+    },
+    {
+      "year": 2013,
+      "confidence": 0.9087570860478889,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9087570860478889,
+      "supporting_evidence": [
+        "Novel focus: geometry processing",
+        "Novel focus: knowledge discovery",
+        "Novel focus: 3d computer vision",
+        "Novel focus: random matrix",
+        "Novel focus: regression analysis",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: machine learning research",
+        "Top current: pattern recognition"
+      ],
+      "transition_description": "73.6% new keywords (threshold=0.35) | Novel keywords: geometry processing, knowledge discovery, 3d computer vision, random matrix, regression analysis | Top keywords: applied mathematics, computer science, machine learning, machine learning research, pattern recognition (citation validated)",
+      "paradigm_significance": 0.8038920382435062
+    },
+    {
+      "year": 2014,
+      "confidence": 0.9999240626483151,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9999240626483151,
+      "supporting_evidence": [
+        "Novel focus: matrix theory",
+        "Novel focus: structural engineering",
+        "Novel focus: 3d computer vision",
+        "Novel focus: random matrix",
+        "Novel focus: structural optimization",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: systems engineering",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "75.2% new keywords (threshold=0.35) | Novel keywords: matrix theory, structural engineering, 3d computer vision, random matrix, structural optimization | Top keywords: applied mathematics, computer science, machine learning, systems engineering, machine learning research (citation validated)",
+      "paradigm_significance": 0.8444106945103623
+    },
+    {
+      "year": 2015,
+      "confidence": 0.6369135590307613,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.6369135590307613,
+      "supporting_evidence": [
+        "Novel focus: structural engineering",
+        "Novel focus: principal component analysis",
+        "Novel focus: structural chemistry",
+        "Novel focus: structural optimization",
+        "Novel focus: performance evaluation",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: numerical analysis",
+        "Top current: mathematical optimization",
+        "Top current: machine learning"
+      ],
+      "transition_description": "84.2% new keywords (threshold=0.35) | Novel keywords: structural engineering, principal component analysis, structural chemistry, structural optimization, performance evaluation | Top keywords: applied mathematics, computer science, numerical analysis, mathematical optimization, machine learning (citation validated)",
+      "paradigm_significance": 0.6830726929025606
+    },
+    {
+      "year": 2016,
+      "confidence": 0.8954948016942627,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8954948016942627,
+      "supporting_evidence": [
+        "Novel focus: modeling and simulation",
+        "Novel focus: neural network (machine learning)",
+        "Novel focus: deep reinforcement learning",
+        "Novel focus: performance evaluation",
+        "Novel focus: functional analysis",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: numerical simulation",
+        "Top current: machine learning"
+      ],
+      "transition_description": "69.4% new keywords (threshold=0.35) | Novel keywords: modeling and simulation, neural network (machine learning), deep reinforcement learning, performance evaluation, functional analysis | Top keywords: applied mathematics, computer science, machine learning research, numerical simulation, machine learning (citation validated)",
+      "paradigm_significance": 0.7979976896418945
+    },
+    {
+      "year": 2017,
+      "confidence": 0.9385237613751263,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9385237613751263,
+      "supporting_evidence": [
+        "Novel focus: quantitative science study",
+        "Novel focus: modeling and simulation",
+        "Novel focus: neural network (machine learning)",
+        "Novel focus: uncertainty quantification",
+        "Novel focus: probability theory",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: numerical simulation",
+        "Top current: mathematical optimization",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "71.9% new keywords (threshold=0.35) | Novel keywords: quantitative science study, modeling and simulation, neural network (machine learning), uncertainty quantification, probability theory | Top keywords: applied mathematics, computer science, numerical simulation, mathematical optimization, machine learning research (citation validated)",
+      "paradigm_significance": 0.8171216717222785
+    },
+    {
+      "year": 2018,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.1012422360248446,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: quantitative science study",
+        "Novel focus: uncertainty quantification",
+        "Novel focus: localization",
+        "Novel focus: mathematical programming",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: machine learning",
+        "Top current: image analysis"
+      ],
+      "transition_description": "78.2% new keywords (threshold=0.35) | Novel keywords: information fusion, quantitative science study, uncertainty quantification, localization, mathematical programming | Top keywords: applied mathematics, computer science, machine learning research, machine learning, image analysis (citation validated)",
+      "paradigm_significance": 0.8894409937888199
+    },
+    {
+      "year": 2019,
+      "confidence": 0.9600583090379009,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9600583090379009,
+      "supporting_evidence": [
+        "Novel focus: uniform manifold approximation",
+        "Novel focus: localization",
+        "Novel focus: low-rank approximation",
+        "Novel focus: mathematical programming",
+        "Novel focus: reinforcement learning",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: deep learning",
+        "Top current: mathematical optimization"
+      ],
+      "transition_description": "73.4% new keywords (threshold=0.35) | Novel keywords: uniform manifold approximation, localization, low-rank approximation, mathematical programming, reinforcement learning | Top keywords: applied mathematics, computer science, machine learning research, deep learning, mathematical optimization (citation validated)",
+      "paradigm_significance": 0.8266925817946227
+    },
+    {
+      "year": 2020,
+      "confidence": 1.0,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 1.002008332443115,
+      "supporting_evidence": [
+        "Novel focus: uniform manifold approximation",
+        "Novel focus: knowledge discovery",
+        "Novel focus: localization",
+        "Novel focus: adversarial machine learning",
+        "Novel focus: feature learning",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: deep learning",
+        "Top current: machine learning",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "73.0% new keywords (threshold=0.35) | Novel keywords: uniform manifold approximation, knowledge discovery, localization, adversarial machine learning, feature learning | Top keywords: applied mathematics, computer science, deep learning, machine learning, machine learning research (citation validated)",
+      "paradigm_significance": 0.8453370366413845
+    },
+    {
+      "year": 2021,
+      "confidence": 0.8825688073394496,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.8825688073394496,
+      "supporting_evidence": [
+        "Novel focus: uniform manifold approximation",
+        "Novel focus: finite element method",
+        "Novel focus: manifold modeling",
+        "Novel focus: computational electromagnetics",
+        "Novel focus: transfer learning",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning research",
+        "Top current: machine learning",
+        "Top current: deep learning"
+      ],
+      "transition_description": "67.9% new keywords (threshold=0.35) | Novel keywords: uniform manifold approximation, finite element method, manifold modeling, computational electromagnetics, transfer learning | Top keywords: applied mathematics, computer science, machine learning research, machine learning, deep learning (citation validated)",
+      "paradigm_significance": 0.7922528032619777
+    },
+    {
+      "year": 2022,
+      "confidence": 0.9602425876010782,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.9602425876010782,
+      "supporting_evidence": [
+        "Novel focus: computational mechanics",
+        "Novel focus: economics",
+        "Novel focus: scientific computing",
+        "Novel focus: nonlinear analysis",
+        "Novel focus: mathematical analysis",
+        "Top current: applied mathematics",
+        "Top current: computer science",
+        "Top current: machine learning",
+        "Top current: mathematics",
+        "Top current: machine learning research"
+      ],
+      "transition_description": "70.8% new keywords (threshold=0.35) | Novel keywords: computational mechanics, economics, scientific computing, nonlinear analysis, mathematical analysis | Top keywords: applied mathematics, computer science, machine learning, mathematics, machine learning research (citation validated)",
+      "paradigm_significance": 0.826774483378257
+    },
+    {
+      "year": 2023,
+      "confidence": 0.6405405405405405,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.6405405405405405,
+      "supporting_evidence": [
+        "Novel focus: systems engineering",
+        "Novel focus: applied mathematical modelling",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: mathematical programming",
+        "Novel focus: computational mechanics",
+        "Top current: applied mathematics",
+        "Top current: mathematics",
+        "Top current: computer science",
+        "Top current: numerical mathematics",
+        "Top current: numerical analysis"
+      ],
+      "transition_description": "79.0% new keywords (threshold=0.35) | Novel keywords: systems engineering, applied mathematical modelling, combinatorial optimization, mathematical programming, computational mechanics | Top keywords: applied mathematics, mathematics, computer science, numerical mathematics, numerical analysis (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 2024,
+      "confidence": 0.5784514203603405,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.5784514203603405,
+      "supporting_evidence": [
+        "Novel focus: applied mathematical modelling",
+        "Novel focus: combinatorial optimization",
+        "Novel focus: mathematical programming",
+        "Novel focus: applied statistics",
+        "Novel focus: combinatorics",
+        "Top current: applied mathematics",
+        "Top current: numerical analysis",
+        "Top current: mathematics",
+        "Top current: computer science",
+        "Top current: numerical mathematics"
+      ],
+      "transition_description": "72.9% new keywords (threshold=0.35) | Novel keywords: applied mathematical modelling, combinatorial optimization, mathematical programming, applied statistics, combinatorics | Top keywords: applied mathematics, numerical analysis, mathematics, computer science, numerical mathematics (direction only)",
+      "paradigm_significance": 0.4
+    }
+  ],
+  "summary": {
+    "total_signals": 119,
+    "paradigm_shifts": 81,
+    "avg_confidence": 0.7821567990664362
+  }
+}

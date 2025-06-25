@@ -1,0 +1,216 @@
+{
+  "domain_name": "natural_language_processing",
+  "analysis_date": "2025-06-25T18:03:39.212291",
+  "time_range": [
+    1957,
+    2024
+  ],
+  "total_papers": 617,
+  "signals": [
+    {
+      "year": 1977,
+      "confidence": 0.7221238938053097,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7221238938053097,
+      "supporting_evidence": [
+        "Novel focus: machine learning",
+        "Novel focus: lexical semantics",
+        "Novel focus: machine learning research",
+        "Novel focus: speech analysis",
+        "Novel focus: semantic analysis (linguistics)",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: language",
+        "Top current: computational linguistics"
+      ],
+      "transition_description": "66.7% new keywords (threshold=0.40) | Novel keywords: machine learning, lexical semantics, machine learning research, speech analysis, semantic analysis (linguistics) | Top keywords: natural language processing, computer science, linguistics, language, computational linguistics (citation validated)",
+      "paradigm_significance": 0.7209439528023599
+    },
+    {
+      "year": 1980,
+      "confidence": 0.7660518163897494,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7660518163897494,
+      "supporting_evidence": [
+        "Novel focus: syntactic structure",
+        "Novel focus: semantic framework",
+        "Novel focus: argumentation framework",
+        "Novel focus: speech communication",
+        "Novel focus: attention",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: linguistics",
+        "Top current: computer science",
+        "Top current: communication"
+      ],
+      "transition_description": "69.4% new keywords (threshold=0.40) | Novel keywords: syntactic structure, semantic framework, argumentation framework, speech communication, attention | Top keywords: natural language processing, language, linguistics, computer science, communication (citation validated)",
+      "paradigm_significance": 0.7404674739509998
+    },
+    {
+      "year": 1983,
+      "confidence": 0.41544040361572415,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.41544040361572415,
+      "supporting_evidence": [
+        "Novel focus: information fusion",
+        "Novel focus: english language",
+        "Novel focus: word recognition",
+        "Novel focus: english",
+        "Novel focus: connected language",
+        "Top current: natural language processing",
+        "Top current: linguistics",
+        "Top current: computer science",
+        "Top current: speech processing",
+        "Top current: language"
+      ],
+      "transition_description": "65.5% new keywords (threshold=0.40) | Novel keywords: information fusion, english language, word recognition, english, connected language | Top keywords: natural language processing, linguistics, computer science, speech processing, language (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1986,
+      "confidence": 0.4049504125343779,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4049504125343779,
+      "supporting_evidence": [
+        "Novel focus: narrative",
+        "Novel focus: semantic parsing",
+        "Novel focus: context (linguistics)",
+        "Novel focus: automated reasoning",
+        "Novel focus: communication",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: linguistics",
+        "Top current: computational linguistics",
+        "Top current: computer science"
+      ],
+      "transition_description": "66.9% new keywords (threshold=0.40) | Novel keywords: narrative, semantic parsing, context (linguistics), automated reasoning, communication | Top keywords: natural language processing, language, linguistics, computational linguistics, computer science (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1988,
+      "confidence": 0.837539941837504,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.837539941837504,
+      "supporting_evidence": [
+        "Novel focus: spoken language processing",
+        "Novel focus: language acquisition",
+        "Novel focus: psycholinguistics",
+        "Novel focus: scene interpretation",
+        "Novel focus: semantic parsing",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: linguistics",
+        "Top current: computer science",
+        "Top current: computational linguistics"
+      ],
+      "transition_description": "69.4% new keywords (threshold=0.40) | Novel keywords: spoken language processing, language acquisition, psycholinguistics, scene interpretation, semantic parsing | Top keywords: natural language processing, language, linguistics, computer science, computational linguistics (citation validated)",
+      "paradigm_significance": 0.7722399741500018
+    },
+    {
+      "year": 1990,
+      "confidence": 0.7357617465590888,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7357617465590888,
+      "supporting_evidence": [
+        "Novel focus: language engineering",
+        "Novel focus: machine learning research",
+        "Novel focus: scene interpretation",
+        "Novel focus: speech recognition",
+        "Novel focus: textual practice",
+        "Top current: natural language processing",
+        "Top current: linguistics",
+        "Top current: computer science",
+        "Top current: language",
+        "Top current: machine learning"
+      ],
+      "transition_description": "66.3% new keywords (threshold=0.40) | Novel keywords: language engineering, machine learning research, scene interpretation, speech recognition, textual practice | Top keywords: natural language processing, linguistics, computer science, language, machine learning (citation validated)",
+      "paradigm_significance": 0.7270052206929284
+    },
+    {
+      "year": 1991,
+      "confidence": 0.7944071238868926,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7944071238868926,
+      "supporting_evidence": [
+        "Novel focus: machine learning research",
+        "Novel focus: corpus linguistics",
+        "Novel focus: terminology extraction",
+        "Novel focus: general linguistics",
+        "Novel focus: entity disambiguation",
+        "Top current: natural language processing",
+        "Top current: linguistics",
+        "Top current: computer science",
+        "Top current: computational linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "67.6% new keywords (threshold=0.40) | Novel keywords: machine learning research, corpus linguistics, terminology extraction, general linguistics, entity disambiguation | Top keywords: natural language processing, linguistics, computer science, computational linguistics, language (citation validated)",
+      "paradigm_significance": 0.753069832838619
+    },
+    {
+      "year": 1992,
+      "confidence": 0.4228618630067353,
+      "signal_type": "direction_primary_only",
+      "evidence_strength": 0.4228618630067353,
+      "supporting_evidence": [
+        "Novel focus: lexicography",
+        "Novel focus: neural network (machine learning)",
+        "Novel focus: neurolinguistics",
+        "Novel focus: corpus linguistics",
+        "Novel focus: terminology extraction",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: computational linguistics",
+        "Top current: language"
+      ],
+      "transition_description": "66.1% new keywords (threshold=0.40) | Novel keywords: lexicography, neural network (machine learning), neurolinguistics, corpus linguistics, terminology extraction | Top keywords: natural language processing, computer science, linguistics, computational linguistics, language (direction only)",
+      "paradigm_significance": 0.4
+    },
+    {
+      "year": 1997,
+      "confidence": 0.7600554785020804,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7600554785020804,
+      "supporting_evidence": [
+        "Novel focus: database",
+        "Novel focus: text coherence",
+        "Novel focus: multi-paragraph segmentation",
+        "Novel focus: fuzzy mathematics",
+        "Novel focus: language acquisition",
+        "Top current: natural language processing",
+        "Top current: language",
+        "Top current: linguistics",
+        "Top current: computer science",
+        "Top current: cognitive science"
+      ],
+      "transition_description": "66.5% new keywords (threshold=0.40) | Novel keywords: database, text coherence, multi-paragraph segmentation, fuzzy mathematics, language acquisition | Top keywords: natural language processing, language, linguistics, computer science, cognitive science (citation validated)",
+      "paradigm_significance": 0.7378024348898136
+    },
+    {
+      "year": 2000,
+      "confidence": 0.7781408057671066,
+      "signal_type": "direction_primary_validated",
+      "evidence_strength": 0.7781408057671066,
+      "supporting_evidence": [
+        "Novel focus: string processing",
+        "Novel focus: tree language",
+        "Novel focus: combinatorial theory",
+        "Novel focus: numerical algorithm",
+        "Novel focus: sequence analysis",
+        "Top current: natural language processing",
+        "Top current: computer science",
+        "Top current: linguistics",
+        "Top current: machine learning",
+        "Top current: text mining"
+      ],
+      "transition_description": "62.3% new keywords (threshold=0.40) | Novel keywords: string processing, tree language, combinatorial theory, numerical algorithm, sequence analysis | Top keywords: natural language processing, computer science, linguistics, machine learning, text mining (citation validated)",
+      "paradigm_significance": 0.7458403581187141
+    }
+  ],
+  "summary": {
+    "total_signals": 10,
+    "paradigm_shifts": 7,
+    "avg_confidence": 0.6637333485904569
+  }
+}

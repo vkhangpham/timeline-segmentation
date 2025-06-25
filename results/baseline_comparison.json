@@ -1,0 +1,1601 @@
+{
+  "baseline_comparison_results": {
+    "applied_mathematics": {
+      "domain": "applied_mathematics",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.4663237373946533,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.03713765882544399,
+          "difference_score": 0.62872814796316,
+          "num_segments": 7,
+          "segment_sizes": [
+            26,
+            20,
+            45,
+            108,
+            105,
+            53,
+            17
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.15759786505115642,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.05611941562106755,
+          "difference_score": 0.7038654617423713,
+          "num_segments": 13,
+          "segment_sizes": [
+            5,
+            21,
+            15,
+            5,
+            23,
+            22,
+            48,
+            60,
+            61,
+            44,
+            41,
+            12,
+            17
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.2695763516411004,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.026788541818625913,
+          "difference_score": 0.5428014269822992,
+          "num_segments": 3,
+          "segment_sizes": [
+            36,
+            220,
+            139
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 5,
+            "periods_with_papers": 3,
+            "reference_periods": [
+              {
+                "period_name": "The Age of Calculus and Classical Mechanics",
+                "start_year": 1600,
+                "end_year": 1750,
+                "duration_years": 151,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "Analytical Methods and Continuum Physics",
+                "start_year": 1800,
+                "end_year": 1900,
+                "duration_years": 101,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "The Computational Revolution and Operations Research",
+                "start_year": 1940,
+                "end_year": 1970,
+                "duration_years": 31,
+                "papers_in_period": 36
+              },
+              {
+                "period_name": "Nonlinear Dynamics, Chaos, and Computational Science",
+                "start_year": 1970,
+                "end_year": 2000,
+                "duration_years": 31,
+                "papers_in_period": 220
+              },
+              {
+                "period_name": "Data-Driven Approaches and Complex Systems",
+                "start_year": 2000,
+                "end_year": 2025,
+                "duration_years": 26,
+                "papers_in_period": 139
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.2695763516411004,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.026788541818625913,
+          "difference_score": 0.5428014269822992,
+          "num_segments": 3,
+          "segment_sizes": [
+            36,
+            220,
+            139
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 6,
+            "periods_with_papers": 3,
+            "reference_periods": [
+              {
+                "period_name": "Classical Applied Mathematics Era",
+                "start_year": 1600,
+                "end_year": 1900,
+                "duration_years": 300,
+                "papers_in_period": 0,
+                "description": "The formative period where mathematical methods developed in tandem with the Scientific Revolution and Industrial Revolution. Mathematics and physics were essentially unified, with practitioners makin..."
+              },
+              {
+                "period_name": "Early Modern Transition",
+                "start_year": 1900,
+                "end_year": 1939,
+                "duration_years": 39,
+                "papers_in_period": 0,
+                "description": "A transitional period where pure and applied mathematics began to diverge as distinct disciplines. The rise of mathematical physics, aerodynamics, and early computing theory laid groundwork for the dr..."
+              },
+              {
+                "period_name": "World War II Revolutionary Period",
+                "start_year": 1939,
+                "end_year": 1945,
+                "duration_years": 6,
+                "papers_in_period": 0,
+                "description": "A watershed moment that fundamentally transformed applied mathematics through urgent military needs. The war effort brought together mathematicians, physicists, and engineers in unprecedented collabor..."
+              },
+              {
+                "period_name": "Post-War Institutionalization Period",
+                "start_year": 1945,
+                "end_year": 1970,
+                "duration_years": 25,
+                "papers_in_period": 36,
+                "description": "The formal establishment of applied mathematics as an independent academic discipline with its own departments, journals, and professional societies. This period saw the systematic development of comp..."
+              },
+              {
+                "period_name": "Computational Mathematics Era",
+                "start_year": 1970,
+                "end_year": 2000,
+                "duration_years": 30,
+                "papers_in_period": 220,
+                "description": "The maturation of computational methods as supercomputers and parallel processing transformed the scale of solvable problems. This period saw applied mathematics expand into new domains including math..."
+              },
+              {
+                "period_name": "Contemporary Data-Driven Era",
+                "start_year": 2000,
+                "end_year": 2025,
+                "duration_years": 25,
+                "papers_in_period": 139,
+                "description": "The integration of applied mathematics with data science, machine learning, and artificial intelligence has created new paradigms for mathematical modeling. Big data, high-dimensional problems, and th..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.5626433924224579,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.03778050669260738,
+          "difference_score": 0.6209614908368857,
+          "num_segments": 19,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.34633037385705634,
+              "validation_threshold": 0.34168087533214564,
+              "similarity_min_segment_length": 5,
+              "similarity_max_segment_length": 17
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "bayesian_optimization",
+        "best_score": 0.5626433924224579,
+        "method_count": 5,
+        "year_range": [
+          1957,
+          2018
+        ],
+        "paper_count": 374
+      }
+    },
+    "art": {
+      "domain": "art",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.4438443559134767,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.04539453124513732,
+          "difference_score": 0.5973036304244786,
+          "num_segments": 5,
+          "segment_sizes": [
+            36,
+            123,
+            142,
+            93,
+            5
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.21818477109643578,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.04495331415761038,
+          "difference_score": 0.6539915190024184,
+          "num_segments": 9,
+          "segment_sizes": [
+            12,
+            24,
+            54,
+            69,
+            85,
+            57,
+            52,
+            41,
+            5
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.12163073869869809,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.014517399830712149,
+          "difference_score": 0.19999999999999823,
+          "num_segments": 2,
+          "segment_sizes": [
+            399,
+            399
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 4,
+            "periods_with_papers": 2,
+            "reference_periods": [
+              {
+                "period_name": "Early 20th Century Movements",
+                "start_year": 1900,
+                "end_year": 1945,
+                "duration_years": 45,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "Post-War Modernism",
+                "start_year": 1945,
+                "end_year": 1970,
+                "duration_years": 25,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "Postmodernism and Critical Theory",
+                "start_year": 1970,
+                "end_year": 2025,
+                "duration_years": 55,
+                "papers_in_period": 399
+              },
+              {
+                "period_name": "Identity Politics, Globalization, and Digital Art",
+                "start_year": 1970,
+                "end_year": 2025,
+                "duration_years": 55,
+                "papers_in_period": 399
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.0007967317952924277,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.014517399830712149,
+          "difference_score": 0.0,
+          "num_segments": 1,
+          "segment_sizes": [
+            399
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 5,
+            "periods_with_papers": 1,
+            "reference_periods": [
+              {
+                "period_name": "Renaissance Revolution",
+                "start_year": 1400,
+                "end_year": 1600,
+                "duration_years": 200,
+                "papers_in_period": 0,
+                "description": "A profound cultural rebirth originating in Italy that revolutionized Western art through the rediscovery of classical antiquity, scientific perspective, and humanistic philosophy. The Renaissance esta..."
+              },
+              {
+                "period_name": "Baroque and Rococo",
+                "start_year": 1600,
+                "end_year": 1750,
+                "duration_years": 150,
+                "papers_in_period": 0,
+                "description": "The Baroque emerged as the artistic arm of the Counter-Reformation, using dramatic emotion, movement, and illusion to inspire religious devotion. It evolved from Italian origins to distinct national s..."
+              },
+              {
+                "period_name": "Impressionism",
+                "start_year": 1860,
+                "end_year": 1886,
+                "duration_years": 26,
+                "papers_in_period": 0,
+                "description": "A revolutionary movement that broke with academic tradition by painting outdoors to capture fleeting effects of light and atmosphere. Originating in France, Impressionism emphasized subjective percept..."
+              },
+              {
+                "period_name": "Modern Art Explosion",
+                "start_year": 1880,
+                "end_year": 1945,
+                "duration_years": 65,
+                "papers_in_period": 0,
+                "description": "An unprecedented period of artistic experimentation that shattered traditional representation through multiple revolutionary movements. Beginning with Post-Impressionism's expressive innovations, mode..."
+              },
+              {
+                "period_name": "Contemporary Art",
+                "start_year": 1945,
+                "end_year": 2025,
+                "duration_years": 80,
+                "papers_in_period": 399,
+                "description": "The post-war period has seen art expand beyond traditional boundaries to encompass performance, installation, digital media, and conceptual practices. Characterized by pluralism, global perspectives, ..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.5469620748272491,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.029215096503429218,
+          "difference_score": 0.6044895168632292,
+          "num_segments": 4,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.4,
+              "validation_threshold": 0.3097051941600503,
+              "similarity_min_segment_length": 3,
+              "similarity_max_segment_length": 30
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "bayesian_optimization",
+        "best_score": 0.5469620748272491,
+        "method_count": 5,
+        "year_range": [
+          1979,
+          2020
+        ],
+        "paper_count": 399
+      }
+    },
+    "computer_science": {
+      "domain": "computer_science",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.49687673922490055,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.029857380930216403,
+          "difference_score": 0.548767779035421,
+          "num_segments": 4,
+          "segment_sizes": [
+            62,
+            139,
+            129,
+            81
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.30272255448091584,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.03557230803766244,
+          "difference_score": 0.6089324744646119,
+          "num_segments": 7,
+          "segment_sizes": [
+            20,
+            42,
+            57,
+            82,
+            54,
+            75,
+            81
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.32767968588948265,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.03879570190488403,
+          "difference_score": 0.44038811327553756,
+          "num_segments": 5,
+          "segment_sizes": [
+            62,
+            62,
+            119,
+            294,
+            9
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 6,
+            "periods_with_papers": 5,
+            "reference_periods": [
+              {
+                "period_name": "Emergence of Programming Languages, Operating Systems, and Software Engineering",
+                "start_year": 1950,
+                "end_year": 1979,
+                "duration_years": 30,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "Symbolic AI, Expert Systems, and AI Winters",
+                "start_year": 1956,
+                "end_year": 1995,
+                "duration_years": 40,
+                "papers_in_period": 62
+              },
+              {
+                "period_name": "The Networked World: ARPANET, Internet, and World Wide Web",
+                "start_year": 1962,
+                "end_year": 1995,
+                "duration_years": 34,
+                "papers_in_period": 62
+              },
+              {
+                "period_name": "Data Management, Data Mining, and Early Machine Learning",
+                "start_year": 1970,
+                "end_year": 2000,
+                "duration_years": 31,
+                "papers_in_period": 119
+              },
+              {
+                "period_name": "The Data Explosion and AI Renaissance",
+                "start_year": 2000,
+                "end_year": 2019,
+                "duration_years": 20,
+                "papers_in_period": 294
+              },
+              {
+                "period_name": "Generative AI, Quantum Computing, and Advanced HCI",
+                "start_year": 2020,
+                "end_year": 2025,
+                "duration_years": 6,
+                "papers_in_period": 9
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.4665906663325519,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.032883045218180564,
+          "difference_score": 0.6295631358539471,
+          "num_segments": 3,
+          "segment_sizes": [
+            20,
+            235,
+            162
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 6,
+            "periods_with_papers": 3,
+            "reference_periods": [
+              {
+                "period_name": "Pre-Computer Theoretical Foundations",
+                "start_year": 1931,
+                "end_year": 1948,
+                "duration_years": 17,
+                "papers_in_period": 0,
+                "description": "Before electronic computers existed, mathematicians and logicians established the theoretical foundations that would define the limits and possibilities of computation. This period saw the development..."
+              },
+              {
+                "period_name": "Early Computer Era",
+                "start_year": 1948,
+                "end_year": 1965,
+                "duration_years": 17,
+                "papers_in_period": 0,
+                "description": "The first generation of electronic computers brought theoretical concepts into physical reality. This era saw the transition from experimental machines to commercial computers, the development of the ..."
+              },
+              {
+                "period_name": "Academic Discipline Formation",
+                "start_year": 1960,
+                "end_year": 1975,
+                "duration_years": 15,
+                "papers_in_period": 0,
+                "description": "Computer science emerged as an independent academic discipline with its own departments, curricula, research agenda, and professional societies. This period established the intellectual framework of c..."
+              },
+              {
+                "period_name": "Systems and Architecture Revolution",
+                "start_year": 1970,
+                "end_year": 1990,
+                "duration_years": 20,
+                "papers_in_period": 20,
+                "description": "This period saw fundamental advances in computer architecture, operating systems, and programming languages that established patterns still used today. The development of UNIX, RISC architectures, obj..."
+              },
+              {
+                "period_name": "Internet and Web Era",
+                "start_year": 1990,
+                "end_year": 2010,
+                "duration_years": 20,
+                "papers_in_period": 235,
+                "description": "The Internet's commercialization and the World Wide Web's invention transformed computer science from a specialized field to the foundation of global communication and commerce. This period saw explos..."
+              },
+              {
+                "period_name": "AI and Machine Learning Revolution",
+                "start_year": 2010,
+                "end_year": 2025,
+                "duration_years": 15,
+                "papers_in_period": 162,
+                "description": "Deep learning's dramatic success has made AI/ML central to computer science, transforming everything from research priorities to undergraduate curricula. This period has seen AI move from specialized ..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.5422125223860416,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.029333928400017945,
+          "difference_score": 0.599199032828933,
+          "num_segments": 4,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.3866800220649913,
+              "validation_threshold": 0.4366969691475934,
+              "similarity_min_segment_length": 4,
+              "similarity_max_segment_length": 13
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "bayesian_optimization",
+        "best_score": 0.5422125223860416,
+        "method_count": 5,
+        "year_range": [
+          1986,
+          2020
+        ],
+        "paper_count": 411
+      }
+    },
+    "computer_vision": {
+      "domain": "computer_vision",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.4074729463746637,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.06118512228577565,
+          "difference_score": 0.5461889648323196,
+          "num_segments": 4,
+          "segment_sizes": [
+            62,
+            29,
+            104,
+            18
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.23443920758453274,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.0770278678665227,
+          "difference_score": 0.5711680721511857,
+          "num_segments": 7,
+          "segment_sizes": [
+            22,
+            40,
+            14,
+            15,
+            49,
+            55,
+            18
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.4408133578561426,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.06437758267928462,
+          "difference_score": 0.5910809920571224,
+          "num_segments": 4,
+          "segment_sizes": [
+            22,
+            54,
+            15,
+            122
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 5,
+            "periods_with_papers": 4,
+            "reference_periods": [
+              {
+                "period_name": "Early Foundations: Perceptual Grouping & Symbolic AI",
+                "start_year": 1950,
+                "end_year": 1979,
+                "duration_years": 30,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "Model-Based and Geometric Vision",
+                "start_year": 1980,
+                "end_year": 1995,
+                "duration_years": 16,
+                "papers_in_period": 22
+              },
+              {
+                "period_name": "Feature-Based and Statistical Machine Learning",
+                "start_year": 1996,
+                "end_year": 2007,
+                "duration_years": 12,
+                "papers_in_period": 54
+              },
+              {
+                "period_name": "Dataset-Driven Machine Learning & Early Deep Learning",
+                "start_year": 2008,
+                "end_year": 2011,
+                "duration_years": 4,
+                "papers_in_period": 15
+              },
+              {
+                "period_name": "Deep Learning Revolution",
+                "start_year": 2012,
+                "end_year": 2025,
+                "duration_years": 14,
+                "papers_in_period": 122
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.4139265433951094,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.04342972185971949,
+          "difference_score": 0.5569200551028,
+          "num_segments": 2,
+          "segment_sizes": [
+            76,
+            137
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 4,
+            "periods_with_papers": 2,
+            "reference_periods": [
+              {
+                "period_name": "Early Foundations and Biological Inspiration",
+                "start_year": 1957,
+                "end_year": 1975,
+                "duration_years": 18,
+                "papers_in_period": 0,
+                "description": "The nascent period of computer vision began with ambitious attempts to replicate human vision, driven by early AI optimism and neurobiological discoveries. Researchers believed vision would be solved ..."
+              },
+              {
+                "period_name": "Computational Theory Era",
+                "start_year": 1975,
+                "end_year": 1990,
+                "duration_years": 15,
+                "papers_in_period": 0,
+                "description": "David Marr's computational approach revolutionized computer vision by proposing three levels of analysis: computational theory (what is computed and why), representation and algorithm (how), and hardw..."
+              },
+              {
+                "period_name": "Statistical Learning Revolution",
+                "start_year": 1990,
+                "end_year": 2005,
+                "duration_years": 15,
+                "papers_in_period": 76,
+                "description": "The field shifted from hand-crafted algorithms to learning-based approaches as machine learning matured and computational resources increased. This period established the paradigm of training models o..."
+              },
+              {
+                "period_name": "Deep Learning Revolution",
+                "start_year": 2005,
+                "end_year": 2025,
+                "duration_years": 20,
+                "papers_in_period": 137,
+                "description": "The dramatic success of deep convolutional neural networks transformed computer vision from a specialized research area to a technology powering countless applications. Beginning with AlexNet's 2012 I..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.4622982578169867,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.04766587497968601,
+          "difference_score": 0.5083685225766867,
+          "num_segments": 8,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.18056642952163557,
+              "validation_threshold": 0.45,
+              "similarity_min_segment_length": 4,
+              "similarity_max_segment_length": 24
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "bayesian_optimization",
+        "best_score": 0.4622982578169867,
+        "method_count": 5,
+        "year_range": [
+          1992,
+          2022
+        ],
+        "paper_count": 213
+      }
+    },
+    "deep_learning": {
+      "domain": "deep_learning",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.4461613454185311,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.04179731882917198,
+          "difference_score": 0.49109068170623765,
+          "num_segments": 3,
+          "segment_sizes": [
+            48,
+            117,
+            245
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.2795514953906175,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.06721160781059005,
+          "difference_score": 0.5585054162749621,
+          "num_segments": 6,
+          "segment_sizes": [
+            12,
+            36,
+            35,
+            82,
+            234,
+            11
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.35351673894394275,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.043873485320629,
+          "difference_score": 0.47488774607761947,
+          "num_segments": 4,
+          "segment_sizes": [
+            59,
+            63,
+            151,
+            137
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 6,
+            "periods_with_papers": 4,
+            "reference_periods": [
+              {
+                "period_name": "The Dawn of Neural Networks",
+                "start_year": 1943,
+                "end_year": 1969,
+                "duration_years": 27,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "The First AI Winter: Limitations and Skepticism",
+                "start_year": 1970,
+                "end_year": 1985,
+                "duration_years": 17,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "The Revival of Connectionism: Backpropagation and Recurrent Networks",
+                "start_year": 1986,
+                "end_year": 2005,
+                "duration_years": 20,
+                "papers_in_period": 59
+              },
+              {
+                "period_name": "The Deep Learning Revolution: Data, Compute, and Breakthroughs",
+                "start_year": 2006,
+                "end_year": 2013,
+                "duration_years": 8,
+                "papers_in_period": 63
+              },
+              {
+                "period_name": "Sequence Modeling & Generative AI Emergence",
+                "start_year": 2014,
+                "end_year": 2016,
+                "duration_years": 3,
+                "papers_in_period": 151
+              },
+              {
+                "period_name": "The Transformer Era: Attention and Large Language Models",
+                "start_year": 2017,
+                "end_year": 2025,
+                "duration_years": 9,
+                "papers_in_period": 137
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.38342951389201246,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.06562654554390054,
+          "difference_score": 0.5130657903036968,
+          "num_segments": 4,
+          "segment_sizes": [
+            5,
+            52,
+            241,
+            137
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 5,
+            "periods_with_papers": 4,
+            "reference_periods": [
+              {
+                "period_name": "Early Neural Networks and Cybernetics",
+                "start_year": 1943,
+                "end_year": 1969,
+                "duration_years": 26,
+                "papers_in_period": 0,
+                "description": "The foundational period began with the first mathematical models of artificial neurons and early learning algorithms. Initial optimism about replicating brain function led to significant research inve..."
+              },
+              {
+                "period_name": "Backpropagation Renaissance",
+                "start_year": 1980,
+                "end_year": 1995,
+                "duration_years": 15,
+                "papers_in_period": 5,
+                "description": "The rediscovery and popularization of backpropagation enabled training of multi-layer networks, solving the XOR problem and reviving neural network research. This period saw the development of many ar..."
+              },
+              {
+                "period_name": "Deep Learning Renaissance",
+                "start_year": 2006,
+                "end_year": 2012,
+                "duration_years": 6,
+                "papers_in_period": 52,
+                "description": "Geoffrey Hinton's work on Deep Belief Networks marked the beginning of modern deep learning, showing that deep networks could be trained effectively using unsupervised pre-training. This period establ..."
+              },
+              {
+                "period_name": "CNN Revolution and Mainstream Breakthrough",
+                "start_year": 2012,
+                "end_year": 2017,
+                "duration_years": 5,
+                "papers_in_period": 241,
+                "description": "AlexNet's decisive ImageNet victory in 2012 demonstrated deep learning's superiority and triggered widespread adoption across academia and industry. This period saw rapid architectural innovations, wi..."
+              },
+              {
+                "period_name": "Transformer Era and Foundation Models",
+                "start_year": 2017,
+                "end_year": 2025,
+                "duration_years": 8,
+                "papers_in_period": 137,
+                "description": "The transformer architecture's introduction revolutionized NLP and subsequently all of deep learning through self-attention mechanisms. This period has seen the rise of massive foundation models train..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.5125772704325117,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.052226333621093544,
+          "difference_score": 0.5637273745226692,
+          "num_segments": 3,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.3578485893151816,
+              "validation_threshold": 0.30035595648000474,
+              "similarity_min_segment_length": 3,
+              "similarity_max_segment_length": 13
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "bayesian_optimization",
+        "best_score": 0.5125772704325117,
+        "method_count": 5,
+        "year_range": [
+          1995,
+          2020
+        ],
+        "paper_count": 410
+      }
+    },
+    "machine_learning": {
+      "domain": "machine_learning",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.4977720986115083,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.06129281456421398,
+          "difference_score": 0.6687232585809454,
+          "num_segments": 4,
+          "segment_sizes": [
+            80,
+            14,
+            116,
+            8
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.3209116266567332,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.05911383860617411,
+          "difference_score": 0.6431419159272401,
+          "num_segments": 6,
+          "segment_sizes": [
+            37,
+            43,
+            14,
+            65,
+            51,
+            8
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.495811477027786,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.03657814741196521,
+          "difference_score": 0.5468374025406549,
+          "num_segments": 3,
+          "segment_sizes": [
+            52,
+            89,
+            77
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 6,
+            "periods_with_papers": 3,
+            "reference_periods": [
+              {
+                "period_name": "The Conceptual Genesis",
+                "start_year": 1763,
+                "end_year": 1949,
+                "duration_years": 2212,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "The Birth of AI and the Era of Symbolic and Perceptual Learning",
+                "start_year": 1950,
+                "end_year": 1969,
+                "duration_years": 20,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "The First AI Winter and the Rise of Knowledge-Based Systems",
+                "start_year": 1970,
+                "end_year": 1985,
+                "duration_years": 16,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "The Revival: Backpropagation, Statistical Learning, and Reinforcement Learning Foundations",
+                "start_year": 1986,
+                "end_year": 1999,
+                "duration_years": 14,
+                "papers_in_period": 52
+              },
+              {
+                "period_name": "The Deep Learning Revolution: Big Data, GPUs, and Neural Network Dominance",
+                "start_year": 2000,
+                "end_year": 2016,
+                "duration_years": 17,
+                "papers_in_period": 89
+              },
+              {
+                "period_name": "The Transformer Era and the Rise of Generative AI",
+                "start_year": 2017,
+                "end_year": 2025,
+                "duration_years": 9,
+                "papers_in_period": 77
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.5691214268081051,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.041146906424970986,
+          "difference_score": 0.627785262406231,
+          "num_segments": 3,
+          "segment_sizes": [
+            23,
+            71,
+            124
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 5,
+            "periods_with_papers": 3,
+            "reference_periods": [
+              {
+                "period_name": "Foundational Era and Early Learning Systems",
+                "start_year": 1943,
+                "end_year": 1960,
+                "duration_years": 17,
+                "papers_in_period": 0,
+                "description": "The origins of machine learning emerged from cybernetics, statistics, and early AI research. This period established fundamental concepts like neural models, adaptive systems, and the possibility of m..."
+              },
+              {
+                "period_name": "Symbolic AI and Early Statistical Methods",
+                "start_year": 1960,
+                "end_year": 1980,
+                "duration_years": 20,
+                "papers_in_period": 0,
+                "description": "Machine learning diverged into symbolic approaches (learning rules and concepts) and statistical methods (pattern recognition). The field faced the 'AI winter' after initial optimism faded, but import..."
+              },
+              {
+                "period_name": "Statistical Learning Theory Revolution",
+                "start_year": 1980,
+                "end_year": 1995,
+                "duration_years": 15,
+                "papers_in_period": 23,
+                "description": "Rigorous mathematical foundations transformed machine learning into a principled scientific discipline. The development of PAC learning, VC theory, and statistical learning theory provided formal fram..."
+              },
+              {
+                "period_name": "Practical Algorithms and Applications Era",
+                "start_year": 1995,
+                "end_year": 2010,
+                "duration_years": 15,
+                "papers_in_period": 71,
+                "description": "Machine learning transitioned from theoretical discipline to practical tool as powerful algorithms were developed and computational resources increased. Support Vector Machines dominated classificatio..."
+              },
+              {
+                "period_name": "Big Data and Deep Learning Transformation",
+                "start_year": 2010,
+                "end_year": 2025,
+                "duration_years": 15,
+                "papers_in_period": 124,
+                "description": "The convergence of big data, powerful hardware (GPUs/TPUs), and deep learning has transformed machine learning from a specialized tool to a general-purpose technology. Deep neural networks now dominat..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.5087517585243939,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.03925398855889548,
+          "difference_score": 0.5609181774094494,
+          "num_segments": 3,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.36963353632247853,
+              "validation_threshold": 0.3376450903813812,
+              "similarity_min_segment_length": 5,
+              "similarity_max_segment_length": 28
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "manual",
+        "best_score": 0.5691214268081051,
+        "method_count": 5,
+        "year_range": [
+          1993,
+          2023
+        ],
+        "paper_count": 218
+      }
+    },
+    "machine_translation": {
+      "domain": "machine_translation",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.4992857468684151,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.04767027950571134,
+          "difference_score": 0.5494652432420488,
+          "num_segments": 3,
+          "segment_sizes": [
+            41,
+            45,
+            139
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.29873705768400843,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.06634451984331335,
+          "difference_score": 0.5974443968833827,
+          "num_segments": 6,
+          "segment_sizes": [
+            28,
+            13,
+            15,
+            30,
+            87,
+            52
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.49614782361650245,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.058118435086723326,
+          "difference_score": 0.5448177556753668,
+          "num_segments": 3,
+          "segment_sizes": [
+            120,
+            70,
+            35
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 4,
+            "periods_with_papers": 3,
+            "reference_periods": [
+              {
+                "period_name": "Foundational Era: Rule-Based Machine Translation (RBMT)",
+                "start_year": 1949,
+                "end_year": 1989,
+                "duration_years": 41,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "Statistical Machine Translation (SMT)",
+                "start_year": 1990,
+                "end_year": 2013,
+                "duration_years": 24,
+                "papers_in_period": 120
+              },
+              {
+                "period_name": "Neural Machine Translation (NMT)",
+                "start_year": 2014,
+                "end_year": 2019,
+                "duration_years": 6,
+                "papers_in_period": 70
+              },
+              {
+                "period_name": "Large Language Models (LLMs) and Massively Multilingual MT",
+                "start_year": 2020,
+                "end_year": 2025,
+                "duration_years": 6,
+                "papers_in_period": 35
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.35435239283113257,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.04462031645952926,
+          "difference_score": 0.475938842576276,
+          "num_segments": 2,
+          "segment_sizes": [
+            138,
+            105
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 4,
+            "periods_with_papers": 2,
+            "reference_periods": [
+              {
+                "period_name": "Genesis and Cold War Urgency",
+                "start_year": 1947,
+                "end_year": 1966,
+                "duration_years": 19,
+                "papers_in_period": 0,
+                "description": "Machine translation emerged from the convergence of early computing, information theory, and Cold War intelligence needs. Initial optimism about quick solutions gave way to recognition of language's c..."
+              },
+              {
+                "period_name": "Rule-Based Systems and Linguistic Approaches",
+                "start_year": 1967,
+                "end_year": 1988,
+                "duration_years": 21,
+                "papers_in_period": 0,
+                "description": "Despite reduced funding, dedicated researchers developed sophisticated rule-based systems incorporating deep linguistic knowledge. This period saw the emergence of transfer and interlingua approaches,..."
+              },
+              {
+                "period_name": "Statistical Revolution",
+                "start_year": 1988,
+                "end_year": 2014,
+                "duration_years": 26,
+                "papers_in_period": 138,
+                "description": "The introduction of statistical methods fundamentally transformed machine translation from a knowledge-engineering task to a machine learning problem. IBM researchers showed that translation patterns ..."
+              },
+              {
+                "period_name": "Neural Revolution and Beyond",
+                "start_year": 2014,
+                "end_year": 2025,
+                "duration_years": 11,
+                "papers_in_period": 105,
+                "description": "Neural machine translation has achieved unprecedented quality, reaching human parity for some language pairs. Starting with sequence-to-sequence models, the field rapidly evolved through attention mec..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.48900314907293513,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.04329924579820673,
+          "difference_score": 0.5385258049923494,
+          "num_segments": 6,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.1,
+              "validation_threshold": 0.42678784841440354,
+              "similarity_min_segment_length": 5,
+              "similarity_max_segment_length": 14
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "decade",
+        "best_score": 0.4992857468684151,
+        "method_count": 5,
+        "year_range": [
+          1992,
+          2021
+        ],
+        "paper_count": 225
+      }
+    },
+    "natural_language_processing": {
+      "domain": "natural_language_processing",
+      "comparison_successful": true,
+      "results": {
+        "decade": {
+          "score": 0.3983777151471774,
+          "execution_time": 0.0,
+          "method": "decade_baseline",
+          "description": "10-year temporal segments",
+          "consensus_score": 0.04208886498641784,
+          "difference_score": 0.5359675039685191,
+          "num_segments": 4,
+          "segment_sizes": [
+            47,
+            71,
+            216,
+            58
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 10
+          }
+        },
+        "5year": {
+          "score": 0.23130708556520232,
+          "execution_time": 0.0,
+          "method": "5year_baseline",
+          "description": "5-year temporal segments",
+          "consensus_score": 0.05149971932056247,
+          "difference_score": 0.5662593489373454,
+          "num_segments": 7,
+          "segment_sizes": [
+            15,
+            32,
+            39,
+            32,
+            71,
+            145,
+            58
+          ],
+          "segmentation_approach": "fixed_temporal",
+          "additional_info": {
+            "segment_duration_years": 5
+          }
+        },
+        "gemini": {
+          "score": 0.2754941184077352,
+          "execution_time": 0.0,
+          "method": "gemini_baseline",
+          "description": "Simplified expert periods (gemini reference segmentation)",
+          "consensus_score": 0.044422596271431136,
+          "difference_score": 0.4517185225204719,
+          "num_segments": 5,
+          "segment_sizes": [
+            95,
+            179,
+            146,
+            85,
+            30
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 6,
+            "periods_with_papers": 5,
+            "reference_periods": [
+              {
+                "period_name": "Rule-Based and Symbolic NLP",
+                "start_year": 1950,
+                "end_year": 1985,
+                "duration_years": 36,
+                "papers_in_period": 0
+              },
+              {
+                "period_name": "Statistical NLP and Data-Driven Approaches",
+                "start_year": 1986,
+                "end_year": 2005,
+                "duration_years": 20,
+                "papers_in_period": 95
+              },
+              {
+                "period_name": "Feature-Rich Machine Learning",
+                "start_year": 1998,
+                "end_year": 2014,
+                "duration_years": 17,
+                "papers_in_period": 179
+              },
+              {
+                "period_name": "Deep Learning Revolution",
+                "start_year": 2012,
+                "end_year": 2017,
+                "duration_years": 6,
+                "papers_in_period": 146
+              },
+              {
+                "period_name": "Attention and Transformers",
+                "start_year": 2017,
+                "end_year": 2019,
+                "duration_years": 3,
+                "papers_in_period": 85
+              },
+              {
+                "period_name": "Large Language Models (LLMs) and Generative AI",
+                "start_year": 2020,
+                "end_year": 2025,
+                "duration_years": 6,
+                "papers_in_period": 30
+              }
+            ]
+          }
+        },
+        "manual": {
+          "score": 0.5812761838922451,
+          "execution_time": 0.0,
+          "method": "manual_baseline",
+          "description": "Detailed expert analysis (manual reference segmentation)",
+          "consensus_score": 0.06239793730446843,
+          "difference_score": 0.6389293224019981,
+          "num_segments": 3,
+          "segment_sizes": [
+            5,
+            133,
+            267
+          ],
+          "segmentation_approach": "expert_reference",
+          "additional_info": {
+            "total_reference_periods": 4,
+            "periods_with_papers": 3,
+            "reference_periods": [
+              {
+                "period_name": "Foundations and Early Systems",
+                "start_year": 1950,
+                "end_year": 1970,
+                "duration_years": 20,
+                "papers_in_period": 0,
+                "description": "NLP emerged from the intersection of early AI research, formal linguistics, and machine translation efforts. This period established fundamental questions about language understanding and saw the firs..."
+              },
+              {
+                "period_name": "Symbolic NLP and Knowledge-Based Systems",
+                "start_year": 1970,
+                "end_year": 1990,
+                "duration_years": 20,
+                "papers_in_period": 5,
+                "description": "This era focused on encoding linguistic and world knowledge into rule-based systems. Researchers developed sophisticated grammars, parsers, and knowledge representation schemes. While achieving impres..."
+              },
+              {
+                "period_name": "Statistical Turn and Empiricism",
+                "start_year": 1990,
+                "end_year": 2010,
+                "duration_years": 20,
+                "papers_in_period": 133,
+                "description": "The field underwent a paradigm shift from hand-crafted rules to statistical methods learned from data. This 'empirical revolution' was enabled by growing corpora, increased computing power, and machin..."
+              },
+              {
+                "period_name": "Deep Learning Revolution",
+                "start_year": 2010,
+                "end_year": 2025,
+                "duration_years": 15,
+                "papers_in_period": 267,
+                "description": "Deep learning has transformed NLP from feature engineering to end-to-end learning. Starting with word embeddings capturing semantic relationships, progressing through recurrent networks to transformer..."
+              }
+            ]
+          }
+        },
+        "bayesian_optimization": {
+          "score": 0.535381853970077,
+          "execution_time": 16.0,
+          "method": "bayesian_optimization",
+          "description": "Sophisticated algorithmic segmentation with optimized parameters",
+          "consensus_score": 0.04524097085060837,
+          "difference_score": 0.5898419520944623,
+          "num_segments": 7,
+          "segment_sizes": [],
+          "segmentation_approach": "algorithmic_optimized",
+          "additional_info": {
+            "parameters": {
+              "direction_threshold": 0.39947161806109377,
+              "validation_threshold": 0.3026165858213599,
+              "similarity_min_segment_length": 3,
+              "similarity_max_segment_length": 26
+            },
+            "evaluations": 50
+          }
+        }
+      },
+      "summary": {
+        "best_method": "manual",
+        "best_score": 0.5812761838922451,
+        "method_count": 5,
+        "year_range": [
+          1989,
+          2021
+        ],
+        "paper_count": 392
+      }
+    }
+  },
+  "metadata": {
+    "comparison_date": "2025-06-25 16:32:48",
+    "baseline_methods": [
+      "decade_baseline",
+      "5year_baseline",
+      "gemini_baseline",
+      "manual_baseline",
+      "bayesian_optimization"
+    ],
+    "evaluation_metric": "consensus_difference_score",
+    "metric_weights": {
+      "final_combination_weights": [
+        0.1,
+        0.9
+      ],
+      "c_metric_weights": [
+        0.4,
+        0.4,
+        0.2
+      ],
+      "d_metric_weights": [
+        0.4,
+        0.4,
+        0.2
+      ]
+    },
+    "scoring_function": "evaluate_segmentation_quality() from consensus_difference_metrics.py",
+    "framework": "Consensus-Difference Metrics",
+    "configuration_source": "optimization_config.json (centralized weights)"
+  }
+}

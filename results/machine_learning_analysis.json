@@ -1,0 +1,133 @@
+{
+  "domain_name": "machine_learning",
+  "analysis_date": "2025-06-25T18:01:17.327720",
+  "time_range": [
+    1989,
+    2020
+  ],
+  "total_papers": 412,
+  "statistical_significance": 0.6616546485254907,
+  "change_points": [
+    1995,
+    1996,
+    1997,
+    1999,
+    2000,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012
+  ],
+  "segments": [
+    [
+      1989,
+      1995
+    ],
+    [
+      1996,
+      2008
+    ],
+    [
+      2009,
+      2020
+    ]
+  ],
+  "periods": [
+    {
+      "period": [
+        1989,
+        1995
+      ],
+      "topic_label": "Hybrid Symbolic-Statistical Learning",
+      "network_stability": 0.2593426497363505,
+      "representative_papers": [
+        {
+          "title": "An Introduction to the Bootstrap",
+          "year": 1994,
+          "citations": 0
+        },
+        {
+          "title": "Fast Learning in Networks of Locally-Tuned Processing Units",
+          "year": 1989,
+          "citations": 0
+        },
+        {
+          "title": "Neural networks for pattern recognition",
+          "year": 1994,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8244900498915
+    },
+    {
+      "period": [
+        1996,
+        2008
+      ],
+      "topic_label": "Hybrid Symbolic-Statistical Learning",
+      "network_stability": 0.26774186391817256,
+      "representative_papers": [
+        {
+          "title": "Eigenfaces vs. Fisherfaces: recognition using class specific linear projection",
+          "year": 1997,
+          "citations": 0
+        },
+        {
+          "title": "Fast Training of Support Vector Machines Using Sequential Minimal Optimization",
+          "year": 1998,
+          "citations": 0
+        },
+        {
+          "title": "SMOTE: Synthetic Minority Over-sampling Technique",
+          "year": 2002,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8187040670140193
+    },
+    {
+      "period": [
+        2009,
+        2020
+      ],
+      "topic_label": "Deep Hybrid Symbolic-Statistical Learning",
+      "network_stability": 0.3425841921011616,
+      "representative_papers": [
+        {
+          "title": "Learning Multiple Layers of Features from Tiny Images",
+          "year": 2009,
+          "citations": 0
+        },
+        {
+          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+          "year": 2014,
+          "citations": 0
+        },
+        {
+          "title": "Deep Residual Learning for Image Recognition",
+          "year": 2016,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8870064598761059
+    }
+  ],
+  "unified_confidence": 0.8434001922605417,
+  "algorithm_config": {
+    "direction_threshold": 0.36963353632247853,
+    "citation_boost": 0.8,
+    "validation_threshold": 0.3376450903813812,
+    "citation_support_window": 2,
+    "similarity_min_segment_length": 5,
+    "similarity_max_segment_length": 28,
+    "keyword_min_frequency": 2,
+    "min_significant_keywords": 2
+  }
+}
