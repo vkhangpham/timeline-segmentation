@@ -28,7 +28,7 @@ from experiment_utils import (
     ExperimentResult, save_experiment_results, print_experiment_summary,
     calculate_statistical_significance, TEST_DOMAINS
 )
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 
 
 # Similarity metric configurations to test
@@ -50,9 +50,9 @@ SEGMENT_LENGTH_CONFIGS = [
 
 
 def create_segment_length_config(
-    base_config: ComprehensiveAlgorithmConfig,
+    base_config: AlgorithmConfig,
     min_length: int
-) -> ComprehensiveAlgorithmConfig:
+) -> AlgorithmConfig:
     """
     Create algorithm configuration with modified segment length constraints.
     
@@ -72,13 +72,13 @@ def create_segment_length_config(
     # Keep proportional max length (about 10x min length)
     config_dict['similarity_max_segment_length'] = max(min_length * 10, 50)
     
-    return ComprehensiveAlgorithmConfig(**config_dict)
+    return AlgorithmConfig(**config_dict)
 
 
 def run_similarity_metric_analysis(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run similarity metric analysis for a single domain.
@@ -141,7 +141,7 @@ def run_similarity_metric_analysis(
 def run_segment_length_analysis(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run segment length constraint analysis for a single domain.
@@ -310,7 +310,7 @@ def run_segmentation_boundary_experiment() -> str:
         raise ValueError(f"Failed to load test domains: {str(e)}")
     
     # Use default algorithm configuration as baseline
-    base_config = ComprehensiveAlgorithmConfig(granularity=3)
+    base_config = AlgorithmConfig(granularity=3)
     
     # Run experiment for all domains
     all_results = []

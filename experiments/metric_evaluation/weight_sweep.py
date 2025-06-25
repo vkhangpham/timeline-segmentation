@@ -38,7 +38,7 @@ sys.path.append(str(PROJECT_ROOT))
 # Project imports (root already in PYTHONPATH when running from repo root)
 from core.data_loader import load_domain_data
 from core.data_models import DomainData, Paper
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.integration import run_change_detection
 from core.consensus_difference_metrics import evaluate_segmentation_quality
 from optimize_segmentation_bayesian import convert_dataframe_to_domain_data, SuppressOutput
@@ -70,9 +70,9 @@ def _load_optimised_parameters() -> Dict[str, Dict[str, float]]:
     return data["consensus_difference_optimized_parameters"]
 
 
-def _config_from_params(params: Dict[str, float]) -> ComprehensiveAlgorithmConfig:
-    """Convert parameter dict to ComprehensiveAlgorithmConfig (pure)."""
-    return ComprehensiveAlgorithmConfig(
+def _config_from_params(params: Dict[str, float]) -> AlgorithmConfig:
+    """Convert parameter dict to AlgorithmConfig (pure)."""
+    return AlgorithmConfig(
         direction_threshold=float(params["direction_threshold"]),
         validation_threshold=float(params["validation_threshold"]),
         similarity_min_segment_length=int(params["similarity_min_segment_length"]),

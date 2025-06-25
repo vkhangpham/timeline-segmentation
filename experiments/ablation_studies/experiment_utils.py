@@ -19,7 +19,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from core.data_loader import load_domain_data
 from core.data_models import DomainData, Paper
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.consensus_difference_metrics import evaluate_segmentation_quality
 from core.similarity_segmentation import create_similarity_based_segments
 from core.keyword_utils import extract_year_keywords
@@ -156,7 +156,7 @@ def load_test_domains() -> Dict[str, DomainData]:
 
 def evaluate_segmentation_configuration(
     domain_data: DomainData,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     use_citation: bool = True,
     use_direction: bool = True
 ) -> Tuple[float, Dict[str, Any]]:

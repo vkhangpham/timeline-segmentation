@@ -25,13 +25,13 @@ from experiment_utils import (
     ExperimentResult, save_experiment_results, print_experiment_summary,
     calculate_statistical_significance, TEST_DOMAINS
 )
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 
 
 def run_modality_analysis_single_domain(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run modality analysis for a single domain.
@@ -263,7 +263,7 @@ def run_modality_analysis_experiment() -> str:
         raise ValueError(f"Failed to load test domains: {str(e)}")
     
     # Use default algorithm configuration as baseline
-    base_config = ComprehensiveAlgorithmConfig(granularity=3)
+    base_config = AlgorithmConfig(granularity=3)
     
     # Run experiment for all domains
     all_results = []

@@ -1,0 +1,62 @@
+{
+  "500": {
+    "applied_mathematics": 0.6565313462031951,
+    "art": 0.44500235614311195,
+    "computer_science": 0.5057251571085284,
+    "computer_vision": 0.4834679950287473,
+    "deep_learning": 0.46213384615533165,
+    "machine_learning": 0.5422891728905069,
+    "machine_translation": 0.4985248988513572,
+    "natural_language_processing": 0.6320488945503359
+  },
+  "1000": {
+    "applied_mathematics": 0.6669962205917572,
+    "art": 0.45825277098946604,
+    "computer_science": 0.5216337895277627,
+    "computer_vision": 0.49885227555283046,
+    "deep_learning": 0.47919922159517875,
+    "machine_learning": 0.5592378979585033,
+    "machine_translation": 0.5147453800101152,
+    "natural_language_processing": 0.6425785582989139
+  },
+  "2000": {
+    "applied_mathematics": 0.6741779366312487,
+    "art": 0.47163637645981726,
+    "computer_science": 0.5341058922878393,
+    "computer_vision": 0.5100103497989265,
+    "deep_learning": 0.4913775324831892,
+    "machine_learning": 0.5703150146251668,
+    "machine_translation": 0.5269632011723361,
+    "natural_language_processing": 0.6485469965886926
+  },
+  "5000": {
+    "applied_mathematics": 0.6779243252205605,
+    "art": 0.48563360718382714,
+    "computer_science": 0.5427996834583144,
+    "computer_vision": 0.5156110374148485,
+    "deep_learning": 0.5012085991264998,
+    "machine_learning": 0.5766263356199889,
+    "machine_translation": 0.5311624532097189,
+    "natural_language_processing": 0.6523545287648034
+  },
+  "7500": {
+    "applied_mathematics": 0.6779243252205603,
+    "art": 0.4921340729026716,
+    "computer_science": 0.5427996834583144,
+    "computer_vision": 0.5156110374148485,
+    "deep_learning": 0.5019584731661252,
+    "machine_learning": 0.5766263356199889,
+    "machine_translation": 0.5311624532097189,
+    "natural_language_processing": 0.6523545287648034
+  },
+  "10000": {
+    "applied_mathematics": 0.6779243252205605,
+    "art": 0.4924050246414413,
+    "computer_science": 0.5427996834583144,
+    "computer_vision": 0.5156110374148485,
+    "deep_learning": 0.5019584731661252,
+    "machine_learning": 0.5766263356199889,
+    "machine_translation": 0.5311624532097189,
+    "natural_language_processing": 0.6523545287648034
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "consensus_difference_optimized_parameters": {
+    "art": {
+      "direction_threshold": 0.15469241699993563,
+      "validation_threshold": 0.3153095503118939,
+      "similarity_min_segment_length": 4,
+      "similarity_max_segment_length": 19
+    },
+    "computer_science": {
+      "direction_threshold": 0.12395323865025915,
+      "validation_threshold": 0.30608293314074775,
+      "similarity_min_segment_length": 3,
+      "similarity_max_segment_length": 27
+    },
+    "computer_vision": {
+      "direction_threshold": 0.23181186327523634,
+      "validation_threshold": 0.3072455268227573,
+      "similarity_min_segment_length": 4,
+      "similarity_max_segment_length": 21
+    },
+    "applied_mathematics": {
+      "direction_threshold": 0.18889084935580908,
+      "validation_threshold": 0.3509693198854819,
+      "similarity_min_segment_length": 5,
+      "similarity_max_segment_length": 29
+    },
+    "machine_translation": {
+      "direction_threshold": 0.1225181575404851,
+      "validation_threshold": 0.3779870924426617,
+      "similarity_min_segment_length": 4,
+      "similarity_max_segment_length": 29
+    },
+    "machine_learning": {
+      "direction_threshold": 0.30734705143494345,
+      "validation_threshold": 0.3639432754695697,
+      "similarity_min_segment_length": 4,
+      "similarity_max_segment_length": 22
+    },
+    "deep_learning": {
+      "direction_threshold": 0.12120746961671088,
+      "validation_threshold": 0.37942616867600537,
+      "similarity_min_segment_length": 5,
+      "similarity_max_segment_length": 14
+    },
+    "natural_language_processing": {
+      "direction_threshold": 0.38296814107261046,
+      "validation_threshold": 0.39353071615832086,
+      "similarity_min_segment_length": 5,
+      "similarity_max_segment_length": 28
+    }
+  },
+  "detailed_evaluations": {
+    "art": {
+      "score": 0.5252537859664826,
+      "consensus_score": 0.045572696846979746,
+      "difference_score": 0.5785516847575385,
+      "num_segments": 8,
+      "consensus_explanation": "Segment 1: Consensus score 0.034 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 76 papers = 0.027 (Segment keyword count=415) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 76 papers = 0.059 | C3 Citation Density: 0 internal edges among 76 papers \u2192 0.000 | Segment 2: Consensus score 0.054 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 30 papers = 0.067 (Segment keyword count=160) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 30 papers = 0.069 | C3 Citation Density: 0 internal edges among 30 papers \u2192 0.000 | Segment 3: Consensus score 0.044 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 45 papers = 0.042 (Segment keyword count=278) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 45 papers = 0.069 | C3 Citation Density: 0 internal edges among 45 papers \u2192 0.000 | Segment 4: Consensus score 0.042 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 35 papers = 0.046 (Segment keyword count=217) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 35 papers = 0.058 | C3 Citation Density: 0 internal edges among 35 papers \u2192 0.000 | Segment 5: Consensus score 0.034 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 110 papers = 0.022 (Segment keyword count=517) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 110 papers = 0.063 | C3 Citation Density: 0 internal edges among 110 papers \u2192 0.000 | Segment 6: Consensus score 0.033 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 73 papers = 0.026 (Segment keyword count=421) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 73 papers = 0.057 | C3 Citation Density: 0 internal edges among 73 papers \u2192 0.000 | Segment 7: Consensus score 0.063 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 31 papers = 0.069 (Segment keyword count=183) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 31 papers = 0.087 | C3 Citation Density: 0 internal edges among 31 papers \u2192 0.000 | Segment 8: Consensus score 0.060 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 19 papers = 0.078 (Segment keyword count=133) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 19 papers = 0.071 | C3 Citation Density: 0 internal edges among 19 papers \u2192 0.000",
+      "difference_explanation": "Transition 1\u21922: Difference score 0.557 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 499 keywords = 0.652 | D2 Centroid Distance (1 \u2013 cosine) = 0.239 | D3 Cross-Citation Ratio: 0/2280 = 0.000 | Transition 2\u21923: Difference score 0.575 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 376 keywords = 0.677 | D2 Centroid Distance (1 \u2013 cosine) = 0.261 | D3 Cross-Citation Ratio: 0/1350 = 0.000 | Transition 3\u21924: Difference score 0.566 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 411 keywords = 0.674 | D2 Centroid Distance (1 \u2013 cosine) = 0.240 | D3 Cross-Citation Ratio: 0/1575 = 0.000 | Transition 4\u21925: Difference score 0.562 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 615 keywords = 0.653 | D2 Centroid Distance (1 \u2013 cosine) = 0.251 | D3 Cross-Citation Ratio: 0/3850 = 0.000 | Transition 5\u21926: Difference score 0.505 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 762 keywords = 0.609 | D2 Centroid Distance (1 \u2013 cosine) = 0.153 | D3 Cross-Citation Ratio: 0/8030 = 0.000 | Transition 6\u21927: Difference score 0.600 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 511 keywords = 0.683 | D2 Centroid Distance (1 \u2013 cosine) = 0.317 | D3 Cross-Citation Ratio: 0/2263 = 0.000 | Transition 7\u21928: Difference score 0.686 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 263 keywords = 0.706 | D2 Centroid Distance (1 \u2013 cosine) = 0.510 | D3 Cross-Citation Ratio: 0/589 = 0.000",
+      "methodology_explanation": "Multi-segment evaluation (linear): consensus=0.046, difference=0.579, weights=(0.1,0.9) \u2192 final=0.525",
+      "individual_consensus_scores": [
+        0.03447943382967645,
+        0.05449852375450145,
+        0.044268419188623356,
+        0.04153248851903518,
+        0.03413116534940782,
+        0.03340542576753854,
+        0.06254539695791508,
+        0.0597207214091401
+      ],
+      "individual_difference_scores": [
+        0.5566279895481216,
+        0.5752301476620154,
+        0.5658378827756267,
+        0.561560983378883,
+        0.5045161502940683,
+        0.5997304511573602,
+        0.6863581884866932
+      ],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    },
+    "computer_science": {
+      "score": 0.5418580224153388,
+      "consensus_score": 0.04570171255241842,
+      "difference_score": 0.5969865012889966,
+      "num_segments": 4,
+      "consensus_explanation": "Segment 1: Consensus score 0.038 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 40 papers = 0.039 (Segment keyword count=285) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 40 papers = 0.056 | C3 Citation Density: 0 internal edges among 40 papers \u2192 0.000 | Segment 2: Consensus score 0.048 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 27 papers = 0.056 (Segment keyword count=199) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 27 papers = 0.065 | C3 Citation Density: 0 internal edges among 27 papers \u2192 0.000 | Segment 3: Consensus score 0.035 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 244 papers = 0.011 (Segment keyword count=978) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 244 papers = 0.077 | C3 Citation Density: 0 internal edges among 244 papers \u2192 0.000 | Segment 4: Consensus score 0.061 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 105 papers = 0.033 (Segment keyword count=421) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 105 papers = 0.121 | C3 Citation Density: 0 internal edges among 105 papers \u2192 0.000",
+      "difference_explanation": "Transition 1\u21922: Difference score 0.654 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 421 keywords = 0.765 | D2 Centroid Distance (1 \u2013 cosine) = 0.368 | D3 Cross-Citation Ratio: 0/1080 = 0.000 | Transition 2\u21923: Difference score 0.605 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 1067 keywords = 0.719 | D2 Centroid Distance (1 \u2013 cosine) = 0.294 | D3 Cross-Citation Ratio: 0/6588 = 0.000 | Transition 3\u21924: Difference score 0.532 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 1186 keywords = 0.612 | D2 Centroid Distance (1 \u2013 cosine) = 0.219 | D3 Cross-Citation Ratio: 0/25620 = 0.000",
+      "methodology_explanation": "Multi-segment evaluation (linear): consensus=0.046, difference=0.597, weights=(0.1,0.9) \u2192 final=0.542",
+      "individual_consensus_scores": [
+        0.037937828681138326,
+        0.048246114488762745,
+        0.03515156743036901,
+        0.06147133960940358
+      ],
+      "individual_difference_scores": [
+        0.6535091759870744,
+        0.6051584324957495,
+        0.5322918953841658
+      ],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    },
+    "computer_vision": {
+      "score": 0.5316208164913333,
+      "consensus_score": 0.08359620028482045,
+      "difference_score": 0.5814013294031681,
+      "num_segments": 5,
+      "consensus_explanation": "Segment 1: Consensus score 0.085 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 22 papers = 0.102 (Segment keyword count=133) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 22 papers = 0.111 | C3 Citation Density: 0 internal edges among 22 papers \u2192 0.000 | Segment 2: Consensus score 0.094 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 14 papers = 0.139 (Segment keyword count=103) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 14 papers = 0.094 | C3 Citation Density: 0 internal edges among 14 papers \u2192 0.000 | Segment 3: Consensus score 0.066 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 40 papers = 0.063 (Segment keyword count=206) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 40 papers = 0.101 | C3 Citation Density: 0 internal edges among 40 papers \u2192 0.000 | Segment 4: Consensus score 0.098 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 15 papers = 0.141 (Segment keyword count=108) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 15 papers = 0.105 | C3 Citation Density: 0 internal edges among 15 papers \u2192 0.000 | Segment 5: Consensus score 0.075 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 122 papers = 0.040 (Segment keyword count=389) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 122 papers = 0.149 | C3 Citation Density: 0 internal edges among 122 papers \u2192 0.000",
+      "difference_explanation": "Transition 1\u21922: Difference score 0.613 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 195 keywords = 0.615 | D2 Centroid Distance (1 \u2013 cosine) = 0.417 | D3 Cross-Citation Ratio: 0/308 = 0.000 | Transition 2\u21923: Difference score 0.575 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 260 keywords = 0.600 | D2 Centroid Distance (1 \u2013 cosine) = 0.337 | D3 Cross-Citation Ratio: 0/560 = 0.000 | Transition 3\u21924: Difference score 0.590 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 271 keywords = 0.617 | D2 Centroid Distance (1 \u2013 cosine) = 0.357 | D3 Cross-Citation Ratio: 0/600 = 0.000 | Transition 4\u21925: Difference score 0.549 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 437 keywords = 0.572 | D2 Centroid Distance (1 \u2013 cosine) = 0.300 | D3 Cross-Citation Ratio: 0/1830 = 0.000",
+      "methodology_explanation": "Multi-segment evaluation (linear): consensus=0.084, difference=0.581, weights=(0.1,0.9) \u2192 final=0.532",
+      "individual_consensus_scores": [
+        0.08511158957602452,
+        0.09355425623263268,
+        0.06564328100987846,
+        0.09819283883177013,
+        0.07547903577379651
+      ],
+      "individual_difference_scores": [
+        0.6126586985172042,
+        0.5745922413654245,
+        0.5895380041143603,
+        0.5488163736156833
+      ],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    },
+    "applied_mathematics": {
+      "score": 0.6559694013722551,
+      "consensus_score": 0.1280112711370646,
+      "difference_score": 0.7146314158428317,
+      "num_segments": 14,
+      "consensus_explanation": "Segment 1: Consensus score 0.187 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 3 papers = 0.375 (Segment keyword count=40) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 3 papers = 0.093 | C3 Citation Density: 0 internal edges among 3 papers \u2192 0.000 | Segment 2: Consensus score 0.138 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 4 papers = 0.293 (Segment keyword count=29) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 4 papers = 0.052 | C3 Citation Density: 0 internal edges among 4 papers \u2192 0.000 | Segment 3: Consensus score 0.400 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 1 papers = 1.000 (Segment keyword count=18) | Segment size <2 \u2192 cohesion 0.0 | Segment size <2 \u2192 density 0.0 | Segment 4: Consensus score 0.400 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 1 papers = 1.000 (Segment keyword count=13) | Segment size <2 \u2192 cohesion 0.0 | Segment size <2 \u2192 density 0.0 | Segment 5: Consensus score 0.258 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 2 papers = 0.526 (Segment keyword count=19) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 2 papers = 0.118 | C3 Citation Density: 0 internal edges among 2 papers \u2192 0.000 | Segment 6: Consensus score 0.071 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 15 papers = 0.110 (Segment keyword count=102) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 15 papers = 0.067 | C3 Citation Density: 0 internal edges among 15 papers \u2192 0.000 | Segment 7: Consensus score 0.055 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 24 papers = 0.067 (Segment keyword count=164) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 24 papers = 0.071 | C3 Citation Density: 0 internal edges among 24 papers \u2192 0.000 | Segment 8: Consensus score 0.048 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 27 papers = 0.056 (Segment keyword count=210) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 27 papers = 0.064 | C3 Citation Density: 0 internal edges among 27 papers \u2192 0.000 | Segment 9: Consensus score 0.037 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 83 papers = 0.024 (Segment keyword count=497) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 83 papers = 0.067 | C3 Citation Density: 0 internal edges among 83 papers \u2192 0.000 | Segment 10: Consensus score 0.044 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 48 papers = 0.037 (Segment keyword count=336) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 48 papers = 0.074 | C3 Citation Density: 0 internal edges among 48 papers \u2192 0.000 | Segment 11: Consensus score 0.040 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 60 papers = 0.032 (Segment keyword count=366) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 60 papers = 0.067 | C3 Citation Density: 0 internal edges among 60 papers \u2192 0.000 | Segment 12: Consensus score 0.036 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 93 papers = 0.022 (Segment keyword count=565) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 93 papers = 0.068 | C3 Citation Density: 0 internal edges among 93 papers \u2192 0.000 | Segment 13: Consensus score 0.040 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 37 papers = 0.043 (Segment keyword count=267) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 37 papers = 0.057 | C3 Citation Density: 0 internal edges among 37 papers \u2192 0.000 | Segment 14: Consensus score 0.039 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 67 papers = 0.028 (Segment keyword count=419) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 67 papers = 0.070 | C3 Citation Density: 0 internal edges among 67 papers \u2192 0.000",
+      "difference_explanation": "Transition 1\u21922: Difference score 0.870 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 63 keywords = 0.867 | D2 Centroid Distance (1 \u2013 cosine) = 0.807 | D3 Cross-Citation Ratio: 0/12 = 0.000 | Transition 2\u21923: Difference score 0.927 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 45 keywords = 0.939 | D2 Centroid Distance (1 \u2013 cosine) = 0.877 | D3 Cross-Citation Ratio: 0/4 = 0.000 | Transition 3\u21924: Difference score 0.977 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 30 keywords = 0.967 | D2 Centroid Distance (1 \u2013 cosine) = 0.974 | D3 Cross-Citation Ratio: 0/1 = 0.000 | Transition 4\u21925: Difference score 0.911 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 30 keywords = 0.923 | D2 Centroid Distance (1 \u2013 cosine) = 0.854 | D3 Cross-Citation Ratio: 0/2 = 0.000 | Transition 5\u21926: Difference score 0.858 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 117 keywords = 0.913 | D2 Centroid Distance (1 \u2013 cosine) = 0.731 | D3 Cross-Citation Ratio: 0/30 = 0.000 | Transition 6\u21927: Difference score 0.734 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 236 keywords = 0.802 | D2 Centroid Distance (1 \u2013 cosine) = 0.532 | D3 Cross-Citation Ratio: 0/360 = 0.000 | Transition 7\u21928: Difference score 0.679 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 329 keywords = 0.777 | D2 Centroid Distance (1 \u2013 cosine) = 0.421 | D3 Cross-Citation Ratio: 0/648 = 0.000 | Transition 8\u21929: Difference score 0.619 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 614 keywords = 0.735 | D2 Centroid Distance (1 \u2013 cosine) = 0.313 | D3 Cross-Citation Ratio: 0/2241 = 0.000 | Transition 9\u219210: Difference score 0.524 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 673 keywords = 0.631 | D2 Centroid Distance (1 \u2013 cosine) = 0.178 | D3 Cross-Citation Ratio: 0/3984 = 0.000 | Transition 10\u219211: Difference score 0.559 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 576 keywords = 0.665 | D2 Centroid Distance (1 \u2013 cosine) = 0.233 | D3 Cross-Citation Ratio: 0/2880 = 0.000 | Transition 11\u219212: Difference score 0.537 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 767 keywords = 0.661 | D2 Centroid Distance (1 \u2013 cosine) = 0.182 | D3 Cross-Citation Ratio: 0/5580 = 0.000 | Transition 12\u219213: Difference score 0.540 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 698 keywords = 0.657 | D2 Centroid Distance (1 \u2013 cosine) = 0.193 | D3 Cross-Citation Ratio: 0/3441 = 0.000 | Transition 13\u219214: Difference score 0.557 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 572 keywords = 0.677 | D2 Centroid Distance (1 \u2013 cosine) = 0.215 | D3 Cross-Citation Ratio: 0/2479 = 0.000",
+      "methodology_explanation": "Multi-segment evaluation (linear): consensus=0.128, difference=0.715, weights=(0.1,0.9) \u2192 final=0.656",
+      "individual_consensus_scores": [
+        0.1871477603405623,
+        0.1379498183394844,
+        0.4,
+        0.4,
+        0.2578020983256104,
+        0.07055674106999264,
+        0.05528686614764003,
+        0.04771420478080966,
+        0.036604507168326944,
+        0.04429535699368462,
+        0.03962430254820202,
+        0.035799626827746185,
+        0.0401410121221321,
+        0.03923550125471277
+      ],
+      "individual_difference_scores": [
+        0.8696643942252023,
+        0.9265826561366888,
+        0.9765829812256026,
+        0.9107036761380776,
+        0.8576139017204731,
+        0.7337400656386983,
+        0.6790967192893755,
+        0.6194723013625496,
+        0.523765457576153,
+        0.5593164814502437,
+        0.5373107304788811,
+        0.5398518532650775,
+        0.5565071874497912
+      ],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    },
+    "machine_translation": {
+      "score": 0.46269467589136654,
+      "consensus_score": 0.06780300226317178,
+      "difference_score": 0.5065715285167215,
+      "num_segments": 3,
+      "consensus_explanation": "Segment 1: Consensus score 0.073 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 28 papers = 0.079 (Segment keyword count=130) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 28 papers = 0.103 | C3 Citation Density: 0 internal edges among 28 papers \u2192 0.000 | Segment 2: Consensus score 0.053 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 92 papers = 0.032 (Segment keyword count=290) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 92 papers = 0.100 | C3 Citation Density: 0 internal edges among 92 papers \u2192 0.000 | Segment 3: Consensus score 0.078 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 105 papers = 0.048 (Segment keyword count=262) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 105 papers = 0.146 | C3 Citation Density: 0 internal edges among 105 papers \u2192 0.000",
+      "difference_explanation": "Transition 1\u21922: Difference score 0.506 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 347 keywords = 0.559 | D2 Centroid Distance (1 \u2013 cosine) = 0.205 | D3 Cross-Citation Ratio: 0/2576 = 0.000 | Transition 2\u21923: Difference score 0.508 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 465 keywords = 0.567 | D2 Centroid Distance (1 \u2013 cosine) = 0.202 | D3 Cross-Citation Ratio: 0/9660 = 0.000",
+      "methodology_explanation": "Multi-segment evaluation (linear): consensus=0.068, difference=0.507, weights=(0.1,0.9) \u2192 final=0.463",
+      "individual_consensus_scores": [
+        0.07279720040985199,
+        0.05293789226841436,
+        0.07767391411124897
+      ],
+      "individual_difference_scores": [
+        0.5055843340651072,
+        0.5075587229683358
+      ],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    },
+    "machine_learning": {
+      "score": 0.5550285458754498,
+      "consensus_score": 0.06509674166675959,
+      "difference_score": 0.6094654130097488,
+      "num_segments": 5,
+      "consensus_explanation": "Segment 1: Consensus score 0.048 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 37 papers = 0.048 (Segment keyword count=257) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 37 papers = 0.072 | C3 Citation Density: 0 internal edges among 37 papers \u2192 0.000 | Segment 2: Consensus score 0.047 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 43 papers = 0.045 (Segment keyword count=280) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 43 papers = 0.072 | C3 Citation Density: 0 internal edges among 43 papers \u2192 0.000 | Segment 3: Consensus score 0.063 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 14 papers = 0.095 (Segment keyword count=134) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 14 papers = 0.064 | C3 Citation Density: 0 internal edges among 14 papers \u2192 0.000 | Segment 4: Consensus score 0.100 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 32 papers = 0.102 (Segment keyword count=151) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 32 papers = 0.149 | C3 Citation Density: 0 internal edges among 32 papers \u2192 0.000 | Segment 5: Consensus score 0.067 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 49 papers = 0.052 (Segment keyword count=268) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 49 papers = 0.115 | C3 Citation Density: 0 internal edges among 49 papers \u2192 0.000",
+      "difference_explanation": "Transition 1\u21922: Difference score 0.572 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 443 keywords = 0.666 | D2 Centroid Distance (1 \u2013 cosine) = 0.265 | D3 Cross-Citation Ratio: 0/1591 = 0.000 | Transition 2\u21923: Difference score 0.639 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 366 keywords = 0.733 | D2 Centroid Distance (1 \u2013 cosine) = 0.365 | D3 Cross-Citation Ratio: 0/602 = 0.000 | Transition 3\u21924: Difference score 0.713 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 255 keywords = 0.765 | D2 Centroid Distance (1 \u2013 cosine) = 0.519 | D3 Cross-Citation Ratio: 0/448 = 0.000 | Transition 4\u21925: Difference score 0.513 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 345 keywords = 0.567 | D2 Centroid Distance (1 \u2013 cosine) = 0.216 | D3 Cross-Citation Ratio: 0/1568 = 0.000",
+      "methodology_explanation": "Multi-segment evaluation (linear): consensus=0.065, difference=0.609, weights=(0.1,0.9) \u2192 final=0.555",
+      "individual_consensus_scores": [
+        0.048153896739020936,
+        0.04680556065526993,
+        0.06342642203165903,
+        0.10021173020535756,
+        0.06688609870249053
+      ],
+      "individual_difference_scores": [
+        0.5721059467005166,
+        0.6391872535948844,
+        0.7134876595666286,
+        0.5130807921769656
+      ],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    },
+    "deep_learning": {
+      "score": 0.005812034423537089,
+      "consensus_score": 0.05812034423537089,
+      "difference_score": 0.0,
+      "num_segments": 1,
+      "consensus_explanation": "Consensus score 0.058 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 422 papers = 0.013 (Segment keyword count=1107) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 422 papers = 0.132 | C3 Citation Density: 0 internal edges among 422 papers \u2192 0.000",
+      "difference_explanation": "Single segment - no transitions to evaluate",
+      "methodology_explanation": "Single segment evaluation (linear): final_score = 0.006",
+      "individual_consensus_scores": [
+        0.05812034423537089
+      ],
+      "individual_difference_scores": [],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    },
+    "natural_language_processing": {
+      "score": 0.6155493588604436,
+      "consensus_score": 0.11670444832290097,
+      "difference_score": 0.6709765711423927,
+      "num_segments": 10,
+      "consensus_explanation": "Segment 1: Consensus score 0.268 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 2 papers = 0.531 (Segment keyword count=32) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 2 papers = 0.140 | C3 Citation Density: 0 internal edges among 2 papers \u2192 0.000 | Segment 2: Consensus score 0.124 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 6 papers = 0.217 (Segment keyword count=53) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 6 papers = 0.094 | C3 Citation Density: 0 internal edges among 6 papers \u2192 0.000 | Segment 3: Consensus score 0.251 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 3 papers = 0.449 (Segment keyword count=26) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 3 papers = 0.178 | C3 Citation Density: 0 internal edges among 3 papers \u2192 0.000 | Segment 4: Consensus score 0.113 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 8 papers = 0.178 (Segment keyword count=75) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 8 papers = 0.103 | C3 Citation Density: 0 internal edges among 8 papers \u2192 0.000 | Segment 5: Consensus score 0.120 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 5 papers = 0.238 (Segment keyword count=47) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 5 papers = 0.062 | C3 Citation Density: 0 internal edges among 5 papers \u2192 0.000 | Segment 6: Consensus score 0.065 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 20 papers = 0.085 (Segment keyword count=165) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 20 papers = 0.078 | C3 Citation Density: 0 internal edges among 20 papers \u2192 0.000 | Segment 7: Consensus score 0.053 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 54 papers = 0.046 (Segment keyword count=283) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 54 papers = 0.087 | C3 Citation Density: 0 internal edges among 54 papers \u2192 0.000 | Segment 8: Consensus score 0.053 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 61 papers = 0.044 (Segment keyword count=305) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 61 papers = 0.088 | C3 Citation Density: 0 internal edges among 61 papers \u2192 0.000 | Segment 9: Consensus score 0.062 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 55 papers = 0.051 (Segment keyword count=269) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 55 papers = 0.105 | C3 Citation Density: 0 internal edges among 55 papers \u2192 0.000 | Segment 10: Consensus score 0.057 = 0.4*C1 + 0.4*C2 + 0.2*C3 | C1 Keyword-Jaccard: mean Jaccard of each paper vs segment keywords over 224 papers = 0.022 (Segment keyword count=604) | C2 TF-IDF Cohesion: mean pairwise cosine similarity across 224 papers = 0.120 | C3 Citation Density: 0 internal edges among 224 papers \u2192 0.000",
+      "difference_explanation": "Transition 1\u21922: Difference score 0.695 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 60 keywords = 0.605 | D2 Centroid Distance (1 \u2013 cosine) = 0.632 | D3 Cross-Citation Ratio: 0/12 = 0.000 | Transition 2\u21923: Difference score 0.846 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 71 keywords = 0.829 | D2 Centroid Distance (1 \u2013 cosine) = 0.785 | D3 Cross-Citation Ratio: 0/18 = 0.000 | Transition 3\u21924: Difference score 0.846 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 92 keywords = 0.845 | D2 Centroid Distance (1 \u2013 cosine) = 0.770 | D3 Cross-Citation Ratio: 0/24 = 0.000 | Transition 4\u21925: Difference score 0.841 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 110 keywords = 0.824 | D2 Centroid Distance (1 \u2013 cosine) = 0.778 | D3 Cross-Citation Ratio: 0/40 = 0.000 | Transition 5\u21926: Difference score 0.755 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 195 keywords = 0.792 | D2 Centroid Distance (1 \u2013 cosine) = 0.596 | D3 Cross-Citation Ratio: 0/100 = 0.000 | Transition 6\u21927: Difference score 0.570 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 377 keywords = 0.656 | D2 Centroid Distance (1 \u2013 cosine) = 0.269 | D3 Cross-Citation Ratio: 0/1080 = 0.000 | Transition 7\u21928: Difference score 0.520 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 474 keywords = 0.586 | D2 Centroid Distance (1 \u2013 cosine) = 0.213 | D3 Cross-Citation Ratio: 0/3294 = 0.000 | Transition 8\u21929: Difference score 0.488 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 450 keywords = 0.542 | D2 Centroid Distance (1 \u2013 cosine) = 0.177 | D3 Cross-Citation Ratio: 0/3355 = 0.000 | Transition 9\u219210: Difference score 0.479 = 0.4*D1 + 0.4*D2 + 0.2*(1-D3) | D1 Keyword JS-Divergence over 716 keywords = 0.523 | D2 Centroid Distance (1 \u2013 cosine) = 0.174 | D3 Cross-Citation Ratio: 0/12320 = 0.000",
+      "methodology_explanation": "Multi-segment evaluation (linear): consensus=0.117, difference=0.671, weights=(0.1,0.9) \u2192 final=0.616",
+      "individual_consensus_scores": [
+        0.2683730513782612,
+        0.12419715144752799,
+        0.2508772421206278,
+        0.11250823010015604,
+        0.12028169063950503,
+        0.06539685472022363,
+        0.05340405027570042,
+        0.052601255669893064,
+        0.062495697597432995,
+        0.05690925927968152
+      ],
+      "individual_difference_scores": [
+        0.6947448102333793,
+        0.8458580695311393,
+        0.8458954679198565,
+        0.8406160368219211,
+        0.7552389380870517,
+        0.5702726746349391,
+        0.5197032886560269,
+        0.48777860886877117,
+        0.47868124552844876
+      ],
+      "config_weights": {
+        "consensus_weight": 0.1,
+        "difference_weight": 0.9,
+        "internal_consensus_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "internal_difference_weights": [
+          0.4,
+          0.4,
+          0.2
+        ],
+        "configuration_source": "optimization_config.json (centralized weights)"
+      }
+    }
+  },
+  "metadata": {
+    "optimization_date": "2025-06-23 23:17:11",
+    "total_domains": 8,
+    "parameter_space": "4D (direction_threshold, validation_threshold, similarity_min_segment_length, similarity_max_segment_length)",
+    "optimization_method": "Bayesian Optimization (Gaussian Process + Expected Improvement)",
+    "objective_function": "Consensus-Difference Score (consensus_within_segments + difference_between_segments)",
+    "optimization_type": "bayesian_optimization",
+    "metrics_framework": "Phase 15 C-metrics (consensus) + D-metrics (difference)",
+    "transparency_features": "Full explanations for consensus and difference scores with individual metric breakdowns"
+  }
+}

@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from core.data_processing import process_domain_data
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.integration import run_change_detection
 from core.consensus_difference_metrics import evaluate_segmentation_quality
 
@@ -81,7 +81,7 @@ def create_optimization_objective(domain_name: str, aggregation_method: str):
         start_time = time.time()
         
         # Create configuration
-        config = ComprehensiveAlgorithmConfig(
+        config = AlgorithmConfig(
             direction_threshold=params[0],
             validation_threshold=params[1],
             similarity_min_segment_length=int(params[2]),

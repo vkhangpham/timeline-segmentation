@@ -26,7 +26,7 @@ from experiment_utils import (
     ExperimentResult, save_experiment_results, print_experiment_summary,
     calculate_statistical_significance, TEST_DOMAINS
 )
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 
 
 # Citation boost factor configurations to test
@@ -52,9 +52,9 @@ VALIDATION_WINDOW_CONFIGS = [
 
 
 def create_boost_factor_config(
-    base_config: ComprehensiveAlgorithmConfig,
+    base_config: AlgorithmConfig,
     boost_factor: float
-) -> ComprehensiveAlgorithmConfig:
+) -> AlgorithmConfig:
     """
     Create algorithm configuration with modified citation boost factor.
     
@@ -72,13 +72,13 @@ def create_boost_factor_config(
     # Update citation boost factor
     config_dict['citation_boost'] = boost_factor
     
-    return ComprehensiveAlgorithmConfig(**config_dict)
+    return AlgorithmConfig(**config_dict)
 
 
 def create_validation_window_config(
-    base_config: ComprehensiveAlgorithmConfig,
+    base_config: AlgorithmConfig,
     window_size: int
-) -> ComprehensiveAlgorithmConfig:
+) -> AlgorithmConfig:
     """
     Create algorithm configuration with modified citation validation window.
     
@@ -96,13 +96,13 @@ def create_validation_window_config(
     # Update citation validation window
     config_dict['citation_support_window'] = window_size
     
-    return ComprehensiveAlgorithmConfig(**config_dict)
+    return AlgorithmConfig(**config_dict)
 
 
 def run_boost_factor_analysis(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run citation boost factor analysis for a single domain.
@@ -166,7 +166,7 @@ def run_boost_factor_analysis(
 def run_validation_window_analysis(
     domain_name: str,
     domain_data,
-    base_config: ComprehensiveAlgorithmConfig
+    base_config: AlgorithmConfig
 ) -> List[ExperimentResult]:
     """
     Run citation validation window analysis for a single domain.
@@ -362,7 +362,7 @@ def run_citation_validation_experiment() -> str:
         raise ValueError(f"Failed to load test domains: {str(e)}")
     
     # Use default algorithm configuration as baseline
-    base_config = ComprehensiveAlgorithmConfig(granularity=3)
+    base_config = AlgorithmConfig(granularity=3)
     
     # Run experiment for all domains
     all_results = []

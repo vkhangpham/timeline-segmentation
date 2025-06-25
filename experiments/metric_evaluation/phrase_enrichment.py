@@ -35,7 +35,7 @@ from optimize_segmentation_bayesian import (
     convert_dataframe_to_domain_data,
     optimize_consensus_difference_parameters_bayesian,
 )
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.consensus_difference_metrics import evaluate_segmentation_quality
 
 
@@ -94,7 +94,7 @@ def run_phrase_enrichment_comparison(domain_name: str, max_evaluations: int = 30
             print(f"   ⏱️  Data conversion time: {conversion_time:.3f}s")
             
             # Base configuration with Phase 16 optimized defaults
-            base_config = ComprehensiveAlgorithmConfig(
+            base_config = AlgorithmConfig(
                 keyword_min_papers_ratio=0.05,  # FEATURE-01 optimized
                 keyword_filtering_enabled=True,
                 domain_name=domain_name,
