@@ -31,7 +31,7 @@ def load_optimized_parameters() -> Dict[str, Dict[str, float]]:
 
 
 @dataclass
-class ComprehensiveAlgorithmConfig:
+class AlgorithmConfig:
     """
     Comprehensive configuration for timeline segmentation algorithm.
     
@@ -226,7 +226,7 @@ class ComprehensiveAlgorithmConfig:
     
     @classmethod
     def create_custom(cls, granularity: int = 3, domain_name: Optional[str] = None, 
-                     overrides: Optional[Dict[str, Any]] = None) -> 'ComprehensiveAlgorithmConfig':
+                     overrides: Optional[Dict[str, Any]] = None) -> 'AlgorithmConfig':
         """
         Create configuration with custom parameter overrides.
         
@@ -236,7 +236,7 @@ class ComprehensiveAlgorithmConfig:
             overrides: Dictionary of parameter overrides
             
         Returns:
-            Configured ComprehensiveAlgorithmConfig instance
+            Configured AlgorithmConfig instance
         """
         # Start with granularity-based configuration
         config = cls(granularity=granularity, domain_name=domain_name)
@@ -285,7 +285,7 @@ class ComprehensiveAlgorithmConfig:
     
     def __str__(self) -> str:
         """String representation showing key parameters."""
-        return (f"ComprehensiveAlgorithmConfig(granularity={self.granularity}, "
+        return (f"AlgorithmConfig(granularity={self.granularity}, "
                 f"direction_threshold={self.direction_threshold:.3f}, "
                 f"validation_threshold={self.validation_threshold:.3f})")
 
@@ -304,12 +304,12 @@ class ComprehensiveAlgorithmConfig:
 # UTILITY FUNCTIONS
 # ============================================================================
 
-def create_default_config() -> ComprehensiveAlgorithmConfig:
+def create_default_config() -> AlgorithmConfig:
     """Create default algorithm configuration."""
-    return ComprehensiveAlgorithmConfig()
+    return AlgorithmConfig()
 
 
-def validate_parameter_combination(config: ComprehensiveAlgorithmConfig) -> List[str]:
+def validate_parameter_combination(config: AlgorithmConfig) -> List[str]:
     """
     Validate parameter combinations and return list of warnings/suggestions.
     
@@ -328,7 +328,7 @@ def validate_parameter_combination(config: ComprehensiveAlgorithmConfig) -> List
     return messages
 
 
-def get_recommended_config_for_domain(domain_name: str) -> ComprehensiveAlgorithmConfig:
+def get_recommended_config_for_domain(domain_name: str) -> AlgorithmConfig:
     """
     Get recommended configuration for specific domain.
     
@@ -338,10 +338,10 @@ def get_recommended_config_for_domain(domain_name: str) -> ComprehensiveAlgorith
     Returns:
         Recommended configuration
     """
-    return ComprehensiveAlgorithmConfig(domain_name=domain_name)
+    return AlgorithmConfig(domain_name=domain_name)
 
 
-def export_config_to_file(config: ComprehensiveAlgorithmConfig, filepath: str) -> None:
+def export_config_to_file(config: AlgorithmConfig, filepath: str) -> None:
     """
     Export configuration to JSON file.
     
@@ -369,7 +369,7 @@ def export_config_to_file(config: ComprehensiveAlgorithmConfig, filepath: str) -
     }
     
     config_dict['_metadata'] = {
-        'config_type': 'ComprehensiveAlgorithmConfig',
+        'config_type': 'AlgorithmConfig',
         'version': '1.0',
         'description': 'Timeline Segmentation Algorithm Configuration'
     }
@@ -378,7 +378,7 @@ def export_config_to_file(config: ComprehensiveAlgorithmConfig, filepath: str) -
         json.dump(config_dict, f, indent=2)
 
 
-def load_config_from_file(filepath: str) -> ComprehensiveAlgorithmConfig:
+def load_config_from_file(filepath: str) -> AlgorithmConfig:
     """
     Load configuration from JSON file.
     
@@ -396,4 +396,4 @@ def load_config_from_file(filepath: str) -> ComprehensiveAlgorithmConfig:
     # Remove metadata if present
     config_dict.pop('_metadata', None)
     
-    return ComprehensiveAlgorithmConfig(**config_dict) 
+    return AlgorithmConfig(**config_dict) 

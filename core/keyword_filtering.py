@@ -19,13 +19,13 @@ from collections import defaultdict, Counter
 import warnings
 
 from .data_models import DomainData, Paper
-from .algorithm_config import ComprehensiveAlgorithmConfig
+from .algorithm_config import AlgorithmConfig
 
 
 def filter_domain_keywords_conservative(
     keywords: List[str], 
     year_papers: List[Paper],
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     domain_name: str
 ) -> Tuple[List[str], Dict[str, str]]:
     """
@@ -74,7 +74,7 @@ def filter_domain_keywords_conservative(
 def _filter_by_paper_frequency(
     keywords: List[str],
     year_papers: List[Paper], 
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     filtering_rationale: Dict[str, str]
 ) -> List[str]:
     """
@@ -126,7 +126,7 @@ def _filter_by_paper_frequency(
 
 def analyze_keyword_quality_metrics(
     domain_data: DomainData,
-    algorithm_config: ComprehensiveAlgorithmConfig
+    algorithm_config: AlgorithmConfig
 ) -> Dict[str, any]:
     """
     Analyze keyword quality metrics for domain to inform filtering decisions.
@@ -184,7 +184,7 @@ def analyze_keyword_quality_metrics(
 
 
 def validate_filtering_configuration(
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     domain_data: DomainData
 ) -> List[str]:
     """
@@ -220,7 +220,7 @@ def validate_filtering_configuration(
 # Utility function for testing and analysis
 def preview_filtering_impact(
     domain_data: DomainData,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     year_range: Optional[Tuple[int, int]] = None
 ) -> Dict[str, any]:
     """

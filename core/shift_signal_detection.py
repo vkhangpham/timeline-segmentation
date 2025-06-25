@@ -286,8 +286,9 @@ def detect_citation_structural_breaks(
         )
 
     print(f"\nCitation signals detected: {len(signals)}")
-    for signal in signals:
+    for signal in signals[:5]:
         print(f"    {signal.year} {signal.transition_description}")
+    print(f"    ... {len(signals) - 5} more signals")
 
     return signals
 
@@ -471,8 +472,9 @@ def detect_research_direction_changes(
                 )
 
     print(f"Direction signals detected: {len(signals)} (threshold={detection_threshold:.2f})")
-    for signal in signals:
+    for signal in signals[:5]:
         print(f"    {signal.year} (confidence={signal.confidence:.2f})")
+    print(f"    ... {len(signals) - 5} more signals")
     
     if return_analysis_data:
         return signals, analysis_data
@@ -518,6 +520,7 @@ def validate_direction_with_citation(
     citation_window = algorithm_config.citation_support_window
     citation_boost_rate = algorithm_config.citation_boost
     
+    results = []
     # Process each direction signal through simplified validation
     for direction_signal in direction_signals:
         year = direction_signal.year
@@ -574,13 +577,17 @@ def validate_direction_with_citation(
             # Generate decision rationale for transparency
             boost_text = f" + boost({confidence_boost:.2f})" if confidence_boost > 0 else ""
             rationale = f"Confidence: {base_confidence:.3f}{boost_text} = {final_confidence:.3f} ≥ threshold({algorithm_config.validation_threshold:.2f})"
-            print(f"{year}: {rationale}")
+            results.append((year, rationale))
         else:
             validation_summary['rejected'] += 1
             rationale = f"Confidence: {base_confidence:.3f} + boost({confidence_boost:.2f}) = {final_confidence:.3f} < threshold({algorithm_config.validation_threshold:.2f})"
-            print(f"{year}: {rationale}")
+            results.append((year, rationale))
+    
+    for year, rationale in results[:5]:
+        print(f"    {year}: {rationale}")
+    print(f"    ... {len(results) - 5} more validation")
 
-    return validated_paradigms
+    return validated_paradigms, results
 
 
 # =============================================================================
