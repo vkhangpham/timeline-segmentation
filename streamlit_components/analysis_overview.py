@@ -12,7 +12,7 @@ from plotly.subplots import make_subplots
 from collections import defaultdict, Counter
 from typing import Dict, List, Optional
 
-from core.algorithm_config import ComprehensiveAlgorithmConfig
+from core.algorithm_config import AlgorithmConfig
 from core.data_models import DomainData
 
 
@@ -124,7 +124,7 @@ def create_segment_keywords_table(segments: List[List[int]], domain_data) -> pd.
 
 def create_keyword_filtering_plot(
     domain_name: str,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     enhanced_signal_data: Dict,
 ) -> go.Figure:
     """Create Step 0: Keyword Filtering visualization."""
@@ -230,7 +230,7 @@ def create_keyword_filtering_plot(
 
 def create_direction_signal_detection_plot(
     domain_name: str,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     enhanced_signal_data: Dict,
 ) -> go.Figure:
     """Create Step 1: Raw Direction Signal Detection visualization."""
@@ -527,7 +527,7 @@ def create_final_validation_plot(
     domain_name: str,
     validated_signals: List,
     enhanced_signal_data: Dict,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
 ) -> go.Figure:
     """Create Step 3: Final Validation with Consistent Threshold visualization."""
     fig = go.Figure()
@@ -659,7 +659,7 @@ def create_similarity_segmentation_plot(
     domain_name: str,
     validated_signals: List,
     enhanced_signal_data: Dict,
-    algorithm_config: ComprehensiveAlgorithmConfig,
+    algorithm_config: AlgorithmConfig,
     segments: Optional[List[List[int]]] = None,
     domain_data: Optional[DomainData] = None,
 ) -> go.Figure:
