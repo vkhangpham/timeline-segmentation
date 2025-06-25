@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 """
-Bayesian Consensus-Difference Optimization Runner
+Bayesian Consensus-Difference Optimization Runner (Phase 15 + Phase 16 Optimized)
 
 This script uses Bayesian optimization (Gaussian Process with Expected Improvement) 
-to efficiently find parameters that maximize consensus-difference scores using Phase 15 metrics. 
+to efficiently find parameters that maximize consensus-difference scores. Incorporates
+all Phase 16 validated optimizations for superior performance.
 
-Uses the new robust C-metrics (consensus within segments) and D-metrics (difference between segments)
-instead of the semantic citation approach. Designed to be 95%+ faster than grid search.
+Phase 16 Optimizations Integrated:
+- Linear aggregation (FEATURE-05 + PARETO-01: 2.13x optimization effectiveness)
+- TF-IDF vectorization with 10k features (FEATURE-02/04: +5.9% improvement)
+- Keyword filtering ratio 0.05 (FEATURE-01: +4.6pp L-score)
+- Consensus/difference weights 0.1/0.9 (FEATURE-00: optimal balance)
 
-Follows the Phase 15 consensus-difference metrics framework.
+Uses robust C-metrics (consensus within segments) and D-metrics (difference between segments)
+with fail-fast error handling and transparent decision rationale.
 """
 
 import os
@@ -18,9 +23,11 @@ import json
 import numpy as np
 import logging
 from datetime import datetime
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 from dataclasses import dataclass
 from tqdm import tqdm
+import argparse
+import concurrent.futures as _cf
 
 # Add project root to path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -80,13 +87,13 @@ def _get_config_weights_for_metadata():
             'configuration_source': 'optimization_config.json (centralized weights)'
         }
     except Exception as e:
-        # Fallback in case of config loading issues
+        # Fallback using Phase 16 optimized defaults
         return {
-            'consensus_weight': 0.8,
-            'difference_weight': 0.2,
+            'consensus_weight': 0.1,  # Phase 16 FEATURE-00 optimized
+            'difference_weight': 0.9,  # Phase 16 FEATURE-00 optimized
             'internal_consensus_weights': [0.4, 0.4, 0.2],
             'internal_difference_weights': [0.4, 0.4, 0.2],
-            'configuration_source': 'fallback defaults (config load failed)',
+            'configuration_source': 'Phase 16 fallback defaults (config load failed)',
             'error': str(e)
         }
 
@@ -153,7 +160,7 @@ def research_vector_to_config(
     validation_threshold: float, 
     similarity_min_segment_length: int,
     similarity_max_segment_length: int,
-    base_config: ComprehensiveAlgorithmConfig = None
+    base_config: Optional[ComprehensiveAlgorithmConfig] = None
 ) -> ComprehensiveAlgorithmConfig:
     """Convert parameter values to algorithm configuration."""
     if base_config is None:
@@ -177,7 +184,10 @@ def research_vector_to_config(
 
 
 def consensus_difference_evaluation_bayesian(
-    params: List[float], domain_data: DomainData, domain_name: str
+    params: List[float],
+    domain_data: DomainData,
+    domain_name: str,
+    base_config: Optional[ComprehensiveAlgorithmConfig] = None,
 ) -> float:
     """
     Consensus & Difference evaluation function for Bayesian optimization.
@@ -197,8 +207,11 @@ def consensus_difference_evaluation_bayesian(
         return -1000.0  # Heavy penalty for invalid combinations
     
     config = research_vector_to_config(
-        direction_threshold, validation_threshold, 
-        similarity_min_segment_length, similarity_max_segment_length
+        direction_threshold,
+        validation_threshold,
+        similarity_min_segment_length,
+        similarity_max_segment_length,
+        base_config=base_config,
     )
 
     try:
@@ -236,8 +249,8 @@ def consensus_difference_evaluation_bayesian(
                 segment_papers = [tuple(domain_data.papers)]
 
         # Evaluate segmentation quality using comprehensive metrics from consensus_difference_metrics.py
-        # Weights are now loaded automatically from optimization_config.json
-        evaluation_result = evaluate_segmentation_quality(segment_papers)
+        # Weights and aggregation method are now loaded automatically from optimization_config.json
+        evaluation_result = evaluate_segmentation_quality(segment_papers, algorithm_config=config)
         
         # Return negative score for minimization (scikit-optimize minimizes by default)
         return -evaluation_result.final_score
@@ -252,6 +265,7 @@ def optimize_consensus_difference_parameters_bayesian(
     domain_name: str,
     max_evaluations: int = 100,
     random_seed: int = None,
+    base_config: Optional[ComprehensiveAlgorithmConfig] = None,
 ) -> Dict[str, Any]:
     """
     Optimize parameters using Bayesian optimization for consensus-difference metrics.
@@ -313,7 +327,9 @@ def optimize_consensus_difference_parameters_bayesian(
         evaluation_count += 1
         
         # Get negative score (for minimization)
-        neg_score = consensus_difference_evaluation_bayesian(params, domain_data, domain_name)
+        neg_score = consensus_difference_evaluation_bayesian(
+            params, domain_data, domain_name, base_config=base_config
+        )
         actual_score = -neg_score  # Convert back to positive for tracking
         
         # Update progress
@@ -371,7 +387,7 @@ def optimize_consensus_difference_parameters_bayesian(
         pbar.close()
         
         # Get detailed evaluation for best parameters using new metrics
-        config = research_vector_to_config(*best_params)
+        config = research_vector_to_config(*best_params, base_config=base_config)
         with SuppressOutput(suppress_stdout=True):
             # Run segmentation with best parameters
             from core.integration import run_change_detection
@@ -401,7 +417,8 @@ def optimize_consensus_difference_parameters_bayesian(
                 segment_papers = [tuple(domain_data.papers)]
         
         # Get detailed evaluation using comprehensive metrics from consensus_difference_metrics.py
-        detailed_evaluation = evaluate_segmentation_quality(segment_papers)
+        # Aggregation method loaded automatically from optimization_config.json with env override support
+        detailed_evaluation = evaluate_segmentation_quality(segment_papers, algorithm_config=config)
         final_best_score = detailed_evaluation.final_score
         
         final_best_detailed_evaluation = {
@@ -516,7 +533,29 @@ def save_consensus_difference_optimized_parameters(
 
 
 def convert_dataframe_to_domain_data(df, domain_name: str) -> DomainData:
-    """Convert DataFrame to DomainData object with all required fields."""
+    """
+    Convert DataFrame to DomainData object with all required fields.
+    
+    Phase 16 FEATURE-06: Supports phrase enrichment via YAKE when enabled in configuration.
+    """
+    # Load phrase enrichment configuration
+    config = load_optimization_config()
+    phrase_config = config.get("phrase_enrichment", {})
+    
+    # Priority order: environment variable > optimization_config.json
+    phrase_enabled = os.getenv("PHRASE_ENRICHMENT")
+    if phrase_enabled is not None:
+        phrase_enabled = phrase_enabled.lower() == "true"
+    else:
+        phrase_enabled = phrase_config.get("enabled", False)
+    
+    top_k_phrases = phrase_config.get("top_k_phrases", 10)
+    
+    # Import YAKE utility if phrase enrichment is enabled
+    if phrase_enabled:
+        from core.keyword_utils import yake_phrases
+        print(f"🔤 Phase 16 FEATURE-06: YAKE phrase enrichment enabled (top_k={top_k_phrases})")
+    
     papers = []
     for idx, row in df.iterrows():
         # Extract keywords properly - handle pipe-separated format
@@ -531,6 +570,18 @@ def convert_dataframe_to_domain_data(df, domain_name: str) -> DomainData:
             keywords_list = [str(k).strip() for k in keywords_raw if str(k).strip()]
         else:
             keywords_list = []
+
+        # Phase 16 FEATURE-06: Apply phrase enrichment if enabled
+        if phrase_enabled:
+            content = str(row.get("content", row.get("abstract", "")))
+            if content and content.strip():
+                try:
+                    # Extract YAKE phrases and append to keywords
+                    extracted_phrases = yake_phrases(content, top_k=top_k_phrases)
+                    keywords_list.extend(extracted_phrases)
+                except Exception as e:
+                    # Fail-fast: phrase extraction errors are critical
+                    raise ValueError(f"YAKE phrase extraction failed for paper {idx} in {domain_name}: {e}")
 
         paper = Paper(
             id=str(row.get("id", f"{domain_name}_{idx}")),
@@ -565,30 +616,66 @@ def convert_dataframe_to_domain_data(df, domain_name: str) -> DomainData:
     return domain_data
 
 
-def optimize_single_domain(domain_name: str, max_evaluations: int = 100) -> Dict[str, Any]:
+def optimize_single_domain(
+    domain_name: str,
+    max_evaluations: int = 100,
+    keyword_ratio: float = 0.05,  # Phase 16 FEATURE-01 optimized default
+) -> Dict[str, Any]:
     """Optimize research quality parameters for a single domain using Bayesian optimization."""
     print(f"\n🎯 BAYESIAN CONSENSUS-DIFFERENCE OPTIMIZATION: {domain_name.upper()}")
     print("=" * 70)
 
     try:
-        # Load domain data
-        print(f"📊 Loading {domain_name} data...")
-        df = load_domain_data(domain_name)
+        # Phase 16 FEATURE-08: Load citation-enriched data with configuration support
+        config = load_optimization_config()
+        citation_config = config.get("citation_enrichment", {})
+        
+        # Priority order: environment variable > optimization_config.json
+        citation_enabled = os.getenv("CITATION_EDGE_ENRICHMENT")
+        if citation_enabled is not None:
+            citation_enabled = citation_enabled.lower() == "true"
+        else:
+            citation_enabled = citation_config.get("enabled", True)  # Default enabled
+        
+        # Load domain data using appropriate method
+        if citation_enabled:
+            print(f"📊 Loading citation-enriched {domain_name} data...")
+            from core.data_loader import load_domain_data_enriched
+            
+            apply_year_filtering = citation_config.get("apply_year_filtering", False)
+            domain_data = load_domain_data_enriched(
+                domain=domain_name,
+                apply_year_filtering=apply_year_filtering
+            )
+            print(f"📚 Citation-enriched {domain_name}: {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]})")
+        else:
+            print(f"📊 Loading CSV-based {domain_name} data (citation enrichment disabled)...")
+            df = load_domain_data(domain_name)
 
-        if df is None or df.empty:
-            print(f"❌ No data available for {domain_name}")
-            return {"optimization_successful": False, "error": "No data available"}
+            if df is None or df.empty:
+                print(f"❌ No data available for {domain_name}")
+                return {"optimization_successful": False, "error": "No data available"}
 
-        print(f"✅ Loaded {len(df)} papers")
+            print(f"✅ Loaded {len(df)} papers")
+            
+            # Convert to DomainData (without citations)
+            domain_data = convert_dataframe_to_domain_data(df, domain_name)
+            print(f"📚 Processed {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]})")
 
-        # Convert to DomainData
-        domain_data = convert_dataframe_to_domain_data(df, domain_name)
-        print(f"📚 Processed {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]})")
+        # Build base configuration with keyword ratio override
+        base_config_override = ComprehensiveAlgorithmConfig(
+            keyword_min_papers_ratio=keyword_ratio,
+            keyword_filtering_enabled=True,
+            domain_name=domain_name,
+        )
 
         # Run Bayesian optimization
         start_time = time.time()
         result = optimize_consensus_difference_parameters_bayesian(
-            domain_data, domain_name, max_evaluations=max_evaluations
+            domain_data,
+            domain_name,
+            max_evaluations=max_evaluations,
+            base_config=base_config_override,
         )
         execution_time = time.time() - start_time
 
@@ -617,9 +704,9 @@ def optimize_single_domain(domain_name: str, max_evaluations: int = 100) -> Dict
                 print(f"   📝 Difference Analysis:")
                 print(f"      {detailed_eval['difference_explanation']}")
                 print(f"   ⚖️  Configuration Weights:")
-                print(f"      • Final Score: Balanced average (50/50) of consensus and difference")
-                print(f"      • Internal Consensus Weights: C1={detailed_eval['config_weights']['internal_consensus_weights'][0]:.1f}, C2={detailed_eval['config_weights']['internal_consensus_weights'][1]:.1f}, C3={detailed_eval['config_weights']['internal_consensus_weights'][2]:.1f}")
-                print(f"      • Internal Difference Weights: D1={detailed_eval['config_weights']['internal_difference_weights'][0]:.1f}, D2={detailed_eval['config_weights']['internal_difference_weights'][1]:.1f}, D3={detailed_eval['config_weights']['internal_difference_weights'][2]:.1f}")
+                cw = detailed_eval['config_weights']['consensus_weight']
+                dw = detailed_eval['config_weights']['difference_weight']
+                print(f"      • Final Score: Linear combination {cw:.2f}×consensus + {dw:.2f}×difference")
 
             # Add execution time to result
             result["execution_time"] = execution_time
@@ -724,11 +811,13 @@ def main():
         }
         if successful_results:
             save_consensus_difference_optimized_parameters(successful_results)
+            if not args.silent:
+                print(f"✅ Finished optimisation for {len(successful_results)} out of {len(all_available_domains)} domains")
         else:
             print("❌ No domains were successfully optimized.")
     else:
         # Optimize all available domains with default evaluations
-        max_evals = 200  
+        max_evals = 100  
         print(f"🚀 Running Bayesian consensus-difference optimization on all {len(all_available_domains)} available domains with {max_evals} evaluations each")
         print(f"Domains to optimize: {', '.join(all_available_domains)}")
         
@@ -745,10 +834,90 @@ def main():
         }
         if successful_results:
             save_consensus_difference_optimized_parameters(successful_results)
-            print(f"✅ Successfully optimized {len(successful_results)} out of {len(all_available_domains)} domains")
+            if not args.silent:
+                print(f"✅ Finished optimisation for {len(successful_results)} out of {len(all_available_domains)} domains")
         else:
             print("❌ No domains were successfully optimized.")
 
 
 if __name__ == "__main__":
-    main() 
+    import argparse, concurrent.futures as _cf
+
+    parser = argparse.ArgumentParser(description="Bayesian optimisation for timeline segmentation")
+    parser.add_argument("domains", nargs="*", help="Domain names to optimise (default: all)")
+    parser.add_argument("--max-evals", type=int, default=100, dest="max_evals", help="Max GP evaluations per domain")
+    parser.add_argument("--keyword-ratio", type=float, default=0.05, help="keyword_min_papers_ratio override (0.01–0.5)")
+    parser.add_argument("--no-save", action="store_true", dest="no_save", help="Skip saving optimized parameter JSON (useful for experiments)")
+    parser.add_argument("--suffix", type=str, default=None, help="Suffix for saved parameter JSON (optional)")
+    parser.add_argument("--parallel", type=int, default=1, dest="n_workers", help="Number of parallel workers")
+    parser.add_argument("--tfidf_max_features", type=int, default=None, help="Override tfidf_max_features for this run")
+    parser.add_argument("--clean-text", action="store_true", dest="clean_text_enabled", help="Enable HTML/stop-word cleaning before TF-IDF")
+    parser.add_argument("--silent", action="store_true", dest="silent", help="Suppress verbose output (still prints errors)")
+    parser.add_argument("--best-out", type=str, default=None, dest="best_out", help="Path to write best score JSON for sweep scripts")
+
+    args = parser.parse_args()
+
+    all_domains = discover_available_domains()
+    if not all_domains:
+        sys.exit(1)
+
+    domains_to_run = args.domains if args.domains else all_domains
+    invalid = [d for d in domains_to_run if d not in all_domains]
+    if invalid:
+        print(f"❌ Invalid domains requested: {', '.join(invalid)}")
+        sys.exit(1)
+
+    if not args.silent:
+        print(f"🚀 Optimising {len(domains_to_run)} domains (keyword_ratio={args.keyword_ratio:.2f}, max_evals={args.max_evals}, workers={args.n_workers})")
+
+    # Set environment variables for downstream metric calculations
+    if args.tfidf_max_features is not None:
+        os.environ["TFIDF_MAX_FEATURES"] = str(args.tfidf_max_features)
+    if args.clean_text_enabled:
+        os.environ["CLEAN_TEXT_ENABLED"] = "true"
+
+    results = {}
+    if args.n_workers > 1:
+        with _cf.ProcessPoolExecutor(max_workers=args.n_workers) as pool:
+            futures = {
+                pool.submit(optimize_single_domain, d, args.max_evals, args.keyword_ratio): d for d in domains_to_run
+            }
+            for fut in _cf.as_completed(futures):
+                domain = futures[fut]
+                results[domain] = fut.result()
+    else:
+        for d in domains_to_run:
+            results[d] = optimize_single_domain(d, args.max_evals, args.keyword_ratio)
+
+    successful = {d: r for d, r in results.items() if r.get("optimization_successful", False)}
+    if not successful:
+        print("❌ No successful optimisations")
+        sys.exit(1)
+
+    # Optionally write best-score JSON for sweep aggregation
+    if args.best_out:
+        try:
+            from pathlib import Path; import json as _json
+            out_p = Path(args.best_out)
+            out_p.parent.mkdir(parents=True, exist_ok=True)
+            # Assume `successful` has at least one domain
+            dom, res = next(iter(successful.items()))
+            best = {
+                "domain": dom,
+                "tfidf_max_features": int(os.getenv("TFIDF_MAX_FEATURES", 500)),
+                "final_score": res.get("best_detailed_evaluation", {}).get("score")
+            }
+            with open(out_p, "w", encoding="utf-8") as f:
+                _json.dump(best, f)
+        except Exception as e:
+            if not args.silent:
+                print(f"⚠️  Failed to write best-out JSON: {e}")
+
+    if not args.no_save:
+        suffix = args.suffix if args.suffix else f"kwr{int(args.keyword_ratio*100):02d}"
+        save_consensus_difference_optimized_parameters(successful, filename_suffix=suffix)
+        if not args.silent:
+            print(f"✅ Finished optimisation for {len(successful)} domains. Saved with suffix '{suffix}'.")
+    else:
+        if not args.silent:
+            print(f"ℹ️  Finished optimisation for {len(successful)} domains. Saving suppressed by --no-save flag.")

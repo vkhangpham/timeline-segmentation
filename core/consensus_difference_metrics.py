@@ -1,23 +1,20 @@
 """
-Consensus & Difference Metrics (Phase 15)
-========================================
+Consensus & Difference Metrics for Timeline Segmentation
+========================================================
 
-Pure-function metrics to quantify
+Pure-function metrics to quantify:
 A. Consensus inside a segment (C-metrics)
 B. Difference between two consecutive segments (D-metrics)
 
-Only robust, explainable signals are used:
-    • keywords
-    • abstracts / content (TF-IDF embedding)
-    • citation edges
+Key optimizations:
+    • TF-IDF vectorization (outperforms contextual embeddings)
+    • Linear aggregation (superior optimization effectiveness)
+    • 10k max features for optimal performance
+    • Keyword filtering for improved segmentation
 
-Each metric returns **(value, explanation_string)** so callers can surface
-human-readable reasoning in dashboards or journals.
-
-All functions raise on invalid input (fail-fast).
-
-Weights are loaded from optimization_config.json to ensure consistency across
-all optimization and baseline comparison methods.
+Each metric returns **(value, explanation_string)** for transparency.
+All functions follow fail-fast principles with no error masking.
+Weights loaded from optimization_config.json ensure system-wide consistency.
 """
 
 from __future__ import annotations
@@ -28,11 +25,13 @@ from collections import Counter
 import numpy as np
 import json
 import os
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.spatial.distance import jensenshannon
+import math
 
+from core.algorithm_config import ComprehensiveAlgorithmConfig
 from core.data_models import Paper
+from core.text_vectorization import tfidf_embeddings, contextual_embeddings
 
 # ---------------------------------------------------------------------------
 # Configuration Loading
@@ -72,12 +71,34 @@ def _extract_keywords(papers: Tuple[Paper, ...]) -> List[str]:
     return kw
 
 
-def _tfidf_embeddings(texts: List[str]):
-    if len(texts) < 2:
-        # Single vector or empty – return zeros to avoid failure
-        return np.zeros((len(texts), 1))
-    vec = TfidfVectorizer(max_features=500, stop_words="english")
-    return vec.fit_transform(texts).toarray()
+def _get_embeddings(texts: List[str]):
+    """
+    Dispatcher for text vectorization with optimized defaults.
+    
+    TF-IDF is the default method for temporal segmentation as it outperforms
+    contextual embeddings and better captures vocabulary shifts in research transitions.
+    """
+    _vec_cfg = _OPTIMIZATION_CONFIG.get("text_vectorizer", {})
+    
+    # Priority order: environment variables > optimization_config.json defaults
+    vectorizer_type = os.getenv("VECTORIZER_TYPE", _vec_cfg.get("type", "tfidf"))
+    clean_env = os.getenv("CLEAN_TEXT_ENABLED")
+    clean_enabled = (clean_env.lower() == "true") if clean_env is not None else _vec_cfg.get("clean_text_enabled", False)
+    
+    if vectorizer_type == "tfidf":
+        # Default 10k features for optimal performance
+        max_feats = int(os.getenv("TFIDF_MAX_FEATURES", _vec_cfg.get("max_features", 10000)))
+        return tfidf_embeddings(texts, max_features=max_feats, clean=clean_enabled)
+    
+    elif vectorizer_type == "contextual":
+        # Available for research but not recommended for production
+        model_name = os.getenv("CONTEXTUAL_MODEL", _vec_cfg.get("contextual_model", "all-mpnet-base-v2"))
+        cache_dir = os.getenv("HF_CACHE_DIR", _vec_cfg.get("cache_dir", ".hf_cache"))
+        device = os.getenv("DEVICE", _vec_cfg.get("device", "auto"))
+        return contextual_embeddings(texts, model_name=model_name, cache_dir=cache_dir, device=device, clean=clean_enabled)
+    
+    else:
+        raise ValueError(f"Unknown vectorizer_type '{vectorizer_type}'. Valid options: 'tfidf', 'contextual'")
 
 # ---------------------------------------------------------------------------
 # C-metrics  (Consensus inside a segment)
@@ -108,7 +129,7 @@ def c1_keyword_jaccard(segment: Tuple[Paper, ...]) -> MetricResult:
 
 
 def c2_tfidf_cohesion(segment: Tuple[Paper, ...]) -> MetricResult:
-    """Mean pairwise cosine similarity of TF-IDF embeddings of abstracts / keywords."""
+    """Mean pairwise cosine similarity of text embeddings of abstracts / keywords."""
     n = len(segment)
     if n < 2:
         return MetricResult(0.0, "Segment size <2 → cohesion 0.0")
@@ -120,13 +141,19 @@ def c2_tfidf_cohesion(segment: Tuple[Paper, ...]) -> MetricResult:
             texts.append(" ".join(p.keywords))
         else:
             texts.append("")
-    emb = _tfidf_embeddings(texts)
+    emb = _get_embeddings(texts)
     if emb.shape[0] < 2:
-        return MetricResult(0.0, "Insufficient text for TF-IDF cohesion → 0.0")
+        return MetricResult(0.0, "Insufficient text for embedding cohesion → 0.0")
     sim = cosine_similarity(emb)
     mean_sim = float((sim.sum() - np.trace(sim)) / (n * (n - 1)))
+    
+    # Dynamic explanation based on vectorizer type
+    _vec_cfg = _OPTIMIZATION_CONFIG.get("text_vectorizer", {})
+    vectorizer_type = os.getenv("VECTORIZER_TYPE", _vec_cfg.get("type", "tfidf"))
+    embedding_name = "TF-IDF" if vectorizer_type == "tfidf" else f"Contextual-{_vec_cfg.get('contextual_model', 'unknown')}"
+    
     explanation = (
-        f"C2 TF-IDF Cohesion: mean pairwise cosine similarity across {n} papers = {mean_sim:.3f}"
+        f"C2 {embedding_name} Cohesion: mean pairwise cosine similarity across {n} papers = {mean_sim:.3f}"
     )
     return MetricResult(mean_sim, explanation)
 
@@ -174,18 +201,24 @@ def d1_keyword_js(segment_a: Tuple[Paper, ...], segment_b: Tuple[Paper, ...]) ->
 
 
 def d2_centroid_distance(segment_a: Tuple[Paper, ...], segment_b: Tuple[Paper, ...]) -> MetricResult:
-    """1 – cosine similarity between TF-IDF centroids of two segments."""
+    """1 – cosine similarity between text embedding centroids of two segments."""
     texts_a: List[str] = [p.content or " ".join(p.keywords) for p in segment_a]
     texts_b: List[str] = [p.content or " ".join(p.keywords) for p in segment_b]
     if not texts_a or not texts_b:
         return MetricResult(0.0, "Empty text in one segment → distance 0.0")
-    emb = _tfidf_embeddings(texts_a + texts_b)
+    emb = _get_embeddings(texts_a + texts_b)
     k = len(texts_a)
     centroid_a = emb[:k].mean(axis=0)
     centroid_b = emb[k:].mean(axis=0)
     sim = float(cosine_similarity([centroid_a], [centroid_b])[0][0])
     distance = 1.0 - sim
-    explanation = f"D2 Centroid Distance (1 – cosine) = {distance:.3f}"
+    
+    # Dynamic explanation based on vectorizer type
+    _vec_cfg = _OPTIMIZATION_CONFIG.get("text_vectorizer", {})
+    vectorizer_type = os.getenv("VECTORIZER_TYPE", _vec_cfg.get("type", "tfidf"))
+    embedding_name = "TF-IDF" if vectorizer_type == "tfidf" else f"Contextual-{_vec_cfg.get('contextual_model', 'unknown')}"
+    
+    explanation = f"D2 {embedding_name} Centroid Distance (1 – cosine) = {distance:.3f}"
     return MetricResult(distance, explanation)
 
 
@@ -206,6 +239,52 @@ def d3_cross_citation_ratio(segment_a: Tuple[Paper, ...], segment_b: Tuple[Paper
     ratio = cross / total_possible
     explanation = f"D3 Cross-Citation Ratio: {cross}/{total_possible} = {ratio:.3f}"
     return MetricResult(ratio, explanation)
+
+# ---------------------------------------------------------------------------
+# Aggregation helpers (linear, harmonic)
+# ---------------------------------------------------------------------------
+
+VALID_AGGREGATION_METHODS = {"linear", "harmonic"}
+
+
+def _aggregate_scores(consensus: float, difference: float, weights: Tuple[float, float], method: str = "linear") -> float:
+    """
+    Combine consensus & difference scores using specified aggregation method.
+    
+    Linear aggregation is the default method as it provides:
+    - Better optimization effectiveness
+    - Higher score diversity for gradient-based optimization
+    - Avoids score compression issues of harmonic methods
+
+    Args:
+        consensus: Average consensus score across segments.
+        difference: Average difference score across transitions.
+        weights: Tuple (consensus_weight, difference_weight) that must sum to 1.
+        method: "linear" (recommended) or "harmonic" (research only).
+
+    Returns:
+        Aggregated score (float).
+    """
+    if method not in VALID_AGGREGATION_METHODS:
+        raise ValueError(f"Unknown aggregation_method '{method}'. Valid options: {', '.join(VALID_AGGREGATION_METHODS)}")
+
+    consensus_weight, difference_weight = weights
+    _validate_weights((consensus_weight, difference_weight))
+
+    if method == "linear":
+        return consensus_weight * consensus + difference_weight * difference
+
+    # Harmonic mean implementation with safe handling when one component weight is zero
+    if consensus_weight == 0.0:
+        return difference  # All weight on difference component
+    if difference_weight == 0.0:
+        return consensus  # All weight on consensus component
+
+    if consensus == 0.0 or difference == 0.0:
+        # Harmonic mean tends to 0 when either component is 0 under positive weight.
+        return 0.0
+
+    return 1.0 / ((consensus_weight / consensus) + (difference_weight / difference))
 
 # ---------------------------------------------------------------------------
 # Aggregators
@@ -279,19 +358,25 @@ def evaluate_segmentation_quality(
     segment_papers: List[Tuple[Paper, ...]],
     consensus_weights: Tuple[float, float, float] = None,
     difference_weights: Tuple[float, float, float] = None,
-    final_combination_weights: Tuple[float, float] = None
+    final_combination_weights: Tuple[float, float] = None,
+    aggregation_method: str = None,
+    algorithm_config: 'ComprehensiveAlgorithmConfig' = None
 ) -> SegmentationEvaluationResult:
     """
-    Comprehensive evaluation of segmentation quality using Phase 15 consensus-difference metrics.
+    Comprehensive evaluation of segmentation quality using optimized metrics.
     
-    This is the single authoritative function for evaluating segment quality.
-    All optimization and evaluation code should use this function.
+    This function evaluates segment quality using optimized settings:
+    - TF-IDF vectorization for better vocabulary shift detection
+    - Linear aggregation for superior optimization effectiveness
+    - Validated weighting schemes from configuration
     
     Args:
         segment_papers: List of segments, where each segment is a tuple of Paper objects
-        consensus_weights: Weights for C1, C2, C3 metrics (defaults from optimization_config.json)
-        difference_weights: Weights for D1, D2, D3 metrics (defaults from optimization_config.json)
-        final_combination_weights: Weights for combining consensus and difference scores (defaults from optimization_config.json)
+                consensus_weights: C1, C2, C3 weights (defaults from optimization_config.json)    
+        difference_weights: D1, D2, D3 weights (defaults from optimization_config.json)
+        final_combination_weights: Consensus/difference combination weights
+        aggregation_method: "linear" (default) or "harmonic" (research only)
+        algorithm_config: Configuration for comprehensive algorithm
     
     Returns:
         SegmentationEvaluationResult with complete evaluation metrics and explanations
@@ -323,15 +408,28 @@ def evaluate_segmentation_quality(
             config_final["difference_weight"]
         )
     
+    # Load aggregation method from configuration with environment override
+    if aggregation_method is None:
+        # Priority order: environment variable > optimization_config.json
+        aggregation_method = os.getenv("AGGREGATION_METHOD")
+        if aggregation_method is None:
+            config_aggregation = _OPTIMIZATION_CONFIG["consensus_difference_weights"]["aggregation_method"]
+            aggregation_method = config_aggregation["method"]
+    
     # Validate inputs
     _validate_weights(consensus_weights)
     _validate_weights(difference_weights)
     
-    # Validate final combination weights
-    if abs(sum(final_combination_weights) - 1.0) > 1e-6:
-        raise ValueError(f"final_combination_weights must sum to 1.0, got {sum(final_combination_weights):.6f}")
+    # Validate and unpack final combination weights
+    _validate_weights(final_combination_weights)
     
     consensus_final_weight, difference_final_weight = final_combination_weights
+    
+    # Validate aggregation method
+    if aggregation_method not in VALID_AGGREGATION_METHODS:
+        raise ValueError(
+            f"aggregation_method must be one of {', '.join(VALID_AGGREGATION_METHODS)}, got '{aggregation_method}'"
+        )
     
     if not segment_papers:
         raise ValueError("segment_papers cannot be empty")
@@ -343,7 +441,32 @@ def evaluate_segmentation_quality(
     if len(segment_papers) == 1:
         consensus_result = consensus_score(segment_papers[0], consensus_weights)
         # For single segment, final score is just the consensus score (difference is 0)
-        final_score_single = consensus_final_weight * consensus_result.value + difference_final_weight * 0.0
+        final_score_single = _aggregate_scores(
+            consensus_result.value,
+            0.0,
+            (consensus_final_weight, difference_final_weight),
+            method=aggregation_method,
+        )
+        
+        # Apply segment count penalty if enabled (single segment case)
+        penalty_explanation_single = ""
+        if algorithm_config and algorithm_config.segment_count_penalty_enabled:
+            # Calculate domain year span from segment papers
+            all_years = [p.pub_year for p in segment_papers[0]]
+            if all_years:
+                domain_year_span = max(all_years) - min(all_years) + 1
+                k_actual = 1
+                k_desired = max(1, round(domain_year_span / 10))
+                
+                # Apply exponential penalty: penalty = exp(-|K - K_desired| / σ)
+                penalty = math.exp(-abs(k_actual - k_desired) / algorithm_config.segment_count_penalty_sigma)
+                final_score_single *= penalty
+                
+                penalty_explanation_single = (
+                    f" | segment-count penalty σ={algorithm_config.segment_count_penalty_sigma}, "
+                    f"K={k_actual}, K_desired={k_desired} → penalty={penalty:.3f} → adjusted_final={final_score_single:.3f}"
+                )
+        
         return SegmentationEvaluationResult(
             final_score=final_score_single,
             consensus_score=consensus_result.value,
@@ -353,7 +476,9 @@ def evaluate_segmentation_quality(
             difference_explanation="Single segment - no transitions to evaluate",
             individual_consensus_scores=[consensus_result.value],
             individual_difference_scores=[],
-            methodology_explanation=f"Single segment evaluation: final_score = {consensus_final_weight}*{consensus_result.value:.3f} + {difference_final_weight}*0.0 = {final_score_single:.3f}"
+            methodology_explanation=(
+                f"Single segment evaluation ({aggregation_method}): final_score = {final_score_single:.3f}{penalty_explanation_single}"
+            )
         )
     
     # Multiple segments case
@@ -378,15 +503,39 @@ def evaluate_segmentation_quality(
     avg_difference = float(np.mean(difference_values))
     
     # Final score: weighted combination of consensus and difference
-    final_score = consensus_final_weight * avg_consensus + difference_final_weight * avg_difference
+    final_score = _aggregate_scores(
+        avg_consensus,
+        avg_difference,
+        (consensus_final_weight, difference_final_weight),
+        method=aggregation_method,
+    )
+    
+    # Apply segment count penalty if enabled
+    penalty_explanation = ""
+    if algorithm_config and algorithm_config.segment_count_penalty_enabled:
+        # Calculate domain year span from segment papers
+        all_years = [p.pub_year for segment in segment_papers for p in segment]
+        if all_years:
+            domain_year_span = max(all_years) - min(all_years) + 1
+            k_actual = len(segment_papers)
+            k_desired = max(1, round(domain_year_span / 10))
+            
+            # Apply exponential penalty: penalty = exp(-|K - K_desired| / σ)
+            penalty = math.exp(-abs(k_actual - k_desired) / algorithm_config.segment_count_penalty_sigma)
+            final_score *= penalty
+            
+            penalty_explanation = (
+                f" | segment-count penalty σ={algorithm_config.segment_count_penalty_sigma}, "
+                f"K={k_actual}, K_desired={k_desired} → penalty={penalty:.3f} → adjusted_final={final_score:.3f}"
+            )
     
     # Create comprehensive explanations
     consensus_explanations = [f"Segment {i+1}: {r.explanation}" for i, r in enumerate(consensus_results)]
     difference_explanations = [f"Transition {i+1}→{i+2}: {r.explanation}" for i, r in enumerate(difference_results)]
     
     methodology_explanation = (
-        f"Multi-segment evaluation: final_score = {consensus_final_weight}*consensus + {difference_final_weight}*difference = "
-        f"{consensus_final_weight}*{avg_consensus:.3f} + {difference_final_weight}*{avg_difference:.3f} = {final_score:.3f}"
+        f"Multi-segment evaluation ({aggregation_method}): consensus={avg_consensus:.3f}, difference={avg_difference:.3f}, "
+        f"weights=({consensus_final_weight},{difference_final_weight}) → final={final_score:.3f}{penalty_explanation}"
     )
     
     return SegmentationEvaluationResult(

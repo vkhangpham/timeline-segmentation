@@ -67,3 +67,6 @@ dmypy.json
 
 archive/
 .cursor*
+*cache*
+dev_journal_phase*.md
+results/

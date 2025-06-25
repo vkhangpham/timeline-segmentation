@@ -48,7 +48,7 @@ def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> L
     
     # Initialize TF-IDF vectorizer
     tfidf_vectorizer = TfidfVectorizer(
-        max_features=1000,
+        max_features=10000,
         stop_words='english',
         ngram_range=(1, 3),
         min_df=2
@@ -96,7 +96,7 @@ def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> L
         for prev_char in period_characterizations:
             previous_periods.append((start_year, end_year, prev_char.topic_label, prev_char.topic_description))
         
-        # Generate period label and description using FOCUSED CONTEXT
+        # Generate period label and description
         period_label, period_description = generate_period_label_and_description(
             dominant_themes, representative_papers, start_year, end_year,
             previous_periods=previous_periods, domain_name=domain_name
@@ -191,14 +191,12 @@ def load_semantic_citations(domain_name: str) -> List[Dict[str, Any]]:
         tree = ET.parse(citations_file_xml)
         root = tree.getroot()
         
-        # Parse GraphML with proper namespace handling
         ns = {"": "http://graphml.graphdrawing.org/xmlns"}
         
         for edge in root.findall(".//edge", ns):
             source = edge.get("source")
             target = edge.get("target")
             
-            # Find semantic description (data key="d4")
             description = ""
             for data in edge.findall("data", ns):
                 if data.get("key") == "d4" and data.text:
@@ -478,9 +476,6 @@ def detect_network_themes(period_papers: List[Dict], subnetwork: nx.DiGraph,
     return themes if themes else ["Research Period"]
 
 
-# Paper selection function moved to paper_selection_and_labeling.py
-
-
 def calculate_network_metrics(subnetwork: nx.DiGraph) -> Dict[str, float]:
     """Calculate comprehensive network metrics for the period"""
     metrics = {}
@@ -511,12 +506,6 @@ def calculate_network_metrics(subnetwork: nx.DiGraph) -> Dict[str, float]:
     return metrics
 
 
-# Context loading function moved to paper_selection_and_labeling.py
-
-
-# LLM-based labeling functions moved to paper_selection_and_labeling.py
-
-
 def calculate_confidence(network_stability: float, community_persistence: float,
                         flow_stability: float, centrality_consensus: float,
                         num_papers: int, network_metrics: Dict[str, float]) -> float:
@@ -532,11 +521,8 @@ def calculate_confidence(network_stability: float, community_persistence: float,
     # Network connectivity bonus
     density = network_metrics.get('density', 0.0)
     connectivity_bonus = min(0.1, density * 5.0)  # Up to 0.1 bonus for good connectivity
-    
-    # Data availability bonus
-    data_bonus = 0.1 if num_papers >= 10 else 0.05
-    
-    final_confidence = min(1.0, base_confidence + paper_bonus + connectivity_bonus + data_bonus)
+
+    final_confidence = min(1.0, base_confidence + paper_bonus + connectivity_bonus)
     
     return final_confidence
 
@@ -549,7 +535,7 @@ def save_period_signals_for_visualization(
     output_dir: str = "results/signals"
 ) -> str:
     """
-    Save all period signal detection results for visualization and analysis.
+    Save period signal detection results for visualization.
     
     Args:
         period_characterizations: Final period characterizations
@@ -565,99 +551,45 @@ def save_period_signals_for_visualization(
     from datetime import datetime
     import json
     
-    # Ensure output directory exists
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     
     def serialize_period_characterization(char: PeriodCharacterization) -> Dict:
-        """Convert PeriodCharacterization to serializable dictionary"""
+        """Convert PeriodCharacterization to essential dictionary"""
         return {
             'period': char.period,
             'topic_label': char.topic_label,
-            'topic_description': char.topic_description,
             'network_stability': char.network_stability,
-            'community_persistence': char.community_persistence,
-            'flow_stability': char.flow_stability,
-            'centrality_consensus': char.centrality_consensus,
-            'representative_papers': list(char.representative_papers),
-            'network_metrics': char.network_metrics,
-            'confidence': char.confidence
+            'confidence': char.confidence,
+            'representative_papers': [
+                {
+                    'title': paper.get('title', ''),
+                    'year': paper.get('year', 0),
+                    'citation_count': paper.get('citation_count', 0)
+                } for paper in list(char.representative_papers)[:3]  # Top 3 only
+            ]
         }
     
-    # Create comprehensive period signals dataset
     period_signals_data = {
-        'metadata': {
-            'domain_name': domain_name,
-            'analysis_date': datetime.now().isoformat(),
-            'analysis_type': 'period_signal_detection',
-            'description': 'Period characterization using temporal network stability analysis',
-            'methodology': {
-                'data_sources': 'Papers, semantic citations, breakthrough papers',
-                'network_construction': 'Citation network with temporal filtering',
-                'analysis_metrics': 'Stability, persistence, flow, centrality consensus',
-                'theme_detection': 'TF-IDF with network structure enhancement',
-                'paper_selection': 'Network centrality-based selection',
-                'labeling': 'LLM-enhanced period labeling'
-            }
+        'domain_name': domain_name,
+        'analysis_date': datetime.now().isoformat(),
+        'segments': [{'start_year': s[0], 'end_year': s[1]} for s in segments],
+        'characterizations': [serialize_period_characterization(c) for c in period_characterizations],
+        'confidence_stats': {
+            'mean': sum(c.confidence for c in period_characterizations) / max(len(period_characterizations), 1),
+            'min': min([c.confidence for c in period_characterizations] + [0]),
+            'max': max([c.confidence for c in period_characterizations] + [1])
         },
-        'input_segments': {
-            'count': len(segments),
-            'description': 'Time segments from shift signal detection',
-            'segments': [{'start_year': s[0], 'end_year': s[1], 'duration': s[1] - s[0] + 1} for s in segments]
-        },
-        'period_characterizations': {
-            'count': len(period_characterizations),
-            'description': 'Final period characterizations with network analysis',
-            'characterizations': [serialize_period_characterization(c) for c in period_characterizations],
-            'confidence_statistics': {
-                'mean_confidence': sum(c.confidence for c in period_characterizations) / max(len(period_characterizations), 1),
-                'min_confidence': min([c.confidence for c in period_characterizations] + [0]),
-                'max_confidence': max([c.confidence for c in period_characterizations] + [1])
-            }
-        },
-        'detailed_analysis': {
-            'count': len(period_analysis_data),
-            'description': 'Detailed analysis data for each period including intermediate metrics',
-            'analysis_data': period_analysis_data,
-            'network_statistics': {
-                'total_papers_analyzed': sum(d['num_papers'] for d in period_analysis_data),
-                'total_breakthrough_papers': sum(d['num_breakthrough_papers'] for d in period_analysis_data),
-                'average_network_stability': sum(d['network_stability'] for d in period_analysis_data) / max(len(period_analysis_data), 1)
-            }
-        },
-        'visualization_metadata': {
-            'timeline_data': {
-                'period_boundaries': [(d['period'][0], d['period'][1]) for d in period_analysis_data],
-                'period_labels': [d['period_label'] for d in period_analysis_data],
-                'confidence_timeline': [(d['period'][0], d['confidence']) for d in period_analysis_data]
-            },
-            'network_metrics_timeline': {
-                'stability_timeline': [(d['period'][0], d['network_stability']) for d in period_analysis_data],
-                'persistence_timeline': [(d['period'][0], d['community_persistence']) for d in period_analysis_data],
-                'flow_timeline': [(d['period'][0], d['flow_stability']) for d in period_analysis_data],
-                'consensus_timeline': [(d['period'][0], d['centrality_consensus']) for d in period_analysis_data]
-            },
-            'thematic_evolution': {
-                'themes_by_period': [(d['period'], d['dominant_themes']) for d in period_analysis_data],
-                'representative_papers_by_period': [(d['period'], d['representative_papers']) for d in period_analysis_data]
-            },
-            'period_statistics': {
-                'average_period_duration': sum(s[1] - s[0] + 1 for s in segments) / max(len(segments), 1) if segments else 0,
-                'total_timespan': (max(s[1] for s in segments) - min(s[0] for s in segments) + 1) if segments else 0,
-                'characterization_success_rate': len(period_characterizations) / max(len(segments), 1)
-            }
+        'analysis_stats': {
+            'total_papers': sum(d['num_papers'] for d in period_analysis_data),
+            'avg_stability': sum(d['network_stability'] for d in period_analysis_data) / max(len(period_analysis_data), 1)
         }
     }
     
-    # Save to file
     output_file = f"{output_dir}/{domain_name}_period_signals.json"
     with open(output_file, 'w') as f:
         json.dump(period_signals_data, f, indent=2)
     
-    print(f"  🏛️ PERIOD SIGNALS SAVED FOR VISUALIZATION:")
-    print(f"      📁 File: {output_file}")
-    print(f"      📊 Input segments: {len(segments)}")
-    print(f"      🎯 Period characterizations: {len(period_characterizations)}")
-    print(f"      📈 Success rate: {len(period_characterizations) / max(len(segments), 1):.1%}")
-    print(f"      🔗 Network analysis data: {len(period_analysis_data)} periods")
+    print(f"Period signals saved: {output_file}")
+    print(f"Segments: {len(segments)}, Characterizations: {len(period_characterizations)}")
     
     return output_file

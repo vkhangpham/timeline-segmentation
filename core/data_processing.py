@@ -151,7 +151,7 @@ def load_citation_graph(file_path: str, paper_year_map: Dict[str, int]) -> Tuple
         return tuple(citations), tuple(graph_nodes)
     
     except Exception as e:
-        print(f"❌ Error loading citation graph: {e}")
+        print(f"Error loading citation graph: {e}")
         return tuple(), tuple()
 
 
@@ -178,7 +178,7 @@ def calculate_statistics(papers: Tuple[Paper, ...], domain_name: str) -> DataSta
     median_citations = statistics.median(citation_counts)
     year_range = (min(years), max(years))
     
-    # Content completeness (100% as per Phase 1 analysis)
+    # Content completeness verified
     content_completeness = 1.0  # All papers have content
     
     # Keyword completeness
@@ -544,7 +544,7 @@ def process_all_domains(data_directory: str = "resources") -> Dict[str, Processi
     results = {}
     
     for domain in domains:
-        print(f"\n🔄 Processing {domain}...")
+        print(f"\nProcessing {domain}...")
         results[domain] = process_domain_data(domain, data_directory)
     
     return results

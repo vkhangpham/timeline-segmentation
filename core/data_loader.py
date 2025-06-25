@@ -10,6 +10,8 @@ import pandas as pd
 from pathlib import Path
 from typing import Dict, Any, List, Tuple
 
+from core.data_models import DomainData
+
 
 def load_domain_data_json(domain: str, resources_dir: str = "resources") -> pd.DataFrame:
     """
@@ -325,10 +327,63 @@ def load_and_validate_domain_data(domain: str,
             raise ValueError(f"Data validation failed for {domain}: {'; '.join(issues)}")
         
         if issues:
-            print(f"⚠️  Data validation warnings for {domain}: {'; '.join(issues)}")
+            print(f"Data validation warnings for {domain}: {'; '.join(issues)}")
     
     # Print final statistics
     final_stats = get_domain_statistics(df)
     print(f"Final {domain}: {final_stats['total_papers']} papers ({final_stats['year_range'][0]}-{final_stats['year_range'][1]}) - Avg citations: {final_stats['avg_citations']:.0f}")
     
-    return df 
+    return df
+
+
+def load_domain_data_enriched(domain: str, 
+                            resources_dir: str = "resources",
+                            apply_year_filtering: bool = False) -> DomainData:
+    """
+    Load domain data with citation edges populated from JSON + GraphML sources.
+    
+    This function provides citation-enriched data by parsing both the JSON metadata 
+    and GraphML citation graph, enabling meaningful citation density metrics.
+    
+    Args:
+        domain: Domain name (e.g., 'applied_mathematics', 'computer_vision')
+        resources_dir: Path to resources directory containing JSON and GraphML files
+        apply_year_filtering: Whether to filter years with insufficient papers
+        
+    Returns:
+        DomainData with populated Paper.children and citations tuples
+        
+    Raises:
+        RuntimeError: If enrichment fails for any reason (fail-fast behavior)
+        FileNotFoundError: If required JSON or GraphML files are missing
+    """
+    from core.data_processing import process_domain_data
+    
+    print(f"Loading citation-enriched data for {domain}")
+    
+    # Use the proven data processing pipeline that merges JSON + GraphML
+    result = process_domain_data(
+        domain_name=domain,
+        data_directory=resources_dir,
+        min_papers_per_year=5,  # Standard filtering for data quality
+        apply_year_filtering=apply_year_filtering
+    )
+    
+    # Fail-fast: raise error immediately if processing failed
+    if not result.success:
+        raise RuntimeError(f"Citation enrichment failed for {domain}: {result.error_message}")
+    
+    # Validate that we actually got citation data
+    domain_data = result.domain_data
+    papers_with_citations = sum(1 for paper in domain_data.papers if paper.children)
+    citation_coverage = papers_with_citations / len(domain_data.papers) if domain_data.papers else 0.0
+    
+    print(f"Citation-enriched {domain}: {len(domain_data.papers)} papers, "
+          f"{len(domain_data.citations)} citation edges, "
+          f"{citation_coverage:.1%} papers have outgoing citations")
+    
+    # Warn if citation coverage is very low (might indicate GraphML parsing issues)
+    if citation_coverage < 0.05:  # Less than 5% of papers have citations
+        print(f"Low citation coverage ({citation_coverage:.1%}) - GraphML might be sparse")
+    
+    return domain_data 
