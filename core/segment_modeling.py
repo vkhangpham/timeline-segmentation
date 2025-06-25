@@ -30,11 +30,11 @@ def model_segments(
     Returns:
         Segment modeling results with period characterizations
     """
-    print(f"\n🎯 SEGMENT MODELING: {domain_name}")
+    print(f"\nSEGMENT MODELING: {domain_name}")
     print("=" * 50)
     
     if not segments:
-        print("    ⚠️ No segments provided for modeling")
+        print("    No segments provided for modeling")
         return SegmentModelingResult(
             domain_name=domain_name,
             segments=tuple(),
@@ -43,7 +43,7 @@ def model_segments(
             modeling_summary="No segments to model"
         )
     
-    print(f"    📊 Modeling {len(segments)} segments using period signal detection")
+    print(f"    Modeling {len(segments)} segments using period signal detection")
     
     # Use period signal detection to characterize periods
     period_characterizations = characterize_periods(
@@ -57,7 +57,7 @@ def model_segments(
         if pc.confidence > 0.0:  # Only include valid characterizations
             valid_characterizations.append(pc)
         else:
-            print(f"    ⚠️ Skipping low-confidence period {pc.period}: confidence={pc.confidence:.3f}")
+            print(f"    Skipping low-confidence period {pc.period}: confidence={pc.confidence:.3f}")
     
     # Calculate overall modeling confidence
     if valid_characterizations:
@@ -70,9 +70,9 @@ def model_segments(
         segments, valid_characterizations, modeling_confidence
     )
     
-    print(f"    ✅ Modeled {len(valid_characterizations)}/{len(segments)} segments successfully")
-    print(f"    📈 Overall modeling confidence: {modeling_confidence:.3f}")
-    print(f"    📋 {modeling_summary}")
+    print(f"    Modeled {len(valid_characterizations)}/{len(segments)} segments successfully")
+    print(f"    Overall modeling confidence: {modeling_confidence:.3f}")
+    print(f"    {modeling_summary}")
     
     return SegmentModelingResult(
         domain_name=domain_name,

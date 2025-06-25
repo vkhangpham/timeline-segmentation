@@ -19,7 +19,7 @@ def discover_available_domains() -> List[str]:
     resources_path = Path("resources")
     
     if not resources_path.exists():
-        print("❌ Resources directory not found")
+        print("Resources directory not found")
         return []
     
     domains = []
@@ -59,7 +59,7 @@ def calculate_adaptive_timeout(prompt: str, model: str = "qwen2.5:3b") -> int:
     # Base processing time: 0.1 seconds per token (conservative estimate)
     base_timeout = max(30, estimated_tokens * 0.1)
     
-    # Model-specific scaling factors (based on development journal Phase 5)
+    # Model-specific scaling factors for confidence scoring
     model_factors = {
         "deepseek-r1": 6.0,        # Reasoning model needs extra time
         "deepseek-r1:8b-0528-qwen3-q4_K_M": 6.0,     # Reasoning model needs extra time

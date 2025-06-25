@@ -1,22 +1,16 @@
 """
 Shift Signal Detection for Research Timeline Modeling
 
-This module implements paradigm transition detection using a simplified, optimized approach:
+This module implements paradigm transition detection using research direction changes
+and citation analysis validation.
 
-ARCHITECTURE (Phase 12 Optimized):
-1. PRIMARY: Research direction changes detect paradigm shifts
-2. SECONDARY: Citation gradient analysis validates and boosts confidence  
-3. SIMPLIFIED: Clean signal hierarchy with predictable granularity control
-4. RESTRICTED: Breakthrough paper validation removed (too permissive)
+Key functionality:
+- Research direction change detection
+- Citation gradient analysis for validation
+- Temporal clustering with configurable granularity control
+- Signal validation through citation support
 
-KEY FEATURES:
-- Direction-driven paradigm detection (primary method)
-- Gradient-only CPSD citation validation (F1=0.437 > ensemble F1=0.355)  
-- Temporal clustering with fixed algorithm for predictable behavior
-- Citation-only validation logic for higher precision
-- Breakthrough paper validation REMOVED to reduce false positives
-
-Follows functional programming principles with pure functions and immutable data structures.
+Implements functional programming principles with pure functions and immutable data structures.
 """
 
 import numpy as np
@@ -122,24 +116,18 @@ def cluster_and_validate_shifts(
 
 
 # =============================================================================
-# CITATION ANALYSIS - Gradient-only CPSD (Phase 11 Optimized)
+# CITATION ANALYSIS - Gradient-based shift detection
 # =============================================================================
 
 def detect_citation_acceleration_shifts(
     citations: np.ndarray, years_array: np.ndarray, citation_scales: List[int] = None
 ) -> List[Tuple[int, float]]:
     """
-    Gradient-only citation analysis for paradigm shift detection.
-    
-    PHASE 11 OPTIMIZATION: Proven optimal method (F1=0.437) compared to 
-    complex ensemble approaches (F1=0.355).
+    Citation gradient analysis for paradigm shift detection.
 
-    Detects paradigm shifts through:
-    - Multi-scale gradient analysis (1, 3, 5-year windows)
-    - First derivative (acceleration/deceleration)
-    - Second derivative (inflection points)
-    - Adaptive thresholds based on data characteristics
-    - FIXED: Now returns confidence scores based on gradient strength
+    Uses multi-scale gradient analysis with first and second derivatives
+    to detect acceleration/deceleration and inflection points in citation patterns.
+    Returns confidence scores based on gradient strength.
 
     Args:
         citations: Citation counts array
@@ -228,20 +216,15 @@ def detect_citation_structural_breaks(
     domain_data: DomainData, domain_name: str, algorithm_config = None
 ) -> List[ShiftSignal]:
     """
-    CPSD Gradient-Only Citation Validation - Phase 11 optimized.
+    Citation-based paradigm shift validation using gradient analysis.
 
-    PHASE 11 RESEARCH CONCLUSION: Gradient-only approach achieves optimal 
-    performance (F1=0.437) compared to complex ensemble methods (F1=0.355).
-
-    This provides citation-based validation for direction-detected paradigm shifts
-    using multi-scale gradient analysis specifically designed for citation time series.
-    
-    FIXED: Now uses calculated confidence scores based on gradient strength instead of hardcoded 0.7.
+    Provides citation-based validation for direction-detected paradigm shifts
+    using multi-scale gradient analysis for citation time series.
 
     Args:
         domain_data: Domain data with papers and citations
         domain_name: Domain name for logging
-        algorithm_config: Comprehensive algorithm configuration including citation analysis scales
+        algorithm_config: Algorithm configuration including citation analysis scales
 
     Returns:
         List of gradient-based citation validation signals
@@ -255,7 +238,7 @@ def detect_citation_structural_breaks(
         citation_series[year] += paper.cited_by_count
 
     if not citation_series:
-        print(f"⚠️ No citation data found for {domain_name}")
+        print(f"No citation data found for {domain_name}")
         return []
 
     # Prepare data for gradient analysis
@@ -319,17 +302,15 @@ def detect_research_direction_changes(
     return_analysis_data: bool = False
 ) -> List[ShiftSignal]:
     """
-    PRIMARY: Detect paradigm shifts through research direction changes.
+    Detect paradigm shifts through research direction changes.
     
-    This is the main method for paradigm detection, using keyword evolution 
-    and research focus changes to identify fundamental paradigm transitions.
-    
-    IMPROVEMENT-001: Now includes conservative keyword filtering to reduce noise
-    from imperfect keyword annotations while preserving genuine paradigm signals.
+    Main method for paradigm detection, using keyword evolution and research focus 
+    changes to identify fundamental paradigm transitions. Includes keyword filtering
+    to reduce noise while preserving genuine paradigm signals.
 
     Args:
         domain_data: Domain data with papers and citations
-        algorithm_config: Comprehensive algorithm configuration including filtering parameters
+        algorithm_config: Algorithm configuration including filtering parameters
         return_analysis_data: If True, returns tuple for visualization
 
     Returns:
@@ -527,7 +508,7 @@ def validate_direction_with_citation(
     """
     print(f"\nValidating direction signals with citation signals:")
     if not direction_signals:
-        print(f"⚠️ No direction signals to validate")
+        print(f"No direction signals to validate")
         return []
     
     validated_paradigms = []
@@ -593,11 +574,11 @@ def validate_direction_with_citation(
             # Generate decision rationale for transparency
             boost_text = f" + boost({confidence_boost:.2f})" if confidence_boost > 0 else ""
             rationale = f"Confidence: {base_confidence:.3f}{boost_text} = {final_confidence:.3f} ≥ threshold({algorithm_config.validation_threshold:.2f})"
-            print(f"    ✅ {year}: {rationale}")
+            print(f"{year}: {rationale}")
         else:
             validation_summary['rejected'] += 1
             rationale = f"Confidence: {base_confidence:.3f} + boost({confidence_boost:.2f}) = {final_confidence:.3f} < threshold({algorithm_config.validation_threshold:.2f})"
-            print(f"    ❌ {year}: {rationale}")
+            print(f"{year}: {rationale}")
 
     return validated_paradigms
 

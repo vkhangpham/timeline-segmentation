@@ -5,7 +5,7 @@ This module provides centralized configuration for all timeline segmentation alg
 offering both convenient presets via granularity levels and granular control for developers
 who need specific parameter adjustment.
 
-Following Phase 13 principle: Maximum developer flexibility with transparent parameter control.
+Provides maximum developer flexibility with transparent parameter control.
 """
 
 from dataclasses import dataclass, field, fields
@@ -55,7 +55,8 @@ class ComprehensiveAlgorithmConfig:
     keyword_min_frequency: int = 2
     min_significant_keywords: int = 2
     keyword_filtering_enabled: bool = True
-    keyword_min_papers_ratio: float = 0.25
+    # Optimized keyword filtering ratio for better segmentation performance
+    keyword_min_papers_ratio: float = 0.05
     
     # Citation Analysis Parameters
     citation_boost: float = 0.8
@@ -68,6 +69,14 @@ class ComprehensiveAlgorithmConfig:
     # Similarity Segmentation Parameters
     similarity_min_segment_length: int = 3
     similarity_max_segment_length: int = 50
+    
+    # Text Vectorisation Parameters
+    tfidf_max_features: int = 10000  # Optimal TF-IDF capacity for performance
+    clean_text_enabled: bool = True  # HTML/stop-word cleaning (infrastructure ready, disabled by default)
+    
+    # Segment Count Penalty Parameters
+    segment_count_penalty_enabled: bool = True   # Default ON after successful validation
+    segment_count_penalty_sigma: float = 5.0     # Smoothness parameter for exp penalty curve
     
     # System Parameters
     domain_name: Optional[str] = None
@@ -106,6 +115,32 @@ class ComprehensiveAlgorithmConfig:
                 )
                 self.direction_threshold = scaled_params['direction_threshold']
                 self.validation_threshold = scaled_params['validation_threshold']
+        
+        # Load segment count penalty parameters from optimization config with environment overrides
+        try:
+            with open("optimization_config.json", 'r') as f:
+                config = json.load(f)
+            
+            penalty_config = config.get("segment_count_penalty", {})
+            
+            # Priority order: environment variables > optimization_config.json > dataclass defaults
+            penalty_enabled_env = os.getenv("SEGMENT_PENALTY")
+            if penalty_enabled_env is not None:
+                self.segment_count_penalty_enabled = penalty_enabled_env.lower() == "true"
+            else:
+                self.segment_count_penalty_enabled = penalty_config.get("enabled", self.segment_count_penalty_enabled)
+            
+            penalty_sigma_env = os.getenv("SEGMENT_PENALTY_SIGMA")
+            if penalty_sigma_env is not None:
+                self.segment_count_penalty_sigma = float(penalty_sigma_env)
+            else:
+                self.segment_count_penalty_sigma = penalty_config.get("sigma", self.segment_count_penalty_sigma)
+                
+        except (FileNotFoundError, json.JSONDecodeError, KeyError, ValueError):
+            # Fail-fast: If config loading fails, keep dataclass defaults but proceed
+            # This allows the algorithm to work even without optimization_config.json
+            pass
+        
         # Validate all parameters
         self._validate_parameters()
     
@@ -176,6 +211,18 @@ class ComprehensiveAlgorithmConfig:
         
         if self.similarity_min_segment_length >= self.similarity_max_segment_length:
             raise ValueError("similarity_min_segment_length must be < similarity_max_segment_length")
+        
+        # Text vectorisation validations
+        if not 100 <= self.tfidf_max_features <= 50000:
+            raise ValueError(f"tfidf_max_features must be 100-50000, got {self.tfidf_max_features}")
+        if not isinstance(self.clean_text_enabled, bool):
+            raise ValueError("clean_text_enabled must be a boolean")
+        
+        # Segment count penalty validations
+        if not isinstance(self.segment_count_penalty_enabled, bool):
+            raise ValueError("segment_count_penalty_enabled must be a boolean")
+        if not 0.5 <= self.segment_count_penalty_sigma <= 50.0:
+            raise ValueError(f"segment_count_penalty_sigma must be 0.5-50.0, got {self.segment_count_penalty_sigma}")
     
     @classmethod
     def create_custom(cls, granularity: int = 3, domain_name: Optional[str] = None, 
@@ -230,9 +277,9 @@ class ComprehensiveAlgorithmConfig:
         # Add optimization status
         optimized_params = load_optimized_parameters()
         if self.domain_name and self.domain_name in optimized_params:
-            rationale_parts.append(f"  🎯 Using Bayesian-optimized parameters for {self.domain_name}")
+            rationale_parts.append(f"Using Bayesian-optimized parameters for {self.domain_name}")
         else:
-            rationale_parts.append(f"  📊 Scaled from optimized baseline (granularity {self.granularity})")
+            rationale_parts.append(f"Scaled from optimized baseline (granularity {self.granularity})")
         
         return "\n".join(rationale_parts)
     
@@ -316,6 +363,8 @@ def export_config_to_file(config: ComprehensiveAlgorithmConfig, filepath: str) -
         'citation_support_window': config.citation_support_window,
         'similarity_min_segment_length': config.similarity_min_segment_length,
         'similarity_max_segment_length': config.similarity_max_segment_length,
+        'tfidf_max_features': config.tfidf_max_features,
+        'clean_text_enabled': config.clean_text_enabled,
         'domain_name': config.domain_name
     }
     

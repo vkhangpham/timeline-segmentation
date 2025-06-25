@@ -2,18 +2,15 @@
 Segment Merging for Timeline Analysis
 
 This module implements intelligent segment merging that identifies consecutive segments
-that are semantically too similar and have weak shift signals between them.
-The module follows fundamental solution principles:
-- Data-driven similarity detection using rich semantic data
-- Shift signal strength analysis to identify weak boundaries
-- Functional programming approach with pure functions
-- Fail-fast error handling with clear error propagation
+that are semantically similar and have weak shift signals between them.
 
 Core functionality:
 - Semantic similarity detection between consecutive segments
 - Shift signal strength analysis at segment boundaries
 - Intelligent merging with confidence scoring
 - Representative paper consolidation during merging
+
+Follows functional programming principles with pure functions and fail-fast error handling.
 """
 
 from typing import List, Tuple
@@ -49,11 +46,10 @@ def merge_similar_segments(
     Returns:
         Segment merging results with merged periods
     """
-    print(f"\n🔄 SEGMENT MERGING ANALYSIS: {domain_name}")
-    print("=" * 60)
+    print(f"\nSEGMENT MERGING ANALYSIS: {domain_name}")
     
     if len(period_characterizations) < 2:
-        print("    ℹ️ Less than 2 segments - no merging needed")
+        print("Less than 2 segments - no merging needed")
         return SegmentMergingResult(
             original_segments=tuple(period_characterizations),
             merged_segments=tuple(period_characterizations),
@@ -61,9 +57,9 @@ def merge_similar_segments(
             merging_summary="No merging needed - insufficient segments"
         )
     
-    print(f"    📊 Analyzing {len(period_characterizations)} segments for potential merging")
-    print(f"    🎯 Similarity threshold: {similarity_threshold:.3f}")
-    print(f"    🎯 Weak signal threshold: {weak_signal_threshold:.3f}")
+    print(f"Analyzing {len(period_characterizations)} segments for potential merging")
+    print(f"Similarity threshold: {similarity_threshold:.3f}")
+    print(f"Weak signal threshold: {weak_signal_threshold:.3f}")
     
     # Step 1: Calculate semantic similarities between consecutive segments
     semantic_similarities = calculate_semantic_similarities(period_characterizations)
@@ -82,7 +78,7 @@ def merge_similar_segments(
         weak_signal_threshold
     )
     
-    print(f"    🔍 Found {len(merge_candidates)} merge candidates")
+    print(f"Found {len(merge_candidates)} merge candidates")
     
     # Step 4: Execute merging with conflict resolution
     merged_segments, merge_decisions = execute_segment_merging(
@@ -96,8 +92,8 @@ def merge_similar_segments(
         period_characterizations, merged_segments, merge_decisions
     )
     
-    print(f"    ✅ Merged {len(period_characterizations)} → {len(merged_segments)} segments")
-    print(f"    📋 {merging_summary}")
+    print(f"Merged {len(period_characterizations)} → {len(merged_segments)} segments")
+    print(f"{merging_summary}")
     
     return SegmentMergingResult(
         original_segments=tuple(period_characterizations),
@@ -183,12 +179,12 @@ def calculate_semantic_similarities(
             
             similarities.append(combined_similarity)
             
-            print(f"    📏 Segments {i} → {i+1}: text={similarity:.3f}, "
+            print(f"Segments {i} → {i+1}: text={similarity:.3f}, "
                   f"stability={stability_similarity:.3f}, "
                   f"combined={combined_similarity:.3f}")
     
     except Exception as e:
-        print(f"    ⚠️ TF-IDF similarity calculation failed: {e}")
+        print(f"TF-IDF similarity calculation failed: {e}")
         # Fallback to simple label similarity
         for i in range(len(period_characterizations) - 1):
             label1 = period_characterizations[i].topic_label.lower()
@@ -247,12 +243,12 @@ def analyze_boundary_signal_strengths(
             max_confidence = max(s.confidence for s in nearby_signals)
             boundary_strength = max_confidence
             
-            print(f"    🔄 Boundary {boundary_year}: {len(nearby_signals)} signals, "
+            print(f"Boundary {boundary_year}: {len(nearby_signals)} signals, "
                   f"strength={boundary_strength:.3f}")
         else:
             # No signals near boundary = weak boundary
             boundary_strength = 0.0
-            print(f"    🔄 Boundary {boundary_year}: no signals, strength=0.000")
+            print(f"Boundary {boundary_year}: no signals, strength=0.000")
         
         boundary_strengths.append(boundary_strength)
     
@@ -291,7 +287,7 @@ def identify_merge_candidates(
         
         if high_similarity and weak_boundary:
             merge_candidates.append((i, i + 1, similarity, signal_strength))
-            print(f"    ✅ Merge candidate: segments {i} → {i+1} "
+            print(f"Merge candidate: segments {i} → {i+1} "
                   f"(similarity={similarity:.3f}, boundary={signal_strength:.3f})")
         else:
             reasons = []
@@ -300,7 +296,7 @@ def identify_merge_candidates(
             if not weak_boundary:
                 reasons.append(f"strong boundary ({signal_strength:.3f})")
             
-            print(f"    ❌ No merge: segments {i} → {i+1} - {', '.join(reasons)}")
+            print(f"No merge: segments {i} → {i+1} - {', '.join(reasons)}")
     
     return merge_candidates
 
@@ -356,7 +352,7 @@ def execute_segment_merging(
             semantic_similarity=similarity,
             shift_signal_strength=signal_strength,
             merge_confidence=merge_confidence,
-            merge_justification=f"High semantic similarity ({similarity:.3f}) with weak boundary signal ({signal_strength:.3f})",
+            merge_justification=f"Similarity {similarity:.3f}, weak boundary {signal_strength:.3f}",
             merged_period=merged_segment.period,
             merged_label=merged_segment.topic_label,
             merged_description=merged_segment.topic_description
@@ -372,7 +368,7 @@ def execute_segment_merging(
         processed_indices.add(idx1)
         processed_indices.add(idx2)
         
-        print(f"    🔀 Merged segments {idx1}-{idx2}: "
+        print(f"Merged segments {idx1}-{idx2}: "
               f"{segment1.period} + {segment2.period} → {merged_segment.period}")
     
     return merged_segments, merge_decisions
@@ -498,7 +494,7 @@ def generate_merging_summary(
     merge_decisions: List[MergeDecision]
 ) -> str:
     """
-    Generate summary of merging operations.
+    Generate concise summary of merging operations.
     
     Args:
         original_segments: Original segment list
@@ -509,20 +505,6 @@ def generate_merging_summary(
         Summary string
     """
     if not merge_decisions:
-        return "No merging performed - all segments sufficiently distinct"
+        return "No merging performed"
     
-    merges_performed = len(merge_decisions)
-    segments_reduced = len(original_segments) - len(merged_segments)
-    
-    summary_parts = [
-        f"Performed {merges_performed} merging operations",
-        f"Reduced {len(original_segments)} → {len(merged_segments)} segments"
-    ]
-    
-    # Add details of merges
-    for decision in merge_decisions:
-        summary_parts.append(
-            f"Merged {decision.merged_period[0]}-{decision.merged_period[1]}: {decision.merged_label}"
-        )
-    
-    return "; ".join(summary_parts) 
+    return f"{len(merge_decisions)} merges: {len(original_segments)} → {len(merged_segments)} segments" 

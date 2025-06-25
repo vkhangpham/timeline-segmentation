@@ -81,7 +81,7 @@ def create_similarity_based_segments(
     if min_segment_length >= max_segment_length:
         raise ValueError(f"min_segment_length ({min_segment_length}) must be < max_segment_length ({max_segment_length})")
     
-    # 🔧 NEW: Check if configuration is feasible given signal density
+    # Check if configuration is feasible given signal density
     min_year, max_year = domain_data.year_range
     total_years = max_year - min_year + 1
     num_signals = len(validated_signals)
@@ -89,9 +89,9 @@ def create_similarity_based_segments(
     # If we have too many signals for the minimum segment length, warn but proceed
     theoretical_min_years_needed = num_signals * min_segment_length
     if theoretical_min_years_needed > total_years:
-        print(f"    ⚠️  WARNING: {num_signals} signals × {min_segment_length} min length = {theoretical_min_years_needed} years")
-        print(f"    ⚠️  But domain only spans {total_years} years. Some segments may need to be shorter.")
-        print(f"    ⚠️  Consider reducing min_segment_length or validation_threshold")
+        print(f"WARNING: {num_signals} signals × {min_segment_length} min length = {theoretical_min_years_needed} years")
+        print(f"But domain only spans {total_years} years. Some segments may need to be shorter.")
+        print(f"Consider reducing min_segment_length or validation_threshold")
     
     # Get domain year range
     min_year, max_year = domain_data.year_range
@@ -302,8 +302,8 @@ def enforce_minimum_segment_length(
     segments = [(start, end, signal_year) for start, end, signal_year in initial_segments]
     merge_decisions = []
     
-    print(f"    📏 Enforcing minimum segment length: {min_segment_length} years")
-    print(f"    📊 Initial segments: {len(segments)}")
+    print(f"Enforcing minimum segment length: {min_segment_length} years")
+    print(f"Initial segments: {len(segments)}")
     
     i = 0
     while i < len(segments):
@@ -316,7 +316,7 @@ def enforce_minimum_segment_length(
             continue
         
         # Segment is too short, need to merge
-        print(f"    ⚠️  Segment {start}-{end} ({segment_length} years) is too short")
+        print(f"Segment {start}-{end} ({segment_length} years) is too short")
         
         # Determine merge direction
         can_merge_left = i > 0
@@ -392,7 +392,7 @@ def enforce_minimum_segment_length(
             # Don't increment i, check merged segment
             
         else:
-            # 🔧 FIXED: Prioritize minimum length over maximum length constraints
+            # Prioritize minimum length over maximum length constraints
             # If we can't merge within max_segment_length, we must still merge to meet minimum
             
             # Force merge in the direction that violates max_segment_length least
@@ -447,12 +447,12 @@ def enforce_minimum_segment_length(
     # Convert back to simple tuples
     final_segments = [(start, end) for start, end, _ in segments]
     
-    print(f"    ✅ Final segments: {len(final_segments)}")
+    print(f"Final segments: {len(final_segments)}")
     for i, (start, end) in enumerate(final_segments):
         length = end - start + 1
-        print(f"       Segment {i+1}: {start}-{end} ({length} years)")
+        print(f"Segment {i+1}: {start}-{end} ({length} years)")
     
-    # 🔧 NEW: Validate that we actually enforced minimum segment length
+    # Validate that we actually enforced minimum segment length
     validation_failures = []
     for i, (start, end) in enumerate(final_segments):
         length = end - start + 1
@@ -460,12 +460,12 @@ def enforce_minimum_segment_length(
             validation_failures.append(f"Segment {i+1}: {start}-{end} ({length} years)")
     
     if validation_failures:
-        print(f"    ❌ VALIDATION FAILED: {len(validation_failures)} segments still below minimum:")
+        print(f"VALIDATION FAILED: {len(validation_failures)} segments still below minimum:")
         for failure in validation_failures:
-            print(f"       {failure}")
+            print(f"{failure}")
         raise ValueError(f"Segments shorter than min length: {validation_failures}")
     else:
-        print(f"    ✅ Minimum segment length validation passed")
+        print(f"Minimum segment length validation passed")
     
     return final_segments, merge_decisions
 

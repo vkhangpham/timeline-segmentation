@@ -2,9 +2,8 @@
 """
 Timeline Analysis Pipeline
 
-This script runs the complete scientific literature time series segmentation pipeline,
-implementing the Three-Pillar Architecture with Citation-Aware Topic Inheritance 
-and Metastable Knowledge States Framework.
+This script runs the complete scientific literature timeline segmentation pipeline,
+implementing change point detection, period characterization, and segment merging.
 
 Usage:
     python run_timeline_analysis.py --domain deep_learning
@@ -22,7 +21,7 @@ import json
 import os
 
 def display_segmentation_summary(domain_name: str, segmentation_results: dict, change_detection_result):
-    """Display a summary of the segmentation results only."""
+    """Display a summary of the segmentation results."""
     
     print(f"\nSEGMENTATION SUMMARY: {domain_name}")
     print("=" * 40)
@@ -32,17 +31,17 @@ def display_segmentation_summary(domain_name: str, segmentation_results: dict, c
         statistical_significance = change_detection_result.statistical_significance if change_detection_result else 0.0
         change_points = change_detection_result.change_points if change_detection_result else []
         
-        print(f"📈 Change Points Detected: {len(change_points)}")
-        print(f"📏 Timeline Segments Created: {len(segments)}")
-        print(f"📊 Statistical Significance: {statistical_significance:.3f}")
+        print(f"Change Points Detected: {len(change_points)}")
+        print(f"Timeline Segments Created: {len(segments)}")
+        print(f"Statistical Significance: {statistical_significance:.3f}")
         
         # Show change point years
         if change_points:
             change_years = [cp.year for cp in change_points]
-            print(f"🎯 Change Point Years: {sorted(change_years)}")
+            print(f"Change Point Years: {sorted(change_years)}")
         
-        # Show all timeline segments
-        print(f"\n📋 TIMELINE SEGMENTS:")
+        # Show timeline segments
+        print(f"\nTIMELINE SEGMENTS:")
         for i, segment in enumerate(segments):
             start, end = segment
             length = end - start + 1
@@ -54,45 +53,39 @@ def display_segmentation_summary(domain_name: str, segmentation_results: dict, c
             avg_length = sum(lengths) / len(lengths)
             min_length = min(lengths)
             max_length = max(lengths)
-            print(f"\n📈 Segment Statistics:")
+            print(f"\nSegment Statistics:")
             print(f"  Average length: {avg_length:.1f} years")
             print(f"  Range: {min_length}-{max_length} years")
             
     except Exception as e:
-        print(f"❌ Error displaying segmentation results: {str(e)}")
+        print(f"Error displaying segmentation results: {str(e)}")
 
 
 def display_results_summary(domain_name: str, timeline_file: str):
     """Display a summary of the analysis results."""
     
-    print(f"\n📊 RESULTS SUMMARY: {domain_name}")
+    print(f"\nRESULTS SUMMARY: {domain_name}")
     print("=" * 40)
     
     try:
         with open(timeline_file, 'r') as f:
             results = json.load(f)
         
-        # Read from comprehensive analysis format
-        period_characterizations = results['timeline_analysis']['final_period_characterizations']
-        unified_confidence = results['timeline_analysis']['unified_confidence']
-        narrative_evolution = results['timeline_analysis']['narrative_evolution']
+        periods = results['periods']
+        unified_confidence = results['unified_confidence']
         
-        print(f"Period Characterizations: {len(period_characterizations)}")
+        print(f"Periods: {len(periods)}")
         print(f"Unified Confidence: {unified_confidence:.3f}")
-        print(f"Evolution Narrative:\n{narrative_evolution}")
         
-        # Show all timeline segments
-        print(f"\n📋 KEY TIMELINE PERIODS:")
-        for i, period in enumerate(period_characterizations):  # Show all periods
+        print(f"\nTIMELINE PERIODS:")
+        for i, period in enumerate(periods):
             period_range = f"{period['period'][0]}-{period['period'][1]}"
             topic = period['topic_label']
             confidence = period['confidence']
-            description = period['topic_description']
-            print(f"  {i+1}. {period_range}: {topic} (confidence: {confidence:.3f}) ")
-            print(f"    {description}")
+            print(f"  {i+1}. {period_range}: {topic} (confidence: {confidence:.3f})")
         
     except Exception as e:
-        print(f"❌ Error displaying results: {str(e)}")
+        print(f"Error displaying results: {str(e)}")
 
 
 def load_optimized_parameters_if_available(domain_name: str, params_file: str = None) -> dict:
@@ -106,22 +99,22 @@ def load_optimized_parameters_if_available(domain_name: str, params_file: str = 
             
             optimized_params = data.get('consensus_difference_optimized_parameters', {})
             if domain_name in optimized_params:
-                print(f"📁 Using optimized parameters for {domain_name}: {optimized_params[domain_name]}")
-                print(f"📄 Loaded from: {optimized_params_file}")
+                print(f"Using optimized parameters for {domain_name}: {optimized_params[domain_name]}")
+                print(f"Loaded from: {optimized_params_file}")
                 return optimized_params[domain_name]
             else:
-                print(f"⚠️ No optimized parameters found for {domain_name} in {optimized_params_file}, using defaults")
+                print(f"No optimized parameters found for {domain_name}, using defaults")
                 return {}
         except Exception as e:
-            print(f"❌ Error loading optimized parameters from {optimized_params_file}: {e}")
+            print(f"Error loading optimized parameters from {optimized_params_file}: {e}")
             return {}
     else:
-        print(f"⚠️ No optimized parameters file found at {optimized_params_file}, using defaults")
+        print(f"No optimized parameters file found, using defaults")
         return {}
 
 
 def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None, optimized_params_file: str = None) -> bool:
-    """Run complete analysis for a single domain with comprehensive algorithm configuration."""
+    """Run complete analysis for a single domain."""
     start_time = time.time()
     
     # Load optimized parameters if available
@@ -149,12 +142,12 @@ def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granu
         for param_name, param_value in optimized_params.items():
             if param_name in config_kwargs:
                 config_kwargs[param_name] = param_value
-                print(f"   🔧 Using optimized {param_name}: {param_value}")
+                print(f"Using optimized {param_name}: {param_value}")
         
         algorithm_config = ComprehensiveAlgorithmConfig(**config_kwargs)
-        print(f"🎯 Using optimized algorithm config: dir={algorithm_config.direction_threshold:.3f}, val={algorithm_config.validation_threshold:.3f}, sim_length={algorithm_config.similarity_min_segment_length}-{algorithm_config.similarity_max_segment_length}")
+        print(f"Using optimized config: dir={algorithm_config.direction_threshold:.3f}, val={algorithm_config.validation_threshold:.3f}")
     
-    # Step 1: Change point detection and segmentation with comprehensive configuration
+    # Step 1: Change point detection and segmentation
     segmentation_results, change_detection_result = run_change_detection(
         domain_name, 
         granularity=algorithm_config.granularity, 
@@ -164,13 +157,12 @@ def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granu
         return False
     
     if segmentation_only:
-        # Display segmentation results only
         display_segmentation_summary(domain_name, segmentation_results, change_detection_result)
         total_time = time.time() - start_time
-        print(f"\n✅ {domain_name} segmentation completed in {total_time:.2f} seconds")
+        print(f"\n{domain_name} segmentation completed in {total_time:.2f} seconds")
         return True
     
-    # Step 2: Timeline analysis with period characterization (full analysis only)
+    # Step 2: Timeline analysis with period characterization
     timeline_file = run_timeline_analysis(domain_name, segmentation_results, change_detection_result)
     if not timeline_file:
         return False
@@ -179,65 +171,62 @@ def run_domain_analysis(domain_name: str, segmentation_only: bool = False, granu
     display_results_summary(domain_name, timeline_file)
     
     total_time = time.time() - start_time
-    print(f"\n✅ {domain_name} analysis completed in {total_time:.2f} seconds")
+    print(f"\n{domain_name} analysis completed in {total_time:.2f} seconds")
     
     return True
 
 
 def run_all_domains(segmentation_only: bool = False, granularity: int = 3, algorithm_config: ComprehensiveAlgorithmConfig = None, optimized_params_file: str = None):
-    """Run analysis for all available domains with comprehensive algorithm configuration."""
+    """Run analysis for all available domains."""
     
-    # Create comprehensive configuration (will be overridden per domain)
+    # Create comprehensive configuration
     if algorithm_config is None:
         algorithm_config = ComprehensiveAlgorithmConfig(granularity=granularity)
     
-    # Dynamically discover domains from resources directory
+    # Discover domains from resources directory
     domains = discover_available_domains()
     
     if not domains:
-        print("❌ No domains found in resources directory")
+        print("No domains found in resources directory")
         return False
     
     successful_domains = []
     
     analysis_type = "SEGMENTATION" if segmentation_only else "ANALYSIS"
-    print(f"🌍 RUNNING CROSS-DOMAIN {analysis_type}")
-    print(f"🎛️  Comprehensive Configuration: Granularity {algorithm_config.granularity}")
-    print(f"🔧  Algorithm Parameters: {len([f for f in algorithm_config.__dataclass_fields__])} total parameters")
+    print(f"RUNNING CROSS-DOMAIN {analysis_type}")
+    print(f"Configuration: Granularity {algorithm_config.granularity}")
     print("=" * 50)
-    print(f"Analyzing {len(domains)} domains with Enhanced Timeline Analysis Framework...")
+    print(f"Analyzing {len(domains)} domains...")
     print(f"Discovered domains: {', '.join(domains)}")
     print()
     
     for domain in domains:
-        print(f"\n📊 Processing domain {len(successful_domains) + 1}/{len(domains)}: {domain}")
-        # Create domain-specific configuration for optimization
+        print(f"\nProcessing domain {len(successful_domains) + 1}/{len(domains)}: {domain}")
+        # Create domain-specific configuration
         domain_config = ComprehensiveAlgorithmConfig(granularity=granularity, domain_name=domain)
         success = run_domain_analysis(domain, segmentation_only, granularity, domain_config, optimized_params_file)
         if success:
             successful_domains.append(domain)
     
     # Cross-domain summary
-    print(f"\n🏆 CROSS-DOMAIN {analysis_type} COMPLETE")
+    print(f"\nCROSS-DOMAIN {analysis_type} COMPLETE")
     print("=" * 45)
     print(f"Successfully processed: {len(successful_domains)}/{len(domains)} domains")
     
     if successful_domains:
-        print("\n✅ Processed domains:")
+        print("\nProcessed domains:")
         for domain in successful_domains:
             print(f"  • {domain}")
         
         if not segmentation_only:
-            print(f"\n📁 Results saved in 'results/' directory:")
-            print(f"  • Comprehensive analysis: {len(successful_domains)} files")
-            print(f"\n🎯 Timeline analysis with period characterization complete!")
-            print(f"🔧 Used comprehensive configuration with {len([f for f in algorithm_config.__dataclass_fields__])} parameters")
+            print(f"\nResults saved in 'results/' directory")
+            print(f"Timeline analysis complete!")
         else:
-            print(f"\n🔍 Segmentation testing complete!")
+            print(f"\nSegmentation testing complete!")
     
     if len(successful_domains) < len(domains):
         failed_domains = [d for d in domains if d not in successful_domains]
-        print(f"\n❌ Failed domains:")
+        print(f"\nFailed domains:")
         for domain in failed_domains:
             print(f"  • {domain}")
     
@@ -245,10 +234,10 @@ def run_all_domains(segmentation_only: bool = False, granularity: int = 3, algor
 
 
 def main():
-    """Main pipeline execution with comprehensive algorithm configuration."""
+    """Main pipeline execution."""
     
     parser = argparse.ArgumentParser(
-        description="Scientific Literature Timeline Analysis Pipeline with Comprehensive Algorithm Configuration",
+        description="Scientific Literature Timeline Analysis Pipeline",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -263,7 +252,6 @@ Examples:
   python run_timeline_analysis.py --domain all --optimized-params-file results/optimized_parameters_bayesian.json
 
 Available domains are automatically discovered from the resources/ directory.
-Comprehensive configuration provides access to 12 core algorithm parameters.
         """
     )
     
@@ -321,7 +309,6 @@ Comprehensive configuration provides access to 12 core algorithm parameters.
     
     args = parser.parse_args()
     
-    # Create comprehensive algorithm configuration
     overrides = {}
     if args.direction_threshold is not None:
         overrides['direction_threshold'] = args.direction_threshold
@@ -330,11 +317,10 @@ Comprehensive configuration provides access to 12 core algorithm parameters.
     if args.citation_boost is not None:
         overrides['citation_boost'] = args.citation_boost
     
-    # Determine domain name for configuration
     domain_for_config = args.domain if args.domain != 'all' else None
     
     if overrides:
-        print(f"🔧 Using custom parameter overrides: {overrides}")
+        print(f"Using custom parameter overrides: {overrides}")
         algorithm_config = ComprehensiveAlgorithmConfig.create_custom(
             granularity=args.granularity,
             domain_name=domain_for_config,
@@ -343,7 +329,6 @@ Comprehensive configuration provides access to 12 core algorithm parameters.
     else:
         algorithm_config = ComprehensiveAlgorithmConfig(granularity=args.granularity, domain_name=domain_for_config)
     
-    # Ensure results directory exists
     ensure_results_directory()
     
     print(f"Active Configuration: {algorithm_config.get_configuration_summary()}")
@@ -353,7 +338,7 @@ Comprehensive configuration provides access to 12 core algorithm parameters.
     else:
         available_domains = discover_available_domains()
         if args.domain not in available_domains:
-            print(f"❌ Invalid domain: {args.domain}")
+            print(f"Invalid domain: {args.domain}")
             print(f"Available domains: {', '.join(available_domains)}")
             return False
         

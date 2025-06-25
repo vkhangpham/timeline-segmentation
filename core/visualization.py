@@ -45,8 +45,7 @@ def visualize_domain_timeline(domain_name: str,
     Returns:
         Path to the main visualization file
     """
-    print(f"\n📊 CREATING TIMELINE VISUALIZATION: {domain_name}")
-    print("=" * 60)
+    print(f"\nCREATING TIMELINE VISUALIZATION: {domain_name}")
     
     # Ensure output directory exists
     Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -56,7 +55,7 @@ def visualize_domain_timeline(domain_name: str,
     period_signals_data = load_period_signals(domain_name, signals_dir)
     
     if not shift_signals_data and not period_signals_data:
-        print(f"❌ No signal data found for {domain_name}")
+        print(f"No signal data found for {domain_name}")
         return ""
     
     # Create comprehensive visualization
@@ -94,7 +93,7 @@ def visualize_domain_timeline(domain_name: str,
     create_detailed_period_visualization(period_signals_data, domain_name, output_dir)
     create_interactive_dashboard(shift_signals_data, period_signals_data, domain_name, output_dir)
     
-    print(f"  ✅ Main visualization saved: {output_file}")
+    print(f"Main visualization saved: {output_file}")
     return output_file
 
 
@@ -102,16 +101,16 @@ def load_shift_signals(domain_name: str, signals_dir: str) -> Optional[Dict]:
     """Load shift signals data from JSON file."""
     shift_file = Path(f"{signals_dir}/{domain_name}_shift_signals.json")
     if not shift_file.exists():
-        print(f"  ⚠️ Shift signals file not found: {shift_file}")
+        print(f"Shift signals file not found: {shift_file}")
         return None
     
     try:
         with open(shift_file, 'r') as f:
             data = json.load(f)
-        print(f"  📊 Loaded shift signals: {data['paradigm_shifts']['count']} paradigm shifts")
+        print(f"Loaded shift signals: {data['paradigm_shifts']['count']} paradigm shifts")
         return data
     except Exception as e:
-        print(f"  ❌ Error loading shift signals: {e}")
+        print(f"Error loading shift signals: {e}")
         return None
 
 
@@ -119,16 +118,16 @@ def load_period_signals(domain_name: str, signals_dir: str) -> Optional[Dict]:
     """Load period signals data from JSON file."""
     period_file = Path(f"{signals_dir}/{domain_name}_period_signals.json")
     if not period_file.exists():
-        print(f"  ⚠️ Period signals file not found: {period_file}")
+        print(f"Period signals file not found: {period_file}")
         return None
     
     try:
         with open(period_file, 'r') as f:
             data = json.load(f)
-        print(f"  🏛️ Loaded period signals: {data['period_characterizations']['count']} periods")
+        print(f"Loaded period signals: {data['period_characterizations']['count']} periods")
         return data
     except Exception as e:
-        print(f"  ❌ Error loading period signals: {e}")
+        print(f"Error loading period signals: {e}")
         return None
 
 
@@ -435,7 +434,7 @@ def create_detailed_shift_visualization(shift_data: Optional[Dict], domain_name:
     plt.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"  📊 Detailed shift analysis saved: {output_file}")
+    print(f"Detailed shift analysis saved: {output_file}")
 
 
 def create_detailed_period_visualization(period_data: Optional[Dict], domain_name: str, output_dir: str):
@@ -514,7 +513,7 @@ def create_detailed_period_visualization(period_data: Optional[Dict], domain_nam
     plt.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"  🏛️ Detailed period analysis saved: {output_file}")
+    print(f"Detailed period analysis saved: {output_file}")
 
 
 def create_interactive_dashboard(shift_data: Optional[Dict], period_data: Optional[Dict], 
@@ -548,7 +547,7 @@ def create_interactive_dashboard(shift_data: Optional[Dict], period_data: Option
     if shift_data:
         html_content += f"""
         <div class="section">
-            <h2>🔍 Paradigm Shift Detection</h2>
+            <h2>Paradigm Shift Detection</h2>
             <div class="metric">
                 <strong>Raw Signals:</strong> {shift_data['raw_signals']['count']}
             </div>
@@ -576,7 +575,7 @@ def create_interactive_dashboard(shift_data: Optional[Dict], period_data: Option
     if period_data:
         html_content += f"""
         <div class="section">
-            <h2>🏛️ Period Characterization</h2>
+            <h2>Period Characterization</h2>
             <div class="metric">
                 <strong>Periods Analyzed:</strong> {period_data['period_characterizations']['count']}
             </div>
@@ -614,7 +613,7 @@ def create_interactive_dashboard(shift_data: Optional[Dict], period_data: Option
     
     html_content += """
         <div class="section">
-            <h2>📊 Visualization Files</h2>
+            <h2>Visualization Files</h2>
             <p>The following visualization files have been generated:</p>
             <ul>
                 <li>Main Timeline Visualization</li>
@@ -664,12 +663,12 @@ def visualize_all_domains(signals_dir: str = "results/signals",
     Returns:
         List of created visualization files
     """
-    print(f"\n🎨 CREATING VISUALIZATIONS FOR ALL DOMAINS")
+    print(f"\nCREATING VISUALIZATIONS FOR ALL DOMAINS")
     print("=" * 60)
     
     signals_path = Path(signals_dir)
     if not signals_path.exists():
-        print(f"❌ Signals directory not found: {signals_dir}")
+        print(f"Signals directory not found: {signals_dir}")
         return []
     
     # Find all domains with signal files
@@ -683,10 +682,10 @@ def visualize_all_domains(signals_dir: str = "results/signals",
         domains.add(domain)
     
     if not domains:
-        print("❌ No signal files found")
+        print("No signal files found")
         return []
     
-    print(f"📊 Found {len(domains)} domains: {', '.join(sorted(domains))}")
+    print(f"Found {len(domains)} domains: {', '.join(sorted(domains))}")
     
     visualization_files = []
     for domain in sorted(domains):
@@ -695,9 +694,9 @@ def visualize_all_domains(signals_dir: str = "results/signals",
             if main_viz:
                 visualization_files.append(main_viz)
         except Exception as e:
-            print(f"❌ Error creating visualization for {domain}: {e}")
+            print(f"Error creating visualization for {domain}: {e}")
     
-    print(f"\n✅ Created {len(visualization_files)} visualizations")
+    print(f"\nCreated {len(visualization_files)} visualizations")
     return visualization_files
 
 
@@ -717,7 +716,7 @@ def visualize_timeline_comparison(domain_name: str,
     Returns:
         Path to the main comparison visualization file
     """
-    print(f"\n📊 CREATING TIMELINE COMPARISON VISUALIZATION: {domain_name}")
+    print(f"\nCREATING TIMELINE COMPARISON VISUALIZATION: {domain_name}")
     print("=" * 70)
     
     # Ensure output directory exists
@@ -728,11 +727,11 @@ def visualize_timeline_comparison(domain_name: str,
     reference_data = load_reference_data(domain_name)
     
     if not generated_data:
-        print(f"❌ No generated timeline data found for {domain_name}")
+        print(f"No generated timeline data found for {domain_name}")
         return ""
     
     if not reference_data:
-        print(f"❌ No reference data found for {domain_name}")
+        print(f"No reference data found for {domain_name}")
         return ""
     
     # Create comprehensive comparison visualization
@@ -774,7 +773,7 @@ def visualize_timeline_comparison(domain_name: str,
     create_signal_validation_visualization(generated_data, reference_data, domain_name, output_dir)
     create_performance_metrics_dashboard(generated_data, reference_data, domain_name, output_dir)
     
-    print(f"  ✅ Timeline comparison saved: {output_file}")
+    print(f"  Timeline comparison saved: {output_file}")
     return output_file
 
 
@@ -782,7 +781,7 @@ def load_generated_timeline_data(domain_name: str, results_dir: str) -> Optional
     """Load generated timeline analysis results."""
     results_file = Path(f"{results_dir}/{domain_name}_comprehensive_analysis.json")
     if not results_file.exists():
-        print(f"  ⚠️ Generated results file not found: {results_file}")
+        print(f"  Generated results file not found: {results_file}")
         return None
     
     try:
@@ -792,10 +791,10 @@ def load_generated_timeline_data(domain_name: str, results_dir: str) -> Optional
         segments = data.get('segmentation_results', {}).get('segments', [])
         periods = data.get('timeline_analysis', {}).get('original_period_characterizations', [])
         
-        print(f"  📊 Loaded generated timeline: {len(segments)} segments, {len(periods)} characterized periods")
+        print(f"  Loaded generated timeline: {len(segments)} segments, {len(periods)} characterized periods")
         return data
     except Exception as e:
-        print(f"  ❌ Error loading generated results: {e}")
+        print(f"  Error loading generated results: {e}")
         return None
 
 
@@ -803,7 +802,7 @@ def load_reference_data(domain_name: str, validation_dir: str = "data/references
     """Load reference timeline data from data/references."""
     ref_file = Path(f"{validation_dir}/{domain_name}_gemini.json")
     if not ref_file.exists():
-        print(f"  ⚠️ Reference file not found: {ref_file}")
+        print(f"  Reference file not found: {ref_file}")
         return None
 
     try:
@@ -811,10 +810,10 @@ def load_reference_data(domain_name: str, validation_dir: str = "data/references
             data = json.load(f)
         
         periods = data.get('historical_periods', [])
-        print(f"  📚 Loaded reference data: {len(periods)} historical periods")
+        print(f"  Loaded reference data: {len(periods)} historical periods")
         return data
     except Exception as e:
-        print(f"  ❌ Error loading reference data: {e}")
+        print(f"  Error loading reference data: {e}")
         return None
 
 
@@ -1214,7 +1213,7 @@ def create_period_alignment_visualization(generated_data: Dict, ground_truth_dat
     plt.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"  📊 Period alignment visualization saved: {output_file}")
+    print(f"  Period alignment visualization saved: {output_file}")
 
 
 def create_signal_validation_visualization(generated_data: Dict, ground_truth_data: Dict, 
@@ -1231,7 +1230,7 @@ def create_signal_validation_visualization(generated_data: Dict, ground_truth_da
     plt.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"  📊 Signal validation visualization saved: {output_file}")
+    print(f"  Signal validation visualization saved: {output_file}")
 
 
 def create_performance_metrics_dashboard(generated_data: Dict, ground_truth_data: Dict, 
@@ -1248,7 +1247,7 @@ def create_performance_metrics_dashboard(generated_data: Dict, ground_truth_data
     plt.savefig(output_file, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"  📊 Performance dashboard saved: {output_file}")
+    print(f"  Performance dashboard saved: {output_file}")
 
 
 if __name__ == "__main__":

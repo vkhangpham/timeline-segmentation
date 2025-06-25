@@ -1,5 +1,5 @@
 """
-Shared Keyword Utilities (Phase 16)
+Shared Keyword Utilities
 
 Pure functions for keyword extraction and processing shared across all modules.
 This consolidates keyword logic to prevent drift and ensure consistency across
@@ -15,6 +15,13 @@ from typing import Dict, List
 from collections import defaultdict
 
 from .data_models import DomainData
+
+# Import YAKE for phrase enrichment
+try:
+    import yake
+except ImportError:
+    # Fail-fast: YAKE is required when phrase_enrichment is enabled
+    yake = None
 
 
 def extract_year_keywords(domain_data: DomainData) -> Dict[int, List[str]]:
@@ -103,3 +110,57 @@ def calculate_jaccard_similarity(keywords_a: List[str], keywords_b: List[str]) -
     union = len(set_a | set_b)
     
     return intersection / union if union > 0 else 0.0 
+
+
+def yake_phrases(text: str, top_k: int = 10) -> List[str]:
+    """
+    Extract top-k key phrases from text using YAKE algorithm.
+    
+    YAKE (Yet Another Keyword Extractor) is an unsupervised method that identifies
+    key phrases based on statistical features without requiring training data.
+    This function follows fail-fast principles and functional programming style.
+    
+    Args:
+        text: Input text to extract phrases from
+        top_k: Number of top phrases to return (default: 10)
+        
+    Returns:
+        List of extracted phrases (strings), ordered by YAKE score (lower is better)
+        
+    Raises:
+        ImportError: If YAKE package is not installed
+        ValueError: If text is empty or top_k is invalid
+        
+    Example:
+        phrases = yake_phrases("Neural networks show great promise in machine learning", top_k=5)
+        # Returns: ['neural networks', 'machine learning', 'great promise', ...]
+    """
+    # Fail-fast validation
+    if yake is None:
+        raise ImportError("YAKE package not installed. Run: pip install yake")
+    
+    if not text or not text.strip():
+        raise ValueError("text cannot be empty")
+    
+    if top_k <= 0:
+        raise ValueError("top_k must be positive")
+    
+    # YAKE configuration optimized for academic abstracts
+    # - lan: language (English)
+    # - n: maximum number of words in keyphrase (3 for multi-word concepts)
+    # - dedupLim: deduplication threshold (0.7 to avoid near-duplicates)
+    # - top: number of phrases to extract
+    kw_extractor = yake.KeywordExtractor(
+        lan="en",
+        n=3,  # Allow up to 3-word phrases
+        dedupLim=0.7,
+        top=top_k
+    )
+    
+    # Extract keywords - returns list of (phrase, score) tuples
+    keywords = kw_extractor.extract_keywords(text)
+    
+    # Return only the phrases, sorted by YAKE score (lower is better)
+    phrases = [phrase for phrase, score in keywords]
+    
+    return phrases 
