@@ -1,0 +1,582 @@
+{
+  "domain_name": "applied_mathematics",
+  "analysis_date": "2025-06-25T17:57:21.952759",
+  "segments": [
+    {
+      "start_year": 1833,
+      "end_year": 1863
+    },
+    {
+      "start_year": 1864,
+      "end_year": 1868
+    },
+    {
+      "start_year": 1869,
+      "end_year": 1878
+    },
+    {
+      "start_year": 1879,
+      "end_year": 1894
+    },
+    {
+      "start_year": 1895,
+      "end_year": 1903
+    },
+    {
+      "start_year": 1904,
+      "end_year": 1909
+    },
+    {
+      "start_year": 1910,
+      "end_year": 1919
+    },
+    {
+      "start_year": 1920,
+      "end_year": 1924
+    },
+    {
+      "start_year": 1925,
+      "end_year": 1929
+    },
+    {
+      "start_year": 1930,
+      "end_year": 1943
+    },
+    {
+      "start_year": 1944,
+      "end_year": 1951
+    },
+    {
+      "start_year": 1952,
+      "end_year": 1956
+    },
+    {
+      "start_year": 1957,
+      "end_year": 1964
+    },
+    {
+      "start_year": 1965,
+      "end_year": 1980
+    },
+    {
+      "start_year": 1981,
+      "end_year": 1985
+    },
+    {
+      "start_year": 1986,
+      "end_year": 2000
+    },
+    {
+      "start_year": 2001,
+      "end_year": 2013
+    },
+    {
+      "start_year": 2014,
+      "end_year": 2018
+    },
+    {
+      "start_year": 2019,
+      "end_year": 2024
+    }
+  ],
+  "characterizations": [
+    {
+      "period": [
+        1833,
+        1863
+      ],
+      "topic_label": "Analytical Dynamics and Algebraic Formalism",
+      "network_stability": 0.3296909094326533,
+      "confidence": 0.6944256736913539,
+      "representative_papers": [
+        {
+          "title": "\u00dcber die Reduction der positiven quadratischen Formen mit drei unbestimmten ganzen Zahlen.",
+          "year": 1850,
+          "citation_count": 363
+        },
+        {
+          "title": "X. Liquid diffusion applied to analysis",
+          "year": 1861,
+          "citation_count": 348
+        },
+        {
+          "title": "XIV. Researches on the refraction, dispersion, and sensitiveness of liquids",
+          "year": 1863,
+          "citation_count": 343
+        }
+      ]
+    },
+    {
+      "period": [
+        1864,
+        1868
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6745833333333333,
+      "representative_papers": [
+        {
+          "title": "LX. <i>Thoughts on inverse orthogonal matrices, simultaneous signsuccessions, and tessellated pavements in two or more colours, with applications to</i> Newton's <i>rule, ornamental tile-work, and the theory of numbers</i>",
+          "year": 1867,
+          "citation_count": 317
+        },
+        {
+          "title": "XXX. <i>On the magnitude of a drop of liquid formed under different circumstances</i>",
+          "year": 1864,
+          "citation_count": 228
+        },
+        {
+          "title": "LXIII. <i>On Integrals of the hydrodynamical equations, which express vortex-motion</i>",
+          "year": 1867,
+          "citation_count": 228
+        }
+      ]
+    },
+    {
+      "period": [
+        1869,
+        1878
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "XXVIII. On the forms assumed by drops of liquids falling vertically on a horizontal plate",
+          "year": 1877,
+          "citation_count": 380
+        },
+        {
+          "title": "XV. On the thermodynamic theory of waves of finite longitudinal disturbance",
+          "year": 1870,
+          "citation_count": 332
+        },
+        {
+          "title": "I.\u2014<i>On Reciprocal Figures, Frames, and Diagrams of Forces</i>",
+          "year": 1870,
+          "citation_count": 261
+        }
+      ]
+    },
+    {
+      "period": [
+        1879,
+        1894
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.3160541879082632,
+      "confidence": 0.8209467057099349,
+      "representative_papers": [
+        {
+          "title": "Sur les \u00e9quations diff\u00e9rentielles lin\u00e9aires \u00e0 coefficients p\u00e9riodiques",
+          "year": 1883,
+          "citation_count": 1240
+        },
+        {
+          "title": "A treatise on the mathematical theory of elasticity",
+          "year": 1892,
+          "citation_count": 7644
+        },
+        {
+          "title": "ELEMENTS OF QUATERNIONS.",
+          "year": 1881,
+          "citation_count": 598
+        }
+      ]
+    },
+    {
+      "period": [
+        1895,
+        1903
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.327047704770477,
+      "confidence": 0.6957202298064099,
+      "representative_papers": [
+        {
+          "title": "Verfahren zur Darstellung der Graphits\u00e4ure",
+          "year": 1898,
+          "citation_count": 1818
+        },
+        {
+          "title": "Applications of Percolation Theory",
+          "year": 1900,
+          "citation_count": 1068
+        },
+        {
+          "title": "LIII. <i>On lines and planes of closest fit to systems of points in space</i>",
+          "year": 1901,
+          "citation_count": 9893
+        }
+      ]
+    },
+    {
+      "period": [
+        1904,
+        1909
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.3258160894102025,
+      "confidence": 0.6970097800669051,
+      "representative_papers": [
+        {
+          "title": "Nouvelles applications des param\u00e8tres continus \u00e0 la th\u00e9orie des formes quadratiques. Deuxi\u00e8me m\u00e9moire. Recherches sur les parall\u00e9llo\u00e8dres primitifs.",
+          "year": 1908,
+          "citation_count": 2028
+        },
+        {
+          "title": "XVI. Functions of positive and negative type, and their connection the theory of integral equations",
+          "year": 1909,
+          "citation_count": 1948
+        },
+        {
+          "title": "Nouvelles applications des param\u00e8tres continus \u00e0 la th\u00e9orie des formes quadratiques. Premier m\u00e9moire. Sur quelques propri\u00e9t\u00e9s des formes quadratiques positives parfaites.",
+          "year": 1908,
+          "citation_count": 815
+        }
+      ]
+    },
+    {
+      "period": [
+        1910,
+        1919
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "IX. The approximate arithmetical solution by finite differences of physical problems involving differential equations, with an application to the stresses in a masonry dam",
+          "year": 1911,
+          "citation_count": 1288
+        },
+        {
+          "title": "The algebraic theory of modular systems",
+          "year": 1916,
+          "citation_count": 857
+        },
+        {
+          "title": "XVIII.\u2014On the Functions which are represented by the Expansions of the Interpolation-Theory",
+          "year": 1915,
+          "citation_count": 776
+        }
+      ]
+    },
+    {
+      "period": [
+        1920,
+        1924
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.3227623686913875,
+      "confidence": 0.7041380562218456,
+      "representative_papers": [
+        {
+          "title": "A Treatise on Probability",
+          "year": 1921,
+          "citation_count": 2620
+        },
+        {
+          "title": "On the mathematical foundations of theoretical statistics",
+          "year": 1922,
+          "citation_count": 3645
+        },
+        {
+          "title": "A Treatise on the Theory of Bessel Functions.",
+          "year": 1923,
+          "citation_count": 9965
+        }
+      ]
+    },
+    {
+      "period": [
+        1925,
+        1929
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "A Method of Computing the Effectiveness of an Insecticide",
+          "year": 1925,
+          "citation_count": 13693
+        },
+        {
+          "title": "Applications of Mathematics to Medical Problems",
+          "year": 1925,
+          "citation_count": 1097
+        },
+        {
+          "title": "The Choice of a Class Interval",
+          "year": 1926,
+          "citation_count": 1557
+        }
+      ]
+    },
+    {
+      "period": [
+        1930,
+        1943
+      ],
+      "topic_label": "Algebraic Formalism and Analytical Dynamics Integration",
+      "network_stability": 0.32262065102881754,
+      "confidence": 0.830871004011563,
+      "representative_papers": [
+        {
+          "title": "A New Calculus for the Treatment of Optical SystemsI Description and Discussion of the Calculus",
+          "year": 1941,
+          "citation_count": 1731
+        },
+        {
+          "title": "The theory of functions",
+          "year": 1932,
+          "citation_count": 2409
+        },
+        {
+          "title": "The viscosity of a fluid containing small drops of another fluid",
+          "year": 1932,
+          "citation_count": 1835
+        }
+      ]
+    },
+    {
+      "period": [
+        1944,
+        1951
+      ],
+      "topic_label": "Statistical Formalism and Operator Theory Integration",
+      "network_stability": 0.32247706422018346,
+      "confidence": 0.832352973936338,
+      "representative_papers": [
+        {
+          "title": "The Statistical Mechanical Theory of Transport Processes I. General Theory",
+          "year": 1946,
+          "citation_count": 1098
+        },
+        {
+          "title": "A Mathematical Theory of Communication",
+          "year": 1948,
+          "citation_count": 71269
+        },
+        {
+          "title": "An iteration method for the solution of the eigenvalue problem of linear differential and integral operators",
+          "year": 1950,
+          "citation_count": 4070
+        }
+      ]
+    },
+    {
+      "period": [
+        1952,
+        1956
+      ],
+      "topic_label": "Numerical Analysis and Applied Formalism Integration",
+      "network_stability": 0.3205799436165928,
+      "confidence": 0.8430190482577714,
+      "representative_papers": [
+        {
+          "title": "Stochastic Games",
+          "year": 1953,
+          "citation_count": 2217
+        },
+        {
+          "title": "The Numerical Solution of Parabolic and Elliptic Differential Equations",
+          "year": 1955,
+          "citation_count": 3124
+        },
+        {
+          "title": "Methods of conjugate gradients for solving linear systems",
+          "year": 1952,
+          "citation_count": 7401
+        }
+      ]
+    },
+    {
+      "period": [
+        1957,
+        1964
+      ],
+      "topic_label": "Numerical Optimization and Computational Formalism",
+      "network_stability": 0.31013982681716473,
+      "confidence": 0.8235699297824058,
+      "representative_papers": [
+        {
+          "title": "An Analysis of Transformations",
+          "year": 1964,
+          "citation_count": 12642
+        },
+        {
+          "title": "Theory of Stationary Electrode Polarography. Single Scan and Cyclic Methods Applied to Reversible, Irreversible, and Kinetic Systems.",
+          "year": 1964,
+          "citation_count": 4801
+        },
+        {
+          "title": "Function minimization by conjugate gradients",
+          "year": 1964,
+          "citation_count": 4475
+        }
+      ]
+    },
+    {
+      "period": [
+        1965,
+        1980
+      ],
+      "topic_label": "Numerical Analysis and Algebraic Formalism Integration",
+      "network_stability": 0.2993245077439778,
+      "confidence": 0.8214141120203174,
+      "representative_papers": [
+        {
+          "title": "Gaussian-Type Functions for Polyatomic Systems. I",
+          "year": 1965,
+          "citation_count": 4924
+        },
+        {
+          "title": "The Fourier Transform and Its Applications",
+          "year": 1965,
+          "citation_count": 5615
+        },
+        {
+          "title": "Self-Consistent Equations Including Exchange and Correlation Effects",
+          "year": 1965,
+          "citation_count": 55648
+        }
+      ]
+    },
+    {
+      "period": [
+        1981,
+        1985
+      ],
+      "topic_label": "Numerical Formalism and Computational Integration",
+      "network_stability": 0.29486111111111113,
+      "confidence": 0.8336549837703983,
+      "representative_papers": [
+        {
+          "title": "Spectrum estimation and harmonic analysis",
+          "year": 1982,
+          "citation_count": 4034
+        },
+        {
+          "title": "Numerical Heat Transfer and Fluid Flow",
+          "year": 1981,
+          "citation_count": 14543
+        },
+        {
+          "title": "Structural Equation Models with Unobservable Variables and Measurement Error: Algebra and Statistics",
+          "year": 1981,
+          "citation_count": 9575
+        }
+      ]
+    },
+    {
+      "period": [
+        1986,
+        2000
+      ],
+      "topic_label": "Numerical Analysis and Computational Formalism Integration",
+      "network_stability": 0.28369802491405566,
+      "confidence": 0.825390717842107,
+      "representative_papers": [
+        {
+          "title": "GMRES: A Generalized Minimal Residual Algorithm for Solving Nonsymmetric Linear Systems",
+          "year": 1986,
+          "citation_count": 10481
+        },
+        {
+          "title": "An Introduction to Multivariate Statistical Analysis",
+          "year": 1986,
+          "citation_count": 9577
+        },
+        {
+          "title": "An introduction to hidden Markov models",
+          "year": 1986,
+          "citation_count": 4549
+        }
+      ]
+    },
+    {
+      "period": [
+        2001,
+        2013
+      ],
+      "topic_label": "Computational Optimization and Data-Driven Modeling",
+      "network_stability": 0.2128655997177488,
+      "confidence": 0.7587771740865981,
+      "representative_papers": [
+        {
+          "title": "Decoding by Linear Programming",
+          "year": 2005,
+          "citation_count": 6897
+        },
+        {
+          "title": "Flocking for Multi-Agent Dynamic Systems: Algorithms and Theory",
+          "year": 2006,
+          "citation_count": 4632
+        },
+        {
+          "title": "$rm K$-SVD: An Algorithm for Designing Overcomplete Dictionaries for Sparse Representation",
+          "year": 2006,
+          "citation_count": 8999
+        }
+      ]
+    },
+    {
+      "period": [
+        2014,
+        2018
+      ],
+      "topic_label": "Computational Data-Driven Formalism",
+      "network_stability": 0.2802323394830864,
+      "confidence": 0.8214784779128053,
+      "representative_papers": [
+        {
+          "title": "UMAP: Uniform Manifold Approximation and Projection",
+          "year": 2018,
+          "citation_count": 5566
+        },
+        {
+          "title": "Aplikasi Analisis Multivariate Dengan Program IBM SPSS 25",
+          "year": 2018,
+          "citation_count": 5468
+        },
+        {
+          "title": "UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction",
+          "year": 2018,
+          "citation_count": 5285
+        }
+      ]
+    },
+    {
+      "period": [
+        2019,
+        2024
+      ],
+      "topic_label": "Computational Data-Driven Formalism",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "Array programming with NumPy",
+          "year": 2020,
+          "citation_count": 13120
+        },
+        {
+          "title": "Random dynamical systems",
+          "year": 2020,
+          "citation_count": 2379
+        },
+        {
+          "title": "Denoising Diffusion Probabilistic Models",
+          "year": 2020,
+          "citation_count": 2056
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_periods": 19,
+    "avg_confidence": 0.7608255544096537
+  }
+}

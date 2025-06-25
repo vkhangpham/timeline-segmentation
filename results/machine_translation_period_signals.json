@@ -1,0 +1,192 @@
+{
+  "domain_name": "machine_translation",
+  "analysis_date": "2025-06-25T18:02:19.838604",
+  "segments": [
+    {
+      "start_year": 1962,
+      "end_year": 1975
+    },
+    {
+      "start_year": 1976,
+      "end_year": 1982
+    },
+    {
+      "start_year": 1983,
+      "end_year": 1996
+    },
+    {
+      "start_year": 1997,
+      "end_year": 2001
+    },
+    {
+      "start_year": 2002,
+      "end_year": 2012
+    },
+    {
+      "start_year": 2013,
+      "end_year": 2023
+    }
+  ],
+  "characterizations": [
+    {
+      "period": [
+        1962,
+        1975
+      ],
+      "topic_label": "Linguistic Structuralism in Machine Translation",
+      "network_stability": 0.30653084232565625,
+      "confidence": 0.8295764686451901,
+      "representative_papers": [
+        {
+          "title": "Toward a Science of Translating",
+          "year": 1964,
+          "citation_count": 1291
+        },
+        {
+          "title": "ELIZA\u2014a computer program for the study of natural language communication between man and machine",
+          "year": 1966,
+          "citation_count": 2938
+        },
+        {
+          "title": "The Theory of Parsing, Translation, and Compiling",
+          "year": 1972,
+          "citation_count": 1388
+        }
+      ]
+    },
+    {
+      "period": [
+        1976,
+        1982
+      ],
+      "topic_label": "Rule-Based Structuralist Machine Translation",
+      "network_stability": 0.2724315720267137,
+      "confidence": 0.8211086931901793,
+      "representative_papers": [
+        {
+          "title": "An Efficient mRNA\u2010Dependent Translation System from Reticulocyte Lysates",
+          "year": 1976,
+          "citation_count": 3975
+        },
+        {
+          "title": "An efficient easily adaptable system for interpreting natural language queries",
+          "year": 1982,
+          "citation_count": 277
+        },
+        {
+          "title": "ON THE NATURE OF INTERLANGUAGE SYSTEMS",
+          "year": 1976,
+          "citation_count": 261
+        }
+      ]
+    },
+    {
+      "period": [
+        1983,
+        1996
+      ],
+      "topic_label": "Rule-Based Structuralist Machine Translation",
+      "network_stability": 0.2255300738003503,
+      "confidence": 0.7592490390117927,
+      "representative_papers": [
+        {
+          "title": "The mathematics of statistical machine translation: parameter estimation",
+          "year": 1993,
+          "citation_count": 4149
+        },
+        {
+          "title": "Automatic acquisition of hyponyms from large text corpora",
+          "year": 1992,
+          "citation_count": 3274
+        },
+        {
+          "title": "A statistical approach to machine translation",
+          "year": 1990,
+          "citation_count": 1688
+        }
+      ]
+    },
+    {
+      "period": [
+        1997,
+        2001
+      ],
+      "topic_label": "Statistical Structuralist Machine Translation",
+      "network_stability": 0.240233042214662,
+      "confidence": 0.8240613653116377,
+      "representative_papers": [
+        {
+          "title": "Discriminative training and maximum entropy models for statistical machine translation",
+          "year": 2001,
+          "citation_count": 1055
+        },
+        {
+          "title": "A syntax-based statistical translation model",
+          "year": 2001,
+          "citation_count": 756
+        },
+        {
+          "title": "Scaling to very very large corpora for natural language disambiguation",
+          "year": 2001,
+          "citation_count": 654
+        }
+      ]
+    },
+    {
+      "period": [
+        2002,
+        2012
+      ],
+      "topic_label": "Statistical Structuralist Machine Translation",
+      "network_stability": 0.2762097040181694,
+      "confidence": 0.8805011892527732,
+      "representative_papers": [
+        {
+          "title": "Automatic evaluation of machine translation quality using n-gram co-occurrence statistics",
+          "year": 2002,
+          "citation_count": 1601
+        },
+        {
+          "title": "Statistical phrase-based translation",
+          "year": 2003,
+          "citation_count": 3299
+        },
+        {
+          "title": "Minimum error rate training in statistical machine translation",
+          "year": 2003,
+          "citation_count": 2804
+        }
+      ]
+    },
+    {
+      "period": [
+        2013,
+        2023
+      ],
+      "topic_label": "Statistical Structuralist Neural Machine Translation",
+      "network_stability": 0.3398114156933032,
+      "confidence": 0.9161360058309976,
+      "representative_papers": [
+        {
+          "title": "Recurrent Continuous Translation Models",
+          "year": 2013,
+          "citation_count": 1288
+        },
+        {
+          "title": "Neural Machine Translation of Rare Words with Subword Units",
+          "year": 2016,
+          "citation_count": 6410
+        },
+        {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "year": 2018,
+          "citation_count": 29822
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_periods": 6,
+    "avg_confidence": 0.8384387935404284
+  }
+}

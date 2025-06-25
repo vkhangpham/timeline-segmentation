@@ -1,0 +1,132 @@
+{
+  "domain_name": "computer_science",
+  "analysis_date": "2025-06-25T17:58:45.285728",
+  "segments": [
+    {
+      "start_year": 1986,
+      "end_year": 1998
+    },
+    {
+      "start_year": 1999,
+      "end_year": 2002
+    },
+    {
+      "start_year": 2003,
+      "end_year": 2011
+    },
+    {
+      "start_year": 2012,
+      "end_year": 2020
+    }
+  ],
+  "characterizations": [
+    {
+      "period": [
+        1986,
+        1998
+      ],
+      "topic_label": "Symbolic Computation and Empirical Validation",
+      "network_stability": 0.260245966341448,
+      "confidence": 0.7897218783404719,
+      "representative_papers": [
+        {
+          "title": "Learning long-term dependencies with gradient descent is difficult",
+          "year": 1994,
+          "citation_count": 7064
+        },
+        {
+          "title": "Programs for Machine Learning",
+          "year": 1994,
+          "citation_count": 5865
+        },
+        {
+          "title": "Experiments with a new boosting algorithm",
+          "year": 1996,
+          "citation_count": 7468
+        }
+      ]
+    },
+    {
+      "period": [
+        1999,
+        2002
+      ],
+      "topic_label": "Empirical Optimization and Information-Theoretic Foundations",
+      "network_stability": 0.28690111007133506,
+      "confidence": 0.8479924614165554,
+      "representative_papers": [
+        {
+          "title": "Elements of Information Theory",
+          "year": 2001,
+          "citation_count": 38043
+        },
+        {
+          "title": "Particle swarm optimization",
+          "year": 2002,
+          "citation_count": 36704
+        },
+        {
+          "title": "<tt>BLAT</tt>\u2014The <tt>BLAST</tt>-Like Alignment Tool",
+          "year": 2002,
+          "citation_count": 8069
+        }
+      ]
+    },
+    {
+      "period": [
+        2003,
+        2011
+      ],
+      "topic_label": "Empirical Optimization and Information-Theoretic Foundations",
+      "network_stability": 0.24279314888010542,
+      "confidence": 0.785911403101378,
+      "representative_papers": [
+        {
+          "title": "WebLogo: A Sequence Logo Generator: Figure 1",
+          "year": 2004,
+          "citation_count": 11169
+        },
+        {
+          "title": "Near-Optimal Signal Recovery From Random Projections: Universal Encoding Strategies?",
+          "year": 2006,
+          "citation_count": 6711
+        },
+        {
+          "title": "A Fast Learning Algorithm for Deep Belief Nets",
+          "year": 2006,
+          "citation_count": 14752
+        }
+      ]
+    },
+    {
+      "period": [
+        2012,
+        2020
+      ],
+      "topic_label": "Empirical Deep Learning Optimization",
+      "network_stability": 0.3401859100361244,
+      "confidence": 0.9097364668921891,
+      "representative_papers": [
+        {
+          "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+          "year": 2012,
+          "citation_count": 63969
+        },
+        {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "year": 2014,
+          "citation_count": 49225
+        },
+        {
+          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+          "year": 2014,
+          "citation_count": 24628
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_periods": 4,
+    "avg_confidence": 0.8333405524376486
+  }
+}

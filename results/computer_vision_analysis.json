@@ -1,0 +1,311 @@
+{
+  "domain_name": "computer_vision",
+  "analysis_date": "2025-06-25T18:00:12.269248",
+  "time_range": [
+    1947,
+    2024
+  ],
+  "total_papers": 710,
+  "statistical_significance": 0.6908458332995732,
+  "change_points": [
+    1954,
+    1958,
+    1961,
+    1962,
+    1965,
+    1967,
+    1968,
+    1969,
+    1970,
+    1971,
+    1972,
+    1973,
+    1974,
+    1975,
+    1976,
+    1977,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1999,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+  ],
+  "segments": [
+    [
+      1947,
+      1954
+    ],
+    [
+      1955,
+      1958
+    ],
+    [
+      1959,
+      1974
+    ],
+    [
+      1975,
+      1998
+    ],
+    [
+      1999,
+      2005
+    ],
+    [
+      2006,
+      2014
+    ],
+    [
+      2015,
+      2018
+    ],
+    [
+      2019,
+      2024
+    ]
+  ],
+  "periods": [
+    {
+      "period": [
+        1947,
+        1954
+      ],
+      "topic_label": "Physical-Model-Based Perception Analysis",
+      "network_stability": 0.2874251497005988,
+      "representative_papers": [
+        {
+          "title": "The Discrimination of Visual Number",
+          "year": 1949,
+          "citations": 0
+        },
+        {
+          "title": "Vision Through the Atmosphere",
+          "year": 1952,
+          "citations": 0
+        },
+        {
+          "title": "Multiple Wiener Integral",
+          "year": 1951,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8217628613353486
+    },
+    {
+      "period": [
+        1955,
+        1958
+      ],
+      "topic_label": "Physical-Model-Based Perception Analysis",
+      "network_stability": 0.324054398640034,
+      "representative_papers": [
+        {
+          "title": "The Analysis of Two-Dimensional Orientation Data",
+          "year": 1956,
+          "citations": 0
+        },
+        {
+          "title": "An optimum character recognition system using decision functions",
+          "year": 1957,
+          "citations": 0
+        },
+        {
+          "title": "Eye Fixations Recorded on Changing Visual Scenes by the Television Eye-Marker",
+          "year": 1958,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.7001457363979939
+    },
+    {
+      "period": [
+        1959,
+        1974
+      ],
+      "topic_label": "Physical-Model-Based Perception Analysis",
+      "network_stability": 0.20397553168431323,
+      "representative_papers": [
+        {
+          "title": "The neural mechanism of binocular depth discrimination",
+          "year": 1967,
+          "citations": 0
+        },
+        {
+          "title": "Visual pattern recognition by moment invariants",
+          "year": 1962,
+          "citations": 0
+        },
+        {
+          "title": "A Simple Method of Resolution of a Distribution into Gaussian Components",
+          "year": 1967,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.7575763020144293
+    },
+    {
+      "period": [
+        1975,
+        1998
+      ],
+      "topic_label": "Physical-Model-Based Perception Analysis",
+      "network_stability": 0.24668696006591576,
+      "representative_papers": [
+        {
+          "title": "Face recognition: features versus templates",
+          "year": 1993,
+          "citations": 0
+        },
+        {
+          "title": "Rapid Automated Algorithm for Aligning and Reslicing PET Images",
+          "year": 1992,
+          "citations": 0
+        },
+        {
+          "title": "Example-based learning for view-based human face detection",
+          "year": 1998,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.7925947492447432
+    },
+    {
+      "period": [
+        1999,
+        2005
+      ],
+      "topic_label": "Model-Based Perception and Data-Driven Learning",
+      "network_stability": 0.2925261026572317,
+      "representative_papers": [
+        {
+          "title": "A flexible new technique for camera calibration",
+          "year": 2000,
+          "citations": 0
+        },
+        {
+          "title": "Training support vector machines: an application to face detection",
+          "year": 2002,
+          "citations": 0
+        },
+        {
+          "title": "Image quilting for texture synthesis and transfer",
+          "year": 2001,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8298919024767544
+    },
+    {
+      "period": [
+        2006,
+        2014
+      ],
+      "topic_label": "Model-Based Perception and Data-Driven Learning",
+      "network_stability": 0.32851971927534557,
+      "representative_papers": [
+        {
+          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+          "year": 2014,
+          "citations": 0
+        },
+        {
+          "title": "What is the best multi-stage architecture for object recognition?",
+          "year": 2009,
+          "citations": 0
+        },
+        {
+          "title": "Visual tracking with online Multiple Instance Learning",
+          "year": 2009,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8582770419846264
+    },
+    {
+      "period": [
+        2015,
+        2018
+      ],
+      "topic_label": "Deep Learning-Driven Data-Intensive Vision",
+      "network_stability": 0.40744799619127575,
+      "representative_papers": [
+        {
+          "title": "Fully convolutional networks for semantic segmentation",
+          "year": 2015,
+          "citations": 0
+        },
+        {
+          "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+          "year": 2015,
+          "citations": 0
+        },
+        {
+          "title": "Long-term recurrent convolutional networks for visual recognition and description",
+          "year": 2015,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.9352207440586277
+    },
+    {
+      "period": [
+        2019,
+        2024
+      ],
+      "topic_label": "Transformer-Enhanced Vision Architecture",
+      "network_stability": 0.2980397442155135,
+      "representative_papers": [
+        {
+          "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+          "year": 2020,
+          "citations": 0
+        },
+        {
+          "title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows",
+          "year": 2021,
+          "citations": 0
+        },
+        {
+          "title": "Deformable DETR: Deformable Transformers for End-to-End Object Detection",
+          "year": 2020,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.9036173737659737
+    }
+  ],
+  "unified_confidence": 0.8248858389098122,
+  "algorithm_config": {
+    "direction_threshold": 0.18056642952163557,
+    "citation_boost": 0.8,
+    "validation_threshold": 0.45,
+    "citation_support_window": 2,
+    "similarity_min_segment_length": 4,
+    "similarity_max_segment_length": 24,
+    "keyword_min_frequency": 2,
+    "min_significant_keywords": 2
+  }
+}

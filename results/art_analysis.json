@@ -1,0 +1,164 @@
+{
+  "domain_name": "art",
+  "analysis_date": "2025-06-25T17:58:02.252241",
+  "time_range": [
+    1979,
+    2020
+  ],
+  "total_papers": 399,
+  "statistical_significance": 0.8666882961859701,
+  "change_points": [
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2017,
+    2018,
+    2020
+  ],
+  "segments": [
+    [
+      1979,
+      1993
+    ],
+    [
+      1994,
+      1996
+    ],
+    [
+      1997,
+      2016
+    ],
+    [
+      2017,
+      2020
+    ]
+  ],
+  "periods": [
+    {
+      "period": [
+        1979,
+        1993
+      ],
+      "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "network_stability": 0.32794280640122375,
+      "representative_papers": [
+        {
+          "title": "The Duchenne smile: Emotional expression and brain physiology: II.",
+          "year": 1990,
+          "citations": 0
+        },
+        {
+          "title": "Quality Is Free: The Art of Making Quality Certain",
+          "year": 1979,
+          "citations": 0
+        },
+        {
+          "title": "The Beauty Myth: How Images of Beauty Are Used Against Women",
+          "year": 1990,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8219252952563506
+    },
+    {
+      "period": [
+        1994,
+        1996
+      ],
+      "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "network_stability": 0.3333333333333333,
+      "representative_papers": [
+        {
+          "title": "A Taxonomy of Mixed Reality Visual Displays",
+          "year": 1994,
+          "citations": 0
+        },
+        {
+          "title": "Reframing Organizations: Artistry, Choice, and Leadership.",
+          "year": 1994,
+          "citations": 0
+        },
+        {
+          "title": "Images of mind",
+          "year": 1994,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.6945833333333333
+    },
+    {
+      "period": [
+        1997,
+        2016
+      ],
+      "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "network_stability": 0.21736316263370078,
+      "representative_papers": [
+        {
+          "title": "Image inpainting",
+          "year": 2000,
+          "citations": 0
+        },
+        {
+          "title": "Describing objects by their attributes",
+          "year": 2009,
+          "citations": 0
+        },
+        {
+          "title": "PROFESSORES: IMAGENS DO FUTURO PRESENTE",
+          "year": 2014,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.7448468741805605
+    },
+    {
+      "period": [
+        2017,
+        2020
+      ],
+      "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "network_stability": 0.3242840615540658,
+      "representative_papers": [
+        {
+          "title": "Arbitrary Style Transfer in Real-Time with Adaptive Instance Normalization",
+          "year": 2017,
+          "citations": 0
+        },
+        {
+          "title": "Domination and the Arts of Resistance",
+          "year": 2017,
+          "citations": 0
+        },
+        {
+          "title": "StackGAN: Text to Photo-Realistic Image Synthesis with Stacked Generative Adversarial Networks",
+          "year": 2017,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.699619387693138
+    }
+  ],
+  "unified_confidence": 0.7402437226158456,
+  "algorithm_config": {
+    "direction_threshold": 0.4,
+    "citation_boost": 0.8,
+    "validation_threshold": 0.3097051941600503,
+    "citation_support_window": 2,
+    "similarity_min_segment_length": 3,
+    "similarity_max_segment_length": 30,
+    "keyword_min_frequency": 2,
+    "min_significant_keywords": 2
+  }
+}

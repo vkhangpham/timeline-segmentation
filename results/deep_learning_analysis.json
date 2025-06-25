@@ -1,0 +1,129 @@
+{
+  "domain_name": "deep_learning",
+  "analysis_date": "2025-06-25T18:00:43.453684",
+  "time_range": [
+    1995,
+    2020
+  ],
+  "total_papers": 410,
+  "statistical_significance": 0.5983189427761014,
+  "change_points": [
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014
+  ],
+  "segments": [
+    [
+      1995,
+      2007
+    ],
+    [
+      2008,
+      2010
+    ],
+    [
+      2011,
+      2020
+    ]
+  ],
+  "periods": [
+    {
+      "period": [
+        1995,
+        2007
+      ],
+      "topic_label": "Statistical Pattern Recognition with Backpropagation",
+      "network_stability": 0.29901469291492244,
+      "representative_papers": [
+        {
+          "title": "Neural Networks for Pattern Recognition",
+          "year": 1995,
+          "citations": 0
+        },
+        {
+          "title": "SMOTE: Synthetic Minority Over-sampling Technique",
+          "year": 2002,
+          "citations": 0
+        },
+        {
+          "title": "Face recognition using eigenfaces",
+          "year": 2002,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8104948768712515
+    },
+    {
+      "period": [
+        2008,
+        2010
+      ],
+      "topic_label": "Hierarchical Feature Learning with Probabilistic Models",
+      "network_stability": 0.21633986928104573,
+      "representative_papers": [
+        {
+          "title": "Learning Deep Architectures for AI",
+          "year": 2009,
+          "citations": 0
+        },
+        {
+          "title": "Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations",
+          "year": 2009,
+          "citations": 0
+        },
+        {
+          "title": "Extracting and composing robust features with denoising autoencoders",
+          "year": 2008,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8698693556771017
+    },
+    {
+      "period": [
+        2011,
+        2020
+      ],
+      "topic_label": "Empirical Deep Learning with Architectural Innovation",
+      "network_stability": 0.39760233500488734,
+      "representative_papers": [
+        {
+          "title": "Deep Residual Learning for Image Recognition",
+          "year": 2016,
+          "citations": 0
+        },
+        {
+          "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+          "year": 2012,
+          "citations": 0
+        },
+        {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "year": 2014,
+          "citations": 0
+        }
+      ],
+      "confidence": 0.8961542583163925
+    }
+  ],
+  "unified_confidence": 0.8588394969549152,
+  "algorithm_config": {
+    "direction_threshold": 0.3578485893151816,
+    "citation_boost": 0.8,
+    "validation_threshold": 0.30035595648000474,
+    "citation_support_window": 2,
+    "similarity_min_segment_length": 3,
+    "similarity_max_segment_length": 13,
+    "keyword_min_frequency": 2,
+    "min_significant_keywords": 2
+  }
+}
