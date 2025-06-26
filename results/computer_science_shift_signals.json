@@ -1,6 +1,6 @@
 {
   "domain_name": "computer_science",
-  "analysis_date": "2025-06-25T17:58:45.284942",
+  "analysis_date": "2025-06-25T22:33:07.514950",
   "time_range": [
     1986,
     2020
@@ -13,178 +13,18 @@
       "signal_type": "direction_primary_only",
       "evidence_strength": 0.7477088948787062,
       "supporting_evidence": [
-        "Novel focus: geometric modeling",
+        "Novel focus: computational geometry",
+        "Novel focus: computer-aided design",
+        "Novel focus: signal processing",
+        "Novel focus: pattern recognition",
         "Novel focus: systems engineering",
-        "Novel focus: geometry processing",
-        "Novel focus: human-computer interaction",
-        "Novel focus: neural network (machine learning)",
         "Top current: computer science",
         "Top current: machine learning",
         "Top current: applied mathematics",
         "Top current: deep learning",
         "Top current: pattern recognition"
       ],
-      "transition_description": "91.8% new keywords (threshold=0.39) | Novel keywords: geometric modeling, systems engineering, geometry processing, human-computer interaction, neural network (machine learning) | Top keywords: computer science, machine learning, applied mathematics, deep learning, pattern recognition (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1993,
-      "confidence": 0.6604187437686939,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.6604187437686939,
-      "supporting_evidence": [
-        "Novel focus: evolutionary computation",
-        "Novel focus: signal processing",
-        "Novel focus: character recognition",
-        "Novel focus: genetics",
-        "Novel focus: genetic engineering",
-        "Top current: computer science",
-        "Top current: applied mathematics",
-        "Top current: machine learning",
-        "Top current: pattern recognition",
-        "Top current: deep learning"
-      ],
-      "transition_description": "84.7% new keywords (threshold=0.39) | Novel keywords: evolutionary computation, signal processing, character recognition, genetics, genetic engineering | Top keywords: computer science, applied mathematics, machine learning, pattern recognition, deep learning (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1994,
-      "confidence": 0.6084702104171545,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.6084702104171545,
-      "supporting_evidence": [
-        "Novel focus: active control",
-        "Novel focus: knowledge discovery",
-        "Novel focus: evolutionary computation",
-        "Novel focus: clustering",
-        "Novel focus: mathematical programming",
-        "Top current: computer science",
-        "Top current: applied mathematics",
-        "Top current: machine learning",
-        "Top current: data science",
-        "Top current: computational optimization"
-      ],
-      "transition_description": "78.8% new keywords (threshold=0.39) | Novel keywords: active control, knowledge discovery, evolutionary computation, clustering, mathematical programming | Top keywords: computer science, applied mathematics, machine learning, data science, computational optimization (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1995,
-      "confidence": 0.538544474393531,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.538544474393531,
-      "supporting_evidence": [
-        "Novel focus: active control",
-        "Novel focus: numerical mathematics",
-        "Novel focus: knowledge discovery",
-        "Novel focus: supervised learning",
-        "Novel focus: clustering",
-        "Top current: computer science",
-        "Top current: machine learning",
-        "Top current: data science",
-        "Top current: systems engineering",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "77.1% new keywords (threshold=0.39) | Novel keywords: active control, numerical mathematics, knowledge discovery, supervised learning, clustering | Top keywords: computer science, machine learning, data science, systems engineering, pattern recognition (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1996,
-      "confidence": 0.6024830032515518,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.6024830032515518,
-      "supporting_evidence": [
-        "Novel focus: convolutional neural network",
-        "Novel focus: cognitive science",
-        "Novel focus: numerical mathematics",
-        "Novel focus: intelligent systems",
-        "Novel focus: fuzzy modeling",
-        "Top current: computer science",
-        "Top current: machine learning",
-        "Top current: data science",
-        "Top current: neural network (machine learning)",
-        "Top current: artificial intelligence"
-      ],
-      "transition_description": "79.4% new keywords (threshold=0.39) | Novel keywords: convolutional neural network, cognitive science, numerical mathematics, intelligent systems, fuzzy modeling | Top keywords: computer science, machine learning, data science, neural network (machine learning), artificial intelligence (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1997,
-      "confidence": 0.5354322040894955,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.5354322040894955,
-      "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: convolutional neural network",
-        "Novel focus: numerical algorithm",
-        "Novel focus: intelligent systems",
-        "Novel focus: recurrent neural network",
-        "Top current: computer science",
-        "Top current: machine learning",
-        "Top current: machine learning research",
-        "Top current: data science",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "74.9% new keywords (threshold=0.39) | Novel keywords: information fusion, convolutional neural network, numerical algorithm, intelligent systems, recurrent neural network | Top keywords: computer science, machine learning, machine learning research, data science, pattern recognition (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1998,
-      "confidence": 0.48982354363065017,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.48982354363065017,
-      "supporting_evidence": [
-        "Novel focus: intelligent systems",
-        "Novel focus: combinatorial optimization",
-        "Novel focus: multiagent system",
-        "Novel focus: mathematics",
-        "Novel focus: set theory",
-        "Top current: computer science",
-        "Top current: machine learning",
-        "Top current: machine learning research",
-        "Top current: cognitive science",
-        "Top current: applied mathematics"
-      ],
-      "transition_description": "69.0% new keywords (threshold=0.39) | Novel keywords: intelligent systems, combinatorial optimization, multiagent system, mathematics, set theory | Top keywords: computer science, machine learning, machine learning research, cognitive science, applied mathematics (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1999,
-      "confidence": 0.5502197178360422,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.5502197178360422,
-      "supporting_evidence": [
-        "Novel focus: automated sequencer traces",
-        "Novel focus: sequence analysis",
-        "Novel focus: combinatorial optimization",
-        "Novel focus: computational optimization",
-        "Novel focus: deep reinforcement learning",
-        "Top current: computer science",
-        "Top current: machine learning",
-        "Top current: machine learning research",
-        "Top current: data science",
-        "Top current: applied mathematics"
-      ],
-      "transition_description": "76.6% new keywords (threshold=0.39) | Novel keywords: automated sequencer traces, sequence analysis, combinatorial optimization, computational optimization, deep reinforcement learning | Top keywords: computer science, machine learning, machine learning research, data science, applied mathematics (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 2000,
-      "confidence": 0.5342457283014201,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.5342457283014201,
-      "supporting_evidence": [
-        "Novel focus: automated sequencer traces",
-        "Novel focus: bootstrap methods",
-        "Novel focus: sequence analysis",
-        "Novel focus: combinatorial optimization",
-        "Novel focus: evolutionary computation",
-        "Top current: computer science",
-        "Top current: machine learning",
-        "Top current: applied mathematics",
-        "Top current: pattern recognition",
-        "Top current: data science"
-      ],
-      "transition_description": "75.3% new keywords (threshold=0.39) | Novel keywords: automated sequencer traces, bootstrap methods, sequence analysis, combinatorial optimization, evolutionary computation | Top keywords: computer science, machine learning, applied mathematics, pattern recognition, data science (direction only)",
+      "transition_description": "91.8% new keywords (threshold=0.40) | Novel keywords: computational geometry, computer-aided design, signal processing, pattern recognition, systems engineering | Top keywords: computer science, machine learning, applied mathematics, deep learning, pattern recognition (direction only)",
       "paradigm_significance": 0.4
     },
     {
@@ -193,18 +33,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.965658430171582,
       "supporting_evidence": [
-        "Novel focus: automated sequencer traces",
-        "Novel focus: sequence analysis",
-        "Novel focus: evolutionary computation",
         "Novel focus: pattern mining",
-        "Novel focus: sequence assembly",
+        "Novel focus: wireless network",
+        "Novel focus: biostatistics",
+        "Novel focus: support vector machine",
+        "Novel focus: sequence analysis",
         "Top current: computer science",
         "Top current: machine learning",
         "Top current: applied mathematics",
         "Top current: pattern recognition",
         "Top current: computer vision"
       ],
-      "transition_description": "76.0% new keywords (threshold=0.39) | Novel keywords: automated sequencer traces, sequence analysis, evolutionary computation, pattern mining, sequence assembly | Top keywords: computer science, machine learning, applied mathematics, pattern recognition, computer vision (citation validated)",
+      "transition_description": "76.0% new keywords (threshold=0.40) | Novel keywords: pattern mining, wireless network, biostatistics, support vector machine, sequence analysis | Top keywords: computer science, machine learning, applied mathematics, pattern recognition, computer vision (citation validated)",
       "paradigm_significance": 0.8291815245207032
     },
     {
@@ -213,39 +53,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9102653751361267,
       "supporting_evidence": [
-        "Novel focus: optimization problem",
-        "Novel focus: design optimization",
         "Novel focus: wireless network",
-        "Novel focus: image segmentation",
+        "Novel focus: graph theory",
         "Novel focus: dimensionality reduction",
+        "Novel focus: kernel method",
+        "Novel focus: optimization problem",
         "Top current: computer science",
         "Top current: applied mathematics",
         "Top current: machine learning",
         "Top current: systems engineering",
         "Top current: mathematical optimization"
       ],
-      "transition_description": "69.9% new keywords (threshold=0.39) | Novel keywords: optimization problem, design optimization, wireless network, image segmentation, dimensionality reduction | Top keywords: computer science, applied mathematics, machine learning, systems engineering, mathematical optimization (citation validated)",
+      "transition_description": "69.9% new keywords (threshold=0.40) | Novel keywords: wireless network, graph theory, dimensionality reduction, kernel method, optimization problem | Top keywords: computer science, applied mathematics, machine learning, systems engineering, mathematical optimization (citation validated)",
       "paradigm_significance": 0.8045623889493897
-    },
-    {
-      "year": 2005,
-      "confidence": 0.6971447433569895,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6971447433569895,
-      "supporting_evidence": [
-        "Novel focus: active control",
-        "Novel focus: automatic summarization",
-        "Novel focus: cognitive science",
-        "Novel focus: wireless sensor network",
-        "Novel focus: feature detection",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine learning",
-        "Top current: pattern recognition",
-        "Top current: computer vision"
-      ],
-      "transition_description": "48.2% new keywords (threshold=0.39) | Novel keywords: active control, automatic summarization, cognitive science, wireless sensor network, feature detection | Top keywords: computer science, image analysis, machine learning, pattern recognition, computer vision (citation validated)",
-      "paradigm_significance": 0.7098421081586621
     },
     {
       "year": 2011,
@@ -253,18 +73,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 1.0002197439982419,
       "supporting_evidence": [
-        "Novel focus: interactive information retrieval",
-        "Novel focus: predictive analytics",
-        "Novel focus: sequence analysis",
-        "Novel focus: intelligent information retrieval",
-        "Novel focus: text mining",
+        "Novel focus: visual analytics",
+        "Novel focus: bioinformatics",
+        "Novel focus: pattern mining",
+        "Novel focus: cloud resource management",
+        "Novel focus: sequence alignment",
         "Top current: computer science",
         "Top current: data science",
         "Top current: machine learning",
         "Top current: applied mathematics",
         "Top current: deep learning"
       ],
-      "transition_description": "78.0% new keywords (threshold=0.39) | Novel keywords: interactive information retrieval, predictive analytics, sequence analysis, intelligent information retrieval, text mining | Top keywords: computer science, data science, machine learning, applied mathematics, deep learning (citation validated)",
+      "transition_description": "78.0% new keywords (threshold=0.40) | Novel keywords: visual analytics, bioinformatics, pattern mining, cloud resource management, sequence alignment | Top keywords: computer science, data science, machine learning, applied mathematics, deep learning (citation validated)",
       "paradigm_significance": 0.8445421084436631
     },
     {
@@ -273,18 +93,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8408930232558139,
       "supporting_evidence": [
+        "Novel focus: bioinformatics",
         "Novel focus: computational linguistics",
-        "Novel focus: sequence analysis",
-        "Novel focus: principal component analysis",
-        "Novel focus: genomics",
-        "Novel focus: numerical analysis",
+        "Novel focus: cloud resource management",
+        "Novel focus: molecular informatics",
+        "Novel focus: sequence alignment",
         "Top current: computer science",
         "Top current: machine learning",
         "Top current: data science",
         "Top current: applied mathematics",
         "Top current: pattern recognition"
       ],
-      "transition_description": "74.4% new keywords (threshold=0.39) | Novel keywords: computational linguistics, sequence analysis, principal component analysis, genomics, numerical analysis | Top keywords: computer science, machine learning, data science, applied mathematics, pattern recognition (citation validated)",
+      "transition_description": "74.4% new keywords (threshold=0.40) | Novel keywords: bioinformatics, computational linguistics, cloud resource management, molecular informatics, sequence alignment | Top keywords: computer science, machine learning, data science, applied mathematics, pattern recognition (citation validated)",
       "paradigm_significance": 0.7737302325581396
     },
     {
@@ -293,18 +113,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7635477130253077,
       "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: convolutional neural network",
-        "Novel focus: technology",
-        "Novel focus: cognitive science",
         "Novel focus: computational linguistics",
+        "Novel focus: molecular informatics",
+        "Novel focus: neural computation",
+        "Novel focus: biostatistics",
+        "Novel focus: information technology",
         "Top current: computer science",
         "Top current: machine learning",
         "Top current: pattern recognition",
         "Top current: image analysis",
         "Top current: data science"
       ],
-      "transition_description": "86.3% new keywords (threshold=0.39) | Novel keywords: information fusion, convolutional neural network, technology, cognitive science, computational linguistics | Top keywords: computer science, machine learning, pattern recognition, image analysis, data science (citation validated)",
+      "transition_description": "86.3% new keywords (threshold=0.40) | Novel keywords: computational linguistics, molecular informatics, neural computation, biostatistics, information technology | Top keywords: computer science, machine learning, pattern recognition, image analysis, data science (citation validated)",
       "paradigm_significance": 0.739354539122359
     },
     {
@@ -313,18 +133,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 1.066348623853211,
       "supporting_evidence": [
-        "Novel focus: convolutional neural network",
-        "Novel focus: technology",
-        "Novel focus: speech technology",
-        "Novel focus: cognitive science",
-        "Novel focus: spoken language technology",
+        "Novel focus: linguistics",
+        "Novel focus: computational linguistics",
+        "Novel focus: word representations",
+        "Novel focus: biostatistics",
+        "Novel focus: vector space",
         "Top current: computer science",
         "Top current: machine learning",
         "Top current: data science",
         "Top current: image analysis",
         "Top current: machine learning research"
       ],
-      "transition_description": "77.3% new keywords (threshold=0.39) | Novel keywords: convolutional neural network, technology, speech technology, cognitive science, spoken language technology | Top keywords: computer science, machine learning, data science, image analysis, machine learning research (citation validated)",
+      "transition_description": "77.3% new keywords (threshold=0.40) | Novel keywords: linguistics, computational linguistics, word representations, biostatistics, vector space | Top keywords: computer science, machine learning, data science, image analysis, machine learning research (citation validated)",
       "paradigm_significance": 0.8739327217125382
     },
     {
@@ -333,18 +153,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7849014084507042,
       "supporting_evidence": [
-        "Novel focus: convolutional neural network",
-        "Novel focus: technology",
-        "Novel focus: performance evaluation",
+        "Novel focus: phrase representations",
         "Novel focus: vector space",
-        "Novel focus: statistical machine translation",
+        "Novel focus: computational genomics",
+        "Novel focus: word embeddings",
+        "Novel focus: transfer learning",
         "Top current: computer science",
         "Top current: machine learning",
         "Top current: deep learning",
         "Top current: machine learning research",
         "Top current: data science"
       ],
-      "transition_description": "50.7% new keywords (threshold=0.39) | Novel keywords: convolutional neural network, technology, performance evaluation, vector space, statistical machine translation | Top keywords: computer science, machine learning, deep learning, machine learning research, data science (citation validated)",
+      "transition_description": "50.7% new keywords (threshold=0.40) | Novel keywords: phrase representations, vector space, computational genomics, word embeddings, transfer learning | Top keywords: computer science, machine learning, deep learning, machine learning research, data science (citation validated)",
       "paradigm_significance": 0.7488450704225352
     },
     {
@@ -353,24 +173,24 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7612287256122874,
       "supporting_evidence": [
-        "Novel focus: statistical machine translation",
-        "Novel focus: vector space",
-        "Novel focus: language learning",
-        "Novel focus: communication",
-        "Novel focus: knowledge representation and reasoning",
+        "Novel focus: phrase representations",
+        "Novel focus: unsupervised machine learning",
+        "Novel focus: efficient estimation",
+        "Novel focus: word embeddings",
+        "Novel focus: sparse neural network",
         "Top current: computer science",
         "Top current: machine learning",
         "Top current: deep learning",
         "Top current: data science",
         "Top current: machine learning research"
       ],
-      "transition_description": "53.5% new keywords (threshold=0.39) | Novel keywords: statistical machine translation, vector space, language learning, communication, knowledge representation and reasoning | Top keywords: computer science, machine learning, deep learning, data science, machine learning research (citation validated)",
+      "transition_description": "53.5% new keywords (threshold=0.40) | Novel keywords: phrase representations, unsupervised machine learning, efficient estimation, word embeddings, sparse neural network | Top keywords: computer science, machine learning, deep learning, data science, machine learning research (citation validated)",
       "paradigm_significance": 0.7383238780499055
     }
   ],
   "summary": {
-    "total_signals": 18,
-    "paradigm_shifts": 9,
-    "avg_confidence": 0.7217214410875588
+    "total_signals": 9,
+    "paradigm_shifts": 8,
+    "avg_confidence": 0.8638003967256142
   }
 }

@@ -1,17 +1,17 @@
 {
   "domain_name": "deep_learning",
-  "analysis_date": "2025-06-25T18:00:43.459242",
+  "analysis_date": "2025-06-25T22:35:30.406323",
   "segments": [
     {
       "start_year": 1995,
-      "end_year": 2007
+      "end_year": 2009
     },
     {
-      "start_year": 2008,
-      "end_year": 2010
+      "start_year": 2010,
+      "end_year": 2012
     },
     {
-      "start_year": 2011,
+      "start_year": 2013,
       "end_year": 2020
     }
   ],
@@ -19,12 +19,17 @@
     {
       "period": [
         1995,
-        2007
+        2009
       ],
       "topic_label": "Statistical Pattern Recognition with Backpropagation",
-      "network_stability": 0.29901469291492244,
-      "confidence": 0.8104948768712515,
+      "network_stability": 0.263314281556483,
+      "confidence": 0.8185963347290199,
       "representative_papers": [
+        {
+          "title": "Face recognition using eigenfaces",
+          "year": 2002,
+          "citation_count": 5301
+        },
         {
           "title": "Neural Networks for Pattern Recognition",
           "year": 1995,
@@ -34,48 +39,43 @@
           "title": "SMOTE: Synthetic Minority Over-sampling Technique",
           "year": 2002,
           "citation_count": 21724
-        },
-        {
-          "title": "Face recognition using eigenfaces",
-          "year": 2002,
-          "citation_count": 5301
         }
       ]
     },
     {
       "period": [
-        2008,
-        2010
+        2010,
+        2012
       ],
-      "topic_label": "Hierarchical Feature Learning with Probabilistic Models",
-      "network_stability": 0.21633986928104573,
-      "confidence": 0.8698693556771017,
+      "topic_label": "Unsupervised Pre-Training with Supervised Refinement",
+      "network_stability": 0.27652464494569756,
+      "confidence": 0.8882064962769786,
       "representative_papers": [
         {
-          "title": "Learning Deep Architectures for AI",
-          "year": 2009,
-          "citation_count": 5170
+          "title": "Understanding the difficulty of training deep feedforward neural networks",
+          "year": 2010,
+          "citation_count": 11314
         },
         {
-          "title": "Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations",
-          "year": 2009,
-          "citation_count": 2364
+          "title": "Context-Dependent Pre-Trained Deep Neural Networks for Large-Vocabulary Speech Recognition",
+          "year": 2012,
+          "citation_count": 2938
         },
         {
-          "title": "Extracting and composing robust features with denoising autoencoders",
-          "year": 2008,
-          "citation_count": 6318
+          "title": "Object Detection with Discriminatively Trained Part-Based Models",
+          "year": 2010,
+          "citation_count": 9559
         }
       ]
     },
     {
       "period": [
-        2011,
+        2013,
         2020
       ],
-      "topic_label": "Empirical Deep Learning with Architectural Innovation",
-      "network_stability": 0.39760233500488734,
-      "confidence": 0.8961542583163925,
+      "topic_label": "Deep Architectural Optimization with Supervised Refinement",
+      "network_stability": 0.3966994784888939,
+      "confidence": 0.8967802527522243,
       "representative_papers": [
         {
           "title": "Deep Residual Learning for Image Recognition",
@@ -83,20 +83,20 @@
           "citation_count": 159317
         },
         {
-          "title": "ImageNet Classification with Deep Convolutional Neural Networks",
-          "year": 2012,
-          "citation_count": 63969
+          "title": "Going deeper with convolutions",
+          "year": 2015,
+          "citation_count": 40093
         },
         {
-          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
           "year": 2014,
-          "citation_count": 49225
+          "citation_count": 24628
         }
       ]
     }
   ],
   "summary": {
     "total_periods": 3,
-    "avg_confidence": 0.8588394969549152
+    "avg_confidence": 0.8678610279194076
   }
 }

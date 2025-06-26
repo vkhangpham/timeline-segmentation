@@ -1,27 +1,19 @@
 {
   "domain_name": "machine_learning",
-  "analysis_date": "2025-06-25T18:01:17.327720",
+  "analysis_date": "2025-06-25T22:36:17.374764",
   "time_range": [
     1989,
     2020
   ],
   "total_papers": 412,
-  "statistical_significance": 0.6616546485254907,
+  "statistical_significance": 0.8211443496032744,
   "change_points": [
     1995,
     1996,
     1997,
-    1999,
-    2000,
-    2002,
-    2003,
-    2004,
-    2005,
-    2006,
     2007,
     2008,
     2009,
-    2010,
     2011,
     2012
   ],
@@ -32,10 +24,14 @@
     ],
     [
       1996,
-      2008
+      2007
     ],
     [
-      2009,
+      2008,
+      2010
+    ],
+    [
+      2011,
       2020
     ]
   ],
@@ -46,22 +42,48 @@
         1995
       ],
       "topic_label": "Hybrid Symbolic-Statistical Learning",
+      "description": "This paradigm integrates symbolic rule-based systems with statistical learning methods, exemplified by ANFIS combining fuzzy logic and neural networks (ANFIS, 1993) and decision trees with statistical validation (Programs for Machine Learning, 1994). It emphasizes hybrid architectures that leverage both human knowledge and data-driven approaches, as seen in bootstrap methods for resampling (An Introduction to the Bootstrap, 1994) and efficient training algorithms like Marquardt (Training feedforward networks with the Marquardt algorithm, 1994).",
       "network_stability": 0.2593426497363505,
       "representative_papers": [
         {
           "title": "An Introduction to the Bootstrap",
           "year": 1994,
-          "citations": 0
+          "abstract": "This article introduces bootstrap methods for statistical estimation, providing straightforward explanations and Minitab macros for practical implementation. It covers key concepts in statistical inference and resampling techniques relevant to fields such as data science and machine learning.\n\nTopic: computer science, forecasting, bootstrap resampling, statistical foundation, theory of computation, statistical inference, machine learning, applied mathematics, numerical algorithm, empirical algorithmics, foundation of mathematics, data science, knowledge discovery, statistical theory, machine learning research, quantitative science study, foundation model"
         },
         {
           "title": "Fast Learning in Networks of Locally-Tuned Processing Units",
           "year": 1989,
-          "citations": 0
+          "abstract": "The article presents a novel network architecture utilizing locally-tuned processing units for efficient learning in classification and function approximation tasks, advocating a hybrid learning approach that combines supervised and self-organized methods. This architecture offers faster training than traditional backpropagation by leveraging local representations and linear rules, making it suitable for real-time data analysis.\n\nTopic: computer science, machine learning"
         },
         {
           "title": "Neural networks for pattern recognition",
           "year": 1994,
-          "citations": 0
+          "abstract": "This article provides a comprehensive overview of feed-forward neural networks in the context of statistical pattern recognition, covering essential concepts, modeling techniques, error functions, and learning algorithms, while also including over 100 exercises for practical application. It serves as a valuable resource for professionals and students in fields such as computer science, machine learning, and data science.\n\nTopic: image analysis, pattern recognition, computer science, convolutional neural network, neural architecture search, machine learning, recurrent neural network, sparse neural network, cognitive science, temporal pattern recognition, data science, computational intelligence, deep learning, neural networks, machine learning research, neural network (machine learning), machine vision"
+        },
+        {
+          "title": "ANFIS: adaptive-network-based fuzzy inference system",
+          "year": 1993,
+          "abstract": "The article discusses the architecture and learning procedures of the Adaptive-Network-Based Fuzzy Inference System (ANFIS), highlighting its ability to model nonlinear functions and predict chaotic time series through a hybrid approach that combines human knowledge with data. It also compares ANFIS to traditional artificial neural networks and suggests potential applications in automatic signal processing.\n\nTopic: computer science, artificial intelligence, inference, fuzzy logic, fuzzy modeling, fuzzy pattern recognition, machine learning, fuzzy optimization, cognitive science, fuzzy computing, data science, network analysis, fuzzy expert system, neural network (machine learning), fuzzy system, fuzzy set"
+        },
+        {
+          "title": "Training feedforward networks with the Marquardt algorithm",
+          "year": 1994,
+          "abstract": "The article discusses the application of the Marquardt algorithm for nonlinear least squares in training feedforward neural networks, demonstrating its efficiency compared to a conjugate gradient variable learning rate algorithm on various function approximation tasks, particularly when the network has a few hundred weights.\n\nTopic: computer science, marquardt algorithm, feedforward networks, machine learning"
+        },
+        {
+          "title": "Learning long-term dependencies with gradient descent is difficult",
+          "year": 1994,
+          "abstract": "The article discusses the challenges of training recurrent neural networks (RNNs) using gradient descent for tasks that involve long-term dependencies in input/output sequences, highlighting the difficulties that arise as the duration of these dependencies increases. It also explores the trade-offs between efficient learning and retaining information over extended periods, suggesting potential alternatives to standard gradient-based methods.\n\nTopic: gradient descent, computer science, long-term dependencies, machine learning"
+        },
+        {
+          "title": "Random early detection gateways for congestion avoidance",
+          "year": 1993,
+          "abstract": "The article discusses the implementation of random early detection (RED) gateways in packet-switched networks to prevent congestion by monitoring average queue sizes and selectively dropping or marking packets. It highlights how these gateways can effectively manage traffic without bias against bursty data and are designed to work alongside transport-layer protocols like TCP, with simulations demonstrating their performance benefits.\n\nTopic: early detection gateways, computer science, congestion avoidance, machine learning, early detection"
+        },
+        {
+          "title": "Programs for Machine Learning",
+          "year": 1994,
+          "abstract": "The article discusses the significance of decision tree algorithms in machine learning, particularly highlighting J. Ross Quinlan's ID3 and its successor C4.5, while also noting the release of Quinlan's new book that provides a comprehensive overview of these algorithms and their latest developments, making it a valuable resource for students in the field.\n\nTopic: computer science, supervised learning, machine learning tool, unsupervised machine learning, machine learning, data science, reinforcement learning, knowledge discovery, machine learning model, machine learning research, neural network (machine learning), statistical software, automated machine learning"
         }
       ],
       "confidence": 0.8244900498915
@@ -69,64 +91,168 @@
     {
       "period": [
         1996,
-        2008
+        2007
       ],
       "topic_label": "Hybrid Symbolic-Statistical Learning",
-      "network_stability": 0.26774186391817256,
+      "description": "The 1996-2007 period in Machine Learning was characterized by Hybrid Symbolic-Statistical Learning, which combined symbolic reasoning with statistical learning techniques. This paradigm emphasized the integration of rule-based systems with probabilistic models, as seen in the combination of classifiers in 'On combining classifiers' (1998) and the use of Support Vector Machines (SVMs) in 'Support vector machines' (1998). The approach sought to leverage the strengths of both symbolic and statistical methods to improve model performance and adaptability.",
+      "network_stability": 0.25836789526972503,
       "representative_papers": [
         {
           "title": "Eigenfaces vs. Fisherfaces: recognition using class specific linear projection",
           "year": 1997,
-          "citations": 0
+          "abstract": "The article presents a face recognition algorithm called \"Fisherface,\" which effectively handles variations in lighting and facial expressions by utilizing a class-specific linear projection method. It compares this approach to the traditional eigenface technique, demonstrating that Fisherface achieves lower error rates in facial recognition tasks, particularly in challenging conditions.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, object recognition, computer vision, machine learning, numerical linear algebra, image representation, 3d object recognition, machine learning research, facial recognition system, machine vision, face detection, facial expression recognition"
         },
         {
           "title": "Fast Training of Support Vector Machines Using Sequential Minimal Optimization",
           "year": 1998,
-          "citations": 0
+          "abstract": "This article introduces the Sequential Minimal Optimization (SMO) algorithm for efficiently training Support Vector Machines (SVMs) by breaking down large quadratic programming problems into smaller, analytically solvable tasks, significantly reducing computation time and memory usage compared to traditional methods. The SMO algorithm demonstrates remarkable speed improvements, particularly with sparse data sets, making it over 1000 times faster in certain applications.\n\nTopic: support vector machine, sequential minimal optimization, computer science, machine learning"
         },
         {
           "title": "SMOTE: Synthetic Minority Over-sampling Technique",
           "year": 2002,
-          "citations": 0
+          "abstract": "The article discusses the Synthetic Minority Over-sampling Technique (SMOTE) as a method for improving classifier performance on imbalanced datasets, where minority classes are underrepresented. It highlights the effectiveness of combining over-sampling of minority classes with under-sampling of majority classes to enhance sensitivity and achieve better results in classification tasks, particularly in terms of the Receiver Operating Characteristic (ROC) curve.\n\nTopic: sampling (statistics), sampling, monte carlo sampling, sampling technique, applied statistics, machine learning, data heterogeneity, biostatistics, data science, deep learning, statistics, machine learning research, complex sample, data mining"
+        },
+        {
+          "title": "On combining classifiers",
+          "year": 1998,
+          "abstract": "The article presents a unified theoretical framework for combining classifiers that utilize different pattern representations, demonstrating that many existing combination methods are special cases of this framework. Through experimental comparisons, it finds that the sum rule, even under strict assumptions, outperforms other combination schemes, with theoretical justification provided through sensitivity analysis of estimation errors.\n\nTopic: pattern recognition, computer science, information fusion, multiple classifier system, machine learning, unified classification, intelligent classification, machine learning research, classification method, classifier system"
+        },
+        {
+          "title": "Neural Networks: A Comprehensive Foundation",
+          "year": 1998,
+          "abstract": "\"Neural Networks: A Comprehensive Foundation\" offers an in-depth exploration of neural networks from an engineering perspective, covering essential topics such as learning processes, back-propagation, and VLSI implementation. This well-organized and accessible text is designed for professional engineers and graduate students, featuring practical examples, problems, and illustrations to reinforce key concepts in the field of neural computation and machine learning.\n\nTopic: computer science, machine learning, comprehensive foundation, neural networks, neural computation, deep learning, neural network (machine learning), neuronal network"
+        },
+        {
+          "title": "Support vector machines",
+          "year": 1998,
+          "abstract": "The article introduces Support Vector Machines (SVMs) as a powerful machine learning technique, highlighting their theoretical advantages and real-world applications, such as text categorization and face detection. It features insights from experts, including practical implementation guidance and impressive results from various applications.\n\nTopic: support vector machine, computer science, deep learning, machine learning"
+        },
+        {
+          "title": "Gradient-based learning applied to document recognition",
+          "year": 1998,
+          "abstract": "The article reviews gradient-based learning techniques, particularly multilayer neural networks and convolutional networks, for document recognition, focusing on their application in character recognition tasks. It highlights the effectiveness of a new paradigm called graph transformer (GTN) for optimizing multimodule systems and discusses the commercial deployment of these methods in reading bank cheques with high accuracy.\n\nTopic: computer science, machine learning"
+        },
+        {
+          "title": "A Fast Fixed-Point Algorithm for Independent Component Analysis",
+          "year": 1997,
+          "abstract": "The article presents a fast fixed-point algorithm for independent component analysis (ICA), designed for blind source separation and feature extraction, which converges to the most accurate solution without user-defined parameters. It demonstrates that this algorithm is significantly faster than traditional gradient-based methods, achieving convergence in a cubic time complexity while effectively identifying non-Gaussian components across various probability distributions.\n\nTopic: image analysis, pattern recognition, computer science, kernel method, independent component analysis, fast fixed-point algorithm, sequential algorithm, algorithmic development, mathematical optimization, machine learning, numerical algorithm, source separation, systems engineering, deep learning, computational optimization, computational science, computer engineering"
         }
       ],
-      "confidence": 0.8187040670140193
+      "confidence": 0.8144504483698081
     },
     {
       "period": [
-        2009,
-        2020
+        2008,
+        2010
       ],
-      "topic_label": "Deep Hybrid Symbolic-Statistical Learning",
-      "network_stability": 0.3425841921011616,
+      "topic_label": "Hybrid Symbolic-Statistical Learning",
+      "description": "The 2008-2010 paradigm centered on integrating symbolic reasoning with statistical learning, as seen in deep belief networks (Learning Multiple Layers of Features from Tiny Images) and sparse representation for face recognition (Robust Face Recognition via Sparse Representation). This approach combined explicit feature engineering with probabilistic models, reflecting a consensus on leveraging both structured knowledge and data-driven patterns, as emphasized in the development of efficient optimization techniques (AutoDock Vina) and matrix factorization for recommender systems (Matrix Factorization Techniques for Recommender Systems).",
+      "network_stability": 0.22566867425341094,
       "representative_papers": [
+        {
+          "title": "Learning Deep Architectures for AI",
+          "year": 2009,
+          "abstract": "The article explores the role of deep architectures in advancing artificial intelligence, emphasizing their necessity for learning complex functions and high-level abstractions in tasks like vision and language. It discusses recent developments in algorithms and architectures, particularly in the context of belief networks and unsupervised learning, while highlighting the challenges and future directions in this evolving field.\n\nTopic: machine learning, computer science, deep architectures, artificial intelligence, deep learning, ai architecture"
+        },
+        {
+          "title": "Extracting and composing robust features with denoising autoencoders",
+          "year": 2008,
+          "abstract": "The article discusses a novel training principle for denoising autoencoders that enhances the robustness of learned representations by intentionally corrupting input patterns. It highlights the effectiveness of this approach in improving feature learning for deep generative and discriminative models, supported by comparative experiments demonstrating its advantages in pattern classification tasks.\n\nTopic: autoencoders, computer science, feature learning, robust feature, machine learning, deep learning, feature construction, image denoising"
+        },
+        {
+          "title": "A Practical Guide to Support Vector Classication",
+          "year": 2008,
+          "abstract": "This article provides a practical guide to support vector classification, offering beginners a straightforward procedure to effectively implement support vector machines (SVM) and achieve satisfactory results in their classification tasks.\n\nTopic: practical guide, computer science, vector classication, machine learning"
+        },
+        {
+          "title": "LIBLINEAR: A Library for Large Linear Classification",
+          "year": 2008,
+          "abstract": "LIBLINEAR is an open-source library designed for large-scale linear classification, offering support for logistic regression and support vector machines. It features user-friendly command-line tools and extensive documentation, making it suitable for both beginners and advanced users, and is particularly efficient for handling large sparse datasets.\n\nTopic: algorithmic library, automatic classification, large linear classification, statistics, data classification, computer science, machine learning, machine learning research, data science"
+        },
+        {
+          "title": "AutoDock Vina: Improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading",
+          "year": 2009,
+          "abstract": "The article introduces AutoDock Vina, a molecular docking and virtual screening program that significantly enhances speed and accuracy in binding mode predictions through a new scoring function, efficient optimization, and multithreading capabilities, achieving a remarkable two orders of magnitude improvement over its predecessor, AutoDock 4.\n\nTopic: aerospace engineering, efficient optimization, machine learning, autodock vina, interactive performance system, mobile computing, unmanned aerial vehicle, drone, computer engineering, human-computer interaction, instrumentation, real-time operation, multidisciplinary optimization, performance prediction, performance portability, active control, systems engineering, automatic control, performance evaluation, performance scalability"
+        },
         {
           "title": "Learning Multiple Layers of Features from Tiny Images",
           "year": 2009,
-          "citations": 0
+          "abstract": "The article discusses the training of a multi-layer generative model using a dataset of millions of tiny color images, specifically focusing on Restricted Boltzmann Machines (RBMs) and Deep Belief Networks (DBNs) to learn effective image features and improve classification performance compared to raw pixel data. It highlights the challenges faced by previous attempts in this area and emphasizes the significance of the CIFAR-10 dataset in the research.\n\nTopic: image analysis, computational imaging, computer science, feature learning, computer vision, machine learning, tiny images, feature fusion, multiple layers, data science, knowledge discovery, deep learning, image representation, few-shot learning, machine vision, digital image processing, multiple instance learning"
+        },
+        {
+          "title": "Matrix Factorization Techniques for Recommender Systems",
+          "year": 2009,
+          "abstract": "The article discusses the advantages of matrix factorization techniques over traditional nearest neighbor methods in recommender systems, highlighting their ability to integrate various types of information, such as implicit feedback and temporal effects, as demonstrated by the Netflix Prize competition.\n\nTopic: computer science, ranking algorithm, machine learning, recommender system, cold-start problem, data science, deep learning, matrix factorization, machine learning research, principal component analysis, information retrieval, matrix factorization techniques, data mining"
+        },
+        {
+          "title": "Robust Face Recognition via Sparse Representation",
+          "year": 2009,
+          "abstract": "The article discusses a novel approach to robust face recognition using sparse representation techniques, addressing challenges such as varying expressions, illumination, and occlusion. It proposes a classification algorithm based on l{1}-minimization that enhances feature extraction and demonstrates improved performance over traditional methods through extensive experiments on publicly available databases.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, object recognition, feature learning, feature extraction, computer vision, machine learning, feature detection, data science, sparse representation, deep learning, image representation, machine vision, robust face recognition"
+        }
+      ],
+      "confidence": 0.8322768066842864
+    },
+    {
+      "period": [
+        2011,
+        2020
+      ],
+      "topic_label": "Deep Learning with Convolutional Architectures",
+      "description": "The 2011-2020 period was dominated by the paradigm of Deep Learning with Convolutional Architectures, characterized by the development and optimization of deep convolutional neural networks (CNNs) for tasks like image recognition and segmentation. This paradigm emphasized the use of layered, hierarchical feature extraction through convolutional filters, as seen in the success of models like AlexNet (2012), VGG (2014), ResNet (2016), and GoogLeNet (2015), which achieved state-of-the-art results on benchmarks like ImageNet and PASCAL VOC. The focus on architectural innovations, such as residual connections and inception modules, along with techniques like batch normalization and dropout, reflected a shared commitment to improving model depth, efficiency, and generalization.",
+      "network_stability": 0.35192605860960263,
+      "representative_papers": [
+        {
+          "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+          "year": 2012,
+          "abstract": "The article discusses the development and training of a deep convolutional neural network that achieved significant improvements in image classification accuracy on the ImageNet dataset, achieving top-1 and top-5 error rates of 37.5% and 17.0%, respectively. It highlights the network's architecture, including its use of non-saturating neurons and dropout regularization, and notes its success in the ILSVRC-2012 competition, where it outperformed other entries.\n\nTopic: digital image processing, biomedical imaging, automatic classification, intelligent classification, neural network (machine learning), imagenet classification, computer science, health science, machine learning research, deep learning, image representation, medical image computing, computational imaging, data classification, machine learning, image classification, data science, convolutional neural network, image analysis"
         },
         {
           "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
           "year": 2014,
-          "citations": 0
+          "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with domain-specific fine-tuning when labeled data is limited.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis"
         },
         {
           "title": "Deep Residual Learning for Image Recognition",
           "year": 2016,
-          "citations": 0
+          "abstract": "The article presents a residual learning framework that simplifies the training of significantly deeper neural networks, demonstrating that these networks can achieve higher accuracy with lower complexity. It highlights empirical results from the ImageNet dataset, where a deep residual network achieved a 3.57% error rate, winning first place in the ILSVRC 2015 classification task, and shows improvements in object detection on the COCO dataset.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, convolutional neural network, object recognition, unsupervised machine learning, machine learning, deep residual learning, deep learning, image representation, image recognition, principal component analysis, image classification, digital image processing"
+        },
+        {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "year": 2014,
+          "abstract": "The article explores the impact of increasing the depth of convolutional networks on accuracy in large-scale image recognition, demonstrating that using very small (3x3) convolution filters can significantly enhance performance with networks of 16-19 weight layers. The findings contributed to a successful submission in the ImageNet Challenge 2014, and the authors have made their top-performing models publicly available to support further research in deep learning and computer vision.\n\nTopic: digital image processing, automatic classification, deep convolutional networks, computer science, machine learning research, deep learning, pattern recognition, machine vision, image representation, large-scale image recognition, large-scale datasets, computational imaging, machine learning, data science, cognitive science, computational intelligence, convolutional neural network, feature detection, unsupervised machine learning, image analysis"
+        },
+        {
+          "title": "Going deeper with convolutions",
+          "year": 2015,
+          "abstract": "The article introduces the Inception architecture, specifically the GoogLeNet model, which achieved state-of-the-art results in the 2014 ImageNet competition by optimizing the depth and width of convolutional neural networks while maintaining computational efficiency, leveraging multi-scale processing principles.\n\nTopic: image analysis, computational imaging, computer science, information fusion, convolutional neural network, large language model, deep reinforcement learning, machine learning, applied mathematics, sparse neural network, data science, neural computation, deep learning, computational intelligence, machine learning research, deepfakes, neural network (machine learning), machine vision"
+        },
+        {
+          "title": "Fully convolutional networks for semantic segmentation",
+          "year": 2015,
+          "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and its effectiveness on benchmark datasets like PASCAL VOC and NYUDv2.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis"
+        },
+        {
+          "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+          "year": 2015,
+          "abstract": "The article discusses Batch Normalization, a technique designed to address the issue of internal covariate shift in deep neural networks, which complicates training by altering the distribution of layer inputs. By normalizing inputs within mini-batches, this method accelerates training, allows for higher learning rates, and can even reduce the need for regularization techniques like Dropout, ultimately achieving significant improvements in model accuracy on tasks such as image classification.\n\nTopic: neural network (machine learning), internal covariate shift, batch normalization, computer science, machine learning, deep learning, data science"
+        },
+        {
+          "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+          "year": 2015,
+          "abstract": "The article explores advancements in rectifier networks for image classification, introducing the Parametric Linear Unit (PReLU) to enhance model fitting with minimal computational cost and risk of overfitting. It also presents a robust initialization method for training deep models, achieving a groundbreaking 4.94% top-5 test error on the ImageNet 2012 dataset, surpassing human-level performance for the first time.\n\nTopic: digital image processing, sparse neural network, imagenet classification, computer science, machine learning research, deep learning, machine vision, adversarial machine learning, image representation, human-level performance, human image synthesis, computational imaging, geometric learning, machine learning, data science, computer vision, cognitive science, computational intelligence, convolutional neural network, image analysis"
         }
       ],
-      "confidence": 0.8870064598761059
+      "confidence": 0.8967107277040094
     }
   ],
-  "unified_confidence": 0.8434001922605417,
+  "unified_confidence": 0.841982008162401,
   "algorithm_config": {
-    "direction_threshold": 0.36963353632247853,
+    "direction_threshold": 0.4,
     "citation_boost": 0.8,
-    "validation_threshold": 0.3376450903813812,
+    "validation_threshold": 0.7,
     "citation_support_window": 2,
-    "similarity_min_segment_length": 5,
-    "similarity_max_segment_length": 28,
+    "similarity_min_segment_length": 3,
+    "similarity_max_segment_length": 50,
     "keyword_min_frequency": 2,
     "min_significant_keywords": 2
   }

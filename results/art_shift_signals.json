@@ -1,6 +1,6 @@
 {
   "domain_name": "art",
-  "analysis_date": "2025-06-25T17:58:02.254012",
+  "analysis_date": "2025-06-25T22:32:19.256126",
   "time_range": [
     1979,
     2020
@@ -13,18 +13,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 1.367391304347826,
       "supporting_evidence": [
-        "Novel focus: cognitive science",
+        "Novel focus: psychology",
         "Novel focus: african american studies",
-        "Novel focus: digital image processing",
-        "Novel focus: art criticism",
-        "Novel focus: performance studies",
+        "Novel focus: culture",
+        "Novel focus: contemporary art",
+        "Novel focus: visual science",
         "Top current: art",
         "Top current: art history",
         "Top current: aesthetics",
         "Top current: art theory",
         "Top current: culture"
       ],
-      "transition_description": "94.4% new keywords (threshold=0.40) | Novel keywords: cognitive science, african american studies, digital image processing, art criticism, performance studies | Top keywords: art, art history, aesthetics, art theory, culture (citation validated)",
+      "transition_description": "94.4% new keywords (threshold=0.40) | Novel keywords: psychology, african american studies, culture, contemporary art, visual science | Top keywords: art, art history, aesthetics, art theory, culture (citation validated)",
       "paradigm_significance": 1.007729468599034
     },
     {
@@ -33,18 +33,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 1.1685843568196508,
       "supporting_evidence": [
-        "Novel focus: material culture",
+        "Novel focus: affective computing",
+        "Novel focus: psychology",
         "Novel focus: affect",
-        "Novel focus: cultural heritage",
         "Novel focus: african american studies",
-        "Novel focus: comparative literature",
+        "Novel focus: affective neuroscience",
         "Top current: art",
         "Top current: art history",
         "Top current: aesthetics",
         "Top current: culture",
         "Top current: visual arts"
       ],
-      "transition_description": "85.6% new keywords (threshold=0.40) | Novel keywords: material culture, affect, cultural heritage, african american studies, comparative literature | Top keywords: art, art history, aesthetics, culture, visual arts (citation validated)",
+      "transition_description": "85.6% new keywords (threshold=0.40) | Novel keywords: affective computing, psychology, affect, african american studies, affective neuroscience | Top keywords: art, art history, aesthetics, culture, visual arts (citation validated)",
       "paradigm_significance": 0.9193708252531781
     },
     {
@@ -53,18 +53,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9247753713978879,
       "supporting_evidence": [
-        "Novel focus: material culture",
+        "Novel focus: affective computing",
         "Novel focus: affect",
-        "Novel focus: cultural heritage",
         "Novel focus: african american studies",
-        "Novel focus: comparative literature",
+        "Novel focus: affective neuroscience",
+        "Novel focus: cultural history",
         "Top current: art",
         "Top current: art history",
         "Top current: culture",
         "Top current: aesthetics",
         "Top current: narrative"
       ],
-      "transition_description": "74.6% new keywords (threshold=0.40) | Novel keywords: material culture, affect, cultural heritage, african american studies, comparative literature | Top keywords: art, art history, culture, aesthetics, narrative (citation validated)",
+      "transition_description": "74.6% new keywords (threshold=0.40) | Novel keywords: affective computing, affect, african american studies, affective neuroscience, cultural history | Top keywords: art, art history, culture, aesthetics, narrative (citation validated)",
       "paradigm_significance": 0.8110112761768391
     },
     {
@@ -73,18 +73,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9182608695652176,
       "supporting_evidence": [
-        "Novel focus: face detection",
+        "Novel focus: feminist theory",
         "Novel focus: poetics",
-        "Novel focus: comparative literature",
         "Novel focus: creativity assessment",
-        "Novel focus: design culture",
+        "Novel focus: realistic rendering",
+        "Novel focus: face detection",
         "Top current: art",
         "Top current: art history",
         "Top current: narrative",
         "Top current: aesthetics",
         "Top current: visual culture"
       ],
-      "transition_description": "76.5% new keywords (threshold=0.40) | Novel keywords: face detection, poetics, comparative literature, creativity assessment, design culture | Top keywords: art, art history, narrative, aesthetics, visual culture (citation validated)",
+      "transition_description": "76.5% new keywords (threshold=0.40) | Novel keywords: feminist theory, poetics, creativity assessment, realistic rendering, face detection | Top keywords: art, art history, narrative, aesthetics, visual culture (citation validated)",
       "paradigm_significance": 0.8081159420289856
     },
     {
@@ -93,18 +93,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 1.0092292089249493,
       "supporting_evidence": [
-        "Novel focus: face detection",
-        "Novel focus: gender studies",
+        "Novel focus: media studies",
+        "Novel focus: feminist theory",
         "Novel focus: poetics",
         "Novel focus: creativity assessment",
-        "Novel focus: design culture",
+        "Novel focus: realistic rendering",
         "Top current: art",
         "Top current: art history",
         "Top current: aesthetics",
         "Top current: narrative",
         "Top current: visual culture"
       ],
-      "transition_description": "80.2% new keywords (threshold=0.40) | Novel keywords: face detection, gender studies, poetics, creativity assessment, design culture | Top keywords: art, art history, aesthetics, narrative, visual culture (citation validated)",
+      "transition_description": "80.2% new keywords (threshold=0.40) | Novel keywords: media studies, feminist theory, poetics, creativity assessment, realistic rendering | Top keywords: art, art history, aesthetics, narrative, visual culture (citation validated)",
       "paradigm_significance": 0.8485463150777552
     },
     {
@@ -113,18 +113,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9471942045137922,
       "supporting_evidence": [
-        "Novel focus: face detection",
-        "Novel focus: gender studies",
-        "Novel focus: walter benjamin",
+        "Novel focus: media studies",
+        "Novel focus: feminist theory",
         "Novel focus: poetics",
-        "Novel focus: design culture",
+        "Novel focus: gender studies",
+        "Novel focus: communication",
         "Top current: art",
         "Top current: art history",
         "Top current: aesthetics",
         "Top current: visual culture",
         "Top current: narrative"
       ],
-      "transition_description": "73.2% new keywords (threshold=0.40) | Novel keywords: face detection, gender studies, walter benjamin, poetics, design culture | Top keywords: art, art history, aesthetics, visual culture, narrative (citation validated)",
+      "transition_description": "73.2% new keywords (threshold=0.40) | Novel keywords: media studies, feminist theory, poetics, gender studies, communication | Top keywords: art, art history, aesthetics, visual culture, narrative (citation validated)",
       "paradigm_significance": 0.8209752020061298
     },
     {
@@ -133,18 +133,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7540434782608696,
       "supporting_evidence": [
-        "Novel focus: narrative and identity",
-        "Novel focus: human-computer interaction",
-        "Novel focus: walter benjamin",
-        "Novel focus: cinema",
         "Novel focus: media studies",
+        "Novel focus: communication",
+        "Novel focus: walter benjamin",
+        "Novel focus: visual reasoning",
+        "Novel focus: generative art",
         "Top current: art",
         "Top current: art history",
         "Top current: aesthetics",
         "Top current: visual culture",
         "Top current: visual arts"
       ],
-      "transition_description": "58.8% new keywords (threshold=0.40) | Novel keywords: narrative and identity, human-computer interaction, walter benjamin, cinema, media studies | Top keywords: art, art history, aesthetics, visual culture, visual arts (citation validated)",
+      "transition_description": "58.8% new keywords (threshold=0.40) | Novel keywords: media studies, communication, walter benjamin, visual reasoning, generative art | Top keywords: art, art history, aesthetics, visual culture, visual arts (citation validated)",
       "paradigm_significance": 0.7351304347826088
     },
     {
@@ -153,18 +153,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7911980341604898,
       "supporting_evidence": [
+        "Novel focus: affective computing",
         "Novel focus: marketing",
-        "Novel focus: human-computer interaction",
-        "Novel focus: walter benjamin",
+        "Novel focus: computer science",
         "Novel focus: virtual reality",
-        "Novel focus: cinema",
+        "Novel focus: scene interpretation",
         "Top current: art",
         "Top current: aesthetics",
         "Top current: art history",
         "Top current: visual culture",
         "Top current: visual arts"
       ],
-      "transition_description": "65.0% new keywords (threshold=0.40) | Novel keywords: marketing, human-computer interaction, walter benjamin, virtual reality, cinema | Top keywords: art, aesthetics, art history, visual culture, visual arts (citation validated)",
+      "transition_description": "65.0% new keywords (threshold=0.40) | Novel keywords: affective computing, marketing, computer science, virtual reality, scene interpretation | Top keywords: art, aesthetics, art history, visual culture, visual arts (citation validated)",
       "paradigm_significance": 0.7516435707379956
     },
     {
@@ -173,18 +173,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8859870282337998,
       "supporting_evidence": [
-        "Novel focus: game design",
         "Novel focus: musical expression",
-        "Novel focus: video game development",
-        "Novel focus: art education",
-        "Novel focus: ethnography",
+        "Novel focus: general music",
+        "Novel focus: qualitative research",
+        "Novel focus: mental health",
+        "Novel focus: game study",
         "Top current: art",
         "Top current: aesthetics",
         "Top current: art history",
         "Top current: art research",
         "Top current: performance studies"
       ],
-      "transition_description": "69.5% new keywords (threshold=0.40) | Novel keywords: game design, musical expression, video game development, art education, ethnography | Top keywords: art, aesthetics, art history, art research, performance studies (citation validated)",
+      "transition_description": "69.5% new keywords (threshold=0.40) | Novel keywords: musical expression, general music, qualitative research, mental health, game study | Top keywords: art, aesthetics, art history, art research, performance studies (citation validated)",
       "paradigm_significance": 0.7937720125483555
     },
     {
@@ -193,18 +193,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9093091559187844,
       "supporting_evidence": [
+        "Novel focus: general music",
+        "Novel focus: aesthetic plastic surgery",
         "Novel focus: qualitative method",
-        "Novel focus: game design",
-        "Novel focus: emotion recognition",
-        "Novel focus: applied mathematics",
-        "Novel focus: computational creativity",
+        "Novel focus: qualitative research",
+        "Novel focus: mental health",
         "Top current: art",
         "Top current: performance studies",
         "Top current: art research",
         "Top current: aesthetics",
         "Top current: art history"
       ],
-      "transition_description": "74.8% new keywords (threshold=0.40) | Novel keywords: qualitative method, game design, emotion recognition, applied mathematics, computational creativity | Top keywords: art, performance studies, art research, aesthetics, art history (citation validated)",
+      "transition_description": "74.8% new keywords (threshold=0.40) | Novel keywords: general music, aesthetic plastic surgery, qualitative method, qualitative research, mental health | Top keywords: art, performance studies, art research, aesthetics, art history (citation validated)",
       "paradigm_significance": 0.8041374026305709
     },
     {
@@ -213,18 +213,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7842272727272728,
       "supporting_evidence": [
-        "Novel focus: image similarity",
-        "Novel focus: machine learning",
-        "Novel focus: social media",
         "Novel focus: creativity assessment",
+        "Novel focus: creative computing",
         "Novel focus: applied mathematics",
+        "Novel focus: computational creativity",
+        "Novel focus: machine learning",
         "Top current: art",
         "Top current: image representation",
         "Top current: narrative",
         "Top current: performance studies",
         "Top current: image communication"
       ],
-      "transition_description": "64.5% new keywords (threshold=0.40) | Novel keywords: image similarity, machine learning, social media, creativity assessment, applied mathematics | Top keywords: art, image representation, narrative, performance studies, image communication (citation validated)",
+      "transition_description": "64.5% new keywords (threshold=0.40) | Novel keywords: creativity assessment, creative computing, applied mathematics, computational creativity, machine learning | Top keywords: art, image representation, narrative, performance studies, image communication (citation validated)",
       "paradigm_significance": 0.7485454545454546
     },
     {
@@ -233,18 +233,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7906864436012417,
       "supporting_evidence": [
-        "Novel focus: image similarity",
-        "Novel focus: machine learning",
-        "Novel focus: social media",
+        "Novel focus: human movement",
         "Novel focus: philosophy of film",
-        "Novel focus: qualitative interpretation",
+        "Novel focus: social cognition",
+        "Novel focus: machine learning",
+        "Novel focus: human performance",
         "Top current: art",
         "Top current: performance studies",
         "Top current: aesthetics",
         "Top current: narrative",
         "Top current: image communication"
       ],
-      "transition_description": "67.1% new keywords (threshold=0.40) | Novel keywords: image similarity, machine learning, social media, philosophy of film, qualitative interpretation | Top keywords: art, performance studies, aesthetics, narrative, image communication (citation validated)",
+      "transition_description": "67.1% new keywords (threshold=0.40) | Novel keywords: human movement, philosophy of film, social cognition, machine learning, human performance | Top keywords: art, performance studies, aesthetics, narrative, image communication (citation validated)",
       "paradigm_significance": 0.7514161971561075
     },
     {
@@ -254,17 +254,17 @@
       "evidence_strength": 0.8496044825313118,
       "supporting_evidence": [
         "Novel focus: gender studies",
-        "Novel focus: deep learning",
-        "Novel focus: embodiment",
+        "Novel focus: social cognition",
         "Novel focus: visual science",
-        "Novel focus: visual perception",
+        "Novel focus: physical anthropology",
+        "Novel focus: data science",
         "Top current: art",
         "Top current: aesthetics",
         "Top current: performance studies",
         "Top current: narrative",
         "Top current: psychology"
       ],
-      "transition_description": "67.1% new keywords (threshold=0.40) | Novel keywords: gender studies, deep learning, embodiment, visual science, visual perception | Top keywords: art, aesthetics, performance studies, narrative, psychology (citation validated)",
+      "transition_description": "67.1% new keywords (threshold=0.40) | Novel keywords: gender studies, social cognition, visual science, physical anthropology, data science | Top keywords: art, aesthetics, performance studies, narrative, psychology (citation validated)",
       "paradigm_significance": 0.7776019922361386
     },
     {
@@ -273,18 +273,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8121706864564007,
       "supporting_evidence": [
-        "Novel focus: inpainting",
         "Novel focus: scene interpretation",
-        "Novel focus: embodiment",
+        "Novel focus: inpainting",
+        "Novel focus: biomedical imaging",
         "Novel focus: visual science",
-        "Novel focus: visual perception",
+        "Novel focus: physical anthropology",
         "Top current: art",
         "Top current: aesthetics",
         "Top current: image representation",
         "Top current: image analysis",
         "Top current: art history"
       ],
-      "transition_description": "65.3% new keywords (threshold=0.40) | Novel keywords: inpainting, scene interpretation, embodiment, visual science, visual perception | Top keywords: art, aesthetics, image representation, image analysis, art history (citation validated)",
+      "transition_description": "65.3% new keywords (threshold=0.40) | Novel keywords: scene interpretation, inpainting, biomedical imaging, visual science, physical anthropology | Top keywords: art, aesthetics, image representation, image analysis, art history (citation validated)",
       "paradigm_significance": 0.7609647495361781
     },
     {
@@ -293,18 +293,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8008184240578606,
       "supporting_evidence": [
-        "Novel focus: digital imaging",
+        "Novel focus: neural computation",
+        "Novel focus: artificial intelligence",
         "Novel focus: neural algorithm",
-        "Novel focus: scene understanding",
-        "Novel focus: machine vision",
-        "Novel focus: generative ai",
+        "Novel focus: pattern recognition",
+        "Novel focus: artistic style",
         "Top current: art",
         "Top current: image analysis",
         "Top current: image representation",
         "Top current: computer science",
         "Top current: computer vision"
       ],
-      "transition_description": "59.9% new keywords (threshold=0.40) | Novel keywords: digital imaging, neural algorithm, scene understanding, machine vision, generative ai | Top keywords: art, image analysis, image representation, computer science, computer vision (citation validated)",
+      "transition_description": "59.9% new keywords (threshold=0.40) | Novel keywords: neural computation, artificial intelligence, neural algorithm, pattern recognition, artistic style | Top keywords: art, image analysis, image representation, computer science, computer vision (citation validated)",
       "paradigm_significance": 0.7559192995812715
     },
     {
@@ -313,18 +313,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8357142857142857,
       "supporting_evidence": [
-        "Novel focus: photo-realistic image synthesis",
-        "Novel focus: synthetic image generation",
         "Novel focus: image reconstruction",
+        "Novel focus: synthetic image generation",
+        "Novel focus: neural computation",
+        "Novel focus: artificial intelligence",
         "Novel focus: neural algorithm",
-        "Novel focus: transfer learning",
         "Top current: art",
         "Top current: image analysis",
         "Top current: image representation",
         "Top current: computer science",
         "Top current: computer vision"
       ],
-      "transition_description": "65.0% new keywords (threshold=0.40) | Novel keywords: photo-realistic image synthesis, synthetic image generation, image reconstruction, neural algorithm, transfer learning | Top keywords: art, image analysis, image representation, computer science, computer vision (citation validated)",
+      "transition_description": "65.0% new keywords (threshold=0.40) | Novel keywords: image reconstruction, synthetic image generation, neural computation, artificial intelligence, neural algorithm | Top keywords: art, image analysis, image representation, computer science, computer vision (citation validated)",
       "paradigm_significance": 0.7714285714285715
     },
     {
@@ -333,18 +333,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.729711298022278,
       "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: photo-realistic image synthesis",
-        "Novel focus: synthetic image generation",
         "Novel focus: image reconstruction",
+        "Novel focus: synthetic image generation",
+        "Novel focus: computational photography",
         "Novel focus: transfer learning",
+        "Novel focus: information fusion",
         "Top current: art",
         "Top current: art history",
         "Top current: computer science",
         "Top current: synthetic image generation",
         "Top current: image analysis"
       ],
-      "transition_description": "64.5% new keywords (threshold=0.40) | Novel keywords: information fusion, photo-realistic image synthesis, synthetic image generation, image reconstruction, transfer learning | Top keywords: art, art history, computer science, synthetic image generation, image analysis (citation validated)",
+      "transition_description": "64.5% new keywords (threshold=0.40) | Novel keywords: image reconstruction, synthetic image generation, computational photography, transfer learning, information fusion | Top keywords: art, art history, computer science, synthetic image generation, image analysis (citation validated)",
       "paradigm_significance": 0.7243161324543458
     }
   ],

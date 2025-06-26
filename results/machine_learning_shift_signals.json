@@ -1,6 +1,6 @@
 {
   "domain_name": "machine_learning",
-  "analysis_date": "2025-06-25T18:01:17.330764",
+  "analysis_date": "2025-06-25T22:36:17.377066",
   "time_range": [
     1989,
     2020
@@ -14,17 +14,17 @@
       "evidence_strength": 0.8933739527798934,
       "supporting_evidence": [
         "Novel focus: knowledge discovery",
-        "Novel focus: machine learning research",
-        "Novel focus: supervised learning",
-        "Novel focus: neural networks",
         "Novel focus: machine learning tool",
+        "Novel focus: neural computation",
+        "Novel focus: statistical theory",
+        "Novel focus: biostatistics",
         "Top current: machine learning",
         "Top current: computer science",
         "Top current: machine learning research",
         "Top current: statistics",
         "Top current: data science"
       ],
-      "transition_description": "84.2% new keywords (threshold=0.37) | Novel keywords: knowledge discovery, machine learning research, supervised learning, neural networks, machine learning tool | Top keywords: machine learning, computer science, machine learning research, statistics, data science (citation validated)",
+      "transition_description": "84.2% new keywords (threshold=0.40) | Novel keywords: knowledge discovery, machine learning tool, neural computation, statistical theory, biostatistics | Top keywords: machine learning, computer science, machine learning research, statistics, data science (citation validated)",
       "paradigm_significance": 0.7970550901243971
     },
     {
@@ -33,18 +33,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9918367346938775,
       "supporting_evidence": [
-        "Novel focus: convolutional neural network",
-        "Novel focus: cognitive science",
         "Novel focus: knowledge discovery",
-        "Novel focus: supervised learning",
-        "Novel focus: neural networks",
+        "Novel focus: machine learning tool",
+        "Novel focus: statistical theory",
+        "Novel focus: artificial intelligence",
+        "Novel focus: applied statistics",
         "Top current: machine learning",
         "Top current: computer science",
         "Top current: machine learning research",
         "Top current: statistics",
         "Top current: data science"
       ],
-      "transition_description": "79.6% new keywords (threshold=0.37) | Novel keywords: convolutional neural network, cognitive science, knowledge discovery, supervised learning, neural networks | Top keywords: machine learning, computer science, machine learning research, statistics, data science (citation validated)",
+      "transition_description": "79.6% new keywords (threshold=0.40) | Novel keywords: knowledge discovery, machine learning tool, statistical theory, artificial intelligence, applied statistics | Top keywords: machine learning, computer science, machine learning research, statistics, data science (citation validated)",
       "paradigm_significance": 0.8408163265306122
     },
     {
@@ -53,159 +53,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8076230492196879,
       "supporting_evidence": [
-        "Novel focus: convolutional neural network",
-        "Novel focus: reinforcement learning",
-        "Novel focus: cognitive science",
+        "Novel focus: sparse neural network",
         "Novel focus: intelligent computing",
-        "Novel focus: applied statistics",
+        "Novel focus: likelihood-based inference",
+        "Novel focus: temporal pattern recognition",
+        "Novel focus: econometric model",
         "Top current: machine learning",
         "Top current: computer science",
         "Top current: machine learning research",
         "Top current: data science",
         "Top current: statistics"
       ],
-      "transition_description": "67.6% new keywords (threshold=0.37) | Novel keywords: convolutional neural network, reinforcement learning, cognitive science, intelligent computing, applied statistics | Top keywords: machine learning, computer science, machine learning research, data science, statistics (citation validated)",
+      "transition_description": "67.6% new keywords (threshold=0.40) | Novel keywords: sparse neural network, intelligent computing, likelihood-based inference, temporal pattern recognition, econometric model | Top keywords: machine learning, computer science, machine learning research, data science, statistics (citation validated)",
       "paradigm_significance": 0.7589435774309724
-    },
-    {
-      "year": 1999,
-      "confidence": 0.4591113040961065,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.4591113040961065,
-      "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: systems engineering",
-        "Novel focus: face detection",
-        "Novel focus: principal component analysis",
-        "Novel focus: clustering",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: deep learning",
-        "Top current: machine learning research",
-        "Top current: data science"
-      ],
-      "transition_description": "73.8% new keywords (threshold=0.37) | Novel keywords: information fusion, systems engineering, face detection, principal component analysis, clustering | Top keywords: machine learning, computer science, deep learning, machine learning research, data science (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 2000,
-      "confidence": 0.5204301075268818,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.5204301075268818,
-      "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: object detection",
-        "Novel focus: face detection",
-        "Novel focus: probabilistic graph theory",
-        "Novel focus: clustering",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: machine learning research",
-        "Top current: data science",
-        "Top current: statistics"
-      ],
-      "transition_description": "78.1% new keywords (threshold=0.37) | Novel keywords: information fusion, object detection, face detection, probabilistic graph theory, clustering | Top keywords: machine learning, computer science, machine learning research, data science, statistics (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 2002,
-      "confidence": 0.41924548933843625,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.41924548933843625,
-      "supporting_evidence": [
-        "Novel focus: object detection",
-        "Novel focus: vector machines",
-        "Novel focus: probabilistic graph theory",
-        "Novel focus: classification method",
-        "Novel focus: statistical learning theory",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: data science",
-        "Top current: machine learning research",
-        "Top current: statistics"
-      ],
-      "transition_description": "69.7% new keywords (threshold=0.37) | Novel keywords: object detection, vector machines, probabilistic graph theory, classification method, statistical learning theory | Top keywords: machine learning, computer science, data science, machine learning research, statistics (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 2003,
-      "confidence": 0.4718722027129381,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.4718722027129381,
-      "supporting_evidence": [
-        "Novel focus: vector machines",
-        "Novel focus: computational linguistics",
-        "Novel focus: natural language processing",
-        "Novel focus: shift detection",
-        "Novel focus: digital image processing",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: machine learning research",
-        "Top current: data science",
-        "Top current: statistics"
-      ],
-      "transition_description": "74.8% new keywords (threshold=0.37) | Novel keywords: vector machines, computational linguistics, natural language processing, shift detection, digital image processing | Top keywords: machine learning, computer science, machine learning research, data science, statistics (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 2004,
-      "confidence": 0.4727947473594063,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.4727947473594063,
-      "supporting_evidence": [
-        "Novel focus: vector machines",
-        "Novel focus: predictive analytics",
-        "Novel focus: latent modeling",
-        "Novel focus: shift detection",
-        "Novel focus: digital image processing",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: data science",
-        "Top current: machine learning research",
-        "Top current: image analysis"
-      ],
-      "transition_description": "74.8% new keywords (threshold=0.37) | Novel keywords: vector machines, predictive analytics, latent modeling, shift detection, digital image processing | Top keywords: machine learning, computer science, data science, machine learning research, image analysis (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 2005,
-      "confidence": 0.4704459203036053,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.4704459203036053,
-      "supporting_evidence": [
-        "Novel focus: systems engineering",
-        "Novel focus: latent modeling",
-        "Novel focus: shift detection",
-        "Novel focus: digital image processing",
-        "Novel focus: supervised learning",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: machine learning research",
-        "Top current: data science",
-        "Top current: machine vision"
-      ],
-      "transition_description": "77.6% new keywords (threshold=0.37) | Novel keywords: systems engineering, latent modeling, shift detection, digital image processing, supervised learning | Top keywords: machine learning, computer science, machine learning research, data science, machine vision (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 2006,
-      "confidence": 0.48601852266117845,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.48601852266117845,
-      "supporting_evidence": [
-        "Novel focus: feature engineering",
-        "Novel focus: latent modeling",
-        "Novel focus: image classification",
-        "Novel focus: bioinformatics",
-        "Novel focus: behavioral sciences",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: machine learning research",
-        "Top current: data science",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "70.5% new keywords (threshold=0.37) | Novel keywords: feature engineering, latent modeling, image classification, bioinformatics, behavioral sciences | Top keywords: machine learning, computer science, machine learning research, data science, pattern recognition (direction only)",
-      "paradigm_significance": 0.4
     },
     {
       "year": 2007,
@@ -213,10 +73,10 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7361222847948511,
       "supporting_evidence": [
-        "Novel focus: classification method",
         "Novel focus: bioinformatics",
-        "Novel focus: pattern recognition application",
+        "Novel focus: image denoising",
         "Novel focus: gaussian process",
+        "Novel focus: classification method",
         "Novel focus: natural scene categories",
         "Top current: machine learning",
         "Top current: computer science",
@@ -224,7 +84,7 @@
         "Top current: machine learning research",
         "Top current: deep learning"
       ],
-      "transition_description": "61.6% new keywords (threshold=0.37) | Novel keywords: classification method, bioinformatics, pattern recognition application, gaussian process, natural scene categories | Top keywords: machine learning, computer science, data science, machine learning research, deep learning (citation validated)",
+      "transition_description": "61.6% new keywords (threshold=0.40) | Novel keywords: bioinformatics, image denoising, gaussian process, classification method, natural scene categories | Top keywords: machine learning, computer science, data science, machine learning research, deep learning (citation validated)",
       "paradigm_significance": 0.7271654599088228
     },
     {
@@ -233,10 +93,10 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7465629274965802,
       "supporting_evidence": [
-        "Novel focus: classification method",
-        "Novel focus: classifier system",
+        "Novel focus: image denoising",
         "Novel focus: gaussian process",
         "Novel focus: temporal pattern recognition",
+        "Novel focus: classification method",
         "Novel focus: dimensionality reduction",
         "Top current: machine learning",
         "Top current: computer science",
@@ -244,7 +104,7 @@
         "Top current: machine learning research",
         "Top current: deep learning"
       ],
-      "transition_description": "57.0% new keywords (threshold=0.37) | Novel keywords: classification method, classifier system, gaussian process, temporal pattern recognition, dimensionality reduction | Top keywords: machine learning, computer science, data science, machine learning research, deep learning (citation validated)",
+      "transition_description": "57.0% new keywords (threshold=0.40) | Novel keywords: image denoising, gaussian process, temporal pattern recognition, classification method, dimensionality reduction | Top keywords: machine learning, computer science, data science, machine learning research, deep learning (citation validated)",
       "paradigm_significance": 0.7318057455540357
     },
     {
@@ -253,39 +113,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7321178120617111,
       "supporting_evidence": [
-        "Novel focus: predictive analytics",
-        "Novel focus: data classification",
+        "Novel focus: neural computation",
         "Novel focus: applied statistics",
+        "Novel focus: temporal pattern recognition",
+        "Novel focus: dimensionality reduction",
         "Novel focus: computational intelligence",
-        "Novel focus: scene understanding",
         "Top current: machine learning",
         "Top current: computer science",
         "Top current: data science",
         "Top current: machine learning research",
         "Top current: deep learning"
       ],
-      "transition_description": "60.9% new keywords (threshold=0.37) | Novel keywords: predictive analytics, data classification, applied statistics, computational intelligence, scene understanding | Top keywords: machine learning, computer science, data science, machine learning research, deep learning (citation validated)",
+      "transition_description": "60.9% new keywords (threshold=0.40) | Novel keywords: neural computation, applied statistics, temporal pattern recognition, dimensionality reduction, computational intelligence | Top keywords: machine learning, computer science, data science, machine learning research, deep learning (citation validated)",
       "paradigm_significance": 0.7253856942496495
-    },
-    {
-      "year": 2010,
-      "confidence": 0.7174012855831037,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.7174012855831037,
-      "supporting_evidence": [
-        "Novel focus: predictive analytics",
-        "Novel focus: supervised learning",
-        "Novel focus: data classification",
-        "Novel focus: feature extraction",
-        "Novel focus: systems biology",
-        "Top current: machine learning",
-        "Top current: computer science",
-        "Top current: data science",
-        "Top current: machine learning research",
-        "Top current: deep learning"
-      ],
-      "transition_description": "63.1% new keywords (threshold=0.37) | Novel keywords: predictive analytics, supervised learning, data classification, feature extraction, systems biology | Top keywords: machine learning, computer science, data science, machine learning research, deep learning (citation validated)",
-      "paradigm_significance": 0.7188450158147128
     },
     {
       "year": 2011,
@@ -294,8 +134,8 @@
       "evidence_strength": 0.8073089700996678,
       "supporting_evidence": [
         "Novel focus: deep network",
-        "Novel focus: predictive analytics",
-        "Novel focus: evolutionary biology",
+        "Novel focus: autoencoders",
+        "Novel focus: sequence alignment",
         "Novel focus: applied mathematics",
         "Novel focus: genome biology",
         "Top current: machine learning",
@@ -304,7 +144,7 @@
         "Top current: deep learning",
         "Top current: machine learning research"
       ],
-      "transition_description": "71.4% new keywords (threshold=0.37) | Novel keywords: deep network, predictive analytics, evolutionary biology, applied mathematics, genome biology | Top keywords: machine learning, computer science, data science, deep learning, machine learning research (citation validated)",
+      "transition_description": "71.4% new keywords (threshold=0.40) | Novel keywords: deep network, autoencoders, sequence alignment, applied mathematics, genome biology | Top keywords: machine learning, computer science, data science, deep learning, machine learning research (citation validated)",
       "paradigm_significance": 0.7588039867109635
     },
     {
@@ -313,24 +153,24 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8542090656799262,
       "supporting_evidence": [
-        "Novel focus: deep network",
         "Novel focus: computational linguistics",
-        "Novel focus: knowledge transfer",
-        "Novel focus: 3d computer vision",
-        "Novel focus: evolutionary biology",
+        "Novel focus: nlp task",
+        "Novel focus: online learning",
+        "Novel focus: natural language",
+        "Novel focus: deep network",
         "Top current: machine learning",
         "Top current: computer science",
         "Top current: deep learning",
         "Top current: data science",
         "Top current: image analysis"
       ],
-      "transition_description": "72.8% new keywords (threshold=0.37) | Novel keywords: deep network, computational linguistics, knowledge transfer, 3d computer vision, evolutionary biology | Top keywords: machine learning, computer science, deep learning, data science, image analysis (citation validated)",
+      "transition_description": "72.8% new keywords (threshold=0.40) | Novel keywords: computational linguistics, nlp task, online learning, natural language, deep network | Top keywords: machine learning, computer science, deep learning, data science, image analysis (citation validated)",
       "paradigm_significance": 0.7796484736355227
     }
   ],
   "summary": {
-    "total_signals": 16,
-    "paradigm_shifts": 9,
-    "avg_confidence": 0.6616546485254908
+    "total_signals": 8,
+    "paradigm_shifts": 8,
+    "avg_confidence": 0.8211443496032744
   }
 }

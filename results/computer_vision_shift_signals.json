@@ -1,6 +1,6 @@
 {
   "domain_name": "computer_vision",
-  "analysis_date": "2025-06-25T18:00:12.270910",
+  "analysis_date": "2025-06-25T22:34:59.605790",
   "time_range": [
     1947,
     2024
@@ -8,123 +8,23 @@
   "total_papers": 710,
   "signals": [
     {
-      "year": 1954,
-      "confidence": 0.46114369501466274,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.46114369501466274,
-      "supporting_evidence": [
-        "Novel focus: film",
-        "Novel focus: color correction",
-        "Novel focus: computer stereo vision",
-        "Novel focus: visual reasoning",
-        "Novel focus: color constancy",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: image analysis",
-        "Top current: computational imaging"
-      ],
-      "transition_description": "84.1% new keywords (threshold=0.18) | Novel keywords: film, color correction, computer stereo vision, visual reasoning, color constancy | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1958,
-      "confidence": 0.47122392560944965,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.47122392560944965,
-      "supporting_evidence": [
-        "Novel focus: ophthalmology",
-        "Novel focus: shift detection",
-        "Novel focus: depth map",
-        "Novel focus: character recognition",
-        "Novel focus: image restoration",
-        "Top current: computer vision",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: computer science",
-        "Top current: computational imaging"
-      ],
-      "transition_description": "65.2% new keywords (threshold=0.18) | Novel keywords: ophthalmology, shift detection, depth map, character recognition, image restoration | Top keywords: computer vision, image analysis, machine vision, computer science, computational imaging (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1961,
-      "confidence": 0.4568532727100502,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.4568532727100502,
-      "supporting_evidence": [
-        "Novel focus: image similarity",
-        "Novel focus: human-computer interaction",
-        "Novel focus: vision recognition",
-        "Novel focus: visual computing",
-        "Novel focus: machine learning research",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: image analysis",
-        "Top current: image representation"
-      ],
-      "transition_description": "69.3% new keywords (threshold=0.18) | Novel keywords: image similarity, human-computer interaction, vision recognition, visual computing, machine learning research | Top keywords: computer vision, computer science, machine vision, image analysis, image representation (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1962,
-      "confidence": 0.46995967741935485,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.46995967741935485,
-      "supporting_evidence": [
-        "Novel focus: human-computer interaction",
-        "Novel focus: visual computing",
-        "Novel focus: machine learning research",
-        "Novel focus: moving object tracking",
-        "Novel focus: visual processing",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: image analysis",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "71.6% new keywords (threshold=0.18) | Novel keywords: human-computer interaction, visual computing, machine learning research, moving object tracking, visual processing | Top keywords: computer vision, computer science, machine vision, image analysis, pattern recognition (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
-      "year": 1965,
-      "confidence": 0.46543778801843316,
-      "signal_type": "direction_primary_only",
-      "evidence_strength": 0.46543778801843316,
-      "supporting_evidence": [
-        "Novel focus: applied mathematics",
-        "Novel focus: radiographic imaging",
-        "Novel focus: signal processing",
-        "Novel focus: radiology",
-        "Novel focus: human monitoring",
-        "Top current: computer vision",
-        "Top current: image analysis",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "71.4% new keywords (threshold=0.18) | Novel keywords: applied mathematics, radiographic imaging, signal processing, radiology, human monitoring | Top keywords: computer vision, image analysis, computer science, machine vision, pattern recognition (direction only)",
-      "paradigm_significance": 0.4
-    },
-    {
       "year": 1967,
       "confidence": 0.8657478115105233,
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8657478115105233,
       "supporting_evidence": [
+        "Novel focus: biostatistics",
         "Novel focus: image similarity",
-        "Novel focus: shift detection",
-        "Novel focus: localization",
-        "Novel focus: computational optimization",
+        "Novel focus: design",
         "Novel focus: visual reasoning",
+        "Novel focus: computational optimization",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: pattern recognition"
       ],
-      "transition_description": "68.9% new keywords (threshold=0.18) | Novel keywords: image similarity, shift detection, localization, computational optimization, visual reasoning | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
+      "transition_description": "68.9% new keywords (threshold=0.40) | Novel keywords: biostatistics, image similarity, design, visual reasoning, computational optimization | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
       "paradigm_significance": 0.7847768051157882
     },
     {
@@ -133,10 +33,10 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9539170506912443,
       "supporting_evidence": [
-        "Novel focus: information fusion",
+        "Novel focus: multi-view geometry",
+        "Novel focus: biostatistics",
         "Novel focus: image similarity",
-        "Novel focus: least squares",
-        "Novel focus: localization",
+        "Novel focus: design",
         "Novel focus: computational optimization",
         "Top current: computer vision",
         "Top current: computer science",
@@ -144,7 +44,7 @@
         "Top current: machine vision",
         "Top current: pattern recognition"
       ],
-      "transition_description": "72.6% new keywords (threshold=0.18) | Novel keywords: information fusion, image similarity, least squares, localization, computational optimization | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
+      "transition_description": "72.6% new keywords (threshold=0.40) | Novel keywords: multi-view geometry, biostatistics, image similarity, design, computational optimization | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
       "paradigm_significance": 0.8239631336405531
     },
     {
@@ -153,18 +53,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9006692747906496,
       "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: image similarity",
-        "Novel focus: 3d computer vision",
         "Novel focus: 3d vision",
-        "Novel focus: localization",
+        "Novel focus: visual scene",
+        "Novel focus: image similarity",
+        "Novel focus: design",
+        "Novel focus: 3d computer vision",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: machine vision",
         "Top current: image analysis",
         "Top current: pattern recognition"
       ],
-      "transition_description": "74.1% new keywords (threshold=0.18) | Novel keywords: information fusion, image similarity, 3d computer vision, 3d vision, localization | Top keywords: computer vision, computer science, machine vision, image analysis, pattern recognition (citation validated)",
+      "transition_description": "74.1% new keywords (threshold=0.40) | Novel keywords: 3d vision, visual scene, image similarity, design, 3d computer vision | Top keywords: computer vision, computer science, machine vision, image analysis, pattern recognition (citation validated)",
       "paradigm_significance": 0.800297455462511
     },
     {
@@ -173,18 +73,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8380175927912465,
       "supporting_evidence": [
-        "Novel focus: visual communication",
+        "Novel focus: image reconstruction",
         "Novel focus: 3d vision",
         "Novel focus: computational geometry",
-        "Novel focus: geometrical accuracy",
         "Novel focus: visual scene",
+        "Novel focus: visual arts",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: computational imaging"
       ],
-      "transition_description": "66.5% new keywords (threshold=0.18) | Novel keywords: visual communication, 3d vision, computational geometry, geometrical accuracy, visual scene | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
+      "transition_description": "66.5% new keywords (threshold=0.40) | Novel keywords: image reconstruction, 3d vision, computational geometry, visual scene, visual arts | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
       "paradigm_significance": 0.7724522634627763
     },
     {
@@ -193,18 +93,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.75840768702814,
       "supporting_evidence": [
-        "Novel focus: vision recognition",
-        "Novel focus: visual communication",
         "Novel focus: 3d vision",
         "Novel focus: computational geometry",
         "Novel focus: visual scene",
+        "Novel focus: visual arts",
+        "Novel focus: vision research",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: machine vision",
         "Top current: image analysis",
         "Top current: computational imaging"
       ],
-      "transition_description": "60.3% new keywords (threshold=0.18) | Novel keywords: vision recognition, visual communication, 3d vision, computational geometry, visual scene | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (citation validated)",
+      "transition_description": "60.3% new keywords (threshold=0.40) | Novel keywords: 3d vision, computational geometry, visual scene, visual arts, vision research | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (citation validated)",
       "paradigm_significance": 0.7370700831236179
     },
     {
@@ -213,10 +113,10 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7539086294416244,
       "supporting_evidence": [
-        "Novel focus: ophthalmology",
         "Novel focus: face detection",
-        "Novel focus: image stitching",
+        "Novel focus: facial expression recognition",
         "Novel focus: curve fitting",
+        "Novel focus: ophthalmology",
         "Novel focus: shape analysis",
         "Top current: computer vision",
         "Top current: machine vision",
@@ -224,68 +124,8 @@
         "Top current: image analysis",
         "Top current: pattern recognition"
       ],
-      "transition_description": "58.5% new keywords (threshold=0.18) | Novel keywords: ophthalmology, face detection, image stitching, curve fitting, shape analysis | Top keywords: computer vision, machine vision, computer science, image analysis, pattern recognition (citation validated)",
+      "transition_description": "58.5% new keywords (threshold=0.40) | Novel keywords: face detection, facial expression recognition, curve fitting, ophthalmology, shape analysis | Top keywords: computer vision, machine vision, computer science, image analysis, pattern recognition (citation validated)",
       "paradigm_significance": 0.7350705019740553
-    },
-    {
-      "year": 1973,
-      "confidence": 0.6854834365741989,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6854834365741989,
-      "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: object detection",
-        "Novel focus: geometry processing",
-        "Novel focus: automatic identification",
-        "Novel focus: biometrics",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "59.6% new keywords (threshold=0.18) | Novel keywords: information fusion, object detection, geometry processing, automatic identification, biometrics | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
-      "paradigm_significance": 0.7046593051440884
-    },
-    {
-      "year": 1974,
-      "confidence": 0.6486850799524251,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6486850799524251,
-      "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: image similarity",
-        "Novel focus: feature construction",
-        "Novel focus: image classification",
-        "Novel focus: spatial filtering",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: image analysis",
-        "Top current: computational imaging"
-      ],
-      "transition_description": "62.7% new keywords (threshold=0.18) | Novel keywords: information fusion, image similarity, feature construction, image classification, spatial filtering | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (citation validated)",
-      "paradigm_significance": 0.6883044799788556
-    },
-    {
-      "year": 1975,
-      "confidence": 0.6963157894736842,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6963157894736842,
-      "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: image similarity",
-        "Novel focus: feature construction",
-        "Novel focus: image classification",
-        "Novel focus: spatial filtering",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: image representation"
-      ],
-      "transition_description": "64.5% new keywords (threshold=0.18) | Novel keywords: information fusion, image similarity, feature construction, image classification, spatial filtering | Top keywords: computer vision, computer science, image analysis, machine vision, image representation (citation validated)",
-      "paradigm_significance": 0.7094736842105264
     },
     {
       "year": 1976,
@@ -293,39 +133,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7512765957446808,
       "supporting_evidence": [
-        "Novel focus: geometric modeling",
-        "Novel focus: feature construction",
+        "Novel focus: geometry",
         "Novel focus: knowledge discovery",
-        "Novel focus: visual computing",
-        "Novel focus: image classification",
+        "Novel focus: feature construction",
+        "Novel focus: computer-aided design",
+        "Novel focus: design",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: machine vision",
         "Top current: image analysis",
         "Top current: computational imaging"
       ],
-      "transition_description": "66.9% new keywords (threshold=0.18) | Novel keywords: geometric modeling, feature construction, knowledge discovery, visual computing, image classification | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (citation validated)",
+      "transition_description": "66.9% new keywords (threshold=0.40) | Novel keywords: geometry, knowledge discovery, feature construction, computer-aided design, design | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (citation validated)",
       "paradigm_significance": 0.7339007092198582
-    },
-    {
-      "year": 1977,
-      "confidence": 0.6878555986410899,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6878555986410899,
-      "supporting_evidence": [
-        "Novel focus: systems engineering",
-        "Novel focus: image retrieval",
-        "Novel focus: 3d computer vision",
-        "Novel focus: visual computing",
-        "Novel focus: digital photogrammetry",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: computational imaging"
-      ],
-      "transition_description": "64.1% new keywords (threshold=0.18) | Novel keywords: systems engineering, image retrieval, 3d computer vision, visual computing, digital photogrammetry | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
-      "paradigm_significance": 0.70571359939604
     },
     {
       "year": 1993,
@@ -333,18 +153,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.9060951318620031,
       "supporting_evidence": [
-        "Novel focus: spatial filtering",
-        "Novel focus: character recognition",
-        "Novel focus: visual processing",
         "Novel focus: psychology",
+        "Novel focus: filtering technique",
         "Novel focus: biomedical imaging",
+        "Novel focus: spatial filtering",
+        "Novel focus: adaptive filter",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: pattern recognition",
         "Top current: machine vision"
       ],
-      "transition_description": "70.1% new keywords (threshold=0.18) | Novel keywords: spatial filtering, character recognition, visual processing, psychology, biomedical imaging | Top keywords: computer vision, computer science, image analysis, pattern recognition, machine vision (citation validated)",
+      "transition_description": "70.1% new keywords (threshold=0.40) | Novel keywords: psychology, filtering technique, biomedical imaging, spatial filtering, adaptive filter | Top keywords: computer vision, computer science, image analysis, pattern recognition, machine vision (citation validated)",
       "paradigm_significance": 0.8027089474942236
     },
     {
@@ -353,18 +173,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7680960684844641,
       "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: geometric modeling",
+        "Novel focus: biometrics",
+        "Novel focus: design",
         "Novel focus: biomedical imaging",
         "Novel focus: wavelet",
-        "Novel focus: design",
+        "Novel focus: multimedia information processing",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: pattern recognition"
       ],
-      "transition_description": "66.9% new keywords (threshold=0.18) | Novel keywords: information fusion, geometric modeling, biomedical imaging, wavelet, design | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
+      "transition_description": "66.9% new keywords (threshold=0.40) | Novel keywords: biometrics, design, biomedical imaging, wavelet, multimedia information processing | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
       "paradigm_significance": 0.7413760304375396
     },
     {
@@ -373,18 +193,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8360453917340145,
       "supporting_evidence": [
-        "Novel focus: information fusion",
-        "Novel focus: systems engineering",
-        "Novel focus: digital imaging",
+        "Novel focus: object tracking",
         "Novel focus: image classification",
-        "Novel focus: moving object tracking",
+        "Novel focus: biometrics",
+        "Novel focus: 3d imaging",
+        "Novel focus: scene interpretation",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: pattern recognition",
         "Top current: machine vision"
       ],
-      "transition_description": "70.7% new keywords (threshold=0.18) | Novel keywords: information fusion, systems engineering, digital imaging, image classification, moving object tracking | Top keywords: computer vision, computer science, image analysis, pattern recognition, machine vision (citation validated)",
+      "transition_description": "70.7% new keywords (threshold=0.40) | Novel keywords: object tracking, image classification, biometrics, 3d imaging, scene interpretation | Top keywords: computer vision, computer science, image analysis, pattern recognition, machine vision (citation validated)",
       "paradigm_significance": 0.771575729659562
     },
     {
@@ -393,79 +213,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.8427057604971716,
       "supporting_evidence": [
-        "Novel focus: systems engineering",
-        "Novel focus: image retrieval",
-        "Novel focus: object detection",
-        "Novel focus: digital imaging",
-        "Novel focus: vision recognition",
+        "Novel focus: object tracking",
+        "Novel focus: multi-view geometry",
+        "Novel focus: biometrics",
+        "Novel focus: 3d imaging",
+        "Novel focus: feature detection",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: computational imaging"
       ],
-      "transition_description": "69.3% new keywords (threshold=0.18) | Novel keywords: systems engineering, image retrieval, object detection, digital imaging, vision recognition | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
+      "transition_description": "69.3% new keywords (threshold=0.40) | Novel keywords: object tracking, multi-view geometry, biometrics, 3d imaging, feature detection | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
       "paradigm_significance": 0.7745358935542985
-    },
-    {
-      "year": 1997,
-      "confidence": 0.6871747344407213,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6871747344407213,
-      "supporting_evidence": [
-        "Novel focus: systems engineering",
-        "Novel focus: object detection",
-        "Novel focus: visual surveillance",
-        "Novel focus: image formation",
-        "Novel focus: scene modeling",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: digital image processing"
-      ],
-      "transition_description": "62.1% new keywords (threshold=0.18) | Novel keywords: systems engineering, object detection, visual surveillance, image formation, scene modeling | Top keywords: computer vision, computer science, image analysis, machine vision, digital image processing (citation validated)",
-      "paradigm_significance": 0.7054109930847651
-    },
-    {
-      "year": 1999,
-      "confidence": 0.5735090013074524,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.5735090013074524,
-      "supporting_evidence": [
-        "Novel focus: iris biometrics",
-        "Novel focus: deblurring",
-        "Novel focus: image enhancement",
-        "Novel focus: 3d object recognition",
-        "Novel focus: automatic identification",
-        "Top current: computer science",
-        "Top current: computer vision",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: computational imaging"
-      ],
-      "transition_description": "59.0% new keywords (threshold=0.18) | Novel keywords: iris biometrics, deblurring, image enhancement, 3d object recognition, automatic identification | Top keywords: computer science, computer vision, image analysis, machine vision, computational imaging (citation validated)",
-      "paradigm_significance": 0.6548928894699788
-    },
-    {
-      "year": 2000,
-      "confidence": 0.675086107921929,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.675086107921929,
-      "supporting_evidence": [
-        "Novel focus: spatial filtering",
-        "Novel focus: iris biometrics",
-        "Novel focus: image enhancement",
-        "Novel focus: computational geometry",
-        "Novel focus: earth science",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: computational imaging",
-        "Top current: machine vision",
-        "Top current: image analysis"
-      ],
-      "transition_description": "64.7% new keywords (threshold=0.18) | Novel keywords: spatial filtering, iris biometrics, image enhancement, computational geometry, earth science | Top keywords: computer vision, computer science, computational imaging, machine vision, image analysis (citation validated)",
-      "paradigm_significance": 0.7000382701875241
     },
     {
       "year": 2001,
@@ -473,18 +233,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7375959079283889,
       "supporting_evidence": [
-        "Novel focus: human-computer interaction",
-        "Novel focus: 3d computer vision",
-        "Novel focus: camera calibration",
+        "Novel focus: filtering technique",
         "Novel focus: 3d vision",
-        "Novel focus: spatial filtering",
+        "Novel focus: computational geometry",
+        "Novel focus: image denoising",
+        "Novel focus: texture analysis",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: machine vision",
         "Top current: image analysis",
         "Top current: computational imaging"
       ],
-      "transition_description": "67.6% new keywords (threshold=0.18) | Novel keywords: human-computer interaction, 3d computer vision, camera calibration, 3d vision, spatial filtering | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (citation validated)",
+      "transition_description": "67.6% new keywords (threshold=0.40) | Novel keywords: filtering technique, 3d vision, computational geometry, image denoising, texture analysis | Top keywords: computer vision, computer science, machine vision, image analysis, computational imaging (citation validated)",
       "paradigm_significance": 0.7278204035237285
     },
     {
@@ -493,18 +253,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7205041601449873,
       "supporting_evidence": [
-        "Novel focus: geometric modeling",
+        "Novel focus: image denoising",
+        "Novel focus: calibration",
         "Novel focus: inpainting",
-        "Novel focus: camera calibration",
-        "Novel focus: 3d modeling",
-        "Novel focus: 3d reconstruction",
+        "Novel focus: art",
+        "Novel focus: optical properties",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: computational imaging"
       ],
-      "transition_description": "64.8% new keywords (threshold=0.18) | Novel keywords: geometric modeling, inpainting, camera calibration, 3d modeling, 3d reconstruction | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
+      "transition_description": "64.8% new keywords (threshold=0.40) | Novel keywords: image denoising, calibration, inpainting, art, optical properties | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
       "paradigm_significance": 0.72022407117555
     },
     {
@@ -513,39 +273,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7264237471858584,
       "supporting_evidence": [
+        "Novel focus: calibration",
+        "Novel focus: mean shift",
         "Novel focus: inpainting",
-        "Novel focus: shift detection",
-        "Novel focus: emotion recognition",
         "Novel focus: visual science",
-        "Novel focus: robust feature",
+        "Novel focus: facial expression analysis",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: digital image processing"
       ],
-      "transition_description": "61.5% new keywords (threshold=0.18) | Novel keywords: inpainting, shift detection, emotion recognition, visual science, robust feature | Top keywords: computer vision, computer science, image analysis, machine vision, digital image processing (citation validated)",
+      "transition_description": "61.5% new keywords (threshold=0.40) | Novel keywords: calibration, mean shift, inpainting, visual science, facial expression analysis | Top keywords: computer vision, computer science, image analysis, machine vision, digital image processing (citation validated)",
       "paradigm_significance": 0.7228549987492705
-    },
-    {
-      "year": 2004,
-      "confidence": 0.6990718124084025,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6990718124084025,
-      "supporting_evidence": [
-        "Novel focus: object detection",
-        "Novel focus: face recognition",
-        "Novel focus: shift detection",
-        "Novel focus: emotion recognition",
-        "Novel focus: color correction",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "59.6% new keywords (threshold=0.18) | Novel keywords: object detection, face recognition, shift detection, emotion recognition, color correction | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
-      "paradigm_significance": 0.7106985832926234
     },
     {
       "year": 2005,
@@ -553,18 +293,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7206208557580803,
       "supporting_evidence": [
+        "Novel focus: mean shift",
         "Novel focus: image quality assessment",
-        "Novel focus: optical image recognition",
-        "Novel focus: principal component analysis",
+        "Novel focus: unmanned aircraft system",
         "Novel focus: vision recognition",
-        "Novel focus: shift detection",
+        "Novel focus: color images",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: pattern recognition"
       ],
-      "transition_description": "60.4% new keywords (threshold=0.18) | Novel keywords: image quality assessment, optical image recognition, principal component analysis, vision recognition, shift detection | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
+      "transition_description": "60.4% new keywords (threshold=0.40) | Novel keywords: mean shift, image quality assessment, unmanned aircraft system, vision recognition, color images | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
       "paradigm_significance": 0.7202759358924802
     },
     {
@@ -573,59 +313,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7452377708134625,
       "supporting_evidence": [
+        "Novel focus: multi-view geometry",
         "Novel focus: systems engineering",
-        "Novel focus: optical image recognition",
-        "Novel focus: principal component analysis",
-        "Novel focus: rapid object detection",
-        "Novel focus: scene modeling",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: pattern recognition"
-      ],
-      "transition_description": "62.8% new keywords (threshold=0.18) | Novel keywords: systems engineering, optical image recognition, principal component analysis, rapid object detection, scene modeling | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
-      "paradigm_significance": 0.7312167870282056
-    },
-    {
-      "year": 2007,
-      "confidence": 0.6242151354923993,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6242151354923993,
-      "supporting_evidence": [
-        "Novel focus: visualization",
-        "Novel focus: natural scene categories",
-        "Novel focus: visual system",
-        "Novel focus: scene understanding",
         "Novel focus: biomedical imaging",
+        "Novel focus: unmanned aircraft system",
+        "Novel focus: rapid object detection",
         "Top current: computer vision",
         "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: digital image processing",
-        "Top current: machine vision"
-      ],
-      "transition_description": "53.7% new keywords (threshold=0.18) | Novel keywords: visualization, natural scene categories, visual system, scene understanding, biomedical imaging | Top keywords: computer vision, computer science, image analysis, digital image processing, machine vision (citation validated)",
-      "paradigm_significance": 0.677428949107733
-    },
-    {
-      "year": 2008,
-      "confidence": 0.6710059171597633,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6710059171597633,
-      "supporting_evidence": [
-        "Novel focus: human-computer interaction",
-        "Novel focus: deblurring",
-        "Novel focus: visual question answering",
-        "Novel focus: scene interpretation",
-        "Novel focus: pattern recognition application",
-        "Top current: computer science",
-        "Top current: computer vision",
         "Top current: image analysis",
         "Top current: machine vision",
         "Top current: pattern recognition"
       ],
-      "transition_description": "60.0% new keywords (threshold=0.18) | Novel keywords: human-computer interaction, deblurring, visual question answering, scene interpretation, pattern recognition application | Top keywords: computer science, computer vision, image analysis, machine vision, pattern recognition (citation validated)",
-      "paradigm_significance": 0.6982248520710059
+      "transition_description": "62.8% new keywords (threshold=0.40) | Novel keywords: multi-view geometry, systems engineering, biomedical imaging, unmanned aircraft system, rapid object detection | Top keywords: computer vision, computer science, image analysis, machine vision, pattern recognition (citation validated)",
+      "paradigm_significance": 0.7312167870282056
     },
     {
       "year": 2009,
@@ -633,18 +333,18 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7682926829268293,
       "supporting_evidence": [
-        "Novel focus: image retrieval",
-        "Novel focus: human-computer interaction",
         "Novel focus: knowledge discovery",
+        "Novel focus: scene interpretation",
+        "Novel focus: large-scale datasets",
+        "Novel focus: stereoscopic processing",
         "Novel focus: applied mathematics",
-        "Novel focus: 3d object recognition",
         "Top current: computer vision",
         "Top current: computer science",
         "Top current: image analysis",
         "Top current: computational imaging",
         "Top current: machine vision"
       ],
-      "transition_description": "66.7% new keywords (threshold=0.18) | Novel keywords: image retrieval, human-computer interaction, knowledge discovery, applied mathematics, 3d object recognition | Top keywords: computer vision, computer science, image analysis, computational imaging, machine vision (citation validated)",
+      "transition_description": "66.7% new keywords (threshold=0.40) | Novel keywords: knowledge discovery, scene interpretation, large-scale datasets, stereoscopic processing, applied mathematics | Top keywords: computer vision, computer science, image analysis, computational imaging, machine vision (citation validated)",
       "paradigm_significance": 0.7414634146341463
     },
     {
@@ -653,99 +353,19 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7843137254901961,
       "supporting_evidence": [
-        "Novel focus: systems engineering",
-        "Novel focus: image retrieval",
-        "Novel focus: tiny images",
-        "Novel focus: human-computer interaction",
         "Novel focus: knowledge discovery",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: computational imaging",
-        "Top current: machine vision"
-      ],
-      "transition_description": "74.1% new keywords (threshold=0.18) | Novel keywords: systems engineering, image retrieval, tiny images, human-computer interaction, knowledge discovery | Top keywords: computer vision, computer science, image analysis, computational imaging, machine vision (citation validated)",
-      "paradigm_significance": 0.7485838779956427
-    },
-    {
-      "year": 2011,
-      "confidence": 0.6473076923076924,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6473076923076924,
-      "supporting_evidence": [
-        "Novel focus: feature construction",
-        "Novel focus: tiny images",
+        "Novel focus: image reconstruction",
         "Novel focus: computational geometry",
-        "Novel focus: earth science",
-        "Novel focus: super-resolution imaging",
+        "Novel focus: large-scale datasets",
+        "Novel focus: applied mathematics",
         "Top current: computer vision",
-        "Top current: image analysis",
         "Top current: computer science",
+        "Top current: image analysis",
         "Top current: computational imaging",
         "Top current: machine vision"
       ],
-      "transition_description": "65.4% new keywords (threshold=0.18) | Novel keywords: feature construction, tiny images, computational geometry, earth science, super-resolution imaging | Top keywords: computer vision, image analysis, computer science, computational imaging, machine vision (citation validated)",
-      "paradigm_significance": 0.6876923076923078
-    },
-    {
-      "year": 2012,
-      "confidence": 0.5960886571056063,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.5960886571056063,
-      "supporting_evidence": [
-        "Novel focus: convolutional neural network",
-        "Novel focus: feature construction",
-        "Novel focus: signal reconstruction",
-        "Novel focus: digital imaging",
-        "Novel focus: neural network (machine learning)",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: computational imaging"
-      ],
-      "transition_description": "61.1% new keywords (threshold=0.18) | Novel keywords: convolutional neural network, feature construction, signal reconstruction, digital imaging, neural network (machine learning) | Top keywords: computer vision, computer science, image analysis, machine vision, computational imaging (citation validated)",
-      "paradigm_significance": 0.6649282920469362
-    },
-    {
-      "year": 2013,
-      "confidence": 0.5386479591836735,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.5386479591836735,
-      "supporting_evidence": [
-        "Novel focus: image quality assessment",
-        "Novel focus: image similarity",
-        "Novel focus: digital imaging",
-        "Novel focus: video understanding",
-        "Novel focus: text recognition",
-        "Top current: computer science",
-        "Top current: computer vision",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: machine learning"
-      ],
-      "transition_description": "52.6% new keywords (threshold=0.18) | Novel keywords: image quality assessment, image similarity, digital imaging, video understanding, text recognition | Top keywords: computer science, computer vision, image analysis, machine vision, machine learning (citation validated)",
-      "paradigm_significance": 0.6393990929705216
-    },
-    {
-      "year": 2014,
-      "confidence": 0.6437374144180428,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6437374144180428,
-      "supporting_evidence": [
-        "Novel focus: technology",
-        "Novel focus: human-computer interaction",
-        "Novel focus: video understanding",
-        "Novel focus: vision recognition",
-        "Novel focus: text recognition",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: image analysis",
-        "Top current: machine learning"
-      ],
-      "transition_description": "58.1% new keywords (threshold=0.18) | Novel keywords: technology, human-computer interaction, video understanding, vision recognition, text recognition | Top keywords: computer vision, computer science, machine vision, image analysis, machine learning (citation validated)",
-      "paradigm_significance": 0.6861055175191302
+      "transition_description": "74.1% new keywords (threshold=0.40) | Novel keywords: knowledge discovery, image reconstruction, computational geometry, large-scale datasets, applied mathematics | Top keywords: computer vision, computer science, image analysis, computational imaging, machine vision (citation validated)",
+      "paradigm_significance": 0.7485838779956427
     },
     {
       "year": 2015,
@@ -753,144 +373,24 @@
       "signal_type": "direction_primary_validated",
       "evidence_strength": 0.7495703764320785,
       "supporting_evidence": [
-        "Novel focus: technology",
-        "Novel focus: vision recognition",
-        "Novel focus: shift detection",
-        "Novel focus: supervised learning",
-        "Novel focus: hierarchical classification",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: image analysis",
-        "Top current: machine learning"
-      ],
-      "transition_description": "62.8% new keywords (threshold=0.18) | Novel keywords: technology, vision recognition, shift detection, supervised learning, hierarchical classification | Top keywords: computer vision, computer science, machine vision, image analysis, machine learning (citation validated)",
-      "paradigm_significance": 0.7331423895253683
-    },
-    {
-      "year": 2016,
-      "confidence": 0.6678571428571429,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6678571428571429,
-      "supporting_evidence": [
-        "Novel focus: natural language processing",
-        "Novel focus: semantic segmentation",
-        "Novel focus: supervised learning",
-        "Novel focus: visual question answering",
+        "Novel focus: autonomous robot",
         "Novel focus: adversarial machine learning",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: machine vision",
-        "Top current: image analysis",
-        "Top current: machine learning"
-      ],
-      "transition_description": "61.1% new keywords (threshold=0.18) | Novel keywords: natural language processing, semantic segmentation, supervised learning, visual question answering, adversarial machine learning | Top keywords: computer vision, computer science, machine vision, image analysis, machine learning (citation validated)",
-      "paradigm_significance": 0.6968253968253969
-    },
-    {
-      "year": 2017,
-      "confidence": 0.7064989756430684,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.7064989756430684,
-      "supporting_evidence": [
-        "Novel focus: feature construction",
-        "Novel focus: natural language processing",
-        "Novel focus: semantic segmentation",
-        "Novel focus: adversarial machine learning",
-        "Novel focus: high resolution",
-        "Top current: computer science",
-        "Top current: computer vision",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: machine learning"
-      ],
-      "transition_description": "62.0% new keywords (threshold=0.18) | Novel keywords: feature construction, natural language processing, semantic segmentation, adversarial machine learning, high resolution | Top keywords: computer science, computer vision, image analysis, machine vision, machine learning (citation validated)",
-      "paradigm_significance": 0.7139995447302527
-    },
-    {
-      "year": 2018,
-      "confidence": 0.6752751283932503,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6752751283932503,
-      "supporting_evidence": [
-        "Novel focus: natural language processing",
-        "Novel focus: machine translation",
-        "Novel focus: synthetic image generation",
-        "Novel focus: high resolution",
-        "Novel focus: image communication",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: deep learning"
-      ],
-      "transition_description": "59.8% new keywords (threshold=0.18) | Novel keywords: natural language processing, machine translation, synthetic image generation, high resolution, image communication | Top keywords: computer vision, computer science, image analysis, machine vision, deep learning (citation validated)",
-      "paradigm_significance": 0.700122279285889
-    },
-    {
-      "year": 2019,
-      "confidence": 0.6872939925571505,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.6872939925571505,
-      "supporting_evidence": [
-        "Novel focus: systems engineering",
-        "Novel focus: synthetic image generation",
-        "Novel focus: high resolution",
-        "Novel focus: super-resolution imaging",
-        "Novel focus: image super-resolution",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: machine vision",
-        "Top current: machine learning"
-      ],
-      "transition_description": "59.1% new keywords (threshold=0.18) | Novel keywords: systems engineering, synthetic image generation, high resolution, super-resolution imaging, image super-resolution | Top keywords: computer vision, computer science, image analysis, machine vision, machine learning (citation validated)",
-      "paradigm_significance": 0.7054639966920669
-    },
-    {
-      "year": 2020,
-      "confidence": 0.546499631540162,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.546499631540162,
-      "supporting_evidence": [
-        "Novel focus: systems engineering",
-        "Novel focus: point cloud",
-        "Novel focus: deep networks",
-        "Novel focus: multi-view geometry",
+        "Novel focus: video retrieval",
+        "Novel focus: supervised learning",
         "Novel focus: visual science",
         "Top current: computer vision",
         "Top current: computer science",
-        "Top current: image analysis",
-        "Top current: deep learning",
-        "Top current: machine vision"
-      ],
-      "transition_description": "54.2% new keywords (threshold=0.18) | Novel keywords: systems engineering, point cloud, deep networks, multi-view geometry, visual science | Top keywords: computer vision, computer science, image analysis, deep learning, machine vision (citation validated)",
-      "paradigm_significance": 0.642888725128961
-    },
-    {
-      "year": 2021,
-      "confidence": 0.5875428777757719,
-      "signal_type": "direction_primary_validated",
-      "evidence_strength": 0.5875428777757719,
-      "supporting_evidence": [
-        "Novel focus: image retrieval",
-        "Novel focus: knowledge discovery",
-        "Novel focus: question answering",
-        "Novel focus: point cloud",
-        "Novel focus: 3d object recognition",
-        "Top current: computer vision",
-        "Top current: computer science",
-        "Top current: image analysis",
         "Top current: machine vision",
+        "Top current: image analysis",
         "Top current: machine learning"
       ],
-      "transition_description": "59.2% new keywords (threshold=0.18) | Novel keywords: image retrieval, knowledge discovery, question answering, point cloud, 3d object recognition | Top keywords: computer vision, computer science, image analysis, machine vision, machine learning (citation validated)",
-      "paradigm_significance": 0.6611301679003431
+      "transition_description": "62.8% new keywords (threshold=0.40) | Novel keywords: autonomous robot, adversarial machine learning, video retrieval, supervised learning, visual science | Top keywords: computer vision, computer science, machine vision, image analysis, machine learning (citation validated)",
+      "paradigm_significance": 0.7331423895253683
     }
   ],
   "summary": {
-    "total_signals": 44,
-    "paradigm_shifts": 39,
-    "avg_confidence": 0.6908458332995733
+    "total_signals": 19,
+    "paradigm_shifts": 19,
+    "avg_confidence": 0.7961813800660864
   }
 }
