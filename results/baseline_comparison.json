@@ -5,7 +5,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.4663237373946533,
+          "score": 0.5774636914163196,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -27,7 +27,7 @@
           }
         },
         "5year": {
-          "score": 0.15759786505115642,
+          "score": 0.1721612708798062,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
@@ -55,7 +55,7 @@
           }
         },
         "gemini": {
-          "score": 0.2695763516411004,
+          "score": 0.036754658660133326,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -111,7 +111,7 @@
           }
         },
         "manual": {
-          "score": 0.2695763516411004,
+          "score": 0.036754658660133326,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
@@ -180,29 +180,38 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.5626433924224579,
+          "score": 0.7147178691641457,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.03778050669260738,
-          "difference_score": 0.6209614908368857,
-          "num_segments": 19,
-          "segment_sizes": [],
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.039281789451499634,
+          "difference_score": 0.6512120468288736,
+          "num_segments": 6,
+          "segment_sizes": [
+            17,
+            43,
+            21,
+            170,
+            106,
+            17
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
-              "direction_threshold": 0.34633037385705634,
-              "validation_threshold": 0.34168087533214564,
+              "direction_threshold": 0.392443513941202,
+              "validation_threshold": 0.45,
               "similarity_min_segment_length": 5,
-              "similarity_max_segment_length": 17
+              "similarity_max_segment_length": 16
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 6,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
         "best_method": "bayesian_optimization",
-        "best_score": 0.5626433924224579,
+        "best_score": 0.7147178691641457,
         "method_count": 5,
         "year_range": [
           1957,
@@ -216,7 +225,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.4438443559134767,
+          "score": 0.5639195524430103,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -236,7 +245,7 @@
           }
         },
         "5year": {
-          "score": 0.21818477109643578,
+          "score": 0.2532064621036426,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
@@ -260,7 +269,7 @@
           }
         },
         "gemini": {
-          "score": 0.12163073869869809,
+          "score": 0.024328260307101876,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -308,7 +317,7 @@
           }
         },
         "manual": {
-          "score": 0.0007967317952924277,
+          "score": 0.01991829488231069,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
@@ -367,29 +376,36 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.5469620748272491,
+          "score": 0.07628484825163874,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.029215096503429218,
-          "difference_score": 0.6044895168632292,
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.030513939300655497,
+          "difference_score": 0.6146514676020028,
           "num_segments": 4,
-          "segment_sizes": [],
+          "segment_sizes": [
+            90,
+            45,
+            241,
+            23
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
-              "direction_threshold": 0.4,
-              "validation_threshold": 0.3097051941600503,
+              "direction_threshold": 0.36934812653284455,
+              "validation_threshold": 0.40303919917008496,
               "similarity_min_segment_length": 3,
-              "similarity_max_segment_length": 30
+              "similarity_max_segment_length": 29
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 4,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
-        "best_method": "bayesian_optimization",
-        "best_score": 0.5469620748272491,
+        "best_method": "decade",
+        "best_score": 0.5639195524430103,
         "method_count": 5,
         "year_range": [
           1979,
@@ -403,7 +419,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.49687673922490055,
+          "score": 0.07464345232554101,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -422,12 +438,12 @@
           }
         },
         "5year": {
-          "score": 0.30272255448091584,
+          "score": 0.048806241434475525,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
           "consensus_score": 0.03557230803766244,
-          "difference_score": 0.6089324744646119,
+          "difference_score": 0.6089324744646117,
           "num_segments": 7,
           "segment_sizes": [
             20,
@@ -444,7 +460,7 @@
           }
         },
         "gemini": {
-          "score": 0.32767968588948265,
+          "score": 0.40701683981888126,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -509,7 +525,7 @@
           }
         },
         "manual": {
-          "score": 0.4665906663325519,
+          "score": 0.06730590093744576,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
@@ -578,29 +594,38 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.5422125223860416,
+          "score": 0.05794891614973383,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.029333928400017945,
-          "difference_score": 0.599199032828933,
-          "num_segments": 4,
-          "segment_sizes": [],
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.034579849725486396,
+          "difference_score": 0.6147300914013087,
+          "num_segments": 6,
+          "segment_sizes": [
+            35,
+            73,
+            48,
+            110,
+            40,
+            105
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
-              "direction_threshold": 0.3866800220649913,
-              "validation_threshold": 0.4366969691475934,
-              "similarity_min_segment_length": 4,
-              "similarity_max_segment_length": 13
+              "direction_threshold": 0.2713143496136583,
+              "validation_threshold": 0.429916169079674,
+              "similarity_min_segment_length": 3,
+              "similarity_max_segment_length": 22
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 6,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
-        "best_method": "bayesian_optimization",
-        "best_score": 0.5422125223860416,
+        "best_method": "gemini",
+        "best_score": 0.40701683981888126,
         "method_count": 5,
         "year_range": [
           1986,
@@ -614,7 +639,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.4074729463746637,
+          "score": 0.5880120195519408,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -633,7 +658,7 @@
           }
         },
         "5year": {
-          "score": 0.23443920758453274,
+          "score": 0.32354286933716303,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
@@ -655,7 +680,7 @@
           }
         },
         "gemini": {
-          "score": 0.4408133578561426,
+          "score": 0.6267419187551626,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -712,7 +737,7 @@
           }
         },
         "manual": {
-          "score": 0.4139265433951094,
+          "score": 0.6841232853885694,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
@@ -764,29 +789,36 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.4622982578169867,
+          "score": 0.6357564175589531,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.04766587497968601,
-          "difference_score": 0.5083685225766867,
-          "num_segments": 8,
-          "segment_sizes": [],
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.07243615010044019,
+          "difference_score": 0.6022826590476033,
+          "num_segments": 4,
+          "segment_sizes": [
+            62,
+            14,
+            15,
+            122
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
-              "direction_threshold": 0.18056642952163557,
-              "validation_threshold": 0.45,
-              "similarity_min_segment_length": 4,
-              "similarity_max_segment_length": 24
+              "direction_threshold": 0.3956984633670386,
+              "validation_threshold": 0.31915720220746024,
+              "similarity_min_segment_length": 5,
+              "similarity_max_segment_length": 30
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 4,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
-        "best_method": "bayesian_optimization",
-        "best_score": 0.4622982578169867,
+        "best_method": "manual",
+        "best_score": 0.6841232853885694,
         "method_count": 5,
         "year_range": [
           1992,
@@ -800,7 +832,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.4461613454185311,
+          "score": 0.7139166102610793,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -818,7 +850,7 @@
           }
         },
         "5year": {
-          "score": 0.2795514953906175,
+          "score": 0.37452631765168204,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
@@ -839,7 +871,7 @@
           }
         },
         "gemini": {
-          "score": 0.35351673894394275,
+          "score": 0.5706948229200182,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -903,7 +935,7 @@
           }
         },
         "manual": {
-          "score": 0.38342951389201246,
+          "score": 0.4837106201478552,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
@@ -965,29 +997,35 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.5125772704325117,
+          "score": 0.8308244204412687,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.052226333621093544,
-          "difference_score": 0.5637273745226692,
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.04836174190333476,
+          "difference_score": 0.550297156958787,
           "num_segments": 3,
-          "segment_sizes": [],
+          "segment_sizes": [
+            77,
+            25,
+            308
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
-              "direction_threshold": 0.3578485893151816,
-              "validation_threshold": 0.30035595648000474,
-              "similarity_min_segment_length": 3,
+              "direction_threshold": 0.3740052736595496,
+              "validation_threshold": 0.35152819573874383,
+              "similarity_min_segment_length": 4,
               "similarity_max_segment_length": 13
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 3,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
         "best_method": "bayesian_optimization",
-        "best_score": 0.5125772704325117,
+        "best_score": 0.8308244204412687,
         "method_count": 5,
         "year_range": [
           1995,
@@ -1001,7 +1039,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.4977720986115083,
+          "score": 0.6036530434241899,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -1020,7 +1058,7 @@
           }
         },
         "5year": {
-          "score": 0.3209116266567332,
+          "score": 0.3852238701236785,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
@@ -1041,7 +1079,7 @@
           }
         },
         "gemini": {
-          "score": 0.495811477027786,
+          "score": 0.7166169754338546,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -1104,7 +1142,7 @@
           }
         },
         "manual": {
-          "score": 0.5691214268081051,
+          "score": 0.7516654375343853,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
@@ -1165,29 +1203,35 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.5087517585243939,
+          "score": 0.7612372472077406,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.03925398855889548,
-          "difference_score": 0.5609181774094494,
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.04347294805089017,
+          "difference_score": 0.6355564336707424,
           "num_segments": 3,
-          "segment_sizes": [],
+          "segment_sizes": [
+            23,
+            57,
+            95
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
-              "direction_threshold": 0.36963353632247853,
-              "validation_threshold": 0.3376450903813812,
+              "direction_threshold": 0.3501733927046875,
+              "validation_threshold": 0.3308662789970405,
               "similarity_min_segment_length": 5,
-              "similarity_max_segment_length": 28
+              "similarity_max_segment_length": 16
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 3,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
-        "best_method": "manual",
-        "best_score": 0.5691214268081051,
+        "best_method": "bayesian_optimization",
+        "best_score": 0.7612372472077406,
         "method_count": 5,
         "year_range": [
           1993,
@@ -1201,7 +1245,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.4992857468684151,
+          "score": 0.8061100044124591,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -1219,7 +1263,7 @@
           }
         },
         "5year": {
-          "score": 0.29873705768400843,
+          "score": 0.404544081159047,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
@@ -1240,7 +1284,7 @@
           }
         },
         "gemini": {
-          "score": 0.49614782361650245,
+          "score": 0.7942598769280185,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -1289,12 +1333,12 @@
           }
         },
         "manual": {
-          "score": 0.35435239283113257,
+          "score": 0.6099741917386499,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
           "consensus_score": 0.04462031645952926,
-          "difference_score": 0.475938842576276,
+          "difference_score": 0.47593884257627594,
           "num_segments": 2,
           "segment_sizes": [
             138,
@@ -1341,29 +1385,36 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.48900314907293513,
+          "score": 0.6512776668467097,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.04329924579820673,
-          "difference_score": 0.5385258049923494,
-          "num_segments": 6,
-          "segment_sizes": [],
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.05378207563735983,
+          "difference_score": 0.5723104847093562,
+          "num_segments": 4,
+          "segment_sizes": [
+            28,
+            44,
+            30,
+            123
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
               "direction_threshold": 0.1,
-              "validation_threshold": 0.42678784841440354,
-              "similarity_min_segment_length": 5,
-              "similarity_max_segment_length": 14
+              "validation_threshold": 0.33642864535344397,
+              "similarity_min_segment_length": 4,
+              "similarity_max_segment_length": 30
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 4,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
         "best_method": "decade",
-        "best_score": 0.4992857468684151,
+        "best_score": 0.8061100044124591,
         "method_count": 5,
         "year_range": [
           1992,
@@ -1377,7 +1428,7 @@
       "comparison_successful": true,
       "results": {
         "decade": {
-          "score": 0.3983777151471774,
+          "score": 0.57919177437619,
           "execution_time": 0.0,
           "method": "decade_baseline",
           "description": "10-year temporal segments",
@@ -1396,7 +1447,7 @@
           }
         },
         "5year": {
-          "score": 0.23130708556520232,
+          "score": 0.30605129105204687,
           "execution_time": 0.0,
           "method": "5year_baseline",
           "description": "5-year temporal segments",
@@ -1418,7 +1469,7 @@
           }
         },
         "gemini": {
-          "score": 0.2754941184077352,
+          "score": 0.41614461996234203,
           "execution_time": 0.0,
           "method": "gemini_baseline",
           "description": "Simplified expert periods (gemini reference segmentation)",
@@ -1483,7 +1534,7 @@
           }
         },
         "manual": {
-          "score": 0.5812761838922451,
+          "score": 0.6624417069938567,
           "execution_time": 0.0,
           "method": "manual_baseline",
           "description": "Detailed expert analysis (manual reference segmentation)",
@@ -1536,29 +1587,36 @@
           }
         },
         "bayesian_optimization": {
-          "score": 0.535381853970077,
+          "score": 0.6070096010963656,
           "execution_time": 16.0,
           "method": "bayesian_optimization",
-          "description": "Sophisticated algorithmic segmentation with optimized parameters",
-          "consensus_score": 0.04524097085060837,
-          "difference_score": 0.5898419520944623,
-          "num_segments": 7,
-          "segment_sizes": [],
+          "description": "Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)",
+          "consensus_score": 0.07467348949780955,
+          "difference_score": 0.710419969948456,
+          "num_segments": 4,
+          "segment_sizes": [
+            5,
+            10,
+            23,
+            354
+          ],
           "segmentation_approach": "algorithmic_optimized",
           "additional_info": {
             "parameters": {
-              "direction_threshold": 0.39947161806109377,
-              "validation_threshold": 0.3026165858213599,
+              "direction_threshold": 0.4,
+              "validation_threshold": 0.3,
               "similarity_min_segment_length": 3,
-              "similarity_max_segment_length": 26
+              "similarity_max_segment_length": 30
             },
-            "evaluations": 50
+            "evaluations": "re-evaluated_for_fairness",
+            "segments_generated": 4,
+            "segmentation_method": "run_change_detection"
           }
         }
       },
       "summary": {
         "best_method": "manual",
-        "best_score": 0.5812761838922451,
+        "best_score": 0.6624417069938567,
         "method_count": 5,
         "year_range": [
           1989,
@@ -1569,7 +1627,7 @@
     }
   },
   "metadata": {
-    "comparison_date": "2025-06-25 16:32:48",
+    "comparison_date": "2025-06-25 22:27:10",
     "baseline_methods": [
       "decade_baseline",
       "5year_baseline",

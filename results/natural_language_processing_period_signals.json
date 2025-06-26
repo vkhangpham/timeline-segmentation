@@ -1,6 +1,6 @@
 {
   "domain_name": "natural_language_processing",
-  "analysis_date": "2025-06-25T18:03:39.213257",
+  "analysis_date": "2025-06-25T22:38:25.738650",
   "segments": [
     {
       "start_year": 1957,
@@ -8,22 +8,14 @@
     },
     {
       "start_year": 1978,
-      "end_year": 1981
+      "end_year": 1980
     },
     {
-      "start_year": 1982,
-      "end_year": 1986
+      "start_year": 1981,
+      "end_year": 1991
     },
     {
-      "start_year": 1987,
-      "end_year": 1990
-    },
-    {
-      "start_year": 1991,
-      "end_year": 1993
-    },
-    {
-      "start_year": 1994,
+      "start_year": 1992,
       "end_year": 1997
     },
     {
@@ -37,7 +29,7 @@
         1957,
         1977
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "topic_label": "Symbolic Rule-Based Linguistics",
       "network_stability": 0.26025360395810077,
       "confidence": 0.8039844827642961,
       "representative_papers": [
@@ -61,11 +53,11 @@
     {
       "period": [
         1978,
-        1981
+        1980
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.250811262228585,
-      "confidence": 0.8749598714927702,
+      "topic_label": "Symbolic Rule-Based Linguistics",
+      "network_stability": 0.3143631436314363,
+      "confidence": 0.8983565795376642,
       "representative_papers": [
         {
           "title": "Dynamic programming algorithm optimization for spoken word recognition",
@@ -86,91 +78,44 @@
     },
     {
       "period": [
-        1982,
-        1986
+        1981,
+        1991
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.320502037204933,
-      "confidence": 0.8466438468709913,
+      "topic_label": "Symbolic Rule-Based Linguistics",
+      "network_stability": 0.2913309723775194,
+      "confidence": 0.8206322263444236,
       "representative_papers": [
+        {
+          "title": "A statistical approach to machine translation",
+          "year": 1990,
+          "citation_count": 1688
+        },
         {
           "title": "An overview of the KL-ONE Knowledge Representation System",
           "year": 1985,
           "citation_count": 1604
         },
         {
-          "title": "Ways with Words",
-          "year": 1983,
-          "citation_count": 4498
-        },
-        {
-          "title": "ELIZA \u2014 a computer program for the study of natural language communication between man and machine",
-          "year": 1983,
-          "citation_count": 2477
+          "title": "Learning Words from Context",
+          "year": 1985,
+          "citation_count": 1110
         }
       ]
     },
     {
       "period": [
-        1987,
-        1990
+        1992,
+        1997
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.3261273782469057,
-      "confidence": 0.6966286322152739,
-      "representative_papers": [
-        {
-          "title": "A stochastic parts program and noun phrase parser for unrestricted text",
-          "year": 1988,
-          "citation_count": 971
-        },
-        {
-          "title": "Why a Diagram is (Sometimes) Worth Ten Thousand Words",
-          "year": 1987,
-          "citation_count": 3460
-        },
-        {
-          "title": "Estimation of probabilities from sparse data for the language model component of a speech recognizer",
-          "year": 1987,
-          "citation_count": 1626
-        }
-      ]
-    },
-    {
-      "period": [
-        1991,
-        1993
-      ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.2588075880758807,
-      "confidence": 0.8251659817071159,
+      "topic_label": "Symbolic Rule-Based Linguistics",
+      "network_stability": 0.25950214258080573,
+      "confidence": 0.7817401703952428,
       "representative_papers": [
         {
           "title": "Class-based n -gram models of natural language",
           "year": 1992,
           "citation_count": 2872
         },
-        {
-          "title": "Semantic priming effects in visual word recognition : A selective review of current findings and theories",
-          "year": 1991,
-          "citation_count": 1851
-        },
-        {
-          "title": "Automatic acquisition of hyponyms from large text corpora",
-          "year": 1992,
-          "citation_count": 3274
-        }
-      ]
-    },
-    {
-      "period": [
-        1994,
-        1997
-      ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.2901468044656003,
-      "confidence": 0.8237686474844282,
-      "representative_papers": [
         {
           "title": "Are Good Texts Always Better? Interactions of Text Coherence, Background Knowledge, and Levels of Understanding in Learning From Text",
           "year": 1996,
@@ -180,11 +125,6 @@
           "title": "A trainable document summarizer",
           "year": 1995,
           "citation_count": 1332
-        },
-        {
-          "title": "Robust text-independent speaker identification using Gaussian mixture speaker models",
-          "year": 1995,
-          "citation_count": 2817
         }
       ]
     },
@@ -216,7 +156,7 @@
     }
   ],
   "summary": {
-    "total_periods": 7,
-    "avg_confidence": 0.8169143646969114
+    "total_periods": 5,
+    "avg_confidence": 0.8303925098770263
   }
 }

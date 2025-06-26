@@ -1,89 +1,76 @@
 {
   "domain_name": "computer_vision",
-  "analysis_date": "2025-06-25T18:00:12.269248",
+  "analysis_date": "2025-06-25T22:34:59.602741",
   "time_range": [
     1947,
     2024
   ],
   "total_papers": 710,
-  "statistical_significance": 0.6908458332995732,
+  "statistical_significance": 0.7961813800660865,
   "change_points": [
-    1954,
-    1958,
-    1961,
-    1962,
-    1965,
     1967,
     1968,
     1969,
     1970,
     1971,
     1972,
-    1973,
-    1974,
-    1975,
     1976,
-    1977,
     1993,
     1994,
     1995,
     1996,
-    1997,
-    1999,
-    2000,
     2001,
     2002,
     2003,
-    2004,
     2005,
     2006,
-    2007,
-    2008,
     2009,
     2010,
-    2011,
-    2012,
-    2013,
-    2014,
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021
+    2015
   ],
   "segments": [
     [
       1947,
-      1954
+      1966
     ],
     [
-      1955,
-      1958
+      1967,
+      1969
     ],
     [
-      1959,
-      1974
+      1970,
+      1973
     ],
     [
-      1975,
-      1998
+      1974,
+      1976
     ],
     [
-      1999,
-      2005
+      1977,
+      1994
     ],
     [
-      2006,
-      2014
+      1995,
+      1997
     ],
     [
-      2015,
-      2018
+      1998,
+      2000
     ],
     [
-      2019,
+      2001,
+      2003
+    ],
+    [
+      2004,
+      2008
+    ],
+    [
+      2009,
+      2012
+    ],
+    [
+      2013,
       2024
     ]
   ],
@@ -91,220 +78,584 @@
     {
       "period": [
         1947,
-        1954
+        1966
       ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.2874251497005988,
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "description": "This paradigm centered on geometric invariance and statistical pattern analysis, as seen in the use of moment invariants for pattern recognition (1962) and statistical properties of visual fields (1962). It emphasized mathematical formalism and physical perception mechanisms, reflecting the interdisciplinary integration of mathematics, psychology, and engineering, as highlighted in works on atmospheric vision (1952) and binocular depth perception (1960).",
+      "network_stability": 0.2794743894472729,
       "representative_papers": [
         {
           "title": "The Discrimination of Visual Number",
           "year": 1949,
-          "citations": 0
-        },
-        {
-          "title": "Vision Through the Atmosphere",
-          "year": 1952,
-          "citations": 0
-        },
-        {
-          "title": "Multiple Wiener Integral",
-          "year": 1951,
-          "citations": 0
-        }
-      ],
-      "confidence": 0.8217628613353486
-    },
-    {
-      "period": [
-        1955,
-        1958
-      ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.324054398640034,
-      "representative_papers": [
-        {
-          "title": "The Analysis of Two-Dimensional Orientation Data",
-          "year": 1956,
-          "citations": 0
-        },
-        {
-          "title": "An optimum character recognition system using decision functions",
-          "year": 1957,
-          "citations": 0
-        },
-        {
-          "title": "Eye Fixations Recorded on Changing Visual Scenes by the Television Eye-Marker",
-          "year": 1958,
-          "citations": 0
-        }
-      ],
-      "confidence": 0.7001457363979939
-    },
-    {
-      "period": [
-        1959,
-        1974
-      ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.20397553168431323,
-      "representative_papers": [
-        {
-          "title": "The neural mechanism of binocular depth discrimination",
-          "year": 1967,
-          "citations": 0
+          "abstract": "The article explores the concept of \"numerousness,\" which refers to the ability to discern the relative quantity of objects in a collection without counting them, and discusses various methods of making such judgments, including comparative and absolute assessments. It also touches on the implications of visual perception and reasoning in understanding numerical discrimination in cognitive science and psychology.\n\nTopic: visual number, visual reasoning, inference, computer vision, variant interpretation, cognitive science, visual perception, demography, statistics, psychology, numeracy, disparity"
         },
         {
           "title": "Visual pattern recognition by moment invariants",
           "year": 1962,
-          "citations": 0
+          "abstract": "This article presents a theory of two-dimensional moment invariants for recognizing planar geometric figures, establishing a fundamental theorem that connects these invariants to well-known algebraic forms. It discusses the derivation of complete systems under various transformations and demonstrates practical applications in visual pattern recognition, including the ability to identify geometric patterns and alphabetical characters regardless of their position, size, or orientation.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, computer vision, visual pattern recognition, cognitive science, temporal pattern recognition, visual perception, vision recognition, machine vision, moment invariants"
+        },
+        {
+          "title": "Visual Pattern Discrimination",
+          "year": 1962,
+          "abstract": "The article discusses experiments on visual pattern discrimination using computer-generated displays, focusing on how distinct visual fields are perceived based on their statistical and topological properties. It highlights the role of line clusters and color connectivity in influencing the ability to differentiate complex visual structures.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, information visualization, optical image recognition, object recognition, vision research, computer vision, visualization, visual diagnosis, cognitive science, visual perception, image representation, visual science, visual pattern discrimination, vision recognition, machine vision"
+        },
+        {
+          "title": "Vision Through the Atmosphere",
+          "year": 1952,
+          "abstract": "\"Vision Through the Atmosphere\" provides a comprehensive exploration of the physical, physiological, and psychological factors influencing range vision in atmospheric conditions, including an in-depth discussion on instruments and the author's unique theory regarding the perception of colors in distant objects. The volume serves as a significant resource for understanding the complexities of visual perception and atmospheric interactions in various fields such as environmental science and computer vision.\n\nTopic: atmospheric environment, 3d vision, atmospheric sensing, vision research, computer vision, atmospheric research, atmospheric interaction, environmental science, atmospheric science, visual perception, machine vision"
+        },
+        {
+          "title": "Binocular Depth Perception of Computer-Generated Patterns",
+          "year": 1960,
+          "abstract": "The article explores binocular depth perception using computer-generated patterns, focusing on the role of parallax in matching visual fields. By creating artificial stereo pairs that appear random when viewed monocularly but reveal depth when viewed binocularly, the study investigates the interaction of depth cues and presents findings on the properties of these visual fields.\n\nTopic: computer science, 3d vision, computer-generated patterns, binocular depth perception, computer vision, machine vision"
+        },
+        {
+          "title": "Multiple Wiener Integral",
+          "year": 1951,
+          "abstract": "The article discusses the concept of multiple Wiener integrals, originally introduced by N. Wiener, and presents a modified definition that emphasizes the orthogonality of integrals of different degrees. It explores the relationship between normal random measures, Hermite polynomials, and their applications in stochastic calculus, numerical simulations, and various fields such as electrical engineering and computer science.\n\nTopic: stochastic calculus, computer science, multiple wiener, parameter identification, electrical engineering, computer vision, applied mathematics, geometrical accuracy, integral transform, numerical simulation"
+        },
+        {
+          "title": "The Disappearance of Steadily Fixated Visual Test Objects*",
+          "year": 1953,
+          "abstract": "The article discusses a novel system designed to keep an image fixed on the retina despite eye movements, utilizing a beam of light reflected from a mirror contact lens. It reports findings on how visual perception of test objects changes over time, noting that fine lines are initially visible but quickly fade, suggesting effects of local adaptation in a stationary visual field.\n\nTopic: image analysis, computer science, visual reasoning, software testing, visual test objects, vision research, computer vision, visualization, data science, visual perception, psychology, visual science, reference frame, test bench, visual function, machine vision"
+        },
+        {
+          "title": "Complex Visual Concept in the Pigeon",
+          "year": 1964,
+          "abstract": "The article explores the advanced cognitive abilities of pigeons, demonstrating their capacity for complex visual reasoning by training them to identify the presence or absence of humans in photographs, suggesting a higher level of conceptualization than typically recognized in animals.\n\nTopic: animal cognition, morphology (biology), avian biology, visual reasoning, vertebrate vision, neuroscience, visualization, cognitive science, visual system, ecology, mammalogy, ornithology, poultry science, knockout mouse, avian locomotion, vision research, computer vision, visual perception, complex visual concept"
+        }
+      ],
+      "confidence": 0.7876088383607878
+    },
+    {
+      "period": [
+        1967,
+        1969
+      ],
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "description": "This paradigm centered on modeling visual perception through geometric invariance and statistical pattern analysis, as seen in the development of adaptive classifiers (A Theory of Adaptive Pattern Classifiers, 1967) and image restoration techniques (Image Restoration by the Method of Least Squares, 1967). It emphasized statistical methods for pattern recognition and the use of mathematical models to understand visual processing mechanisms, reflecting a foundational shift toward computational modeling in computer vision.",
+      "network_stability": 0.27852049910873444,
+      "representative_papers": [
+        {
+          "title": "The neural mechanism of binocular depth discrimination",
+          "year": 1967,
+          "abstract": "The article explores the neural mechanisms of binocular depth discrimination in the cat's primary visual cortex, revealing that stimuli correctly positioned in both eyes elicit stronger responses than monocular stimuli, and highlighting the role of vertical and horizontal disparities in depth perception. This research provides insights into the basic mechanisms underlying depth discrimination in animals.\n\nTopic: pattern recognition, computer science, animal cognition, machine learning, visual science, image analysis, stereoscopic processing, neuroscience, binocular depth discrimination, cognitive science, object orientation, depth map, computational imaging, localization, deep learning, shift detection, machine vision, computer stereo vision, computer vision"
         },
         {
           "title": "A Simple Method of Resolution of a Distribution into Gaussian Components",
           "year": 1967,
-          "citations": 0
+          "abstract": "The article discusses a method for resolving complex biological distributions, particularly in morphometric studies of fish populations, into Gaussian components to better understand the underlying frequency distributions associated with different species or age groups. It critiques previous smoothing techniques and emphasizes the importance of fitting normal curves to the observed data to accurately identify and analyze these components.\n\nTopic: bayesian analysis, spectral theory, gaussian process, image analysis, high-dimensional statistics, gaussian analysis, geometrical accuracy, computational imaging, gaussian components, partial evaluation, simple method, biostatistics, statistics, machine learning research, machine vision, digital image processing, computer vision, applied mathematics, time series, reproducing kernel method"
+        },
+        {
+          "title": "Looking at upside-down faces.",
+          "year": 1969,
+          "abstract": "The article explores how individuals recognize and remember faces compared to other familiar objects that are typically viewed from a single orientation, specifically examining the effects of presenting these images upside-down on memory performance. It delves into the implications for visual perception and recognition systems in fields such as computer vision and facial recognition.\n\nTopic: image analysis, ophthalmology, computer vision, visual system, facial reconstruction, visual perception, facial plastic surgery, visual science, facial recognition system, machine vision, face detection, facial expression recognition, aesthetics"
+        },
+        {
+          "title": "Two Visual Systems",
+          "year": 1969,
+          "abstract": "The article explores the visual systems in the hamster brain, focusing on how ablation of cortical or tectal areas affects visual localization and discrimination blindness. It also touches on broader themes related to visual modeling, perception, and various applications in visual arts and computing.\n\nTopic: visual modeling, visual arts, information visualization, visual reasoning, visual communication, visual computing, computer vision, visualization, cognitive science, visual system, visual perception, visual science, machine vision, visual processing"
+        },
+        {
+          "title": "Method, findings, and theory in studies of visual masking.",
+          "year": 1968,
+          "abstract": "The article examines various paradigms in visual masking research, exploring how interference from simultaneous stimuli affects detection and identification processes. It discusses dependent variables, introduces a distinction in criterion content levels, and reviews psychological time effects related to metacontrast detection.\n\nTopic: computer science, visual communication, screen medium, visual science, visual masking, visual arts, visual system, psychology, computational imaging, visual culture, image communication, machine vision, scene interpretation, vision research, visual surveillance, computer vision, visibility, visual perception, art history"
+        },
+        {
+          "title": "Image Restoration by the Method of Least Squares",
+          "year": 1967,
+          "abstract": "The article discusses the application of the least squares method for restoring optical images and spectroscopic data affected by noise and experimental errors, framing the problem as an integral equation. It explores the assumptions regarding spectral densities of images and noise, and highlights coherent digital processing techniques in the context of image analysis and computer vision.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, dimensionality reduction, least squares, image restoration, computer vision, digital restoration, applied mathematics, inverse problems, image reconstruction, sparse representation, digital image processing"
+        },
+        {
+          "title": "A Theory of Adaptive Pattern Classifiers",
+          "year": 1967,
+          "abstract": "The article presents a theoretical framework for adaptive pattern classifiers, focusing on error-correction procedures to optimize weight vectors in linear classifiers across various distributions. It demonstrates that the proposed methods can achieve optimal performance even with nonseparable distributions, while analyzing the tradeoff between convergence speed and accuracy, and extending the theory to include discriminant functions like piecewise-linear functions.\n\nTopic: image analysis, pattern recognition, computer science, computational learning theory, statistical pattern recognition, adaptive algorithm, computer vision, machine learning, data science, intelligent classification, deep learning, machine learning research, automatic classification, adaptive pattern classifiers"
+        },
+        {
+          "title": "State of the art in pattern recognition",
+          "year": 1968,
+          "abstract": "This article provides a comprehensive review of advanced techniques in pattern recognition, including statistical, adaptive, and heuristic methods, while discussing various applications and experimental projects. It covers topics such as correlation methods, discriminant analysis, and feature extraction, illustrated with two-dimensional distributions to highlight the effectiveness of different procedures.\n\nTopic: temporal pattern recognition, image analysis, computer vision, statistical pattern recognition, pattern recognition, machine learning research, pattern recognition application, computer science, machine learning, character recognition, fuzzy pattern recognition"
         }
       ],
-      "confidence": 0.7575763020144293
+      "confidence": 0.8499493424139516
     },
     {
       "period": [
-        1975,
-        1998
+        1970,
+        1973
       ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.24668696006591576,
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "description": "This paradigm centered on leveraging geometric invariance principles and statistical pattern recognition techniques to analyze and classify visual data, as seen in the use of textural features for image classification and Bayesian decision theory in pattern classification. It emphasized the integration of mathematical models with empirical data to enhance scene understanding, reflecting a consensus on combining geometric reasoning with statistical methods for robust computer vision tasks.",
+      "network_stability": 0.3087074082452682,
+      "representative_papers": [
+        {
+          "title": "Use of the Hough transformation to detect lines and curves in pictures",
+          "year": 1972,
+          "abstract": "The article discusses the Hough transformation, a computationally efficient method for detecting lines and curves in images, highlighting the advantages of using angle-radius parameters over traditional slope-intercept forms. It also explores the broader applications of this technique in curve fitting and its implications for various fields such as computer vision, image analysis, and pattern recognition.\n\nTopic: pattern recognition, computer science, visual science, image analysis, neuroscience, object detection, image representation, hough transformation, computational imaging, computational geometry, localization, shift detection, machine vision, digital image processing, curve fitting, object recognition, computer vision, curve modeling, applied mathematics"
+        },
+        {
+          "title": "Textural Features for Image Classification",
+          "year": 1973,
+          "abstract": "The article discusses the significance of textural features in image classification, detailing easily computable features based on gray-tone spatial dependencies and their application in categorizing various types of imagery, including photomicrographs and satellite images. It presents experimental results demonstrating high identification accuracy across different datasets, suggesting the broad applicability of these textural features in image classification tasks.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, content-based image retrieval, image classification, object recognition, computer vision, multimedia retrieval, feature detection, deep learning, image representation, machine learning research, texture analysis, textural features, machine vision, digital image processing"
+        },
+        {
+          "title": "Pattern classification and scene analysis",
+          "year": 1973,
+          "abstract": "The article offers a comprehensive overview of statistical methods for pattern recognition and scene analysis, covering topics such as Bayesian decision theory, supervised and unsupervised learning, and various techniques for image classification and analysis within the fields of computer science and machine learning.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, image classification, statistical pattern recognition, scene understanding, pattern classification, computer vision, machine learning, scene analysis, data science, spatial analysis, knowledge discovery, pattern analysis, machine learning research, machine vision"
+        },
+        {
+          "title": "Computerized transverse axial scanning (tomography): Part 1. Description of system",
+          "year": 1973,
+          "abstract": "This article provides an overview of computerized transverse axial scanning (CT), a highly sensitive imaging technique that utilizes X-ray transmission data taken from multiple angles to create detailed cross-sectional images of the head, allowing for the visualization of soft tissues with similar densities.\n\nTopic: image analysis, computational imaging, computer science, medical image computing, diagnostic imaging, medical imaging, biomedical imaging, computer vision, biomedical engineering, computed tomography, image reconstruction, reconstruction technique, machine vision, digital image processing"
+        },
+        {
+          "title": "The Representation and Matching of Pictorial Structures",
+          "year": 1973,
+          "abstract": "The article addresses the challenge of identifying and matching visual objects in photographs based on descriptive specifications, exploring various methodologies in pattern recognition, image analysis, and representation theory to enhance object detection and recognition in computer vision.\n\nTopic: pattern recognition, computer science, art history, visual science, image analysis, variant interpretation, representation theory, image representation, image communication, abstract interpretation, pictorial structures, cartography, machine vision, object recognition, computer graphic, computer vision, art, graph matching, image similarity"
+        },
+        {
+          "title": "The Use of Faces to Represent Points in k-Dimensional Space Graphically",
+          "year": 1973,
+          "abstract": "The article introduces an innovative approach to visualizing multivariate data by representing points in k-dimensional space (up to 18 dimensions) as cartoon faces, where facial features correspond to the data components. This method enhances the ability to identify patterns and irregularities in the data, while also discussing other graphical representation techniques.\n\nTopic: graph theory, computer vision, machine vision, dimensionality reduction, geometry, computer science, representation theory, geometric representation, k-dimensional space, image representation, feature construction, graph drawing, image analysis"
+        },
+        {
+          "title": "TOWARD A UNIFIED THEORY OF REFLECTOR MAPPING",
+          "year": 1971,
+          "abstract": "The article presents a comprehensive review of seismic mapping techniques for reflectors, addressing challenges such as varying velocity models and complex reflector geometries, and consolidates these methods into a unified formula utilizing up and downgoing waves, which can be effectively implemented through difference approximations of the relativistic Schr\u00f6dinger equation.\n\nTopic: computer science, spectral theory, remote sensing, image analysis, mechanical engineering, reflector mapping, reflectance modeling, unified theory, photometric stereo, lower bound, computational imaging, optical materials, reflection removal, illumination modeling, numerical simulation, machine vision, optical properties, electrical engineering, computer vision"
+        },
+        {
+          "title": "Edge and Curve Detection for Visual Scene Analysis",
+          "year": 1971,
+          "abstract": "The article discusses methods for detecting texture edges, spots, and streaks in digitized images through parallel operations, highlighting the construction of composite outputs from various edge sizes to analyze differently textured regions. It also explores the relationship between these image processing techniques and Gestalt psychology's principles of pictorial pattern organization.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, edge detection, curve fitting, visual scene analysis, computer vision, scene analysis, feature detection, curve detection, deep learning, machine vision, digital image processing"
+        }
+      ],
+      "confidence": 0.8570673468988387
+    },
+    {
+      "period": [
+        1974,
+        1976
+      ],
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "description": "This paradigm centered on geometric invariance and statistical pattern analysis, as seen in the study of texture measures for terrain classification and the analysis of line drawings for 3D scene interpretation. Research emphasized statistical methods for feature extraction and pattern recognition, while also addressing geometric constraints to ensure robustness in image analysis tasks.",
+      "network_stability": 0.28895053166897827,
+      "representative_papers": [
+        {
+          "title": "A Comparative Study of Texture Measures for Terrain Classification",
+          "year": 1976,
+          "abstract": "The article presents a comparative study of three standard approaches for automatic texture classification in terrain analysis, focusing on features derived from the Fourier power spectrum, second-order gray level statistics, and first-order statistics differences. The findings indicate that while one approach generally performed poorly, the other methods yielded comparable results in classifying terrain samples.\n\nTopic: pattern recognition, computer science, machine learning, comparative study, automatic classification, image analysis, image representation, computational imaging, earth science, machine vision, digital image processing, texture measures, computer vision, geography, comparative analysis, texture analysis, image similarity, image classification, terrain classification"
+        },
+        {
+          "title": "Discrete Cosine Transform",
+          "year": 1974,
+          "abstract": "The article discusses the discrete cosine transform (DCT), detailing its definition, computation algorithm, and applications in digital processing, particularly in pattern recognition and Wiener filtering. It also compares the performance of DCT with other orthogonal transforms, including the optimal Karhunen-Lo\u00e8ve transform, in terms of rate-distortion criteria across various fields such as image analysis, computer vision, and machine learning.\n\nTopic: image analysis, computer science, aerospace engineering, computer vision, machine learning, biometrics, unmanned aircraft system, fourier expansion, source separation, deep learning, planetary sciences, discrete cosine transform, machine vision"
+        },
+        {
+          "title": "Computer Processing of Line-Drawing Images",
+          "year": 1974,
+          "abstract": "The article \"Computer Processing of Line-Drawing Images\" by Herbert Freeman explores the techniques and methodologies involved in the computer processing and analysis of line-drawing images, focusing on areas such as pattern recognition, image manipulation, and computational geometry. It provides insights into the applications of these techniques in fields like computer-aided design and machine vision.\n\nTopic: pattern recognition, computer science, line-drawing images, computer processing, image manipulation, graph drawing, geometry processing, image analysis, data science, image representation, computer engineering, computational imaging, computational geometry, computer-aided design, machine vision, digital image processing, visual computing, computer graphic, computer vision, curve modeling"
+        },
+        {
+          "title": "The effects of a visual fidelity criterion of the encoding of images",
+          "year": 1974,
+          "abstract": "The article explores the relationship between visual fidelity and image encoding by utilizing Shannon's rate-distortion function to evaluate the performance of encoding-transmission systems for monochrome still images. It investigates various measures of distortion and their correspondence to subjective evaluations, ultimately aiming to identify optimal encoding strategies that yield visually satisfactory results.\n\nTopic: image analysis, computer science, image compression, image coding, computer vision, visual fidelity criterion, image representation, digital image processing"
+        },
+        {
+          "title": "Cooperative Computation of Stereo Disparity",
+          "year": 1976,
+          "abstract": "This article explores the computation of stereo disparity by establishing correspondences between two images, presenting a cooperative algorithm that effectively extracts information from random-dot stereograms, and discussing its implications for psychophysics and the visual system.\n\nTopic: image analysis, computer science, computer vision, digital image processing, disparity, information fusion, cooperative computation, computational imaging, 3d vision, computer stereo vision, stereo imaging, multi-view geometry, machine vision, stereoscopic processing, stereo disparity"
+        },
+        {
+          "title": "On the Concept of Face",
+          "year": 1976,
+          "abstract": "The article explores the concept of \"face,\" distinguishing it from related constructs such as authority and dignity, and examines the dynamics of gaining and losing face within social interactions. It emphasizes the universal significance of face in understanding individual behavior and social functioning, while also touching on its implications across various fields, including aesthetics and visual sciences.\n\nTopic: image analysis, ophthalmology, pattern recognition, aesthetic surgery, computer vision, culture, body image, art, visual system, facial reconstruction, visual science, facial plastic surgery, aesthetic plastic surgery, cosmetic dermatology, facial animation, face detection, facial expression recognition, aesthetics"
+        },
+        {
+          "title": "Understanding Line drawings of Scenes with Shadows",
+          "year": 1975,
+          "abstract": "The article explores the standard methodologies used in computer science for interpreting line drawings as three-dimensional scenes, focusing on techniques in image analysis, pattern recognition, and scene understanding within the context of computer vision and geometric modeling.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, geometric modeling, machine vision, scene interpretation, structure from motion, scene modeling, scene understanding, understanding line drawings, computer vision, scene analysis, art, image representation, design, scenic design"
+        },
+        {
+          "title": "A subdivision algorithm for computer display of curved surfaces.",
+          "year": 1974,
+          "abstract": "The article discusses a subdivision algorithm designed for rendering computer-generated images of curved surfaces using three-dimensional patches, which are subdivided into smaller segments for accurate shading and silhouette representation. It highlights the efficiency of this method, particularly for bicubic patches, and its capability to apply textures through photographic mapping.\n\nTopic: computer science, geometric modeling, geometric analysis, geometry processing, numerical mathematics, volume rendering, computer engineering, computational imaging, computational geometry, differential geometry, display technology, curved surfaces, computer-aided design, subdivision algorithm, computer display, geometric topology, computer graphic, computer vision, curve modeling, applied mathematics, subdivision surface"
+        }
+      ],
+      "confidence": 0.6919847641991113
+    },
+    {
+      "period": [
+        1977,
+        1994
+      ],
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "description": "The 1977-1994 Computer Vision paradigm centered on geometric invariance and statistical pattern analysis, as exemplified by the exploration of algebraic invariants for object recognition (Geometric Invariance in Computer Vision, 1992) and the use of statistical methods in feature-based face recognition (Face Recognition: Features versus Templates, 1993). This approach emphasized mathematical modeling of visual structures and probabilistic techniques for pattern classification, reflecting a consensus on combining geometric reasoning with statistical learning to address challenges in image understanding and analysis.",
+      "network_stability": 0.23030649890023025,
       "representative_papers": [
         {
           "title": "Face recognition: features versus templates",
           "year": 1993,
-          "citations": 0
+          "abstract": "The article discusses two new algorithms for computer-based face recognition: one that utilizes geometrical features of the face and another that employs gray-level template matching. Testing results indicate that the feature-based algorithm achieves approximately 90% accuracy in recognizing faces.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, machine vision, image classification, object recognition, feature extraction, computer vision, machine learning, feature detection, biometrics, image representation, face recognition, machine learning research, design, feature (computer vision)"
+        },
+        {
+          "title": "A survey of image registration techniques",
+          "year": 1992,
+          "abstract": "The article provides a comprehensive overview of image registration techniques, which are essential for aligning images taken under varying conditions, such as different times or viewpoints. It categorizes these techniques into three major types based on the sources of misalignment and discusses their applications in fields like medical imaging, satellite monitoring, and real-time scene recognition, while emphasizing the importance of understanding the characteristics of each variation to select the most suitable registration method.\n\nTopic: image analysis, pattern recognition, computer science, image registration techniques, computer vision, image registration, image classification, digital image processing"
+        },
+        {
+          "title": "Methods of combining multiple classifiers and their applications to handwriting recognition",
+          "year": 1992,
+          "abstract": "The article discusses various methods for combining multiple classifiers to enhance handwriting recognition, categorizing solutions based on the information available from different classifiers. It presents four distinct approaches, demonstrating significant performance improvements in recognizing unconstrained handwritten numerals, with experimental results indicating high reliability and accuracy.\n\nTopic: image analysis, pattern recognition, computer science, information fusion, character recognition, multiple classifier system, computer vision, machine learning, feature fusion, multiple classifiers, deep learning, machine learning research, automatic classification, classification method"
         },
         {
           "title": "Rapid Automated Algorithm for Aligning and Reslicing PET Images",
           "year": 1992,
-          "citations": 0
+          "abstract": "The article presents a rapid automated algorithm for the three-dimensional alignment and reslicing of PET images, utilizing voxel-by-voxel analysis to minimize variance without the need for external fiducial markers. Validation studies demonstrate its effectiveness in aligning images from various positions with minimal positional errors, making it a valuable tool for retrospective analysis in medical imaging.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, medical image computing, positron emission tomography, medical imaging, radiology, biomedical imaging, image stitching, medical image analysis, computer vision, pet images, image reconstruction, image representation, reconstruction technique, digital image processing"
         },
         {
-          "title": "Example-based learning for view-based human face detection",
-          "year": 1998,
-          "citations": 0
+          "title": "A CFAR adaptive matched filter detector",
+          "year": 1992,
+          "abstract": "The article presents a CFAR adaptive matched filter detector designed for radar target detection using an antenna array, detailing an algorithm that simplifies the generalized likelihood-ratio test (GLRT) while analyzing performance for signals aligned and misaligned with the look direction.\n\nTopic: image analysis, pattern recognition, computer science, filter (signal processing), radar image processing, computer vision, adaptive filter, filter design, filter detector"
+        },
+        {
+          "title": "Tree visualization with tree-maps",
+          "year": 1992,
+          "abstract": "The article \"Tree Visualization with Tree-Maps\" by Ben Shneiderman presents a two-dimensional space-filling approach for visualizing hierarchical data using tree-maps, highlighting its applications in fields such as data science, information visualization, and forest research. It discusses the effectiveness of this method in representing complex datasets and enhancing user interaction with visualized information.\n\nTopic: computer science, data and information visualization, scientific visualization, image analysis, information visualization, graph theory, visualization, data science, forest ecosystem, tree language, tree growth, computational visualization, forest research, tree visualization, interactive visualization, computer graphic, computer vision, geography, forest ecology"
+        },
+        {
+          "title": "Geometric invariance in computer vision",
+          "year": 1992,
+          "abstract": "The article explores the concept of geometric invariance in computer vision, covering foundational theories such as algebraic invariants and their applications in object recognition, model matching, and 3D imaging. It includes contributions from various researchers on topics like projective geometry, noise-resistant curves, and the use of moment-based recognition techniques.\n\nTopic: geometric invariance, computer science, computer vision"
+        },
+        {
+          "title": "Multilayer perceptron, fuzzy sets, and classification",
+          "year": 1992,
+          "abstract": "The article presents a fuzzy neural network model based on multilayer perceptron architecture that utilizes a backpropagation algorithm for pattern classification, incorporating membership values to linguistic properties as input. It highlights the model's effectiveness in handling uncertainty during training and demonstrates its performance in speech recognition, comparing results with conventional MLP and other classifiers.\n\nTopic: computer science, fuzzy pattern recognition, fuzzy logic, computer vision, machine learning, deep learning, machine learning research, multilayer perceptron, machine vision, fuzzy set"
         }
       ],
-      "confidence": 0.7925947492447432
+      "confidence": 0.7828516559237921
     },
     {
       "period": [
-        1999,
-        2005
+        1995,
+        1997
       ],
-      "topic_label": "Model-Based Perception and Data-Driven Learning",
-      "network_stability": 0.2925261026572317,
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "description": "This paradigm centered on leveraging geometric invariance principles and statistical pattern analysis techniques to enhance robustness in image processing tasks, as seen in spatial registration normalization and probabilistic visual learning methods. It emphasized modeling high-dimensional data through statistical frameworks, such as Fisherface for face recognition and eigenspace decomposition for object representation, reflecting a shift towards data-driven, statistically grounded approaches in Computer Vision.",
+      "network_stability": 0.23038073038073037,
       "representative_papers": [
+        {
+          "title": "Human and machine recognition of faces: a survey",
+          "year": 1995,
+          "abstract": "This article provides a comprehensive survey of the literature on human and machine face recognition, highlighting the various applications, technical challenges, and research developments in the field over the past two decades. It emphasizes the lack of collaboration between psychophysics and engineering studies and reviews techniques for face segmentation, feature extraction, and classification methods.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, computer vision, machine learning, cognitive science, deep learning, facial recognition system, vision recognition, machine vision, face detection, machine recognition, facial expression recognition"
+        },
+        {
+          "title": "Eigenfaces vs. Fisherfaces: recognition using class specific linear projection",
+          "year": 1997,
+          "abstract": "The article presents a face recognition algorithm called \"Fisherface,\" which effectively handles variations in lighting and facial expressions by utilizing a class-specific linear projection method. It compares this approach to the traditional eigenface technique, demonstrating that Fisherface achieves lower error rates in facial recognition tasks, particularly in challenging conditions.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, object recognition, computer vision, machine learning, numerical linear algebra, image representation, 3d object recognition, machine learning research, facial recognition system, machine vision, face detection, facial expression recognition"
+        },
+        {
+          "title": "Probabilistic visual learning for object representation",
+          "year": 1997,
+          "abstract": "The article presents an unsupervised visual learning technique that utilizes density estimation in high-dimensional spaces through eigenspace decomposition, employing both multivariate Gaussian and mixture-of-Gaussians models for object representation and recognition. This probabilistic approach is applied to detect and recognize human faces and nonrigid objects, such as hands, within a maximum-likelihood framework.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, visual modeling, visual reasoning, object modeling, object recognition, object representation, probabilistic visual learning, computer vision, machine learning, deep learning, image representation, machine vision"
+        },
+        {
+          "title": "Spatial registration and normalization of images",
+          "year": 1995,
+          "abstract": "This article discusses a novel technique for spatial registration and normalization of images, focusing on nonlinear transformations that align one image with another by minimizing intensity differences. The method is fully automated, noniterative, and applicable across multiple dimensions, with potential uses in various imaging modalities such as functional MRI and PET scans.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, image formation, multi-view geometry, spatial registration, computer vision, geography, image reconstruction, localization, spatial analysis, image representation, kin recognition, image registration, machine vision, digital image processing"
+        },
+        {
+          "title": "Query by image and video content: the QBIC system",
+          "year": 1995,
+          "abstract": "The article discusses the QBIC (Query by Image Content) system, which enhances content-based retrieval methods for image and video databases by allowing users to query using various graphical inputs such as example images, sketches, and color patterns. It highlights the system's capabilities in analyzing and retrieving multimedia content based on computable features like color, texture, and motion.\n\nTopic: image analysis, pattern recognition, computer science, machine vision, content-based image retrieval, video retrieval, scene interpretation, image retrieval, computer vision, qbic system, multimedia retrieval, multimedia information processing, image representation, multimedia computing, video content, information retrieval, digital image processing, image database"
+        },
+        {
+          "title": "Similarity of color images",
+          "year": 1995,
+          "abstract": "The article presents two innovative color indexing techniques for image similarity measurement, enhancing traditional histogram methods by utilizing cumulative histograms and dominant feature representation through moments. The proposed methods demonstrate improved performance and faster retrieval times compared to conventional histogram-based approaches.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, color correction, similarity measure, computer vision, visualization, multimedia retrieval, color reproduction, similarity search, color images, image representation, machine learning research, image similarity, machine vision, digital image processing"
+        },
+        {
+          "title": "Image quality measures and their performance",
+          "year": 1995,
+          "abstract": "The article evaluates various bivariate quality measures for gray scale image compression, highlighting their correlation with observer responses to compression techniques. It emphasizes that while some numerical measures are inconsistent across different methods, Hosaka plots provide a reliable graphical representation for assessing both the amount and type of degradation in reconstructed images.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, image quality assessment, image quality measures, computer vision, image classification, digital image processing"
+        },
+        {
+          "title": "Blind adaptive multiuser detection",
+          "year": 1995,
+          "abstract": "This article discusses a blind adaptive multiuser detection method that enhances the performance of code-division multiple-access channels by utilizing decorrelating and linear minimum mean-square error (MMSE) detectors. The proposed approach allows for effective multiuser interference management without requiring prior knowledge of user signatures or amplitudes, making it robust even with imprecise user information.\n\nTopic: computer science, mobile computing, adaptive multiuser detection, multi-user detection, anomaly detection, computer vision"
+        }
+      ],
+      "confidence": 0.8056377589297165
+    },
+    {
+      "period": [
+        1998,
+        2000
+      ],
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "description": "This paradigm centered on geometric invariance and statistical pattern analysis, as seen in camera calibration techniques that model radial distortion and closed-form solutions (2000), and in saliency-based visual attention models that combine multiscale features for scene analysis (1998). It emphasized robust feature extraction and statistical modeling to enhance scene understanding and object recognition, reflecting a shift towards integrating geometric constraints with probabilistic methods in computer vision.",
+      "network_stability": 0.24091420966420965,
+      "representative_papers": [
+        {
+          "title": "Example-based learning for view-based human face detection",
+          "year": 1998,
+          "abstract": "The article discusses an example-based learning method for detecting vertical frontal views of human faces in complex environments, utilizing model clusters of \"face\" and \"nonface\" patterns. It emphasizes the importance of a distance metric in computing feature vectors and clusters for effective classification of face presence in images.\n\nTopic: image analysis, pattern recognition, computer science, human-computer interaction, explanation-based learning, computer vision, machine learning, instance-based learning, machine vision, face detection, example-based learning"
+        },
         {
           "title": "A flexible new technique for camera calibration",
           "year": 2000,
-          "citations": 0
+          "abstract": "The article presents a new flexible technique for camera calibration that requires only a planar pattern observed from at least two different orientations, allowing for free movement without needing to know the motion. This method, which models radial lens distortion and employs a closed-form solution followed by nonlinear refinement, demonstrates promising results in both simulations and real-world applications, making it a more accessible alternative to traditional calibration methods.\n\nTopic: computer science, calibration, computer vision, camera calibration"
+        },
+        {
+          "title": "A pyramid approach to subpixel registration based on intensity",
+          "year": 1998,
+          "abstract": "The article presents an automatic subpixel registration algorithm that utilizes a pyramid approach to minimize intensity differences between reference and test datasets, applicable to both 2D images and 3D volumes. By employing a coarse-to-fine iterative strategy and a new variation of the Marquardt-Levenberg optimization, the method achieves robust and efficient registration, particularly for intramodality PET and fMRI data, while also addressing image contrast differences.\n\nTopic: image analysis, computational imaging, computer science, image formation, computer vision, applied mathematics, image reconstruction, image representation, image registration, machine vision, digital image processing"
+        },
+        {
+          "title": "A Practical Guide to Wavelet Analysis",
+          "year": 1998,
+          "abstract": "This article provides a comprehensive step-by-step guide to wavelet analysis, illustrated with examples from the El Ni\u00f1o\u2013Southern Oscillation (ENSO) time series. It covers key topics such as the comparison with Fourier transforms, statistical significance tests for power spectra, and empirical formulas for various extensions, ultimately offering insights into the variance of ENSO over interdecadal timescales.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, speech processing, digital signal processing, computer vision, applied mathematics, multimodal signal processing, waveform analysis, wavelet, statistical signal processing, statistics, wave theory, wavelet theory, practical guide, machine vision"
+        },
+        {
+          "title": "A model of saliency-based visual attention for rapid scene analysis",
+          "year": 1998,
+          "abstract": "The article presents a visual attention system modeled after primate behavior and neuronal architecture, which creates a topographical saliency map by combining multiscale image features. This system efficiently identifies and selects prominent locations in a scene for rapid analysis, enhancing scene understanding and interpretation in computer vision applications.\n\nTopic: computer science, vision recognition, information fusion, scene analysis, scene interpretation, cognitive science, vision language model, data science, deep learning, pattern recognition, machine learning, computer vision, computational imaging, scene understanding, rapid scene analysis, saliency-based visual attention, machine vision, image analysis, image representation"
+        },
+        {
+          "title": "Multiscale vessel enhancement filtering",
+          "year": 1998,
+          "abstract": "The article discusses the development of a vessel enhancement filter based on the multiscale second order local structure of images, specifically utilizing the Hessian matrix and its eigenvalues. It demonstrates the filter's effectiveness in enhancing vascular images while suppressing background noise in various medical imaging modalities, including DSA and MRA.\n\nTopic: image analysis, computer science, computer vision, super-resolution imaging, digital image processing, biomedical engineering, biomedical imaging, filtering technique, spatial filtering, computational imaging, vascular image, medical imaging, machine vision, multiscale modeling, image enhancement, medical image computing"
+        },
+        {
+          "title": "Fingerprint image enhancement: algorithm and performance evaluation",
+          "year": 1998,
+          "abstract": "The article discusses a fast algorithm for enhancing fingerprint images to improve the performance of automatic identification and verification systems, focusing on the adaptive clarity of ridge and valley structures based on local orientation frequency. Experimental results demonstrate that this enhancement significantly increases accuracy in minutiae extraction and online verification.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, fingerprint image enhancement, biomedical imaging, feature extraction, automatic identification, computer vision, image enhancement, feature detection, human identification, digital image processing"
+        },
+        {
+          "title": "Two-Dimensional Phase Unwrapping: Theory, Algorithms, and Software",
+          "year": 1998,
+          "abstract": "The article provides a comprehensive overview of two-dimensional phase unwrapping, covering its theoretical foundations, various algorithms, and software implementations, while also discussing applications in fields such as image analysis, computer vision, and precision engineering. It includes detailed sections on line integrals, quality maps, path-following methods, and concludes with appendices and an index for further reference.\n\nTopic: image analysis, computational imaging, computer science, two-dimensional phase unwrapping, phase retrieval, precision engineering, computer graphic, computer vision, applied mathematics, reflection removal, data science, deep learning, surface reconstruction, texture analysis, interferometry, machine vision, digital image processing, computational geometry"
+        }
+      ],
+      "confidence": 0.8406813910955988
+    },
+    {
+      "period": [
+        2001,
+        2003
+      ],
+      "topic_label": "Statistical Invariance and Pattern Analysis",
+      "description": "The 2001-2003 Computer Vision paradigm centered on statistical methods for handling geometric invariance, as seen in illumination cone models for face recognition and eigenfaces for face detection. This approach emphasized probabilistic modeling and pattern recognition techniques, such as SVMs for face detection and bilateral filtering for image processing, to address variability in lighting, pose, and texture while preserving structural integrity.",
+      "network_stability": 0.3015932184669759,
+      "representative_papers": [
+        {
+          "title": "Image quilting for texture synthesis and transfer",
+          "year": 2001,
+          "abstract": "The article introduces a novel image-based method called \"quilting,\" which synthesizes new images by stitching together small patches from existing images, effectively generating diverse textures. It also explores the extension of this technique for style transfer, allowing for the rendering of objects with textures from different sources, all without the need for 3D information.\n\nTopic: image analysis, computational imaging, computer science, image stitching, synthetic image generation, computer graphic, computer vision, image reconstruction, image representation, texture analysis, image denoising, digital image processing, texture synthesis"
+        },
+        {
+          "title": "Image analogies",
+          "year": 2001,
+          "abstract": "The article introduces a novel framework called \"image analogies\" for processing images by example, which involves training with pairs of images to create various filtered results. This approach leverages multi-scale autoregression to support a wide range of effects, including traditional filters, texture synthesis, super-resolution, and artistic style transfer.\n\nTopic: image analogies, computer vision, art, image representation, image similarity, digital image processing"
         },
         {
           "title": "Training support vector machines: an application to face detection",
           "year": 2002,
-          "citations": 0
+          "abstract": "The article explores the use of Support Vector Machines (SVMs) in computer vision, specifically for face detection, detailing the optimization techniques and algorithms that enable effective training on large datasets. It highlights the challenges of memory requirements and presents experimental results demonstrating the feasibility of SVMs in this application.\n\nTopic: image analysis, pattern recognition, computer science, support vector machine, computer vision, machine learning, object detection, machine vision, face detection"
         },
         {
-          "title": "Image quilting for texture synthesis and transfer",
+          "title": "Real-time tracking of non-rigid objects using mean shift",
+          "year": 2002,
+          "abstract": "The article presents a novel method for real-time tracking of non-rigid objects using a moving camera, leveraging mean shift iterations to determine the most probable target position in each frame. It employs a dissimilarity metric based on the Bhattacharyya coefficient, demonstrating effectiveness in handling partial occlusions, clutter, and scale variations across various image sequences.\n\nTopic: image analysis, pattern recognition, computer science, information fusion, motion analysis, object tracking, computer vision, machine learning, motion detection, object detection, data science, moving object tracking, real-time tracking, mean shift, machine vision, digital image processing, non-rigid objects"
+        },
+        {
+          "title": "Bilateral filtering for gray and color images",
+          "year": 2002,
+          "abstract": "The article discusses bilateral filtering, a technique used in image processing that effectively smooths gray and color images while preserving edges by combining nearby pixel values based on their spatial and photometric similarities. It highlights the advantages of this method over traditional filters, particularly in maintaining perceptual quality and reducing artifacts in images.\n\nTopic: image analysis, computational imaging, computer science, color correction, bilateral filtering, image enhancement, computer vision, machine learning, feature detection, image restoration, object detection, color images, machine vision, digital image processing"
+        },
+        {
+          "title": "Detecting faces in images: a survey",
+          "year": 2002,
+          "abstract": "The article provides a comprehensive survey of face detection techniques in images, highlighting the challenges posed by variability in size, shape, and lighting conditions. It categorizes and evaluates existing algorithms, discusses data collection and evaluation metrics, and identifies limitations while suggesting promising directions for future research in the field of face processing and computer vision.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, information fusion, medical image computing, computer vision, machine learning, multimedia retrieval, cognitive science, object detection, data science, facial recognition system, vision recognition, machine vision, digital image processing, facial expression recognition, face detection"
+        },
+        {
+          "title": "From few to many: illumination cone models for face recognition under variable lighting and pose",
           "year": 2001,
-          "citations": 0
+          "abstract": "The article presents a generative method for face recognition that utilizes illumination cone models to effectively recognize faces under varying lighting and poses. By reconstructing shape albedo from a limited number of training images, the approach synthesizes novel poses and achieves high accuracy in identity assignment, even in challenging conditions.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, computer vision, machine learning, face recognition, illumination modeling, variable lighting, illumination cone models, machine vision"
+        },
+        {
+          "title": "Face recognition using eigenfaces",
+          "year": 2002,
+          "abstract": "The article discusses a near-real-time face recognition system that utilizes the concept of eigenfaces to detect and identify human faces by projecting face images onto a feature space, allowing for the recognition of individuals based on their unique characteristics. This approach enables the system to learn and recognize new faces in an unsupervised manner, leveraging principles from pattern recognition and computer vision.\n\nTopic: pattern recognition, computer science, face recognition, image analysis, information fusion, feature detection, data science, computational imaging, localization, deep learning, machine learning research, machine vision, digital image processing, face detection, object recognition, feature extraction, computer vision, applied mathematics, image classification"
         }
       ],
-      "confidence": 0.8298919024767544
+      "confidence": 0.8848382000225349
     },
     {
       "period": [
-        2006,
-        2014
+        2004,
+        2008
       ],
-      "topic_label": "Model-Based Perception and Data-Driven Learning",
-      "network_stability": 0.32851971927534557,
+      "topic_label": "Statistical Invariance and Pattern Analysis",
+      "description": "The 2004-2008 paradigm in computer vision centered on statistical invariance and pattern analysis, emphasizing robust feature extraction through methods like bag-of-features, spatial pyramid matching, and 2DPCA. This approach prioritized statistical modeling of visual data, leveraging techniques such as AdaBoost for object detection and Bayesian hierarchical models for scene categorization, as seen in the works of Viola & Jones (2001), Lazebnik et al. (2006), and Zhang et al. (2004).",
+      "network_stability": 0.27393003125230275,
       "representative_papers": [
         {
-          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
-          "year": 2014,
-          "citations": 0
+          "title": "Visibility in bad weather from a single image",
+          "year": 2008,
+          "abstract": "The article presents an automated method for enhancing visibility in bad weather conditions using a single image, addressing the limitations of existing techniques that require multiple images. By leveraging observations about contrast and airlight variation, the method employs a cost function framework based on Markov random fields to improve image clarity without needing geometric information.\n\nTopic: image analysis, computational imaging, extreme environment, extreme weather, field observation, image restoration, computer vision, single image, visibility, direct observation, bad weather, earth science, digital image processing"
+        },
+        {
+          "title": "Single image dehazing",
+          "year": 2008,
+          "abstract": "The article presents a novel method for single image dehazing that estimates optical transmission in hazy scenes, effectively eliminating scattered light to enhance visibility and restore contrast. By refining the image formation model to account for surface shading, the approach resolves data ambiguities and demonstrates potential applications in refocusing and novel view synthesis.\n\nTopic: visual science, digital image processing, computer vision, computational imaging, machine vision, multimedia information processing, image enhancement, computer science, deblurring, image denoising, single image dehazing, video denoising, image restoration, image analysis"
+        },
+        {
+          "title": "Rapid object detection using a boosted cascade of simple features",
+          "year": 2005,
+          "abstract": "The article presents a machine learning approach for rapid visual object detection, highlighting three key innovations: the use of an \"integral image\" for quick feature computation, an AdaBoost-based algorithm for selecting essential classifiers, and a cascading method that efficiently processes promising object regions while discarding irrelevant backgrounds. This system achieves high detection rates, particularly in face detection, and operates in real-time at 15 frames per second without relying on techniques like differencing or skin color detection.\n\nTopic: computer science, simple features, computer vision, feature detection, rapid object detection, object detection, machine vision"
+        },
+        {
+          "title": "A Bayesian Hierarchical Model for Learning Natural Scene Categories",
+          "year": 2005,
+          "abstract": "The article presents a novel Bayesian Hierarchical Model for learning and recognizing natural scene categories without the need for expert annotations, utilizing unsupervised learning to represent images through local regions and themes. The method demonstrates effective categorization performance across a diverse set of 13 complex scene categories.\n\nTopic: image analysis, pattern recognition, computer science, bayesian hierarchical modeling, scene modeling, hierarchical classification, computer vision, machine learning, scene analysis, bayesian analysis, data science, bayesian hierarchical model, image classification, natural scene categories"
+        },
+        {
+          "title": "Visual categorization with bags of keypoints",
+          "year": 2004,
+          "abstract": "The article introduces a novel method for visual categorization that utilizes bags of keypoints based on vector quantization of affine invariant descriptors from image patches. It compares two classifier implementations, Naive Bayes and SVM, demonstrating that the approach achieves robust categorization across seven semantic categories, effectively handling background clutter without relying on geometric information.\n\nTopic: pattern recognition, computer science, object recognition, feature learning, computer vision, machine learning, visualization, multiple instance learning, deep learning, visual categorization, machine learning research, automatic classification, machine vision, feature (computer vision)"
+        },
+        {
+          "title": "Beyond Bags of Features: Spatial Pyramid Matching for Recognizing Natural Scene Categories",
+          "year": 2006,
+          "abstract": "The article introduces a novel method for recognizing natural scene categories through a spatial pyramid matching technique, which enhances traditional bag-of-features approaches by partitioning images into sub-regions and analyzing local features. This method demonstrates significant improvements in accuracy on challenging categorization tasks, particularly on the Caltech-101 database, and provides valuable insights into various image representation techniques in computer vision.\n\nTopic: pattern recognition, computer science, spatial pyramid, machine learning, image analysis, information fusion, cognitive science, object detection, data science, image representation, computational imaging, scene understanding, localization, deep learning, machine vision, natural scene categories, object recognition, scene interpretation, computer vision, image classification"
+        },
+        {
+          "title": "Two-dimensional pca: a new approach to appearance-based face representation and recognition",
+          "year": 2004,
+          "abstract": "The article introduces a novel technique called two-dimensional principal component analysis (2DPCA) for face representation and recognition, which utilizes 2D matrices for feature extraction, eliminating the need for vector transformation. Experimental results demonstrate that 2DPCA outperforms traditional PCA in recognition rates and offers greater computational efficiency across multiple face databases.\n\nTopic: pattern recognition, computer science, independent component analysis, machine learning, principal component analysis, image analysis, information fusion, cognitive science, data science, image representation, machine learning research, two-dimensional pca, machine vision, digital image processing, appearance-based face representation, facial expression recognition, face detection, computer vision, facial recognition system"
+        },
+        {
+          "title": "Labeling images with a computer game",
+          "year": 2004,
+          "abstract": "The article introduces an innovative interactive game that allows players to label images while having fun, ultimately generating valuable data for improving image search accuracy, enhancing accessibility for visually impaired users, and filtering inappropriate content. By leveraging the engaging nature of gaming, the system aims to address the challenges of image labeling more effectively than traditional computer vision techniques.\n\nTopic: image analysis, computer science, computer game, computer vision, game ai, image representation, image classification, digital image processing"
+        }
+      ],
+      "confidence": 0.8310518215110028
+    },
+    {
+      "period": [
+        2009,
+        2012
+      ],
+      "topic_label": "Statistical Invariance and Sparse Modeling",
+      "description": "This paradigm centered on leveraging statistical invariance principles and sparse representation techniques to enhance robustness in computer vision tasks, as seen in robust face recognition via sparse representation and the exploration of sparsity in signal and image processing. It emphasized modeling complex patterns through hierarchical feature learning, exemplified by deep belief networks and multi-layer feature extraction, while addressing variability in object appearance and environmental conditions.",
+      "network_stability": 0.3101119894598155,
+      "representative_papers": [
+        {
+          "title": "Tensor Decompositions and Applications",
+          "year": 2009,
+          "abstract": "This article surveys higher-order tensor decompositions, such as CANDECOMP/PARAFAC and Tucker decomposition, highlighting their diverse applications in fields like psychometrics, signal processing, and computer vision, as well as providing insights into available software tools for tensor analysis.\n\nTopic: mathematics, computational imaging, computer science, dimensionality reduction, linear algebra, operator theory, parameter identification, tensor decompositions, matrix analysis, computer vision, low-rank approximation, applied mathematics, numerical linear algebra, spectral theory, machine learning research, feature construction, computational geometry"
+        },
+        {
+          "title": "Fast Point Feature Histograms (FPFH) for 3D registration",
+          "year": 2009,
+          "abstract": "The article discusses the development of Fast Point Feature Histograms (FPFH) as an optimized version of Point Feature Histograms (PFH) for 3D registration, focusing on enhancing computational efficiency while maintaining discriminative power. It presents new mathematical formulations and algorithms that significantly reduce computation times, enabling real-time applications in various fields such as computer vision and 3D imaging.\n\nTopic: pattern recognition, computer science, multi-view geometry, machine learning, point feature histograms, image analysis, information fusion, data science, 3d imaging, image registration, computational imaging, systems engineering, 3d object recognition, additive manufacturing, machine learning research, machine vision, digital image processing, computer vision, 3d pose estimation"
         },
         {
           "title": "What is the best multi-stage architecture for object recognition?",
           "year": 2009,
-          "citations": 0
+          "abstract": "The article explores the optimal multi-stage architecture for object recognition, focusing on the impact of non-linearities, the benefits of learned filters over hardwired ones, and the advantages of multi-stage extraction. It highlights that incorporating rectification and local contrast normalization significantly enhances accuracy, achieving state-of-the-art results on various benchmark datasets.\n\nTopic: computer science, machine learning, image analysis, information fusion, convolutional neural network, robot learning, object detection, image representation, computational imaging, neural architecture search, systems engineering, deep learning, 3d object recognition, machine vision, best multi-stage architecture, object recognition, computer vision, architecture, neural network (machine learning)"
         },
         {
           "title": "Visual tracking with online Multiple Instance Learning",
           "year": 2009,
-          "citations": 0
+          "abstract": "This article discusses a novel approach to object tracking using Multiple Instance Learning (MIL) to develop an adaptive appearance model, which enhances the robustness of tracking by reducing inaccuracies in labeled training examples compared to traditional supervised methods. The proposed MIL algorithm demonstrates superior performance in real-time tracking scenarios, addressing challenges associated with the \"tracking by detection\" technique.\n\nTopic: multi-task learning, image analysis, computer science, computer vision, machine learning, deep learning, multiple instance learning, machine vision"
+        },
+        {
+          "title": "Object Detection with Discriminatively Trained Part-Based Models",
+          "year": 2010,
+          "abstract": "The article presents an object detection system utilizing multiscale deformable part models that effectively handle highly variable classes, achieving state-of-the-art performance in PASCAL challenges. It introduces innovative methods for discriminative training with partially labeled data, employing a latent SVM approach to optimize the detection of objects through a convex problem formulation.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, scene understanding, computer vision, machine learning, part-based models, object detection, object categorization, deep learning, machine vision"
+        },
+        {
+          "title": "Learning Multiple Layers of Features from Tiny Images",
+          "year": 2009,
+          "abstract": "The article discusses the training of a multi-layer generative model using a dataset of millions of tiny color images, focusing on Restricted Boltzmann Machines (RBMs) and Deep Belief Networks (DBNs) to learn effective image features and improve classification performance compared to raw pixel data. It highlights the challenges faced by previous attempts and emphasizes the significance of the CIFAR-10 dataset in this research.\n\nTopic: image analysis, computational imaging, computer science, feature learning, computer vision, machine learning, tiny images, feature fusion, multiple layers, data science, knowledge discovery, deep learning, image representation, few-shot learning, machine vision, digital image processing, multiple instance learning"
+        },
+        {
+          "title": "Robust Face Recognition via Sparse Representation",
+          "year": 2009,
+          "abstract": "The article discusses a novel approach to robust face recognition using sparse representation techniques, addressing challenges such as varying expressions, illumination, and occlusion. It proposes a classification algorithm based on l{1}-minimization that enhances feature extraction and demonstrates improved performance over traditional methods through extensive experiments on publicly available databases.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, object recognition, feature learning, feature extraction, computer vision, machine learning, feature detection, data science, sparse representation, deep learning, image representation, machine vision, robust face recognition"
+        },
+        {
+          "title": "From Sparse Solutions of Systems of Equations to Sparse Modeling of Signals and Images",
+          "year": 2009,
+          "abstract": "The article explores the concept of sparsity in solutions to underdetermined systems of linear equations, discussing conditions under which the sparsest solution can be unique and the efficient methods for finding such solutions. It highlights the implications of these theoretical advancements for practical applications in signal and image processing, emphasizing their transformative impact on previously challenging problems in the field.\n\nTopic: image analysis, computational imaging, nonlinear signal processing, sparse solutions, signal processing, speech processing, computer vision, systems biology, applied mathematics, systems modeling, sparse representation, image representation, temporal complexity, signal reconstruction"
         }
       ],
-      "confidence": 0.8582770419846264
+      "confidence": 0.840497787125242
     },
     {
       "period": [
-        2015,
-        2018
+        2013,
+        2024
       ],
-      "topic_label": "Deep Learning-Driven Data-Intensive Vision",
-      "network_stability": 0.40744799619127575,
+      "topic_label": "Deep Learning-Driven Feature Hierarchies and Contextual Modeling",
+      "description": "This paradigm is characterized by the integration of deep convolutional neural networks (CNNs) with hierarchical feature extraction and contextual modeling, as exemplified by R-CNN (2014), Faster R-CNN (2015), and PSPNet (2017). These works emphasize supervised pre-training, region proposal networks, and pyramid pooling to enhance object detection and semantic segmentation, reflecting a shift from traditional statistical methods to data-driven, end-to-end learning frameworks.",
+      "network_stability": 0.3897779911422523,
       "representative_papers": [
+        {
+          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+          "year": 2014,
+          "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with domain-specific fine-tuning, providing insights into the learned feature hierarchies.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis"
+        },
         {
           "title": "Fully convolutional networks for semantic segmentation",
           "year": 2015,
-          "citations": 0
+          "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and its effectiveness on various benchmark datasets.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis"
+        },
+        {
+          "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+          "year": 2015,
+          "abstract": "The article introduces Faster R-CNN, a novel object detection framework that utilizes Region Proposal Networks (RPN) to generate high-quality object proposals with minimal computational cost, significantly improving detection speed and accuracy. By integrating full-image convolutional features and leveraging neural attention mechanisms, the system achieves state-of-the-art performance on benchmark datasets while maintaining a real-time frame rate.\n\nTopic: vehicular technology, computer science, deep learning, pattern recognition, information fusion, machine vision, object detection, scene understanding, object recognition, region proposal networks, computational imaging, machine learning, localization, data science, computer vision, cognitive science, object tracking, scene analysis, image analysis"
+        },
+        {
+          "title": "Faster R-CNN: towards real-time object detection with region proposal networks",
+          "year": 2015,
+          "abstract": "The article introduces Faster R-CNN, a novel object detection framework that utilizes Region Proposal Networks (RPN) to generate high-quality region proposals with minimal computational cost, significantly improving detection speed and accuracy. By sharing convolutional features across the network, the system achieves state-of-the-art performance on benchmark datasets while maintaining a frame rate of 5fps using a deep VGG-16 model.\n\nTopic: computer science, information fusion, vehicular technology, scene analysis, cognitive science, data science, deep learning, pattern recognition, machine learning, computer vision, object recognition, computational imaging, object detection, scene understanding, object tracking, region proposal networks, machine vision, image analysis, localization"
+        },
+        {
+          "title": "Focal Loss for Dense Object Detection",
+          "year": 2017,
+          "abstract": "The article introduces Focal Loss, a novel approach to address the extreme class imbalance in dense object detection, which hinders the performance of one-stage detectors. By reshaping the standard cross-entropy loss to down-weight well-classified examples, the proposed method enhances the training of RetinaNet, enabling it to achieve state-of-the-art accuracy while maintaining high speed.\n\nTopic: digital image processing, computer science, deep learning, pattern recognition, focal loss, information fusion, machine vision, object detection, image representation, scene understanding, object recognition, computational imaging, dense object detection, localization, data science, computer vision, cognitive science, multi-view geometry, object tracking, image analysis"
         },
         {
           "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
           "year": 2015,
-          "citations": 0
+          "abstract": "The article explores advancements in rectifier networks for image classification, introducing the Parametric Linear Unit (PReLU) to enhance model fitting with minimal computational cost and risk of overfitting. It also presents a robust initialization method for training deep models, achieving a groundbreaking 4.94% top-5 test error on the ImageNet 2012 dataset, surpassing human-level performance for the first time.\n\nTopic: digital image processing, sparse neural network, imagenet classification, computer science, machine learning research, deep learning, machine vision, adversarial machine learning, image representation, human-level performance, human image synthesis, computational imaging, geometric learning, machine learning, data science, computer vision, cognitive science, computational intelligence, convolutional neural network, image analysis"
         },
         {
-          "title": "Long-term recurrent convolutional networks for visual recognition and description",
-          "year": 2015,
-          "citations": 0
-        }
-      ],
-      "confidence": 0.9352207440586277
-    },
-    {
-      "period": [
-        2019,
-        2024
-      ],
-      "topic_label": "Transformer-Enhanced Vision Architecture",
-      "network_stability": 0.2980397442155135,
-      "representative_papers": [
+          "title": "Pyramid Scene Parsing Network",
+          "year": 2017,
+          "abstract": "The article discusses the Pyramid Scene Parsing Network (PSPNet), which enhances scene parsing by leveraging global context information through a pyramid pooling module, achieving state-of-the-art performance in various datasets, including top rankings in the ImageNet challenge and PASCAL VOC benchmarks. The method demonstrates significant improvements in pixel-level prediction accuracy, with a record mean Intersection over Union (mIoU) of 85.4% on the Cityscapes dataset.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, structure from motion, scene interpretation, scene understanding, multi-view geometry, computer vision, scene analysis, multimedia retrieval, data science, systems engineering, deep learning, image representation, machine learning research, machine vision, digital image processing"
+        },
         {
           "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
           "year": 2020,
-          "citations": 0
-        },
-        {
-          "title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows",
-          "year": 2021,
-          "citations": 0
-        },
-        {
-          "title": "Deformable DETR: Deformable Transformers for End-to-End Object Detection",
-          "year": 2020,
-          "citations": 0
+          "abstract": "The article discusses the application of the Transformer architecture to image recognition, demonstrating that a pure transformer model can effectively classify images by directly processing image patches, achieving impressive results on various benchmarks while requiring significantly less computational power than traditional convolutional neural networks.\n\nTopic: image analysis, pattern recognition, computer science, image classification, image search, natural language processing, image communication, image retrieval, text recognition, computer vision, machine learning, feature detection, data science, multimedia information processing, image representation, machine learning research, machine vision, image recognition"
         }
       ],
-      "confidence": 0.9036173737659737
+      "confidence": 0.9192609798866237
     }
   ],
-  "unified_confidence": 0.8248858389098122,
+  "unified_confidence": 0.8264936260333818,
   "algorithm_config": {
-    "direction_threshold": 0.18056642952163557,
+    "direction_threshold": 0.4,
     "citation_boost": 0.8,
-    "validation_threshold": 0.45,
+    "validation_threshold": 0.7,
     "citation_support_window": 2,
-    "similarity_min_segment_length": 4,
-    "similarity_max_segment_length": 24,
+    "similarity_min_segment_length": 3,
+    "similarity_max_segment_length": 50,
     "keyword_min_frequency": 2,
     "min_significant_keywords": 2
   }

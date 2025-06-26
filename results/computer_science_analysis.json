@@ -1,25 +1,16 @@
 {
   "domain_name": "computer_science",
-  "analysis_date": "2025-06-25T17:58:45.283668",
+  "analysis_date": "2025-06-25T22:33:07.513164",
   "time_range": [
     1986,
     2020
   ],
   "total_papers": 411,
-  "statistical_significance": 0.7217214410875586,
+  "statistical_significance": 0.8638003967256143,
   "change_points": [
     1992,
-    1993,
-    1994,
-    1995,
-    1996,
-    1997,
-    1998,
-    1999,
-    2000,
     2001,
     2002,
-    2005,
     2011,
     2012,
     2013,
@@ -30,18 +21,22 @@
   "segments": [
     [
       1986,
-      1998
+      1996
     ],
     [
-      1999,
-      2002
+      1997,
+      2000
     ],
     [
-      2003,
-      2011
+      2001,
+      2003
     ],
     [
-      2012,
+      2004,
+      2013
+    ],
+    [
+      2014,
       2020
     ]
   ],
@@ -49,116 +44,272 @@
     {
       "period": [
         1986,
-        1998
+        1996
       ],
       "topic_label": "Symbolic Computation and Empirical Validation",
-      "network_stability": 0.260245966341448,
+      "description": "The 1986-1996 Computer Science paradigm emphasized symbolic computation frameworks, such as connectionism and neural networks, combined with empirical validation through experimental algorithms like AdaBoost and adaptive filtering. This period saw a balance between theoretical models (e.g., Markov Decision Processes) and practical applications, reflecting a consensus on integrating formal methods with data-driven approaches.",
+      "network_stability": 0.2837254262030084,
       "representative_papers": [
         {
-          "title": "Learning long-term dependencies with gradient descent is difficult",
-          "year": 1994,
-          "citations": 0
+          "title": "Parallel Distributed Processing",
+          "year": 1986,
+          "abstract": "The article discusses the concept of connectionism, a theory in cognitive science that posits the human mind operates through a massively parallel architecture of interconnected neural units, challenging traditional symbolic computation models. It explores how mental processes arise from the interactions of these units and presents foundational ideas and applications related to perception, memory, language, and thought in the context of neurocomputing.\n\nTopic: distributed system, parallel processing, computer science, distributed data processing, distributed computing, distributed processing, parallel computing, distributed query processing"
+        },
+        {
+          "title": "Markov Decision Processes: Discrete Stochastic Dynamic Programming.",
+          "year": 1995,
+          "abstract": "The article discusses Martin L. Puterman's comprehensive work on Markov Decision Processes (MDPs), highlighting its theoretical and applied advancements in various fields such as ecology and economics. It emphasizes the book's focus on infinite horizon discrete time models, optimality criteria, and previously underexplored topics, while providing a rigorous treatment of algorithms and applications through a structured theorem-proof format.\n\nTopic: dynamic programming, computer science, stochastic optimization, stochastic dynamic, markov decision process, dynamic optimization, stochastic process"
         },
         {
           "title": "Programs for Machine Learning",
           "year": 1994,
-          "citations": 0
+          "abstract": "The article discusses the significance of decision tree algorithms in machine learning, particularly highlighting J. Ross Quinlan's ID3 and its successor C4.5, and introduces Quinlan's new book that provides a comprehensive overview of these algorithms and their latest developments, making it a valuable resource for students in the field.\n\nTopic: computer science, supervised learning, machine learning tool, unsupervised machine learning, machine learning, data science, reinforcement learning, knowledge discovery, machine learning model, machine learning research, neural network (machine learning), statistical software, automated machine learning"
+        },
+        {
+          "title": "Adaptive Filter Theory",
+          "year": 1986,
+          "abstract": "The article on Adaptive Filter Theory provides a comprehensive overview of various concepts and techniques related to adaptive filtering, including stochastic processes, Wiener filters, and least-mean-square methods, while also addressing advanced topics such as Kalman filters, blind deconvolution, and the effects of finite precision. It serves as a resource for understanding the theoretical foundations and practical applications of adaptive algorithms in signal processing and applied mathematics.\n\nTopic: computer science, filter (signal processing), spatial filtering, theoretical computer science, adaptive algorithm, adaptive filter, applied mathematics, filter design, adaptive filter theory"
         },
         {
           "title": "Experiments with a new boosting algorithm",
           "year": 1996,
-          "citations": 0
+          "abstract": "The article discusses experiments conducted to evaluate a new boosting algorithm called AdaBoost, which aims to reduce classification errors in machine learning. It compares the performance of AdaBoost with Breiman's bagging method across various benchmarks and examines the impact of a pseudo-loss method on multi-label classification tasks, particularly in the context of a nearest-neighbor classifier for optical character recognition (OCR).\n\nTopic: computational learning theory, computer science, machine learning, machine learning research"
+        },
+        {
+          "title": "Neural networks for pattern recognition",
+          "year": 1994,
+          "abstract": "This article provides a comprehensive overview of feed-forward neural networks in the context of statistical pattern recognition, covering essential concepts, modeling techniques, error functions, and learning algorithms, while also including over 100 exercises for practical application. It serves as a valuable resource for professionals and students in fields such as computer science, machine learning, and data science.\n\nTopic: image analysis, pattern recognition, computer science, convolutional neural network, neural architecture search, machine learning, recurrent neural network, sparse neural network, cognitive science, temporal pattern recognition, data science, computational intelligence, deep learning, neural networks, machine learning research, neural network (machine learning), machine vision"
+        },
+        {
+          "title": "Generalized Gradient Approximation Made Simple",
+          "year": 1996,
+          "abstract": "The article presents a simplified derivation of generalized gradient approximations (GGA) for exchange-correlation energy, enhancing the local spin density (LSD) approach by using fundamental constants and building on the Perdew-Wang 1991 (PW91) framework, while offering improvements in linear response, scaling behavior, and potential smoothness.\n\nTopic: mathematics, computer science, approximation theory, approximation method, gradient approximation, mathematical optimization, low-rank approximation, applied mathematics, numerical analysis, machine learning research, computational optimization"
+        },
+        {
+          "title": "A Computational Approach to Edge Detection",
+          "year": 1986,
+          "abstract": "The article presents a computational approach to edge detection, focusing on defining precise criteria for detecting and localizing edges in images while minimizing assumptions about the solution's form. It discusses the mathematical foundations of edge detection, explores the trade-offs between performance goals, and introduces a method for improving detection across varying signal-to-noise ratios through feature synthesis.\n\nTopic: computational imaging, edge detection, computer science, edge computing, detection technique"
         }
       ],
-      "confidence": 0.7897218783404719
+      "confidence": 0.8153917147839079
     },
     {
       "period": [
-        1999,
-        2002
+        1997,
+        2000
       ],
-      "topic_label": "Empirical Optimization and Information-Theoretic Foundations",
-      "network_stability": 0.28690111007133506,
+      "topic_label": "Empirical Model Optimization with Hybrid Learning",
+      "description": "This paradigm emphasizes the integration of empirical validation with hybrid learning techniques, combining symbolic computation and data-driven approaches to solve complex problems. It is exemplified by LSTM's gating mechanisms for long-term memory, graph transformers in document recognition, and Phred's probabilistic error modeling in DNA sequencing, reflecting a shift toward practical, performance-driven methodologies.",
+      "network_stability": 0.2517879251829119,
       "representative_papers": [
         {
-          "title": "Elements of Information Theory",
-          "year": 2001,
-          "citations": 0
+          "title": "A flexible new technique for camera calibration",
+          "year": 2000,
+          "abstract": "The article presents a new flexible technique for camera calibration that requires only a planar pattern observed from at least two different orientations, allowing for easy implementation without the need for expensive equipment. The method utilizes a closed-form solution followed by nonlinear refinement to effectively model radial lens distortion, demonstrating promising results through both simulations and real data applications.\n\nTopic: computer science, calibration, computer vision, camera calibration"
         },
+        {
+          "title": "Eigenfaces vs. Fisherfaces: recognition using class specific linear projection",
+          "year": 1997,
+          "abstract": "The article presents a face recognition algorithm called \"Fisherface,\" which effectively addresses challenges posed by variations in lighting and facial expressions by utilizing class-specific linear projections. It compares this method to the traditional eigenface technique, demonstrating that Fisherface achieves lower error rates in facial recognition tasks, particularly in the presence of severe expressions, through improved class separation in a low-dimensional subspace.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, object recognition, computer vision, machine learning, numerical linear algebra, image representation, 3d object recognition, machine learning research, facial recognition system, machine vision, face detection, facial expression recognition"
+        },
+        {
+          "title": "Ant colony system: a cooperative learning approach to the traveling salesman problem",
+          "year": 1997,
+          "abstract": "The article presents the ant colony system (ACS), a cooperative learning algorithm designed to solve the traveling salesman problem (TSP) by utilizing a group of agents, or \"ants,\" that communicate indirectly through pheromone trails. The study demonstrates that ACS, particularly its enhanced version ACS-3-opt, outperforms other nature-inspired algorithms like simulated annealing and evolutionary computation in finding optimal solutions for both symmetric and asymmetric TSPs.\n\nTopic: computer science, ant colony system, cooperative learning, salesman problem, ant colony optimization, multi-agent learning, multiagent system"
+        },
+        {
+          "title": "Base-Calling of Automated Sequencer Traces Using<i>Phred.</i> I. Accuracy Assessment",
+          "year": 1998,
+          "abstract": "The article discusses the development and accuracy assessment of the base-calling program \"Phred,\" which automates the processing of DNA sequencer traces. It highlights Phred's superior performance in reducing error rates compared to existing software, thereby addressing the growing demand for accurate DNA sequencing in the context of the human genome project.\n\nTopic: automated sequencer traces, computer science, speech recognition, information fusion, sequence analysis, systems biology, clustering, machine learning, data science, computational biology, network analysis, machine learning research, high throughput sequencing, automated analysis, automated mining, sequence assembly"
+        },
+        {
+          "title": "Base-Calling of Automated Sequencer Traces Using <i>Phred.</i> II. Error Probabilities",
+          "year": 1998,
+          "abstract": "The article discusses the development and implementation of the base-calling program Phred, which estimates error probabilities for each base-call in high-throughput sequencing data. It highlights the program's effectiveness in accurately distinguishing correct from incorrect base-calls across various sequencing conditions, thereby addressing data processing challenges in sequence assembly.\n\nTopic: automated sequencer traces, computer science, error probabilities, sequence analysis, outlier detection, clustering, automated deduction, biostatistics, data science, machine learning research, sequence alignment, error correction, sequence assembly"
+        },
+        {
+          "title": "A model of saliency-based visual attention for rapid scene analysis",
+          "year": 1998,
+          "abstract": "The article presents a visual attention system modeled after primate behavior and neuronal architecture, which creates a topographical saliency map by combining multiscale image features. This system efficiently identifies and selects prominent locations in a scene for rapid analysis, enhancing scene understanding and interpretation in computer vision applications.\n\nTopic: computer science, vision recognition, information fusion, scene analysis, scene interpretation, cognitive science, vision language model, data science, deep learning, pattern recognition, machine learning, computer vision, computational imaging, scene understanding, rapid scene analysis, saliency-based visual attention, machine vision, image analysis, image representation"
+        },
+        {
+          "title": "Long Short-Term Memory",
+          "year": 1997,
+          "abstract": "The article discusses the challenges of learning to store information over long time intervals in neural networks and introduces Long Short-Term Memory (LSTM) as an efficient solution. It highlights LSTM's ability to manage long lags in data processing through innovative gating mechanisms, demonstrating superior performance in real-time learning and complex tasks compared to traditional neural network algorithms.\n\nTopic: computer science, neuroimaging, neuroscience, explicit memory, short-term memory, cognitive science, cognitive neuroscience, neural computation, memory"
+        },
+        {
+          "title": "Gradient-based learning applied to document recognition",
+          "year": 1998,
+          "abstract": "The article reviews gradient-based learning techniques, particularly multilayer neural networks and convolutional networks, for document recognition, focusing on their application in character recognition tasks. It highlights the effectiveness of a new paradigm called graph transformer (GTN) for optimizing multimodule systems and discusses the commercial deployment of these methods in reading bank cheques with high accuracy.\n\nTopic: computer science, machine learning"
+        }
+      ],
+      "confidence": 0.8357995638186668
+    },
+    {
+      "period": [
+        2001,
+        2003
+      ],
+      "topic_label": "Empirical Model Optimization with Hybrid Learning",
+      "description": "This paradigm emphasizes the integration of empirical methods with hybrid learning techniques to solve complex computational problems, as seen in NSGA-II's multi-objective optimization and particle swarm optimization's benchmark testing. It also reflects the use of information theory and spectral clustering analysis to enhance algorithmic performance and data processing efficiency.",
+      "network_stability": 0.30827422910090696,
+      "representative_papers": [
         {
           "title": "Particle swarm optimization",
           "year": 2002,
-          "citations": 0
+          "abstract": "The article introduces particle swarm optimization as a method for optimizing nonlinear functions, detailing its evolution, implementation, and benchmark testing. It also explores applications such as neural network training and discusses the relationships between particle swarm optimization and genetic algorithms within the context of various fields, including computer science and applied mathematics.\n\nTopic: design optimization, computational optimization, computer science, drone, networked swarm, multiagent system, applied mathematics, mathematical optimization, swarm dynamic, swarm intelligence, trajectory optimization, control system, reinforcement learning, evolutionary computation, adaptive optimization, systems engineering, natural computing, swarm robotics, particle swarm optimization"
         },
         {
           "title": "<tt>BLAT</tt>\u2014The <tt>BLAST</tt>-Like Alignment Tool",
           "year": 2002,
-          "citations": 0
+          "abstract": "The article introduces BLAT, a rapid and highly accurate alignment tool for mRNA/DNA and cross-species protein sequences, which operates 500 times faster than existing methods by utilizing an index of nonoverlapping K-mers in the genome. It details the tool's multi-stage process for identifying homologous regions, performing alignments, and refining results, while also discussing optimization strategies and comparisons with other alignment programs.\n\nTopic: image analysis, pattern recognition, computer science, information fusion, sequence analysis, clustering, data science, molecular biology, deep learning, network analysis, signal recognition, sequence alignment, representation analysis, sequence assembly"
+        },
+        {
+          "title": "On Spectral Clustering: Analysis and an algorithm",
+          "year": 2001,
+          "abstract": "The article discusses the challenges and inconsistencies in spectral clustering methods, which utilize eigenvectors from data matrices for clustering. It introduces a simple algorithm implemented in Matlab, analyzes its performance using matrix perturbation theory, and presents promising experimental results on various complex problems.\n\nTopic: computer science, dimensionality reduction, clustering, data science, spectral theory, spectral clustering, statistics, machine learning research, spectral analysis"
+        },
+        {
+          "title": "Bilateral filtering for gray and color images",
+          "year": 2002,
+          "abstract": "The article discusses bilateral filtering, a technique used in image processing that effectively smooths gray and color images while preserving edges by combining nearby pixel values based on their spatial and photometric similarities. It highlights the advantages of this noniterative and local method over traditional filters, particularly in maintaining perceptual quality in images.\n\nTopic: image analysis, computational imaging, computer science, color correction, bilateral filtering, image enhancement, computer vision, machine learning, feature detection, image restoration, object detection, color images, machine vision, digital image processing"
+        },
+        {
+          "title": "Shape matching and object recognition using shape contexts",
+          "year": 2002,
+          "abstract": "The article introduces a novel method for shape matching and object recognition that utilizes shape contexts to measure similarity between shapes. By establishing correspondences between points on shapes and applying an aligning transform, the approach enables effective classification and recognition of various objects, as demonstrated through experiments with silhouettes, trademarks, and handwritten digits.\n\nTopic: pattern recognition, computer science, object recognition, shape matching, shape contexts"
+        },
+        {
+          "title": "A fast and elitist multiobjective genetic algorithm: NSGA-II",
+          "year": 2002,
+          "abstract": "The article introduces NSGA-II (Non-dominated Sorting Genetic Algorithm II), a fast and elitist multi-objective evolutionary algorithm that addresses the limitations of previous MOEAs by improving computational efficiency, enhancing elitism, and eliminating the need for parameter specification. Through simulation results, NSGA-II demonstrates superior performance in achieving better convergence and diversity in solutions for complex multi-objective optimization problems.\n\nTopic: computational optimization, computational science, genetic programming, computer science, evolutionary computation, genetic algorithm"
+        },
+        {
+          "title": "Elements of Information Theory",
+          "year": 2001,
+          "abstract": "The article provides a comprehensive overview of the key concepts and principles of information theory, covering topics such as entropy, channel capacity, data compression, and coding techniques, while also exploring applications in fields like computer science and information science. It serves as a detailed resource for understanding the mathematical foundations and implications of information processing and transmission.\n\nTopic: information science, computer science, information fusion, information theory, information structure, multi-terminal information theory, algorithmic information theory, information theoretic security"
+        },
+        {
+          "title": "<i>Quantum Computation and Quantum Information</i>",
+          "year": 2002,
+          "abstract": "The article \"Quantum Computation and Quantum Information\" explores the principles and advancements in quantum computing, highlighting key concepts such as quantum algorithms, quantum logic, and the broader implications of quantum technology in the field of computer science. It delves into the intersection of quantum science and information theory, emphasizing the transformative potential of quantum computation.\n\nTopic: computer science, quantum algorithm, quantum technology, quantum science, quantum logic, quantum computing, quantum computation, quantum information science"
         }
       ],
-      "confidence": 0.8479924614165554
+      "confidence": 0.8505591759115274
     },
     {
       "period": [
-        2003,
-        2011
+        2004,
+        2013
       ],
-      "topic_label": "Empirical Optimization and Information-Theoretic Foundations",
-      "network_stability": 0.24279314888010542,
+      "topic_label": "Empirical Model Optimization with Hybrid Learning",
+      "description": "This paradigm centered on combining empirical validation with hybrid learning techniques, as seen in the development of deep belief networks and multi-layer feature learning (2006, 2009). It emphasized data-driven approaches, leveraging both probabilistic models and optimization algorithms to enhance performance, as demonstrated by the integration of greedy layer-wise training with fine-tuning in deep learning frameworks.",
+      "network_stability": 0.26204677265601944,
       "representative_papers": [
+        {
+          "title": "A Fast Learning Algorithm for Deep Belief Nets",
+          "year": 2006,
+          "abstract": "The article presents a fast learning algorithm for deep belief networks that utilizes complementary priors to overcome inference challenges in densely connected networks with multiple hidden layers. By employing a greedy layer-wise training approach and a fine-tuning process, the algorithm effectively models the joint distribution of handwritten digit images and their labels, outperforming traditional discriminative methods in classification tasks.\n\nTopic: computer science, fast learning algorithm, deep belief nets, unsupervised machine learning, machine learning, computational intelligence, deep learning, neural network (machine learning)"
+        },
         {
           "title": "WebLogo: A Sequence Logo Generator: Figure 1",
           "year": 2004,
-          "citations": 0
+          "abstract": "WebLogo is a sequence logo generator that creates graphical representations of patterns in multiple sequence alignments, offering a more detailed view of sequence similarities than traditional consensus sequences. The tool features customizable options and a command line interface, making it suitable for local installation and tailored use in various fields such as computational linguistics and data visualization.\n\nTopic: image analysis, pattern recognition, computer science, information visualization, sequence design, computer graphic, visualization, data and information visualization, computational linguistics, image sequence analysis, image representation, sequence modelling, sequence logo generator, feature construction, computer-generated imagery, design"
         },
         {
           "title": "Near-Optimal Signal Recovery From Random Projections: Universal Encoding Strategies?",
           "year": 2006,
-          "citations": 0
+          "abstract": "The article discusses a method for near-optimal signal recovery from random projections, demonstrating that high-accuracy reconstruction of sparse signals can be achieved with a minimal number of linear measurements. It presents a framework for solving this problem using simple programming techniques and extends the findings to various measurement ensembles, including randomly sampled Fourier transforms.\n\nTopic: computer science, signal processing, near-optimal signal recovery, statistical signal processing, random projections"
         },
         {
-          "title": "A Fast Learning Algorithm for Deep Belief Nets",
-          "year": 2006,
-          "citations": 0
+          "title": "A performance evaluation of local descriptors",
+          "year": 2005,
+          "abstract": "This article evaluates the performance of various local descriptors used for image analysis, particularly those extracted by the Harris-Affine detector, by comparing their effectiveness in terms of recall and precision under different viewing conditions. The study highlights the superiority of an extended SIFT descriptor over the original, while also noting that SIFT-based methods generally perform best across different detectors, with moments filters excelling among low-dimensional descriptors.\n\nTopic: image analysis, pattern recognition, computer science, machine vision, content-based image retrieval, object recognition, image retrieval, computer vision, object detection, data science, deep learning, image representation, machine learning research, local descriptors, information retrieval, feature (computer vision)"
+        },
+        {
+          "title": "Multiple View Geometry in Computer Vision",
+          "year": 2004,
+          "abstract": "The article discusses the principles and techniques of multiple view geometry in computer vision, focusing on the geometric and algebraic representations used to reconstruct real-world scenes from multiple images. It highlights key concepts such as camera projection matrices and the fundamental matrix, while also providing updated examples and a comprehensive background for readers familiar with linear algebra and numerical estimation algorithms.\n\nTopic: computer science, 3d vision, multi-view geometry, computer vision, multiple view geometry"
+        },
+        {
+          "title": "Decoding by Linear Programming",
+          "year": 2005,
+          "abstract": "This article explores a method for recovering an input vector from corrupted measurements using linear programming, demonstrating that under certain conditions, unique solutions can be achieved through l1-minimization. The findings suggest that this approach is effective even with a significant amount of corrupted data, and it connects to broader themes in sparse solutions and signal recovery from incomplete measurements.\n\nTopic: linear programming, computer science, computational optimization, mathematical optimization, iterative decoding, numerical analysis, mathematical programming, combinatorial optimization, algebraic coding theory, applied mathematics"
+        },
+        {
+          "title": "The Sequence Alignment/Map format and SAMtools",
+          "year": 2009,
+          "abstract": "The article discusses the Sequence Alignment/Map (SAM) format, which is designed for storing read alignments from various sequencing platforms, and highlights the capabilities of SAMtools for post-processing these alignments, including indexing and variant calling. It emphasizes the format's flexibility, compactness, and efficient access, making it a valuable resource for sequence analysis in genomics.\n\nTopic: sequence analysis, computer science, sequence alignment"
+        },
+        {
+          "title": "Learning Multiple Layers of Features from Tiny Images",
+          "year": 2009,
+          "abstract": "The article discusses the training of a multi-layer generative model using a dataset of millions of tiny color images, specifically focusing on Restricted Boltzmann Machines (RBMs) and Deep Belief Networks (DBNs) to learn effective image features and improve classification performance compared to raw pixel data. It highlights the challenges faced by previous attempts in this area and emphasizes the use of the CIFAR-10 dataset for labeled image analysis.\n\nTopic: image analysis, computational imaging, computer science, feature learning, computer vision, machine learning, tiny images, feature fusion, multiple layers, data science, knowledge discovery, deep learning, image representation, few-shot learning, machine vision, digital image processing, multiple instance learning"
         }
       ],
-      "confidence": 0.785911403101378
+      "confidence": 0.7962624546971067
     },
     {
       "period": [
-        2012,
+        2014,
         2020
       ],
       "topic_label": "Empirical Deep Learning Optimization",
-      "network_stability": 0.3401859100361244,
+      "description": "This paradigm centers on optimizing deep neural networks through empirical methods, as evidenced by advancements in residual learning (Deep Residual Learning, 2016), very deep convolutional networks (Very Deep Convolutional Networks, 2014), and Inception architectures (Going deeper with convolutions, 2015). It emphasizes iterative model refinement, large-scale dataset utilization, and hybrid techniques like Batch Normalization (Batch Normalization, 2015) to enhance training efficiency and accuracy.",
+      "network_stability": 0.34505082385193403,
       "representative_papers": [
         {
-          "title": "ImageNet Classification with Deep Convolutional Neural Networks",
-          "year": 2012,
-          "citations": 0
+          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+          "year": 2014,
+          "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with domain-specific fine-tuning when labeled data is limited.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis"
         },
         {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
           "year": 2014,
-          "citations": 0
+          "abstract": "The article explores the impact of increasing the depth of convolutional networks on accuracy in large-scale image recognition, demonstrating that using very small (3x3) convolution filters can significantly enhance performance with networks of 16-19 weight layers. The findings contributed to a successful submission in the ImageNet Challenge 2014, securing top placements, and the authors have made their best-performing models publicly available for further research in deep learning and computer vision.\n\nTopic: digital image processing, automatic classification, deep convolutional networks, computer science, machine learning research, deep learning, pattern recognition, machine vision, image representation, large-scale image recognition, large-scale datasets, computational imaging, machine learning, data science, cognitive science, computational intelligence, convolutional neural network, feature detection, unsupervised machine learning, image analysis"
         },
         {
-          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
-          "year": 2014,
-          "citations": 0
+          "title": "Going deeper with convolutions",
+          "year": 2015,
+          "abstract": "The article introduces the Inception architecture, specifically the GoogLeNet model, which achieved state-of-the-art results in the 2014 ImageNet competition by optimizing the depth and width of convolutional neural networks while maintaining computational efficiency, leveraging multi-scale processing principles.\n\nTopic: image analysis, computational imaging, computer science, information fusion, convolutional neural network, large language model, deep reinforcement learning, machine learning, applied mathematics, sparse neural network, data science, neural computation, deep learning, computational intelligence, machine learning research, deepfakes, neural network (machine learning), machine vision"
+        },
+        {
+          "title": "Fully convolutional networks for semantic segmentation",
+          "year": 2015,
+          "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and reports significant performance improvements on benchmark datasets like PASCAL VOC and NYUDv2.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis"
+        },
+        {
+          "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+          "year": 2015,
+          "abstract": "The article explores advancements in rectifier networks for image classification, introducing the Parametric Linear Unit (PReLU) to enhance model fitting with minimal computational cost and risk of overfitting. It also presents a robust initialization method for training deep models, achieving a groundbreaking 4.94% top-5 test error on the ImageNet 2012 dataset, surpassing human-level performance for the first time.\n\nTopic: digital image processing, sparse neural network, imagenet classification, computer science, machine learning research, deep learning, machine vision, adversarial machine learning, image representation, human-level performance, human image synthesis, computational imaging, geometric learning, machine learning, data science, computer vision, cognitive science, computational intelligence, convolutional neural network, image analysis"
+        },
+        {
+          "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+          "year": 2015,
+          "abstract": "The article discusses Batch Normalization, a technique designed to address the issue of internal covariate shift in deep neural networks, which complicates training by altering the distribution of layer inputs. By normalizing these inputs as part of the model architecture, Batch Normalization accelerates training, allows for higher learning rates, and can even reduce the need for regularization methods like Dropout, ultimately achieving significant improvements in accuracy for image classification tasks.\n\nTopic: neural network (machine learning), internal covariate shift, batch normalization, computer science, machine learning, deep learning, data science"
+        },
+        {
+          "title": "Deep Residual Learning for Image Recognition",
+          "year": 2016,
+          "abstract": "The article presents a residual learning framework that simplifies the training of significantly deeper neural networks, demonstrating that these networks can achieve higher accuracy with lower complexity. It highlights empirical results from the ImageNet dataset, where a deep residual network achieved a 3.57% error rate, winning first place in the ILSVRC 2015 classification task, and shows improvements in object detection on the COCO dataset.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, convolutional neural network, object recognition, unsupervised machine learning, machine learning, deep residual learning, deep learning, image representation, image recognition, principal component analysis, image classification, digital image processing"
+        },
+        {
+          "title": "Fast R-CNN",
+          "year": 2015,
+          "abstract": "The article presents Fast R-CNN, an advanced method for object detection that enhances the efficiency and accuracy of the original R-CNN by utilizing deep convolutional networks, achieving significant improvements in training and testing speeds. Implemented in Python and C++, Fast R-CNN is available as open-source software and demonstrates superior performance on the PASCAL VOC 2012 dataset.\n\nTopic: computational imaging, machine vision, natural language processing, neural network (machine learning), cognitive science, computer science, recurrent neural network, convolutional neural network, machine learning, deep reinforcement learning, machine learning research, object detection, deep learning, data science, object recognition, image analysis"
         }
       ],
-      "confidence": 0.9097364668921891
+      "confidence": 0.9143652159541543
     }
   ],
-  "unified_confidence": 0.8333405524376486,
+  "unified_confidence": 0.8424756250330727,
   "algorithm_config": {
-    "direction_threshold": 0.3866800220649913,
+    "direction_threshold": 0.4,
     "citation_boost": 0.8,
-    "validation_threshold": 0.4366969691475934,
+    "validation_threshold": 0.7,
     "citation_support_window": 2,
-    "similarity_min_segment_length": 4,
-    "similarity_max_segment_length": 13,
+    "similarity_min_segment_length": 3,
+    "similarity_max_segment_length": 50,
     "keyword_min_frequency": 2,
     "min_significant_keywords": 2
   }

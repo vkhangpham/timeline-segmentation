@@ -1,6 +1,6 @@
 {
   "domain_name": "art",
-  "analysis_date": "2025-06-25T17:58:02.252241",
+  "analysis_date": "2025-06-25T22:32:19.253695",
   "time_range": [
     1979,
     2020
@@ -51,22 +51,48 @@
         1993
       ],
       "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "description": "This paradigm integrates symbolic semiotics and interdisciplinary analysis, as seen in 'Languages of Art' and 'The Ideology of the Aesthetic,' emphasizing the interpretation of art through symbolic systems and cultural contexts. It reflects a shift towards understanding art as a complex interplay of language, imagery, and ideology, as highlighted in the exploration of beauty standards and aesthetic ideologies.",
       "network_stability": 0.32794280640122375,
       "representative_papers": [
         {
           "title": "The Duchenne smile: Emotional expression and brain physiology: II.",
           "year": 1990,
-          "citations": 0
+          "abstract": "The article explores the Duchenne smile, characterized by the activation of the eye muscles alongside lip movement, by examining its correlation with emotional experiences during the viewing of pleasant and unpleasant films, using facial expressions, EEG, and self-reported emotions. It highlights the significance of this genuine smile in reflecting positive emotions and its underlying brain physiology.\n\nTopic: craniofacial research, emotional expression, developmental psychology, neuroanatomy, oral biology, biological psychology, emotional development, psychology, duchenne smile, neuroscience, evolutionary psychology, art, central nervous system, emotion, psychoneuroendocrinology, affective neuroscience, human brain, emotional response, emotion recognition, brain physiology, happiness"
         },
         {
           "title": "Quality Is Free: The Art of Making Quality Certain",
           "year": 1979,
-          "citations": 0
+          "abstract": "\"Quality Is Free: The Art of Making Quality Certain\" emphasizes the importance of implementing effective quality control measures from the outset to avoid costly mistakes and rework. The article outlines practical strategies and real-life case studies that illustrate how prioritizing quality can enhance profitability and career success across various business settings.\n\nTopic: quality control, quality characteristic, art, quality assurance, quality of life, quality criterion, quality engineering, quality review, quality management, quality technology"
         },
         {
           "title": "The Beauty Myth: How Images of Beauty Are Used Against Women",
           "year": 1990,
-          "citations": 0
+          "abstract": "In \"The Beauty Myth: How Images of Beauty Are Used Against Women,\" Naomi Wolf explores the oppressive societal standards of beauty that challenge women's equality, revealing how these ideals are perpetuated through media, advertising, and interpersonal relationships. Through insightful analysis and examples, she critiques the destructive obsession with beauty and its impact on women's lives.\n\nTopic: gender studies, narrative, feminist theory, aesthetics, intersectionality, gender inequality, feminist method, violence against woman, body image, women's study, gender theory, image communication, feminist philosophy, art criticism, beauty myth, feminist study, radical aesthetic, art, sociology"
+        },
+        {
+          "title": "The profitable art of service recovery.",
+          "year": 1990,
+          "abstract": "The article discusses the importance of effective service recovery in the face of inevitable mistakes in service industries, highlighting examples like Club Med-Cancun's successful handling of a disastrous flight experience. It emphasizes strategies for identifying problems, acting quickly, and empowering frontline employees to creatively resolve issues, ultimately turning negative experiences into positive ones.\n\nTopic: profitable art, service recovery, recovery, art"
+        },
+        {
+          "title": "Attractive Faces Are Only Average",
+          "year": 1990,
+          "abstract": "The article explores the concept of beauty through an evolutionary lens, demonstrating that faces representing average features are consistently judged as more attractive than individual faces. By digitizing and averaging male and female faces, researchers found that composite images were perceived as more appealing, supporting the idea that attractiveness is linked to cognitive processes favoring prototypical characteristics.\n\nTopic: image analysis, pattern recognition, social identity, experimental aesthetic, interpersonal attraction, performance studies, body image, art, psychology, aesthetic plastic surgery, personality, facial recognition system, face detection, aesthetics"
+        },
+        {
+          "title": "The ideology of the aesthetic",
+          "year": 1990,
+          "abstract": "The article explores the evolution of aesthetic ideology through a historical lens, examining key philosophical figures and movements from Shaftesbury to postmodernism, while addressing the intersections of art, culture, and politics. It delves into concepts such as the sublime, the role of desire, and the impact of trauma on art, ultimately reflecting on the transformative power of aesthetics in shaping human experience and societal structures.\n\nTopic: poetics, visual arts, aesthetics, visual culture, art theory, design culture, experimental aesthetic, radical aesthetic, art criticism, culture, art, philosophy of film, art research, computational aesthetic, sculpture, art history, narrative, ideology"
+        },
+        {
+          "title": "The Intrinsic Quality of Experience",
+          "year": 1990,
+          "abstract": "The article discusses three key arguments against psychophysical functionalism, emphasizing the importance of intrinsic qualities of experience that cannot be fully captured by a functionalist perspective. It highlights the limitations of this model in accounting for personal awareness, subjective experiences, and the potential for inverted spectra, while also touching on broader themes related to user experience, aesthetics, and the authenticity of lived experiences.\n\nTopic: quality of life, product experience, narrative, aesthetics, player experience, experiential learning, applied cognitive psychology, intrinsic impurity, user experience, psychology, authenticity, performance studies, philosophy of film, intrinsic quality, business excellence, art, lived experience, user perception, design culture"
+        },
+        {
+          "title": "Languages of Art: An Approach to a Theory of Symbols.",
+          "year": 1979,
+          "abstract": "The article \"Languages of Art: An Approach to a Theory of Symbols\" explores the intersection of linguistics and visual arts, challenging traditional philosophical frameworks and advocating for a nuanced understanding of symbol use and visual communication in art theory. It critiques empiricist and Kantian perspectives while offering a detailed analysis of how language and imagery interact within the context of aesthetics and narrative.\n\nTopic: applied linguistics, linguistics, visual arts, philosophy of language, visual culture, art theory, image communication, language, general linguistics, symbol use, symbolic linguistic representation, visual communication, visual language, art, art research, narrative, context (linguistics), aesthetics"
         }
       ],
       "confidence": 0.8219252952563506
@@ -77,22 +103,48 @@
         1996
       ],
       "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "description": "The 1994-1996 Art research paradigm, termed 'Interdisciplinary Symbolic Semiotics,' focused on analyzing art through the interplay of symbolic representation and semiotic frameworks, as seen in 'Picture Theory' and 'Reframing Organizations.' This approach integrated cognitive, cultural, and philosophical perspectives to decode visual and verbal representations, emphasizing the role of images in shaping meaning and identity, as discussed in 'Likeness and Presence' and 'Over Her Dead Body.'",
       "network_stability": 0.3333333333333333,
       "representative_papers": [
         {
           "title": "A Taxonomy of Mixed Reality Visual Displays",
           "year": 1994,
-          "citations": 0
+          "abstract": "The article \"A Taxonomy of Mixed Reality Visual Displays\" explores the various types of visual displays used in mixed reality environments, highlighting their applications in fields such as human-computer interaction, cognitive engineering, and immersive technology. It also discusses the contributions of Paul Milgram, a prominent researcher in the field, and his work on advanced display concepts and visual perception.\n\nTopic: visual arts, human-computer interaction, visual culture, graphic interface, visual effect, immersive technology, computer graphic, public display, art, visual system, screen medium, mixed reality, visual perception, visual science, virtual reality, advanced display technology"
         },
         {
           "title": "Reframing Organizations: Artistry, Choice, and Leadership.",
           "year": 1994,
-          "citations": 0
+          "abstract": "The article \"Reframing Organizations: Artistry, Choice, and Leadership\" explores the complexities of organizational behavior through four distinct frames\u2014structural, human resource, political, and symbolic\u2014highlighting how leaders can effectively navigate and transform organizations by integrating these perspectives to enhance leadership practices and foster ethical decision-making.\n\nTopic: organizational behavior, organization study, organizational transformation, ethical leadership, art, organizational theory, management, organizational communication, organizational structure, organizational psychology"
         },
         {
           "title": "Images of mind",
           "year": 1994,
-          "citations": 0
+          "abstract": "\"Images of Mind\" explores the intersection of cognitive psychology and neuroscience through brain-imaging techniques that reveal the processes behind reading, writing, speaking, and visualizing. The book delves into various topics such as visual perception, image representation, and the mind-body connection, highlighting the implications for art, philosophy, and cognitive science.\n\nTopic: image analysis, visual reasoning, image hallucination, image communication, mind-body connection, visualization, body image, art, cognitive science, philosophy of mind, philosophy of film, human image synthesis, visual perception, image representation, visual science, art history, machine vision, aesthetics"
+        },
+        {
+          "title": "Representing moving images with layers",
+          "year": 1994,
+          "abstract": "The article discusses a system for representing moving images through overlapping layers, each containing intensity maps and transparency masks, allowing for flexible compositing and motion analysis. This layered approach enhances the capture of natural sequences and has potential applications in coding and multimedia processing.\n\nTopic: image analysis, computational imaging, computer science, visual arts, machine vision, motion analysis, structure from motion, computer vision, visualization, art, image manipulation, multimedia information processing, image representation, moving object tracking, style transfer, multimedia modeling, design, digital image processing"
+        },
+        {
+          "title": "Empowerment through Photo Novella: Portraits of Participation",
+          "year": 1994,
+          "abstract": "The article discusses the concept of photo novella as a tool for empowerment, allowing marginalized groups such as children and rural women to document and express their life conditions through photography. By promoting critical consciousness and community engagement, this approach not only fosters personal empowerment but also influences policy changes by enabling participants to communicate their needs to decision-makers.\n\nTopic: photo novella, visual culture, scene interpretation, performance studies, culture, art, women's empowerment, public participation, photographic study, narrative, community engagement, participatory art"
+        },
+        {
+          "title": "Picture theory: essays on verbal and visual representation",
+          "year": 1994,
+          "abstract": "\"Picture Theory: Essays on Verbal and Visual Representation\" explores the intricate relationship between images and text, examining how visual and verbal representations shape our understanding of art, narrative, and memory. The collection delves into various themes, including the role of ekphrasis, the impact of visual language, and the philosophical implications of representation in both historical and contemporary contexts.\n\nTopic: visual language, visual communication, visual science, narrative, aesthetics, visual reasoning, visual arts, art theory, visualization, cognitive science, representation theory, image representation, image communication, performance studies, philosophy of film, visual representation, scene interpretation, art, visual perception, picture theory"
+        },
+        {
+          "title": "Over Her Dead Body: Death, Femininity and the Aesthetic",
+          "year": 1994,
+          "abstract": "The article \"Over Her Dead Body: Death, Femininity and the Aesthetic\" explores the intersection of death and femininity through various cultural and artistic representations, examining how female identities are constructed and deconstructed in the context of mortality. It analyzes themes such as the portrayal of women in deathbed scenes, the aestheticization of the deceased, and the implications of these representations for feminist theory and gender identity.\n\nTopic: death study, feminist identity, gender identity, gender theory, feminist philosophy, feminist study, thanatology, culture, art, mortality, mourning, gender studies, feminist theory, aesthetics"
+        },
+        {
+          "title": "Likeness and presence: a history of the image before the era of art",
+          "year": 1994,
+          "abstract": "This article explores the historical evolution of images and their significance in society before the advent of modern art, examining their roles in religion, culture, and identity from Late Antiquity through the Byzantine period and into the Renaissance. It delves into the theological implications, iconography, and the shifting perceptions of images as both sacred objects and artistic expressions, highlighting the complex relationship between visual culture and social identity throughout history.\n\nTopic: history of art, image analysis, visual arts, social identity, visual culture, art theory, image communication, culture, body image, art, art research, art history, ethnographic theory, aesthetics"
         }
       ],
       "confidence": 0.6945833333333333
@@ -103,22 +155,48 @@
         2016
       ],
       "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "description": "The 1997-2016 Art research paradigm centered on interdisciplinary symbolic semiotics, integrating semiotic analysis with artistic practices to decode meaning through signs, symbols, and cultural contexts. This approach, evident in works like 'Creativity in Context' (2009) and 'Creative Industries: Contracts between Art and Commerce' (2000), emphasized understanding art's role within socio-economic and cultural frameworks, reflecting a unified focus on symbolic interpretation and systemic interrelations.",
       "network_stability": 0.21736316263370078,
       "representative_papers": [
         {
           "title": "Image inpainting",
           "year": 2000,
-          "citations": 0
+          "abstract": "The article discusses a novel algorithm for image inpainting that mimics traditional restoration techniques used by professionals, allowing for the seamless modification of digital images by automatically filling in selected regions with surrounding information. This approach offers advantages over previous methods by not requiring predefined source areas and accommodating various structures and topologies, making it suitable for applications such as restoring old films and removing unwanted text or objects.\n\nTopic: image analysis, computational imaging, image formation, image communication, image restoration, computer vision, image inpainting, art, image manipulation, image representation, visual science, art history, image denoising, digital image processing, inpainting"
         },
         {
           "title": "Describing objects by their attributes",
           "year": 2009,
-          "citations": 0
+          "abstract": "The article advocates for a shift in object recognition from merely naming to describing objects by their attributes, enabling the identification of both familiar and unfamiliar items through their characteristics. It introduces a novel feature selection method aimed at improving generalization across categories and instances, while providing a thorough evaluation of the proposed attribute-based framework and its advantages over traditional recognition paradigms.\n\nTopic: object modeling, image analysis, localization, category theory, object recognition, object categorization, representation theory, semantic evaluation, object system, machine vision, image representation, abstract object theory, art, fuzzy set, visualization, pattern recognition, cognitive science, applied mathematics"
         },
         {
           "title": "PROFESSORES: IMAGENS DO FUTURO PRESENTE",
           "year": 2014,
-          "citations": 0
+          "abstract": "The article highlights the contributions of Ant\u00f3nio Manuel Seixas N\u00f3voa, a prominent figure in the Portuguese educational community, who has engaged in significant international debates on the history of comparative education while holding esteemed academic positions at various prestigious universities. It emphasizes his role in fostering dialogue about the historical processes of schooling and education.\n\nTopic: visual arts, visual culture, digital humanities, image communication, digital art, art, art history, design"
+        },
+        {
+          "title": "What is beautiful is usable",
+          "year": 2000,
+          "abstract": "The article discusses an experiment that explores the relationship between users' perceptions of beauty and usability in a computerized system, specifically using an ATM as a model. The findings indicate that perceived aesthetics significantly influence users' evaluations of usability, highlighting the importance of aesthetic considerations in human-computer interaction design.\n\nTopic: experimental aesthetic, art, art research, art history, aesthetics"
+        },
+        {
+          "title": "Creative industries: contracts between art and commerce",
+          "year": 2000,
+          "abstract": "The article explores the intricate relationship between art and commerce within the creative industries, examining the economic dynamics, contractual agreements, and market forces that shape the production and consumption of artistic goods. It delves into the roles of artists, dealers, and consumers, as well as the challenges and innovations that define the cultural economy.\n\nTopic: creative industry, cultural economy, art management, art, business"
+        },
+        {
+          "title": "Creativity: Theories and Themes: Research, Development, and Practice",
+          "year": 2014,
+          "abstract": "\"Creativity: Theories and Themes\" is a comprehensive reference work that explores various theories and themes in creativity research, addressing factors such as personality, social context, and gender differences. The second edition consolidates recent findings, offers insights into enhancing creativity, and includes practical activities and biographies of notable figures in the field.\n\nTopic: narrative, creativity assessment, creative writing, art"
+        },
+        {
+          "title": "The Image and Appearance of the Human Body",
+          "year": 2013,
+          "abstract": "This article explores the intricate relationship between the human body's image and appearance, delving into physiological psychology and the creative processes that shape our understanding of body image. It emphasizes the importance of constructive psychic efforts in the evolution of human perception, drawing on various fields such as anatomy, visual science, and anthropology.\n\nTopic: body composition, human physiology, anatomy, visual science, body size, aesthetics, image analysis, image formation, biomedical imaging, body image, physiology, image representation, human body, human biology, image communication, physical anthropology, embodiment, anthropology, art"
+        },
+        {
+          "title": "Creativity in context",
+          "year": 2009,
+          "abstract": "This chapter examines the interplay between creativity and economic performance in the film industry, offering an analytical framework for understanding filmmaking models and organizational contexts. It highlights the varying success of industry clusters and explores the factors that influence creativity and demand in film production.\n\nTopic: creativity assessment, context (linguistics), art"
         }
       ],
       "confidence": 0.7448468741805605
@@ -129,22 +207,48 @@
         2020
       ],
       "topic_label": "Interdisciplinary Symbolic Semiotics",
+      "description": "The 2017-2020 Art research paradigm centered on Interdisciplinary Symbolic Semiotics, integrating semiotic analysis with computational methods to decode cultural and artistic meanings. This approach, exemplified by Scott's exploration of resistance through hidden transcripts and the semiotic analysis of art's aura in the age of reproduction, emphasized symbolic interpretation across disciplines, as seen in the symbolic frameworks of generative models like StackGAN and StarGAN v2.",
       "network_stability": 0.3242840615540658,
       "representative_papers": [
         {
           "title": "Arbitrary Style Transfer in Real-Time with Adaptive Instance Normalization",
           "year": 2017,
-          "citations": 0
+          "abstract": "The article presents a novel method for real-time arbitrary style transfer using an adaptive instance normalization (AdaIN) layer, which allows for flexible user controls and eliminates the need for a slow iterative optimization process. This approach achieves comparable speed to existing methods while enabling the transfer of any style without being limited to a predefined set.\n\nTopic: knowledge discovery, real-time data, computer science, machine learning research, computer graphic, pattern recognition, machine vision, transfer learning, art, arbitrary style transfer, image representation, text normalization, style transfer, machine learning, data science, computer vision, digital art, synthetic image generation, adaptive instance normalization, image analysis"
         },
         {
           "title": "Domination and the Arts of Resistance",
           "year": 2017,
-          "citations": 0
+          "abstract": "In \"Domination and the Arts of Resistance,\" James C. Scott explores the complex dynamics between the powerful and the powerless, highlighting how subordinate groups use hidden transcripts\u2014such as gossip, folktales, and humor\u2014to critique authority and assert their agency. Through historical and cultural examples, Scott reveals the subtle forms of resistance that challenge dominant narratives and the ways in which ruling elites maintain their hegemony.\n\nTopic: art education, contemporary china, coercion, social force, anti-imperialism, critical theory, protest, performance studies, resistance management, art, class conflict, postcolonial writing, feminist theory, specific resistance, art history, contemporary art, performance art, conflict"
         },
         {
           "title": "StackGAN: Text to Photo-Realistic Image Synthesis with Stacked Generative Adversarial Networks",
           "year": 2017,
-          "citations": 0
+          "abstract": "The article presents StackGAN, a novel approach to synthesizing high-quality, photo-realistic images from text descriptions using Stacked Generative Adversarial Networks. By employing a two-stage process that first generates low-resolution images and then refines them into high-resolution outputs, StackGAN addresses the challenges of detail and diversity in text-to-image synthesis, demonstrating significant improvements over existing methods.\n\nTopic: computer science, generative adversarial network, machine learning, digital imaging, photo-realistic image synthesis, visual science, synthetic image generation, image analysis, information fusion, data science, image representation, computational imaging, image reconstruction, deep learning, machine vision, digital image processing, computational photography, computer vision, art"
+        },
+        {
+          "title": "Generative Image Inpainting with Contextual Attention",
+          "year": 2018,
+          "abstract": "The article presents a novel generative model for image inpainting that leverages contextual attention to improve the synthesis of missing regions in images, resulting in higher-quality textures and structures compared to existing methods. It highlights the model's ability to process images with multiple holes of varying sizes and demonstrates its effectiveness through experiments on various datasets.\n\nTopic: generative art, inpainting, digital image processing, generative image, contextual attention, art, scene interpretation, synthetic image generation"
+        },
+        {
+          "title": "The Work of Art in the Age of Mechanical Reproduction",
+          "year": 2017,
+          "abstract": "The article \"The Work of Art in the Age of Mechanical Reproduction\" explores how mechanical reproduction alters the uniqueness and \"aura\" of art, emphasizing the impact of technology on traditional artistic practices and the relationship between art and ritual in contemporary society. It argues that this shift allows art to break free from its historical dependencies, leading to new insights in art theory and history.\n\nTopic: art theory, art, art research, art history, contemporary art, mechanical reproduction"
+        },
+        {
+          "title": "StarGAN v2: Diverse Image Synthesis for Multiple Domains",
+          "year": 2020,
+          "abstract": "The article introduces StarGAN v2, a novel image-to-image translation framework that effectively addresses the challenges of generating diverse and scalable images across multiple domains, demonstrating superior performance on datasets like CelebA-HQ and the new animal faces dataset (AFHQ). The authors also provide access to their code and pretrained models to facilitate further research in generative adversarial networks and image synthesis.\n\nTopic: computer science, generative adversarial network, machine learning, synthetic image generation, image analysis, information fusion, biomedical imaging, data science, image representation, multi-image fusion, computational imaging, deep learning, digital image processing, domain adaptation, computer graphic, computer vision, art, multiple domains, diverse image synthesis, human image synthesis"
+        },
+        {
+          "title": "Objects as Points",
+          "year": 2019,
+          "abstract": "The article presents a novel object detection approach called CenterNet, which models objects as single points (the center of their bounding boxes) rather than using traditional axis-aligned boxes. This method leverages keypoint estimation to efficiently regress various object properties, resulting in a faster, simpler, and more accurate detection system that outperforms conventional box detectors, particularly on the MS COCO dataset.\n\nTopic: object modeling, image analysis, kinematics, localization, structure from motion, projective geometry, geometry, information fusion, object detection, object system, deformation, image representation, art, symmetry, visual science, machine vision, cognitive science, applied mathematics"
+        },
+        {
+          "title": "Embodied hands",
+          "year": 2017,
+          "abstract": "The article discusses the development of a new model called MANO, which enhances the realistic tracking and modeling of human hand movements in conjunction with full-body motion capture. By utilizing high-resolution scans and addressing challenges like occlusion and low resolution, this model enables more natural and detailed representations of human gestures and interactions in virtual environments.\n\nTopic: human movement, kinematics, human-computer interaction, embodied cognition, dexterous manipulation, embodiment, gesture processing, performance studies, assistive technology, kinesiology, art, interaction design, social robotics, robotics, human robot interaction, embodied robotics"
         }
       ],
       "confidence": 0.699619387693138
@@ -154,10 +258,10 @@
   "algorithm_config": {
     "direction_threshold": 0.4,
     "citation_boost": 0.8,
-    "validation_threshold": 0.3097051941600503,
+    "validation_threshold": 0.7,
     "citation_support_window": 2,
     "similarity_min_segment_length": 3,
-    "similarity_max_segment_length": 30,
+    "similarity_max_segment_length": 50,
     "keyword_min_frequency": 2,
     "min_significant_keywords": 2
   }

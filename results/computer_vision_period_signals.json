@@ -1,37 +1,49 @@
 {
   "domain_name": "computer_vision",
-  "analysis_date": "2025-06-25T18:00:12.272438",
+  "analysis_date": "2025-06-25T22:34:59.606792",
   "segments": [
     {
       "start_year": 1947,
-      "end_year": 1954
+      "end_year": 1966
     },
     {
-      "start_year": 1955,
-      "end_year": 1958
+      "start_year": 1967,
+      "end_year": 1969
     },
     {
-      "start_year": 1959,
-      "end_year": 1974
+      "start_year": 1970,
+      "end_year": 1973
     },
     {
-      "start_year": 1975,
-      "end_year": 1998
+      "start_year": 1974,
+      "end_year": 1976
     },
     {
-      "start_year": 1999,
-      "end_year": 2005
+      "start_year": 1977,
+      "end_year": 1994
     },
     {
-      "start_year": 2006,
-      "end_year": 2014
+      "start_year": 1995,
+      "end_year": 1997
     },
     {
-      "start_year": 2015,
-      "end_year": 2018
+      "start_year": 1998,
+      "end_year": 2000
     },
     {
-      "start_year": 2019,
+      "start_year": 2001,
+      "end_year": 2003
+    },
+    {
+      "start_year": 2004,
+      "end_year": 2008
+    },
+    {
+      "start_year": 2009,
+      "end_year": 2012
+    },
+    {
+      "start_year": 2013,
       "end_year": 2024
     }
   ],
@@ -39,11 +51,11 @@
     {
       "period": [
         1947,
-        1954
+        1966
       ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.2874251497005988,
-      "confidence": 0.8217628613353486,
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "network_stability": 0.2794743894472729,
+      "confidence": 0.7876088383607878,
       "representative_papers": [
         {
           "title": "The Discrimination of Visual Number",
@@ -51,51 +63,25 @@
           "citation_count": 1069
         },
         {
-          "title": "Vision Through the Atmosphere",
-          "year": 1952,
-          "citation_count": 784
+          "title": "Visual pattern recognition by moment invariants",
+          "year": 1962,
+          "citation_count": 7298
         },
         {
-          "title": "Multiple Wiener Integral",
-          "year": 1951,
-          "citation_count": 710
+          "title": "Visual Pattern Discrimination",
+          "year": 1962,
+          "citation_count": 871
         }
       ]
     },
     {
       "period": [
-        1955,
-        1958
+        1967,
+        1969
       ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.324054398640034,
-      "confidence": 0.7001457363979939,
-      "representative_papers": [
-        {
-          "title": "The Analysis of Two-Dimensional Orientation Data",
-          "year": 1956,
-          "citation_count": 507
-        },
-        {
-          "title": "An optimum character recognition system using decision functions",
-          "year": 1957,
-          "citation_count": 346
-        },
-        {
-          "title": "Eye Fixations Recorded on Changing Visual Scenes by the Television Eye-Marker",
-          "year": 1958,
-          "citation_count": 224
-        }
-      ]
-    },
-    {
-      "period": [
-        1959,
-        1974
-      ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.20397553168431323,
-      "confidence": 0.7575763020144293,
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "network_stability": 0.27852049910873444,
+      "confidence": 0.8499493424139516,
       "representative_papers": [
         {
           "title": "The neural mechanism of binocular depth discrimination",
@@ -103,25 +89,77 @@
           "citation_count": 1422
         },
         {
-          "title": "Visual pattern recognition by moment invariants",
-          "year": 1962,
-          "citation_count": 7298
-        },
-        {
           "title": "A Simple Method of Resolution of a Distribution into Gaussian Components",
           "year": 1967,
           "citation_count": 1134
+        },
+        {
+          "title": "Looking at upside-down faces.",
+          "year": 1969,
+          "citation_count": 2504
         }
       ]
     },
     {
       "period": [
-        1975,
-        1998
+        1970,
+        1973
       ],
-      "topic_label": "Physical-Model-Based Perception Analysis",
-      "network_stability": 0.24668696006591576,
-      "confidence": 0.7925947492447432,
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "network_stability": 0.3087074082452682,
+      "confidence": 0.8570673468988387,
+      "representative_papers": [
+        {
+          "title": "Use of the Hough transformation to detect lines and curves in pictures",
+          "year": 1972,
+          "citation_count": 5979
+        },
+        {
+          "title": "Textural Features for Image Classification",
+          "year": 1973,
+          "citation_count": 20414
+        },
+        {
+          "title": "Pattern classification and scene analysis",
+          "year": 1973,
+          "citation_count": 12979
+        }
+      ]
+    },
+    {
+      "period": [
+        1974,
+        1976
+      ],
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "network_stability": 0.28895053166897827,
+      "confidence": 0.6919847641991113,
+      "representative_papers": [
+        {
+          "title": "A Comparative Study of Texture Measures for Terrain Classification",
+          "year": 1976,
+          "citation_count": 1508
+        },
+        {
+          "title": "Discrete Cosine Transform",
+          "year": 1974,
+          "citation_count": 4607
+        },
+        {
+          "title": "Computer Processing of Line-Drawing Images",
+          "year": 1974,
+          "citation_count": 1375
+        }
+      ]
+    },
+    {
+      "period": [
+        1977,
+        1994
+      ],
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "network_stability": 0.23030649890023025,
+      "confidence": 0.7828516559237921,
       "representative_papers": [
         {
           "title": "Face recognition: features versus templates",
@@ -129,51 +167,155 @@
           "citation_count": 2446
         },
         {
-          "title": "Rapid Automated Algorithm for Aligning and Reslicing PET Images",
+          "title": "A survey of image registration techniques",
           "year": 1992,
-          "citation_count": 1947
+          "citation_count": 4015
         },
         {
-          "title": "Example-based learning for view-based human face detection",
-          "year": 1998,
-          "citation_count": 1778
+          "title": "Methods of combining multiple classifiers and their applications to handwriting recognition",
+          "year": 1992,
+          "citation_count": 2186
         }
       ]
     },
     {
       "period": [
-        1999,
-        2005
+        1995,
+        1997
       ],
-      "topic_label": "Model-Based Perception and Data-Driven Learning",
-      "network_stability": 0.2925261026572317,
-      "confidence": 0.8298919024767544,
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "network_stability": 0.23038073038073037,
+      "confidence": 0.8056377589297165,
       "representative_papers": [
+        {
+          "title": "Human and machine recognition of faces: a survey",
+          "year": 1995,
+          "citation_count": 2548
+        },
+        {
+          "title": "Eigenfaces vs. Fisherfaces: recognition using class specific linear projection",
+          "year": 1997,
+          "citation_count": 11826
+        },
+        {
+          "title": "Probabilistic visual learning for object representation",
+          "year": 1997,
+          "citation_count": 1475
+        }
+      ]
+    },
+    {
+      "period": [
+        1998,
+        2000
+      ],
+      "topic_label": "Geometric Invariance and Statistical Pattern Analysis",
+      "network_stability": 0.24091420966420965,
+      "confidence": 0.8406813910955988,
+      "representative_papers": [
+        {
+          "title": "Example-based learning for view-based human face detection",
+          "year": 1998,
+          "citation_count": 1778
+        },
         {
           "title": "A flexible new technique for camera calibration",
           "year": 2000,
           "citation_count": 12438
         },
         {
-          "title": "Training support vector machines: an application to face detection",
-          "year": 2002,
-          "citation_count": 2465
-        },
-        {
-          "title": "Image quilting for texture synthesis and transfer",
-          "year": 2001,
-          "citation_count": 2311
+          "title": "A pyramid approach to subpixel registration based on intensity",
+          "year": 1998,
+          "citation_count": 2844
         }
       ]
     },
     {
       "period": [
-        2006,
-        2014
+        2001,
+        2003
       ],
-      "topic_label": "Model-Based Perception and Data-Driven Learning",
-      "network_stability": 0.32851971927534557,
-      "confidence": 0.8582770419846264,
+      "topic_label": "Statistical Invariance and Pattern Analysis",
+      "network_stability": 0.3015932184669759,
+      "confidence": 0.8848382000225349,
+      "representative_papers": [
+        {
+          "title": "Image quilting for texture synthesis and transfer",
+          "year": 2001,
+          "citation_count": 2311
+        },
+        {
+          "title": "Image analogies",
+          "year": 2001,
+          "citation_count": 1534
+        },
+        {
+          "title": "Training support vector machines: an application to face detection",
+          "year": 2002,
+          "citation_count": 2465
+        }
+      ]
+    },
+    {
+      "period": [
+        2004,
+        2008
+      ],
+      "topic_label": "Statistical Invariance and Pattern Analysis",
+      "network_stability": 0.27393003125230275,
+      "confidence": 0.8310518215110028,
+      "representative_papers": [
+        {
+          "title": "Visibility in bad weather from a single image",
+          "year": 2008,
+          "citation_count": 2060
+        },
+        {
+          "title": "Single image dehazing",
+          "year": 2008,
+          "citation_count": 1952
+        },
+        {
+          "title": "Rapid object detection using a boosted cascade of simple features",
+          "year": 2005,
+          "citation_count": 16429
+        }
+      ]
+    },
+    {
+      "period": [
+        2009,
+        2012
+      ],
+      "topic_label": "Statistical Invariance and Sparse Modeling",
+      "network_stability": 0.3101119894598155,
+      "confidence": 0.840497787125242,
+      "representative_papers": [
+        {
+          "title": "Tensor Decompositions and Applications",
+          "year": 2009,
+          "citation_count": 8929
+        },
+        {
+          "title": "Fast Point Feature Histograms (FPFH) for 3D registration",
+          "year": 2009,
+          "citation_count": 2983
+        },
+        {
+          "title": "What is the best multi-stage architecture for object recognition?",
+          "year": 2009,
+          "citation_count": 2057
+        }
+      ]
+    },
+    {
+      "period": [
+        2013,
+        2024
+      ],
+      "topic_label": "Deep Learning-Driven Feature Hierarchies and Contextual Modeling",
+      "network_stability": 0.3897779911422523,
+      "confidence": 0.9192609798866237,
       "representative_papers": [
         {
           "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
@@ -181,72 +323,20 @@
           "citation_count": 24628
         },
         {
-          "title": "What is the best multi-stage architecture for object recognition?",
-          "year": 2009,
-          "citation_count": 2057
-        },
-        {
-          "title": "Visual tracking with online Multiple Instance Learning",
-          "year": 2009,
-          "citation_count": 1749
-        }
-      ]
-    },
-    {
-      "period": [
-        2015,
-        2018
-      ],
-      "topic_label": "Deep Learning-Driven Data-Intensive Vision",
-      "network_stability": 0.40744799619127575,
-      "confidence": 0.9352207440586277,
-      "representative_papers": [
-        {
           "title": "Fully convolutional networks for semantic segmentation",
           "year": 2015,
           "citation_count": 28292
         },
         {
-          "title": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+          "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
           "year": 2015,
-          "citation_count": 14420
-        },
-        {
-          "title": "Long-term recurrent convolutional networks for visual recognition and description",
-          "year": 2015,
-          "citation_count": 4855
-        }
-      ]
-    },
-    {
-      "period": [
-        2019,
-        2024
-      ],
-      "topic_label": "Transformer-Enhanced Vision Architecture",
-      "network_stability": 0.2980397442155135,
-      "confidence": 0.9036173737659737,
-      "representative_papers": [
-        {
-          "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
-          "year": 2020,
-          "citation_count": 9670
-        },
-        {
-          "title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows",
-          "year": 2021,
-          "citation_count": 11529
-        },
-        {
-          "title": "Deformable DETR: Deformable Transformers for End-to-End Object Detection",
-          "year": 2020,
-          "citation_count": 1345
+          "citation_count": 18973
         }
       ]
     }
   ],
   "summary": {
-    "total_periods": 8,
-    "avg_confidence": 0.8248858389098122
+    "total_periods": 11,
+    "avg_confidence": 0.8264936260333818
   }
 }

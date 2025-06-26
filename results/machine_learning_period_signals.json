@@ -1,6 +1,6 @@
 {
   "domain_name": "machine_learning",
-  "analysis_date": "2025-06-25T18:01:17.332589",
+  "analysis_date": "2025-06-25T22:36:17.377685",
   "segments": [
     {
       "start_year": 1989,
@@ -8,10 +8,14 @@
     },
     {
       "start_year": 1996,
-      "end_year": 2008
+      "end_year": 2007
     },
     {
-      "start_year": 2009,
+      "start_year": 2008,
+      "end_year": 2010
+    },
+    {
+      "start_year": 2011,
       "end_year": 2020
     }
   ],
@@ -45,11 +49,11 @@
     {
       "period": [
         1996,
-        2008
+        2007
       ],
       "topic_label": "Hybrid Symbolic-Statistical Learning",
-      "network_stability": 0.26774186391817256,
-      "confidence": 0.8187040670140193,
+      "network_stability": 0.25836789526972503,
+      "confidence": 0.8144504483698081,
       "representative_papers": [
         {
           "title": "Eigenfaces vs. Fisherfaces: recognition using class specific linear projection",
@@ -70,17 +74,43 @@
     },
     {
       "period": [
-        2009,
-        2020
+        2008,
+        2010
       ],
-      "topic_label": "Deep Hybrid Symbolic-Statistical Learning",
-      "network_stability": 0.3425841921011616,
-      "confidence": 0.8870064598761059,
+      "topic_label": "Hybrid Symbolic-Statistical Learning",
+      "network_stability": 0.22566867425341094,
+      "confidence": 0.8322768066842864,
       "representative_papers": [
         {
-          "title": "Learning Multiple Layers of Features from Tiny Images",
+          "title": "Learning Deep Architectures for AI",
           "year": 2009,
-          "citation_count": 21388
+          "citation_count": 5170
+        },
+        {
+          "title": "Extracting and composing robust features with denoising autoencoders",
+          "year": 2008,
+          "citation_count": 6318
+        },
+        {
+          "title": "A Practical Guide to Support Vector Classication",
+          "year": 2008,
+          "citation_count": 5185
+        }
+      ]
+    },
+    {
+      "period": [
+        2011,
+        2020
+      ],
+      "topic_label": "Deep Learning with Convolutional Architectures",
+      "network_stability": 0.35192605860960263,
+      "confidence": 0.8967107277040094,
+      "representative_papers": [
+        {
+          "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+          "year": 2012,
+          "citation_count": 63969
         },
         {
           "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
@@ -96,7 +126,7 @@
     }
   ],
   "summary": {
-    "total_periods": 3,
-    "avg_confidence": 0.8434001922605417
+    "total_periods": 4,
+    "avg_confidence": 0.841982008162401
   }
 }

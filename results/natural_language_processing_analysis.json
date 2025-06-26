@@ -1,21 +1,18 @@
 {
   "domain_name": "natural_language_processing",
-  "analysis_date": "2025-06-25T18:03:39.210516",
+  "analysis_date": "2025-06-25T22:38:25.735618",
   "time_range": [
     1957,
     2024
   ],
   "total_papers": 617,
-  "statistical_significance": 0.6637333485904569,
+  "statistical_significance": 0.770582972392533,
   "change_points": [
     1977,
     1980,
-    1983,
-    1986,
     1988,
     1990,
     1991,
-    1992,
     1997,
     2000
   ],
@@ -26,22 +23,14 @@
     ],
     [
       1978,
-      1981
+      1980
     ],
     [
-      1982,
-      1986
+      1981,
+      1991
     ],
     [
-      1987,
-      1990
-    ],
-    [
-      1991,
-      1993
-    ],
-    [
-      1994,
+      1992,
       1997
     ],
     [
@@ -55,23 +44,49 @@
         1957,
         1977
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
+      "topic_label": "Symbolic Rule-Based Linguistics",
+      "description": "The 1957-1977 NLP paradigm centered on symbolic rule-based approaches, emphasizing formal grammars and linguistic theory to model language structure, as seen in Transition Network Grammars (1970) and the String-to-String Correction Problem (1974). This paradigm prioritized explicit syntactic and semantic rules, reflecting the belief that language could be systematically represented and processed through structured, rule-driven mechanisms.",
       "network_stability": 0.26025360395810077,
       "representative_papers": [
         {
           "title": "How to do things with words",
           "year": 1962,
-          "citations": 0
+          "abstract": "The article explores the intersection of linguistics and applied linguistics, focusing on how language functions in communication through various aspects such as syntax, semantics, and language acquisition, while also addressing the implications for natural language processing and speech processing. It presents a series of lectures that delve into the theoretical and practical applications of language in understanding and facilitating effective communication.\n\nTopic: applied linguistics, language grounding, linguistics, natural language processing, speech processing, language, general linguistics, language-based approach, syntax, communication, lexical semantics, language acquisition, semantics, semantic processing, lexicon, narrative, language learning, context (linguistics)"
         },
         {
           "title": "ELIZA\u2014a computer program for the study of natural language communication between man and machine",
           "year": 1966,
-          "citations": 0
+          "abstract": "The article discusses ELIZA, a pioneering computer program developed by Joseph Weizenbaum at MIT, designed to explore natural language communication between humans and machines, highlighting its significance in the fields of artificial intelligence and human-computer interaction.\n\nTopic: computer science, artificial intelligence, speech recognition, human-machine interaction, computational linguistics, human-ai interaction, language, communication, machine translation, human-computer interaction, language model, computer program, natural language communication, natural language processing, chatbot, language technology, speech communication, spoken language technology, language generation"
         },
         {
           "title": "A Statistical Approach to Mechanized Encoding and Searching of Literary Information",
           "year": 1957,
-          "citations": 0
+          "abstract": "The article discusses a statistical approach to improving the mechanized encoding and searching of literary information, highlighting the challenges of conveying meaning through written communication and the variability in individual expression. It outlines a systematic method that includes document analysis, vocabulary establishment, and the use of automated encoding and search techniques to enhance information retrieval in literature.\n\nTopic: narrative extraction, computer science, linguistics, text mining, natural language processing, literary information, information extraction, machine learning, computational linguistics, data science, knowledge discovery, similarity search, machine learning research, search technique, document analysis, information retrieval"
+        },
+        {
+          "title": "Transition network grammars for natural language analysis",
+          "year": 1970,
+          "abstract": "The article discusses the application of augmented transition network grammars in natural language analysis, highlighting their ability to perform structure-building actions that facilitate deep-structure representations and improve parsing accuracy through semantic guidance. It also includes examples and briefly outlines an experimental parsing system implementation.\n\nTopic: computer science, linguistics, text mining, natural language processing, computational linguistics, natural language, machine learning research, syntactic parsing, natural language analysis, transition network grammars"
+        },
+        {
+          "title": "Learning Structural Descriptions From Examples",
+          "year": 1970,
+          "abstract": "The article discusses a Ph.D. thesis from the Massachusetts Institute of Technology that explores the development of structural descriptions through examples, focusing on applications in computer science, natural language processing, and machine learning. It emphasizes the intersection of deep learning and description logic in creating effective models for understanding and generating structured data.\n\nTopic: computer science, natural language processing, machine learning, data science, deep learning, description logic, structural descriptions"
+        },
+        {
+          "title": "The String-to-String Correction Problem",
+          "year": 1974,
+          "abstract": "The article discusses the string-to-string correction problem, which involves calculating the minimum cost of edit operations required to transform one string into another. It presents an algorithm that efficiently solves this problem, with potential applications in areas such as automatic spelling correction and identifying common subsequences in strings.\n\nTopic: computer science, natural language processing, string-to-string correction problem, error correction code, string-searching algorithm, machine learning research, error correction, string processing"
+        },
+        {
+          "title": "How To Do Things With Words",
+          "year": 1975,
+          "abstract": "The article explores the author's extensive research on the distinction between performative utterances and statements, ultimately proposing a more comprehensive theory of 'illocutionary forces' that impacts various philosophical issues related to language and communication.\n\nTopic: applied linguistics, language grounding, linguistics, natural language processing, speech processing, language, general linguistics, language-based approach, syntax, communication, lexical semantics, language acquisition, semantics, semantic processing, lexicon, narrative, language learning, context (linguistics)"
+        },
+        {
+          "title": "Efficient string matching",
+          "year": 1975,
+          "abstract": "The article presents a straightforward and efficient algorithm for locating all occurrences of multiple keywords within a text string, utilizing a state pattern matching machine for single-pass text processing. The algorithm's construction time is proportional to the total length of the keywords, significantly enhancing the speed of bibliographic search programs by a factor of 5 to 10.\n\nTopic: computer science, natural language processing, pattern matching, matching technique, similarity search, string-searching algorithm, string processing"
         }
       ],
       "confidence": 0.8039844827642961
@@ -79,132 +94,158 @@
     {
       "period": [
         1978,
-        1981
+        1980
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.250811262228585,
+      "topic_label": "Symbolic Rule-Based Linguistics",
+      "description": "The 1978-1980 NLP paradigm centered on symbolic rule-based systems, emphasizing structured models like finite-state automata and context-free grammars for speech recognition (Trainable grammars for speech recognition, 1979) and text comprehension (Toward a model of text comprehension and production, 1978). It prioritized explicit syntactic and semantic representations, leveraging formal methods to model linguistic structures, while addressing challenges like syntactic ambiguity and discourse coherence through rule-based frameworks.",
+      "network_stability": 0.3143631436314363,
       "representative_papers": [
         {
           "title": "Dynamic programming algorithm optimization for spoken word recognition",
           "year": 1978,
-          "citations": 0
+          "abstract": "This article presents an optimized dynamic programming algorithm for time-normalization in spoken word recognition, introducing a new slope constraint technique to enhance word discrimination. It compares two time-normalized distance definitions and demonstrates the superiority of the proposed method through theoretical analysis and experimental validation, achieving significantly reduced error rates compared to conventional algorithms.\n\nTopic: computer science, speech recognition, dynamic programming, natural language processing, speech processing, spoken word recognition, spoken language processing, language recognition, speech technology, spoken language technology, computational optimization"
         },
         {
           "title": "Toward a model of text comprehension and production.",
           "year": 1978,
-          "citations": 0
+          "abstract": "The article presents a model of text comprehension and production that emphasizes the dual levels of semantic structure\u2014micro and macro\u2014highlighting the cyclical nature of comprehension constrained by working memory. It discusses the role of macro-operators in summarizing information and the influence of schemas on comprehension goals, while also addressing the processes involved in text generation and recall.\n\nTopic: program comprehension, psycholinguistics, text comprehension, nlp task, natural language processing, speech production, text processing, cognitive science, language comprehension, computer science, language model, language, reading research"
         },
         {
           "title": "Comparison of parametric representations for monosyllabic word recognition in continuously spoken sentences",
           "year": 1980,
-          "citations": 0
+          "abstract": "The article compares various parametric representations of acoustic signals to evaluate their effectiveness in recognizing monosyllabic words within continuously spoken sentences, highlighting that a set of ten mel-frequency cepstrum coefficients achieved the highest recognition performance of 96.5% across two speakers. The study emphasizes the importance of retaining significant information amidst syntactic and duration variations in speech recognition systems.\n\nTopic: linguistics, speech recognition, parametric representations, natural language processing, language model, speech processing, spoken language processing, spoken sentences, language recognition, monosyllabic word recognition, spoken language technology"
+        },
+        {
+          "title": "A Comparison of Wh-Clefts and it-Clefts in Discourse",
+          "year": 1978,
+          "abstract": "The article examines the distinctions between WH-clefts and it-clefts in discourse, arguing against their interchangeability by highlighting how each structure conveys different assumptions about the listener's knowledge and thought processes. Through analysis of naturally-occurring discourse, it reveals that WH-clefts presuppose information the speaker believes the listener is already considering, while it-clefts operate under different assumptions about known facts.\n\nTopic: applied linguistics, linguistics, cognitive linguistics, syntactic structure, natural language processing, language, communication, spoken language technology, discourse analysis, discourse structure, computational linguistics, semantics, linguistic theory, narrative, context (linguistics)"
+        },
+        {
+          "title": "Trainable grammars for speech recognition",
+          "year": 1979,
+          "abstract": "The article discusses advancements in speech recognition algorithms that model speech as a finite-state, hidden Markov process, introducing a method for automatically training stochastic versions of context-free grammars. It emphasizes the importance of accommodating syntactic ambiguity in natural language, allowing for explicit modeling of recognition errors rather than relying on additional components.\n\nTopic: linguistics, speech recognition, natural language processing, speech processing, spoken language processing, computational linguistics, grammar induction, language recognition, trainable grammars, spoken language technology"
+        },
+        {
+          "title": "The Interactive Construction of a Sentence in Natural Conversation",
+          "year": 1979,
+          "abstract": "The article by Charles Goodwin explores how sentences are dynamically constructed and modified during natural conversations, emphasizing the role of non-verbal cues and the relationship between speakers. It highlights the implications of these findings for linguists and interactional analysts, suggesting that understanding sentences requires considering the context of their production.\n\nTopic: linguistics, interactional linguistics, interactive construction, narrative, psycholinguistics, language, communication, discourse analysis, conversation analysis, dialogue management, human-computer interaction, general linguistics, speech synthesis, verbal interaction, interpersonal communication, natural language processing, natural conversation, interactive storytelling, speech communication, spoken language technology"
+        },
+        {
+          "title": "Developing a natural language interface to complex data",
+          "year": 1978,
+          "abstract": "The article discusses the development of a natural language interface designed to facilitate user access to complex, distributed data across computer networks, detailing the system architecture and the insulating components that convert user queries into database calls. It highlights practical features that enhance usability, such as spelling correction and run-time personalization, while also analyzing the system's limitations in comparison to other approaches in natural language processing.\n\nTopic: data science, natural language, natural language interface, natural language processing"
+        },
+        {
+          "title": "Considerations in dynamic time warping algorithms for discrete word recognition",
+          "year": 1978,
+          "abstract": "The article discusses modifications to dynamic time warping algorithms used in discrete word recognition, addressing the limitations of initial assumptions regarding frame synchronization. It explores the impact of these modifications on performance, particularly in the presence of noise, and presents findings from experiments involving isolated words spoken by multiple speakers.\n\nTopic: discrete word recognition, machine learning, computer science, natural language processing, dynamic time"
         }
       ],
-      "confidence": 0.8749598714927702
+      "confidence": 0.8983565795376642
     },
     {
       "period": [
-        1982,
-        1986
+        1981,
+        1991
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.320502037204933,
+      "topic_label": "Symbolic Rule-Based Linguistics",
+      "description": "The 1981-1991 NLP paradigm centered on symbolic rule-based systems, as exemplified by ELIZA's rule-driven dialogue and KL-ONE's structured knowledge representation. Researchers prioritized explicit linguistic rules and formal logic, reflecting the broader AI community's belief in human-like symbolic reasoning, as seen in the focus on context-based vocabulary learning and mental space construction for meaning.",
+      "network_stability": 0.2913309723775194,
       "representative_papers": [
+        {
+          "title": "A statistical approach to machine translation",
+          "year": 1990,
+          "abstract": "This article discusses a statistical methodology for machine translation, specifically focusing on translating from French to English, and presents preliminary results of the approach. It highlights the intersection of computer science, natural language processing, and applied statistics in developing effective translation models.\n\nTopic: computer science, statistical methodology, language model, natural language processing, applied statistics, statistical inference, neural machine translation, data science, statistics, machine translation, language learning, statistical model, computer-assisted translation"
+        },
         {
           "title": "An overview of the KL-ONE Knowledge Representation System",
           "year": 1985,
-          "citations": 0
+          "abstract": "The article provides an overview of the KL-ONE Knowledge Representation System, highlighting its development, core concepts, and ability to create complex structured descriptions for knowledge representation in AI. It also discusses the system's taxonomy and classification principles, along with an extended example related to a classifier recognition task.\n\nTopic: computer science, knowledge representation and reasoning, knowledge-based system, natural language processing, knowledge integration, knowledge management"
+        },
+        {
+          "title": "Learning Words from Context",
+          "year": 1985,
+          "abstract": "The article explores how school children expand their vocabularies through incidental learning from written context, presenting a study that demonstrates measurable gains in vocabulary knowledge among eighth-grade students after reading expository and narrative texts. The findings suggest that a significant portion of vocabulary growth during school years may be attributed to learning from context, despite previous research lacking definitive support for this hypothesis.\n\nTopic: context model, linguistics, natural language processing, language, semantic evaluation, second language learning, lexical semantics, cognitive science, language acquisition, semantics, semantic processing, deep learning, distributional semantics, semantic learning, language learning, context (linguistics), second language acquisition"
+        },
+        {
+          "title": "Automatic sense disambiguation using machine readable dictionaries",
+          "year": 1986,
+          "abstract": "The article by Michael Lesk discusses the process of automatic sense disambiguation in natural language processing, utilizing machine-readable dictionaries to differentiate between meanings of words, exemplified by distinguishing a \"pine cone\" from \"ice cream.\" It highlights the significance of computational linguistics in enhancing understanding and interpretation of language through technology.\n\nTopic: linguistics, word-sense disambiguation, natural language processing, machine-readable dictionary, computational linguistics, automatic sense disambiguation"
         },
         {
           "title": "Ways with Words",
           "year": 1983,
-          "citations": 0
+          "abstract": "\"Ways with Words\" is a seminal study that explores the language development of children in two culturally distinct communities in the southeastern United States\u2014Roadville, a white working-class town, and Trackton, an African-American community. The author examines the profound cultural differences in language use and literacy between these communities, raising important questions about communication and the impact of social context on language learning.\n\nTopic: applied linguistics, morphology (linguistics), linguistics, keyword extraction, natural language processing, language, general linguistics, language-based approach, syntax, communication, lexical semantics, sociolinguistics, semantics, social semiotics, linguistic theory, narrative, language learning, context (linguistics)"
         },
         {
           "title": "ELIZA \u2014 a computer program for the study of natural language communication between man and machine",
           "year": 1983,
-          "citations": 0
+          "abstract": "The article discusses ELIZA, a pioneering computer program developed at MIT for facilitating natural language communication between humans and machines, highlighting its operational mechanics, key technical challenges, and potential psychological implications, as well as future advancements in the field of artificial intelligence and human-computer interaction.\n\nTopic: computer science, artificial intelligence, human-computer interaction, human-ai interaction, language model, natural language processing, language, language technology, communication, human-machine interaction, computer program, computational linguistics, machine translation, spoken language technology, natural language communication"
+        },
+        {
+          "title": "The Foucault Reader",
+          "year": 1984,
+          "abstract": "The article provides an overview of \"The Foucault Reader,\" highlighting key concepts in Foucault's philosophy and including previously unpublished material, while also touching on various interdisciplinary applications such as natural language processing, digital scholarship, and sociology.\n\nTopic: english, information fusion, natural language processing, character recognition, machine-readable dictionary, principal component analysis, computer vision, clustering, digital scholarship, biometrics, reading research, victorian literature, foucault reader, multimedia information processing, sociology, comparative literature, reference frame, document processing"
+        },
+        {
+          "title": "Mental Spaces: Aspects of Meaning Construction in Natural Language",
+          "year": 1985,
+          "abstract": "\"Mental Spaces: Aspects of Meaning Construction in Natural Language\" explores the innovative concept that language expressions contribute to the creation of internally structured mental spaces rather than being interpreted solely through truth conditions. The book challenges traditional views of meaning by demonstrating how these mental constructions lead to multiple interpretations and ambiguities, emphasizing the need for theories of reference to account for the space-construction process.\n\nTopic: semantic representation, linguistics, psycholinguistics, cognitive linguistics, natural language processing, language, semantic evaluation, abstract interpretation, cognitive science, semantics, semantic parsing, narrative, language science, mental spaces, context (linguistics)"
         }
       ],
-      "confidence": 0.8466438468709913
+      "confidence": 0.8206322263444236
     },
     {
       "period": [
-        1987,
-        1990
+        1992,
+        1997
       ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.3261273782469057,
-      "representative_papers": [
-        {
-          "title": "A stochastic parts program and noun phrase parser for unrestricted text",
-          "year": 1988,
-          "citations": 0
-        },
-        {
-          "title": "Why a Diagram is (Sometimes) Worth Ten Thousand Words",
-          "year": 1987,
-          "citations": 0
-        },
-        {
-          "title": "Estimation of probabilities from sparse data for the language model component of a speech recognizer",
-          "year": 1987,
-          "citations": 0
-        }
-      ],
-      "confidence": 0.6966286322152739
-    },
-    {
-      "period": [
-        1991,
-        1993
-      ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.2588075880758807,
+      "topic_label": "Symbolic Rule-Based Linguistics",
+      "description": "The 1992-1997 NLP paradigm centered on symbolic rule-based approaches, emphasizing explicit linguistic rules and structured representations, as seen in transformation-based error-driven learning for POS tagging and class-based n-gram models. This paradigm prioritized manual encoding of linguistic knowledge and statistical modeling of syntactic-semantic patterns, contrasting with later data-driven methods.",
+      "network_stability": 0.25950214258080573,
       "representative_papers": [
         {
           "title": "Class-based n -gram models of natural language",
           "year": 1992,
-          "citations": 0
+          "abstract": "The article explores class-based n-gram models for predicting words in text by analyzing the co-occurrence of words within syntactic and semantic groupings, utilizing various statistical algorithms to enhance natural language processing capabilities.\n\nTopic: linguistics, large language model, natural language processing, language model, language, computational linguistics, natural language"
         },
-        {
-          "title": "Semantic priming effects in visual word recognition : A selective review of current findings and theories",
-          "year": 1991,
-          "citations": 0
-        },
-        {
-          "title": "Automatic acquisition of hyponyms from large text corpora",
-          "year": 1992,
-          "citations": 0
-        }
-      ],
-      "confidence": 0.8251659817071159
-    },
-    {
-      "period": [
-        1994,
-        1997
-      ],
-      "topic_label": "Symbolic Rule-Based Language Modeling",
-      "network_stability": 0.2901468044656003,
-      "representative_papers": [
         {
           "title": "Are Good Texts Always Better? Interactions of Text Coherence, Background Knowledge, and Levels of Understanding in Learning From Text",
           "year": 1996,
-          "citations": 0
+          "abstract": "The article explores the impact of text coherence on learning from science texts, revealing that students with limited background knowledge benefit more from globally coherent texts, while those with higher knowledge levels engage in more complex processing. Through two experiments, it highlights the interactions between text coherence, readers' background knowledge, and their levels of understanding, emphasizing the importance of situational comprehension in educational contexts.\n\nTopic: narrative, educational research, good texts, text coherence, language comprehension, communication, text simplification, cognitive science, educational psychology, textual practice, reading research, background knowledge, language learning, education, learning sciences, text mining, natural language processing, language-based approach, conceptual knowledge acquisition, language acquisition, semantic learning"
         },
         {
           "title": "A trainable document summarizer",
           "year": 1995,
-          "citations": 0
+          "abstract": "The article presents a trainable document summarizer developed by Julian Kupiec, Jan Pedersen, and Francine Chen, which focuses on automatic summarization techniques in natural language processing. It discusses the methodology and implications of using this summarization tool for enhancing document comprehension and retrieval in computer science.\n\nTopic: trainable document summarizer, computer science, natural language processing, documentation, automatic summarization, annotation tool"
         },
         {
           "title": "Robust text-independent speaker identification using Gaussian mixture speaker models",
           "year": 1995,
-          "citations": 0
+          "abstract": "The article presents a study on the use of Gaussian mixture models (GMM) for text-independent speaker identification, demonstrating their effectiveness in achieving high identification rates from short utterances in unconstrained conversational speech, even under the challenges posed by telephone transmission. The experimental evaluation, involving 49 speakers, highlights the GMM's superior performance compared to other techniques, achieving an accuracy of 96.8% with clean utterances.\n\nTopic: speech recognition, voice recognition, natural language processing, speech processing, language, multi-speaker speech recognition, machine learning, speaker recognition, speech separation, speech communication, spoken language technology, robust speech recognition"
+        },
+        {
+          "title": "Unsupervised word sense disambiguation rivaling supervised methods",
+          "year": 1995,
+          "abstract": "This article introduces an unsupervised learning algorithm for word sense disambiguation that achieves performance comparable to supervised methods, utilizing two key constraints\u2014discourse consistency and collocation\u2014through an iterative bootstrapping process, with an accuracy exceeding 96%.\n\nTopic: computer science, linguistics, word-sense disambiguation, text mining, natural language processing, language, unsupervised machine learning, machine learning, semantic evaluation, computational linguistics, knowledge discovery, computational intelligence, deep learning, semantic processing, machine learning research, entity disambiguation, distributional semantics"
+        },
+        {
+          "title": "On cluster validity for the fuzzy c-means model",
+          "year": 1995,
+          "abstract": "The article explores the impact of the weighting exponent parameter in the fuzzy c-means (FCM) clustering algorithm on the validity of data partitions, analyzing various validation functionals such as the partition coefficient and entropy indexes. Through numerical experiments, it identifies an optimal range for the exponent, suggesting that values between 1.5 and 2.5, particularly m=2, yield the most reliable clustering results across different cluster counts.\n\nTopic: computer science, fuzzy logic, soft computing, machine learning, fuzzy clustering, cluster validity, fuzzy modeling, fuzzy pattern recognition, fuzzy c-means model, cognitive science, fuzzy mathematics, fuzzy system, approximation theory, biostatistics, deep learning, machine learning research, natural language processing, clustering, fuzzy computing, cluster computing"
+        },
+        {
+          "title": "Transformation-based error-driven learning and natural language processing: a case study in part-of-speech tagging",
+          "year": 1995,
+          "abstract": "The article discusses a transformation-based error-driven learning approach to part-of-speech tagging in natural language processing, highlighting a shift from manual linguistic encoding to automated corpus-based learning. It emphasizes the advantages of a rule-based method that offers clearer insights into model behavior while maintaining performance.\n\nTopic: language, part-of-speech tagging, transformation-based error-driven learning, natural language processing"
+        },
+        {
+          "title": "WAYS WITH WORDS",
+          "year": 1995,
+          "abstract": "The article discusses the author's disdain for the use of abbreviations in communication, highlighting the confusion they can cause and expressing satisfaction that the British Medical Journal accepted an advertisement for the Builders Merchants Journal. It reflects on the broader implications of language use and the arrogance of those who assume others understand their abbreviations.\n\nTopic: applied linguistics, morphology (linguistics), linguistics, keyword extraction, natural language processing, language, general linguistics, language-based approach, syntax, communication, lexical semantics, sociolinguistics, semantics, social semiotics, linguistic theory, narrative, language learning, context (linguistics)"
         }
       ],
-      "confidence": 0.8237686474844282
+      "confidence": 0.7817401703952428
     },
     {
       "period": [
@@ -212,35 +253,61 @@
         2024
       ],
       "topic_label": "Distributional Semantic Modeling",
+      "description": "This paradigm centers on learning distributed word representations from raw text, leveraging co-occurrence statistics and neural networks to capture semantic relationships, as exemplified by GloVe (2014) and the Skip-gram model (2013). It emphasizes context-sensitive embeddings and their application in enhancing NLP tasks through models like BERT (2018), which builds on these representations for contextual language understanding.",
       "network_stability": 0.33410528140208734,
       "representative_papers": [
         {
           "title": "Distributed Representations of Words and Phrases and their Compositionality",
           "year": 2013,
-          "citations": 0
+          "abstract": "The article discusses the continuous Skip-gram model for learning distributed vector representations of words and phrases, highlighting its efficiency in capturing syntactic and semantic relationships. It also presents enhancements to improve vector quality and training speed, addresses limitations in representing idiomatic phrases, and introduces techniques like negative sampling for better performance in natural language processing tasks.\n\nTopic: distributional semantics, word embeddings, natural language processing, distributed learning, distributed representations, cognitive science, semantics, language model, text mining, linguistics, language, representation analysis, semantic representation, computational linguistics"
         },
         {
           "title": "Glove: Global Vectors for Word Representation",
           "year": 2014,
-          "citations": 0
+          "abstract": "The article discusses a new method for learning word vector representations, called Global Vectors for Word Representation (Glove), which combines the strengths of matrix factorization and local context window approaches. It highlights how this model efficiently utilizes statistical information from word co-occurrence matrices to produce meaningful word embeddings that excel in analogy and similarity tasks in natural language processing.\n\nTopic: word embeddings, language resource, computer science, linguistics, computational linguistics, semantic representation, information fusion, language, semantic evaluation, vector space model, word representation, image representation, machine translation, language model, global vectors, deep learning, distributional semantics, text mining, natural language processing, large language model"
         },
         {
           "title": "Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank",
           "year": 2013,
-          "citations": 0
+          "abstract": "The article introduces the Sentiment Treebank, a resource designed to enhance the understanding of semantic compositionality in sentiment detection by providing fine-grained labels for parse trees and sentences. It presents the Recursive Neural Tensor Network model, which significantly improves sentiment classification accuracy, achieving state-of-the-art results in both single-sentence and fine-grained sentiment predictions.\n\nTopic: computer science, text mining, language model, natural language processing, treebanks, machine learning, semantic evaluation, vector space model, cognitive science, computational linguistics, data science, knowledge discovery, recursive deep models, semantic compositionality, machine learning research, sentiment treebank, semantic parsing"
+        },
+        {
+          "title": "Word Representations: A Simple and General Method for Semi-Supervised Learning",
+          "year": 2010,
+          "abstract": "The article discusses a method for enhancing the accuracy of supervised natural language processing (NLP) systems by incorporating unsupervised word representations as additional features, evaluating various embedding techniques and their effectiveness in improving named entity recognition (NER) tasks. It highlights the potential for further enhancements by combining different representations and provides resources for accessing the features and code used in the study.\n\nTopic: semantic representation, computer science, linguistics, text mining, natural language processing, language, machine learning, computational linguistics, deep learning, nlp task, machine learning research, semi-supervised learning, distributional semantics, word representations, general method, language learning"
+        },
+        {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "year": 2018,
+          "abstract": "The article introduces BERT (Bidirectional Encoder Representations from Transformers), a novel language representation model that pre-trains deep bidirectional representations from unlabeled text, enabling state-of-the-art performance across various natural language processing tasks with minimal architectural changes. BERT achieves significant improvements in benchmarks such as GLUE, MultiNLI, and SQuAD, demonstrating its effectiveness in language understanding.\n\nTopic: computer science, language model, natural language processing, language, language engineering, computational linguistics, deep bidirectional transformers, deep learning, machine translation, language understanding"
+        },
+        {
+          "title": "Sequence to Sequence Learning with Neural Networks",
+          "year": 2014,
+          "abstract": "The article discusses a novel end-to-end approach for sequence-to-sequence learning using Deep Neural Networks, specifically employing multilayered Long Short-Term Memory (LSTM) networks to translate between English and French. The method demonstrates significant performance improvements, achieving a BLEU score of 34.8 on the WMT'14 dataset, surpassing traditional phrase-based systems and effectively handling long sentences and word order variations.\n\nTopic: neural networks, knowledge discovery, sparse neural network, neural network (machine learning), sequential learning, computer science, recurrent neural network, deep reinforcement learning, machine learning research, deep learning, sequence modelling, machine vision, natural language processing, natural language generation, machine learning, data science, neural computation, cognitive science, computational intelligence"
+        },
+        {
+          "title": "Deep Contextualized Word Representations",
+          "year": 2018,
+          "abstract": "The article \"Deep Contextualized Word Representations\" presents a novel approach to generating word embeddings that capture nuanced meanings based on context, enhancing natural language processing tasks such as semantic similarity and text mining. The authors explore the implications of these deep contextualized representations for language learning and computational semantics, contributing to advancements in linguistics and cognitive science.\n\nTopic: language learning, language science, knowledge discovery, word representations, computational semantics, word embeddings, natural language processing, semantic similarity, cognitive science, language model, text mining, linguistics, language, deep learning, semantic representation, computational linguistics"
+        },
+        {
+          "title": "Thumbs Up or Thumbs Down? Semantic Orientation Applied to Unsupervised Classification of Reviews",
+          "year": 2002,
+          "abstract": "The article discusses an unsupervised learning algorithm designed to classify reviews as either recommended or not based on the semantic orientation of phrases containing adjectives and adverbs. By analyzing the average sentiment of these phrases, the algorithm achieves a classification accuracy of 74% across various domains, with performance varying from 84% for automobile reviews to 66% for movie reviews.\n\nTopic: semantic orientation, knowledge discovery, automatic classification, principal component analysis, computer science, machine learning research, text mining, unsupervised classification, affective computing, information retrieval, machine vision, natural language processing, distributional semantics, multimodal sentiment analysis, semantic interpretation, machine learning, linguistics, computational linguistics, cognitive science, semantic evaluation"
         }
       ],
       "confidence": 0.847249090343504
     }
   ],
-  "unified_confidence": 0.8169143646969114,
+  "unified_confidence": 0.8303925098770263,
   "algorithm_config": {
-    "direction_threshold": 0.39947161806109377,
+    "direction_threshold": 0.4,
     "citation_boost": 0.8,
-    "validation_threshold": 0.3026165858213599,
+    "validation_threshold": 0.7,
     "citation_support_window": 2,
     "similarity_min_segment_length": 3,
-    "similarity_max_segment_length": 26,
+    "similarity_max_segment_length": 50,
     "keyword_min_frequency": 2,
     "min_significant_keywords": 2
   }

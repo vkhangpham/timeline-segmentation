@@ -1,37 +1,30 @@
 {
   "domain_name": "deep_learning",
-  "analysis_date": "2025-06-25T18:00:43.453684",
+  "analysis_date": "2025-06-25T22:35:30.403532",
   "time_range": [
     1995,
     2020
   ],
   "total_papers": 410,
-  "statistical_significance": 0.5983189427761014,
+  "statistical_significance": 0.7836291918414184,
   "change_points": [
-    2002,
-    2003,
-    2004,
-    2005,
-    2006,
-    2007,
     2009,
     2010,
     2011,
-    2012,
     2013,
     2014
   ],
   "segments": [
     [
       1995,
-      2007
+      2009
     ],
     [
-      2008,
-      2010
+      2010,
+      2012
     ],
     [
-      2011,
+      2013,
       2020
     ]
   ],
@@ -39,90 +32,168 @@
     {
       "period": [
         1995,
-        2007
+        2009
       ],
       "topic_label": "Statistical Pattern Recognition with Backpropagation",
-      "network_stability": 0.29901469291492244,
+      "description": "This paradigm centered on using backpropagation for training feed-forward neural networks within a statistical pattern recognition framework, as emphasized in 'Neural Networks for Pattern Recognition' (1995) and 'Neural Networks: A Comprehensive Foundation' (1998). It prioritized supervised learning, error minimization, and generalization through Bayesian methods, while also incorporating techniques like SMOTE (2002) for handling imbalanced data and eigenfaces (2002) for feature extraction in pattern recognition tasks.",
+      "network_stability": 0.263314281556483,
       "representative_papers": [
+        {
+          "title": "Face recognition using eigenfaces",
+          "year": 2002,
+          "abstract": "The article discusses a near-real-time face recognition system that utilizes the concept of eigenfaces to detect and identify human faces by projecting face images onto a feature space, allowing for the recognition of individuals based on their unique characteristics. This approach enables the system to learn and recognize new faces in an unsupervised manner, leveraging advancements in pattern recognition and computer vision.\n\nTopic: pattern recognition, computer science, face recognition, image analysis, information fusion, feature detection, data science, computational imaging, localization, deep learning, machine learning research, machine vision, digital image processing, face detection, object recognition, feature extraction, computer vision, applied mathematics, image classification"
+        },
         {
           "title": "Neural Networks for Pattern Recognition",
           "year": 1995,
-          "citations": 0
+          "abstract": "This book offers a comprehensive exploration of feed-forward neural networks within the context of statistical pattern recognition, covering essential concepts, modeling techniques, and error minimization algorithms. It also addresses key topics such as learning generalization, data processing, and feature extraction, concluding with an extensive discussion on Bayesian applications in neural networks.\n\nTopic: neural networks, pattern recognition, machine vision, neural architecture search, sparse neural network, neural network (machine learning), temporal pattern recognition, cognitive science, computational intelligence, computer science, recurrent neural network, convolutional neural network, machine learning, machine learning research, deep learning, data science, image analysis"
         },
         {
           "title": "SMOTE: Synthetic Minority Over-sampling Technique",
           "year": 2002,
-          "citations": 0
+          "abstract": "The article discusses the Synthetic Minority Over-sampling Technique (SMOTE) as a method for improving classifier performance on imbalanced datasets, where minority classes are underrepresented. It highlights the effectiveness of combining over-sampling of minority classes with under-sampling of majority classes to enhance sensitivity and achieve better results in classification tasks, particularly in terms of the Receiver Operating Characteristic (ROC) curve.\n\nTopic: sampling (statistics), sampling, monte carlo sampling, sampling technique, applied statistics, machine learning, data heterogeneity, biostatistics, data science, deep learning, statistics, machine learning research, complex sample, data mining"
         },
         {
-          "title": "Face recognition using eigenfaces",
+          "title": "Training Products of Experts by Minimizing Contrastive Divergence",
           "year": 2002,
-          "citations": 0
-        }
-      ],
-      "confidence": 0.8104948768712515
-    },
-    {
-      "period": [
-        2008,
-        2010
-      ],
-      "topic_label": "Hierarchical Feature Learning with Probabilistic Models",
-      "network_stability": 0.21633986928104573,
-      "representative_papers": [
+          "abstract": "The article discusses a method for training a product of experts (PoE) model by minimizing contrastive divergence, which allows for the effective combination of multiple latent-variable models while maintaining conditional independence among experts. It highlights the challenges of maximizing likelihood in PoE training and presents contrastive divergence as an efficient objective function for approximating derivatives, with applications in various fields such as pattern recognition and machine learning.\n\nTopic: pattern recognition, computer science, training products, machine learning, knowledge distillation, image analysis, information fusion, supervised learning, robot learning, cognitive science, computational intelligence, multiple instance learning, contrastive divergence, systems engineering, deep learning, machine learning research, ensemble algorithm, machine vision, mixture of expert, neural network (machine learning)"
+        },
+        {
+          "title": "Neural Networks: A Comprehensive Foundation",
+          "year": 1998,
+          "abstract": "\"Neural Networks: A Comprehensive Foundation\" offers an in-depth exploration of neural networks from an engineering perspective, covering essential topics such as learning processes, back-propagation, and VLSI implementation. This well-organized and accessible text is designed for professional engineers and graduate students, featuring practical examples, problems, and illustrations to reinforce key concepts in the field of neural computation and machine learning.\n\nTopic: computer science, machine learning, comprehensive foundation, neural networks, neural computation, deep learning, neural network (machine learning), neuronal network"
+        },
+        {
+          "title": "Multiresolution gray-scale and rotation invariant texture classification with local binary patterns",
+          "year": 2002,
+          "abstract": "The article presents a novel multiresolution approach for gray-scale and rotation invariant texture classification using local binary patterns, emphasizing the significance of \"uniform\" patterns in image analysis. It highlights the method's computational efficiency and robustness against variations, supported by experimental results demonstrating effective classification of simple texture patterns.\n\nTopic: image analysis, pattern recognition, computer science, image classification, hierarchical classification, computer vision, local binary patterns, multiresolution gray-scale, object categorization, deep learning, texture analysis, machine vision, digital image processing"
+        },
+        {
+          "title": "Neural network-based face detection",
+          "year": 1998,
+          "abstract": "The article discusses a neural network-based system for detecting upright frontal faces in images, utilizing a retinally connected network to analyze image windows and improve accuracy through multiple network arbitration and a bootstrap algorithm for negative example collection. Comparisons with other advanced systems demonstrate that this approach achieves competitive performance in terms of false-positive rates.\n\nTopic: image analysis, computer science, computer vision, machine learning, feature detection, object detection, deep learning, facial recognition system, neural network (machine learning), machine vision, face detection, facial expression recognition"
+        },
         {
           "title": "Learning Deep Architectures for AI",
           "year": 2009,
-          "citations": 0
-        },
-        {
-          "title": "Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations",
-          "year": 2009,
-          "citations": 0
-        },
-        {
-          "title": "Extracting and composing robust features with denoising autoencoders",
-          "year": 2008,
-          "citations": 0
+          "abstract": "The article explores the role of deep architectures in advancing artificial intelligence, emphasizing their necessity for learning complex functions and high-level abstractions in tasks like vision and language. It discusses recent developments in algorithms and architectures, particularly in the context of neural networks and belief networks, while highlighting the challenges and future directions in this evolving field.\n\nTopic: machine learning, computer science, deep architectures, artificial intelligence, deep learning, ai architecture"
         }
       ],
-      "confidence": 0.8698693556771017
+      "confidence": 0.8185963347290199
     },
     {
       "period": [
-        2011,
+        2010,
+        2012
+      ],
+      "topic_label": "Unsupervised Pre-Training with Supervised Refinement",
+      "description": "This paradigm centered on using unsupervised pre-training with stacked denoising autoencoders (2010) to learn useful representations, followed by supervised fine-tuning to optimize performance, as seen in context-dependent DNNs for speech recognition (2012) and multi-column networks for image classification (2012).",
+      "network_stability": 0.27652464494569756,
+      "representative_papers": [
+        {
+          "title": "Understanding the difficulty of training deep feedforward neural networks",
+          "year": 2010,
+          "abstract": "The article explores the challenges of training deep feedforward neural networks, highlighting the limitations of standard gradient descent and the impact of activation functions on network performance. It discusses recent advancements in training algorithms, the benefits of non-linear activations, and proposes a new scheme to enhance convergence rates by analyzing gradient behavior across layers.\n\nTopic: machine learning, computer science, artificial intelligence, deep learning, neural network (machine learning), learning problem, neural computation"
+        },
+        {
+          "title": "Context-Dependent Pre-Trained Deep Neural Networks for Large-Vocabulary Speech Recognition",
+          "year": 2012,
+          "abstract": "The article presents a novel context-dependent deep neural network (CD-DNN-HMM) model for large-vocabulary speech recognition, highlighting its effectiveness in improving accuracy over traditional Gaussian mixture models. Through robust pre-training and optimization techniques, the proposed model demonstrates significant performance enhancements on a challenging business search dataset, achieving notable reductions in error rates.\n\nTopic: computer science, speech recognition, voice recognition, language model, natural language processing, speech processing, spoken language processing, machine learning, cognitive science, data science, language recognition, deep learning, speech communication, large-vocabulary speech recognition, speech technology, spoken language technology, language learning, speech corpus"
+        },
+        {
+          "title": "Object Detection with Discriminatively Trained Part-Based Models",
+          "year": 2010,
+          "abstract": "The article presents an object detection system utilizing multiscale deformable part models that effectively handle variable classes and achieve top results in PASCAL challenges. It introduces innovative methods for discriminative training with partially labeled data, employing a latent SVM approach to optimize the detection of objects through a convex problem-solving framework.\n\nTopic: image analysis, pattern recognition, computer science, object recognition, scene understanding, computer vision, machine learning, part-based models, object detection, object categorization, deep learning, machine vision"
+        },
+        {
+          "title": "An analysis of single-layer networks in unsupervised feature learning",
+          "year": 2011,
+          "abstract": "This article analyzes the effectiveness of single-layer networks in unsupervised feature learning, demonstrating that simple factors like the number of hidden nodes and model parameters can significantly impact performance on benchmark datasets such as CIFAR and NORB. The study reveals that with optimal configurations, these straightforward models can achieve state-of-the-art accuracy without the need for complex hyperparameter tuning.\n\nTopic: image analysis, computer science, feature learning, unsupervised machine learning, machine learning, data science, network analysis, deep learning, machine learning research, unsupervised feature, neural network (machine learning), single-layer networks"
+        },
+        {
+          "title": "Stacked Denoising Autoencoders: Learning Useful Representations in a Deep Network with a Local Denoising Criterion",
+          "year": 2010,
+          "abstract": "The article presents a novel approach to constructing deep networks by stacking layers of denoising autoencoders, which are trained to remove noise from corrupted inputs. This method demonstrates improved performance on benchmark classification tasks, often surpassing traditional belief networks, and enhances the effectiveness of subsequent SVM classifiers by learning higher-level representations in an unsupervised manner.\n\nTopic: deep network, neural computation, useful representations, neural network (machine learning), autoencoders, computer science, machine learning, image denoising, local denoising criterion, deep learning"
+        },
+        {
+          "title": "Improving neural networks by preventing co-adaptation of feature detectors",
+          "year": 2012,
+          "abstract": "The article discusses a technique called \"dropout\" that enhances the performance of large feedforward neural networks by randomly omitting a portion of feature detectors during training, thereby reducing overfitting and preventing complex co-adaptations among detectors. This method has led to significant improvements in various benchmark tasks, including speech and object recognition.\n\nTopic: adversarial machine learning, pattern recognition, computer science, convolutional neural network, transfer learning, feature learning, machine learning, feature detection, cognitive science, feature detectors, data science, neural computation, deep learning, computational intelligence, machine learning research, neural networks, neural network (machine learning)"
+        },
+        {
+          "title": "Are we ready for autonomous driving? The KITTI vision benchmark suite",
+          "year": 2012,
+          "abstract": "The article discusses the development of the KITTI vision benchmark suite, which aims to enhance visual recognition systems in robotics by providing challenging tasks related to autonomous driving, such as stereo, optical flow, and 3D object detection. It highlights the limitations of existing algorithms in real-world scenarios and offers a comprehensive dataset to help reduce bias in the computer vision community.\n\nTopic: image analysis, autonomous driving, computer science, vision recognition, vehicular technology, autonomous navigation, computer vision, machine learning, robot learning, cognitive science, advanced driver-assistance system, automatic control, deep learning, intelligent vehicle, robotics, machine vision, vision robotics, computer engineering"
+        },
+        {
+          "title": "Multi-column deep neural networks for image classification",
+          "year": 2012,
+          "abstract": "The article discusses the development of multi-column deep neural networks that achieve near-human performance in image classification tasks, such as recognizing handwritten digits and traffic signs, by utilizing biologically inspired architectures and winner-take-all neuron models. The proposed method not only excels on the MNIST benchmark but also significantly outperforms human performance on other image classification tasks, showcasing advancements in deep learning and neural network applications.\n\nTopic: object categorization, digital image processing, medical image computing, multi-task learning, computational imaging, machine vision, neural network (machine learning), cognitive science, computer science, convolutional neural network, machine learning, image classification, image representation, deep learning, data science, machine learning research, image analysis"
+        }
+      ],
+      "confidence": 0.8882064962769786
+    },
+    {
+      "period": [
+        2013,
         2020
       ],
-      "topic_label": "Empirical Deep Learning with Architectural Innovation",
-      "network_stability": 0.39760233500488734,
+      "topic_label": "Deep Architectural Optimization with Supervised Refinement",
+      "description": "This paradigm centered on optimizing deep neural network architectures through supervised training, as seen in ResNet (2016) and VGG (2014), while leveraging pre-trained models for improved performance, exemplified by FCNs (2015) and R-CNN (2014). It emphasized architectural depth, efficient computation, and batch normalization (2015) to enhance training stability and accuracy.",
+      "network_stability": 0.3966994784888939,
       "representative_papers": [
         {
           "title": "Deep Residual Learning for Image Recognition",
           "year": 2016,
-          "citations": 0
+          "abstract": "The article presents a residual learning framework that simplifies the training of significantly deeper neural networks, demonstrating that these networks can achieve higher accuracy with lower complexity. It highlights empirical results from the ImageNet dataset, where a deep residual network achieved a 3.57% error rate, winning first place in the ILSVRC 2015 classification task, and shows improvements in object detection on the COCO dataset due to enhanced deep representations.\n\nTopic: image analysis, pattern recognition, computer science, computational imaging, convolutional neural network, object recognition, unsupervised machine learning, machine learning, deep residual learning, deep learning, image representation, image recognition, principal component analysis, image classification, digital image processing"
         },
         {
-          "title": "ImageNet Classification with Deep Convolutional Neural Networks",
-          "year": 2012,
-          "citations": 0
+          "title": "Going deeper with convolutions",
+          "year": 2015,
+          "abstract": "The article introduces a deep convolutional neural network architecture called Inception, which achieved state-of-the-art results in the ImageNet Large-Scale Visual Recognition Challenge 2014. It emphasizes the efficient use of computational resources through a carefully designed network structure, exemplified by GoogLeNet, a 22-layer model that enhances classification and detection capabilities while maintaining a constant computational budget.\n\nTopic: image analysis, computational imaging, computer science, information fusion, convolutional neural network, large language model, deep reinforcement learning, machine learning, applied mathematics, sparse neural network, data science, neural computation, deep learning, computational intelligence, machine learning research, deepfakes, neural network (machine learning), machine vision"
+        },
+        {
+          "title": "Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation",
+          "year": 2014,
+          "abstract": "The article presents a novel algorithm, R-CNN, that significantly enhances object detection and semantic segmentation performance on the PASCAL VOC dataset by over 30% compared to previous methods. It leverages high-capacity convolutional neural networks for region proposals and emphasizes the benefits of supervised pre-training with limited labeled data, providing insights into the learned feature hierarchies.\n\nTopic: pattern recognition, computer science, machine learning, fuzzy set, image analysis, information fusion, accurate object detection, feature detection, cognitive science, object detection, data science, object categorization, computational imaging, localization, deep learning, machine vision, rich feature hierarchies, semantic segmentation, object recognition, computer vision, scene analysis"
         },
         {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
           "year": 2014,
-          "citations": 0
+          "abstract": "The article explores the impact of increasing the depth of convolutional networks on accuracy in large-scale image recognition, demonstrating that using very small (3x3) convolution filters can significantly enhance performance with networks of 16-19 weight layers. The findings contributed to a successful submission in the ImageNet Challenge 2014, securing top placements, and the authors have made their best-performing models publicly available to support further research in deep learning and computer vision.\n\nTopic: digital image processing, automatic classification, deep convolutional networks, computer science, machine learning research, deep learning, pattern recognition, machine vision, image representation, large-scale image recognition, large-scale datasets, computational imaging, machine learning, data science, cognitive science, computational intelligence, convolutional neural network, feature detection, unsupervised machine learning, image analysis"
+        },
+        {
+          "title": "Fully convolutional networks for semantic segmentation",
+          "year": 2015,
+          "abstract": "The article discusses the development and application of fully convolutional networks (FCNs) for semantic segmentation, demonstrating that these networks can outperform state-of-the-art methods by processing images of arbitrary sizes and producing correspondingly-sized outputs. It highlights the architecture's ability to combine features from different layers for improved segmentation accuracy and reports significant performance improvements on benchmark datasets like PASCAL VOC and NYUDv2.\n\nTopic: pattern recognition, computer science, machine learning, image segmentation, image analysis, information fusion, convolutional neural network, convolutional networks, cognitive science, data science, computational imaging, scene understanding, deep learning, machine learning research, machine vision, semantic segmentation, medical image computing, feature extraction, computer vision, scene analysis"
+        },
+        {
+          "title": "ImageNet classification with deep convolutional neural networks",
+          "year": 2017,
+          "abstract": "The article discusses the development and training of a deep convolutional neural network that achieved significant improvements in image classification accuracy on the ImageNet dataset, achieving top-1 and top-5 error rates of 37.5% and 17.0%, respectively. It highlights the network's architecture, including its use of dropout for regularization and efficient GPU implementation, and notes its success in the ILSVRC-2012 competition.\n\nTopic: computer science, data classification, machine learning, intelligent classification, automatic classification, image analysis, convolutional neural network, biomedical imaging, data science, image representation, computational imaging, deep learning, machine learning research, digital image processing, medical image computing, imagenet classification, health science, neural network (machine learning), image classification"
+        },
+        {
+          "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+          "year": 2015,
+          "abstract": "The article discusses Batch Normalization, a technique designed to address the issue of internal covariate shift in deep neural networks, which complicates training by altering the distribution of layer inputs. By normalizing inputs within mini-batches, this method accelerates training, allows for higher learning rates, and can reduce the need for other regularization techniques, ultimately achieving significant improvements in model accuracy on tasks like image classification.\n\nTopic: neural network (machine learning), internal covariate shift, batch normalization, computer science, machine learning, deep learning, data science"
+        },
+        {
+          "title": "Fast R-CNN",
+          "year": 2015,
+          "abstract": "The article presents Fast R-CNN, an advanced method for object detection that enhances the efficiency and accuracy of the original R-CNN by utilizing deep convolutional networks, achieving significant improvements in training and testing speeds. Implemented in Python and C++, Fast R-CNN is open-source and demonstrates superior performance on the PASCAL VOC 2012 dataset compared to previous models.\n\nTopic: computational imaging, machine vision, natural language processing, neural network (machine learning), cognitive science, computer science, recurrent neural network, convolutional neural network, machine learning, deep reinforcement learning, machine learning research, object detection, deep learning, data science, object recognition, image analysis"
         }
       ],
-      "confidence": 0.8961542583163925
+      "confidence": 0.8967802527522243
     }
   ],
-  "unified_confidence": 0.8588394969549152,
+  "unified_confidence": 0.8678610279194076,
   "algorithm_config": {
-    "direction_threshold": 0.3578485893151816,
+    "direction_threshold": 0.4,
     "citation_boost": 0.8,
-    "validation_threshold": 0.30035595648000474,
+    "validation_threshold": 0.7,
     "citation_support_window": 2,
     "similarity_min_segment_length": 3,
-    "similarity_max_segment_length": 13,
+    "similarity_max_segment_length": 50,
     "keyword_min_frequency": 2,
     "min_significant_keywords": 2
   }
