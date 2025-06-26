@@ -241,10 +241,187 @@ def d3_cross_citation_ratio(segment_a: Tuple[Paper, ...], segment_b: Tuple[Paper
     return MetricResult(ratio, explanation)
 
 # ---------------------------------------------------------------------------
-# Aggregation helpers (linear, harmonic)
+# Aggregation helpers (linear, harmonic, adaptive_tchebycheff)
 # ---------------------------------------------------------------------------
 
-VALID_AGGREGATION_METHODS = {"linear", "harmonic"}
+VALID_AGGREGATION_METHODS = {"linear", "harmonic", "adaptive_tchebycheff"}
+
+
+def _compute_runtime_scale_bounds(segment_papers: List[Tuple[Paper, ...]]) -> Tuple[float, float]:
+    """
+    Compute runtime scale bounds for consensus and difference metrics.
+    
+    This function estimates appropriate upper bounds for normalization by:
+    1. Computing consensus scores for different segment configurations
+    2. Computing difference scores for various segment pairs
+    3. Using statistical measures (95th percentile) to set robust bounds
+    
+    Args:
+        segment_papers: List of segments to analyze for scale estimation
+        
+    Returns:
+        Tuple of (consensus_upper_bound, difference_upper_bound)
+    """
+    if not segment_papers:
+        return 0.06, 0.8  # Fallback to empirical bounds
+    
+    consensus_scores = []
+    difference_scores = []
+    
+    # Sample consensus scores from actual segments
+    for segment in segment_papers:
+        if len(segment) >= 2:  # Need at least 2 papers for meaningful consensus
+            try:
+                cons_result = consensus_score(segment)
+                consensus_scores.append(cons_result.value)
+            except:
+                continue
+    
+    # Sample difference scores between segment pairs
+    for i in range(len(segment_papers)):
+        for j in range(i + 1, len(segment_papers)):
+            if len(segment_papers[i]) >= 1 and len(segment_papers[j]) >= 1:
+                try:
+                    diff_result = difference_score(segment_papers[i], segment_papers[j])
+                    difference_scores.append(diff_result.value)
+                except:
+                    continue
+    
+    # Additional sampling: create temporary segments to get more data points
+    all_papers = [paper for segment in segment_papers for paper in segment]
+    if len(all_papers) >= 10:
+        # Create some temporary segments for additional sampling
+        mid_point = len(all_papers) // 2
+        temp_segment1 = tuple(all_papers[:mid_point])
+        temp_segment2 = tuple(all_papers[mid_point:])
+        
+        try:
+            cons1 = consensus_score(temp_segment1)
+            cons2 = consensus_score(temp_segment2)
+            consensus_scores.extend([cons1.value, cons2.value])
+            
+            diff_temp = difference_score(temp_segment1, temp_segment2)
+            difference_scores.append(diff_temp.value)
+        except:
+            pass
+    
+    # Compute robust upper bounds using 95th percentile + safety margin
+    if consensus_scores:
+        consensus_bound = max(0.04, np.percentile(consensus_scores, 95) * 1.2)  # 20% safety margin
+    else:
+        consensus_bound = 0.06  # Fallback
+    
+    if difference_scores:
+        difference_bound = max(0.4, np.percentile(difference_scores, 95) * 1.2)  # 20% safety margin
+    else:
+        difference_bound = 0.8  # Fallback
+    
+    return consensus_bound, difference_bound
+
+
+def _estimate_consensus_baseline(segment_papers: List[Tuple[Paper, ...]]) -> float:
+    """
+    Estimate baseline consensus score for domain-specific normalization.
+    
+    Uses single-segment baseline as the minimum consensus threshold (τ_cons).
+    This represents the consensus score when no segmentation is applied.
+    
+    Args:
+        segment_papers: List of segments to analyze
+        
+    Returns:
+        Baseline consensus score (τ_cons)
+    """
+    if not segment_papers:
+        return 0.04  # Fallback based on empirical data
+    
+    # Create single segment with all papers
+    all_papers = tuple(paper for segment in segment_papers for paper in segment)
+    single_segment = [all_papers]
+    
+    # Calculate consensus for single segment (no internal weights override)
+    consensus_result = consensus_score(all_papers)
+    tau_cons = consensus_result.value
+    
+    # Ensure minimum threshold based on empirical observations
+    return max(tau_cons, 0.04)
+
+
+def _adaptive_tchebycheff_scalarization(
+    consensus: float, 
+    difference: float, 
+    tau_cons: float,
+    preference_weight: float = 0.5,
+    consensus_scale: float = None,
+    difference_scale: float = None
+) -> Tuple[float, str]:
+    """
+    Adaptive Augmented Tchebycheff scalarization for consensus-difference optimization.
+    
+    This method addresses the scale mismatch problem where Q_cons ≈ 0.05 and Q_diff ≈ 0.5-0.7
+    by using adaptive normalization and constraint-based optimization.
+    
+    Method:
+    1. Constraint enforcement: Ensure consensus ≥ τ_cons (baseline threshold)
+    2. Adaptive normalization: Scale both metrics to comparable ranges
+    3. Tchebycheff combination: max(w₁×norm_cons, w₂×norm_diff) + ρ×(w₁×norm_cons + w₂×norm_diff)
+    
+    Args:
+        consensus: Raw consensus score
+        difference: Raw difference score  
+        tau_cons: Baseline consensus threshold (from single-segment baseline)
+        preference_weight: User preference between consensus (0.0) and difference (1.0)
+        consensus_scale: Upper bound for consensus normalization (auto-computed if None)
+        difference_scale: Upper bound for difference normalization (auto-computed if None)
+        
+    Returns:
+        Tuple of (final_score, explanation)
+    """
+    # Constraint enforcement: Soft penalty if consensus significantly below baseline
+    # Allow reasonable deviations (10% tolerance) to avoid over-penalizing minor differences
+    tolerance = 0.10  # 10% tolerance
+    if consensus < tau_cons * (1 - tolerance):
+        penalty_score = consensus / tau_cons * 0.1  # Severe penalty for major violations
+        explanation = (
+            f"Adaptive Tchebycheff: consensus={consensus:.3f} < τ_cons={tau_cons:.3f}×(1-{tolerance}) → "
+            f"constraint violation penalty={penalty_score:.3f}"
+        )
+        return penalty_score, explanation
+    
+    # Adaptive normalization: use provided scales or fallback to empirical observations
+    if consensus_scale is None:
+        consensus_scale = 0.06  # Fallback from empirical data (landscape analysis)
+    if difference_scale is None:
+        difference_scale = 0.8   # Fallback from empirical data (landscape analysis)
+    
+    # Normalize to [0, 1] range with adaptive scaling
+    norm_consensus = min(1.0, consensus / consensus_scale)
+    norm_difference = min(1.0, difference / difference_scale)
+    
+    # Tchebycheff weights: preference_weight controls consensus vs difference emphasis
+    w_consensus = 1.0 - preference_weight  # Higher when preference_weight is low
+    w_difference = preference_weight       # Higher when preference_weight is high
+    
+    # Augmented Tchebycheff scalarization
+    # max(w₁×f₁, w₂×f₂) + ρ×(w₁×f₁ + w₂×f₂)
+    rho = 0.1  # Augmentation parameter (small positive value)
+    
+    weighted_consensus = w_consensus * norm_consensus
+    weighted_difference = w_difference * norm_difference
+    
+    tchebycheff_max = max(weighted_consensus, weighted_difference)
+    augmentation_term = rho * (weighted_consensus + weighted_difference)
+    
+    final_score = tchebycheff_max + augmentation_term
+    
+    explanation = (
+        f"Adaptive Tchebycheff: norm_cons={norm_consensus:.3f} (raw={consensus:.3f}/scale={consensus_scale:.3f}), "
+        f"norm_diff={norm_difference:.3f} (raw={difference:.3f}/scale={difference_scale:.3f}), "
+        f"weights=({w_consensus:.2f},{w_difference:.2f}), "
+        f"max({weighted_consensus:.3f},{weighted_difference:.3f}) + {rho}×{weighted_consensus + weighted_difference:.3f} = {final_score:.3f}"
+    )
+    
+    return final_score, explanation
 
 
 def _aggregate_scores(consensus: float, difference: float, weights: Tuple[float, float], method: str = "linear") -> float:
@@ -260,7 +437,7 @@ def _aggregate_scores(consensus: float, difference: float, weights: Tuple[float,
         consensus: Average consensus score across segments.
         difference: Average difference score across transitions.
         weights: Tuple (consensus_weight, difference_weight) that must sum to 1.
-        method: "linear" (recommended) or "harmonic" (research only).
+        method: "linear" (recommended), "harmonic" (research only), or "adaptive_tchebycheff" (Phase 17).
 
     Returns:
         Aggregated score (float).
@@ -273,6 +450,20 @@ def _aggregate_scores(consensus: float, difference: float, weights: Tuple[float,
 
     if method == "linear":
         return consensus_weight * consensus + difference_weight * difference
+
+    elif method == "adaptive_tchebycheff":
+        # For adaptive Tchebycheff, weights represent preference (0.0 = consensus focus, 1.0 = difference focus)
+        preference_weight = difference_weight  # Use difference_weight as preference parameter
+        
+        # τ_cons estimation requires segment context, use empirical baseline
+        tau_cons = 0.04  # Conservative baseline from landscape analysis
+        
+        # Use empirical bounds when called without segment context
+        score, _ = _adaptive_tchebycheff_scalarization(
+            consensus, difference, tau_cons, preference_weight,
+            consensus_scale=0.06, difference_scale=0.8  # Empirical fallbacks
+        )
+        return score
 
     # Harmonic mean implementation with safe handling when one component weight is zero
     if consensus_weight == 0.0:
@@ -413,8 +604,7 @@ def evaluate_segmentation_quality(
         # Priority order: environment variable > optimization_config.json
         aggregation_method = os.getenv("AGGREGATION_METHOD")
         if aggregation_method is None:
-            config_aggregation = _OPTIMIZATION_CONFIG["consensus_difference_weights"]["aggregation_method"]
-            aggregation_method = config_aggregation["method"]
+            aggregation_method = _OPTIMIZATION_CONFIG["consensus_difference_weights"]["aggregation_method"]
     
     # Validate inputs
     _validate_weights(consensus_weights)
@@ -441,12 +631,26 @@ def evaluate_segmentation_quality(
     if len(segment_papers) == 1:
         consensus_result = consensus_score(segment_papers[0], consensus_weights)
         # For single segment, final score is just the consensus score (difference is 0)
-        final_score_single = _aggregate_scores(
-            consensus_result.value,
-            0.0,
-            (consensus_final_weight, difference_final_weight),
-            method=aggregation_method,
-        )
+        if aggregation_method == "adaptive_tchebycheff":
+            # For single segment, use consensus as baseline and compute runtime bounds
+            tau_cons = _estimate_consensus_baseline(segment_papers)
+            consensus_scale, difference_scale = _compute_runtime_scale_bounds(segment_papers)
+            preference_weight = difference_final_weight
+            
+            final_score_single, tchebycheff_explanation_single = _adaptive_tchebycheff_scalarization(
+                consensus_result.value, 0.0, tau_cons, preference_weight,
+                consensus_scale=consensus_scale, difference_scale=difference_scale
+            )
+            
+            tchebycheff_single_explanation = f" | τ_cons={tau_cons:.3f} | runtime_bounds=({consensus_scale:.3f},{difference_scale:.3f}) | {tchebycheff_explanation_single}"
+        else:
+            final_score_single = _aggregate_scores(
+                consensus_result.value,
+                0.0,
+                (consensus_final_weight, difference_final_weight),
+                method=aggregation_method,
+            )
+            tchebycheff_single_explanation = ""
         
         # Apply segment count penalty if enabled (single segment case)
         penalty_explanation_single = ""
@@ -477,7 +681,7 @@ def evaluate_segmentation_quality(
             individual_consensus_scores=[consensus_result.value],
             individual_difference_scores=[],
             methodology_explanation=(
-                f"Single segment evaluation ({aggregation_method}): final_score = {final_score_single:.3f}{penalty_explanation_single}"
+                f"Single segment evaluation ({aggregation_method}): final_score = {final_score_single:.3f}{tchebycheff_single_explanation}{penalty_explanation_single}"
             )
         )
     
@@ -503,12 +707,27 @@ def evaluate_segmentation_quality(
     avg_difference = float(np.mean(difference_values))
     
     # Final score: weighted combination of consensus and difference
-    final_score = _aggregate_scores(
-        avg_consensus,
-        avg_difference,
-        (consensus_final_weight, difference_final_weight),
-        method=aggregation_method,
-    )
+    if aggregation_method == "adaptive_tchebycheff":
+        # For adaptive Tchebycheff, estimate τ_cons and runtime scale bounds from actual segments
+        tau_cons = _estimate_consensus_baseline(segment_papers)
+        consensus_scale, difference_scale = _compute_runtime_scale_bounds(segment_papers)
+        preference_weight = difference_final_weight  # Use difference weight as preference
+        
+        final_score, tchebycheff_explanation = _adaptive_tchebycheff_scalarization(
+            avg_consensus, avg_difference, tau_cons, preference_weight,
+            consensus_scale=consensus_scale, difference_scale=difference_scale
+        )
+        
+        # Store explanation for methodology
+        tchebycheff_method_explanation = f" | τ_cons={tau_cons:.3f} | runtime_bounds=({consensus_scale:.3f},{difference_scale:.3f}) | {tchebycheff_explanation}"
+    else:
+        final_score = _aggregate_scores(
+            avg_consensus,
+            avg_difference,
+            (consensus_final_weight, difference_final_weight),
+            method=aggregation_method,
+        )
+        tchebycheff_method_explanation = ""
     
     # Apply segment count penalty if enabled
     penalty_explanation = ""
@@ -535,7 +754,7 @@ def evaluate_segmentation_quality(
     
     methodology_explanation = (
         f"Multi-segment evaluation ({aggregation_method}): consensus={avg_consensus:.3f}, difference={avg_difference:.3f}, "
-        f"weights=({consensus_final_weight},{difference_final_weight}) → final={final_score:.3f}{penalty_explanation}"
+        f"weights=({consensus_final_weight},{difference_final_weight}) → final={final_score:.3f}{tchebycheff_method_explanation}{penalty_explanation}"
     )
     
     return SegmentationEvaluationResult(

@@ -132,13 +132,14 @@ def save_analysis_results(timeline_result: TimelineAnalysisResult, segmentation_
             {
                 'period': list(pc.period),
                 'topic_label': pc.topic_label,
+                'description': pc.topic_description,
                 'network_stability': pc.network_stability,
                 'representative_papers': [
                     {
                         'title': paper.get('title', '') if isinstance(paper, dict) else paper.title,
                         'year': paper.get('year', 0) if isinstance(paper, dict) else paper.pub_year,
-                        'citations': paper.get('citations', 0) if isinstance(paper, dict) else paper.citation_count
-                    } for paper in pc.representative_papers[:3]
+                        'abstract': paper.get('abstract', '') if isinstance(paper, dict) else paper.description
+                    } for paper in pc.representative_papers
                 ],
                 'confidence': pc.confidence
             }
