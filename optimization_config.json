@@ -1,78 +1,38 @@
 {
   "consensus_difference_weights": {
-    "aggregation_method": {
-      "method": "linear",
-      "description": "Linear aggregation (weighted arithmetic mean)"
-    },
+    "aggregation_method": "adaptive_tchebycheff",
     "final_combination_weights": {
       "consensus_weight": 0.1,
-      "difference_weight": 0.9,
-      "description": "Final score = 0.1 × consensus + 0.9 × difference"
+      "difference_weight": 0.9
     },
     "consensus_internal_weights": {
       "c1_keyword_jaccard": 0.4,
       "c2_tfidf_cohesion": 0.4,
-      "c3_citation_density": 0.2,
-      "description": "Consensus = 0.4×C1 + 0.4×C2 + 0.2×C3"
+      "c3_citation_density": 0.2
     },
     "difference_internal_weights": {
       "d1_keyword_js": 0.4,
       "d2_centroid_distance": 0.4,
-      "d3_cross_citation_ratio": 0.2,
-      "description": "Difference = 0.4×D1 + 0.4×D2 + 0.2×(1-D3)"
+      "d3_cross_citation_ratio": 0.2
     }
   },
   "optimization_parameters": {
     "direction_threshold_bounds": [0.1, 0.4],
     "validation_threshold_bounds": [0.3, 0.45],
     "similarity_min_segment_length_bounds": [3, 5],
-    "similarity_max_segment_length_bounds": [10, 30],
-    "description": "Parameter bounds for Bayesian optimization"
-  },
-  "evaluation_framework": {
-    "framework_name": "Consensus-Difference Metrics",
-    "objective_function": "L = 0.1 × Q_cons + 0.9 × Q_diff",
-    "transparency_required": true,
-    "fail_fast_enabled": true,
-    "description": "Centralized configuration for optimization methods"
-  },
-  "metadata": {
-    "created_date": "2024-12-22",
-    "purpose": "Centralize consensus-difference optimization weights",
-    "affected_files": [
-      "core/consensus_difference_metrics.py",
-      "compare_with_baselines.py", 
-      "optimize_segmentation_bayesian.py"
-    ],
-    "validation_status": "Verified against methodology",
-    "notes": "Optimized weights: cw=0.1, dw=0.9; TF-IDF max_features=10000; linear aggregation"
+    "similarity_max_segment_length_bounds": [10, 30]
   },
   "text_vectorizer": {
     "type": "tfidf",
     "max_features": 10000,
-    "clean_text_enabled": true,
-    "contextual_model": "all-mpnet-base-v2",
-    "cache_dir": ".hf_cache",
-    "device": "auto",
-    "description": "TF-IDF vectorization with 10K max features"
-  },
-  "phrase_enrichment": {
-    "enabled": true,
-    "top_k_phrases": 10,
-    "max_phrase_words": 3,
-    "deduplication_threshold": 0.7,
-    "description": "YAKE phrase extraction for multi-word concepts"
+    "clean_text_enabled": true
   },
   "segment_count_penalty": {
     "enabled": true,
-    "sigma": 5.0,
-    "target_calculation": "domain_year_span / 10",
-    "description": "Exponential penalty for segment count deviation"
+    "sigma": 5.0
   },
   "citation_enrichment": {
     "enabled": true,
-    "apply_year_filtering": false,
-    "minimum_citation_coverage": 0.05,
-    "description": "Load citation edges from JSON + GraphML"
+    "apply_year_filtering": false
   }
 } 
