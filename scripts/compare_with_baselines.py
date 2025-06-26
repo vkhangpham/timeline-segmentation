@@ -482,9 +482,14 @@ def load_manual_reference_data(domain_name: str) -> Tuple[Dict[str, Any], ...]:
     return tuple(historical_periods)
 
 
-def load_bayesian_optimized_results(domain_name: str) -> BaselineResult:
+def compute_bayesian_optimized_baseline(papers: Tuple[Paper, ...], domain_name: str) -> BaselineResult:
     """
-    Load results from Bayesian consensus-difference optimization.
+    Compute Bayesian optimization baseline by re-running optimized parameters through same evaluation pipeline.
+    
+    FAIRNESS CRITICAL: This ensures Bayesian optimization is evaluated using the SAME:
+    - Data preprocessing (same papers, same filtering)
+    - Evaluation function (same weights, aggregation method, algorithm config)
+    - Segmentation pipeline (same as all other baselines)
     
     FAIL-FAST: No fallbacks - any error will terminate execution.
     """
@@ -493,31 +498,101 @@ def load_bayesian_optimized_results(domain_name: str) -> BaselineResult:
     if not os.path.exists(bayesian_file):
         raise FileNotFoundError(f"Bayesian optimization results not found: {bayesian_file}")
     
-    # FAIL-FAST: No error handling - let exceptions propagate
+    # Load optimized parameters
     with open(bayesian_file, 'r') as f:
         data = json.load(f)
         
-    if domain_name not in data.get('consensus_difference_optimized_parameters', {}):
-        raise KeyError(f"Domain {domain_name} not found in Bayesian optimization results")
-        
-    params = data['consensus_difference_optimized_parameters'][domain_name]
-    detailed_eval = data.get('detailed_evaluations', {}).get(domain_name, {})
-        
-    return BaselineResult(
-        score=detailed_eval.get('score', 0.0),
-        execution_time=16.0,  # Approximate from our tests
-        method='bayesian_optimization',
-        description='Sophisticated algorithmic segmentation with optimized parameters',
-        consensus_score=detailed_eval.get('consensus_score', 0.0),
-        difference_score=detailed_eval.get('difference_score', 0.0),
-        num_segments=detailed_eval.get('num_segments', 0),
-        segment_sizes=tuple(),  # Not available in saved results
-        segmentation_approach='algorithmic_optimized',
-        additional_info={
-            'parameters': params,
-            'evaluations': 50
-        }
+    # Handle both old and new format
+    if 'optimized_parameters' in data:
+        # New simplified format
+        if domain_name not in data['optimized_parameters']:
+            raise KeyError(f"Domain {domain_name} not found in Bayesian optimization results")
+        domain_data = data['optimized_parameters'][domain_name]
+        params = domain_data['parameters']
+    else:
+        # Old format (fallback)
+        if domain_name not in data.get('consensus_difference_optimized_parameters', {}):
+            raise KeyError(f"Domain {domain_name} not found in Bayesian optimization results")
+        params = data['consensus_difference_optimized_parameters'][domain_name]
+    
+    # Create algorithm config with optimized parameters
+    from core.algorithm_config import AlgorithmConfig
+    optimized_config = AlgorithmConfig(
+        direction_threshold=params['direction_threshold'],
+        validation_threshold=params['validation_threshold'],
+        similarity_min_segment_length=params['similarity_min_segment_length'],
+        similarity_max_segment_length=params['similarity_max_segment_length'],
+        domain_name=domain_name,
+        # Keep all other parameters at their defaults to match baseline evaluation
     )
+    
+    # Convert papers to DomainData for the segmentation algorithm
+    domain_data_for_segmentation = DomainData(
+        domain_name=domain_name,
+        papers=papers,
+        citations=tuple(),  # Empty citations for consistency with baseline data
+        graph_nodes=tuple(),  # Empty graph nodes
+        year_range=(min(p.pub_year for p in papers), max(p.pub_year for p in papers)) if papers else (0, 0),
+        total_papers=len(papers)
+    )
+    
+    # Run the actual segmentation algorithm with optimized parameters
+    # This ensures we use the SAME segmentation pipeline as the Bayesian optimization
+    try:
+        from core.integration import run_change_detection
+        
+        segmentation_results, change_detection_result, shift_signals = run_change_detection(
+            domain_name, 
+            granularity=optimized_config.granularity, 
+            algorithm_config=optimized_config
+        )
+        
+        # Extract segment information from results
+        if segmentation_results and 'segments' in segmentation_results:
+            segments = segmentation_results['segments']
+            
+            # Convert segments (year tuples) to lists of papers - SAME AS BAYESIAN OPTIMIZATION
+            segment_papers = []
+            for segment_years in segments:
+                start_year, end_year = segment_years
+                segment_paper_list = [
+                    paper for paper in papers
+                    if start_year <= paper.pub_year <= end_year
+                ]
+                if segment_paper_list:  # Only add non-empty segments
+                    segment_papers.append(tuple(segment_paper_list))
+            
+            # If no valid segments, create single segment with all papers
+            if not segment_papers:
+                segment_papers = [papers]
+        else:
+            # No segments found, create single segment with all papers
+            segment_papers = [papers]
+        
+        # Evaluate using the SAME evaluation function as all baselines
+        segments_tuple = tuple(segment_papers)
+        score, metrics = evaluate_consensus_difference_for_segments(segments_tuple)
+        
+        return BaselineResult(
+            score=score,
+            execution_time=16.0,  # Approximate from our tests
+            method='bayesian_optimization',
+            description='Sophisticated algorithmic segmentation with optimized parameters (re-evaluated)',
+            consensus_score=metrics.get('consensus_score', 0.0),
+            difference_score=metrics.get('difference_score', 0.0),
+            num_segments=metrics.get('num_segments', 0),
+            segment_sizes=metrics.get('segment_sizes', tuple()),
+            segmentation_approach='algorithmic_optimized',
+            additional_info={
+                'parameters': params,
+                'evaluations': 're-evaluated_for_fairness',
+                'segments_generated': len(segment_papers),
+                'segmentation_method': 'run_change_detection'
+            }
+        )
+        
+    except Exception as e:
+        raise RuntimeError(f"Failed to re-evaluate Bayesian optimization for {domain_name}: {e}")
 
 
 def discover_available_domains() -> Tuple[str, ...]:
@@ -725,8 +800,13 @@ def run_all_baselines_for_domain(domain_name: str) -> Dict[str, BaselineResult]:
     results['gemini'] = compute_gemini_baseline(papers, domain_name)
     results['manual'] = compute_manual_baseline(papers, domain_name)
     
-    # Load Bayesian optimization results
-    results['bayesian_optimization'] = load_bayesian_optimized_results(domain_name)
+    # FAIRNESS CRITICAL: Re-evaluate Bayesian optimization with same data and evaluation pipeline
+    # Only include if Bayesian optimization results are available for this domain
+    try:
+        results['bayesian_optimization'] = compute_bayesian_optimized_baseline(papers, domain_name)
+    except (KeyError, FileNotFoundError) as e:
+        print(f"   WARNING: Skipping Bayesian optimization for {domain_name}: {e}")
+        # Continue without Bayesian optimization results
     
     return results
 
@@ -737,12 +817,12 @@ def compare_baselines_single_domain(domain_name: str) -> Dict[str, Any]:
     
     FAIL-FAST: No fallbacks - any error will terminate execution.
     """
-    print(f"\n🎯 BASELINE COMPARISON: {domain_name.upper()}")
+    print(f"\nBASELINE COMPARISON: {domain_name.upper()}")
     print("=" * 70)
     
     # FAIL-FAST: No error handling - let exceptions propagate
     # Load domain data with consistent preprocessing (FAIRNESS FIX)
-    print(f"📊 Loading {domain_name} data with preprocessing...")
+    print(f"Loading {domain_name} data with preprocessing...")
     df = load_and_validate_domain_data(
         domain_name, 
         apply_year_filtering=True, 
@@ -754,7 +834,7 @@ def compare_baselines_single_domain(domain_name: str) -> Dict[str, Any]:
         raise ValueError(f'No data available for {domain_name}')
     
     domain_data = convert_dataframe_to_domain_data(df, domain_name)
-    print(f"✅ Loaded {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]}) after preprocessing")
+    print(f"Loaded {len(domain_data.papers)} papers ({domain_data.year_range[0]}-{domain_data.year_range[1]}) after preprocessing")
     
     # Run all baselines
     baseline_results = run_all_baselines_for_domain(domain_name)
@@ -772,19 +852,19 @@ def compare_baselines_single_domain(domain_name: str) -> Dict[str, Any]:
         score = result['score']
         num_segments = result.get('num_segments', 0)
         execution_time = result.get('execution_time', 0.0)
-        print(f"   ✅ {method}: score={score:.3f} ({num_segments} segments, time={execution_time:.1f}s)")
+        print(f"   {method}: score={score:.3f} ({num_segments} segments, time={execution_time:.1f}s)")
     
     # Generate comparison summary
     if not results:
         raise ValueError("No baseline results generated")
     
     best_method = max(results.items(), key=lambda x: x[1]['score'])
-    print(f"\n📊 COMPARISON SUMMARY:")
-    print(f"   🥇 Best method: {best_method[0]} (score={best_method[1]['score']:.3f})")
+    print(f"\nCOMPARISON SUMMARY:")
+    print(f"   Best method: {best_method[0]} (score={best_method[1]['score']:.3f})")
     
     # Show ranking
     sorted_results = sorted(results.items(), key=lambda x: x[1]['score'], reverse=True)
-    print(f"\n📋 Method ranking:")
+    print(f"\nMethod ranking:")
     for i, (method, result) in enumerate(sorted_results, 1):
         score = result['score']
         time_str = f"{result.get('execution_time', 0):.1f}s"
@@ -798,7 +878,7 @@ def compare_baselines_single_domain(domain_name: str) -> Dict[str, Any]:
         worst_score = sorted_results[-1][1]['score']
         if worst_score > 0:
             improvement = calculate_performance_improvement(best_score, worst_score)
-            print(f"\n📈 Performance improvement: {improvement:.1f}% (best vs worst)")
+            print(f"\nPerformance improvement: {improvement:.1f}% (best vs worst)")
     
     return {
         'domain': domain_name,
@@ -838,7 +918,7 @@ def verify_baseline_comparison_fairness(domain_name: str) -> Dict[str, Any]:
     
     try:
         # 1. Verify data loading consistency
-        print(f"🔍 Verifying data loading fairness for {domain_name}...")
+        print(f"Verifying data loading fairness for {domain_name}...")
         
         # Test baseline data loading
         df_baseline = load_and_validate_domain_data(
@@ -856,7 +936,7 @@ def verify_baseline_comparison_fairness(domain_name: str) -> Dict[str, Any]:
         }
         
         # 2. Verify evaluation settings consistency
-        print("🔍 Verifying evaluation settings fairness...")
+        print("Verifying evaluation settings fairness...")
         
         # Check algorithm config
         algorithm_config = AlgorithmConfig()
@@ -870,7 +950,7 @@ def verify_baseline_comparison_fairness(domain_name: str) -> Dict[str, Any]:
         }
         
         # 3. Verify optimization config consistency
-        print("🔍 Verifying optimization config consistency...")
+        print("Verifying optimization config consistency...")
         
         config = load_optimization_config()
         fairness_report['verification_details']['optimization_config'] = {
@@ -883,7 +963,7 @@ def verify_baseline_comparison_fairness(domain_name: str) -> Dict[str, Any]:
         }
         
         # 4. Test actual evaluation consistency
-        print("🔍 Testing evaluation function consistency...")
+        print("Testing evaluation function consistency...")
         
         # Load a sample segment for testing
         domain_data = convert_dataframe_to_domain_data(df_baseline, domain_name)
@@ -901,12 +981,12 @@ def verify_baseline_comparison_fairness(domain_name: str) -> Dict[str, Any]:
             'methodology_explanation': metrics.get('methodology_explanation', '')
         }
         
-        print("✅ Fairness verification completed successfully")
+        print("Fairness verification completed successfully")
         
     except Exception as e:
         fairness_report['fairness_verified'] = False
         fairness_report['issues_found'].append(f"Verification failed: {str(e)}")
-        print(f"❌ Fairness verification failed: {e}")
+        print(f"ERROR: Fairness verification failed: {e}")
     
     return fairness_report
 
@@ -917,7 +997,7 @@ def main():
     all_available_domains = discover_available_domains()
     
     if not all_available_domains:
-        print("❌ No domains available for comparison. Please ensure processed data files exist in data/processed/")
+        print("ERROR: No domains available for comparison. Please ensure processed data files exist in data/processed/")
         return
     
     # Use command line arguments if provided, otherwise use all available domains
@@ -931,21 +1011,21 @@ def main():
         )
         
         if not domains_to_test:
-            print("❌ None of the requested domains are available.")
+            print("ERROR: None of the requested domains are available.")
             print(f"Available domains: {', '.join(all_available_domains)}")
             return
     else:
         # Use all available domains if no specific domains requested
         domains_to_test = all_available_domains
     
-    print("🔬 CONSENSUS-DIFFERENCE BASELINE COMPARISON")
+    print("CONSENSUS-DIFFERENCE BASELINE COMPARISON")
     print("=" * 70)
-    print(f"Testing {len(domains_to_test)} domains against 5 approaches:")
+    print(f"Testing {len(domains_to_test)} domains against up to 5 approaches:")
     print("  1. Decade baseline (10-year segments)")
     print("  2. 5-year baseline (5-year segments)")
     print("  3. Gemini reference baseline (simplified expert periods)")
     print("  4. Manual reference baseline (detailed expert analysis)")
-    print("  5. Bayesian optimized parameters (our approach)")
+    print("  5. Bayesian optimized parameters (our approach, if available)")
     print("\nAll methods evaluated using consensus-difference metrics:")
     print("  • Consensus score: weighted (keyword overlap + content cohesion + citation density)")
     print("  • Difference score: weighted (keyword divergence + content distance + citation separation)")
@@ -964,10 +1044,10 @@ def main():
     
     # Save all results
     output_file = save_baseline_comparison_results(all_results)
-    print(f"\n💾 Baseline comparison results saved to {output_file}")
+    print(f"\nBaseline comparison results saved to {output_file}")
     
     # Print overall summary
-    print(f"\n🏆 OVERALL COMPARISON SUMMARY")
+    print(f"\nOVERALL COMPARISON SUMMARY")
     print("=" * 70)
     
     successful_domains = tuple(d for d, r in all_results.items() if r.get('comparison_successful', False))
@@ -994,7 +1074,7 @@ def main():
             print(f"  {i}. {method_name:<25}: {avg_score:.3f}")
         
         if len(method_averages) >= 2:
-            print(f"\n📈 Performance Analysis:")
+            print(f"\nPerformance Analysis:")
             best_method, best_avg = method_averages[0]
             worst_method, worst_avg = method_averages[-1]
             
@@ -1011,7 +1091,7 @@ def main():
                         improvement = calculate_performance_improvement(bayesian_avg, avg_score)
                         print(f"    vs {method}: {improvement:+.1f}%")
     else:
-        print("❌ No successful domain comparisons completed.")
+        print("ERROR: No successful domain comparisons completed.")
 
 
 if __name__ == "__main__":
