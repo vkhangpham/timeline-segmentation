@@ -644,6 +644,6 @@ def detect_shift_signals(
         )
     
     # Stage 3: Direction-Citation Validation
-    paradigm_shifts = validate_direction_with_citation(raw_direction_signals, citation_signals, algorithm_config)
+    paradigm_shifts, validation_results = validate_direction_with_citation(raw_direction_signals, citation_signals, algorithm_config)
 
     return paradigm_shifts
