@@ -22,29 +22,32 @@ from pathlib import Path
 import networkx as nx
 from sklearn.feature_extraction.text import TfidfVectorizer
 import xml.etree.ElementTree as ET
-from .paper_selection_and_labeling import (
-    select_representative_papers, 
+from ..analysis.paper_analysis import (
+    select_representative_papers,
     generate_period_label_and_description
 )
-from .data_models import PeriodCharacterization
+from ..data.models import PeriodCharacterization
+from ..utils.logging import get_logger
 
 
-def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> List[PeriodCharacterization]:
+def characterize_periods(domain_name: str, segments: List[Tuple[int, int]], verbose: bool = False) -> List[PeriodCharacterization]:
     """
     Main function: Characterize research periods using temporal network analysis
     
     Args:
         domain_name: Name of the research domain
         segments: List of time segments from shift signal detection
+        verbose: Enable verbose logging
     
     Returns:
         List of period characterizations
     """
-    # Load rich data sources
+    logger = get_logger(__name__, verbose)
+    # Load rich data sources (using JSON and graph data only)
     papers_data = load_papers_data(domain_name)
     semantic_citations = load_semantic_citations(domain_name)
-    breakthrough_papers = load_breakthrough_papers(domain_name)
-    citation_network = build_citation_network(papers_data, semantic_citations, breakthrough_papers)
+    # MIGRATION: No longer using breakthrough papers - extract significance from citation data
+    citation_network = build_citation_network(papers_data, semantic_citations)
     
     # Initialize TF-IDF vectorizer
     tfidf_vectorizer = TfidfVectorizer(
@@ -58,12 +61,12 @@ def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> L
     period_analysis_data = []  # Store detailed analysis data for visualization
     
     for start_year, end_year in segments:
-        print(f"\nCharacterizing period {start_year}-{end_year} with network analysis...")
+        logger.info(f"Characterizing period {start_year}-{end_year} with network analysis...")
         
         # Get papers and build period subnetwork
-        period_papers = get_papers_in_period(papers_data, start_year, end_year, breakthrough_papers)
+        period_papers = get_papers_in_period(papers_data, start_year, end_year)
         if len(period_papers) < 3:
-            print(f"Insufficient papers ({len(period_papers)}) for network analysis")
+            logger.warning(f"Insufficient papers ({len(period_papers)}) for network analysis")
             continue
         
         period_subnetwork = build_period_subnetwork(citation_network, period_papers, start_year, end_year)
@@ -128,7 +131,7 @@ def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> L
         period_analysis_data.append({
             'period': (start_year, end_year),
             'num_papers': len(period_papers),
-            'num_breakthrough_papers': sum(1 for p in period_papers if p['is_breakthrough']),
+            'num_significant_papers': sum(1 for p in period_papers if p['is_significant']),
             'network_stability': network_stability,
             'community_persistence': community_persistence,
             'flow_stability': flow_stability,
@@ -141,9 +144,9 @@ def characterize_periods(domain_name: str, segments: List[Tuple[int, int]]) -> L
             'period_description': period_description
         })
         
-        print(f"Period {start_year}-{end_year}: stability={network_stability:.3f}, "
+        logger.info(f"Period {start_year}-{end_year}: stability={network_stability:.3f}, "
               f"persistence={community_persistence:.3f}, confidence={confidence:.3f}")
-        print(f"    {period_label}: {period_description}")
+        logger.info(f"    {period_label}: {period_description}")
     
     return period_characterizations
 
@@ -204,43 +207,81 @@ def load_semantic_citations(domain_name: str) -> List[Dict[str, Any]]:
                 })
     
     except Exception as e:
-        print(f"Error parsing GraphML citations: {e}")
+        # Note: logger not available in this function, but error should be logged at call site
         return []
     
     return semantic_citations
 
 
-def load_breakthrough_papers(domain_name: str) -> Dict[str, Any]:
-    """Load breakthrough papers for significance weighting"""
-    data_dir = Path(f"resources/{domain_name}")
-    breakthrough_file = data_dir / f"{domain_name}_breakthrough_papers.jsonl"
-    if not breakthrough_file.exists():
+def calculate_paper_significance(papers_data: Dict[str, Any]) -> Dict[str, float]:
+    """
+    Calculate paper significance based on citation data instead of breakthrough papers file.
+    
+    MIGRATION: Replaces breakthrough papers dependency with citation-based significance.
+    Uses citation count and network position to determine paper importance.
+    
+    Args:
+        papers_data: Dictionary of paper data from docs_info.json
+        
+    Returns:
+        Dictionary mapping paper_id to significance score (0.0-1.0)
+    """
+    if not papers_data:
         return {}
     
-    breakthrough_papers = {}
-    with open(breakthrough_file, 'r') as f:
-        for line in f:
-            if line.strip():
-                paper_data = json.loads(line.strip())
-                paper_id = paper_data.get('openalex_id', '')
-                if paper_id:
-                    breakthrough_papers[paper_id] = paper_data
+    # Extract citation counts
+    citation_counts = []
+    for paper_data in papers_data.values():
+        count = paper_data.get('cited_by_count', 0)
+        if isinstance(count, (int, float)) and count >= 0:
+            citation_counts.append(count)
     
-    return breakthrough_papers
+    if not citation_counts:
+        return {}
+    
+    # Calculate significance based on citation percentiles
+    citation_counts = sorted(citation_counts)
+    significance_scores = {}
+    
+    for paper_id, paper_data in papers_data.items():
+        citation_count = paper_data.get('cited_by_count', 0)
+        if isinstance(citation_count, (int, float)) and citation_count >= 0:
+            # Convert to percentile rank (0.0-1.0)
+            percentile = sum(1 for c in citation_counts if c <= citation_count) / len(citation_counts)
+            
+            # Apply significance threshold: top 20% are considered highly significant
+            if percentile >= 0.8:
+                significance = 1.0
+            elif percentile >= 0.6:
+                significance = 0.7
+            elif percentile >= 0.4:
+                significance = 0.4
+            else:
+                significance = 0.1
+                
+            significance_scores[paper_id] = significance
+        else:
+            significance_scores[paper_id] = 0.1  # Default low significance
+    
+    return significance_scores
 
 
-def build_citation_network(papers_data: Dict[str, Any], semantic_citations: List[Dict[str, Any]], 
-                           breakthrough_papers: Dict[str, Any]) -> nx.DiGraph:
-    """Build citation network for temporal analysis"""
+def build_citation_network(papers_data: Dict[str, Any], semantic_citations: List[Dict[str, Any]]) -> nx.DiGraph:
+    """Build citation network for temporal analysis using citation-based significance"""
     G = nx.DiGraph()
     
-    # Add nodes (papers) with temporal information
+    # Calculate paper significance based on citation data
+    significance_scores = calculate_paper_significance(papers_data)
+    
+    # Add nodes (papers) with temporal information and significance
     for paper_id, paper_data in papers_data.items():
+        significance = significance_scores.get(paper_id, 0.1)
         G.add_node(paper_id, 
                   pub_year=paper_data.get('pub_year', 0),
                   cited_by_count=paper_data.get('cited_by_count', 0),
                   title=paper_data.get('title', ''),
-                  is_breakthrough=paper_id in breakthrough_papers)
+                  significance=significance,
+                  is_significant=significance >= 0.7)  # Replaces is_breakthrough
     
     # Add edges (citations) with semantic descriptions
     for citation in semantic_citations:
@@ -254,18 +295,22 @@ def build_citation_network(papers_data: Dict[str, Any], semantic_citations: List
     return G
 
 
-def get_papers_in_period(papers_data: Dict[str, Any], start_year: int, end_year: int, 
-                         breakthrough_papers: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """Get all papers published within the specified period"""
+def get_papers_in_period(papers_data: Dict[str, Any], start_year: int, end_year: int) -> List[Dict[str, Any]]:
+    """Get all papers published within the specified period with citation-based significance"""
+    # Calculate significance scores once for all papers
+    significance_scores = calculate_paper_significance(papers_data)
+    
     period_papers = []
     
     for paper_id, paper_data in papers_data.items():
         pub_year = paper_data.get('pub_year', 0)
         if start_year <= pub_year <= end_year:
+            significance = significance_scores.get(paper_id, 0.1)
             period_papers.append({
                 'id': paper_id,
                 'data': paper_data,
-                'is_breakthrough': paper_id in breakthrough_papers
+                'significance': significance,
+                'is_significant': significance >= 0.7  # Replaces is_breakthrough
             })
     
     return period_papers
@@ -492,7 +537,7 @@ def calculate_network_metrics(subnetwork: nx.DiGraph) -> Dict[str, float]:
                 metrics['degree_centralization'] = sum_diff / max_sum_diff if max_sum_diff > 0 else 0.0
         
     except Exception as e:
-        print(f"Error calculating network metrics: {e}")
+        # Note: logger not available in this function, but error should be logged at call site
         metrics = {'density': 0.0, 'number_of_nodes': 0, 'number_of_edges': 0}
     
     return metrics

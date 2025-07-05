@@ -16,10 +16,9 @@ Follows functional programming principles with pure functions and immutable data
 
 from typing import List, Dict, Set, Tuple, Optional
 from collections import defaultdict, Counter
-import warnings
 
-from .data_models import DomainData, Paper
-from .algorithm_config import AlgorithmConfig
+from ..data.models import DomainData, Paper
+from .config import AlgorithmConfig
 
 
 def filter_domain_keywords_conservative(
@@ -82,18 +81,24 @@ def _filter_by_paper_frequency(
     
     This addresses noise from keywords that appear in only 1-2 papers within a time window,
     which are unlikely to represent genuine domain-wide paradigm shifts.
+    
+    OPTIMIZED: O(n + m) instead of O(n * m) for large datasets.
     """
     if not year_papers:
         filtering_rationale["frequency_filtering"] = "no_papers_in_period"
         return keywords
     
-    # Count how many papers contain each keyword
+    # OPTIMIZATION: Count keywords efficiently by processing papers once
+    # Instead of nested loops: for each paper, count all its keywords that are in our target set
+    keywords_to_filter = set(keywords)  # O(m) - convert to set for O(1) lookup
     keyword_paper_counts = Counter()
+    
+    # Single pass through papers: O(n * k) where k = avg keywords per paper
     for paper in year_papers:
-        paper_keywords = set(paper.keywords)
-        for keyword in keywords:
-            if keyword in paper_keywords:
-                keyword_paper_counts[keyword] += 1
+        # Only count keywords that are in our filtering target set
+        paper_keywords_in_filter = keywords_to_filter.intersection(paper.keywords)
+        for keyword in paper_keywords_in_filter:
+            keyword_paper_counts[keyword] += 1
     
     # Calculate minimum paper threshold
     total_papers = len(year_papers)
@@ -144,41 +149,33 @@ def analyze_keyword_quality_metrics(
     for paper in domain_data.papers:
         papers_by_year[paper.pub_year].append(paper)
     
+    # CONSOLIDATED: Use keyword_utils for distribution analysis
+    from .keywords import analyze_keyword_distribution
+    
     # Analyze keyword distribution patterns
-    all_keywords = []
-    for paper in domain_data.papers:
-        all_keywords.extend(paper.keywords)
+    distribution_metrics = analyze_keyword_distribution(domain_data.papers)
+    total_keywords = distribution_metrics['total_keywords'] 
+    unique_keywords = distribution_metrics['unique_keywords']
     
-    keyword_frequencies = Counter(all_keywords)
-    total_keywords = len(all_keywords)
-    unique_keywords = len(keyword_frequencies)
+    # CONSOLIDATED: Use consolidated distribution metrics
+    low_freq_threshold = max(1, int(len(domain_data.papers) * algorithm_config.keyword_min_papers_ratio))
+    distribution_metrics_with_threshold = analyze_keyword_distribution(domain_data.papers, min_frequency_threshold=low_freq_threshold)
     
-    # Calculate quality metrics
+    # Calculate quality metrics using consolidated data
     metrics = {
         "domain_name": domain_data.domain_name,
-        "total_papers": len(domain_data.papers),
+        "total_papers": distribution_metrics['total_papers'],
         "total_keyword_instances": total_keywords,
         "unique_keywords": unique_keywords,
-        "avg_keywords_per_paper": total_keywords / len(domain_data.papers) if domain_data.papers else 0,
-        "keyword_diversity": unique_keywords / total_keywords if total_keywords > 0 else 0
+        "avg_keywords_per_paper": distribution_metrics['avg_keywords_per_paper'],
+        "keyword_diversity": distribution_metrics['keyword_diversity'],
+        "papers_without_keywords": distribution_metrics['papers_without_keywords'],
+        "keyword_coverage": distribution_metrics['keyword_coverage'],
+        "singleton_keywords": distribution_metrics['singleton_keywords'],
+        "singleton_ratio": distribution_metrics['singleton_ratio'],
+        "low_frequency_keywords": distribution_metrics_with_threshold['low_frequency_keywords'],
+        "low_frequency_ratio": distribution_metrics_with_threshold['low_frequency_ratio']
     }
-    
-    # Analyze papers without keywords (data quality issue)
-    papers_without_keywords = sum(1 for p in domain_data.papers if not p.keywords)
-    metrics["papers_without_keywords"] = papers_without_keywords
-    metrics["keyword_coverage"] = (len(domain_data.papers) - papers_without_keywords) / len(domain_data.papers) if domain_data.papers else 0
-    
-    # Analyze frequency distribution
-    frequency_counts = Counter(keyword_frequencies.values())
-    singleton_keywords = frequency_counts.get(1, 0)  # Keywords appearing only once
-    metrics["singleton_keywords"] = singleton_keywords
-    metrics["singleton_ratio"] = singleton_keywords / unique_keywords if unique_keywords > 0 else 0
-    
-    # Low frequency keywords (potential noise)
-    low_freq_threshold = max(1, int(len(domain_data.papers) * algorithm_config.keyword_min_papers_ratio))
-    low_freq_keywords = sum(1 for count in keyword_frequencies.values() if count < low_freq_threshold)
-    metrics["low_frequency_keywords"] = low_freq_keywords
-    metrics["low_frequency_ratio"] = low_freq_keywords / unique_keywords if unique_keywords > 0 else 0
     
     return metrics
 
@@ -238,10 +235,11 @@ def preview_filtering_impact(
     else:
         relevant_papers = list(domain_data.papers)
     
+    # CONSOLIDATED: Use keyword_utils for keyword extraction
+    from .keywords import extract_keywords_from_papers
+    
     # Collect all keywords
-    all_keywords = []
-    for paper in relevant_papers:
-        all_keywords.extend(paper.keywords)
+    all_keywords = extract_keywords_from_papers(relevant_papers)
     
     # Apply filtering preview
     filtered_keywords, rationale = filter_domain_keywords_conservative(

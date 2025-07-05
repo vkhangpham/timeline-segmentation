@@ -20,13 +20,14 @@ import json
 from pathlib import Path
 from scipy import stats
 
-from .data_models import (
+from ..data.models import (
     Paper,
     DomainData,
     ShiftSignal,
     TransitionEvidence,
 )
-from .keyword_filtering import filter_domain_keywords_conservative
+from ..utils.filtering import filter_domain_keywords_conservative
+from ..utils.logging import get_logger
 
 
 # =============================================================================
@@ -213,7 +214,7 @@ def detect_citation_acceleration_shifts(
 
 
 def detect_citation_structural_breaks(
-    domain_data: DomainData, domain_name: str, algorithm_config = None
+    domain_data: DomainData, domain_name: str, algorithm_config = None, verbose: bool = False
 ) -> List[ShiftSignal]:
     """
     Citation-based paradigm shift validation using gradient analysis.
@@ -225,10 +226,13 @@ def detect_citation_structural_breaks(
         domain_data: Domain data with papers and citations
         domain_name: Domain name for logging
         algorithm_config: Algorithm configuration including citation analysis scales
+        verbose: Enable verbose logging
 
     Returns:
         List of gradient-based citation validation signals
     """
+    logger = get_logger(__name__, verbose)
+    
     # Create citation time series from domain data
     citation_series = defaultdict(float)
 
@@ -238,7 +242,7 @@ def detect_citation_structural_breaks(
         citation_series[year] += paper.cited_by_count
 
     if not citation_series:
-        print(f"No citation data found for {domain_name}")
+        logger.warning(f"No citation data found for {domain_name}")
         return []
 
     # Prepare data for gradient analysis
@@ -285,10 +289,11 @@ def detect_citation_structural_breaks(
             )
         )
 
-    print(f"\nCitation signals detected: {len(signals)}")
+    logger.info(f"Citation signals detected: {len(signals)}")
     for signal in signals[:5]:
-        print(f"    {signal.year} {signal.transition_description}")
-    print(f"    ... {len(signals) - 5} more signals")
+        logger.debug(f"    {signal.year} {signal.transition_description}")
+    if len(signals) > 5:
+        logger.debug(f"    ... {len(signals) - 5} more signals")
 
     return signals
 
@@ -300,7 +305,8 @@ def detect_citation_structural_breaks(
 def detect_research_direction_changes(
     domain_data: DomainData, 
     algorithm_config,
-    return_analysis_data: bool = False
+    return_analysis_data: bool = False,
+    verbose: bool = False
 ) -> List[ShiftSignal]:
     """
     Detect paradigm shifts through research direction changes.
@@ -471,10 +477,12 @@ def detect_research_direction_changes(
                     )
                 )
 
-    print(f"Direction signals detected: {len(signals)} (threshold={detection_threshold:.2f})")
+    logger = get_logger(__name__, verbose)
+    logger.info(f"Direction signals detected: {len(signals)} (threshold={detection_threshold:.2f})")
     for signal in signals[:5]:
-        print(f"    {signal.year} (confidence={signal.confidence:.2f})")
-    print(f"    ... {len(signals) - 5} more signals")
+        logger.debug(f"    {signal.year} (confidence={signal.confidence:.2f})")
+    if len(signals) > 5:
+        logger.debug(f"    ... {len(signals) - 5} more signals")
     
     if return_analysis_data:
         return signals, analysis_data
@@ -487,7 +495,8 @@ def detect_research_direction_changes(
 def validate_direction_with_citation(
     direction_signals: List[ShiftSignal],
     citation_signals: List[ShiftSignal], 
-    algorithm_config
+    algorithm_config,
+    verbose: bool = False
 ) -> List[ShiftSignal]:
     """
     Simplified direction-citation validation with unified logic.
@@ -504,21 +513,23 @@ def validate_direction_with_citation(
         domain_data: Domain data for context
         domain_name: Domain name for logging
         algorithm_config: Comprehensive algorithm configuration with all validation parameters
+        verbose: Enable verbose logging
         
     Returns:
         List of validated paradigm shift signals
     """
-    print(f"\nValidating direction signals with citation signals:")
+    logger = get_logger(__name__, verbose)
+    logger.info("Validating direction signals with citation signals:")
     if not direction_signals:
-        print(f"No direction signals to validate")
-        return []
+        logger.info("No direction signals to validate")
+        return [], []
     
     validated_paradigms = []
     validation_summary = {'accepted': 0, 'rejected': 0, 'citation_supported': 0}
     
     # Get citation support window (configurable)
     citation_window = algorithm_config.citation_support_window
-    citation_boost_rate = algorithm_config.citation_boost
+    citation_boost_rate_rate = algorithm_config.citation_boost_rate
     
     results = []
     # Process each direction signal through simplified validation
@@ -536,7 +547,7 @@ def validate_direction_with_citation(
                 supporting_citations.append(citation_signal)
         
         # Step 2: Calculate confidence boost (pure function) - 50% of base confidence
-        confidence_boost = (citation_boost_rate * base_confidence) if citation_support else 0.0
+        confidence_boost = (citation_boost_rate_rate * base_confidence) if citation_support else 0.0
         
         # Step 3: Compute final confidence (pure function)
         final_confidence = min(base_confidence + confidence_boost, 1.0)
@@ -584,8 +595,9 @@ def validate_direction_with_citation(
             results.append((year, rationale))
     
     for year, rationale in results[:5]:
-        print(f"    {year}: {rationale}")
-    print(f"    ... {len(results) - 5} more validation")
+        logger.debug(f"    {year}: {rationale}")
+    if len(results) > 5:
+        logger.debug(f"    ... {len(results) - 5} more validation")
 
     return validated_paradigms, results
 
@@ -601,6 +613,7 @@ def detect_shift_signals(
     use_citation: bool = True,
     use_direction: bool = True,
     precomputed_signals: Optional[Dict[str, List[ShiftSignal]]] = None,
+    verbose: bool = False
 ) -> List[ShiftSignal]:
     """
     Main paradigm shift detection pipeline.
@@ -633,17 +646,17 @@ def detect_shift_signals(
     else:
         # PRIMARY: Research direction changes detect paradigm shifts
         raw_direction_signals = (
-            detect_research_direction_changes(domain_data, algorithm_config) if use_direction else []
+            detect_research_direction_changes(domain_data, algorithm_config, verbose=verbose) if use_direction else []
         )
         
         # SECONDARY: Citation patterns for validation
         citation_signals = (
-            detect_citation_structural_breaks(domain_data, domain_name, algorithm_config)
+            detect_citation_structural_breaks(domain_data, domain_name, algorithm_config, verbose=verbose)
             if use_citation
             else []
         )
     
     # Stage 3: Direction-Citation Validation
-    paradigm_shifts, validation_results = validate_direction_with_citation(raw_direction_signals, citation_signals, algorithm_config)
+    paradigm_shifts, validation_results = validate_direction_with_citation(raw_direction_signals, citation_signals, algorithm_config, verbose=verbose)
 
     return paradigm_shifts

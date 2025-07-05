@@ -12,13 +12,15 @@ Follows functional programming principles with pure functions and immutable data
 from typing import Dict, List, Tuple, Optional, Any
 import numpy as np
 
-from .period_signal_detection import characterize_periods
-from .data_models import PeriodCharacterization, SegmentModelingResult
+from ..detection.period_signals import characterize_periods
+from ..data.models import PeriodCharacterization, SegmentModelingResult
+from ..utils.logging import get_logger
 
 
 def model_segments(
     domain_name: str, 
-    segments: List[Tuple[int, int]]
+    segments: List[Tuple[int, int]],
+    verbose: bool = False
 ) -> SegmentModelingResult:
     """
     Main function: Model timeline segments using period signal detection.
@@ -26,15 +28,18 @@ def model_segments(
     Args:
         domain_name: Name of the research domain
         segments: List of time segments from shift signal detection
+        verbose: Enable verbose logging
         
     Returns:
         Segment modeling results with period characterizations
     """
-    print(f"\nSEGMENT MODELING: {domain_name}")
-    print("=" * 50)
+    logger = get_logger(__name__, verbose)
+    
+    logger.info(f"SEGMENT MODELING: {domain_name}")
+    logger.info("=" * 50)
     
     if not segments:
-        print("    No segments provided for modeling")
+        logger.info("No segments provided for modeling")
         return SegmentModelingResult(
             domain_name=domain_name,
             segments=tuple(),
@@ -43,12 +48,13 @@ def model_segments(
             modeling_summary="No segments to model"
         )
     
-    print(f"    Modeling {len(segments)} segments using period signal detection")
+    logger.info(f"Modeling {len(segments)} segments using period signal detection")
     
     # Use period signal detection to characterize periods
     period_characterizations = characterize_periods(
         domain_name=domain_name,
-        segments=segments
+        segments=segments,
+        verbose=verbose
     )
     
     # Validate and process results
@@ -57,7 +63,7 @@ def model_segments(
         if pc.confidence > 0.0:  # Only include valid characterizations
             valid_characterizations.append(pc)
         else:
-            print(f"    Skipping low-confidence period {pc.period}: confidence={pc.confidence:.3f}")
+            logger.debug(f"Skipping low-confidence period {pc.period}: confidence={pc.confidence:.3f}")
     
     # Calculate overall modeling confidence
     if valid_characterizations:
@@ -70,9 +76,9 @@ def model_segments(
         segments, valid_characterizations, modeling_confidence
     )
     
-    print(f"    Modeled {len(valid_characterizations)}/{len(segments)} segments successfully")
-    print(f"    Overall modeling confidence: {modeling_confidence:.3f}")
-    print(f"    {modeling_summary}")
+    logger.info(f"Modeled {len(valid_characterizations)}/{len(segments)} segments successfully")
+    logger.info(f"Overall modeling confidence: {modeling_confidence:.3f}")
+    logger.info(f"{modeling_summary}")
     
     return SegmentModelingResult(
         domain_name=domain_name,

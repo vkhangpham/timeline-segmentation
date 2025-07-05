@@ -19,11 +19,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer, util
 import networkx as nx
 
-from .paper_selection_and_labeling import generate_merged_segment_label_and_description
-from .data_models import (
+from ..analysis.paper_analysis import generate_merged_segment_label_and_description
+from ..data.models import (
     PeriodCharacterization, ShiftSignal,
     MergeDecision, SegmentMergingResult
 )
+from ..utils.logging import get_logger
 
 
 def merge_similar_segments(
@@ -31,7 +32,8 @@ def merge_similar_segments(
     shift_signals: List[ShiftSignal],
     domain_name: str,
     similarity_threshold: float = 0.75,
-    weak_signal_threshold: float = 0.4
+    weak_signal_threshold: float = 0.4,
+    verbose: bool = False
 ) -> SegmentMergingResult:
     """
     Main function: Merge semantically similar consecutive segments with weak boundaries.
@@ -42,14 +44,16 @@ def merge_similar_segments(
         domain_name: Name of the domain for configuration
         similarity_threshold: Threshold for semantic similarity (0.0-1.0)
         weak_signal_threshold: Threshold for weak shift signals (0.0-1.0)
+        verbose: Enable verbose logging
         
     Returns:
         Segment merging results with merged periods
     """
-    print(f"\nSEGMENT MERGING ANALYSIS: {domain_name}")
+    logger = get_logger(__name__, verbose)
+    logger.info(f"SEGMENT MERGING ANALYSIS: {domain_name}")
     
     if len(period_characterizations) < 2:
-        print("Less than 2 segments - no merging needed")
+        logger.info("Less than 2 segments - no merging needed")
         return SegmentMergingResult(
             original_segments=tuple(period_characterizations),
             merged_segments=tuple(period_characterizations),
@@ -57,16 +61,16 @@ def merge_similar_segments(
             merging_summary="No merging needed - insufficient segments"
         )
     
-    print(f"Analyzing {len(period_characterizations)} segments for potential merging")
-    print(f"Similarity threshold: {similarity_threshold:.3f}")
-    print(f"Weak signal threshold: {weak_signal_threshold:.3f}")
+    logger.info(f"Analyzing {len(period_characterizations)} segments for potential merging")
+    logger.info(f"Similarity threshold: {similarity_threshold:.3f}")
+    logger.info(f"Weak signal threshold: {weak_signal_threshold:.3f}")
     
     # Step 1: Calculate semantic similarities between consecutive segments
-    semantic_similarities = calculate_semantic_similarities(period_characterizations)
+    semantic_similarities = calculate_semantic_similarities(period_characterizations, verbose)
     
     # Step 2: Analyze shift signal strengths at boundaries
     boundary_signal_strengths = analyze_boundary_signal_strengths(
-        period_characterizations, shift_signals
+        period_characterizations, shift_signals, verbose
     )
     
     # Step 3: Identify merge candidates based on similarity and weak signals
@@ -75,16 +79,18 @@ def merge_similar_segments(
         semantic_similarities,
         boundary_signal_strengths,
         similarity_threshold,
-        weak_signal_threshold
+        weak_signal_threshold,
+        verbose
     )
     
-    print(f"Found {len(merge_candidates)} merge candidates")
+    logger.info(f"Found {len(merge_candidates)} merge candidates")
     
     # Step 4: Execute merging with conflict resolution
     merged_segments, merge_decisions = execute_segment_merging(
         period_characterizations,
         merge_candidates,
-        domain_name
+        domain_name,
+        verbose
     )
     
     # Step 5: Generate merging summary
@@ -92,8 +98,8 @@ def merge_similar_segments(
         period_characterizations, merged_segments, merge_decisions
     )
     
-    print(f"Merged {len(period_characterizations)} → {len(merged_segments)} segments")
-    print(f"{merging_summary}")
+    logger.info(f"Merged {len(period_characterizations)} → {len(merged_segments)} segments")
+    logger.info(f"{merging_summary}")
     
     return SegmentMergingResult(
         original_segments=tuple(period_characterizations),
@@ -104,17 +110,21 @@ def merge_similar_segments(
 
 
 def calculate_semantic_similarities(
-    period_characterizations: List[PeriodCharacterization]
+    period_characterizations: List[PeriodCharacterization],
+    verbose: bool = False
 ) -> List[float]:
     """
     Calculate semantic similarities between consecutive segments using multiple signals.
     
     Args:
         period_characterizations: List of period characterizations
+        verbose: Enable verbose logging
         
     Returns:
         List of similarity scores for consecutive pairs (length = n-1)
     """
+    logger = get_logger(__name__, verbose)
+    
     if len(period_characterizations) < 2:
         return []
     
@@ -179,12 +189,12 @@ def calculate_semantic_similarities(
             
             similarities.append(combined_similarity)
             
-            print(f"Segments {i} → {i+1}: text={similarity:.3f}, "
+            logger.debug(f"Segments {i} → {i+1}: text={similarity:.3f}, "
                   f"stability={stability_similarity:.3f}, "
                   f"combined={combined_similarity:.3f}")
     
     except Exception as e:
-        print(f"TF-IDF similarity calculation failed: {e}")
+        logger.warning(f"TF-IDF similarity calculation failed: {e}")
         # Fallback to simple label similarity
         for i in range(len(period_characterizations) - 1):
             label1 = period_characterizations[i].topic_label.lower()
@@ -210,7 +220,8 @@ def calculate_semantic_similarities(
 
 def analyze_boundary_signal_strengths(
     period_characterizations: List[PeriodCharacterization],
-    shift_signals: List[ShiftSignal]
+    shift_signals: List[ShiftSignal],
+    verbose: bool = False
 ) -> List[float]:
     """
     Analyze shift signal strengths at segment boundaries.
@@ -218,10 +229,13 @@ def analyze_boundary_signal_strengths(
     Args:
         period_characterizations: List of period characterizations
         shift_signals: List of detected shift signals
+        verbose: Enable verbose logging
         
     Returns:
         List of signal strengths at boundaries (length = n-1)
     """
+    logger = get_logger(__name__, verbose)
+    
     if len(period_characterizations) < 2:
         return []
     
@@ -243,12 +257,12 @@ def analyze_boundary_signal_strengths(
             max_confidence = max(s.confidence for s in nearby_signals)
             boundary_strength = max_confidence
             
-            print(f"Boundary {boundary_year}: {len(nearby_signals)} signals, "
+            logger.debug(f"Boundary {boundary_year}: {len(nearby_signals)} signals, "
                   f"strength={boundary_strength:.3f}")
         else:
             # No signals near boundary = weak boundary
             boundary_strength = 0.0
-            print(f"Boundary {boundary_year}: no signals, strength=0.000")
+            logger.debug(f"Boundary {boundary_year}: no signals, strength=0.000")
         
         boundary_strengths.append(boundary_strength)
     
@@ -260,7 +274,8 @@ def identify_merge_candidates(
     semantic_similarities: List[float],
     boundary_signal_strengths: List[float],
     similarity_threshold: float,
-    weak_signal_threshold: float
+    weak_signal_threshold: float,
+    verbose: bool = False
 ) -> List[Tuple[int, int, float, float]]:
     """
     Identify consecutive segments that should be merged.
@@ -271,10 +286,13 @@ def identify_merge_candidates(
         boundary_signal_strengths: Signal strengths at boundaries
         similarity_threshold: Minimum similarity for merging
         weak_signal_threshold: Maximum signal strength for weak boundary
+        verbose: Enable verbose logging
         
     Returns:
         List of (index1, index2, similarity, signal_strength) tuples
     """
+    logger = get_logger(__name__, verbose)
+    
     merge_candidates = []
     
     for i in range(len(semantic_similarities)):
@@ -287,7 +305,7 @@ def identify_merge_candidates(
         
         if high_similarity and weak_boundary:
             merge_candidates.append((i, i + 1, similarity, signal_strength))
-            print(f"Merge candidate: segments {i} → {i+1} "
+            logger.debug(f"Merge candidate: segments {i} → {i+1} "
                   f"(similarity={similarity:.3f}, boundary={signal_strength:.3f})")
         else:
             reasons = []
@@ -296,7 +314,7 @@ def identify_merge_candidates(
             if not weak_boundary:
                 reasons.append(f"strong boundary ({signal_strength:.3f})")
             
-            print(f"No merge: segments {i} → {i+1} - {', '.join(reasons)}")
+            logger.debug(f"No merge: segments {i} → {i+1} - {', '.join(reasons)}")
     
     return merge_candidates
 
@@ -304,7 +322,8 @@ def identify_merge_candidates(
 def execute_segment_merging(
     period_characterizations: List[PeriodCharacterization],
     merge_candidates: List[Tuple[int, int, float, float]],
-    domain_name: str
+    domain_name: str,
+    verbose: bool = False
 ) -> Tuple[List[PeriodCharacterization], List[MergeDecision]]:
     """
     Execute segment merging with conflict resolution.
@@ -313,10 +332,13 @@ def execute_segment_merging(
         period_characterizations: Original period characterizations
         merge_candidates: List of merge candidates
         domain_name: Domain name for configuration
+        verbose: Enable verbose logging
         
     Returns:
         Tuple of (merged_segments, merge_decisions)
     """
+    logger = get_logger(__name__, verbose)
+    
     if not merge_candidates:
         return list(period_characterizations), []
     
@@ -368,7 +390,7 @@ def execute_segment_merging(
         processed_indices.add(idx1)
         processed_indices.add(idx2)
         
-        print(f"Merged segments {idx1}-{idx2}: "
+        logger.debug(f"Merged segments {idx1}-{idx2}: "
               f"{segment1.period} + {segment2.period} → {merged_segment.period}")
     
     return merged_segments, merge_decisions

@@ -7,19 +7,24 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any, Union
 import json
 from pydantic import BaseModel
+from .logging import get_logger
 
 
-def discover_available_domains() -> List[str]:
+def discover_available_domains(verbose: bool = False) -> List[str]:
     """
     Automatically discover available domains from the resources directory.
     
+    Args:
+        verbose: Enable verbose logging
+        
     Returns:
         List of domain names found in resources directory
     """
+    logger = get_logger(__name__, verbose)
     resources_path = Path("resources")
     
     if not resources_path.exists():
-        print("Resources directory not found")
+        logger.warning("Resources directory not found")
         return []
     
     domains = []

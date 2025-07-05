@@ -15,7 +15,8 @@ import json
 import networkx as nx
 import re
 from pydantic import BaseModel, Field
-from .utils import query_llm, query_llm_structured
+from ..utils.general import query_llm, query_llm_structured
+from ..utils.logging import get_logger
 
 
 class PeriodLabelResponse(BaseModel):
@@ -175,7 +176,7 @@ def load_period_context(papers: List[Dict], start_year: int, end_year: int) -> D
                 'citation_count': citation_count
             })
     
-    # Get top keywords by frequency
+    # Get top keywords by frequency (using existing logic since papers format is different here)
     keyword_freq = Counter(all_keywords)
     top_keywords = [kw for kw, count in keyword_freq.most_common(20)]
     
@@ -319,7 +320,8 @@ def generate_merged_segment_label_and_description(
     segment2_description: str,
     segment2_papers: List[Dict[str, Any]],
     merged_period: Tuple[int, int],
-    domain_name: str
+    domain_name: str,
+    verbose: bool = False
 ) -> Tuple[str, str]:
     """
     Generate LLM-based label and description for merged segments.
@@ -339,6 +341,7 @@ def generate_merged_segment_label_and_description(
         segment2_papers: Representative papers from second segment
         merged_period: Combined time period
         domain_name: Domain name for context
+        verbose: Enable verbose logging
         
     Returns:
         Tuple of (merged_label, merged_description)
@@ -346,6 +349,7 @@ def generate_merged_segment_label_and_description(
     Raises:
         Exception: If LLM query fails or structured output parsing fails
     """
+    logger = get_logger(__name__, verbose)
     # Prepare paper information from both segments
     all_papers = list(segment1_papers) + list(segment2_papers)
     
@@ -403,7 +407,7 @@ You are a research historian. Two adjacent research periods have been merged bec
     label = response.label
     description = response.description
     
-    print(f"    🤖 LLM merge labeling with deepseek-r1:8b-0528-qwen3-q4_K_M completed for {merged_period[0]}-{merged_period[1]}")
+    logger.info(f"LLM merge labeling with deepseek-r1:8b-0528-qwen3-q4_K_M completed for {merged_period[0]}-{merged_period[1]}")
     return label, description
 
 

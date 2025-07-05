@@ -6,25 +6,25 @@ research paradigm shifts using rich citation network and semantic data.
 """
 
 import numpy as np
-from dataclasses import dataclass
 from typing import List, Tuple, TYPE_CHECKING
 
-from .data_models import (
+from ..data.models import (
     DomainData, ChangePoint, ChangeDetectionResult, ShiftSignal
 )
-from .shift_signal_detection import detect_shift_signals
+from .shift_signals import detect_shift_signals
 
 if TYPE_CHECKING:
-    from .algorithm_config import AlgorithmConfig
+    from ..utils.config import AlgorithmConfig
 
 
-def detect_changes(domain_data: DomainData, algorithm_config: 'AlgorithmConfig') -> Tuple[ChangeDetectionResult, List[ShiftSignal]]:
+def detect_changes(domain_data: DomainData, algorithm_config: 'AlgorithmConfig', verbose: bool = False) -> Tuple[ChangeDetectionResult, List[ShiftSignal]]:
     """
     Perform paradigm shift detection using Enhanced Shift Signal Detection with comprehensive algorithm configuration.
     
     Args:
         domain_data: Domain data with papers and rich citations
         algorithm_config: Comprehensive algorithm configuration controlling all parameters
+        verbose: Enable verbose logging
         
     Returns:
         Change detection results with paradigm shifts
@@ -36,7 +36,8 @@ def detect_changes(domain_data: DomainData, algorithm_config: 'AlgorithmConfig')
     shift_signals = detect_shift_signals(
         domain_data, 
         domain_file_name, 
-        algorithm_config=algorithm_config
+        algorithm_config=algorithm_config,
+        verbose=verbose
     )
     
     # Convert shift signals to change points for compatibility
