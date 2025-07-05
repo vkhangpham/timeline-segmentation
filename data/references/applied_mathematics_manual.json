@@ -56,7 +56,7 @@
       },
       {
         "period_name": "Early Modern Transition",
-        "years": "1900-1939",
+        "years": "1901-1939",
         "description": "A transitional period where pure and applied mathematics began to diverge as distinct disciplines. The rise of mathematical physics, aerodynamics, and early computing theory laid groundwork for the dramatic changes of WWII. This era saw the formalization of many mathematical structures while maintaining strong connections to physical applications.",
         "key_developments": [
           "Quantum mechanics demanding new mathematical frameworks",
@@ -96,7 +96,7 @@
       },
       {
         "period_name": "World War II Revolutionary Period",
-        "years": "1939-1945",
+        "years": "1940-1945",
         "description": "A watershed moment that fundamentally transformed applied mathematics through urgent military needs. The war effort brought together mathematicians, physicists, and engineers in unprecedented collaboration, creating new fields like operations research, cryptography, and computational mathematics. This period established the template for modern applied mathematics as a discipline focused on real-world problem-solving using advanced mathematical techniques.",
         "key_developments": [
           "Operations Research born from convoy routing and radar deployment optimization",
@@ -144,7 +144,7 @@
       },
       {
         "period_name": "Post-War Institutionalization Period",
-        "years": "1945-1970",
+        "years": "1946-1970",
         "description": "The formal establishment of applied mathematics as an independent academic discipline with its own departments, journals, and professional societies. This period saw the systematic development of computational methods, optimization theory, and mathematical modeling as core components of the field. The advent of electronic computers fundamentally changed the scope of solvable problems.",
         "key_developments": [
           "Electronic computers enabling large-scale numerical computation",
@@ -200,7 +200,7 @@
       },
       {
         "period_name": "Computational Mathematics Era",
-        "years": "1970-2000",
+        "years": "1971-2000",
         "description": "The maturation of computational methods as supercomputers and parallel processing transformed the scale of solvable problems. This period saw applied mathematics expand into new domains including mathematical finance, computational biology, and complex systems, while traditional areas like fluid dynamics achieved unprecedented sophistication.",
         "key_developments": [
           "Supercomputing enabling weather prediction and climate modeling",
@@ -249,7 +249,7 @@
       },
       {
         "period_name": "Contemporary Data-Driven Era",
-        "years": "2000-2025",
+        "years": "2001-2025",
         "description": "The integration of applied mathematics with data science, machine learning, and artificial intelligence has created new paradigms for mathematical modeling. Big data, high-dimensional problems, and the need for uncertainty quantification have driven development of new mathematical frameworks. The COVID-19 pandemic demonstrated the critical importance of mathematical modeling for policy decisions.",
         "key_developments": [
           "Machine learning requiring new mathematical foundations",

@@ -61,7 +61,7 @@
       },
       {
         "period_name": "Computational Theory Era",
-        "years": "1975-1990", 
+        "years": "1976-1990", 
         "description": "David Marr's computational approach revolutionized computer vision by proposing three levels of analysis: computational theory (what is computed and why), representation and algorithm (how), and hardware implementation. This period saw rigorous mathematical frameworks for vision problems, moving beyond ad-hoc engineering solutions to principled computational theories grounded in both mathematics and neuroscience.",
         "key_developments": [
           "Marr's three-level computational framework",
@@ -118,7 +118,7 @@
       },
       {
         "period_name": "Statistical Learning Revolution",
-        "years": "1990-2005",
+        "years": "1991-2005",
         "description": "The field shifted from hand-crafted algorithms to learning-based approaches as machine learning matured and computational resources increased. This period established the paradigm of training models on labeled data rather than encoding human knowledge, though still relying heavily on engineered features. The creation of benchmark datasets enabled systematic progress measurement.",
         "key_developments": [
           "Support Vector Machines for object recognition",
@@ -175,7 +175,7 @@
       },
       {
         "period_name": "Deep Learning Revolution",
-        "years": "2005-2025",
+        "years": "2007-2025",
         "description": "The dramatic success of deep convolutional neural networks transformed computer vision from a specialized research area to a technology powering countless applications. Beginning with AlexNet's 2012 ImageNet victory, deep learning has achieved superhuman performance on many vision tasks. The field now focuses on harder problems like video understanding, 3D reconstruction, and vision-language integration while addressing issues of robustness, interpretability, and fairness.",
         "key_developments": [
           "AlexNet breakthrough on ImageNet (2012)",

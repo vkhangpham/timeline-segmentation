@@ -74,7 +74,7 @@
       },
       {
         "period_name": "Symbolic NLP and Knowledge-Based Systems",
-        "years": "1970-1990",
+        "years": "1971-1990",
         "description": "This era focused on encoding linguistic and world knowledge into rule-based systems. Researchers developed sophisticated grammars, parsers, and knowledge representation schemes. While achieving impressive results in constrained domains, these systems proved brittle and difficult to scale, leading to recognition that purely symbolic approaches were insufficient.",
         "key_developments": [
           "Expert systems with natural language interfaces",
@@ -132,7 +132,7 @@
       },
       {
         "period_name": "Statistical Turn and Empiricism",
-        "years": "1990-2010",
+        "years": "1991-2010",
         "description": "The field underwent a paradigm shift from hand-crafted rules to statistical methods learned from data. This 'empirical revolution' was enabled by growing corpora, increased computing power, and machine learning advances. Statistical approaches proved more robust and scalable than rule-based systems, though initially sacrificing deep understanding for broad coverage.",
         "key_developments": [
           "Penn Treebank enabling supervised parsing",
@@ -202,7 +202,7 @@
       },
       {
         "period_name": "Deep Learning Revolution",
-        "years": "2010-2025",
+        "years": "2011-2025",
         "description": "Deep learning has transformed NLP from feature engineering to end-to-end learning. Starting with word embeddings capturing semantic relationships, progressing through recurrent networks to transformers, neural approaches now achieve human-level performance on many tasks. Large language models have demonstrated emergent abilities and shifted focus to prompt engineering and few-shot learning.",
         "key_developments": [
           "Word embeddings (Word2Vec, GloVe) capturing semantics",

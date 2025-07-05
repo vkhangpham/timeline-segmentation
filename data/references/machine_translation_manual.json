@@ -124,7 +124,7 @@
       },
       {
         "period_name": "Statistical Revolution",
-        "years": "1988-2014",
+        "years": "1989-2014",
         "description": "The introduction of statistical methods fundamentally transformed machine translation from a knowledge-engineering task to a machine learning problem. IBM researchers showed that translation patterns could be learned from parallel texts without linguistic rules. This data-driven approach, refined through phrase-based and syntax-based models, dominated the field for two decades and made MT practical for many language pairs.",
         "key_developments": [
           "IBM Models 1-5 for word alignment",
@@ -195,7 +195,7 @@
       },
       {
         "period_name": "Neural Revolution and Beyond",
-        "years": "2014-2025",
+        "years": "2015-2025",
         "description": "Neural machine translation has achieved unprecedented quality, reaching human parity for some language pairs. Starting with sequence-to-sequence models, the field rapidly evolved through attention mechanisms to transformers. Modern systems handle hundreds of languages, perform zero-shot translation, and integrate multimodal inputs. The focus has shifted from pure accuracy to addressing bias, efficiency, and specialized domains.",
         "key_developments": [
           "Sequence-to-sequence models with LSTM/GRU",

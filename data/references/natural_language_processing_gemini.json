@@ -28,9 +28,9 @@
     },
     {
       "period_name": "Feature-Rich Machine Learning",
-      "start_year": 1998,
+      "start_year": 2006,
       "end_year": 2014,
-      "duration_years": 17,
+      "duration_years": 8,
       "description": "Building upon statistical foundations, this period saw the widespread adoption of more sophisticated machine learning algorithms. These models, while still heavily reliant on manual feature engineering (extracting linguistic features like n-grams, part-of-speech tags, syntactic dependencies), offered improved discriminative power and generalization capabilities compared to simpler probabilistic models.",
       "representative_developments": [
         "Support Vector Machines (SVMs)",
@@ -40,9 +40,9 @@
     },
     {
       "period_name": "Deep Learning Revolution",
-      "start_year": 2012,
-      "end_year": 2017,
-      "duration_years": 6,
+      "start_year": 2015,
+      "end_year": 2016,
+      "duration_years": 1,
       "description": "This period saw the widespread adoption of neural networks, moving beyond shallow models. Key developments included word embeddings, which allowed words to be represented as dense vectors capturing semantic relationships, and recurrent neural networks (RNNs), particularly LSTMs, which were effective at modeling sequential data and long-range dependencies. This significantly reduced the need for manual feature engineering.",
       "representative_developments": [
         "Word2Vec (Mikolov et al., 2013)",

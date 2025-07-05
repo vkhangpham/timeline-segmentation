@@ -67,7 +67,7 @@
       },
       {
         "period_name": "Early Computer Era",
-        "years": "1948-1965",
+        "years": "1949-1959",
         "description": "The first generation of electronic computers brought theoretical concepts into physical reality. This era saw the transition from experimental machines to commercial computers, the development of the first programming languages and operating systems, and the beginning of computer science as a practical discipline distinct from electrical engineering and mathematics.",
         "key_developments": [
           "First stored-program computers (Manchester Baby, EDSAC)",
@@ -176,7 +176,7 @@
       },
       {
         "period_name": "Systems and Architecture Revolution",
-        "years": "1970-1990",
+        "years": "1976-1990",
         "description": "This period saw fundamental advances in computer architecture, operating systems, and programming languages that established patterns still used today. The development of UNIX, RISC architectures, object-oriented programming, and personal computers transformed both the technical landscape and societal impact of computing.",
         "key_developments": [
           "UNIX operating system and philosophy (1969-1973)",
@@ -227,7 +227,7 @@
       },
       {
         "period_name": "Internet and Web Era",
-        "years": "1990-2010",
+        "years": "1991-2010",
         "description": "The Internet's commercialization and the World Wide Web's invention transformed computer science from a specialized field to the foundation of global communication and commerce. This period saw explosive growth in scale, complexity, and societal impact, with new challenges in security, scalability, and human-computer interaction.",
         "key_developments": [
           "World Wide Web protocols and browsers",
@@ -281,7 +281,7 @@
       },
       {
         "period_name": "AI and Machine Learning Revolution",
-        "years": "2010-2025",
+        "years": "2011-2025",
         "description": "Deep learning's dramatic success has made AI/ML central to computer science, transforming everything from research priorities to undergraduate curricula. This period has seen AI move from specialized applications to general-purpose technology affecting all areas of computing and society, raising new questions about ethics, fairness, and human-AI interaction.",
         "key_developments": [
           "Deep learning achieving human-level performance",

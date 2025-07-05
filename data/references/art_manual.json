@@ -78,7 +78,7 @@
       },
       {
         "period_name": "Baroque and Rococo",
-        "years": "1600-1750",
+        "years": "1601-1750",
         "description": "The Baroque emerged as the artistic arm of the Counter-Reformation, using dramatic emotion, movement, and illusion to inspire religious devotion. It evolved from Italian origins to distinct national styles, eventually giving way to the lighter, more decorative Rococo in aristocratic settings.",
         "key_developments": [
           "Tenebrism - extreme light-dark contrasts for drama",
@@ -188,7 +188,7 @@
       },
       {
         "period_name": "Modern Art Explosion", 
-        "years": "1880-1945",
+        "years": "1887-1945",
         "description": "An unprecedented period of artistic experimentation that shattered traditional representation through multiple revolutionary movements. Beginning with Post-Impressionism's expressive innovations, modern art embraced abstraction, conceptual approaches, and radical new visions of reality, fundamentally redefining art's purpose and possibilities.",
         "key_developments": [
           "Post-Impressionism's symbolic and structural innovations",
@@ -263,7 +263,7 @@
       },
       {
         "period_name": "Contemporary Art",
-        "years": "1945-2025",
+        "years": "1946-2025",
         "description": "The post-war period has seen art expand beyond traditional boundaries to encompass performance, installation, digital media, and conceptual practices. Characterized by pluralism, global perspectives, and critical engagement with social issues, contemporary art questions fundamental assumptions about art's nature, market, and social role while embracing new technologies and interdisciplinary approaches.",
         "key_developments": [
           "Abstract Expressionism asserting American artistic leadership",

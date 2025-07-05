@@ -41,9 +41,9 @@
     },
     {
       "period_name": "Nonlinear Dynamics, Chaos, and Computational Science",
-      "start_year": 1970,
+      "start_year": 1971,
       "end_year": 2000,
-      "duration_years": 31,
+      "duration_years": 29,
       "description": "With increasing computational power, applied mathematics underwent a paradigm shift towards the study of complex, nonlinear phenomena. Fields like chaos theory and fractal geometry emerged, demonstrating that seemingly simple deterministic systems could exhibit unpredictable behavior. This period emphasized computational modeling and simulation as essential tools for exploring systems where analytical solutions were impossible, bridging mathematics with new frontiers in physics, biology, and engineering.",
       "representative_developments": [
         "Edward Lorenz, Deterministic Nonperiodic Flow (1963): Identified the 'butterfly effect' and laid groundwork for chaos theory.",
@@ -53,9 +53,9 @@
     },
     {
       "period_name": "Data-Driven Approaches and Complex Systems",
-      "start_year": 2000,
+      "start_year": 2001,
       "end_year": 2025,
-      "duration_years": 26,
+      "duration_years": 24,
       "description": "The early 21st century has seen a significant paradigm shift, driven by the explosion of data and advancements in computing. Applied mathematics is increasingly integrated with statistics and computer science to address problems in areas like machine learning, network science, and mathematical biology. The focus has moved towards developing algorithms and models that can extract insights from massive datasets, understand emergent properties in complex systems, and quantify uncertainty in predictions. This era emphasizes interdisciplinary collaboration and computational scalability.",
       "representative_developments": [
         "Rise of Deep Learning (2010s): Enabled by advancements in neural networks (e.g., Convolutional Neural Networks, Recurrent Neural Networks) and increased computational power (GPUs), revolutionizing fields like image recognition and natural language processing.",

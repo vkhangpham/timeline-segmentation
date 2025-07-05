@@ -61,7 +61,7 @@
       },
       {
         "period_name": "Symbolic AI and Early Statistical Methods",
-        "years": "1960-1980",
+        "years": "1961-1980",
         "description": "Machine learning diverged into symbolic approaches (learning rules and concepts) and statistical methods (pattern recognition). The field faced the 'AI winter' after initial optimism faded, but important theoretical foundations were established including computational learning theory, nearest neighbor methods, and early clustering algorithms.",
         "key_developments": [
           "Nearest neighbor algorithm for classification",
@@ -112,7 +112,7 @@
       },
       {
         "period_name": "Statistical Learning Theory Revolution",
-        "years": "1980-1995",
+        "years": "1981-1995",
         "description": "Rigorous mathematical foundations transformed machine learning into a principled scientific discipline. The development of PAC learning, VC theory, and statistical learning theory provided formal frameworks for understanding generalization. This period also saw the revival of neural networks through backpropagation and the emergence of probabilistic graphical models.",
         "key_developments": [
           "PAC (Probably Approximately Correct) learning framework",
@@ -169,7 +169,7 @@
       },
       {
         "period_name": "Practical Algorithms and Applications Era",
-        "years": "1995-2010",
+        "years": "1996-2010",
         "description": "Machine learning transitioned from theoretical discipline to practical tool as powerful algorithms were developed and computational resources increased. Support Vector Machines dominated classification, ensemble methods improved accuracy, and graphical models enabled complex applications. The rise of the internet provided massive datasets, while open source libraries democratized access.",
         "key_developments": [
           "Support Vector Machines with kernel trick",
@@ -241,7 +241,7 @@
       },
       {
         "period_name": "Big Data and Deep Learning Transformation",
-        "years": "2010-2025",
+        "years": "2011-2025",
         "description": "The convergence of big data, powerful hardware (GPUs/TPUs), and deep learning has transformed machine learning from a specialized tool to a general-purpose technology. Deep neural networks now dominate many applications, while classical ML maintains importance for interpretable models and smaller datasets. The field faces new challenges in fairness, interpretability, and societal impact.",
         "key_developments": [
           "Deep learning dominance in vision, speech, NLP",
