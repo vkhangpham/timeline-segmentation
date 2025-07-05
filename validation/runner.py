@@ -18,9 +18,9 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.algorithm_config import AlgorithmConfig
-from core.shift_signal_detection import detect_shift_signals
-from core.data_processing import process_domain_data
+from core.utils.config import AlgorithmConfig
+from core.detection.shift_signals import detect_shift_signals
+from core.data.processing import process_domain_data
 from validation.core import load_reference_data_from_files, evaluate_shifts_against_reference
 
 

@@ -27,7 +27,7 @@ python run_timeline_analysis.py --domain computer_vision --granularity 1
 
 **Two-stage process:**
 1. **Change Point Detection** → Identifies temporal segments using similarity-based algorithms
-2. **Period Characterization** → Analyzes content and themes within each detected segment
+2. **Period Characterization** → Analyzes content and themes within each detected segment using citation network analysis
 
 ### 🎯 Parameter Optimization (`optimize_segmentation_bayesian.py`)
 
@@ -68,17 +68,19 @@ Validates algorithm performance using precision, recall, and F1-scores with 2-ye
 | `integration.py` | Main pipeline orchestration |
 | `shift_signal_detection.py` | Change point detection algorithms |
 | `similarity_segmentation.py` | Temporal similarity analysis |
-| `consensus_difference_metrics.py` | Quality evaluation metrics |
+| `objective_function.py` | Validated timeline quality evaluation |
 | `algorithm_config.py` | Centralized parameter management |
-| `data_loader.py` | Multi-format data ingestion |
+| `data_loader.py` | JSON and graph data ingestion |
+| `data_processing.py` | Rich citation graph processing |
+| `period_signal_detection.py` | Network-based period characterization |
 | `text_vectorization.py` | TF-IDF and embedding processing |
 
 ### Data Flow
 
 ```
-Raw Literature Data → Change Detection → Segmentation → Period Analysis → Results
-                                ↓
-                         Parameter Optimization ← Validation Framework
+JSON Literature Data + Citation Graph → Change Detection → Segmentation → Network Period Analysis → Results
+                                              ↓
+                                   Parameter Optimization ← Validation Framework
 ```
 
 ## Configuration
@@ -87,25 +89,60 @@ Raw Literature Data → Change Detection → Segmentation → Period Analysis �
 - **Granularity levels:** 1 (ultra-fine) to 5 (ultra-coarse)  
 - **Detection thresholds:** Direction and validation sensitivity
 - **Segment constraints:** Minimum/maximum lengths
+- **Citation analysis:** Network stability and significance scoring
 - **Optimization parameters:** Loaded from `results/optimized_parameters_bayesian.json`
 
 ## Data Structure
 
+**Primary Data Sources:**
 ```
-data/
-├── processed/           # Domain CSV files (*_processed.csv)
-└── references/          # Manual validation data (*_manual.json)
+resources/                     # JSON data sources (preferred)
+├── {domain}/
+│   ├── {domain}_docs_info.json              # Paper metadata and content
+│   └── {domain}_entity_relation_graph.graphml.xml  # Rich citation relationships
 
-results/                 # Algorithm outputs and optimized parameters
+data/
+└── references/                # Manual validation data (*_manual.json, *_gemini.json)
+
+results/                       # Algorithm outputs and optimized parameters
 ```
+
+**Data Pipeline Migration:**
+- ✅ **JSON Data Sources**: Direct loading from `docs_info.json` files
+- ✅ **Graph Data**: Rich citation networks from GraphML files  
+- ✅ **Citation-based Significance**: Dynamic paper importance calculation
+- ⚠️ **CSV Support**: Deprecated (will be removed in future versions)
 
 ## Key Features
 
+- **Rich Citation Analysis** → Network-based period characterization with semantic relationships
+- **Dynamic Significance Scoring** → Citation-based paper importance without external breakthrough lists
 - **Fail-fast error handling** → Immediate error propagation for debugging
 - **Functional programming** → Pure functions with immutable data structures  
 - **Parameter transparency** → All decisions explainable and traceable
 - **Multi-domain support** → Consistent analysis across scientific fields
 - **Bayesian optimization** → Efficient parameter tuning with minimal evaluations
+
+## Data Loading
+
+The system uses a **tiered data loading approach**:
+
+1. **Primary**: `{domain}_docs_info.json` + `{domain}_entity_relation_graph.graphml.xml`
+2. **Legacy**: CSV files (deprecated, shows warnings)
+
+**Example domain data structure:**
+```json
+{
+  "paper_id": {
+    "title": "Paper Title",
+    "content": "Abstract and content",
+    "pub_year": 2023,
+    "cited_by_count": 150,
+    "keywords": ["keyword1", "keyword2"],
+    "children": ["citing_paper_id1", "citing_paper_id2"]
+  }
+}
+```
 
 ## Quick Start
 
@@ -124,4 +161,12 @@ results/                 # Algorithm outputs and optimized parameters
    python -m validation.runner
    ```
 
-Results are saved in `results/` directory with comprehensive analysis and visualizations. 
+Results are saved in `results/` directory with comprehensive analysis and visualizations.
+
+## Migration Notes
+
+**Recent Updates:**
+- Migrated from CSV to JSON data sources for better performance and consistency
+- Replaced breakthrough papers dependency with dynamic citation-based significance calculation
+- Enhanced period characterization with rich citation network analysis
+- Cleaned up reference data by removing unused breakthrough paper arrays 

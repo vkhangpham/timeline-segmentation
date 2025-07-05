@@ -25,7 +25,7 @@ from collections import Counter, defaultdict
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from core.data_models import ShiftSignal
+from core.data.models import ShiftSignal
 
 
 class ReferenceData(NamedTuple):
