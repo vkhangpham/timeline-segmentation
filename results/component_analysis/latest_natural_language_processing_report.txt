@@ -1,0 +1,55 @@
+COMPONENT ANALYSIS REPORT: NATURAL_LANGUAGE_PROCESSING
+============================================================
+
+DATA SUMMARY:
+  Papers: 30360 → 30360 (filtered)
+  Keywords: 155 valid
+  Year range: 1852-2024
+
+REFERENCE TIMELINE ANALYSIS:
+  Manual Timeline:
+    Segments: 4
+    Transitions: 3
+    Cohesion Jaccard: μ=0.232, σ=0.012
+    Cohesion Entropy: μ=0.091, σ=0.012
+    Separation JS: μ=0.190, σ=0.044
+    Separation TopK: μ=0.336, σ=0.109
+  Gemini Timeline:
+    Segments: 6
+    Transitions: 5
+    Cohesion Jaccard: μ=0.243, σ=0.019
+    Cohesion Entropy: μ=0.083, σ=0.011
+    Separation JS: μ=0.146, σ=0.046
+    Separation TopK: μ=0.279, σ=0.069
+
+PERCENTILE RANKINGS VS K-STRATIFIED BASELINES:
+  Manual Timeline:
+    cohesion_jaccard: 44.6th percentile
+    cohesion_entropy: 65.3th percentile
+    separation_js: 71.0th percentile
+    separation_topk: 70.6th percentile
+  Gemini Timeline:
+    cohesion_jaccard: 67.4th percentile
+    cohesion_entropy: 44.0th percentile
+    separation_js: 62.2th percentile
+    separation_topk: 65.8th percentile
+
+CORRELATION ANALYSIS:
+  Manual Timeline:
+    cohesion_jaccard_vs_entropy: r=-0.710
+    separation_js_vs_topk: r=0.994
+  Gemini Timeline:
+    cohesion_jaccard_vs_entropy: r=-0.810
+    separation_js_vs_topk: r=0.814
+
+EXTREME EXAMPLES:
+  Manual Timeline:
+    Low Cohesion Segments:
+      Segment 2: 1971-1990, size=3067, jaccard=0.220
+        Top keywords: natural language processing, linguistics, language, computer science, computational linguistics
+  Gemini Timeline:
+    High Cohesion Segments:
+      Segment 4: 2015-2016, size=1812, jaccard=0.265
+        Top keywords: natural language processing, computer science, machine learning, deep learning, data science
+      Segment 5: 2017-2019, size=2693, jaccard=0.264
+        Top keywords: natural language processing, computer science, machine learning, deep learning, data science

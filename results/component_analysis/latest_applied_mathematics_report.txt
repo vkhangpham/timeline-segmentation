@@ -1,0 +1,55 @@
+COMPONENT ANALYSIS REPORT: APPLIED_MATHEMATICS
+============================================================
+
+DATA SUMMARY:
+  Papers: 79597 → 79596 (filtered)
+  Keywords: 145 valid
+  Year range: 1494-2025
+
+REFERENCE TIMELINE ANALYSIS:
+  Manual Timeline:
+    Segments: 6
+    Transitions: 5
+    Cohesion Jaccard: μ=0.149, σ=0.014
+    Cohesion Entropy: μ=0.168, σ=0.022
+    Separation JS: μ=0.140, σ=0.026
+    Separation TopK: μ=0.300, σ=0.092
+  Gemini Timeline:
+    Segments: 4
+    Transitions: 3
+    Cohesion Jaccard: μ=0.149, σ=0.016
+    Cohesion Entropy: μ=0.167, σ=0.027
+    Separation JS: μ=0.192, σ=0.029
+    Separation TopK: μ=0.420, σ=0.043
+
+PERCENTILE RANKINGS VS K-STRATIFIED BASELINES:
+  Manual Timeline:
+    cohesion_jaccard: 65.5th percentile
+    cohesion_entropy: 39.3th percentile
+    separation_js: 67.3th percentile
+    separation_topk: 61.8th percentile
+  Gemini Timeline:
+    cohesion_jaccard: 57.7th percentile
+    cohesion_entropy: 47.9th percentile
+    separation_js: 79.7th percentile
+    separation_topk: 87.1th percentile
+
+CORRELATION ANALYSIS:
+  Manual Timeline:
+    cohesion_jaccard_vs_entropy: r=-0.997**
+    separation_js_vs_topk: r=0.705
+  Gemini Timeline:
+    cohesion_jaccard_vs_entropy: r=-0.998**
+    separation_js_vs_topk: r=0.711
+
+EXTREME EXAMPLES:
+  Manual Timeline:
+    High Cohesion Segments:
+      Segment 1: 1657-1900, size=1084, jaccard=0.178
+        Top keywords: applied mathematics, mathematics, numerical analysis, differential equation, numerical mathematics
+      Segment 2: 1901-1939, size=5284, jaccard=0.153
+        Top keywords: applied mathematics, mathematics, numerical analysis, spectral theory, numerical mathematics
+  Gemini Timeline:
+    High Cohesion Segments:
+      Segment 1: 1800-1900, size=1074, jaccard=0.177
+        Top keywords: applied mathematics, mathematics, numerical analysis, differential equation, numerical mathematics

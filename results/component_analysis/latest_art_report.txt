@@ -1,0 +1,50 @@
+COMPONENT ANALYSIS REPORT: ART
+============================================================
+
+DATA SUMMARY:
+  Papers: 46713 → 46713 (filtered)
+  Keywords: 101 valid
+  Year range: 1400-2024
+
+REFERENCE TIMELINE ANALYSIS:
+  Manual Timeline:
+    Segments: 3
+    Transitions: 2
+    Cohesion Jaccard: μ=0.180, σ=0.011
+    Cohesion Entropy: μ=0.165, σ=0.010
+    Separation JS: μ=0.177, σ=0.014
+    Separation TopK: μ=0.305, σ=0.000
+  Gemini Timeline:
+    Segments: 4
+    Transitions: 3
+    Cohesion Jaccard: μ=0.178, σ=0.012
+    Cohesion Entropy: μ=0.163, σ=0.016
+    Separation JS: μ=0.103, σ=0.018
+    Separation TopK: μ=0.235, σ=0.029
+
+PERCENTILE RANKINGS VS K-STRATIFIED BASELINES:
+  Manual Timeline:
+    cohesion_jaccard: 59.3th percentile
+    cohesion_entropy: 39.5th percentile
+    separation_js: 42.5th percentile
+    separation_topk: 71.8th percentile
+  Gemini Timeline:
+    cohesion_jaccard: 68.4th percentile
+    cohesion_entropy: 33.5th percentile
+    separation_js: 49.9th percentile
+    separation_topk: 63.7th percentile
+
+CORRELATION ANALYSIS:
+  Manual Timeline:
+    cohesion_jaccard_vs_entropy: r=-0.822
+    separation_js_vs_topk: r=nan
+  Gemini Timeline:
+    cohesion_jaccard_vs_entropy: r=-0.931
+    separation_js_vs_topk: r=-0.065
+
+EXTREME EXAMPLES:
+  Manual Timeline:
+  Gemini Timeline:
+    High Cohesion Segments:
+      Segment 2: 1946-1970, size=4290, jaccard=0.192
+        Top keywords: art, art history, visual arts, aesthetics, art research
