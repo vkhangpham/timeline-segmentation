@@ -1,69 +1,53 @@
 # Core package for timeline segmentation algorithm
-# Updated structure post-restructuring with organized sub-modules
+# Simplified architecture with clean data flow
 
 # Import main objective function for easy access
-from .analysis.objective_function import (
-    evaluate_timeline_quality,
+from .optimization.objective_function import (
     compute_objective_function,
     ObjectiveFunctionResult,
-    jaccard_cohesion,
-    jensen_shannon_separation
 )
 
 # Import key data models
-from .data.models import Paper, DomainData
-
-# Import consolidated keyword utilities
-from .utils.keywords import (
-    extract_keywords_from_papers,
-    count_keyword_frequencies,
-    get_top_keywords,
-    analyze_keyword_distribution,
-    calculate_jaccard_similarity
+from .data.data_models import (
+    Paper,
+    DomainData,
+    AcademicYear,
+    AcademicPeriod,
+    TimelineAnalysisResult,
 )
 
-# Import main pipeline orchestration
-from .pipeline.orchestrator import run_complete_analysis
+# Import simplified pipeline orchestration
+from .pipeline.orchestrator import analyze_timeline
 
-# Import data processing functions
-from .data.processing import (
+# Import simplified data processing functions
+from .data.data_processing import (
     load_papers_from_json,
-    process_domain_data,
-    calculate_statistics
+    load_domain_data,
+    create_academic_periods_from_segments,
+    create_single_academic_period,
 )
 
 # Import configuration management
-from .utils.config import AlgorithmConfig, create_default_config
+from .utils.config import AlgorithmConfig
 
 # Main exports for public API
 __all__ = [
     # Core objective function and evaluation
-    'evaluate_timeline_quality',
-    'compute_objective_function', 
-    'ObjectiveFunctionResult',
-    'jaccard_cohesion',
-    'jensen_shannon_separation',
-    
+    "compute_objective_function",
+    "ObjectiveFunctionResult",
     # Data models and structures
-    'Paper',
-    'DomainData',
-    
-    # Main pipeline entry point
-    'run_complete_analysis',
-    
-    # Data processing and loading
-    'load_papers_from_json',
-    'process_domain_data', 
-    'calculate_statistics',
-    
+    "Paper",
+    "DomainData",
+    "AcademicYear",
+    "AcademicPeriod",
+    "TimelineAnalysisResult",
+    # Simplified pipeline entry points
+    "analyze_timeline",
+    # Simplified data processing and loading
+    "load_papers_from_json",
+    "load_domain_data",
+    "create_academic_periods_from_segments",
+    "create_single_academic_period",
     # Configuration management
-    'AlgorithmConfig',
-    'create_default_config',
-    
-    # Consolidated keyword utilities
-    'extract_keywords_from_papers',
-    'count_keyword_frequencies',
-    'get_top_keywords',
-    'analyze_keyword_distribution',
-    'calculate_jaccard_similarity'
+    "AlgorithmConfig",
 ]

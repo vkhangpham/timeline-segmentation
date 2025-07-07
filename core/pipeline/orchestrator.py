@@ -1,347 +1,221 @@
 """
-Pipeline Orchestrator for Timeline Analysis
+Simplified Timeline Analysis Orchestrator
 
-This module orchestrates the complete timeline analysis pipeline by coordinating:
-1. Change point detection and shift signal analysis
-2. Timeline analysis with period characterization
-3. Segment merging post-processing
-4. Complete analysis workflow management
+This module provides the main timeline analysis pipeline using only AcademicYear
+and AcademicPeriod as core data structures. All legacy DomainData dependencies
+have been eliminated.
 
-Separated from integration.py to follow single responsibility principle.
-Provides clean orchestration of the core analysis algorithms.
+PIPELINE FLOW:
+1. Load Data → List[AcademicYear]
+2. Detect Shifts → List[AcademicYear] (boundary years)
+3. Create Segments → List[AcademicPeriod]
+4. Characterize Periods → List[AcademicPeriod] (enhanced with characterization)
+5. Merge Periods → List[AcademicPeriod] (final timeline)
+6. Return → TimelineAnalysisResult
+
+Key features:
+- Single entry point: analyze_timeline()
+- Pure functional pipeline stages with consistent data structures
+- Fail-fast error handling throughout
+- Real data usage with no mock or synthetic data
+- Clean separation of concerns between stages
 """
 
 import time
-import numpy as np
-from typing import Dict, List, Tuple, Optional, Any
+from typing import List, Tuple, Optional, Dict, Any
 
-from ..data.models import (
-    DomainData, ChangeDetectionResult, TimelineAnalysisResult
+from ..data.data_models import AcademicYear, AcademicPeriod, TimelineAnalysisResult
+from ..data.data_processing import (
+    load_domain_data,
+    create_academic_periods_from_segments,
 )
-from ..data.processing import process_domain_data
-from ..detection.change_detection import detect_changes
-from ..segmentation.modeling import model_segments
-from ..segmentation.merging import merge_similar_segments
-from ..detection.shift_signals import detect_shift_signals
-from ..segmentation.boundary import create_boundary_segments
+from ..segmentation.shift_signals import detect_boundary_years
+from ..segmentation.boundary import create_segments_from_boundary_years
+from ..segment_modeling.period_signals import characterize_academic_periods
+from ..segmentation.merging import merge_similar_periods
 from ..utils.config import AlgorithmConfig
-from ..results.manager import save_all_results
 from ..utils.logging import get_logger
 
 
-def run_complete_analysis(
-    domain_name: str = None,
-    domain_data: Optional[DomainData] = None,
-    algorithm_config: Optional[AlgorithmConfig] = None,
-    segmentation_only: bool = False,
-    save_results: bool = True,
-    verbose: bool = False
-) -> Dict[str, Any]:
+def analyze_timeline(
+    domain_name: str,
+    algorithm_config: AlgorithmConfig,
+    data_directory: str = "resources",
+    verbose: bool = False,
+) -> TimelineAnalysisResult:
     """
-    Run complete timeline analysis pipeline with optional result saving.
-    
-    This is the main entry point for the timeline analysis system,
-    orchestrating all components in the correct sequence.
-    
+    Main timeline analysis pipeline.
+
+    Uses only AcademicYear and AcademicPeriod as core data structures.
+    All intermediate complex objects have been eliminated for cleaner flow.
+
     Args:
-        domain_name: Name of the domain to process (required if domain_data not provided)
-        domain_data: Optional pre-loaded domain data
-        algorithm_config: Algorithm configuration
-        segmentation_only: If True, only run segmentation (skip timeline analysis)
-        save_results: Whether to save results to files
+        domain_name: Name of the domain to analyze
+        algorithm_config: Algorithm configuration (required)
+        data_directory: Directory containing domain data
         verbose: Enable verbose logging
-        
+
     Returns:
-        Dictionary containing all analysis results and file paths
+        TimelineAnalysisResult with final timeline periods
+
+    Raises:
+        RuntimeError: If any pipeline stage fails (fail-fast behavior)
     """
     logger = get_logger(__name__, verbose)
     start_time = time.time()
-    
-    # Step 1: Load domain data if not provided
-    if domain_data is None:
-        if domain_name is None:
-            raise ValueError("Either domain_name or domain_data must be provided")
-        
-        logger.info(f"Loading domain data: {domain_name}")
-        result = process_domain_data(domain_name)
-        if not result.success:
-            return {
-                'success': False,
-                'error': f"Error loading {domain_name}: {result.error_message}",
-                'execution_time': time.time() - start_time
-            }
-        domain_data = result.domain_data
-    else:
-        domain_name = domain_data.domain_name
-    
-    # Step 2: Run change detection and segmentation
-    segmentation_results, change_detection_result, shift_signals = run_change_detection(
-        domain_name=domain_name,
-        algorithm_config=algorithm_config,
-        domain_data=domain_data,
-        verbose=verbose
-    )
-    
-    if not segmentation_results:
-        return {
-            'success': False,
-            'error': 'Change detection failed',
-            'execution_time': time.time() - start_time
-        }
-    
-    # Step 3: Handle segmentation-only case
-    if segmentation_only:
-        segments = segmentation_results.get('segments', [])
-        return {
-            'success': True,
-            'domain_name': domain_name,
-            'segments': segments,
-            'segmentation_results': segmentation_results,
-            'execution_time': time.time() - start_time
-        }
-    
-    # Step 4: Run timeline analysis
-    segments = [(start, end) for start, end in segmentation_results['segments']]
-    
-    timeline_result = run_timeline_analysis(
-        domain_data=domain_data,
-        segments=segments,
-        change_detection_result=change_detection_result,
-        precomputed_shift_signals=shift_signals,
-        enable_segment_merging=True,
-        similarity_threshold=0.75,
-        weak_signal_threshold=0.4,
-        granularity=segmentation_results['granularity'],
-        verbose=verbose
-    )
-    
-    if not timeline_result:
-        return {
-            'success': False,
-            'error': 'Timeline analysis failed',
-            'execution_time': time.time() - start_time
-        }
-    
-    # Step 5: Save results if requested
-    saved_files = {}
-    if save_results:
-        saved_files = save_all_results(
-            timeline_result, segmentation_results, shift_signals, domain_data
+
+    try:
+        logger.info(f"Starting timeline analysis for {domain_name}")
+
+        # STAGE 1: Load Data → List[AcademicYear]
+        success, academic_years, error_message = load_domain_data(
+            domain_name=domain_name,
+            algorithm_config=algorithm_config,
+            data_directory=data_directory,
+            min_papers_per_year=5,
+            apply_year_filtering=True,
+            verbose=verbose,
         )
-    
-    # Step 6: Return comprehensive results
-    return {
-        'success': True,
-        'domain_name': domain_name,
-        'timeline_result': timeline_result,
-        'segmentation_results': segmentation_results,
-        'shift_signals': shift_signals,
-        'period_characterizations': list(timeline_result.period_characterizations),
-        'saved_files': saved_files,
-        'execution_time': time.time() - start_time
-    }
+
+        if not success:
+            raise RuntimeError(f"Failed to load data: {error_message}")
+
+        if not academic_years:
+            raise RuntimeError(f"No academic years found for {domain_name}")
+
+        logger.info(f"Loaded {len(academic_years)} academic years")
+
+        # STAGE 2: Detect Shifts → List[AcademicYear] (boundary years)
+        # Use AcademicYear objects directly for shift detection
+        boundary_academic_years = detect_boundary_years(
+            academic_years=academic_years,
+            domain_name=domain_name,
+            algorithm_config=algorithm_config,
+            use_citation=True,
+            use_direction=True,
+            verbose=verbose,
+        )
+
+        logger.info(
+            f"Detected {len(boundary_academic_years)} boundary years: {[ay.year for ay in boundary_academic_years]}"
+        )
+
+        # STAGE 3: Create Segments → List[AcademicPeriod]
+        # Now directly creates AcademicPeriod objects from boundary AcademicYear objects
+        initial_periods = create_segments_from_boundary_years(
+            boundary_academic_years=boundary_academic_years,
+            academic_years=tuple(academic_years),
+            algorithm_config=algorithm_config,
+            verbose=verbose,
+        )
+
+        logger.info(f"Created {len(initial_periods)} initial periods")
+
+        # STAGE 4: Characterize Periods → List[AcademicPeriod] (enhanced)
+        characterized_periods = characterize_academic_periods(
+            domain_name=domain_name,
+            periods=initial_periods,
+            verbose=verbose,
+        )
+
+        logger.info(f"Characterized {len(characterized_periods)} periods")
+
+        # STAGE 5: Merge Periods → List[AcademicPeriod] (final timeline)
+        final_periods = merge_similar_periods(
+            periods=characterized_periods,
+            algorithm_config=algorithm_config,
+            verbose=verbose,
+        )
+
+        logger.info(f"Final timeline: {len(final_periods)} periods")
+
+        # STAGE 6: Create Results
+        # Extract boundary years from boundary_academic_years for results
+        boundary_years = [ay.year for ay in boundary_academic_years]
+        timeline_result = TimelineAnalysisResult(
+            domain_name=domain_name,
+            periods=tuple(final_periods),
+            confidence=calculate_timeline_confidence(final_periods),
+            boundary_years=tuple(boundary_years),
+            narrative_evolution=generate_narrative_evolution(
+                final_periods, domain_name
+            ),
+        )
+
+        total_time = time.time() - start_time
+        logger.info(f"Timeline analysis completed in {total_time:.2f} seconds")
+
+        return timeline_result
+
+    except Exception as e:
+        logger.error(f"Timeline analysis failed: {e}")
+        raise RuntimeError(f"Timeline analysis failed for {domain_name}: {e}") from e
 
 
-def run_timeline_analysis(
-    domain_data: DomainData,
-    segments: List[Tuple[int, int]],
-    change_detection_result: Optional[ChangeDetectionResult] = None,
-    precomputed_shift_signals: Optional[List] = None,
-    enable_segment_merging: bool = True,
-    similarity_threshold: float = 0.75,
-    weak_signal_threshold: float = 0.4,
-    granularity: int = 3,
-    verbose: bool = False
-) -> TimelineAnalysisResult:
+# =============================================================================
+# HELPER FUNCTIONS
+# =============================================================================
+
+
+def calculate_timeline_confidence(periods: List[AcademicPeriod]) -> float:
     """
-    Unified timeline analysis pipeline combining shift and period signal detection with segment merging.
-    
+    Calculate overall confidence for the timeline based on period characterizations.
+
     Args:
-        domain_data: Domain data with papers and citations
-        segments: Timeline segments from shift signal detection
-        change_detection_result: Optional pre-computed change detection
-        precomputed_shift_signals: Optional pre-computed shift signals to avoid recomputation
-        enable_segment_merging: Whether to perform segment merging post-processing
-        similarity_threshold: Threshold for semantic similarity in merging (0.0-1.0)
-        weak_signal_threshold: Threshold for weak shift signals in merging (0.0-1.0)
-        granularity: Timeline granularity control (1-5)
-        verbose: Enable verbose logging
-        
+        periods: List of characterized academic periods
+
     Returns:
-        Timeline analysis results with period characterizations and optional merging
-    """    
-    logger = get_logger(__name__, verbose)
-    
-    # Step 1: Segment modeling using period signal detection
-    modeling_result = model_segments(
-        domain_name=domain_data.domain_name,
-        segments=segments,
-        verbose=verbose
-    )
-    
-    period_characterizations = list(modeling_result.period_characterizations)
-    
-    # Step 2: Optional segment merging post-processing
-    merged_period_characterizations = period_characterizations
-    merging_result = None
-    
-    if enable_segment_merging and len(period_characterizations) >= 2:
-        logger.info("SEGMENT MERGING POST-PROCESSING")
-        
-        # Use precomputed shift signals if available, otherwise compute them
-        if precomputed_shift_signals is not None:
-            shift_signals = precomputed_shift_signals
-            logger.debug(f"Using precomputed shift signals for merging: {len(shift_signals)} signals")
-        else:
-            # Create comprehensive algorithm config for shift signal detection
-            algorithm_config = AlgorithmConfig(granularity=granularity)
-            
-            # Get shift signals for boundary analysis
-            shift_signals = detect_shift_signals(domain_data, domain_data.domain_name, algorithm_config, verbose=verbose)
-            logger.debug(f"Computed shift signals for merging: {len(shift_signals)} signals")
-        
-        # Perform intelligent segment merging
-        merging_result = merge_similar_segments(
-            period_characterizations=period_characterizations,
-            shift_signals=shift_signals,
-            domain_name=domain_data.domain_name,
-            similarity_threshold=similarity_threshold,
-            weak_signal_threshold=weak_signal_threshold,
-            verbose=verbose
-        )
-        
-        merged_period_characterizations = list(merging_result.merged_segments)
-        
-        logger.info("Segment merging completed:")
-        logger.info(f"Original segments: {len(period_characterizations)}")
-        logger.info(f"Merged segments: {len(merged_period_characterizations)}")
-    else:
-        if not enable_segment_merging:
-            logger.debug("Segment merging disabled")
-        else:
-            logger.debug(f"Segment merging skipped - insufficient segments ({len(period_characterizations)})")
-    
-    # Step 3: Calculate unified confidence using final merged segments
-    if merged_period_characterizations:
-        unified_confidence = np.mean([pc.confidence for pc in merged_period_characterizations])
-    else:
-        unified_confidence = 0.0
-    
-    # Step 4: Generate narrative evolution using final merged segments
+        Overall confidence score (0.0 to 1.0)
+    """
+    if not periods:
+        return 0.0
+
+    # Calculate weighted average of period confidences
+    total_papers = sum(p.total_papers for p in periods)
+    if total_papers == 0:
+        return 0.0
+
+    weighted_confidence = 0.0
+    for period in periods:
+        weight = period.total_papers / total_papers
+        weighted_confidence += weight * period.confidence
+
+    return weighted_confidence
+
+
+def generate_narrative_evolution(
+    periods: List[AcademicPeriod], domain_name: str
+) -> str:
+    """
+    Generate narrative description of the timeline evolution.
+
+    Args:
+        periods: List of characterized academic periods
+        domain_name: Name of the domain
+
+    Returns:
+        Narrative description string
+    """
+    if not periods:
+        return f"No timeline periods identified for {domain_name}"
+
+    if len(periods) == 1:
+        period = periods[0]
+        return f"{domain_name} shows stable development from {period.start_year} to {period.end_year}"
+
+    # Multi-period narrative
     narrative_parts = []
-    for pc in merged_period_characterizations:
-        narrative_parts.append(f"{pc.period[0]}-{pc.period[1]}: {pc.topic_label}")
-    
-    narrative_evolution = " → ".join(narrative_parts)
-    
-    return TimelineAnalysisResult(
-        domain_name=domain_data.domain_name,
-        period_characterizations=tuple(period_characterizations),
-        merged_period_characterizations=tuple(merged_period_characterizations),
-        merging_result=merging_result,
-        unified_confidence=unified_confidence,
-        narrative_evolution=narrative_evolution
-    )
+    narrative_parts.append(f"{domain_name} timeline evolution:")
 
+    for i, period in enumerate(periods):
+        period_desc = f"Period {i+1} ({period.start_year}-{period.end_year})"
 
-def run_change_detection(
-    domain_name: str = None, 
-    granularity: int = 3, 
-    algorithm_config: Optional[AlgorithmConfig] = None,
-    domain_data: Optional[DomainData] = None,
-    verbose: bool = False
-) -> Tuple[Optional[Dict], Optional[ChangeDetectionResult], Optional[List]]:
-    """
-    Run change point detection and segmentation for a domain.
-    
-    Args:
-        domain_name: Name of the domain to process (required if domain_data not provided)
-        granularity: Timeline granularity control (1-5, used if algorithm_config is None)
-        algorithm_config: Optional comprehensive algorithm configuration
-        domain_data: Optional pre-loaded domain data (avoids reloading)
-        verbose: Enable verbose logging
-        
-    Returns:
-        Tuple of (segmentation_results, change_detection_result, shift_signals)
-    """
-    logger = get_logger(__name__, verbose)
-    
-    # Use pre-loaded domain data or load it
-    if domain_data is not None:
-        logger.info(f"CHANGE POINT DETECTION: {domain_data.domain_name}")
-        domain_name = domain_data.domain_name
-    else:
-        if domain_name is None:
-            raise ValueError("Either domain_name or domain_data must be provided")
-        
-        logger.info(f"CHANGE POINT DETECTION: {domain_name}")
-        
-        # Load domain data
-        result = process_domain_data(domain_name)
-        if not result.success:
-            logger.error(f"Error loading {domain_name}: {result.error_message}")
-            return None, None, None
-        
-        domain_data = result.domain_data
-    
-    # Create or use comprehensive algorithm configuration
-    if algorithm_config is None:
-        algorithm_config = AlgorithmConfig(granularity=int(granularity))
-    else:
-        granularity = algorithm_config.granularity
+        if period.topic_label:
+            period_desc += f": {period.topic_label}"
 
-    # Run change detection
-    logger.info("CHANGE DETECTION")
-    change_result, shift_signals = detect_changes(domain_data, algorithm_config=algorithm_config, verbose=verbose)
-    
-    # Extract change point years
-    change_years = sorted([cp.year for cp in change_result.change_points])
-    
-    # Create segments using boundary segmentation
-    logger.info("BOUNDARY SEGMENTATION")
-    if shift_signals:
-        # Create boundary-based segments using signal years directly
-        boundary_segments, boundary_metadata = create_boundary_segments(
-            shift_signals, 
-            domain_data,
-            verbose=verbose
-        )
-        
-        # Convert to expected format
-        segments = [[start, end] for start, end in boundary_segments]
-        
-        logger.info(f"Created {len(segments)} segments from {len(shift_signals)} validated signals")
-        for i, (start, end) in enumerate(boundary_segments):
-            logger.debug(f"  Segment {i+1}: {start}-{end} ({end-start+1} years)")
-    else:
-        logger.warning("No validated signals found - using single segment")
-        segments = [[domain_data.year_range[0], domain_data.year_range[1]]]
-    
-    # Prepare results
-    results = {
-        'domain_name': domain_name,
-        'granularity': granularity,
-        'algorithm_config': {
-            'direction_threshold': algorithm_config.direction_threshold,
-            'citation_boost_rate': algorithm_config.citation_boost_rate,
-            'validation_threshold': algorithm_config.validation_threshold,
-            'citation_support_window': algorithm_config.citation_support_window,
-            'keyword_min_frequency': algorithm_config.keyword_min_frequency,
-            'min_significant_keywords': algorithm_config.min_significant_keywords,
-            'segmentation_method': 'boundary_based'
-        },
-        'time_range': list(domain_data.year_range),
-        'change_points': change_years,
-        'segments': segments,
-        'statistical_significance': change_result.statistical_significance
-    }
-    
-    return results, change_result, shift_signals
+        if period.topic_description:
+            period_desc += f" - {period.topic_description}"
 
+        narrative_parts.append(period_desc)
 
-# Export functions
-__all__ = [
-    'run_complete_analysis',
-    'run_timeline_analysis', 
-    'run_change_detection'
-] 
+    return "; ".join(narrative_parts)

@@ -1,16 +1,16 @@
 # Pipeline Sub-module
-# Handles high-level pipeline orchestration and workflow management
+# Handles simplified pipeline orchestration and workflow management
 
-# Import pipeline orchestrator
+# Import simplified pipeline orchestrator
 from .orchestrator import (
-    run_complete_analysis,
-    run_timeline_analysis,
-    run_change_detection
+    analyze_timeline,
+    calculate_timeline_confidence,
+    generate_narrative_evolution,
 )
 
-# Export all
+# Export all simplified functions
 __all__ = [
-    'run_complete_analysis',
-    'run_timeline_analysis', 
-    'run_change_detection'
-] 
+    "analyze_timeline",
+    "calculate_timeline_confidence",
+    "generate_narrative_evolution",
+]

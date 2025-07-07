@@ -1,58 +1,53 @@
-# Data Processing Sub-module
-# Handles paper loading, domain data processing, and data models
+"""
+Data processing and model definitions.
+"""
 
-# Import data models
-from .models import (
+# Import essential data models only
+from .data_models import (
+    # Core temporal structures
+    AcademicYear,
+    AcademicPeriod,
+    # Paper and domain models
     Paper,
-    DomainData,
     CitationRelation,
-    TemporalWindow,
-    DataStatistics,
-    ProcessingResult,
-    DataSubset,
-    KeywordAnalysis
+    DomainData,
+    # Result models
+    TimelineAnalysisResult,
 )
 
 # Import data processing functions
-from .processing import (
+from .data_processing import (
+    # Simplified data loading functions
+    load_domain_data,
+    create_academic_periods_from_segments,
+    create_single_academic_period,
+    # Utility functions
     load_papers_from_json,
-    process_domain_data,
-    calculate_statistics,
-    analyze_keywords_and_semantics,
-    create_temporal_windows,
+    load_citation_graph,
     filter_papers_by_year_range,
-    process_all_domains,
-    # DataFrame compatibility functions
-    convert_papers_to_dataframe,
-    load_domain_data_as_dataframe,
-    convert_keywords_to_list,
-    convert_children_to_list
+    filter_papers_by_minimum_yearly_count,
+    compute_academic_years,
 )
 
 # Export all
 __all__ = [
-    # Data models
-    'Paper',
-    'DomainData', 
-    'CitationRelation',
-    'TemporalWindow',
-    'DataStatistics',
-    'ProcessingResult',
-    'DataSubset',
-    'KeywordAnalysis',
-    
-    # Data processing functions
-    'load_papers_from_json',
-    'process_domain_data',
-    'calculate_statistics',
-    'analyze_keywords_and_semantics',
-    'create_temporal_windows',
-    'filter_papers_by_year_range',
-    'process_all_domains',
-    
-    # DataFrame compatibility
-    'convert_papers_to_dataframe',
-    'load_domain_data_as_dataframe',
-    'convert_keywords_to_list',
-    'convert_children_to_list'
-] 
+    # Core temporal structures
+    "AcademicYear",
+    "AcademicPeriod",
+    # Paper and domain models
+    "Paper",
+    "CitationRelation",
+    "DomainData",
+    # Result models
+    "TimelineAnalysisResult",
+    # Data loading functions
+    "load_domain_data",
+    "create_academic_periods_from_segments",
+    "create_single_academic_period",
+    # Utility functions
+    "load_papers_from_json",
+    "load_citation_graph",
+    "filter_papers_by_year_range",
+    "filter_papers_by_minimum_yearly_count",
+    "compute_academic_years",
+]

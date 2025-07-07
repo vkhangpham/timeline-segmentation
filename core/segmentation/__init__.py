@@ -1,51 +1,36 @@
 # Segmentation Sub-module
 # Handles boundary segmentation, segment modeling, and segment merging
 
-# Import data models for segmentation
-from ..data.models import (
-    SegmentModelingResult,
-    SegmentMergingResult,
-    MergeDecision
-)
-
-# Import boundary segmentation
+# Import simplified boundary segmentation functions
 from .boundary import (
-    create_boundary_segments,
-    validate_segment_contiguity,
-    get_boundary_transparency_report
+    create_segments_from_boundary_years,
+    validate_period_contiguity,
+    get_boundary_transparency_report,
 )
 
-# Import segment modeling
-from .modeling import (
-    model_segments,
-    generate_modeling_summary,
-    validate_segment_modeling_result,
-    get_modeling_statistics
+from .shift_signals import (
+    detect_boundary_years,
+    detect_direction_change_years,
+    detect_citation_acceleration_years,
+    validate_and_combine_signals,
 )
 
-# Import segment merging
+# Import simplified segment merging
 from .merging import (
-    merge_similar_segments
+    merge_similar_periods,
 )
 
 # Export all
 __all__ = [
-    # Data models
-    'SegmentModelingResult',
-    'SegmentMergingResult',
-    'MergeDecision',
-    
-    # Boundary segmentation
-    'create_boundary_segments',
-    'validate_segment_contiguity',
-    'get_boundary_transparency_report',
-    
-    # Segment modeling
-    'model_segments',
-    'generate_modeling_summary',
-    'validate_segment_modeling_result',
-    'get_modeling_statistics',
-    
-    # Segment merging
-    'merge_similar_segments'
-] 
+    # Simplified boundary segmentation
+    "create_segments_from_boundary_years",
+    "validate_period_contiguity",
+    "get_boundary_transparency_report",
+    # Shift signal detection
+    "detect_boundary_years",
+    "detect_direction_change_years",
+    "detect_citation_acceleration_years",
+    "validate_and_combine_signals",
+    # Simplified segment merging
+    "merge_similar_periods",
+]
