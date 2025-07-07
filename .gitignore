@@ -83,3 +83,6 @@ logs/
 *embeddings*.pt
 *embeddings*.pth
 concept_embeddings_*.pt
+
+# Resources folder - contains large files
+resources/
