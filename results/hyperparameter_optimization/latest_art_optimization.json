@@ -1,0 +1,323 @@
+{
+  "domain_name": "art",
+  "config": {
+    "direction_threshold_range": [
+      0.05,
+      0.8
+    ],
+    "validation_threshold_range": [
+      0.2,
+      0.9
+    ],
+    "n_calls": 15,
+    "n_initial_points": 10,
+    "acquisition_function": "EI",
+    "random_state": 42,
+    "use_keyword_cache": true,
+    "use_boundary_optimization": true,
+    "boundary_search_window": 2,
+    "fast_mode": false,
+    "fast_mode_paper_fraction": 0.3,
+    "fast_mode_disable_boundary_opt": true
+  },
+  "best_hyperparameters": {
+    "direction_threshold": 0.05,
+    "validation_threshold": 0.22680288693619305
+  },
+  "best_score": 0.18450514093190964,
+  "best_result": {
+    "direction_threshold": 0.05,
+    "validation_threshold": 0.22680288693619305,
+    "final_score": 0.18450514093190964,
+    "cohesion_score": 0.16233262048366448,
+    "separation_score": 0.5881773322057738,
+    "num_segments": 8,
+    "num_signals_detected": 70,
+    "num_signals_validated": 70,
+    "evaluation_time": 0.44196295738220215,
+    "used_keyword_cache": true,
+    "used_boundary_optimization": false
+  },
+  "optimization_info": {
+    "total_evaluations": 15,
+    "total_time": 5.830211877822876,
+    "average_time_per_evaluation": 0.3886807918548584,
+    "convergence_values": [
+      0.01540677322181544,
+      0.03231008278872097,
+      0.05217407712918946,
+      0.05217407712918946,
+      0.01540677322181544,
+      0.01540677322181544,
+      0.0,
+      0.0,
+      0.03907887876378024,
+      0.049712583272317104,
+      0.0,
+      0.1384979915038499,
+      0.18450514093190964,
+      0.11387219339359163,
+      0.18450514093190964
+    ],
+    "parameter_history": [
+      [
+        0.6474072401451748,
+        0.32840435290631464
+      ],
+      [
+        0.6347682502045772,
+        0.617795110562541
+      ],
+      [
+        0.38437456464019343,
+        0.26998244107260205
+      ],
+      [
+        0.39443666897440044,
+        0.4335960277973153
+      ],
+      [
+        0.15715011344145563,
+        0.6556219310641971
+      ],
+      [
+        0.09230868427032521,
+        0.7053991405867774
+      ],
+      [
+        0.7539145317618128,
+        0.20054513608871005
+      ],
+      [
+        0.7941586694684133,
+        0.6322370567394016
+      ],
+      [
+        0.5087398703662108,
+        0.2049464136538022
+      ],
+      [
+        0.06729681878106182,
+        0.5673422621808725
+      ],
+      [
+        0.32484269056489357,
+        0.8361466602478214
+      ],
+      [
+        0.05,
+        0.3615088953907496
+      ],
+      [
+        0.05,
+        0.22680288693619305
+      ],
+      [
+        0.09673373411687,
+        0.2
+      ],
+      [
+        0.056244792190230965,
+        0.2088347820257402
+      ]
+    ]
+  },
+  "all_results": [
+    {
+      "direction_threshold": 0.6474072401451748,
+      "validation_threshold": 0.32840435290631464,
+      "final_score": 0.01540677322181544,
+      "cohesion_score": 0.16235186636902432,
+      "separation_score": 0.6165948279182951,
+      "num_segments": 2,
+      "num_signals_detected": 8,
+      "num_signals_validated": 8,
+      "evaluation_time": 0.3148820400238037,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.6347682502045772,
+      "validation_threshold": 0.617795110562541,
+      "final_score": 0.03231008278872097,
+      "cohesion_score": 0.16866626994884715,
+      "separation_score": 0.6031238847307213,
+      "num_segments": 2,
+      "num_signals_detected": 15,
+      "num_signals_validated": 15,
+      "evaluation_time": 0.32807016372680664,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.38437456464019343,
+      "validation_threshold": 0.26998244107260205,
+      "final_score": 0.05217407712918946,
+      "cohesion_score": 0.16822800595231946,
+      "separation_score": 0.558369530460015,
+      "num_segments": 3,
+      "num_signals_detected": 39,
+      "num_signals_validated": 39,
+      "evaluation_time": 0.36161088943481445,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.39443666897440044,
+      "validation_threshold": 0.4335960277973153,
+      "final_score": 0.05217407712918946,
+      "cohesion_score": 0.16822800595231946,
+      "separation_score": 0.558369530460015,
+      "num_segments": 3,
+      "num_signals_detected": 39,
+      "num_signals_validated": 39,
+      "evaluation_time": 0.3668999671936035,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.15715011344145563,
+      "validation_threshold": 0.6556219310641971,
+      "final_score": 0.01540677322181544,
+      "cohesion_score": 0.16235186636902432,
+      "separation_score": 0.6165948279182951,
+      "num_segments": 2,
+      "num_signals_detected": 8,
+      "num_signals_validated": 8,
+      "evaluation_time": 0.3729071617126465,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.09230868427032521,
+      "validation_threshold": 0.7053991405867774,
+      "final_score": 0.01540677322181544,
+      "cohesion_score": 0.16235186636902432,
+      "separation_score": 0.6165948279182951,
+      "num_segments": 2,
+      "num_signals_detected": 8,
+      "num_signals_validated": 8,
+      "evaluation_time": 0.5052621364593506,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.7539145317618128,
+      "validation_threshold": 0.20054513608871005,
+      "final_score": 0.0,
+      "cohesion_score": 0.0,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 0,
+      "num_signals_validated": 0,
+      "evaluation_time": 0.19509077072143555,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.7941586694684133,
+      "validation_threshold": 0.6322370567394016,
+      "final_score": 0.0,
+      "cohesion_score": 0.0,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 0,
+      "num_signals_validated": 0,
+      "evaluation_time": 0.1867997646331787,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.5087398703662108,
+      "validation_threshold": 0.2049464136538022,
+      "final_score": 0.03907887876378024,
+      "cohesion_score": 0.16917629450100588,
+      "separation_score": 0.5217161390016314,
+      "num_segments": 3,
+      "num_signals_detected": 29,
+      "num_signals_validated": 29,
+      "evaluation_time": 0.34036898612976074,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.06729681878106182,
+      "validation_threshold": 0.5673422621808725,
+      "final_score": 0.049712583272317104,
+      "cohesion_score": 0.1656478621943717,
+      "separation_score": 0.5008938479065067,
+      "num_segments": 4,
+      "num_signals_detected": 19,
+      "num_signals_validated": 19,
+      "evaluation_time": 0.385221004486084,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.32484269056489357,
+      "validation_threshold": 0.8361466602478214,
+      "final_score": 0.0,
+      "cohesion_score": 0.0,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 0,
+      "num_signals_validated": 0,
+      "evaluation_time": 0.22850322723388672,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.05,
+      "validation_threshold": 0.3615088953907496,
+      "final_score": 0.1384979915038499,
+      "cohesion_score": 0.16121052456015997,
+      "separation_score": 0.5402020181949441,
+      "num_segments": 7,
+      "num_signals_detected": 47,
+      "num_signals_validated": 47,
+      "evaluation_time": 0.4183056354522705,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.05,
+      "validation_threshold": 0.22680288693619305,
+      "final_score": 0.18450514093190964,
+      "cohesion_score": 0.16233262048366448,
+      "separation_score": 0.5881773322057738,
+      "num_segments": 8,
+      "num_signals_detected": 70,
+      "num_signals_validated": 70,
+      "evaluation_time": 0.44196295738220215,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.09673373411687,
+      "validation_threshold": 0.2,
+      "final_score": 0.11387219339359163,
+      "cohesion_score": 0.16133338441425796,
+      "separation_score": 0.605249455540907,
+      "num_segments": 12,
+      "num_signals_detected": 76,
+      "num_signals_validated": 76,
+      "evaluation_time": 0.4409201145172119,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.056244792190230965,
+      "validation_threshold": 0.2088347820257402,
+      "final_score": 0.18450514093190964,
+      "cohesion_score": 0.16233262048366448,
+      "separation_score": 0.5881773322057738,
+      "num_segments": 8,
+      "num_signals_detected": 71,
+      "num_signals_validated": 71,
+      "evaluation_time": 0.46187901496887207,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    }
+  ],
+  "timestamp": "2025-07-05T09:03:57.444600"
+}

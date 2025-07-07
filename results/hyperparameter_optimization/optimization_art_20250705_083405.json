@@ -1,0 +1,71 @@
+{
+  "domain_name": "art",
+  "timestamp": "20250705_083405",
+  "best_params": {
+    "direction_threshold": 0.6474072401451748,
+    "validation_threshold": 0.32840435290631464
+  },
+  "best_score": 0.033038644235723356,
+  "best_segments": 60,
+  "total_time": 229.6709189414978,
+  "total_evaluations": 4,
+  "convergence_data": {
+    "best_scores_sequence": [
+      0.033038644235723356,
+      0.033038644235723356,
+      0.033038644235723356
+    ],
+    "all_scores": [
+      0.033038644235723356,
+      0.032408350821951336,
+      -1000.0
+    ],
+    "final_improvement": 0.0,
+    "improvement_evaluations": 0,
+    "convergence_rate": 0.0,
+    "score_std": 471.4199467957731,
+    "score_range": [
+      -1000.0,
+      0.033038644235723356
+    ]
+  },
+  "optimization_history": [
+    {
+      "evaluation": 1,
+      "direction_threshold": 0.15,
+      "validation_threshold": 0.6,
+      "objective_score": 0.14217538969681737,
+      "num_segments": 60,
+      "evaluation_time": 177.12494087219238,
+      "timestamp": "2025-07-05T08:30:15.648554"
+    },
+    {
+      "evaluation": 2,
+      "direction_threshold": 0.6474072401451748,
+      "validation_threshold": 0.32840435290631464,
+      "objective_score": 0.033038644235723356,
+      "num_segments": 30,
+      "evaluation_time": 99.2307436466217,
+      "timestamp": "2025-07-05T08:31:54.882431"
+    },
+    {
+      "evaluation": 3,
+      "direction_threshold": 0.6347682502045772,
+      "validation_threshold": 0.617795110562541,
+      "objective_score": 0.032408350821951336,
+      "num_segments": 45,
+      "evaluation_time": 130.31144285202026,
+      "timestamp": "2025-07-05T08:34:05.194131"
+    }
+  ],
+  "search_space": {
+    "direction_threshold": [
+      0.05,
+      0.8
+    ],
+    "validation_threshold": [
+      0.2,
+      0.9
+    ]
+  }
+}

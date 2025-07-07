@@ -1,0 +1,222 @@
+{
+  "domain_name": "natural_language_processing",
+  "analysis_date": "2025-07-05T09:40:22.320532",
+  "segments": [
+    {
+      "start_year": 1952,
+      "end_year": 1954
+    },
+    {
+      "start_year": 1955,
+      "end_year": 1955
+    },
+    {
+      "start_year": 1956,
+      "end_year": 1957
+    },
+    {
+      "start_year": 1958,
+      "end_year": 1959
+    },
+    {
+      "start_year": 1960,
+      "end_year": 1964
+    },
+    {
+      "start_year": 1965,
+      "end_year": 1966
+    },
+    {
+      "start_year": 1967,
+      "end_year": 2023
+    }
+  ],
+  "characterizations": [
+    {
+      "period": [
+        1952,
+        1954
+      ],
+      "topic_label": "Formal Grammar and Pattern Recognition",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "Two Models of Grammatical Description",
+          "year": 1954,
+          "citation_count": 738
+        },
+        {
+          "title": "Automatic Recognition of Spoken Digits",
+          "year": 1952,
+          "citation_count": 386
+        },
+        {
+          "title": "A general service list of English words, with semantic frequencies and a supplementary word-list for the writing of popular science and technology",
+          "year": 1953,
+          "citation_count": 130
+        }
+      ]
+    },
+    {
+      "period": [
+        1955,
+        1955
+      ],
+      "topic_label": "Formal Grammar and Pattern Recognition",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "Predictive coding--I",
+          "year": 1955,
+          "citation_count": 455
+        },
+        {
+          "title": "An introduction to descriptive linguistics",
+          "year": 1955,
+          "citation_count": 447
+        },
+        {
+          "title": "Meaning and synonymy in natural languages",
+          "year": 1955,
+          "citation_count": 239
+        }
+      ]
+    },
+    {
+      "period": [
+        1956,
+        1957
+      ],
+      "topic_label": "Formal Grammar and Pattern Recognition",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "Three models for the description of language",
+          "year": 1956,
+          "citation_count": 2603
+        },
+        {
+          "title": "A Statistical Approach to Mechanized Encoding and Searching of Literary Information",
+          "year": 1957,
+          "citation_count": 992
+        },
+        {
+          "title": "Machine translation of languages",
+          "year": 1956,
+          "citation_count": 184
+        }
+      ]
+    },
+    {
+      "period": [
+        1958,
+        1959
+      ],
+      "topic_label": "Formal Grammar and Semantic Analysis",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "Words and Things.",
+          "year": 1959,
+          "citation_count": 625
+        },
+        {
+          "title": "Algorithm for analyzing logical statements to produce a truth function table",
+          "year": 1958,
+          "citation_count": 237
+        },
+        {
+          "title": "An Atlas of Semantic Profiles for 360 Words",
+          "year": 1958,
+          "citation_count": 208
+        }
+      ]
+    },
+    {
+      "period": [
+        1960,
+        1964
+      ],
+      "topic_label": "Formal Grammar and Semantic Analysis",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "How to do things with words",
+          "year": 1962,
+          "citation_count": 14490
+        },
+        {
+          "title": "Revised report on the algorithmic language ALGOL 60",
+          "year": 1963,
+          "citation_count": 908
+        },
+        {
+          "title": "Semantic Power Measured through the Interference of Words with Color-Naming",
+          "year": 1964,
+          "citation_count": 577
+        }
+      ]
+    },
+    {
+      "period": [
+        1965,
+        1966
+      ],
+      "topic_label": "Formal Grammar and Rule-Based Modeling",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "ELIZA\u2014a computer program for the study of natural language communication between man and machine",
+          "year": 1966,
+          "citation_count": 2938
+        },
+        {
+          "title": "The stroop color-word test: A review",
+          "year": 1966,
+          "citation_count": 883
+        },
+        {
+          "title": "On Context-Free Languages",
+          "year": 1966,
+          "citation_count": 772
+        }
+      ]
+    },
+    {
+      "period": [
+        1967,
+        2023
+      ],
+      "topic_label": "Formal Grammar and Rule-Based Modeling",
+      "network_stability": 0.3333333333333333,
+      "confidence": 0.6945833333333333,
+      "representative_papers": [
+        {
+          "title": "Computational analysis of present-day American English",
+          "year": 1967,
+          "citation_count": 7390
+        },
+        {
+          "title": "Language identification in the limit",
+          "year": 1967,
+          "citation_count": 3532
+        },
+        {
+          "title": "Implicit learning of artificial grammars",
+          "year": 1967,
+          "citation_count": 1794
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_periods": 7,
+    "avg_confidence": 0.6945833333333332
+  }
+}

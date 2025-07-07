@@ -1,0 +1,130 @@
+{
+  "domain_name": "art",
+  "evaluation_count": 10,
+  "best_score": 0.8029775609756098,
+  "best_params": {
+    "direction_threshold": 0.21429345433755265,
+    "validation_threshold": 0.7230775074167544
+  },
+  "best_segments": 35,
+  "optimization_history": [
+    {
+      "evaluation": 1,
+      "direction_threshold": 0.7372343894881864,
+      "validation_threshold": 0.41923261341300644,
+      "proxy_score": 0.7012526829268293,
+      "num_signals": 22,
+      "num_segments": 23,
+      "validation_rate": 1.0,
+      "temporal_score": 0.4432,
+      "segment_penalty": 0.43902439024390244,
+      "evaluation_time": 0.21640586853027344,
+      "timestamp": "2025-07-05T04:04:43.998143"
+    },
+    {
+      "evaluation": 2,
+      "direction_threshold": 0.7237528002182156,
+      "validation_threshold": 0.6879526026652165,
+      "proxy_score": 0.708569756097561,
+      "num_signals": 23,
+      "num_segments": 24,
+      "validation_rate": 1.0,
+      "temporal_score": 0.4432,
+      "segment_penalty": 0.4146341463414634,
+      "evaluation_time": 0.2134699821472168,
+      "timestamp": "2025-07-05T04:04:44.211820"
+    },
+    {
+      "evaluation": 3,
+      "direction_threshold": 0.456666202282873,
+      "validation_threshold": 0.3649836952817019,
+      "proxy_score": 0.5688312195121952,
+      "num_signals": 78,
+      "num_segments": 79,
+      "validation_rate": 1.0,
+      "temporal_score": 0.4896,
+      "segment_penalty": 0.926829268292683,
+      "evaluation_time": 0.24560308456420898,
+      "timestamp": "2025-07-05T04:04:44.457611"
+    },
+    {
+      "evaluation": 4,
+      "direction_threshold": 0.4673991135726938,
+      "validation_threshold": 0.5169105972403643,
+      "proxy_score": 0.5834653658536586,
+      "num_signals": 76,
+      "num_segments": 77,
+      "validation_rate": 1.0,
+      "temporal_score": 0.4896,
+      "segment_penalty": 0.8780487804878049,
+      "evaluation_time": 0.2460620403289795,
+      "timestamp": "2025-07-05T04:04:44.703900"
+    },
+    {
+      "evaluation": 5,
+      "direction_threshold": 0.21429345433755265,
+      "validation_threshold": 0.7230775074167544,
+      "proxy_score": 0.8029775609756098,
+      "num_signals": 34,
+      "num_segments": 35,
+      "validation_rate": 1.0,
+      "temporal_score": 0.4896,
+      "segment_penalty": 0.14634146341463414,
+      "evaluation_time": 0.28237390518188477,
+      "timestamp": "2025-07-05T04:04:44.986465"
+    },
+    {
+      "evaluation": 6,
+      "direction_threshold": 0.14512926322168024,
+      "validation_threshold": 0.7692992019734362,
+      "proxy_score": 0.6712702439024391,
+      "num_signals": 16,
+      "num_segments": 17,
+      "validation_rate": 1.0,
+      "temporal_score": 0.4896,
+      "segment_penalty": 0.5853658536585366,
+      "evaluation_time": 0.2917201519012451,
+      "timestamp": "2025-07-05T04:04:45.278779"
+    },
+    {
+      "evaluation": 7,
+      "direction_threshold": 0.8508421672126003,
+      "validation_threshold": 0.3005061977966593,
+      "proxy_score": 0.4224312195121951,
+      "num_signals": 2,
+      "num_segments": 3,
+      "validation_rate": 1.0,
+      "temporal_score": 0.0016,
+      "segment_penalty": 0.926829268292683,
+      "evaluation_time": 0.20177102088928223,
+      "timestamp": "2025-07-05T04:04:45.480729"
+    },
+    {
+      "evaluation": 9,
+      "direction_threshold": 0.8264341720639035,
+      "validation_threshold": 0.731821212783474,
+      "proxy_score": 0.4224312195121951,
+      "num_signals": 2,
+      "num_segments": 3,
+      "validation_rate": 1.0,
+      "temporal_score": 0.0016,
+      "segment_penalty": 0.926829268292683,
+      "evaluation_time": 0.20382189750671387,
+      "timestamp": "2025-07-05T04:04:45.942351"
+    },
+    {
+      "evaluation": 10,
+      "direction_threshold": 0.7535797303716637,
+      "validation_threshold": 0.95,
+      "proxy_score": 0.4224312195121951,
+      "num_signals": 2,
+      "num_segments": 3,
+      "validation_rate": 1.0,
+      "temporal_score": 0.0016,
+      "segment_penalty": 0.926829268292683,
+      "evaluation_time": 0.20463299751281738,
+      "timestamp": "2025-07-05T04:04:46.199300"
+    }
+  ],
+  "timestamp": "20250705_040446"
+}

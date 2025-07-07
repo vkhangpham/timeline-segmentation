@@ -1,0 +1,593 @@
+{
+  "domain_name": "natural_language_processing",
+  "config": {
+    "direction_threshold_range": [
+      0.05,
+      0.8
+    ],
+    "validation_threshold_range": [
+      0.2,
+      0.9
+    ],
+    "n_calls": 30,
+    "n_initial_points": 10,
+    "acquisition_function": "EI",
+    "random_state": 42,
+    "use_keyword_cache": true,
+    "use_boundary_optimization": true,
+    "boundary_search_window": 2,
+    "fast_mode": true,
+    "fast_mode_paper_fraction": 0.3,
+    "fast_mode_disable_boundary_opt": true
+  },
+  "best_hyperparameters": {
+    "direction_threshold": 0.17228841908974163,
+    "validation_threshold": 0.2012544998784551
+  },
+  "best_score": 0.2039980700785888,
+  "best_result": {
+    "direction_threshold": 0.17228841908974163,
+    "validation_threshold": 0.2012544998784551,
+    "final_score": 0.2039980700785888,
+    "cohesion_score": 0.19612304915216117,
+    "separation_score": 0.5111399505433241,
+    "num_segments": 4,
+    "num_signals_detected": 21,
+    "num_signals_validated": 21,
+    "evaluation_time": 0.12476587295532227,
+    "used_keyword_cache": true,
+    "used_boundary_optimization": false
+  },
+  "optimization_info": {
+    "total_evaluations": 30,
+    "total_time": 4.256954669952393,
+    "average_time_per_evaluation": 0.1418984889984131,
+    "convergence_values": [
+      0.15630204247479268,
+      0.15630204247479268,
+      0.1631694180444402,
+      0.1631694180444402,
+      0.15613968011465765,
+      0.15613968011465765,
+      0.15628689148429117,
+      0.15628689148429117,
+      0.15611435755553926,
+      0.15616063166126945,
+      0.15611435755553926,
+      0.15611435755553926,
+      0.15613968011465765,
+      0.15630204247479268,
+      0.16592382443584097,
+      0.15630204247479268,
+      0.2039980700785888,
+      0.05828603213893235,
+      0.2039980700785888,
+      0.15632242432427157,
+      0.20064617165369752,
+      0.15611435755553926,
+      0.15630204247479268,
+      0.15611435755553926,
+      0.15611435755553926,
+      0.0,
+      0.15628689148429117,
+      0.15630204247479268,
+      0.15611435755553926,
+      0.15611435755553926
+    ],
+    "parameter_history": [
+      [
+        0.6474072401451748,
+        0.32840435290631464
+      ],
+      [
+        0.6347682502045772,
+        0.617795110562541
+      ],
+      [
+        0.38437456464019343,
+        0.26998244107260205
+      ],
+      [
+        0.39443666897440044,
+        0.4335960277973153
+      ],
+      [
+        0.15715011344145563,
+        0.6556219310641971
+      ],
+      [
+        0.09230868427032521,
+        0.7053991405867774
+      ],
+      [
+        0.7539145317618128,
+        0.20054513608871005
+      ],
+      [
+        0.7941586694684133,
+        0.6322370567394016
+      ],
+      [
+        0.5087398703662108,
+        0.2049464136538022
+      ],
+      [
+        0.06729681878106182,
+        0.5673422621808725
+      ],
+      [
+        0.27726313023652255,
+        0.8181800009520239
+      ],
+      [
+        0.45172271397861846,
+        0.2374420367274581
+      ],
+      [
+        0.3339011300371704,
+        0.7435856451481608
+      ],
+      [
+        0.5695639715082308,
+        0.39997871281540154
+      ],
+      [
+        0.21752599608567785,
+        0.41107402464154086
+      ],
+      [
+        0.7025068779982493,
+        0.8427223869944254
+      ],
+      [
+        0.17228841908974163,
+        0.2012544998784551
+      ],
+      [
+        0.05,
+        0.2
+      ],
+      [
+        0.19783226322950626,
+        0.2
+      ],
+      [
+        0.2708891650043287,
+        0.2
+      ],
+      [
+        0.17819948597865792,
+        0.2914169516733735
+      ],
+      [
+        0.48584704717218424,
+        0.8999999999999999
+      ],
+      [
+        0.5820501037270491,
+        0.8999999999999999
+      ],
+      [
+        0.4030419409181038,
+        0.8999999999999999
+      ],
+      [
+        0.05,
+        0.8999999999999999
+      ],
+      [
+        0.8,
+        0.8999999999999999
+      ],
+      [
+        0.8,
+        0.4263809536840101
+      ],
+      [
+        0.7222610079098577,
+        0.5491494935654797
+      ],
+      [
+        0.4817204368535875,
+        0.6086100528662857
+      ],
+      [
+        0.17396255756798873,
+        0.8999999999999999
+      ]
+    ]
+  },
+  "all_results": [
+    {
+      "direction_threshold": 0.6474072401451748,
+      "validation_threshold": 0.32840435290631464,
+      "final_score": 0.15630204247479268,
+      "cohesion_score": 0.19537755309349084,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.10065007209777832,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.6347682502045772,
+      "validation_threshold": 0.617795110562541,
+      "final_score": 0.15630204247479268,
+      "cohesion_score": 0.19537755309349084,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.09064888954162598,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.38437456464019343,
+      "validation_threshold": 0.26998244107260205,
+      "final_score": 0.1631694180444402,
+      "cohesion_score": 0.2010494359380844,
+      "separation_score": 0.559842237735247,
+      "num_segments": 2,
+      "num_signals_detected": 10,
+      "num_signals_validated": 10,
+      "evaluation_time": 0.12297606468200684,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.39443666897440044,
+      "validation_threshold": 0.4335960277973153,
+      "final_score": 0.1631694180444402,
+      "cohesion_score": 0.2010494359380844,
+      "separation_score": 0.559842237735247,
+      "num_segments": 2,
+      "num_signals_detected": 10,
+      "num_signals_validated": 10,
+      "evaluation_time": 0.12038111686706543,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.15715011344145563,
+      "validation_threshold": 0.6556219310641971,
+      "final_score": 0.15613968011465765,
+      "cohesion_score": 0.19517460014332205,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 8,
+      "num_signals_validated": 8,
+      "evaluation_time": 0.0944669246673584,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.09230868427032521,
+      "validation_threshold": 0.7053991405867774,
+      "final_score": 0.15613968011465765,
+      "cohesion_score": 0.19517460014332205,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 8,
+      "num_signals_validated": 8,
+      "evaluation_time": 0.09578084945678711,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.7539145317618128,
+      "validation_threshold": 0.20054513608871005,
+      "final_score": 0.15628689148429117,
+      "cohesion_score": 0.19535861435536395,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 1,
+      "num_signals_validated": 1,
+      "evaluation_time": 0.08801102638244629,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.7941586694684133,
+      "validation_threshold": 0.6322370567394016,
+      "final_score": 0.15628689148429117,
+      "cohesion_score": 0.19535861435536395,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 1,
+      "num_signals_validated": 1,
+      "evaluation_time": 0.08958315849304199,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.5087398703662108,
+      "validation_threshold": 0.2049464136538022,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 6,
+      "num_signals_validated": 6,
+      "evaluation_time": 0.08869194984436035,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.06729681878106182,
+      "validation_threshold": 0.5673422621808725,
+      "final_score": 0.15616063166126945,
+      "cohesion_score": 0.1952007895765868,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 9,
+      "num_signals_validated": 9,
+      "evaluation_time": 0.09910416603088379,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.27726313023652255,
+      "validation_threshold": 0.8181800009520239,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 4,
+      "num_signals_validated": 4,
+      "evaluation_time": 0.09143185615539551,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.45172271397861846,
+      "validation_threshold": 0.2374420367274581,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 6,
+      "num_signals_validated": 6,
+      "evaluation_time": 0.09137773513793945,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.3339011300371704,
+      "validation_threshold": 0.7435856451481608,
+      "final_score": 0.15613968011465765,
+      "cohesion_score": 0.19517460014332205,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 8,
+      "num_signals_validated": 8,
+      "evaluation_time": 0.10207390785217285,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.5695639715082308,
+      "validation_threshold": 0.39997871281540154,
+      "final_score": 0.15630204247479268,
+      "cohesion_score": 0.19537755309349084,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.09368705749511719,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.21752599608567785,
+      "validation_threshold": 0.41107402464154086,
+      "final_score": 0.16592382443584097,
+      "cohesion_score": 0.20165090363110114,
+      "separation_score": 0.5828337495627706,
+      "num_segments": 2,
+      "num_signals_detected": 13,
+      "num_signals_validated": 13,
+      "evaluation_time": 0.12395000457763672,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.7025068779982493,
+      "validation_threshold": 0.8427223869944254,
+      "final_score": 0.15630204247479268,
+      "cohesion_score": 0.19537755309349084,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 2,
+      "num_signals_validated": 2,
+      "evaluation_time": 0.09415388107299805,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.17228841908974163,
+      "validation_threshold": 0.2012544998784551,
+      "final_score": 0.2039980700785888,
+      "cohesion_score": 0.19612304915216117,
+      "separation_score": 0.5111399505433241,
+      "num_segments": 4,
+      "num_signals_detected": 21,
+      "num_signals_validated": 21,
+      "evaluation_time": 0.12476587295532227,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.05,
+      "validation_threshold": 0.2,
+      "final_score": 0.05828603213893235,
+      "cohesion_score": 0.19315418327647327,
+      "separation_score": 0.5233682679750032,
+      "num_segments": 9,
+      "num_signals_detected": 26,
+      "num_signals_validated": 26,
+      "evaluation_time": 0.12997889518737793,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.19783226322950626,
+      "validation_threshold": 0.2,
+      "final_score": 0.2039980700785888,
+      "cohesion_score": 0.19612304915216117,
+      "separation_score": 0.5111399505433241,
+      "num_segments": 4,
+      "num_signals_detected": 21,
+      "num_signals_validated": 21,
+      "evaluation_time": 0.12495207786560059,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.2708891650043287,
+      "validation_threshold": 0.2,
+      "final_score": 0.15632242432427157,
+      "cohesion_score": 0.19540303040533946,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 17,
+      "num_signals_validated": 17,
+      "evaluation_time": 0.09703707695007324,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.17819948597865792,
+      "validation_threshold": 0.2914169516733735,
+      "final_score": 0.20064617165369752,
+      "cohesion_score": 0.19994178247765984,
+      "separation_score": 0.5027552770737838,
+      "num_segments": 3,
+      "num_signals_detected": 15,
+      "num_signals_validated": 15,
+      "evaluation_time": 0.12362480163574219,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.48584704717218424,
+      "validation_threshold": 0.8999999999999999,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.09424471855163574,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.5820501037270491,
+      "validation_threshold": 0.8999999999999999,
+      "final_score": 0.15630204247479268,
+      "cohesion_score": 0.19537755309349084,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 1,
+      "num_signals_validated": 1,
+      "evaluation_time": 0.09221005439758301,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.4030419409181038,
+      "validation_threshold": 0.8999999999999999,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.09380197525024414,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.05,
+      "validation_threshold": 0.8999999999999999,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.0972449779510498,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.8,
+      "validation_threshold": 0.8999999999999999,
+      "final_score": 0.0,
+      "cohesion_score": 0.0,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 0,
+      "num_signals_validated": 0,
+      "evaluation_time": 0.0567169189453125,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.8,
+      "validation_threshold": 0.4263809536840101,
+      "final_score": 0.15628689148429117,
+      "cohesion_score": 0.19535861435536395,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 1,
+      "num_signals_validated": 1,
+      "evaluation_time": 0.08791112899780273,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.7222610079098577,
+      "validation_threshold": 0.5491494935654797,
+      "final_score": 0.15630204247479268,
+      "cohesion_score": 0.19537755309349084,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.09072470664978027,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.4817204368535875,
+      "validation_threshold": 0.6086100528662857,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 5,
+      "num_signals_validated": 5,
+      "evaluation_time": 0.09191608428955078,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    },
+    {
+      "direction_threshold": 0.17396255756798873,
+      "validation_threshold": 0.8999999999999999,
+      "final_score": 0.15611435755553926,
+      "cohesion_score": 0.19514294694442408,
+      "separation_score": 0.0,
+      "num_segments": 1,
+      "num_signals_detected": 3,
+      "num_signals_validated": 3,
+      "evaluation_time": 0.09702205657958984,
+      "used_keyword_cache": true,
+      "used_boundary_optimization": false
+    }
+  ],
+  "timestamp": "2025-07-05T09:07:28.231519"
+}
