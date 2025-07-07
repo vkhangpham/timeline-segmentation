@@ -12,4 +12,5 @@ networkx
 pydantic
 requests
 streamlit
-nltk 
+nltk
+joblib 
