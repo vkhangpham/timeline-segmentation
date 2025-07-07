@@ -69,11 +69,8 @@ archive/
 .cursor*
 *cache*
 dev_journal_phase*.md
-results/signals/
-results/timelines/
-results/optimization/
-results/baseline_comparision/
-results/validation/
+# Results directory - contains generated output files
+results/
 web-app/
 logs/
 
