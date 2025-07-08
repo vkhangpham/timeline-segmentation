@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Timeline segmentation pipeline for scientific literature analysis.
-Provides command-line interface for running timeline analysis with change point detection."""
+Provides command-line interface for running timeline analysis with change point detection.
+"""
 
 import argparse
 import json
@@ -255,8 +256,12 @@ Examples:
 
     args = parser.parse_args()
 
-    configure_global_logging(verbose=args.verbose, domain_name=args.domain if args.domain != "all" else None)
-    logger = get_logger(__name__, args.verbose, args.domain if args.domain != "all" else None)
+    configure_global_logging(
+        verbose=args.verbose, domain_name=args.domain if args.domain != "all" else None
+    )
+    logger = get_logger(
+        __name__, args.verbose, args.domain if args.domain != "all" else None
+    )
 
     overrides = {}
     if args.direction_threshold is not None:

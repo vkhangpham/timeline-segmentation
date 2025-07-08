@@ -18,7 +18,9 @@ from .data_models import (
 from ..utils.logging import get_logger
 
 
-def load_concept_levels(concept_levels_file: str = "resources/concept_levels.jsonl") -> Dict[str, int]:
+def load_concept_levels(
+    concept_levels_file: str = "resources/concept_levels.jsonl",
+) -> Dict[str, int]:
     """Load concept levels from JSONL file.
 
     Args:
@@ -41,9 +43,9 @@ def load_concept_levels(concept_levels_file: str = "resources/concept_levels.jso
                         concept_levels[entry["concept"]] = entry["level"]
                     except (json.JSONDecodeError, KeyError) as e:
                         raise ValueError(f"Invalid format in line {line_num}: {e}")
-        
+
         return concept_levels
-    
+
     except FileNotFoundError:
         raise FileNotFoundError(f"Concept levels file not found: {concept_levels_file}")
 
@@ -65,12 +67,12 @@ def filter_keywords_by_concept_level(
         ValueError: If domain is not found in concept levels
     """
     domain_concept = domain_name.replace("_", " ")
-    
+
     if domain_concept not in concept_levels:
         raise ValueError(f"Domain '{domain_concept}' not found in concept levels")
-    
+
     domain_level = concept_levels[domain_concept]
-    
+
     filtered_keywords = []
     for keyword in keywords:
         if keyword in concept_levels:
@@ -78,7 +80,7 @@ def filter_keywords_by_concept_level(
                 filtered_keywords.append(keyword)
         else:
             filtered_keywords.append(keyword)
-    
+
     return filtered_keywords
 
 
@@ -228,8 +230,7 @@ def create_academic_periods_from_segments(
                 combined_keywords[keyword] += freq
 
         top_keywords = tuple(
-            keyword
-            for keyword, freq in Counter(combined_keywords).most_common(50)
+            keyword for keyword, freq in Counter(combined_keywords).most_common(50)
         )
 
         period = AcademicPeriod(
@@ -408,12 +409,12 @@ def filter_papers_by_year_range(
     papers: Tuple[Paper, ...], start_year: int, end_year: int
 ) -> Tuple[Paper, ...]:
     """Filter papers to include only those within specified year range.
-    
+
     Args:
         papers: Input papers
         start_year: Start year (inclusive)
         end_year: End year (inclusive)
-        
+
     Returns:
         Filtered papers tuple
     """
@@ -481,7 +482,9 @@ def compute_academic_years(
         concept_levels = load_concept_levels()
     except (FileNotFoundError, ValueError) as e:
         logger = get_logger(__name__, verbose=False)
-        logger.warning(f"Could not load concept levels, proceeding without filtering: {e}")
+        logger.warning(
+            f"Could not load concept levels, proceeding without filtering: {e}"
+        )
         concept_levels = {}
 
     papers_by_year = defaultdict(list)
@@ -507,7 +510,9 @@ def compute_academic_years(
                 )
             except ValueError as e:
                 logger = get_logger(__name__, verbose=False)
-                logger.warning(f"Domain not found in concept levels, proceeding without filtering: {e}")
+                logger.warning(
+                    f"Domain not found in concept levels, proceeding without filtering: {e}"
+                )
 
         keyword_frequencies = dict(Counter(all_keywords))
 

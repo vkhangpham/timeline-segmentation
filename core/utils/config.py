@@ -229,7 +229,7 @@ class AlgorithmConfig:
 
     def get_anti_gaming_config(self):
         """Get anti-gaming configuration for the objective function.
-        
+
         Returns:
             AntiGamingConfig: Configuration object for anti-gaming parameters
         """
@@ -244,7 +244,7 @@ class AlgorithmConfig:
 
     def get_configuration_summary(self) -> str:
         """Get a concise summary of the current configuration.
-        
+
         Returns:
             String summary of key configuration parameters
         """
@@ -259,7 +259,7 @@ class AlgorithmConfig:
 
     def __str__(self) -> str:
         """String representation showing key parameters.
-        
+
         Returns:
             Formatted string showing main configuration values
         """

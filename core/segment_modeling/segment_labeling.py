@@ -6,11 +6,9 @@ and LLM-based period label and description generation.
 
 from typing import Dict, List, Tuple, Any
 from collections import Counter
-import json
 import networkx as nx
-import re
 from pydantic import BaseModel, Field
-from ..utils.general import query_llm, query_llm_structured
+from ..utils.general import query_llm_structured
 from ..utils.logging import get_logger
 
 
@@ -454,9 +452,7 @@ You are a research historian. Two adjacent research periods have been merged bec
         logger.info(f"  Sending LLM query with {model} model...")
         logger.info(f"  Prompt length: {len(prompt)} characters")
 
-    response = query_llm_structured(
-        prompt, MergedSegmentResponse, model=model
-    )
+    response = query_llm_structured(prompt, MergedSegmentResponse, model=model)
 
     label = response.label
     description = response.description

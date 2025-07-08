@@ -11,7 +11,6 @@ import numpy as np
 from scipy.spatial.distance import jensenshannon
 
 from ..data.data_models import AcademicPeriod
-from ..utils.config import AntiGamingConfig
 
 
 class ObjectiveFunctionResult(NamedTuple):

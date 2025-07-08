@@ -7,6 +7,7 @@ using functional programming principles.
 from dataclasses import dataclass, field
 from typing import Dict, Optional, Tuple, Any
 
+
 @dataclass(frozen=True)
 class Paper:
     """Immutable representation of a scientific paper."""
@@ -116,7 +117,7 @@ class AcademicPeriod:
 
     def get_year_range(self) -> Tuple[int, int]:
         """Get the year range as a tuple.
-        
+
         Returns:
             Tuple of (start_year, end_year)
         """
@@ -124,10 +125,10 @@ class AcademicPeriod:
 
     def get_papers_in_year(self, year: int) -> Tuple[Paper, ...]:
         """Get papers published in a specific year within this period.
-        
+
         Args:
             year: Year to get papers for
-            
+
         Returns:
             Tuple of papers published in the specified year
         """
@@ -138,7 +139,7 @@ class AcademicPeriod:
 
     def get_all_papers(self) -> Tuple[Paper, ...]:
         """Get all papers in this period from constituent academic years.
-        
+
         Returns:
             Tuple of all papers in the period
         """
@@ -149,10 +150,10 @@ class AcademicPeriod:
 
     def get_keyword_frequency(self, keyword: str) -> int:
         """Get the frequency of a keyword across the entire period.
-        
+
         Args:
             keyword: Keyword to look up
-            
+
         Returns:
             Frequency count of the keyword
         """
@@ -160,7 +161,7 @@ class AcademicPeriod:
 
     def is_characterized(self) -> bool:
         """Check if this period has been characterized with topic information.
-        
+
         Returns:
             True if period has topic characterization
         """
@@ -184,6 +185,7 @@ class CitationRelation:
         """Validate citation data."""
         if self.common_topics_count < 0:
             raise ValueError(f"Invalid common topics count: {self.common_topics_count}")
+
 
 @dataclass(frozen=True)
 class TimelineAnalysisResult:

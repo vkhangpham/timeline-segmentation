@@ -4,10 +4,9 @@ This module provides period characterization using network analysis,
 working directly with Paper objects for optimal performance.
 """
 
-import json
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any
 from collections import Counter
 import numpy as np
 import networkx as nx
@@ -99,8 +98,12 @@ def characterize_academic_periods(
             logger.info(
                 f"  Found {len(period_papers)} papers in period (after keyword filtering)"
             )
-            significance_scores = calculate_paper_significance_from_papers(period_papers)
-            significant_count = sum(1 for p in period_papers if significance_scores.get(p.id, 0.1) >= 0.7)
+            significance_scores = calculate_paper_significance_from_papers(
+                period_papers
+            )
+            significant_count = sum(
+                1 for p in period_papers if significance_scores.get(p.id, 0.1) >= 0.7
+            )
             logger.info(f"  Significant papers: {significant_count}")
 
         if len(period_papers) < 3:
@@ -158,17 +161,19 @@ def characterize_academic_periods(
 
         period_papers_dict = []
         for paper in period_papers:
-            period_papers_dict.append({
-                "id": paper.id,
-                "data": {
-                    "title": paper.title,
-                    "pub_year": paper.pub_year,
-                    "cited_by_count": paper.cited_by_count,
-                    "keywords": paper.keywords,
-                    "description": paper.description,
-                    "content": paper.content,
+            period_papers_dict.append(
+                {
+                    "id": paper.id,
+                    "data": {
+                        "title": paper.title,
+                        "pub_year": paper.pub_year,
+                        "cited_by_count": paper.cited_by_count,
+                        "keywords": paper.keywords,
+                        "description": paper.description,
+                        "content": paper.content,
+                    },
                 }
-            })
+            )
 
         representative_papers = select_representative_papers(
             period_papers_dict, period_subnetwork, dominant_themes, verbose
@@ -446,7 +451,9 @@ def get_papers_in_period_with_filtering(
                 f"    Applying hard limit: {len(period_papers)} -> {MAX_PAPERS} papers"
             )
 
-        period_papers.sort(key=lambda p: significance_scores.get(p.id, 0.1), reverse=True)
+        period_papers.sort(
+            key=lambda p: significance_scores.get(p.id, 0.1), reverse=True
+        )
         period_papers = period_papers[:MAX_PAPERS]
 
         if verbose:

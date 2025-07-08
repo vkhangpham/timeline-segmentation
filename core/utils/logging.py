@@ -44,7 +44,7 @@ class FileFormatter(logging.Formatter):
 
 def ensure_log_directory() -> Path:
     """Ensure the results/logs directory exists.
-    
+
     Returns:
         Path to the logs directory
     """
@@ -55,10 +55,10 @@ def ensure_log_directory() -> Path:
 
 def create_log_filename(domain_name: str = None) -> str:
     """Create a timestamped log filename.
-    
+
     Args:
         domain_name: Optional domain name to include in filename
-        
+
     Returns:
         Log filename with timestamp
     """
@@ -70,7 +70,9 @@ def create_log_filename(domain_name: str = None) -> str:
 
 
 def setup_logging(
-    verbose: bool = False, module_name: Optional[str] = None, domain_name: Optional[str] = None
+    verbose: bool = False,
+    module_name: Optional[str] = None,
+    domain_name: Optional[str] = None,
 ) -> logging.Logger:
     """Set up logging configuration for a module.
 
@@ -83,7 +85,7 @@ def setup_logging(
         Configured logger instance
     """
     global _global_log_file, _logging_configured
-    
+
     if module_name is None:
         import inspect
 
@@ -107,7 +109,7 @@ def setup_logging(
     logger.addHandler(console_handler)
 
     if _logging_configured and _global_log_file:
-        file_handler = logging.FileHandler(_global_log_file, mode='a', encoding='utf-8')
+        file_handler = logging.FileHandler(_global_log_file, mode="a", encoding="utf-8")
         file_handler.setLevel(level)
 
         file_formatter = FileFormatter()
@@ -120,7 +122,9 @@ def setup_logging(
     return logger
 
 
-def get_logger(module_name: str = None, verbose: bool = False, domain_name: str = None) -> logging.Logger:
+def get_logger(
+    module_name: str = None, verbose: bool = False, domain_name: str = None
+) -> logging.Logger:
     """Get a logger for a specific module.
 
     Args:
@@ -148,10 +152,10 @@ def configure_global_logging(verbose: bool = False, domain_name: str = None):
         domain_name: Optional domain name for log file naming
     """
     global _global_log_file, _logging_configured
-    
+
     if _logging_configured:
         return
-    
+
     root_logger = logging.getLogger()
     level = logging.DEBUG if verbose else logging.INFO
     root_logger.setLevel(level)
@@ -171,7 +175,7 @@ def configure_global_logging(verbose: bool = False, domain_name: str = None):
     log_filename = create_log_filename(domain_name)
     _global_log_file = logs_dir / log_filename
 
-    file_handler = logging.FileHandler(_global_log_file, mode='w', encoding='utf-8')
+    file_handler = logging.FileHandler(_global_log_file, mode="w", encoding="utf-8")
     file_handler.setLevel(level)
 
     file_formatter = FileFormatter()
@@ -186,4 +190,4 @@ def configure_global_logging(verbose: bool = False, domain_name: str = None):
         root_logger.info(f"Domain: {domain_name}")
     root_logger.info(f"Log file: {_global_log_file}")
     root_logger.info(f"Verbose mode: {verbose}")
-    root_logger.info(f"="*50)
+    root_logger.info(f"=" * 50)

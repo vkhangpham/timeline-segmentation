@@ -158,16 +158,16 @@ def detect_direction_change_years(
             continue
 
         set_prev, set_curr = set(keywords_prev), set(keywords_curr)
-        
+
         new_keywords = set_curr - set_prev
         shared_keywords = set_curr & set_prev
-        
+
         novelty = len(new_keywords) / len(set_curr) if len(set_curr) > 0 else 0.0
         overlap = len(shared_keywords) / len(set_prev) if len(set_prev) > 0 else 0.0
-        
+
         s_dir = novelty * (1 - overlap)
         similarity_scores.append(s_dir)
-        
+
         year_confidences[year2] = s_dir
 
         if verbose:
@@ -200,7 +200,11 @@ def detect_direction_change_years(
     if verbose:
         logger.info(f"    After clustering: {clustered_changes}")
 
-    filtered_confidences = {year: year_confidences[year] for year in clustered_changes if year in year_confidences}
+    filtered_confidences = {
+        year: year_confidences[year]
+        for year in clustered_changes
+        if year in year_confidences
+    }
 
     logger.info(f"Detected {len(clustered_changes)} direction change years")
     return clustered_changes, filtered_confidences
@@ -306,9 +310,13 @@ def validate_and_combine_signals(
         return []
 
     if verbose:
-        logger.info(f"  Validating {len(direction_years)} direction years against threshold {algorithm_config.validation_threshold}")
+        logger.info(
+            f"  Validating {len(direction_years)} direction years against threshold {algorithm_config.validation_threshold}"
+        )
         logger.info(f"  Citation boost rate: {algorithm_config.citation_boost_rate}")
-        logger.info(f"  Citation support window: ±{algorithm_config.citation_support_window} years")
+        logger.info(
+            f"  Citation support window: ±{algorithm_config.citation_support_window} years"
+        )
 
     validated_years = []
     support_window = algorithm_config.citation_support_window
@@ -317,7 +325,7 @@ def validate_and_combine_signals(
 
     for dir_year in direction_years:
         original_confidence = year_confidences.get(dir_year, 0.0)
-        
+
         has_citation_support = False
         if citation_years:
             for cit_year in citation_years:
@@ -328,14 +336,14 @@ def validate_and_combine_signals(
         if has_citation_support:
             boosted_confidence = original_confidence + beta * validation_threshold
             final_confidence = min(boosted_confidence, 1.0)
-            
+
             if verbose:
                 logger.info(
                     f"    Year {dir_year}: original={original_confidence:.3f} + boost({beta}×{validation_threshold:.3f}) = {final_confidence:.3f} [CITATION SUPPORT]"
                 )
         else:
             final_confidence = original_confidence
-            
+
             if verbose:
                 logger.info(
                     f"    Year {dir_year}: confidence={final_confidence:.3f} [NO CITATION SUPPORT]"
@@ -344,15 +352,23 @@ def validate_and_combine_signals(
         if final_confidence >= validation_threshold:
             validated_years.append(dir_year)
             if verbose:
-                logger.info(f"    ✓ VALIDATED: {dir_year} (confidence {final_confidence:.3f} ≥ {validation_threshold:.3f})")
+                logger.info(
+                    f"    ✓ VALIDATED: {dir_year} (confidence {final_confidence:.3f} ≥ {validation_threshold:.3f})"
+                )
         else:
             if verbose:
-                logger.info(f"    ✗ REJECTED: {dir_year} (confidence {final_confidence:.3f} < {validation_threshold:.3f})")
+                logger.info(
+                    f"    ✗ REJECTED: {dir_year} (confidence {final_confidence:.3f} < {validation_threshold:.3f})"
+                )
 
     if verbose:
-        logger.info(f"  Validation results: {len(validated_years)}/{len(direction_years)} years passed threshold")
+        logger.info(
+            f"  Validation results: {len(validated_years)}/{len(direction_years)} years passed threshold"
+        )
 
-    logger.info(f"Validated {len(validated_years)} boundary years (threshold: {validation_threshold:.3f})")
+    logger.info(
+        f"Validated {len(validated_years)} boundary years (threshold: {validation_threshold:.3f})"
+    )
     return sorted(validated_years)
 
 
