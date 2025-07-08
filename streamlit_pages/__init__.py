@@ -1,1 +1,1 @@
-"""Streamlit pages for timeline analysis visualization.""" 
+"""Streamlit pages for timeline analysis visualization."""
