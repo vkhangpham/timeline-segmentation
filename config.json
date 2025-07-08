@@ -3,6 +3,7 @@
     "direction_threshold": 0.1,
     "validation_threshold": 0.3,
     "citation_boost_rate": 0.5,
+    "min_papers_per_year_for_direction": 100,
     "citation_support_window": 2,
     "citation_analysis_scales": [1, 3, 5],
     "direction_window_size": 1
@@ -10,7 +11,8 @@
   "objective_function": {
     "cohesion_weight": 0.8,
     "separation_weight": 0.2,
-    "top_k_keywords": 15
+    "top_k_keywords": 50,
+    "min_keyword_frequency_ratio": 0.05
   },
   "anti_gaming": {
     "min_segment_size": 50,

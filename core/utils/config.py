@@ -24,10 +24,11 @@ class AntiGamingConfig(NamedTuple):
 class AlgorithmConfig:
     """Algorithm configuration loaded from config.json file."""
 
-    # Core Detection Parameters
+    # Detection Parameters
     direction_threshold: float
     validation_threshold: float
     citation_boost_rate: float
+    min_papers_per_year_for_direction: int
     citation_support_window: int
     citation_analysis_scales: List[int]
     direction_window_size: int
@@ -36,6 +37,7 @@ class AlgorithmConfig:
     cohesion_weight: float
     separation_weight: float
     top_k_keywords: int
+    min_keyword_frequency_ratio: float
 
     # Anti-Gaming Parameters
     anti_gaming_min_segment_size: int
@@ -92,6 +94,9 @@ class AlgorithmConfig:
                 direction_threshold=detection_params["direction_threshold"],
                 validation_threshold=detection_params["validation_threshold"],
                 citation_boost_rate=detection_params["citation_boost_rate"],
+                min_papers_per_year_for_direction=detection_params[
+                    "min_papers_per_year_for_direction"
+                ],
                 citation_support_window=detection_params["citation_support_window"],
                 citation_analysis_scales=detection_params["citation_analysis_scales"],
                 direction_window_size=detection_params["direction_window_size"],
@@ -99,6 +104,9 @@ class AlgorithmConfig:
                 cohesion_weight=objective_params["cohesion_weight"],
                 separation_weight=objective_params["separation_weight"],
                 top_k_keywords=objective_params["top_k_keywords"],
+                min_keyword_frequency_ratio=objective_params[
+                    "min_keyword_frequency_ratio"
+                ],
                 # Anti-gaming parameters
                 anti_gaming_min_segment_size=anti_gaming_params["min_segment_size"],
                 anti_gaming_size_weight_power=anti_gaming_params["size_weight_power"],
@@ -153,6 +161,11 @@ class AlgorithmConfig:
                 f"citation_boost_rate must be 0.0-1.0, got {self.citation_boost_rate}"
             )
 
+        if not 1 <= self.min_papers_per_year_for_direction <= 1000:
+            raise ValueError(
+                f"min_papers_per_year_for_direction must be 1-1000, got {self.min_papers_per_year_for_direction}"
+            )
+
         if not 1 <= self.citation_support_window <= 10:
             raise ValueError(
                 f"citation_support_window must be 1-10, got {self.citation_support_window}"
@@ -176,6 +189,11 @@ class AlgorithmConfig:
 
         if not 1 <= self.top_k_keywords <= 50:
             raise ValueError(f"top_k_keywords must be 1-50, got {self.top_k_keywords}")
+
+        if not 0.0 <= self.min_keyword_frequency_ratio <= 1.0:
+            raise ValueError(
+                f"min_keyword_frequency_ratio must be 0.0-1.0, got {self.min_keyword_frequency_ratio}"
+            )
 
         # Anti-gaming parameters
         if not 1 <= self.anti_gaming_min_segment_size <= 200:

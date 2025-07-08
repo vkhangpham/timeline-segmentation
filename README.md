@@ -151,12 +151,14 @@ Edit `config.json` to customize algorithm behavior:
   "detection_parameters": {
     "direction_threshold": 0.1,      // Paradigm shift sensitivity
     "validation_threshold": 0.3,     // Signal combination threshold
-    "citation_boost_rate": 0.5       // Citation signal weight
+    "citation_boost_rate": 0.5,      // Citation signal weight
+    "min_papers_per_year_for_direction": 100  // Min papers per year for direction detection
   },
   "objective_function": {
     "cohesion_weight": 0.8,         // Intra-period coherence weight
     "separation_weight": 0.2,       // Inter-period distinctiveness weight
-    "top_k_keywords": 15            // Keywords for evaluation
+    "top_k_keywords": 50,           // Keywords for evaluation
+    "min_keyword_frequency_ratio": 0.05  // Min frequency ratio for keyword filtering (5%)
   },
   "anti_gaming": {
     "min_segment_size": 50,         // Minimum papers per segment
