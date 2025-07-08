@@ -1,25 +1,14 @@
 #!/usr/bin/env python3
-"""
-Timeline Segmentation Pipeline
-
-Runs scientific literature timeline segmentation with change point detection,
-period characterization, and segment merging.
-
-Usage:
-    python run_timeline_analysis.py --domain deep_learning
-    python run_timeline_analysis.py --domain all --verbose
-"""
+"""Timeline segmentation pipeline for scientific literature analysis.
+Provides command-line interface for running timeline analysis with change point detection."""
 
 import argparse
 import json
-from typing import List
 from pathlib import Path
 
 from core.utils.general import discover_available_domains, ensure_results_directory
 from core.utils.config import AlgorithmConfig
 from core.pipeline.orchestrator import analyze_timeline
-from core.utils.parameters import load_optimized_parameters
-from core.results.display import display_analysis_summary
 from core.utils.logging import configure_global_logging, get_logger
 
 
@@ -30,33 +19,26 @@ def run_domain_analysis(
     optimized_params_file: str = None,
     verbose: bool = False,
 ) -> bool:
-    """Run complete analysis for a single domain using simplified orchestrator."""
-    logger = get_logger(__name__, verbose)
+    """Run complete analysis for a single domain.
 
-    # Load default config if none provided
+    Args:
+        domain_name: Name of the domain to analyze
+        segmentation_only: Run only segmentation (skip timeline analysis)
+        algorithm_config: Algorithm configuration (defaults to config.json)
+        optimized_params_file: Path to optimized parameters JSON file
+        verbose: Enable verbose logging
+
+    Returns:
+        True if analysis succeeded, False otherwise
+    """
+    logger = get_logger(__name__, verbose, domain_name)
+
     if algorithm_config is None:
         algorithm_config = AlgorithmConfig.from_config_file(domain_name=domain_name)
         if verbose:
             logger.info("No optimized parameters found, using defaults")
 
-    # Load optimized parameters and update config
-    optimized_params = load_optimized_parameters(domain_name, optimized_params_file)
-
-    if optimized_params and algorithm_config:
-        # Get current config as dict and update with optimized params
-        import dataclasses
-
-        config_kwargs = dataclasses.asdict(algorithm_config)
-
-        for param_name, param_value in optimized_params.items():
-            if param_name in config_kwargs:
-                config_kwargs[param_name] = param_value
-
-        # Update the config with optimized parameters
-        algorithm_config = AlgorithmConfig(**config_kwargs)
-
     try:
-        # Run simplified timeline analysis
         timeline_result = analyze_timeline(
             domain_name=domain_name,
             algorithm_config=algorithm_config,
@@ -64,10 +46,7 @@ def run_domain_analysis(
             verbose=verbose,
         )
 
-        # Save results
         save_timeline_result(timeline_result, domain_name, verbose)
-
-        # Display results
         display_timeline_summary(timeline_result, verbose)
 
         return True
@@ -78,14 +57,18 @@ def run_domain_analysis(
 
 
 def save_timeline_result(timeline_result, domain_name: str, verbose: bool = False):
-    """Save timeline analysis results to JSON file."""
-    logger = get_logger(__name__, verbose)
+    """Save timeline analysis results to JSON file.
 
-    # Create results directory
+    Args:
+        timeline_result: TimelineAnalysisResult object
+        domain_name: Name of the domain
+        verbose: Enable verbose logging
+    """
+    logger = get_logger(__name__, verbose, domain_name)
+
     results_dir = Path("results/timelines")
     results_dir.mkdir(parents=True, exist_ok=True)
 
-    # Convert timeline result to serializable format
     result_data = {
         "domain_name": timeline_result.domain_name,
         "confidence": timeline_result.confidence,
@@ -94,7 +77,6 @@ def save_timeline_result(timeline_result, domain_name: str, verbose: bool = Fals
         "periods": [],
     }
 
-    # Add period information
     for period in timeline_result.periods:
         period_data = {
             "start_year": period.start_year,
@@ -110,7 +92,6 @@ def save_timeline_result(timeline_result, domain_name: str, verbose: bool = Fals
         }
         result_data["periods"].append(period_data)
 
-    # Save to file
     output_file = results_dir / f"{domain_name}_timeline_analysis.json"
     with open(output_file, "w") as f:
         json.dump(result_data, f, indent=2)
@@ -119,8 +100,13 @@ def save_timeline_result(timeline_result, domain_name: str, verbose: bool = Fals
 
 
 def display_timeline_summary(timeline_result, verbose: bool = False):
-    """Display timeline analysis summary."""
-    logger = get_logger(__name__, verbose)
+    """Display timeline analysis summary.
+
+    Args:
+        timeline_result: TimelineAnalysisResult object
+        verbose: Enable verbose logging
+    """
+    logger = get_logger(__name__, verbose, timeline_result.domain_name)
 
     print(f"\n{'='*50}")
     print(f"TIMELINE ANALYSIS SUMMARY: {timeline_result.domain_name}")
@@ -155,8 +141,18 @@ def run_all_domains(
     optimized_params_file: str = None,
     verbose: bool = False,
 ) -> bool:
-    """Run analysis for all available domains."""
-    logger = get_logger(__name__, verbose)
+    """Run analysis for all available domains.
+
+    Args:
+        segmentation_only: Run only segmentation (skip timeline analysis)
+        algorithm_config: Algorithm configuration (defaults to config.json)
+        optimized_params_file: Path to optimized parameters JSON file
+        verbose: Enable verbose logging
+
+    Returns:
+        True if at least one domain succeeded, False otherwise
+    """
+    logger = get_logger(__name__, verbose, "all_domains")
 
     if algorithm_config is None:
         algorithm_config = AlgorithmConfig.from_config_file()
@@ -259,11 +255,9 @@ Examples:
 
     args = parser.parse_args()
 
-    # Configure global logging based on verbosity
-    configure_global_logging(verbose=args.verbose)
-    logger = get_logger(__name__, args.verbose)
+    configure_global_logging(verbose=args.verbose, domain_name=args.domain if args.domain != "all" else None)
+    logger = get_logger(__name__, args.verbose, args.domain if args.domain != "all" else None)
 
-    # Build algorithm config
     overrides = {}
     if args.direction_threshold is not None:
         overrides["direction_threshold"] = args.direction_threshold
@@ -274,11 +268,9 @@ Examples:
 
     domain_for_config = args.domain if args.domain != "all" else None
 
-    # Load the base config and apply overrides if needed
     algorithm_config = AlgorithmConfig.from_config_file(domain_name=domain_for_config)
 
     if overrides:
-        # Create a new config with overrides by reconstructing the dataclass
         import dataclasses
 
         config_dict = dataclasses.asdict(algorithm_config)
