@@ -67,6 +67,49 @@ python run_timeline_analysis.py --domain applied_mathematics --granularity 1  # 
 python run_timeline_analysis.py --domain art --granularity 5                  # Coarse-grained
 ```
 
+### Custom Analysis
+```python
+from core.pipeline.orchestrator import analyze_timeline
+from core.utils.config import AlgorithmConfig
+
+config = AlgorithmConfig.from_config_file(domain_name="computer_vision")
+result = analyze_timeline("computer_vision", config, verbose=True)
+
+print(f"Detected {len(result.periods)} periods")
+for period in result.periods:
+    print(f"{period.start_year}-{period.end_year}: {period.topic_label}")
+```
+
+## Streamlit Visualization Interface
+
+An interactive web application provides detailed visualizations for every stage of the timeline analysis algorithm.
+
+### Features
+
+- **Real-time Configuration**: Adjust algorithm parameters with interactive controls
+- **Stage-by-Stage Visualization**: Explore each step from data loading to final results
+- **Performance Monitoring**: Track execution timing and identify bottlenecks
+- **Manual Execution Controls**: Handle computationally expensive operations on-demand
+- **Data Export**: Export results and configurations for reproducibility
+
+### Running the Interface
+
+```bash
+# Install additional dependencies
+pip install streamlit plotly
+
+# Launch the application
+streamlit run streamlit_app.py
+```
+
+The application opens at `http://localhost:8501` with a sequential workflow:
+1. **Data Exploration** - Examine input data and statistics
+2. **Change Detection** - Visualize paradigm shift detection
+3. **Segmentation** - Convert boundary years into periods
+4. **Characterization** - Network analysis and topic labeling (manual execution)
+5. **Period Merging** - Intelligent consolidation based on similarity
+6. **Final Results** - Complete timeline with comprehensive analysis
+
 ## Algorithm Details
 
 ### Change Point Detection
