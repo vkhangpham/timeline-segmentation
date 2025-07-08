@@ -1,28 +1,28 @@
-"""
-Streamlined Algorithm Configuration for Timeline Segmentation
+"""Algorithm configuration for timeline segmentation.
 
-This module provides centralized configuration for timeline segmentation algorithm parameters.
-Configuration is loaded from a mandatory config.json file with no embedded defaults.
-
-Key Features:
-- No embedded defaults - all parameters must be in config.json
-- Fail-fast if config.json is missing
-- Comprehensive validation
-- Clean separation of concerns
+Configuration is loaded from config.json file with comprehensive validation.
 """
 
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List, Optional, NamedTuple
 import os
 import json
 
 
+class AntiGamingConfig(NamedTuple):
+    """Configuration for anti-gaming safeguards."""
+
+    min_segment_size: int = 50
+    size_weight_power: float = 0.5
+    segment_count_penalty_sigma: float = 4.0
+    enable_size_weighting: bool = True
+    enable_segment_floor: bool = True
+    enable_count_penalty: bool = True
+
+
 @dataclass
 class AlgorithmConfig:
-    """
-    Algorithm configuration loaded from config.json file.
-    All parameters must be present in the configuration file.
-    """
+    """Algorithm configuration loaded from config.json file."""
 
     # Core Detection Parameters
     direction_threshold: float
@@ -59,8 +59,7 @@ class AlgorithmConfig:
     def from_config_file(
         cls, config_path: str = "config.json", domain_name: Optional[str] = None
     ) -> "AlgorithmConfig":
-        """
-        Load configuration from JSON file.
+        """Load configuration from JSON file.
 
         Args:
             config_path: Path to configuration file
@@ -82,7 +81,6 @@ class AlgorithmConfig:
         except json.JSONDecodeError as e:
             raise ValueError(f"Invalid JSON in configuration file {config_path}: {e}")
 
-        # Extract parameters from nested structure
         try:
             detection_params = config["detection_parameters"]
             objective_params = config["objective_function"]
@@ -230,9 +228,11 @@ class AlgorithmConfig:
             )
 
     def get_anti_gaming_config(self):
-        """Get anti-gaming configuration for the objective function."""
-        from ..optimization.objective_function import AntiGamingConfig
-
+        """Get anti-gaming configuration for the objective function.
+        
+        Returns:
+            AntiGamingConfig: Configuration object for anti-gaming parameters
+        """
         return AntiGamingConfig(
             min_segment_size=self.anti_gaming_min_segment_size,
             size_weight_power=self.anti_gaming_size_weight_power,
@@ -243,7 +243,11 @@ class AlgorithmConfig:
         )
 
     def get_configuration_summary(self) -> str:
-        """Get a concise summary of the current configuration."""
+        """Get a concise summary of the current configuration.
+        
+        Returns:
+            String summary of key configuration parameters
+        """
         return (
             f"direction_threshold={self.direction_threshold:.3f}, "
             f"validation_threshold={self.validation_threshold:.3f}, "
@@ -254,7 +258,11 @@ class AlgorithmConfig:
         )
 
     def __str__(self) -> str:
-        """String representation showing key parameters."""
+        """String representation showing key parameters.
+        
+        Returns:
+            Formatted string showing main configuration values
+        """
         return (
             f"AlgorithmConfig(direction_threshold={self.direction_threshold:.3f}, "
             f"validation_threshold={self.validation_threshold:.3f}, "

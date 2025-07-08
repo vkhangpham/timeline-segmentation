@@ -1,13 +1,7 @@
-# Utils Sub-module
-# Essential utilities only - no bloat
+"""Utility functions for timeline segmentation."""
 
-# Import configuration
-from .config import AlgorithmConfig
+from .config import AlgorithmConfig, AntiGamingConfig
 
-# Import parameter loading
-from .parameters import load_optimized_parameters
-
-# Import general utilities
 from .general import (
     discover_available_domains,
     ensure_results_directory,
@@ -15,13 +9,9 @@ from .general import (
     query_llm_structured,
 )
 
-# Export only what's actually used
 __all__ = [
-    # Configuration
     "AlgorithmConfig",
-    # Parameter loading
-    "load_optimized_parameters",
-    # General utilities
+    "AntiGamingConfig",
     "discover_available_domains",
     "ensure_results_directory",
     "query_llm",

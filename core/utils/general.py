@@ -1,18 +1,15 @@
-"""
-Utility functions for the timeline analysis pipeline.
-"""
+"""Utility functions for the timeline analysis pipeline."""
 
 import requests
 from pathlib import Path
-from typing import List, Optional, Dict, Any, Union
+from typing import List, Optional
 import json
 from pydantic import BaseModel
 from .logging import get_logger
 
 
 def discover_available_domains(verbose: bool = False) -> List[str]:
-    """
-    Automatically discover available domains from the resources directory.
+    """Discover available domains from the resources directory.
 
     Args:
         verbose: Enable verbose logging
@@ -29,7 +26,6 @@ def discover_available_domains(verbose: bool = False) -> List[str]:
 
     domains = []
     for item in resources_path.iterdir():
-        # Only include directories and exclude system files
         if item.is_dir() and not item.name.startswith("."):
             domains.append(item.name)
 
@@ -42,58 +38,45 @@ def ensure_results_directory():
 
 
 def _calculate_adaptive_timeout(prompt: str, model: str = "qwen2.5:3b") -> int:
-    """
-    Calculate adaptive timeout based on prompt complexity and model requirements.
+    """Calculate adaptive timeout based on prompt complexity and model requirements.
 
-    Private function used internally by query_llm functions.
+    Args:
+        prompt: Input prompt text
+        model: Model name for timeout calculation
+
+    Returns:
+        Calculated timeout in seconds
     """
-    # Base timeout calculation based on prompt complexity
     prompt_length = len(prompt)
-    estimated_tokens = prompt_length // 4  # Rough estimate: 4 chars per token
+    estimated_tokens = prompt_length // 4
 
-    # Base processing time: 0.1 seconds per token (conservative estimate)
     base_timeout = max(30, estimated_tokens * 0.1)
 
-    # Model-specific scaling factors for confidence scoring
     model_factors = {
-        "deepseek-r1": 6.0,  # Reasoning model needs extra time
-        "deepseek-r1:8b-0528-qwen3-q4_K_M": 6.0,  # Reasoning model needs extra time
-        "gemma3:12b": 2.5,  # Large model needs more time
-        "qwen2.5:14b": 2.5,  # Large model needs more time
-        "llama3.1:8b": 2.0,  # Medium model
-        "qwen2.5:7b": 1.8,  # Medium model
-        "qwen2.5:3b": 1.5,  # Smaller model, faster
-        "llama3.2:3b": 1.5,  # Smaller model, faster
+        "deepseek-r1": 6.0,
+        "deepseek-r1:8b-0528-qwen3-q4_K_M": 6.0,
+        "gemma3:12b": 2.5,
+        "qwen2.5:14b": 2.5,
+        "llama3.1:8b": 2.0,
+        "qwen2.5:7b": 1.8,
+        "qwen2.5:3b": 1.5,
+        "llama3.2:3b": 1.5,
     }
 
-    # Get model-specific factor (default to 2.0 for unknown models)
     model_factor = 4.0
     for model_key, factor in model_factors.items():
         if model_key in model:
             model_factor = factor
             break
 
-    # Calculate final timeout with model scaling
     adaptive_timeout = int(base_timeout * model_factor)
-
-    # Apply bounds (30 seconds minimum, 300 seconds maximum)
-    adaptive_timeout = max(30, min(300, adaptive_timeout))
-
-    return adaptive_timeout
+    return max(30, min(300, adaptive_timeout))
 
 
 def query_llm(
     prompt: str, model: str = "qwen2.5:3b", format_schema: Optional[BaseModel] = None
 ) -> str:
-    """
-    Query local LLM with adaptive timeout calculation and optional structured output.
-
-    FAIL-FAST IMPLEMENTATION: Any failure immediately raises exception.
-    No error masking - strict adherence to project guidelines Rule 6.
-
-    Centralized LLM query function with intelligent timeout management
-    based on prompt complexity and model requirements. Supports Pydantic
-    structured outputs using Ollama's structured output feature.
+    """Query local LLM with adaptive timeout calculation.
 
     Args:
         prompt: The prompt text to send to the LLM
@@ -108,7 +91,6 @@ def query_llm(
     """
     url = "http://localhost:11434/api/generate"
 
-    # Calculate adaptive timeout based on prompt complexity and model
     timeout = _calculate_adaptive_timeout(prompt, model)
 
     payload = {
@@ -118,11 +100,9 @@ def query_llm(
         "options": {"temperature": 0.1, "top_p": 0.95},
     }
 
-    # Add structured output format if schema provided
     if format_schema is not None:
         payload["format"] = format_schema.model_json_schema()
 
-    # FAIL-FAST: Let any network or API error immediately terminate execution
     response = requests.post(url, json=payload, timeout=timeout)
     response.raise_for_status()
 
@@ -135,14 +115,7 @@ def query_llm_structured(
     format_schema: BaseModel,
     model: str = "deepseek-r1:8b-0528-qwen3-q4_K_M",
 ) -> BaseModel:
-    """
-    Query LLM with structured output and return parsed Pydantic model.
-
-    FAIL-FAST IMPLEMENTATION: Any failure immediately raises exception.
-    No error masking - strict adherence to project guidelines Rule 6.
-
-    Enhanced version of query_llm specifically for structured outputs
-    that automatically parses the JSON response into the provided Pydantic model.
+    """Query LLM with structured output and return parsed Pydantic model.
 
     Args:
         prompt: The prompt text to send to the LLM
@@ -155,9 +128,6 @@ def query_llm_structured(
     Raises:
         Exception: If LLM query fails or JSON parsing fails
     """
-    # FAIL-FAST: Get raw JSON response - any failure immediately terminates
     response_text = query_llm(prompt, model=model, format_schema=format_schema)
-
-    # FAIL-FAST: Parse JSON and validate against schema - any failure immediately terminates
     response_json = json.loads(response_text)
     return format_schema(**response_json)

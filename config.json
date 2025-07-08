@@ -2,7 +2,7 @@
   "detection_parameters": {
     "direction_threshold": 0.1,
     "validation_threshold": 0.3,
-    "citation_boost_rate": 0.8,
+    "citation_boost_rate": 0.5,
     "citation_support_window": 2,
     "citation_analysis_scales": [1, 3, 5],
     "direction_window_size": 1
