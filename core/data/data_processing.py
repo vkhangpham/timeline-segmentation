@@ -1,34 +1,85 @@
-"""
-Core data processing functions for scientific publication analysis.
+"""Core data processing functions for scientific publication analysis.
 
-This module provides clean, functional interfaces for loading and processing
-publication data using only AcademicYear and AcademicPeriod as core structures.
-
-Key Functions:
-- load_domain_data() -> (success: bool, academic_years: List[AcademicYear], error: str)
-- create_academic_periods_from_segments() -> List[AcademicPeriod]
-- create_single_academic_period() -> AcademicPeriod
-
-Pure functions for loading, validating, and processing publication data
-including rich citation graph information from .graphml.xml files.
+This module provides functional interfaces for loading and processing
+publication data using AcademicYear and AcademicPeriod as core structures.
 """
 
 import json
-import time
 import xml.etree.ElementTree as ET
-from pathlib import Path
-from typing import Dict, Tuple, List, Any
+from typing import Dict, Tuple, List
 from collections import defaultdict, Counter
-import statistics
 
 from .data_models import (
     Paper,
     CitationRelation,
-    DomainData,
     AcademicYear,
     AcademicPeriod,
 )
 from ..utils.logging import get_logger
+
+
+def load_concept_levels(concept_levels_file: str = "resources/concept_levels.jsonl") -> Dict[str, int]:
+    """Load concept levels from JSONL file.
+
+    Args:
+        concept_levels_file: Path to concept levels JSONL file
+
+    Returns:
+        Dictionary mapping concept names to their levels
+
+    Raises:
+        FileNotFoundError: If concept levels file doesn't exist
+        ValueError: If file format is invalid
+    """
+    try:
+        concept_levels = {}
+        with open(concept_levels_file, "r", encoding="utf-8") as f:
+            for line_num, line in enumerate(f, 1):
+                if line.strip():
+                    try:
+                        entry = json.loads(line)
+                        concept_levels[entry["concept"]] = entry["level"]
+                    except (json.JSONDecodeError, KeyError) as e:
+                        raise ValueError(f"Invalid format in line {line_num}: {e}")
+        
+        return concept_levels
+    
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Concept levels file not found: {concept_levels_file}")
+
+
+def filter_keywords_by_concept_level(
+    keywords: List[str], domain_name: str, concept_levels: Dict[str, int]
+) -> List[str]:
+    """Filter keywords to only keep those with level >= domain level.
+
+    Args:
+        keywords: List of keywords to filter
+        domain_name: Domain name (e.g., "deep_learning" becomes "deep learning")
+        concept_levels: Mapping of concept names to levels
+
+    Returns:
+        Filtered list of keywords
+
+    Raises:
+        ValueError: If domain is not found in concept levels
+    """
+    domain_concept = domain_name.replace("_", " ")
+    
+    if domain_concept not in concept_levels:
+        raise ValueError(f"Domain '{domain_concept}' not found in concept levels")
+    
+    domain_level = concept_levels[domain_concept]
+    
+    filtered_keywords = []
+    for keyword in keywords:
+        if keyword in concept_levels:
+            if concept_levels[keyword] >= domain_level:
+                filtered_keywords.append(keyword)
+        else:
+            filtered_keywords.append(keyword)
+    
+    return filtered_keywords
 
 
 def load_domain_data(
@@ -39,10 +90,7 @@ def load_domain_data(
     apply_year_filtering: bool = True,
     verbose: bool = False,
 ) -> Tuple[bool, List[AcademicYear], str]:
-    """
-    Load domain data and return academic years directly.
-
-    This is the main entry point for data loading in the simplified architecture.
+    """Load domain data and return academic years directly.
 
     Args:
         domain_name: Name of the domain to load
@@ -54,21 +102,16 @@ def load_domain_data(
 
     Returns:
         Tuple of (success, academic_years, error_message)
-        - success: True if loading succeeded
-        - academic_years: List of AcademicYear objects (empty if failed)
-        - error_message: Error description (empty if succeeded)
     """
-    logger = get_logger(__name__, verbose)
+    logger = get_logger(__name__, verbose, domain_name)
 
     try:
-        # Load papers from JSON
         papers_file = f"{data_directory}/{domain_name}/{domain_name}_docs_info.json"
         papers = load_papers_from_json(papers_file)
 
         if not papers:
             return False, [], f"No papers found in {papers_file}"
 
-        # Apply year filtering if requested
         if apply_year_filtering:
             papers = filter_papers_by_minimum_yearly_count(
                 papers, min_papers_per_year, verbose
@@ -80,7 +123,6 @@ def load_domain_data(
                     f"No papers remaining after filtering (min {min_papers_per_year} per year)",
                 )
 
-        # Load citation graph
         graph_file = f"{data_directory}/{domain_name}/{domain_name}_entity_relation_graph.graphml.xml"
         paper_year_map = {p.id: p.pub_year for p in papers}
 
@@ -92,8 +134,7 @@ def load_domain_data(
             logger.warning(f"Failed to load citation graph: {e}")
             citations, graph_nodes = tuple(), tuple()
 
-        # Compute academic years using passed configuration
-        academic_years = compute_academic_years(papers, algorithm_config)
+        academic_years = compute_academic_years(papers, algorithm_config, domain_name)
 
         if verbose:
             year_range = (
@@ -135,19 +176,10 @@ def load_domain_data(
         return False, [], error_msg
 
 
-# =============================================================================
-# UTILITY FUNCTIONS FOR ACADEMIC PERIOD CREATION
-# =============================================================================
-
-
 def create_academic_periods_from_segments(
     academic_years: Tuple[AcademicYear, ...], segments: List[Tuple[int, int]]
 ) -> List[AcademicPeriod]:
-    """
-    Create AcademicPeriod objects from segments and academic years.
-
-    UPDATED: No longer includes redundant papers field since papers are accessible through academic_years.
-    Handles missing years within segments by only using available academic years.
+    """Create AcademicPeriod objects from segments and academic years.
 
     Args:
         academic_years: Pre-computed academic year structures
@@ -165,7 +197,6 @@ def create_academic_periods_from_segments(
     if not segments:
         raise ValueError("segments cannot be empty")
 
-    # Create year lookup for efficient access
     year_lookup = {year.year: year for year in academic_years}
     available_years = set(year_lookup.keys())
 
@@ -177,7 +208,6 @@ def create_academic_periods_from_segments(
                 f"Invalid segment: start_year {start_year} > end_year {end_year}"
             )
 
-        # Get available academic years within the segment range (handling missing years)
         segment_years = [
             year for year in range(start_year, end_year + 1) if year in available_years
         ]
@@ -187,28 +217,21 @@ def create_academic_periods_from_segments(
                 f"No academic years found for segment {start_year}-{end_year}"
             )
 
-        # Get academic years for this segment (only available ones)
         segment_academic_years = tuple(year_lookup[year] for year in segment_years)
 
-        # Aggregate data across available years
         total_papers = sum(year.paper_count for year in segment_academic_years)
         total_citations = sum(year.total_citations for year in segment_academic_years)
 
-        # Combine keyword frequencies
         combined_keywords = defaultdict(int)
         for year in segment_academic_years:
             for keyword, freq in year.keyword_frequencies.items():
                 combined_keywords[keyword] += freq
 
-        # Get top keywords across period
         top_keywords = tuple(
             keyword
-            for keyword, freq in Counter(combined_keywords).most_common(
-                50
-            )  # More keywords for longer periods
+            for keyword, freq in Counter(combined_keywords).most_common(50)
         )
 
-        # Create academic period (papers are accessible through academic_years)
         period = AcademicPeriod(
             start_year=start_year,
             end_year=end_year,
@@ -227,10 +250,7 @@ def create_academic_periods_from_segments(
 def create_single_academic_period(
     academic_years: Tuple[AcademicYear, ...], start_year: int, end_year: int
 ) -> AcademicPeriod:
-    """
-    Create a single AcademicPeriod from academic years within a range.
-
-    Pure function for creating a single period.
+    """Create a single AcademicPeriod from academic years within a range.
 
     Args:
         academic_years: Pre-computed academic year structures
@@ -245,14 +265,8 @@ def create_single_academic_period(
     )[0]
 
 
-# =============================================================================
-# UTILITY FUNCTIONS
-# =============================================================================
-
-
 def load_papers_from_json(file_path: str) -> Tuple[Paper, ...]:
-    """
-    Load papers from JSON file and convert to immutable Paper objects.
+    """Load papers from JSON file and convert to immutable Paper objects.
 
     Args:
         file_path: Path to JSON file containing paper data
@@ -270,7 +284,6 @@ def load_papers_from_json(file_path: str) -> Tuple[Paper, ...]:
 
         papers = []
         for paper_id, paper_data in data.items():
-            # Handle both old and new data formats
             description = paper_data.get("description", paper_data.get("content", ""))
             content = paper_data.get("content", "")
 
@@ -297,8 +310,7 @@ def load_papers_from_json(file_path: str) -> Tuple[Paper, ...]:
 def load_citation_graph(
     file_path: str, paper_year_map: Dict[str, int], verbose: bool = False
 ) -> Tuple[Tuple[CitationRelation, ...], Tuple[Tuple[str, str], ...]]:
-    """
-    Load rich citation graph from .graphml.xml file.
+    """Load rich citation graph from .graphml.xml file.
 
     Args:
         file_path: Path to .graphml.xml file
@@ -313,17 +325,14 @@ def load_citation_graph(
         tree = ET.parse(file_path)
         root = tree.getroot()
 
-        # XML namespace
         ns = {"graphml": "http://graphml.graphdrawing.org/xmlns"}
 
-        # Extract nodes (papers with descriptions)
         graph_nodes = []
         nodes = root.findall(".//graphml:node", ns)
         for node in nodes:
             node_id = node.get("id")
             description = ""
 
-            # Find description (d1)
             for data in node.findall("graphml:data", ns):
                 if data.get("key") == "d1":
                     description = data.text or ""
@@ -331,16 +340,14 @@ def load_citation_graph(
 
             graph_nodes.append((node_id, description))
 
-        # Extract edges (citations with rich semantic info)
         citations = []
         invalid_count = 0
 
         edges = root.findall(".//graphml:edge", ns)
         for edge in edges:
-            source = edge.get("source")  # citing paper
-            target = edge.get("target")  # cited paper
+            source = edge.get("source")
+            target = edge.get("target")
 
-            # Extract edge data
             relation_desc = ""
             semantic_desc = ""
             common_topics = 0
@@ -350,24 +357,23 @@ def load_citation_graph(
                 key = data.get("key")
                 text = data.text or ""
 
-                if key == "d3":  # relation description
+                if key == "d3":
                     relation_desc = text
-                elif key == "d4":  # semantic description
+                elif key == "d4":
                     semantic_desc = text
-                elif key == "d5":  # common topics count
+                elif key == "d5":
                     try:
                         common_topics = int(text)
                     except ValueError:
                         common_topics = 0
-                elif key == "d6":  # edge index
+                elif key == "d6":
                     edge_index = text
 
-            # Validate temporal consistency
             if source in paper_year_map and target in paper_year_map:
                 citing_year = paper_year_map[source]
                 cited_year = paper_year_map[target]
 
-                if citing_year >= cited_year:  # Valid temporal order
+                if citing_year >= cited_year:
                     citation = CitationRelation(
                         citing_paper_id=source,
                         cited_paper_id=target,
@@ -382,7 +388,6 @@ def load_citation_graph(
                 else:
                     invalid_count += 1
 
-        # Log filtering results
         if invalid_count > 0:
             logger.info(
                 f"Filtered out {invalid_count} temporally invalid citations from graph"
@@ -394,7 +399,6 @@ def load_citation_graph(
         return tuple(citations), tuple(graph_nodes)
 
     except Exception as e:
-        # FAIL-FAST: Citation graph loading errors are critical and should not be masked
         raise RuntimeError(
             f"Failed to load citation graph from {file_path}: {e}"
         ) from e
@@ -403,7 +407,16 @@ def load_citation_graph(
 def filter_papers_by_year_range(
     papers: Tuple[Paper, ...], start_year: int, end_year: int
 ) -> Tuple[Paper, ...]:
-    """Filter papers to include only those within specified year range."""
+    """Filter papers to include only those within specified year range.
+    
+    Args:
+        papers: Input papers
+        start_year: Start year (inclusive)
+        end_year: End year (inclusive)
+        
+    Returns:
+        Filtered papers tuple
+    """
     filtered = []
     for paper in papers:
         if start_year <= paper.pub_year <= end_year:
@@ -414,8 +427,7 @@ def filter_papers_by_year_range(
 def filter_papers_by_minimum_yearly_count(
     papers: Tuple[Paper, ...], min_papers_per_year: int = 5, verbose: bool = False
 ) -> Tuple[Paper, ...]:
-    """
-    Filter papers to exclude years with insufficient paper counts.
+    """Filter papers to exclude years with insufficient paper counts.
 
     Args:
         papers: Input papers
@@ -427,10 +439,8 @@ def filter_papers_by_minimum_yearly_count(
     """
     logger = get_logger(__name__, verbose)
 
-    # Count papers by year
     year_counts = Counter(p.pub_year for p in papers)
 
-    # Find years with sufficient papers
     valid_years = {
         year for year, count in year_counts.items() if count >= min_papers_per_year
     }
@@ -442,7 +452,6 @@ def filter_papers_by_minimum_yearly_count(
                 f"Filtering out {len(invalid_years)} years with <{min_papers_per_year} papers: {sorted(invalid_years)}"
             )
 
-    # Filter papers
     filtered_papers = [p for p in papers if p.pub_year in valid_years]
 
     logger.info(
@@ -453,14 +462,14 @@ def filter_papers_by_minimum_yearly_count(
 
 
 def compute_academic_years(
-    papers: Tuple[Paper, ...], algorithm_config
+    papers: Tuple[Paper, ...], algorithm_config, domain_name: str
 ) -> Tuple[AcademicYear, ...]:
-    """
-    Compute AcademicYear objects from papers.
+    """Compute AcademicYear objects from papers with concept level filtering.
 
     Args:
         papers: Tuple of Paper objects
         algorithm_config: Algorithm configuration for keyword processing
+        domain_name: Domain name for concept level filtering
 
     Returns:
         Tuple of AcademicYear objects
@@ -468,7 +477,13 @@ def compute_academic_years(
     if not papers:
         return tuple()
 
-    # Group papers by year
+    try:
+        concept_levels = load_concept_levels()
+    except (FileNotFoundError, ValueError) as e:
+        logger = get_logger(__name__, verbose=False)
+        logger.warning(f"Could not load concept levels, proceeding without filtering: {e}")
+        concept_levels = {}
+
     papers_by_year = defaultdict(list)
     for paper in papers:
         papers_by_year[paper.pub_year].append(paper)
@@ -478,18 +493,24 @@ def compute_academic_years(
     for year, year_papers in papers_by_year.items():
         year_papers = tuple(year_papers)
 
-        # Calculate totals
         paper_count = len(year_papers)
         total_citations = sum(p.cited_by_count for p in year_papers)
 
-        # Extract and count keywords
         all_keywords = []
         for paper in year_papers:
             all_keywords.extend(paper.keywords)
 
+        if concept_levels:
+            try:
+                all_keywords = filter_keywords_by_concept_level(
+                    all_keywords, domain_name, concept_levels
+                )
+            except ValueError as e:
+                logger = get_logger(__name__, verbose=False)
+                logger.warning(f"Domain not found in concept levels, proceeding without filtering: {e}")
+
         keyword_frequencies = dict(Counter(all_keywords))
 
-        # Get top keywords
         top_k = getattr(algorithm_config, "top_k_keywords", 15)
         top_keywords = tuple(
             keyword for keyword, freq in Counter(all_keywords).most_common(top_k)
@@ -506,7 +527,6 @@ def compute_academic_years(
 
         academic_years.append(academic_year)
 
-    # Sort by year
     academic_years.sort(key=lambda ay: ay.year)
 
     return tuple(academic_years)

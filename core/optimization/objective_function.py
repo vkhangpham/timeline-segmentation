@@ -1,43 +1,17 @@
-"""
-Clean Objective Function Module
+"""Objective function computation for timeline segmentation quality.
 
-This module computes objective function scores for timeline segmentation quality.
-Uses pre-computed AcademicPeriod data structures to eliminate redundant computations.
-
-Core functionality:
-- Period cohesion evaluation using Jaccard similarity (ORIGINAL ALGORITHM)
-- Period separation evaluation using Jensen-Shannon divergence (ORIGINAL ALGORITHM)
-- Anti-gaming mechanisms to prevent micro-segmentation abuse
-- Comprehensive scoring with configurable weights
-
-Follows fail-fast principles with strict error handling throughout.
+This module computes objective function scores using pre-computed AcademicPeriod
+data structures for period cohesion and separation evaluation.
 """
 
-import os
-import json
 import math
-from typing import Dict, List, NamedTuple, Tuple
+from typing import List, NamedTuple, Tuple
 from collections import Counter
 import numpy as np
 from scipy.spatial.distance import jensenshannon
 
 from ..data.data_models import AcademicPeriod
-
-
-# =============================================================================
-# DATA STRUCTURES
-# =============================================================================
-
-
-class AntiGamingConfig(NamedTuple):
-    """Configuration for anti-gaming safeguards."""
-
-    min_segment_size: int = 50  # Minimum papers per segment
-    size_weight_power: float = 0.5  # Power for size weighting (0.5 = sqrt)
-    segment_count_penalty_sigma: float = 4.0  # Exponential decay parameter
-    enable_size_weighting: bool = True
-    enable_segment_floor: bool = True
-    enable_count_penalty: bool = True
+from ..utils.config import AntiGamingConfig
 
 
 class ObjectiveFunctionResult(NamedTuple):
@@ -51,7 +25,6 @@ class ObjectiveFunctionResult(NamedTuple):
     cohesion_details: str
     separation_details: str
     methodology: str
-    # Anti-gaming metrics
     size_weighted_cohesion: float = 0.0
     size_weighted_separation: float = 0.0
     segment_count_penalty: float = 1.0
@@ -76,16 +49,10 @@ class TransitionMetrics(NamedTuple):
     period_b_size: int
 
 
-# =============================================================================
-# ANTI-GAMING UTILITIES
-# =============================================================================
-
-
 def compute_size_weighted_average(
     segment_scores: List[float], segment_sizes: List[int], power: float = 0.5
 ) -> float:
-    """
-    Compute size-weighted average to prevent micro-segment gaming.
+    """Compute size-weighted average to prevent micro-segment gaming.
 
     Uses power weighting: weight = size^power
     - power=0.0: uniform weighting (vulnerable to gaming)
@@ -109,14 +76,12 @@ def compute_size_weighted_average(
     if len(segment_scores) != len(segment_sizes):
         raise ValueError("segment_scores and segment_sizes must have same length")
 
-    # Compute weights
     weights = [size**power for size in segment_sizes]
     total_weight = sum(weights)
 
     if total_weight == 0:
         return 0.0
 
-    # Weighted average
     weighted_sum = sum(score * weight for score, weight in zip(segment_scores, weights))
     return weighted_sum / total_weight
 
@@ -124,8 +89,7 @@ def compute_size_weighted_average(
 def compute_segment_count_penalty(
     num_segments: int, domain_year_span: int, sigma: float = 4.0
 ) -> float:
-    """
-    Compute exponential penalty for deviating from expected segment count.
+    """Compute exponential penalty for deviating from expected segment count.
 
     Expected segments = domain_year_span / 15 (one segment per ~15 years)
     Penalty = exp(-|K_actual - K_expected| / σ)
@@ -141,11 +105,9 @@ def compute_segment_count_penalty(
     if domain_year_span <= 0:
         return 1.0
 
-    # Realistic expectation: one segment per 15 years
     expected_segments = max(1, round(domain_year_span / 15))
     deviation = abs(num_segments - expected_segments)
 
-    # Exponential penalty with configurable sigma
     penalty = math.exp(-deviation / sigma)
 
     return penalty
@@ -154,8 +116,7 @@ def compute_segment_count_penalty(
 def filter_periods_by_size(
     academic_periods: List[AcademicPeriod], min_size: int
 ) -> Tuple[List[AcademicPeriod], int]:
-    """
-    Filter out periods below minimum size threshold.
+    """Filter out periods below minimum size threshold.
 
     Args:
         academic_periods: List of AcademicPeriod objects
@@ -176,16 +137,10 @@ def filter_periods_by_size(
     return filtered_periods, excluded_count
 
 
-# =============================================================================
-# CORE METRIC COMPUTATION (ORIGINAL ALGORITHM RESTORED)
-# =============================================================================
-
-
 def evaluate_period_cohesion(
     academic_period: AcademicPeriod, top_k: int
 ) -> PeriodMetrics:
-    """
-    Evaluate cohesion for an AcademicPeriod using Jaccard similarity (ORIGINAL ALGORITHM).
+    """Evaluate cohesion for an AcademicPeriod using Jaccard similarity.
 
     Args:
         academic_period: AcademicPeriod with pre-computed keyword data
@@ -194,7 +149,6 @@ def evaluate_period_cohesion(
     Returns:
         PeriodMetrics with cohesion score and metadata
     """
-    # Use pre-computed keyword frequencies
     keyword_frequencies = academic_period.combined_keyword_frequencies
 
     if not keyword_frequencies:
@@ -205,7 +159,6 @@ def evaluate_period_cohesion(
             top_keywords=[],
         )
 
-    # Get top-K keywords by frequency
     top_keywords_items = sorted(
         keyword_frequencies.items(), key=lambda x: x[1], reverse=True
     )[:top_k]
@@ -220,13 +173,12 @@ def evaluate_period_cohesion(
             top_keywords=[],
         )
 
-    # Calculate Jaccard cohesion (ORIGINAL ALGORITHM)
     jaccard_scores = []
 
     for paper in academic_period.get_all_papers():
         paper_keywords = set(paper.keywords) if paper.keywords else set()
 
-        if paper_keywords & top_keywords_set:  # Paper has at least one defining keyword
+        if paper_keywords & top_keywords_set:
             intersection = len(paper_keywords & top_keywords_set)
             union = len(paper_keywords | top_keywords_set)
 
@@ -250,8 +202,7 @@ def evaluate_period_cohesion(
 def evaluate_period_separation(
     period_a: AcademicPeriod, period_b: AcademicPeriod
 ) -> TransitionMetrics:
-    """
-    Evaluate separation between two AcademicPeriods using Jensen-Shannon divergence (ORIGINAL ALGORITHM).
+    """Evaluate separation between two AcademicPeriods using Jensen-Shannon divergence.
 
     Args:
         period_a: First AcademicPeriod
@@ -260,7 +211,6 @@ def evaluate_period_separation(
     Returns:
         TransitionMetrics with separation score and metadata
     """
-    # Collect keywords from both periods
     keywords_a = []
     keywords_b = []
 
@@ -280,7 +230,6 @@ def evaluate_period_separation(
             period_b_size=period_b.total_papers,
         )
 
-    # Create unified vocabulary
     vocab = list(set(keywords_a) | set(keywords_b))
     vocab_size = len(vocab)
 
@@ -292,24 +241,18 @@ def evaluate_period_separation(
             period_b_size=period_b.total_papers,
         )
 
-    # Compute frequency distributions
     p = get_frequency_distribution(keywords_a, vocab)
     q = get_frequency_distribution(keywords_b, vocab)
 
-    # Compute Jensen-Shannon divergence (ORIGINAL ALGORITHM)
-    # Add small epsilon to avoid numerical issues
     epsilon = 1e-10
     p = p + epsilon
     q = q + epsilon
 
-    # Normalize after adding epsilon
     p = p / p.sum()
     q = q / q.sum()
 
-    # Jensen-Shannon divergence using scipy
     js_divergence = jensenshannon(p, q, base=2)
 
-    # Convert to separation score (0-1 range)
     separation = float(js_divergence) if not np.isnan(js_divergence) else 0.0
 
     return TransitionMetrics(
@@ -323,8 +266,7 @@ def evaluate_period_separation(
 def get_frequency_distribution(
     keywords: List[str], vocabulary: List[str]
 ) -> np.ndarray:
-    """
-    Get frequency distribution for keywords over vocabulary.
+    """Get frequency distribution for keywords over vocabulary.
 
     Args:
         keywords: List of keywords (with potential duplicates)
@@ -336,13 +278,11 @@ def get_frequency_distribution(
     if not vocabulary:
         return np.array([])
 
-    # Count keyword frequencies
     keyword_counts = Counter(keywords)
 
-    # Build distribution vector
     total = sum(keyword_counts.values())
     if total == 0:
-        return np.ones(len(vocabulary)) / len(vocabulary)  # Uniform distribution
+        return np.ones(len(vocabulary)) / len(vocabulary)
 
     return np.array([keyword_counts[word] / total for word in vocabulary])
 
@@ -352,11 +292,7 @@ def compute_objective_function(
     algorithm_config,
     verbose: bool = False,
 ) -> ObjectiveFunctionResult:
-    """
-    Compute objective function for academic periods with anti-gaming mechanisms.
-
-    This is the main entry point for objective function evaluation. Uses configuration
-    from AlgorithmConfig to eliminate redundant parameter loading.
+    """Compute objective function for academic periods with anti-gaming mechanisms.
 
     Args:
         academic_periods: List of AcademicPeriod objects to evaluate
@@ -379,7 +315,6 @@ def compute_objective_function(
 
     logger = get_logger(__name__, verbose)
 
-    # Extract configuration parameters
     cohesion_weight = algorithm_config.cohesion_weight
     separation_weight = algorithm_config.separation_weight
     top_k = algorithm_config.top_k_keywords
@@ -393,7 +328,6 @@ def compute_objective_function(
         logger.info(f"Top-K keywords: {top_k}")
         logger.info(f"Anti-gaming config: {anti_gaming_config}")
 
-    # Apply period size filtering if enabled
     if anti_gaming_config.enable_segment_floor:
         filtered_periods, excluded_count = filter_periods_by_size(
             academic_periods, anti_gaming_config.min_segment_size
@@ -402,7 +336,6 @@ def compute_objective_function(
         if verbose and excluded_count > 0:
             logger.info(f"Excluded {excluded_count} periods below size threshold")
 
-        # Use filtered periods for evaluation
         evaluation_periods = filtered_periods
     else:
         evaluation_periods = academic_periods
@@ -423,11 +356,9 @@ def compute_objective_function(
             excluded_segments=excluded_count,
         )
 
-    # Handle single period case
     if len(evaluation_periods) == 1:
         period_metrics = evaluate_period_cohesion(evaluation_periods[0], top_k)
 
-        # For single period, final score is just cohesion (no separation)
         final_score = cohesion_weight * period_metrics.cohesion
 
         methodology = (
@@ -450,11 +381,9 @@ def compute_objective_function(
             excluded_segments=excluded_count,
         )
 
-    # Multiple periods case
     period_metrics_list = []
     transition_metrics_list = []
 
-    # Evaluate cohesion for each period
     for i, period in enumerate(evaluation_periods):
         try:
             metrics = evaluate_period_cohesion(period, top_k)
@@ -466,7 +395,6 @@ def compute_objective_function(
         except Exception as e:
             raise ValueError(f"Failed to evaluate cohesion for period {i+1}: {e}")
 
-    # Evaluate separation for each transition
     for i in range(len(evaluation_periods) - 1):
         try:
             metrics = evaluate_period_separation(
@@ -482,26 +410,22 @@ def compute_objective_function(
                 f"Failed to evaluate separation for transition {i+1}→{i+2}: {e}"
             )
 
-    # Standard aggregation
     cohesion_scores = [metrics.cohesion for metrics in period_metrics_list]
     separation_scores = [metrics.separation for metrics in transition_metrics_list]
 
     avg_cohesion = float(np.mean(cohesion_scores))
     avg_separation = float(np.mean(separation_scores)) if separation_scores else 0.0
 
-    # Anti-gaming: Size-weighted aggregation
     size_weighted_cohesion = avg_cohesion
     size_weighted_separation = avg_separation
 
     if anti_gaming_config.enable_size_weighting:
-        # Size-weighted cohesion
         period_sizes = [metrics.size for metrics in period_metrics_list]
         if cohesion_scores and period_sizes:
             size_weighted_cohesion = compute_size_weighted_average(
                 cohesion_scores, period_sizes, anti_gaming_config.size_weight_power
             )
 
-        # Size-weighted separation (using geometric mean of adjacent period sizes)
         if separation_scores and len(period_sizes) > 1:
             transition_sizes = []
             for i in range(len(period_sizes) - 1):
@@ -514,10 +438,8 @@ def compute_objective_function(
                 anti_gaming_config.size_weight_power,
             )
 
-    # Segment count penalty
     segment_count_penalty = 1.0
     if anti_gaming_config.enable_count_penalty:
-        # Calculate domain year span from academic periods
         if evaluation_periods:
             min_year = min(period.start_year for period in evaluation_periods)
             max_year = max(period.end_year for period in evaluation_periods)
@@ -528,7 +450,6 @@ def compute_objective_function(
                 anti_gaming_config.segment_count_penalty_sigma,
             )
 
-    # Compute final objective score with anti-gaming
     if anti_gaming_config.enable_size_weighting:
         final_score = (
             cohesion_weight * size_weighted_cohesion
@@ -539,7 +460,6 @@ def compute_objective_function(
             cohesion_weight * avg_cohesion + separation_weight * avg_separation
         ) * segment_count_penalty
 
-    # Create detailed explanations
     cohesion_details = " | ".join(
         [
             f"P{i+1}: {metrics.cohesion:.3f} ({metrics.size}p, top: {', '.join(metrics.top_keywords[:3])})"
@@ -554,7 +474,6 @@ def compute_objective_function(
         ]
     )
 
-    # Build methodology description
     weighting_desc = (
         "size-weighted" if anti_gaming_config.enable_size_weighting else "standard"
     )
