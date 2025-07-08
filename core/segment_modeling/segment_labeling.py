@@ -1,12 +1,7 @@
-"""
-Paper Selection and LLM-Based Labeling for Timeline Analysis
+"""Paper selection and LLM-based labeling for timeline analysis.
 
-This module contains shared functionality for:
-- Representative paper selection using network centrality
-- LLM-based period label and description generation
-- Context loading for enhanced LLM prompts
-
-Follows functional programming principles with pure functions and immutable data structures.
+This module provides representative paper selection using network centrality
+and LLM-based period label and description generation.
 """
 
 from typing import Dict, List, Tuple, Any
@@ -59,7 +54,17 @@ def select_representative_papers(
     themes: List[str],
     verbose: bool = False,
 ) -> List[Dict[str, Any]]:
-    """Select representative papers using network centrality"""
+    """Select representative papers using network centrality.
+
+    Args:
+        period_papers: List of papers in the period
+        subnetwork: Citation network subnetwork for the period
+        themes: List of dominant themes
+        verbose: Enable verbose logging
+
+    Returns:
+        List of representative papers with scoring information
+    """
     logger = get_logger(__name__, verbose)
 
     if not period_papers:
@@ -73,7 +78,6 @@ def select_representative_papers(
         )
         logger.info("  Calculating network centrality scores...")
 
-    # Calculate centrality scores
     try:
         pagerank = nx.pagerank(subnetwork)
         betweenness = nx.betweenness_centrality(subnetwork)
@@ -88,7 +92,6 @@ def select_representative_papers(
                 f"  In-degree centrality calculated for {len(in_degree_centrality)} papers"
             )
     except (ValueError, ZeroDivisionError, nx.NetworkXError) as e:
-        # FAIL-FAST: Raise exception for unexpected centrality calculation errors
         raise RuntimeError(
             f"Failed to calculate centrality scores for paper selection: {e}"
         ) from e
@@ -96,24 +99,19 @@ def select_representative_papers(
     if verbose:
         logger.info("  Scoring papers based on multiple factors...")
 
-    # Score papers based on multiple factors
     scored_papers = []
     for paper in period_papers:
         paper_id = paper["id"]
         paper_data = paper["data"]
 
-        # Network centrality scores
         pr_score = pagerank.get(paper_id, 0.0)
         bc_score = betweenness.get(paper_id, 0.0)
         in_deg_score = in_degree_centrality.get(paper_id, 0.0)
 
-        # Citation impact
         citation_score = min(1.0, paper_data.get("cited_by_count", 0) / 1000.0)
 
-        # Breakthrough bonus (check if field exists)
         breakthrough_bonus = 0.3 if paper.get("is_breakthrough", False) else 0.0
 
-        # Combined score
         total_score = (
             pr_score * 0.3
             + bc_score * 0.2
@@ -122,7 +120,6 @@ def select_representative_papers(
             + breakthrough_bonus * 0.1
         )
 
-        # Get abstract/description (similar to load_period_context)
         description = paper_data.get("description", "") or paper_data.get("content", "")
 
         scored_papers.append(
@@ -142,7 +139,6 @@ def select_representative_papers(
         logger.info(f"  Scored {len(scored_papers)} papers")
         logger.info("  Removing duplicates based on title...")
 
-    # Remove duplicates based on title, keep the highest scoring one
     seen_titles = set()
     unique_papers = []
     for paper in scored_papers:
@@ -154,18 +150,9 @@ def select_representative_papers(
         logger.info(f"  After deduplication: {len(unique_papers)} unique papers")
         logger.info("  Sorting papers by score...")
 
-    # Sort by score and select top papers
     unique_papers.sort(key=lambda x: x["score"], reverse=True)
 
-    # Select top 10 papers, ensuring diversity'
-    # Disabling this for now to get more papers
     selected_papers = []
-    # for paper in unique_papers[:15]:  # Consider top 12 candidates
-    #     # Avoid selecting multiple papers from same year if possible
-    #     years_selected = [p['year'] for p in selected_papers]
-    #     if len(selected_papers) < 8 or paper['year'] not in years_selected:
-    #         selected_papers.append(paper)
-
     selected_papers = unique_papers[:8]
 
     if verbose:
@@ -183,24 +170,21 @@ def select_representative_papers(
 def load_period_context(
     papers: List[Dict], start_year: int, end_year: int
 ) -> Dict[str, Any]:
-    """
-    FUNDAMENTAL SOLUTION: Load essential context data - keywords and paper descriptions only.
+    """Load essential context data - keywords and paper descriptions.
 
     Args:
-        papers: Papers in this period (can be period_papers or representative_papers format)
+        papers: Papers in this period
         start_year: Period start year
         end_year: Period end year
 
     Returns:
         Simple context with keywords and descriptions
     """
-    # Extract keywords from all papers in period
     all_keywords = []
     paper_descriptions = []
 
     for paper in papers:
-        # Handle both period_papers format and representative_papers format
-        if "data" in paper:  # period_papers format
+        if "data" in paper:
             paper_data = paper["data"]
             title = paper_data.get("title", "")
             year = paper_data.get("pub_year", 0)
@@ -209,42 +193,37 @@ def load_period_context(
                 "content", ""
             )
             citation_count = paper_data.get("cited_by_count", 0)
-        else:  # representative_papers format
+        else:
             title = paper.get("title", "")
             year = paper.get("year", 0)
             keywords = paper.get("keywords", [])
             description = paper.get("abstract", "")
             citation_count = paper.get("citation_count", 0)
 
-        # Get keywords
         if isinstance(keywords, list):
             all_keywords.extend(keywords)
 
-        # Remove the part from the description that starts with "Topic: "
         if description and "Topic: " in description:
             description = description.split("Topic: ")[0].strip()
 
-        # Get paper description
         if description and len(description.strip()) > 30:
             paper_descriptions.append(
                 {
                     "title": title,
                     "year": year,
-                    "description": description,  # Limit to 300 chars
+                    "description": description,
                     "citation_count": citation_count,
                 }
             )
 
-    # Get top keywords by frequency (using existing logic since papers format is different here)
     keyword_freq = Counter(all_keywords)
     top_keywords = [kw for kw, count in keyword_freq.most_common(20)]
 
-    # Sort papers by citation count for representative selection
     paper_descriptions.sort(key=lambda x: x["citation_count"], reverse=True)
 
     return {
         "keywords": top_keywords,
-        "paper_descriptions": paper_descriptions,  # Use all representative papers
+        "paper_descriptions": paper_descriptions,
         "keyword_frequencies": dict(keyword_freq.most_common(15)),
     }
 
@@ -258,19 +237,7 @@ def generate_period_label_and_description(
     domain_name: str = "",
     verbose: bool = False,
 ) -> Tuple[str, str]:
-    """
-    Generate period label and description using LLM with rich context.
-
-    FAIL-FAST IMPLEMENTATION: Any LLM query failure immediately raises exception.
-    No fallbacks, no error masking - strict adherence to project guidelines Rule 6.
-
-    Enhanced approach leveraging multiple data sources with structured outputs:
-    - Keywords from representative papers
-    - Paper descriptions (d1 node descriptions)
-    - Previous periods for context and evolution
-    - Domain awareness to avoid redundant naming
-    - Pydantic structured outputs for reliability
-    - Reasoning model (deepseek-r1:8b-0528-qwen3-q4_K_M) for enhanced analysis
+    """Generate period label and description using LLM with rich context.
 
     Args:
         themes: List of dominant themes
@@ -297,11 +264,7 @@ def generate_period_label_and_description(
         logger.info(f"  Representative papers: {len(representative_papers)}")
         logger.info("  Loading period context...")
 
-    # FUNDAMENTAL SOLUTION: Use representative_papers for LLM context to ensure consistency
-    # This prevents LLM from referencing papers not shown in the representative papers list
-    papers_to_use = (
-        representative_papers  # Always use representative papers for consistency
-    )
+    papers_to_use = representative_papers
     context = load_period_context(papers_to_use, start_year, end_year)
     domain_name = domain_name.replace("_", " ").title()
 
@@ -311,7 +274,6 @@ def generate_period_label_and_description(
         )
         logger.info(f"  Context keywords: {len(context.get('keywords', []))}")
 
-    # Build previous periods context string
     previous_context = ""
     if previous_periods:
         previous_context = "\n\nPREVIOUS PERIODS FOR CONTEXT:\n"
@@ -322,8 +284,6 @@ def generate_period_label_and_description(
 
         if verbose:
             logger.info(f"  Previous periods context: {len(previous_periods)} periods")
-
-    # ENHANCED GEMMA 3 PROMPT: Following official prompt engineering guidelines
     prompt = f"""You are an expert scientific historian specializing in research paradigm analysis. Your task is to conduct a comprehensive analysis of the evolution of **{domain_name}** research during the **{start_year}-{end_year}** period.
 
 ---
@@ -387,16 +347,16 @@ Generate your analysis **only** in the following structured JSON format. **Do no
   "description": "Detailed technical explanation with paper references"
 }}"""
 
+    model = "gemma3:4b-it-qat"
     if verbose:
-        logger.info("  Sending LLM query with qwen3:8b model...")
+        logger.info(f"  Sending LLM query with {model} model...")
         logger.info(f"  Prompt length: {len(prompt)} characters")
 
-    response = query_llm_structured(prompt, PeriodLabelResponse, model="qwen3:8b")
+    response = query_llm_structured(prompt, PeriodLabelResponse, model=model)
 
     if verbose:
         logger.info("  LLM query completed successfully")
 
-    # Extract and validate response
     label = response.label
     description = response.description
 
@@ -421,14 +381,7 @@ def generate_merged_segment_label_and_description(
     domain_name: str,
     verbose: bool = False,
 ) -> Tuple[str, str]:
-    """
-    Generate LLM-based label and description for merged segments.
-
-    FAIL-FAST IMPLEMENTATION: Any LLM query failure immediately raises exception.
-    No fallbacks, no error masking - strict adherence to project guidelines Rule 6.
-
-    Enhanced version using structured outputs and reasoning model for
-    better analysis of segment continuity and unified themes.
+    """Generate LLM-based label and description for merged segments.
 
     Args:
         segment1_label: Label of first segment
@@ -448,10 +401,8 @@ def generate_merged_segment_label_and_description(
         Exception: If LLM query fails or structured output parsing fails
     """
     logger = get_logger(__name__, verbose)
-    # Prepare paper information from both segments
     all_papers = list(segment1_papers) + list(segment2_papers)
 
-    # Deduplicate by title
     seen_titles = set()
     unique_papers = []
     for paper in all_papers:
@@ -460,13 +411,11 @@ def generate_merged_segment_label_and_description(
             seen_titles.add(title)
             unique_papers.append(paper)
 
-    # Sort by score/citation count and take top papers
     unique_papers.sort(
         key=lambda p: p.get("score", p.get("citation_count", 0)), reverse=True
     )
     top_papers = unique_papers[:10]
 
-    # Build paper context
     paper_context = "REPRESENTATIVE PAPERS FROM MERGED PERIOD:\n"
     for paper in top_papers:
         paper_context += f"- {paper.get('title', '')} ({paper.get('year', 'N/A')})\n"
@@ -500,16 +449,19 @@ You are a research historian. Two adjacent research periods have been merged bec
 </instructions>
 """
 
-    # FAIL-FAST: No try-catch blocks, let any error immediately terminate execution
+    model = "gemma3:4b-it-qat"
+    if verbose:
+        logger.info(f"  Sending LLM query with {model} model...")
+        logger.info(f"  Prompt length: {len(prompt)} characters")
+
     response = query_llm_structured(
-        prompt, MergedSegmentResponse, model="deepseek-r1:8b-0528-qwen3-q4_K_M"
+        prompt, MergedSegmentResponse, model=model
     )
 
-    # Extract validated response
     label = response.label
     description = response.description
 
     logger.info(
-        f"LLM merge labeling with deepseek-r1:8b-0528-qwen3-q4_K_M completed for {merged_period[0]}-{merged_period[1]}"
+        f"LLM merge labeling with {model} completed for {merged_period[0]}-{merged_period[1]}"
     )
     return label, description
