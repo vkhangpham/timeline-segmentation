@@ -84,6 +84,30 @@ def filter_keywords_by_concept_level(
     return filtered_keywords
 
 
+def filter_keywords_by_frequency_ratio(
+    keyword_frequencies: Dict[str, int], total_papers: int, min_ratio: float
+) -> Dict[str, int]:
+    """Filter keywords that appear in at least min_ratio of papers.
+
+    Args:
+        keyword_frequencies: Dictionary of keyword -> frequency counts
+        total_papers: Total number of papers in the dataset
+        min_ratio: Minimum ratio (0.0-1.0) of papers a keyword must appear in
+
+    Returns:
+        Filtered keyword frequencies dictionary
+    """
+    if min_ratio <= 0.0:
+        return keyword_frequencies
+
+    min_frequency = max(1, int(total_papers * min_ratio))
+    return {
+        keyword: freq
+        for keyword, freq in keyword_frequencies.items()
+        if freq >= min_frequency
+    }
+
+
 def load_domain_data(
     domain_name: str,
     algorithm_config,
@@ -113,17 +137,6 @@ def load_domain_data(
 
         if not papers:
             return False, [], f"No papers found in {papers_file}"
-
-        if apply_year_filtering:
-            papers = filter_papers_by_minimum_yearly_count(
-                papers, min_papers_per_year, verbose
-            )
-            if not papers:
-                return (
-                    False,
-                    [],
-                    f"No papers remaining after filtering (min {min_papers_per_year} per year)",
-                )
 
         graph_file = f"{data_directory}/{domain_name}/{domain_name}_entity_relation_graph.graphml.xml"
         paper_year_map = {p.id: p.pub_year for p in papers}
@@ -179,7 +192,9 @@ def load_domain_data(
 
 
 def create_academic_periods_from_segments(
-    academic_years: Tuple[AcademicYear, ...], segments: List[Tuple[int, int]]
+    academic_years: Tuple[AcademicYear, ...],
+    segments: List[Tuple[int, int]],
+    algorithm_config=None,
 ) -> List[AcademicPeriod]:
     """Create AcademicPeriod objects from segments and academic years.
 
@@ -229,8 +244,18 @@ def create_academic_periods_from_segments(
             for keyword, freq in year.keyword_frequencies.items():
                 combined_keywords[keyword] += freq
 
+        # Apply frequency ratio filtering if available in config
+        min_ratio = (
+            getattr(algorithm_config, "min_keyword_frequency_ratio", 0.1)
+            if algorithm_config
+            else 0.1
+        )
+        filtered_keywords = filter_keywords_by_frequency_ratio(
+            dict(combined_keywords), total_papers, min_ratio
+        )
+
         top_keywords = tuple(
-            keyword for keyword, freq in Counter(combined_keywords).most_common(50)
+            keyword for keyword, freq in Counter(filtered_keywords).most_common(50)
         )
 
         period = AcademicPeriod(
@@ -239,7 +264,7 @@ def create_academic_periods_from_segments(
             academic_years=segment_academic_years,
             total_papers=total_papers,
             total_citations=total_citations,
-            combined_keyword_frequencies=dict(combined_keywords),
+            combined_keyword_frequencies=dict(filtered_keywords),
             top_keywords=top_keywords,
         )
 
@@ -249,7 +274,10 @@ def create_academic_periods_from_segments(
 
 
 def create_single_academic_period(
-    academic_years: Tuple[AcademicYear, ...], start_year: int, end_year: int
+    academic_years: Tuple[AcademicYear, ...],
+    start_year: int,
+    end_year: int,
+    algorithm_config=None,
 ) -> AcademicPeriod:
     """Create a single AcademicPeriod from academic years within a range.
 
@@ -257,12 +285,13 @@ def create_single_academic_period(
         academic_years: Pre-computed academic year structures
         start_year: Start year of the period
         end_year: End year of the period
+        algorithm_config: Algorithm configuration for keyword filtering
 
     Returns:
         Single AcademicPeriod object
     """
     return create_academic_periods_from_segments(
-        academic_years, [(start_year, end_year)]
+        academic_years, [(start_year, end_year)], algorithm_config
     )[0]
 
 
@@ -425,43 +454,6 @@ def filter_papers_by_year_range(
     return tuple(filtered)
 
 
-def filter_papers_by_minimum_yearly_count(
-    papers: Tuple[Paper, ...], min_papers_per_year: int = 5, verbose: bool = False
-) -> Tuple[Paper, ...]:
-    """Filter papers to exclude years with insufficient paper counts.
-
-    Args:
-        papers: Input papers
-        min_papers_per_year: Minimum papers required per year
-        verbose: Enable verbose logging
-
-    Returns:
-        Filtered papers tuple
-    """
-    logger = get_logger(__name__, verbose)
-
-    year_counts = Counter(p.pub_year for p in papers)
-
-    valid_years = {
-        year for year, count in year_counts.items() if count >= min_papers_per_year
-    }
-
-    if verbose:
-        invalid_years = set(year_counts.keys()) - valid_years
-        if invalid_years:
-            logger.info(
-                f"Filtering out {len(invalid_years)} years with <{min_papers_per_year} papers: {sorted(invalid_years)}"
-            )
-
-    filtered_papers = [p for p in papers if p.pub_year in valid_years]
-
-    logger.info(
-        f"Filtered papers: {len(papers)} → {len(filtered_papers)} papers, {len(valid_years)} years"
-    )
-
-    return tuple(filtered_papers)
-
-
 def compute_academic_years(
     papers: Tuple[Paper, ...], algorithm_config, domain_name: str
 ) -> Tuple[AcademicYear, ...]:
@@ -516,9 +508,19 @@ def compute_academic_years(
 
         keyword_frequencies = dict(Counter(all_keywords))
 
+        # Apply frequency ratio filtering if configured
+        min_ratio = getattr(algorithm_config, "min_keyword_frequency_ratio", 0.0)
+        if min_ratio > 0.0:
+            keyword_frequencies = filter_keywords_by_frequency_ratio(
+                keyword_frequencies, paper_count, min_ratio
+            )
+
         top_k = getattr(algorithm_config, "top_k_keywords", 15)
+        # remove domain itself from top keywords
+        if domain_name.replace("_", " ") in keyword_frequencies:
+            del keyword_frequencies[domain_name.replace("_", " ")]
         top_keywords = tuple(
-            keyword for keyword, freq in Counter(all_keywords).most_common(top_k)
+            keyword for keyword, freq in Counter(keyword_frequencies).most_common(top_k)
         )
 
         academic_year = AcademicYear(

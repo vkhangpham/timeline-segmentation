@@ -118,9 +118,32 @@ def detect_direction_change_years(
         logger.info(f"    Starting direction change detection...")
         logger.info(f"    Direction threshold: {algorithm_config.direction_threshold}")
 
-    year_keywords_map = {}
-    for academic_year in academic_years:
-        year_keywords_map[academic_year.year] = list(academic_year.top_keywords)
+    # ---------------------------------------------------------------------
+    # Skip years with insufficient publication volume.
+    # Any AcademicYear containing <100 papers is excluded from direction
+    # change consideration to avoid spurious high-variance scores produced
+    # by tiny sample sizes.
+    # ---------------------------------------------------------------------
+
+    min_papers_threshold = getattr(
+        algorithm_config, "min_papers_per_year_for_direction", 100
+    )
+
+    eligible_years = [
+        ay for ay in academic_years if ay.paper_count >= min_papers_threshold
+    ]
+
+    if verbose:
+        skipped_years = [
+            ay.year for ay in academic_years if ay.paper_count < min_papers_threshold
+        ]
+        if skipped_years:
+            logger.info(
+                f"Skipping {len(skipped_years)} year(s) with <{min_papers_threshold} papers: {skipped_years}"
+            )
+
+    # Build mapping of year -> keyword list for eligible years only
+    year_keywords_map = {ay.year: list(ay.top_keywords) for ay in eligible_years}
 
     if verbose:
         logger.info(f"    Year-to-keywords mapping: {len(year_keywords_map)} years")

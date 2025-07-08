@@ -20,6 +20,7 @@ def analyze_timeline(
     domain_name: str,
     algorithm_config: AlgorithmConfig,
     data_directory: str = "resources",
+    segmentation_only: bool = False,
     verbose: bool = False,
 ) -> TimelineAnalysisResult:
     """Main timeline analysis pipeline.
@@ -28,6 +29,7 @@ def analyze_timeline(
         domain_name: Name of the domain to analyze
         algorithm_config: Algorithm configuration (required)
         data_directory: Directory containing domain data
+        segmentation_only: If True, stop after segmentation (skip characterization and merging)
         verbose: Enable verbose logging
 
     Returns:
@@ -40,7 +42,10 @@ def analyze_timeline(
     start_time = time.time()
 
     try:
-        logger.info(f"Starting timeline analysis for {domain_name}")
+        analysis_type = (
+            "segmentation" if segmentation_only else "full timeline analysis"
+        )
+        logger.info(f"Starting {analysis_type} for {domain_name}")
 
         success, academic_years, error_message = load_domain_data(
             domain_name=domain_name,
@@ -81,6 +86,24 @@ def analyze_timeline(
 
         logger.info(f"Created {len(initial_periods)} initial periods")
 
+        if segmentation_only:
+            # For segmentation-only mode, return results without characterization and merging
+            boundary_years = [ay.year for ay in boundary_academic_years]
+            timeline_result = TimelineAnalysisResult(
+                domain_name=domain_name,
+                periods=tuple(initial_periods),
+                confidence=calculate_segmentation_confidence(initial_periods),
+                boundary_years=tuple(boundary_years),
+                narrative_evolution=generate_segmentation_narrative(
+                    initial_periods, domain_name
+                ),
+            )
+
+            total_time = time.time() - start_time
+            logger.info(f"Segmentation completed in {total_time:.2f} seconds")
+            return timeline_result
+
+        # Full pipeline: characterization and merging
         characterized_periods = characterize_academic_periods(
             domain_name=domain_name,
             periods=initial_periods,
@@ -116,6 +139,67 @@ def analyze_timeline(
     except Exception as e:
         logger.error(f"Timeline analysis failed: {e}")
         raise RuntimeError(f"Timeline analysis failed for {domain_name}: {e}") from e
+
+
+def calculate_segmentation_confidence(periods: List[AcademicPeriod]) -> float:
+    """Calculate confidence for segmentation-only results based on period sizes.
+
+    Args:
+        periods: List of segmented academic periods (uncharacterized)
+
+    Returns:
+        Confidence score (0.0 to 1.0) based on period size distribution
+    """
+    if not periods:
+        return 0.0
+
+    # For segmentation-only, base confidence on period size distribution
+    # More balanced period sizes indicate better segmentation
+    total_papers = sum(p.total_papers for p in periods)
+    if total_papers == 0:
+        return 0.0
+
+    # Calculate entropy of period size distribution
+    import math
+
+    proportions = [p.total_papers / total_papers for p in periods]
+    entropy = -sum(p * math.log(p) if p > 0 else 0 for p in proportions)
+    max_entropy = math.log(len(periods)) if len(periods) > 1 else 1
+
+    # Normalize entropy to [0, 1] where higher entropy means better balance
+    balanced_score = entropy / max_entropy if max_entropy > 0 else 0
+
+    # Base confidence of 0.7 adjusted by balance
+    return min(0.7 + 0.3 * balanced_score, 1.0)
+
+
+def generate_segmentation_narrative(
+    periods: List[AcademicPeriod], domain_name: str
+) -> str:
+    """Generate narrative description for segmentation-only results.
+
+    Args:
+        periods: List of segmented academic periods (uncharacterized)
+        domain_name: Name of the domain
+
+    Returns:
+        Narrative description string
+    """
+    if not periods:
+        return f"No timeline periods identified for {domain_name}"
+
+    if len(periods) == 1:
+        period = periods[0]
+        return f"{domain_name} shows stable development from {period.start_year} to {period.end_year} ({period.total_papers} papers)"
+
+    narrative_parts = []
+    narrative_parts.append(f"{domain_name} segmentation results:")
+
+    for i, period in enumerate(periods):
+        period_desc = f"Period {i+1} ({period.start_year}-{period.end_year}): {period.total_papers} papers"
+        narrative_parts.append(period_desc)
+
+    return "; ".join(narrative_parts)
 
 
 def calculate_timeline_confidence(periods: List[AcademicPeriod]) -> float:
