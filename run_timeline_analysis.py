@@ -17,7 +17,7 @@ def run_domain_analysis(
     domain_name: str,
     segmentation_only: bool = False,
     algorithm_config: AlgorithmConfig = None,
-    optimized_params_file: str = None,
+    no_save: bool = False,
     verbose: bool = False,
 ) -> bool:
     """Run complete analysis for a single domain.
@@ -26,7 +26,7 @@ def run_domain_analysis(
         domain_name: Name of the domain to analyze
         segmentation_only: Run only segmentation (skip timeline analysis)
         algorithm_config: Algorithm configuration (defaults to config.json)
-        optimized_params_file: Path to optimized parameters JSON file
+        no_save: Skip saving results to files
         verbose: Enable verbose logging
 
     Returns:
@@ -37,17 +37,22 @@ def run_domain_analysis(
     if algorithm_config is None:
         algorithm_config = AlgorithmConfig.from_config_file(domain_name=domain_name)
         if verbose:
-            logger.info("No optimized parameters found, using defaults")
+            logger.info("Using default configuration")
 
     try:
         timeline_result = analyze_timeline(
             domain_name=domain_name,
             algorithm_config=algorithm_config,
             data_directory="resources",
+            segmentation_only=segmentation_only,
             verbose=verbose,
         )
 
-        save_timeline_result(timeline_result, domain_name, verbose)
+        if not no_save:
+            save_timeline_result(timeline_result, domain_name, verbose)
+        else:
+            logger.info("Skipping save (--no-save flag specified)")
+
         display_timeline_summary(timeline_result, verbose)
 
         return True
@@ -139,7 +144,7 @@ def display_timeline_summary(timeline_result, verbose: bool = False):
 def run_all_domains(
     segmentation_only: bool = False,
     algorithm_config: AlgorithmConfig = None,
-    optimized_params_file: str = None,
+    no_save: bool = False,
     verbose: bool = False,
 ) -> bool:
     """Run analysis for all available domains.
@@ -147,7 +152,7 @@ def run_all_domains(
     Args:
         segmentation_only: Run only segmentation (skip timeline analysis)
         algorithm_config: Algorithm configuration (defaults to config.json)
-        optimized_params_file: Path to optimized parameters JSON file
+        no_save: Skip saving results to files
         verbose: Enable verbose logging
 
     Returns:
@@ -174,7 +179,7 @@ def run_all_domains(
         logger.info(f"Processing {domain}...")
         domain_config = AlgorithmConfig.from_config_file(domain_name=domain)
         if run_domain_analysis(
-            domain, segmentation_only, domain_config, optimized_params_file, verbose
+            domain, segmentation_only, domain_config, no_save, verbose
         ):
             successful.append(domain)
 
@@ -184,7 +189,7 @@ def run_all_domains(
 
     if successful:
         logger.info(f"Processed: {', '.join(successful)}")
-        if not segmentation_only:
+        if not segmentation_only and not no_save:
             logger.info("Results saved in 'results/timelines/' directory")
 
     if len(successful) < len(domains):
@@ -203,8 +208,8 @@ def main():
 Examples:
   python run_timeline_analysis.py --domain deep_learning
   python run_timeline_analysis.py --domain all --verbose
-  python run_timeline_analysis.py --domain computer_vision --granularity 1
-  python run_timeline_analysis.py --domain applied_mathematics --segmentation-only
+  python run_timeline_analysis.py --domain computer_vision --segmentation-only
+  python run_timeline_analysis.py --domain applied_mathematics --no-save
         """,
     )
 
@@ -217,14 +222,12 @@ Examples:
     parser.add_argument(
         "--segmentation-only",
         action="store_true",
-        help="Run only segmentation (skip timeline analysis)",
+        help="Run only segmentation (skip characterization and merging)",
     )
     parser.add_argument(
-        "--granularity",
-        type=int,
-        default=3,
-        choices=[1, 2, 3, 4, 5],
-        help="Timeline granularity: 1=fine, 3=balanced, 5=coarse",
+        "--no-save",
+        action="store_true",
+        help="Skip saving results to files",
     )
     parser.add_argument(
         "--verbose", action="store_true", help="Enable verbose logging (DEBUG level)"
@@ -246,12 +249,6 @@ Examples:
         type=float,
         default=None,
         help="Citation support boost (0.0-1.0)",
-    )
-    parser.add_argument(
-        "--optimized-params-file",
-        type=str,
-        default=None,
-        help="Path to optimized parameters JSON file",
     )
 
     args = parser.parse_args()
@@ -288,7 +285,7 @@ Examples:
         success = run_all_domains(
             args.segmentation_only,
             algorithm_config,
-            args.optimized_params_file,
+            args.no_save,
             args.verbose,
         )
     else:
@@ -302,7 +299,7 @@ Examples:
             args.domain,
             args.segmentation_only,
             algorithm_config,
-            args.optimized_params_file,
+            args.no_save,
             args.verbose,
         )
 

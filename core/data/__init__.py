@@ -15,7 +15,6 @@ from .data_processing import (
     load_papers_from_json,
     load_citation_graph,
     filter_papers_by_year_range,
-    filter_papers_by_minimum_yearly_count,
     compute_academic_years,
 )
 
@@ -31,6 +30,5 @@ __all__ = [
     "load_papers_from_json",
     "load_citation_graph",
     "filter_papers_by_year_range",
-    "filter_papers_by_minimum_yearly_count",
     "compute_academic_years",
 ]
