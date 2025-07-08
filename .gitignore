@@ -69,8 +69,8 @@ archive/
 .cursor*
 *cache*
 dev_journal_phase*.md
-# Results directory - contains generated output files
-results/
+# Results directory - ignore subdirectories but track files in results/
+results/*/
 web-app/
 logs/
 
