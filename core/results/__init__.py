@@ -1,7 +1,5 @@
-# Results Sub-module
-# Handles result display and formatting
+"""Results module for displaying and formatting analysis results."""
 
-# Import results display
 from .display import (
     display_analysis_summary,
     format_timeline_narrative,
@@ -10,9 +8,7 @@ from .display import (
     print_detailed_results,
 )
 
-# Export all
 __all__ = [
-    # Results display
     "display_analysis_summary",
     "format_timeline_narrative",
     "format_segmentation_details",

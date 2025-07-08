@@ -1,25 +1,20 @@
-"""
-Results Display for Timeline Analysis
-
-This module handles displaying and formatting analysis results for user interfaces.
-Separated from integration.py to follow single responsibility principle.
-
-Key Features:
-- Display analysis summaries in readable format
-- Format segmentation and timeline results
-- Support both segmentation-only and full analysis results
-- Provide structured output formatting
-
-Follows functional programming principles with pure functions for result display.
-"""
+"""Result display and formatting for timeline analysis.
+Provides functions for structured output formatting and user interfaces."""
 
 from typing import Dict, Any
 from ..utils.logging import get_logger
 
+__all__ = [
+    "display_analysis_summary",
+    "format_timeline_narrative",
+    "format_segmentation_details",
+    "format_confidence_summary",
+    "print_detailed_results",
+]
+
 
 def display_analysis_summary(results: Dict[str, Any], verbose: bool = False) -> None:
-    """
-    Display analysis summary from results dictionary.
+    """Display analysis summary from results dictionary.
 
     Args:
         results: Dictionary containing analysis results from pipeline orchestrator
@@ -33,17 +28,16 @@ def display_analysis_summary(results: Dict[str, Any], verbose: bool = False) -> 
 
     domain_name = results["domain_name"]
 
-    if "segments" in results:  # Segmentation-only results
+    if "segments" in results:
         _display_segmentation_summary(results, verbose)
-    else:  # Full analysis results
+    else:
         _display_full_analysis_summary(results, verbose)
 
 
 def _display_segmentation_summary(
     results: Dict[str, Any], verbose: bool = False
 ) -> None:
-    """
-    Display summary for segmentation-only analysis.
+    """Display summary for segmentation-only analysis.
 
     Args:
         results: Segmentation results dictionary
@@ -68,8 +62,7 @@ def _display_segmentation_summary(
 def _display_full_analysis_summary(
     results: Dict[str, Any], verbose: bool = False
 ) -> None:
-    """
-    Display summary for full timeline analysis.
+    """Display summary for full timeline analysis.
 
     Args:
         results: Full analysis results dictionary
@@ -97,7 +90,6 @@ def _display_full_analysis_summary(
             f"  {i+1}. {start}-{end}: {topic} (conf: {conf:.3f}, {year_span} years)"
         )
 
-    # Display segment merging information if available
     if hasattr(timeline_result, "merging_result") and timeline_result.merging_result:
         merging_result = timeline_result.merging_result
         original_count = len(timeline_result.period_characterizations)
@@ -113,8 +105,7 @@ def _display_full_analysis_summary(
 
 
 def format_timeline_narrative(timeline_result) -> str:
-    """
-    Format timeline analysis results into a readable narrative.
+    """Format timeline analysis results into a readable narrative.
 
     Args:
         timeline_result: TimelineAnalysisResult object
@@ -128,7 +119,6 @@ def format_timeline_narrative(timeline_result) -> str:
     ):
         return f"Timeline Evolution: {timeline_result.narrative_evolution}"
 
-    # Generate narrative from periods if not available
     periods = timeline_result.merged_period_characterizations
     narrative_parts = []
 
@@ -141,8 +131,7 @@ def format_timeline_narrative(timeline_result) -> str:
 
 
 def format_segmentation_details(segmentation_results: Dict[str, Any]) -> str:
-    """
-    Format segmentation results into detailed description.
+    """Format segmentation results into detailed description.
 
     Args:
         segmentation_results: Segmentation results dictionary
@@ -171,8 +160,7 @@ def format_segmentation_details(segmentation_results: Dict[str, Any]) -> str:
 
 
 def format_confidence_summary(timeline_result) -> str:
-    """
-    Format confidence metrics into summary.
+    """Format confidence metrics into summary.
 
     Args:
         timeline_result: TimelineAnalysisResult object
@@ -193,7 +181,6 @@ def format_confidence_summary(timeline_result) -> str:
     summary = f"Overall Confidence: {unified_confidence:.3f}"
     summary += f" (range: {min_conf:.3f}-{max_conf:.3f})"
 
-    # Add quality assessment
     if unified_confidence >= 0.8:
         quality = "Excellent"
     elif unified_confidence >= 0.6:
@@ -209,8 +196,7 @@ def format_confidence_summary(timeline_result) -> str:
 
 
 def print_detailed_results(results: Dict[str, Any], verbose: bool = False) -> None:
-    """
-    Print comprehensive detailed results.
+    """Print comprehensive detailed results.
 
     Args:
         results: Complete analysis results dictionary
@@ -227,12 +213,10 @@ def print_detailed_results(results: Dict[str, Any], verbose: bool = False) -> No
     logger.info(f"DETAILED TIMELINE ANALYSIS RESULTS: {domain_name}")
     logger.info("=" * 60)
 
-    # Display segmentation details
     if "segmentation_results" in results:
         logger.info("SEGMENTATION DETAILS:")
         logger.info(format_segmentation_details(results["segmentation_results"]))
 
-    # Display timeline results if available
     if "timeline_result" in results:
         timeline_result = results["timeline_result"]
 
@@ -242,7 +226,6 @@ def print_detailed_results(results: Dict[str, Any], verbose: bool = False) -> No
         logger.info("TIMELINE NARRATIVE:")
         logger.info(format_timeline_narrative(timeline_result))
 
-        # Display saved files if available
         if "saved_files" in results and results["saved_files"]:
             logger.info("SAVED FILES:")
             for file_type, file_path in results["saved_files"].items():
@@ -251,13 +234,3 @@ def print_detailed_results(results: Dict[str, Any], verbose: bool = False) -> No
     execution_time = results.get("execution_time", 0)
     logger.info(f"Total execution time: {execution_time:.2f}s")
     logger.info("=" * 60)
-
-
-# Export functions
-__all__ = [
-    "display_analysis_summary",
-    "format_timeline_narrative",
-    "format_segmentation_details",
-    "format_confidence_summary",
-    "print_detailed_results",
-]
