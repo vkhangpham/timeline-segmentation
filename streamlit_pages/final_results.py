@@ -561,9 +561,9 @@ def show_final_results():
             ],
             "algorithm_performance": st.session_state.timing_data,
             "configuration": {
-                "direction_threshold": st.session_state.algorithm_config.direction_threshold,
-                "validation_threshold": st.session_state.algorithm_config.validation_threshold,
-                "citation_boost_rate": st.session_state.algorithm_config.citation_boost_rate,
+                "direction_change_threshold": st.session_state.algorithm_config.direction_change_threshold,
+                "validation_confidence_threshold": st.session_state.algorithm_config.validation_confidence_threshold,
+                "citation_confidence_boost": st.session_state.algorithm_config.citation_confidence_boost,
                 "cohesion_weight": st.session_state.algorithm_config.cohesion_weight,
                 "separation_weight": st.session_state.algorithm_config.separation_weight,
                 "top_k_keywords": st.session_state.algorithm_config.top_k_keywords,

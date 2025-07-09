@@ -35,6 +35,8 @@ def initialize_session_state():
         st.session_state.academic_years = None
     if "boundary_years" not in st.session_state:
         st.session_state.boundary_years = None
+    if "citation_acceleration_years" not in st.session_state:
+        st.session_state.citation_acceleration_years = None
     if "initial_periods" not in st.session_state:
         st.session_state.initial_periods = None
     if "characterized_periods" not in st.session_state:
@@ -72,6 +74,7 @@ def show_global_configuration():
             # Reset downstream data when domain changes
             st.session_state.academic_years = None
             st.session_state.boundary_years = None
+            st.session_state.citation_acceleration_years = None
             st.session_state.initial_periods = None
             st.session_state.characterized_periods = None
             st.session_state.final_periods = None
@@ -94,40 +97,67 @@ def show_global_configuration():
 
     # Detection parameters
     with st.sidebar.expander("🎯 Detection Parameters", expanded=True):
-        direction_threshold = st.slider(
-            "Direction Threshold",
+        direction_change_threshold = st.slider(
+            "Direction Change Threshold",
             min_value=0.01,
             max_value=0.5,
-            value=config.direction_threshold,
+            value=getattr(config, "direction_change_threshold", 0.1),
             step=0.01,
-            help="Sensitivity for paradigm shift detection",
+            help="Base threshold for direction change detection (may be adaptive)",
         )
 
-        validation_threshold = st.slider(
-            "Validation Threshold",
-            min_value=0.1,
-            max_value=0.9,
-            value=config.validation_threshold,
-            step=0.05,
-            help="Signal combination threshold",
+        direction_threshold_strategy = st.selectbox(
+            "Threshold Strategy",
+            options=["fixed", "global_p90", "global_p95", "global_p99"],
+            index=["fixed", "global_p90", "global_p95", "global_p99"].index(
+                getattr(config, "direction_threshold_strategy", "global_p90")
+            ),
+            help="Strategy for computing adaptive thresholds",
         )
 
-        citation_boost_rate = st.slider(
-            "Citation Boost Rate",
+        direction_scoring_method = st.selectbox(
+            "Scoring Method",
+            options=["weighted_jaccard", "jensen_shannon"],
+            index=["weighted_jaccard", "jensen_shannon"].index(
+                getattr(config, "direction_scoring_method", "weighted_jaccard")
+            ),
+            help="Method for computing direction change scores",
+        )
+
+        citation_confidence_boost = st.slider(
+            "Citation Confidence Boost",
             min_value=0.0,
             max_value=1.0,
-            value=config.citation_boost_rate,
+            value=getattr(config, "citation_confidence_boost", 0.5),
             step=0.1,
-            help="Weight for citation signal",
+            help="Boost factor when citation acceleration supports direction change",
+        )
+
+        citation_support_window_years = st.slider(
+            "Citation Support Window (Years)",
+            min_value=1,
+            max_value=5,
+            value=getattr(config, "citation_support_window_years", 2),
+            step=1,
+            help="Window around direction change to look for citation support",
         )
 
         min_papers_per_year_for_direction = st.slider(
             "Min Papers Per Year (Direction)",
-            min_value=1,
+            min_value=10,
             max_value=500,
-            value=config.min_papers_per_year_for_direction,
+            value=getattr(config, "min_papers_per_year_for_direction", 100),
             step=10,
             help="Minimum papers per year to consider for direction change detection",
+        )
+
+        min_baseline_period_years = st.slider(
+            "Min Baseline Period (Years)",
+            min_value=1,
+            max_value=10,
+            value=getattr(config, "min_baseline_period_years", 3),
+            step=1,
+            help="Minimum years for baseline period in cumulative approach",
         )
 
     # Objective function parameters
@@ -136,7 +166,7 @@ def show_global_configuration():
             "Cohesion Weight",
             min_value=0.0,
             max_value=1.0,
-            value=config.cohesion_weight,
+            value=getattr(config, "cohesion_weight", 0.8),
             step=0.1,
             help="Weight for intra-period coherence",
         )
@@ -148,7 +178,7 @@ def show_global_configuration():
             "Top K Keywords",
             min_value=5,
             max_value=50,
-            value=config.top_k_keywords,
+            value=getattr(config, "top_k_keywords", 50),
             step=5,
             help="Number of keywords for evaluation",
         )
@@ -157,29 +187,61 @@ def show_global_configuration():
             "Min Keyword Frequency Ratio",
             min_value=0.0,
             max_value=0.5,
-            value=config.min_keyword_frequency_ratio,
+            value=getattr(config, "min_keyword_frequency_ratio", 0.05),
             step=0.01,
-            help="Minimum ratio of papers a keyword must appear in (0.1 = 10%)",
+            help="Minimum ratio of papers a keyword must appear in (0.05 = 5%)",
         )
 
     # Anti-gaming parameters
     with st.sidebar.expander("🛡️ Anti-Gaming", expanded=False):
-        min_segment_size = st.slider(
+        anti_gaming_min_segment_size = st.slider(
             "Min Segment Size",
             min_value=10,
             max_value=200,
-            value=config.anti_gaming_min_segment_size,
+            value=getattr(config, "anti_gaming_min_segment_size", 50),
             step=10,
             help="Minimum papers per segment",
         )
 
-        size_weight_power = st.slider(
+        anti_gaming_size_weight_power = st.slider(
             "Size Weight Power",
             min_value=0.0,
             max_value=2.0,
-            value=config.anti_gaming_size_weight_power,
+            value=getattr(config, "anti_gaming_size_weight_power", 0.5),
             step=0.1,
             help="Power for size weighting",
+        )
+
+        anti_gaming_enable_size_weighting = st.checkbox(
+            "Enable Size Weighting",
+            value=getattr(config, "anti_gaming_enable_size_weighting", True),
+            help="Whether to apply size weighting to prevent micro-segments",
+        )
+
+    # Diagnostic parameters
+    with st.sidebar.expander("🔧 Diagnostics", expanded=False):
+        save_direction_diagnostics = st.checkbox(
+            "Save Direction Diagnostics",
+            value=getattr(config, "save_direction_diagnostics", False),
+            help="Save detailed diagnostics for direction change detection",
+        )
+
+        diagnostic_top_keywords_limit = st.slider(
+            "Diagnostic Keywords Limit",
+            min_value=5,
+            max_value=20,
+            value=getattr(config, "diagnostic_top_keywords_limit", 10),
+            step=1,
+            help="Number of top keywords to show in diagnostics",
+        )
+
+        score_distribution_window_years = st.slider(
+            "Score Distribution Window",
+            min_value=1,
+            max_value=10,
+            value=getattr(config, "score_distribution_window_years", 3),
+            step=1,
+            help="Interval for sampling scores for threshold calculation",
         )
 
     # Merging parameters
@@ -196,24 +258,31 @@ def show_global_configuration():
     # Update config if any parameter changed
     import dataclasses
 
-    # Create new config dict without merge_similarity_threshold (not part of AlgorithmConfig)
+    # Create new config dict
     config_dict = dataclasses.asdict(config)
     config_dict.update(
         {
-            "direction_threshold": direction_threshold,
-            "validation_threshold": validation_threshold,
-            "citation_boost_rate": citation_boost_rate,
+            "direction_change_threshold": direction_change_threshold,
+            "direction_threshold_strategy": direction_threshold_strategy,
+            "direction_scoring_method": direction_scoring_method,
+            "citation_confidence_boost": citation_confidence_boost,
+            "citation_support_window_years": citation_support_window_years,
             "min_papers_per_year_for_direction": min_papers_per_year_for_direction,
+            "min_baseline_period_years": min_baseline_period_years,
             "cohesion_weight": cohesion_weight,
             "separation_weight": separation_weight,
             "top_k_keywords": top_k_keywords,
             "min_keyword_frequency_ratio": min_keyword_frequency_ratio,
-            "anti_gaming_min_segment_size": min_segment_size,
-            "anti_gaming_size_weight_power": size_weight_power,
+            "anti_gaming_min_segment_size": anti_gaming_min_segment_size,
+            "anti_gaming_size_weight_power": anti_gaming_size_weight_power,
+            "anti_gaming_enable_size_weighting": anti_gaming_enable_size_weighting,
+            "save_direction_diagnostics": save_direction_diagnostics,
+            "diagnostic_top_keywords_limit": diagnostic_top_keywords_limit,
+            "score_distribution_window_years": score_distribution_window_years,
         }
     )
 
-    # Store merge_similarity_threshold separately
+    # Store merge_similarity_threshold separately (not part of AlgorithmConfig)
     st.session_state.merge_similarity_threshold = merge_similarity_threshold
 
     new_config = type(config)(**config_dict)
@@ -222,6 +291,7 @@ def show_global_configuration():
         st.session_state.algorithm_config = new_config
         # Reset results that depend on config
         st.session_state.boundary_years = None
+        st.session_state.citation_acceleration_years = None
         st.session_state.initial_periods = None
         st.session_state.characterized_periods = None
         st.session_state.final_periods = None

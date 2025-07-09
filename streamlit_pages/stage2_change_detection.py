@@ -12,9 +12,11 @@ import time
 from collections import Counter
 from core.segmentation.change_point_detection import (
     detect_boundary_years,
-    detect_direction_change_years,
     detect_citation_acceleration_years,
-    validate_and_combine_signals,
+    detect_direction_change_years_with_citation_boost,
+    compute_direction_score_by_method,
+    normalize_frequencies,
+    build_cumulative_baseline,
 )
 
 
@@ -41,169 +43,251 @@ def run_change_detection():
             st.session_state.timing_data["Change Detection"] = detection_time
             st.session_state.boundary_years = boundary_academic_years
 
+            # Also compute citation acceleration years for visualization
+            citation_years = detect_citation_acceleration_years(
+                academic_years=st.session_state.academic_years,
+                domain_name=st.session_state.selected_domain,
+                algorithm_config=st.session_state.algorithm_config,
+                verbose=False,
+            )
+            st.session_state.citation_acceleration_years = citation_years
+
             st.success(f"✅ Change detection completed in {detection_time:.2f}s")
 
     return True
 
 
-def calculate_direction_signals(academic_years, algorithm_config):
-    """Calculate direction change signals for visualization."""
-    year_keywords_map = {}
-    for academic_year in academic_years:
-        year_keywords_map[academic_year.year] = list(academic_year.top_keywords)
+def calculate_direction_signals_streamlined(academic_years, algorithm_config):
+    """Calculate direction change signals using the current streamlined algorithm."""
+    # Filter years with sufficient papers
+    min_papers_threshold = getattr(algorithm_config, "min_papers_per_year", 100)
+    eligible_years = [
+        ay for ay in academic_years if ay.paper_count >= min_papers_threshold
+    ]
 
-    years = sorted(year_keywords_map.keys())
+    if len(eligible_years) < 3:
+        return []
+
+    # Get scoring method from config
+    scoring_method = getattr(algorithm_config, "direction_scoring_method", "weighted_jaccard")
+    min_baseline_years = getattr(algorithm_config, "min_baseline_period_years", 3)
+    
     direction_data = []
+    last_boundary_idx = 0
 
-    for i in range(len(years) - 1):
-        year1, year2 = years[i], years[i + 1]
-        keywords_prev = year_keywords_map[year1]
-        keywords_curr = year_keywords_map[year2]
+    for current_idx in range(1, len(eligible_years)):
+        current_year = eligible_years[current_idx]
 
-        if not keywords_prev or not keywords_curr:
+        # Ensure minimum baseline period
+        if current_idx - last_boundary_idx < min_baseline_years:
             continue
 
-        set_prev, set_curr = set(keywords_prev), set(keywords_curr)
-
-        new_keywords = set_curr - set_prev
-        shared_keywords = set_curr & set_prev
-
-        novelty = len(new_keywords) / len(set_curr) if len(set_curr) > 0 else 0.0
-        overlap = len(shared_keywords) / len(set_prev) if len(set_prev) > 0 else 0.0
-        s_dir = novelty * (1 - overlap)
-
-        is_boundary = s_dir > algorithm_config.direction_threshold
-
-        direction_data.append(
-            {
-                "year": year2,
-                "novelty": novelty,
-                "overlap": overlap,
-                "s_dir": s_dir,
-                "is_boundary": is_boundary,
-                "threshold": algorithm_config.direction_threshold,
-                "new_keywords_count": len(new_keywords),
-                "shared_keywords_count": len(shared_keywords),
-                "total_keywords_prev": len(set_prev),
-                "total_keywords_curr": len(set_curr),
-            }
+        # Build cumulative baseline from last boundary to current year
+        baseline_frequencies = build_cumulative_baseline(
+            eligible_years, last_boundary_idx, current_idx
         )
+
+        # Get current year frequencies (normalized)
+        current_frequencies = normalize_frequencies(current_year.keyword_frequencies)
+
+        # Compute direction score using current algorithm
+        direction_score = compute_direction_score_by_method(
+            current_frequencies, baseline_frequencies, scoring_method
+        )
+
+        # Calculate some diagnostic metrics for visualization
+        baseline_keywords = set(baseline_frequencies.keys())
+        current_keywords = set(current_frequencies.keys())
+        new_keywords = current_keywords - baseline_keywords
+        shared_keywords = current_keywords & baseline_keywords
+
+        # Calculate traditional metrics for comparison (but don't use for detection)
+        novelty = len(new_keywords) / len(current_keywords) if current_keywords else 0.0
+        overlap = len(shared_keywords) / len(baseline_keywords) if baseline_keywords else 0.0
+
+        baseline_period_start = eligible_years[last_boundary_idx + 1].year if current_idx > last_boundary_idx + 1 else current_year.year - 1
+        baseline_period_end = eligible_years[current_idx - 1].year if current_idx > 0 else current_year.year - 1
+
+        direction_data.append({
+            "year": current_year.year,
+            "direction_score": direction_score,
+            "scoring_method": scoring_method,
+            "novelty": novelty,  # For comparison/visualization only
+            "overlap": overlap,   # For comparison/visualization only
+            "new_keywords_count": len(new_keywords),
+            "shared_keywords_count": len(shared_keywords),
+            "baseline_keywords_count": len(baseline_keywords),
+            "current_keywords_count": len(current_keywords),
+            "baseline_period_start": baseline_period_start,
+            "baseline_period_end": baseline_period_end,
+            "baseline_period_length": current_idx - last_boundary_idx - 1,
+        })
 
     return direction_data
 
 
-def create_direction_change_chart(direction_data):
-    """Create direction change visualization."""
+def create_direction_change_chart_streamlined(direction_data, citation_years, algorithm_config):
+    """Create direction change visualization using streamlined algorithm results."""
     if not direction_data:
         return None
 
     df = pd.DataFrame(direction_data)
+    
+    # Get citation boost parameters
+    boost_factor = getattr(algorithm_config, "citation_confidence_boost", 0.5)
+    support_window = getattr(algorithm_config, "citation_support_window_years", 2)
+    
+    # Calculate final scores with citation boost
+    final_scores = []
+    for _, row in df.iterrows():
+        base_score = row["direction_score"]
+        
+        # Check for citation support
+        has_citation_support = False
+        if citation_years:
+            for cit_year in citation_years:
+                if abs(cit_year - row["year"]) <= support_window:
+                    has_citation_support = True
+                    break
+        
+        # Apply boost if supported
+        if has_citation_support:
+            final_score = min(base_score + boost_factor, 1.0)
+        else:
+            final_score = base_score
+            
+        final_scores.append({
+            "final_score": final_score,
+            "citation_support": has_citation_support
+        })
+    
+    # Add final scores to dataframe
+    final_df = pd.concat([df, pd.DataFrame(final_scores)], axis=1)
+
+    # Create adaptive threshold (simplified for visualization)
+    base_scores = final_df["direction_score"].tolist()
+    threshold_strategy = getattr(algorithm_config, "direction_threshold_strategy", "global_p90")
+    
+    if threshold_strategy == "global_p90":
+        threshold = np.percentile(base_scores, 90) if base_scores else 0.1
+    elif threshold_strategy == "global_p95":
+        threshold = np.percentile(base_scores, 95) if base_scores else 0.1
+    elif threshold_strategy == "global_p99":
+        threshold = np.percentile(base_scores, 99) if base_scores else 0.1
+    else:
+        threshold = getattr(algorithm_config, "direction_change_threshold", 0.1)
 
     fig = make_subplots(
         rows=3,
         cols=1,
         subplot_titles=(
-            "Direction Change Score (S_dir = novelty × (1 - overlap))",
-            "Novelty Score (new keywords / total keywords)",
-            "Overlap Score (shared keywords / previous keywords)",
+            f"Direction Change Score ({df['scoring_method'].iloc[0]} method)",
+            "Final Score (with Citation Boost)",
+            "Baseline Period Length (Years)",
         ),
         vertical_spacing=0.08,
         shared_xaxes=True,
     )
 
-    # Direction change score
+    # Base direction scores
     fig.add_trace(
         go.Scatter(
-            x=df["year"],
-            y=df["s_dir"],
+            x=final_df["year"],
+            y=final_df["direction_score"],
             mode="lines+markers",
-            name="S_dir",
+            name="Base Score",
             line=dict(color="#2E86AB", width=2),
             marker=dict(size=8),
-            hovertemplate="<b>Year:</b> %{x}<br><b>S_dir:</b> %{y:.3f}<extra></extra>",
+            hovertemplate="<b>Year:</b> %{x}<br><b>Base Score:</b> %{y:.3f}<br>" +
+                         f"<b>Method:</b> {df['scoring_method'].iloc[0]}<extra></extra>",
         ),
         row=1,
         col=1,
     )
 
-    # Threshold line
-    fig.add_hline(
-        y=df["threshold"].iloc[0],
-        line_dash="dash",
-        line_color="red",
-        row=1,
-        col=1,
-        annotation_text=f"Threshold: {df['threshold'].iloc[0]}",
-    )
-
-    # Boundary markers
-    boundary_years = df[df["is_boundary"]]["year"].tolist()
-    boundary_scores = df[df["is_boundary"]]["s_dir"].tolist()
-
+    # Final scores with citation boost
+    colors = ["#A23B72" if support else "#2E86AB" for support in final_df["citation_support"]]
     fig.add_trace(
         go.Scatter(
-            x=boundary_years,
-            y=boundary_scores,
-            mode="markers",
-            name="Detected Boundaries",
-            marker=dict(color="red", size=12, symbol="diamond"),
-            hovertemplate="<b>Boundary Year:</b> %{x}<br><b>S_dir:</b> %{y:.3f}<extra></extra>",
-        ),
-        row=1,
-        col=1,
-    )
-
-    # Novelty score
-    fig.add_trace(
-        go.Scatter(
-            x=df["year"],
-            y=df["novelty"],
+            x=final_df["year"],
+            y=final_df["final_score"],
             mode="lines+markers",
-            name="Novelty",
+            name="Final Score",
             line=dict(color="#A23B72", width=2),
-            marker=dict(size=6),
-            hovertemplate="<b>Year:</b> %{x}<br><b>Novelty:</b> %{y:.3f}<extra></extra>",
-            showlegend=False,
+            marker=dict(color=colors, size=8),
+            hovertemplate="<b>Year:</b> %{x}<br><b>Final Score:</b> %{y:.3f}<br>" +
+                         "<b>Citation Support:</b> %{customdata}<extra></extra>",
+            customdata=["Yes" if support else "No" for support in final_df["citation_support"]],
         ),
         row=2,
         col=1,
     )
 
-    # Overlap score
+    # Threshold line on final scores
+    fig.add_hline(
+        y=threshold,
+        line_dash="dash",
+        line_color="red",
+        row=2,
+        col=1,
+        annotation_text=f"Threshold: {threshold:.3f}",
+    )
+
+    # Baseline period length
     fig.add_trace(
         go.Scatter(
-            x=df["year"],
-            y=df["overlap"],
+            x=final_df["year"],
+            y=final_df["baseline_period_length"],
             mode="lines+markers",
-            name="Overlap",
+            name="Baseline Length",
             line=dict(color="#F18F01", width=2),
             marker=dict(size=6),
-            hovertemplate="<b>Year:</b> %{x}<br><b>Overlap:</b> %{y:.3f}<extra></extra>",
+            hovertemplate="<b>Year:</b> %{x}<br><b>Baseline Length:</b> %{y} years<br>" +
+                         "<b>Period:</b> %{customdata}<extra></extra>",
+            customdata=[f"{row['baseline_period_start']}-{row['baseline_period_end']}" 
+                       for _, row in final_df.iterrows()],
             showlegend=False,
         ),
         row=3,
         col=1,
     )
 
+    # Mark detected boundaries
+    boundary_years = [ay.year for ay in st.session_state.boundary_years] if st.session_state.boundary_years else []
+    if boundary_years:
+        boundary_scores = final_df[final_df["year"].isin(boundary_years)]["final_score"].tolist()
+        
+        fig.add_trace(
+            go.Scatter(
+                x=boundary_years,
+                y=boundary_scores,
+                mode="markers",
+                name="Detected Boundaries",
+                marker=dict(color="red", size=12, symbol="diamond"),
+                hovertemplate="<b>Boundary Year:</b> %{x}<br><b>Final Score:</b> %{y:.3f}<extra></extra>",
+            ),
+            row=2,
+            col=1,
+        )
+
     fig.update_layout(
-        height=600, title_text="Direction Change Detection Analysis", showlegend=True
+        height=700, 
+        title_text="Streamlined Direction Change Detection Analysis", 
+        showlegend=True
     )
 
     fig.update_xaxes(title_text="Year", row=3, col=1)
-    fig.update_yaxes(title_text="S_dir Score", row=1, col=1)
-    fig.update_yaxes(title_text="Novelty", row=2, col=1)
-    fig.update_yaxes(title_text="Overlap", row=3, col=1)
+    fig.update_yaxes(title_text="Base Score", row=1, col=1)
+    fig.update_yaxes(title_text="Final Score", row=2, col=1)
+    fig.update_yaxes(title_text="Years", row=3, col=1)
 
     return fig
 
 
-def create_citation_acceleration_chart(academic_years):
+def create_citation_acceleration_chart(academic_years, citation_years=None):
     """Create citation acceleration visualization."""
     years = [ay.year for ay in academic_years]
     citations = [ay.total_citations for ay in academic_years]
-
-    # Calculate moving averages
-    window_sizes = [1, 3, 5]
 
     fig = make_subplots(
         rows=2,
@@ -230,27 +314,25 @@ def create_citation_acceleration_chart(academic_years):
         col=1,
     )
 
-    # Moving averages
-    colors = ["#ff7f0e", "#2ca02c", "#d62728"]
-    for i, window in enumerate(window_sizes):
-        if len(citations) >= window:
-            ma_citations = np.convolve(
-                citations, np.ones(window) / window, mode="valid"
-            )
-            ma_years = years[window - 1 :]
-
-            fig.add_trace(
-                go.Scatter(
-                    x=ma_years,
-                    y=ma_citations,
-                    mode="lines",
-                    name=f"MA-{window}",
-                    line=dict(color=colors[i], width=1, dash="dash"),
-                    hovertemplate=f"<b>Year:</b> %{{x}}<br><b>MA-{window}:</b> %{{y:.0f}}<extra></extra>",
-                ),
-                row=1,
-                col=1,
-            )
+    # Smoothed citations (as used in algorithm)
+    smoothing_window = 5
+    if len(citations) >= smoothing_window:
+        from core.segmentation.change_point_detection import moving_average
+        smoothed = moving_average(np.array(citations), smoothing_window)
+        smoothed = np.pad(smoothed, (1, 1), mode="edge")[:len(citations)]
+        
+        fig.add_trace(
+            go.Scatter(
+                x=years,
+                y=smoothed,
+                mode="lines",
+                name="Smoothed",
+                line=dict(color="#ff7f0e", width=2, dash="dash"),
+                hovertemplate="<b>Year:</b> %{x}<br><b>Smoothed:</b> %{y:.0f}<extra></extra>",
+            ),
+            row=1,
+            col=1,
+        )
 
     # Growth rate
     if len(citations) > 1:
@@ -283,6 +365,29 @@ def create_citation_acceleration_chart(academic_years):
             # Add zero line
             fig.add_hline(y=0, line_dash="dot", line_color="gray", row=2, col=1)
 
+    # Mark citation acceleration years
+    if citation_years:
+        acceleration_growth = []
+        for year in citation_years:
+            if year in growth_years:
+                idx = growth_years.index(year)
+                acceleration_growth.append(growth_rates[idx])
+            else:
+                acceleration_growth.append(0)
+                
+        fig.add_trace(
+            go.Scatter(
+                x=citation_years,
+                y=acceleration_growth,
+                mode="markers",
+                name="Citation Acceleration",
+                marker=dict(color="red", size=12, symbol="star"),
+                hovertemplate="<b>Acceleration Year:</b> %{x}<br><b>Growth:</b> %{y:.1f}%<extra></extra>",
+            ),
+            row=2,
+            col=1,
+        )
+
     fig.update_layout(height=500, title_text="Citation Acceleration Analysis")
 
     fig.update_xaxes(title_text="Year")
@@ -308,92 +413,75 @@ def show_detailed_year_analysis(direction_data, academic_years):
     # Find year data
     year_data = df[df["year"] == selected_year].iloc[0]
 
-    # Find corresponding academic years
+    # Find corresponding academic year
     current_ay = next((ay for ay in academic_years if ay.year == selected_year), None)
-    prev_ay = next((ay for ay in academic_years if ay.year == selected_year - 1), None)
 
-    if current_ay and prev_ay:
+    if current_ay:
         col1, col2 = st.columns(2)
 
         with col1:
             st.write(f"**Year {selected_year} Analysis:**")
-            st.write(f"- S_dir Score: {year_data['s_dir']:.3f}")
-            st.write(f"- Novelty: {year_data['novelty']:.3f}")
-            st.write(f"- Overlap: {year_data['overlap']:.3f}")
-            st.write(
-                f"- Is Boundary: {'✅ Yes' if year_data['is_boundary'] else '❌ No'}"
-            )
-            st.write(f"- Threshold: {year_data['threshold']:.3f}")
-
+            st.write(f"- Direction Score: {year_data['direction_score']:.3f}")
+            st.write(f"- Scoring Method: {year_data['scoring_method']}")
+            st.write(f"- Baseline Period: {year_data['baseline_period_start']}-{year_data['baseline_period_end']}")
+            st.write(f"- Baseline Length: {year_data['baseline_period_length']} years")
+            
             st.write(f"**Keyword Counts:**")
+            st.write(f"- Current Keywords: {year_data['current_keywords_count']}")
+            st.write(f"- Baseline Keywords: {year_data['baseline_keywords_count']}")
             st.write(f"- New Keywords: {year_data['new_keywords_count']}")
             st.write(f"- Shared Keywords: {year_data['shared_keywords_count']}")
-            st.write(f"- Previous Total: {year_data['total_keywords_prev']}")
-            st.write(f"- Current Total: {year_data['total_keywords_curr']}")
+
+            st.write(f"**Traditional Metrics (for comparison):**")
+            st.write(f"- Novelty: {year_data['novelty']:.3f}")
+            st.write(f"- Overlap: {year_data['overlap']:.3f}")
 
         with col2:
-            # Keyword comparison
-            prev_keywords = set(prev_ay.top_keywords[:20])
-            curr_keywords = set(current_ay.top_keywords[:20])
-
-            new_keywords = curr_keywords - prev_keywords
-            lost_keywords = prev_keywords - curr_keywords
-            shared_keywords = curr_keywords & prev_keywords
-
-            st.write(f"**Keyword Changes ({selected_year-1} → {selected_year}):**")
-
-            if new_keywords:
-                st.write("**New Keywords:**")
-                for kw in sorted(list(new_keywords)[:10]):
-                    st.write(f"+ {kw}")
-
-            if lost_keywords:
-                st.write("**Lost Keywords:**")
-                for kw in sorted(list(lost_keywords)[:10]):
-                    st.write(f"- {kw}")
-
-            if shared_keywords:
-                st.write("**Shared Keywords:**")
-                for kw in sorted(list(shared_keywords)[:5]):
-                    st.write(f"= {kw}")
+            # Show top keywords for current year
+            st.write(f"**Top Keywords for {selected_year}:**")
+            top_keywords = current_ay.top_keywords[:15]
+            for i, kw in enumerate(top_keywords, 1):
+                st.write(f"{i}. {kw}")
 
 
 def show_algorithm_explanation():
-    """Show algorithm explanation with examples."""
+    """Show algorithm explanation with current implementation details."""
     with st.expander("📖 Algorithm Details", expanded=False):
         st.write(
             """
-        **Direction Change Detection Algorithm:**
+        **Current Streamlined Detection Algorithm:**
         
-        1. **Dual-Metric Formula:** S_dir = novelty × (1 - overlap)
-           - novelty = |new_keywords| / |current_keywords|
-           - overlap = |shared_keywords| / |previous_keywords|
+        **1. Citation Acceleration Detection:**
+        - MAD-based year-over-year growth analysis
+        - Smoothing window: 5 years to reduce noise  
+        - Excludes recent 2 years (incomplete citations)
+        - Threshold: median + 3.0 × MAD
+        - Cooldown: 2 years to prevent clustering
         
-        2. **Citation Acceleration Detection:**
-           - Multi-scale gradient analysis on citation counts
-           - Scales: [1, 3, 5] year windows
-           - Adaptive thresholding based on data distribution
+        **2. Direction Change Detection:**
+        - **Cumulative Baseline Approach**: Compares current year against accumulated baseline from last boundary
+        - **Frequency-Weighted Scoring**: Uses actual keyword frequency distributions
+        - **Scoring Methods**: 
+          - `weighted_jaccard`: 1 - (intersection/union) of frequencies
+          - `jensen_shannon`: Information divergence between distributions
+        - **Adaptive Thresholding**: Based on score distribution (e.g., 90th percentile)
         
-        3. **Signal Validation:**
-           - Combines direction and citation signals
-           - Requires validation_threshold for final boundary
-           - Clusters nearby boundary years (min 3-year segments)
+        **3. Immediate Citation Boost Integration:**
+        - Direction scores boosted when citation acceleration occurs nearby
+        - Final Score = Base Score + Citation Boost (if within support window)
+        - Single threshold applied to final boosted scores
+        - Support window: ±2 years, Boost factor: configurable
         """
         )
 
         st.write(
             """
-        **Example Calculation:**
-        - Previous year keywords: {A, B, C, D, E} (5 keywords)
-        - Current year keywords: {C, D, E, F, G, H} (6 keywords)
-        - New keywords: {F, G, H} (3 keywords)
-        - Shared keywords: {C, D, E} (3 keywords)
-        
-        - novelty = 3/6 = 0.5
-        - overlap = 3/5 = 0.6
-        - S_dir = 0.5 × (1 - 0.6) = 0.5 × 0.4 = 0.2
-        
-        If direction_threshold = 0.1, then 0.2 > 0.1 → Boundary detected!
+        **Key Improvements over Traditional Methods:**
+        - **No separate validation step**: Citation boost integrated immediately
+        - **Cumulative baseline**: More stable than year-to-year comparisons
+        - **Frequency weighting**: Accounts for publication volume differences
+        - **Adaptive thresholds**: Adjusts to domain-specific score distributions
+        - **Anti-clustering**: Prevents detection of spurious micro-segments
         """
         )
 
@@ -402,7 +490,7 @@ def show_change_detection():
     """Main change detection page function."""
     st.header("🔍 Stage 2: Change Point Detection")
     st.write(
-        "Analyze paradigm shift detection using direction change and citation acceleration."
+        "Analyze paradigm shift detection using streamlined direction change and citation acceleration."
     )
 
     # Check data availability
@@ -419,6 +507,7 @@ def show_change_detection():
     with col2:
         if st.button("🔄 Run Detection", type="primary"):
             st.session_state.boundary_years = None  # Force re-run
+            st.session_state.citation_acceleration_years = None
             run_change_detection()
 
     # Run detection if needed
@@ -426,32 +515,38 @@ def show_change_detection():
         return
 
     boundary_years = st.session_state.boundary_years
+    citation_years = getattr(st.session_state, "citation_acceleration_years", [])
 
     # Results summary
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Boundary Years Detected", len(boundary_years))
     with col2:
-        st.metric("Years Analyzed", len(academic_years))
+        st.metric("Citation Acceleration Years", len(citation_years))
     with col3:
         detection_rate = (
             len(boundary_years) / len(academic_years) * 100 if academic_years else 0
         )
         st.metric("Detection Rate", f"{detection_rate:.1f}%")
 
-    # Boundary years list
+    # Results lists
     if boundary_years:
         boundary_year_list = [ay.year for ay in boundary_years]
         st.write(f"**Detected Boundary Years:** {boundary_year_list}")
+    
+    if citation_years:
+        st.write(f"**Citation Acceleration Years:** {citation_years}")
 
     # Direction change analysis
-    st.subheader("📊 Direction Change Analysis")
-    direction_data = calculate_direction_signals(
+    st.subheader("📊 Streamlined Direction Change Analysis")
+    direction_data = calculate_direction_signals_streamlined(
         academic_years, st.session_state.algorithm_config
     )
 
     if direction_data:
-        direction_fig = create_direction_change_chart(direction_data)
+        direction_fig = create_direction_change_chart_streamlined(
+            direction_data, citation_years, st.session_state.algorithm_config
+        )
         if direction_fig:
             st.plotly_chart(direction_fig, use_container_width=True)
 
@@ -459,17 +554,18 @@ def show_change_detection():
         df = pd.DataFrame(direction_data)
         col1, col2, col3, col4 = st.columns(4)
         with col1:
-            st.metric("Avg S_dir", f"{df['s_dir'].mean():.3f}")
+            st.metric("Avg Base Score", f"{df['direction_score'].mean():.3f}")
         with col2:
-            st.metric("Max S_dir", f"{df['s_dir'].max():.3f}")
+            st.metric("Max Base Score", f"{df['direction_score'].max():.3f}")
         with col3:
-            st.metric("Above Threshold", len(df[df["is_boundary"]]))
+            st.metric("Scoring Method", df['scoring_method'].iloc[0])
         with col4:
-            st.metric("Threshold", f"{df['threshold'].iloc[0]:.3f}")
+            years_analyzed = len(df)
+            st.metric("Years Analyzed", years_analyzed)
 
     # Citation acceleration analysis
     st.subheader("📈 Citation Acceleration Analysis")
-    citation_fig = create_citation_acceleration_chart(academic_years)
+    citation_fig = create_citation_acceleration_chart(academic_years, citation_years)
     st.plotly_chart(citation_fig, use_container_width=True)
 
     # Detailed analysis tabs
@@ -480,20 +576,15 @@ def show_change_detection():
             # Direction change summary table
             df = pd.DataFrame(direction_data)
 
-            # Filter for high scores
-            high_scores = df[df["s_dir"] > df["threshold"].iloc[0] * 0.7].copy()
-            high_scores = high_scores.sort_values("s_dir", ascending=False)
+            # Show all years with their scores
+            st.write("**Direction Change Analysis Results:**")
+            display_df = df[
+                ["year", "direction_score", "baseline_period_start", "baseline_period_end", "baseline_period_length"]
+            ].copy()
+            display_df["direction_score"] = display_df["direction_score"].round(3)
+            display_df.columns = ["Year", "Score", "Baseline Start", "Baseline End", "Baseline Length"]
 
-            if not high_scores.empty:
-                st.write("**Years with High Direction Change Scores:**")
-                display_df = high_scores[
-                    ["year", "s_dir", "novelty", "overlap", "is_boundary"]
-                ].copy()
-                display_df["s_dir"] = display_df["s_dir"].round(3)
-                display_df["novelty"] = display_df["novelty"].round(3)
-                display_df["overlap"] = display_df["overlap"].round(3)
-
-                st.dataframe(display_df, use_container_width=True, hide_index=True)
+            st.dataframe(display_df, use_container_width=True, hide_index=True)
 
     with tab2:
         show_detailed_year_analysis(direction_data, academic_years)
