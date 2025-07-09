@@ -13,8 +13,8 @@ This system analyzes scientific publication data to automatically identify perio
 1. **Data Loading** - Processes publication JSON and citation GraphML files into structured `AcademicYear` objects
 2. **Change Point Detection** - Identifies boundary years using dual-metric shift signals (direction + citation acceleration)
 3. **Segmentation** - Converts boundary years into contiguous `AcademicPeriod` objects
-4. **Period Characterization** - Analyzes each period using network analysis and LLM-based topic modeling
-5. **Period Merging** - Intelligently merges similar adjacent periods based on keyword overlap
+4. **Beam Search Refinement** - Optimizes segment boundaries through merge/split operations
+5. **Period Characterization** - Analyzes each period using network analysis and LLM-based topic modeling
 
 ### Key Components
 
@@ -22,6 +22,7 @@ This system analyzes scientific publication data to automatically identify perio
 - **Change Point Detection** (`core/segmentation/change_point_detection.py`) - Dual-metric paradigm shift detection
 - **Network Analysis** (`core/segment_modeling/segment_modeling.py`) - Citation network analysis and stability metrics
 - **Objective Function** (`core/optimization/objective_function.py`) - Cohesion/separation evaluation with anti-gaming measures
+- **Evaluation System** (`core/evaluation/evaluation.py`) - Comprehensive evaluation with baselines and auto-metrics
 
 ## Installation
 
@@ -53,6 +54,19 @@ python run_timeline_analysis.py --domain all --verbose
 python run_timeline_analysis.py --domain computer_vision --segmentation-only
 ```
 
+### Evaluation
+
+```bash
+# Run comprehensive evaluation for a domain
+python run_evaluation.py --domain deep_learning --verbose
+
+# Run evaluation for all domains
+python run_evaluation.py --domain all --verbose
+
+# Get detailed evaluation metrics
+python run_evaluation.py --domain machine_learning --verbose
+```
+
 ### Advanced Options
 
 ```bash
@@ -62,9 +76,10 @@ python run_timeline_analysis.py --domain machine_learning \
     --validation-threshold 0.4 \
     --citation-boost-rate 0.6
 
-# Different granularity levels
-python run_timeline_analysis.py --domain applied_mathematics --granularity 1  # Fine-grained
-python run_timeline_analysis.py --domain art --granularity 5                  # Coarse-grained
+# Custom evaluation parameters
+python run_evaluation.py --domain computer_vision \
+    --direction-threshold 0.12 \
+    --citation-boost-rate 0.15
 ```
 
 ### Custom Analysis
@@ -91,6 +106,7 @@ An interactive web application provides detailed visualizations for every stage 
 - **Performance Monitoring**: Track execution timing and identify bottlenecks
 - **Manual Execution Controls**: Handle computationally expensive operations on-demand
 - **Data Export**: Export results and configurations for reproducibility
+- **Comprehensive Evaluation**: Compare algorithm performance against baselines with auto-metrics
 
 ### Running the Interface
 
@@ -107,8 +123,9 @@ The application opens at `http://localhost:8501` with a sequential workflow:
 2. **Change Detection** - Visualize paradigm shift detection
 3. **Segmentation** - Convert boundary years into periods
 4. **Characterization** - Network analysis and topic labeling (manual execution)
-5. **Period Merging** - Intelligent consolidation based on similarity
-6. **Final Results** - Complete timeline with comprehensive analysis
+5. **Beam Refinement** - Optimize boundaries through merge/split operations
+6. **Evaluation** - Comprehensive performance assessment with baselines and auto-metrics
+7. **Final Results** - Complete timeline with comprehensive analysis
 
 ## Algorithm Details
 
@@ -117,15 +134,23 @@ The application opens at `http://localhost:8501` with a sequential workflow:
 The system uses a dual-metric approach to detect paradigm shifts:
 
 **Direction Change Detection:**
-- Computes novelty-overlap metric: `S_dir = novelty × (1 - overlap)`
-- `novelty = |new_keywords| / |current_keywords|`
-- `overlap = |shared_keywords| / |previous_keywords|`
-- Threshold: `direction_threshold = 0.1`
+- Computes frequency-weighted scoring using cumulative baseline comparison
+- Scoring methods: Weighted Jaccard similarity or Jensen-Shannon divergence
+- Adaptive thresholding: global p90, p95, p99 of score distribution
+- Threshold: `direction_change_threshold = 0.1` (default, or adaptive)
 
 **Citation Acceleration Detection:**
-- Multi-scale gradient analysis on citation counts
-- Adaptive thresholding based on data distribution
-- Scales: [1, 3, 5] year windows
+- MAD-based year-over-year growth analysis on citation counts
+- Robust threshold: `median + 3 * MAD`
+- Cooldown period to prevent clustered detections
+
+### Beam Search Refinement
+
+Optimizes segment boundaries through:
+- **Merge Operations**: Combines adjacent similar periods
+- **Split Operations**: Divides periods at optimal split points
+- **Objective Function Scoring**: Evaluates each candidate configuration
+- **Beam Width**: Maintains top-k candidates (default: 5)
 
 ### Network Analysis
 
@@ -142,6 +167,24 @@ Quality evaluation using:
 - **Separation** (20%): Jensen-Shannon divergence between adjacent periods
 - **Anti-gaming**: Size-weighted averaging and segment count penalties
 
+### Evaluation System
+
+Comprehensive evaluation includes:
+
+**Objective Function Scoring:**
+- Algorithm performance using cohesion/separation metrics
+- Detailed breakdown of period-level and transition-level scores
+
+**Baseline Comparisons:**
+- Gemini-generated baselines from manual reference timelines
+- Manual expert-created reference timelines
+- Fixed-interval baselines (uniform segmentation)
+
+**Auto-Metrics:**
+- **Boundary F1**: Precision/recall for boundary detection (±2 year tolerance)
+- **Segment F1**: Precision/recall for segment overlap matching
+- Comparison against manual reference timelines
+
 ## Configuration
 
 Edit `config.json` to customize algorithm behavior:
@@ -149,21 +192,29 @@ Edit `config.json` to customize algorithm behavior:
 ```json
 {
   "detection_parameters": {
-    "direction_threshold": 0.1,      // Paradigm shift sensitivity
-    "validation_threshold": 0.3,     // Signal combination threshold
-    "citation_boost_rate": 0.5,      // Citation signal weight
-    "min_papers_per_year_for_direction": 100  // Min papers per year for direction detection
+    "direction_change_threshold": 0.1,
+    "direction_threshold_strategy": "global_p90",
+    "direction_scoring_method": "weighted_jaccard",
+    "citation_confidence_boost": 0.1,
+    "citation_support_window_years": 2,
+    "min_papers_per_year": 100
   },
   "objective_function": {
-    "cohesion_weight": 0.8,         // Intra-period coherence weight
-    "separation_weight": 0.2,       // Inter-period distinctiveness weight
-    "top_k_keywords": 50,           // Keywords for evaluation
-    "min_keyword_frequency_ratio": 0.05  // Min frequency ratio for keyword filtering (5%)
+    "cohesion_weight": 0.8,
+    "separation_weight": 0.2,
+    "top_k_keywords": 100,
+    "min_keyword_frequency_ratio": 0.1
   },
-  "anti_gaming": {
-    "min_segment_size": 50,         // Minimum papers per segment
-    "size_weight_power": 0.5,       // Size weighting power
-    "enable_size_weighting": true   // Prevent micro-segment gaming
+  "beam_search": {
+    "enabled": true,
+    "beam_width": 5,
+    "max_splits_per_segment": 1,
+    "min_period_years": 3,
+    "max_period_years": 50
+  },
+  "diagnostics": {
+    "save_direction_diagnostics": true,
+    "diagnostic_top_keywords_limit": 10
   }
 }
 ```
@@ -172,26 +223,34 @@ Edit `config.json` to customize algorithm behavior:
 
 ### Input Files
 
-Place domain data in `data/references/`:
+Place domain data in `resources/{domain}/`:
 - `{domain}_docs_info.json` - Publication metadata with papers
 - `{domain}_entity_relation_graph.graphml.xml` - Citation network
+
+### Manual Reference Files
+
+Place reference timelines in `data/references/`:
+- `{domain}_manual.json` - Expert-created reference timeline
+- `{domain}_gemini.json` - LLM-generated reference timeline
 
 ### Paper Format
 ```json
 {
-  "id": "unique_paper_id",
-  "title": "Paper Title",
-  "content": "Abstract or full text",
-  "pub_year": 2020,
-  "cited_by_count": 42,
-  "keywords": ["keyword1", "keyword2"],
-  "children": ["citing_paper_id1", "citing_paper_id2"],
-  "description": "Paper description"
+  "paper_id": {
+    "title": "Paper Title",
+    "content": "Abstract or full text",
+    "pub_year": 2020,
+    "cited_by_count": 42,
+    "keywords": ["keyword1", "keyword2"],
+    "children": ["citing_paper_id1", "citing_paper_id2"],
+    "description": "Paper description"
+  }
 }
 ```
 
 ## Output
 
+### Timeline Analysis Results
 Results are saved to `results/timelines/{domain}_timeline_analysis.json`:
 
 ```json
@@ -207,10 +266,42 @@ Results are saved to `results/timelines/{domain}_timeline_analysis.json`:
       "topic_label": "Neural Network Foundations",
       "topic_description": "Early perceptron and backpropagation research...",
       "confidence": 0.82,
-      "network_stability": 0.67
+      "network_stability": 0.67,
+      "network_metrics": {...}
     }
   ],
   "narrative_evolution": "Deep learning timeline evolution: Period 1..."
+}
+```
+
+### Evaluation Results
+Results are saved to `results/evaluation/{domain}_evaluation.json`:
+
+```json
+{
+  "algorithm_result": {
+    "objective_score": 0.756,
+    "cohesion_score": 0.823,
+    "separation_score": 0.492,
+    "num_segments": 4,
+    "boundary_years": [1986, 2006, 2012]
+  },
+  "baseline_results": [
+    {
+      "baseline_name": "manual",
+      "objective_score": 0.721,
+      "num_segments": 3,
+      "boundary_years": [1990, 2010]
+    }
+  ],
+  "auto_metrics": {
+    "boundary_f1": 0.667,
+    "boundary_precision": 0.750,
+    "boundary_recall": 0.600,
+    "segment_f1": 0.545,
+    "segment_precision": 0.667,
+    "segment_recall": 0.462
+  }
 }
 ```
 
@@ -241,17 +332,36 @@ Expected output identifies major periods:
 - 2006-2011: Deep Learning Renaissance
 - 2012-2020: Transformer and Attention Era
 
-### Custom Analysis
+### Evaluating Timeline Quality
+```bash
+python run_evaluation.py --domain deep_learning --verbose
+```
+
+Expected evaluation output:
+- Algorithm objective score: 0.756
+- Baseline comparison: outperforms manual reference (0.721)
+- Boundary F1: 0.667 (±2 year tolerance)
+- Segment F1: 0.545 (overlap-based matching)
+
+### Custom Analysis with Evaluation
 ```python
 from core.pipeline.orchestrator import analyze_timeline
+from core.evaluation.evaluation import run_comprehensive_evaluation
 from core.utils.config import AlgorithmConfig
 
 config = AlgorithmConfig.from_config_file(domain_name="computer_vision")
 result = analyze_timeline("computer_vision", config, verbose=True)
 
-print(f"Detected {len(result.periods)} periods")
-for period in result.periods:
-    print(f"{period.start_year}-{period.end_year}: {period.topic_label}")
+# Run comprehensive evaluation
+evaluation = run_comprehensive_evaluation(
+    domain_name="computer_vision",
+    timeline_result=result,
+    algorithm_config=config,
+    verbose=True
+)
+
+print(f"Algorithm score: {evaluation['algorithm_result']['objective_score']:.3f}")
+print(f"Boundary F1: {evaluation['auto_metrics']['boundary_f1']:.3f}")
 ```
 
 ## Contributing
