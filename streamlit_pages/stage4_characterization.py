@@ -4,23 +4,20 @@ Visualizes network analysis and LLM-based period labeling.
 
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import networkx as nx
 import time
-from core.segment_modeling.segment_modeling import characterize_academic_periods
 from core.data.data_models import AcademicPeriod
 
 
 def run_characterization():
     """Run period characterization with detailed progress tracking."""
-    if st.session_state.initial_periods is None:
-        st.error("Please run segmentation first in Stage 3")
+    if st.session_state.refined_periods is None:
+        st.error("Please run segmentation & refinement first in Stage 3")
         return False
 
     if st.session_state.characterized_periods is None:
-        periods = st.session_state.initial_periods
+        periods = st.session_state.refined_periods
         total_periods = len(periods)
 
         # Create progress tracking containers
@@ -676,8 +673,8 @@ def show_characterization():
     st.write("Analyze periods using network analysis and generate topic labels.")
 
     # Check prerequisites
-    if st.session_state.initial_periods is None:
-        st.error("Please run segmentation first in Stage 3")
+    if st.session_state.refined_periods is None:
+        st.error("Please run segmentation & refinement first in Stage 3")
         return
 
     # Control panel with manual execution
@@ -721,7 +718,7 @@ def show_characterization():
             )
 
             # Show what will be analyzed
-            periods = st.session_state.initial_periods
+            periods = st.session_state.refined_periods
             st.write(f"**Will characterize {len(periods)} periods:**")
 
             preview_data = []

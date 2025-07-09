@@ -8,7 +8,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import time
-from collections import Counter
 from core.data.data_processing import load_domain_data
 
 

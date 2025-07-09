@@ -1,15 +1,15 @@
-"""Stage 3: Segmentation
-Visualizes conversion of boundary years into academic periods.
+"""Stage 3: Segmentation & Refinement
+Visualizes conversion of boundary years into academic periods and beam search refinement.
 """
 
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import time
 from collections import Counter
 from core.segmentation.segmentation import create_segments_from_boundary_years
+from core.segmentation.beam_refinement import beam_search_refinement
 
 
 def run_segmentation():
@@ -33,7 +33,33 @@ def run_segmentation():
             st.session_state.timing_data["Segmentation"] = segmentation_time
             st.session_state.initial_periods = initial_periods
 
-            st.success(f"✅ Segmentation completed in {segmentation_time:.2f}s")
+            st.success(f"✅ Initial segmentation completed in {segmentation_time:.2f}s")
+
+    return True
+
+
+def run_beam_refinement():
+    """Run beam search refinement and store results."""
+    if st.session_state.initial_periods is None:
+        st.error("Please run segmentation first")
+        return False
+
+    if st.session_state.refined_periods is None:
+        with st.spinner("Running beam search refinement..."):
+            start_time = time.time()
+
+            refined_periods = beam_search_refinement(
+                initial_periods=st.session_state.initial_periods,
+                academic_years=tuple(st.session_state.academic_years),
+                algorithm_config=st.session_state.algorithm_config,
+                verbose=False,
+            )
+
+            refinement_time = time.time() - start_time
+            st.session_state.timing_data["Beam Refinement"] = refinement_time
+            st.session_state.refined_periods = refined_periods
+
+            st.success(f"✅ Beam search refinement completed in {refinement_time:.2f}s")
 
     return True
 
@@ -477,10 +503,351 @@ def show_segmentation_quality_metrics(periods):
     st.plotly_chart(fig, use_container_width=True)
 
 
+def create_refinement_comparison_chart(initial_periods, refined_periods):
+    """Create before/after comparison of beam search refinement."""
+    if not initial_periods or not refined_periods:
+        return None
+
+    fig = make_subplots(
+        rows=2,
+        cols=2,
+        subplot_titles=(
+            "Initial: Period Timeline",
+            "Refined: Period Timeline",
+            "Initial: Period Metrics",
+            "Refined: Period Metrics",
+        ),
+        specs=[
+            [{"secondary_y": False}, {"secondary_y": False}],
+            [{"secondary_y": False}, {"secondary_y": False}],
+        ],
+        vertical_spacing=0.15,
+    )
+
+    colors = [
+        "#1f77b4",
+        "#ff7f0e",
+        "#2ca02c",
+        "#d62728",
+        "#9467bd",
+        "#8c564b",
+        "#e377c2",
+        "#7f7f7f",
+        "#bcbd22",
+        "#17becf",
+    ]
+
+    # Initial periods timeline
+    for i, period in enumerate(initial_periods):
+        color = colors[i % len(colors)]
+        fig.add_trace(
+            go.Scatter(
+                x=[period.start_year, period.end_year],
+                y=[i, i],
+                mode="lines+markers",
+                name=f"Initial P{i+1}",
+                line=dict(color=color, width=6),
+                marker=dict(size=10),
+                hovertemplate=f"<b>Initial Period {i+1}</b><br>"
+                + f"Years: {period.start_year}-{period.end_year}<br>"
+                + f"Papers: {period.total_papers}<extra></extra>",
+                showlegend=False,
+            ),
+            row=1,
+            col=1,
+        )
+
+    # Refined periods timeline
+    for i, period in enumerate(refined_periods):
+        color = colors[i % len(colors)]
+        fig.add_trace(
+            go.Scatter(
+                x=[period.start_year, period.end_year],
+                y=[i, i],
+                mode="lines+markers",
+                name=f"Refined P{i+1}",
+                line=dict(color=color, width=6),
+                marker=dict(size=10),
+                hovertemplate=f"<b>Refined Period {i+1}</b><br>"
+                + f"Years: {period.start_year}-{period.end_year}<br>"
+                + f"Papers: {period.total_papers}<extra></extra>",
+                showlegend=False,
+            ),
+            row=1,
+            col=2,
+        )
+
+    # Initial periods metrics
+    initial_papers = [p.total_papers for p in initial_periods]
+    initial_durations = [p.end_year - p.start_year + 1 for p in initial_periods]
+
+    fig.add_trace(
+        go.Bar(
+            x=[f"P{i+1}" for i in range(len(initial_periods))],
+            y=initial_papers,
+            name="Initial Papers",
+            marker_color="lightblue",
+            hovertemplate="<b>%{x}</b><br>Papers: %{y}<extra></extra>",
+            showlegend=False,
+        ),
+        row=2,
+        col=1,
+    )
+
+    # Refined periods metrics
+    refined_papers = [p.total_papers for p in refined_periods]
+    refined_durations = [p.end_year - p.start_year + 1 for p in refined_periods]
+
+    fig.add_trace(
+        go.Bar(
+            x=[f"P{i+1}" for i in range(len(refined_periods))],
+            y=refined_papers,
+            name="Refined Papers",
+            marker_color="lightcoral",
+            hovertemplate="<b>%{x}</b><br>Papers: %{y}<extra></extra>",
+            showlegend=False,
+        ),
+        row=2,
+        col=2,
+    )
+
+    fig.update_layout(
+        height=600,
+        title_text="Beam Search Refinement: Before vs After Comparison",
+        showlegend=False,
+    )
+
+    fig.update_xaxes(title_text="Year", row=1, col=1)
+    fig.update_xaxes(title_text="Year", row=1, col=2)
+    fig.update_xaxes(title_text="Period", row=2, col=1)
+    fig.update_xaxes(title_text="Period", row=2, col=2)
+
+    fig.update_yaxes(title_text="Period Index", row=1, col=1, showticklabels=False)
+    fig.update_yaxes(title_text="Period Index", row=1, col=2, showticklabels=False)
+    fig.update_yaxes(title_text="Papers", row=2, col=1)
+    fig.update_yaxes(title_text="Papers", row=2, col=2)
+
+    return fig
+
+
+def show_refinement_analysis(initial_periods, refined_periods):
+    """Show detailed analysis of beam search refinement."""
+    st.subheader("🔍 Beam Search Refinement Analysis")
+
+    # Configuration summary
+    config = st.session_state.algorithm_config
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.write("**Beam Search Configuration:**")
+        st.write(f"- Enabled: {config.beam_search_enabled}")
+        st.write(f"- Beam Width: {config.beam_width}")
+        st.write(f"- Max Splits per Segment: {config.max_splits_per_segment}")
+        st.write(f"- Min Period Years: {config.min_period_years}")
+        st.write(f"- Max Period Years: {config.max_period_years}")
+
+    with col2:
+        st.write("**Refinement Results:**")
+        period_change = len(refined_periods) - len(initial_periods)
+        st.write(f"- Initial Periods: {len(initial_periods)}")
+        st.write(f"- Refined Periods: {len(refined_periods)}")
+        st.write(f"- Period Change: {period_change:+d}")
+
+        if "Beam Refinement" in st.session_state.timing_data:
+            st.write(
+                f"- Processing Time: {st.session_state.timing_data['Beam Refinement']:.2f}s"
+            )
+
+    # Show specific changes
+    if period_change != 0:
+        st.write("**Changes Made:**")
+        if period_change > 0:
+            st.write(
+                f"✂️ **Splits:** {period_change} period(s) were split to improve segmentation quality"
+            )
+        else:
+            st.write(
+                f"🔗 **Merges:** {abs(period_change)} period(s) were merged to improve segmentation quality"
+            )
+
+        # Try to identify specific changes
+        if period_change > 0:
+            st.write("**Split Analysis:**")
+            # Look for periods that might have been split
+            for i, initial_period in enumerate(initial_periods):
+                # Find refined periods that fall within this initial period
+                overlapping_refined = []
+                for j, refined_period in enumerate(refined_periods):
+                    if (
+                        refined_period.start_year >= initial_period.start_year
+                        and refined_period.end_year <= initial_period.end_year
+                    ):
+                        overlapping_refined.append(j + 1)
+
+                if len(overlapping_refined) > 1:
+                    st.write(
+                        f"- Initial Period {i+1} ({initial_period.start_year}-{initial_period.end_year}) → Refined Periods {overlapping_refined}"
+                    )
+    else:
+        st.write(
+            "**No Changes:** Beam search determined the initial segmentation was optimal"
+        )
+
+
+def create_refinement_metrics_chart(initial_periods, refined_periods):
+    """Create metrics comparison chart for refinement."""
+    if not initial_periods or not refined_periods:
+        return None
+
+    # Calculate metrics
+    initial_durations = [p.end_year - p.start_year + 1 for p in initial_periods]
+    refined_durations = [p.end_year - p.start_year + 1 for p in refined_periods]
+
+    initial_papers = [p.total_papers for p in initial_periods]
+    refined_papers = [p.total_papers for p in refined_periods]
+
+    fig = make_subplots(
+        rows=2,
+        cols=2,
+        subplot_titles=(
+            "Period Duration Distribution",
+            "Paper Count Distribution",
+            "Duration Statistics",
+            "Paper Statistics",
+        ),
+    )
+
+    # Duration distributions
+    fig.add_trace(
+        go.Histogram(
+            x=initial_durations,
+            name="Initial",
+            marker_color="lightblue",
+            opacity=0.7,
+            nbinsx=min(10, len(initial_durations)),
+        ),
+        row=1,
+        col=1,
+    )
+
+    fig.add_trace(
+        go.Histogram(
+            x=refined_durations,
+            name="Refined",
+            marker_color="lightcoral",
+            opacity=0.7,
+            nbinsx=min(10, len(refined_durations)),
+        ),
+        row=1,
+        col=1,
+    )
+
+    # Paper distributions
+    fig.add_trace(
+        go.Histogram(
+            x=initial_papers,
+            name="Initial",
+            marker_color="lightblue",
+            opacity=0.7,
+            nbinsx=min(10, len(initial_papers)),
+            showlegend=False,
+        ),
+        row=1,
+        col=2,
+    )
+
+    fig.add_trace(
+        go.Histogram(
+            x=refined_papers,
+            name="Refined",
+            marker_color="lightcoral",
+            opacity=0.7,
+            nbinsx=min(10, len(refined_papers)),
+            showlegend=False,
+        ),
+        row=1,
+        col=2,
+    )
+
+    # Duration box plots
+    fig.add_trace(
+        go.Box(
+            y=initial_durations,
+            name="Initial",
+            marker_color="lightblue",
+            boxpoints="all",
+            jitter=0.3,
+            showlegend=False,
+        ),
+        row=2,
+        col=1,
+    )
+
+    fig.add_trace(
+        go.Box(
+            y=refined_durations,
+            name="Refined",
+            marker_color="lightcoral",
+            boxpoints="all",
+            jitter=0.3,
+            showlegend=False,
+        ),
+        row=2,
+        col=1,
+    )
+
+    # Paper box plots
+    fig.add_trace(
+        go.Box(
+            y=initial_papers,
+            name="Initial",
+            marker_color="lightblue",
+            boxpoints="all",
+            jitter=0.3,
+            showlegend=False,
+        ),
+        row=2,
+        col=2,
+    )
+
+    fig.add_trace(
+        go.Box(
+            y=refined_papers,
+            name="Refined",
+            marker_color="lightcoral",
+            boxpoints="all",
+            jitter=0.3,
+            showlegend=False,
+        ),
+        row=2,
+        col=2,
+    )
+
+    fig.update_layout(
+        height=600,
+        title_text="Refinement Quality Metrics",
+        barmode="overlay",
+    )
+
+    fig.update_xaxes(title_text="Duration (Years)", row=1, col=1)
+    fig.update_xaxes(title_text="Papers", row=1, col=2)
+    fig.update_xaxes(title_text="Segmentation", row=2, col=1)
+    fig.update_xaxes(title_text="Segmentation", row=2, col=2)
+
+    fig.update_yaxes(title_text="Count", row=1, col=1)
+    fig.update_yaxes(title_text="Count", row=1, col=2)
+    fig.update_yaxes(title_text="Duration (Years)", row=2, col=1)
+    fig.update_yaxes(title_text="Papers", row=2, col=2)
+
+    return fig
+
+
 def show_segmentation():
     """Main segmentation page function."""
-    st.header("✂️ Stage 3: Segmentation")
-    st.write("Convert boundary years into contiguous academic periods.")
+    st.header("✂️ Stage 3: Segmentation & Refinement")
+    st.write(
+        "Convert boundary years into academic periods and refine with beam search optimization."
+    )
 
     # Check prerequisites
     if st.session_state.academic_years is None:
@@ -494,45 +861,80 @@ def show_segmentation():
     # Control panel
     col1, col2 = st.columns([3, 1])
     with col1:
-        st.subheader("🎯 Segmentation Results")
+        st.subheader("🎯 Segmentation & Refinement Pipeline")
+
+        # Show current status
+        if st.session_state.initial_periods is None:
+            st.info("📋 Ready to run initial segmentation")
+        elif st.session_state.refined_periods is None:
+            st.info(
+                "📋 Initial segmentation complete. Ready for beam search refinement."
+            )
+        else:
+            st.success("✅ Both segmentation and refinement completed!")
+
     with col2:
-        if st.button("🔄 Run Segmentation", type="primary"):
+        # Two-step process
+        if st.button("🔄 Run Initial Segmentation", type="primary"):
             st.session_state.initial_periods = None  # Force re-run
+            st.session_state.refined_periods = None
+            st.session_state.characterized_periods = None
+            st.session_state.final_periods = None
             run_segmentation()
 
-    # Run segmentation if needed
+        if st.session_state.initial_periods is not None:
+            if st.button("🔍 Run Beam Refinement", type="secondary"):
+                st.session_state.refined_periods = None  # Force re-run
+                st.session_state.characterized_periods = None
+                st.session_state.final_periods = None
+                run_beam_refinement()
+
+    # Step 1: Run initial segmentation
     if not run_segmentation():
         return
 
-    periods = st.session_state.initial_periods
+    initial_periods = st.session_state.initial_periods
     boundary_years = st.session_state.boundary_years
     academic_years = st.session_state.academic_years
 
-    # Results summary
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Periods Created", len(periods))
-    with col2:
-        st.metric("Boundary Years Used", len(boundary_years))
-    with col3:
-        avg_duration = (
-            sum(p.end_year - p.start_year + 1 for p in periods) / len(periods)
-            if periods
-            else 0
-        )
-        st.metric("Avg Period Duration", f"{avg_duration:.1f} years")
+    # Step 2: Run beam search refinement
+    if not run_beam_refinement():
+        return
 
-    # Timeline visualization
-    st.subheader("📈 Timeline Visualization")
+    refined_periods = st.session_state.refined_periods
+
+    # Results summary
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Boundary Years", len(boundary_years))
+    with col2:
+        st.metric("Initial Periods", len(initial_periods))
+    with col3:
+        st.metric("Refined Periods", len(refined_periods))
+    with col4:
+        period_change = len(refined_periods) - len(initial_periods)
+        st.metric("Period Change", f"{period_change:+d}")
+
+    # Show refinement comparison if both are available
+    if initial_periods and refined_periods:
+        st.subheader("📊 Beam Search Refinement Comparison")
+        comparison_fig = create_refinement_comparison_chart(
+            initial_periods, refined_periods
+        )
+        if comparison_fig:
+            st.plotly_chart(comparison_fig, use_container_width=True)
+
+    # Timeline visualization (using refined periods)
+    st.subheader("📈 Final Timeline Visualization")
     timeline_fig = create_timeline_visualization(
-        academic_years, boundary_years, periods
+        academic_years, boundary_years, refined_periods
     )
     st.plotly_chart(timeline_fig, use_container_width=True)
 
-    # Period summary
-    st.subheader("📋 Period Summary")
-    if periods:
-        summary_df = create_period_summary_table(periods)
+    # Period summary (using refined periods)
+    st.subheader("📋 Final Period Summary")
+    if refined_periods:
+        summary_df = create_period_summary_table(refined_periods)
         st.dataframe(summary_df, use_container_width=True, hide_index=True)
 
     # Comparison charts
@@ -540,62 +942,107 @@ def show_segmentation():
 
     with col1:
         st.subheader("📊 Period Comparison")
-        comparison_fig = create_period_comparison_chart(periods)
+        comparison_fig = create_period_comparison_chart(refined_periods)
         if comparison_fig:
             st.plotly_chart(comparison_fig, use_container_width=True)
 
     with col2:
         st.subheader("🏷️ Keyword Distribution")
-        keyword_fig = create_keyword_distribution_chart(periods)
+        keyword_fig = create_keyword_distribution_chart(refined_periods)
         if keyword_fig:
             st.plotly_chart(keyword_fig, use_container_width=True)
 
     # Detailed analysis tabs
-    tab1, tab2, tab3 = st.tabs(
-        ["🔍 Period Details", "📊 Quality Metrics", "📖 Algorithm Info"]
+    tab1, tab2, tab3, tab4 = st.tabs(
+        [
+            "🔍 Refinement Analysis",
+            "📋 Period Details",
+            "📊 Quality Metrics",
+            "📖 Algorithm Info",
+        ]
     )
 
     with tab1:
-        show_period_details(periods)
+        if initial_periods and refined_periods:
+            show_refinement_analysis(initial_periods, refined_periods)
+
+            # Refinement metrics
+            st.subheader("📊 Refinement Quality Metrics")
+            metrics_fig = create_refinement_metrics_chart(
+                initial_periods, refined_periods
+            )
+            if metrics_fig:
+                st.plotly_chart(metrics_fig, use_container_width=True)
+        else:
+            st.info("Run both initial segmentation and beam refinement to see analysis")
 
     with tab2:
-        show_segmentation_quality_metrics(periods)
+        show_period_details(refined_periods)
 
     with tab3:
+        show_segmentation_quality_metrics(refined_periods)
+
+    with tab4:
         st.write(
             """
-        **Segmentation Algorithm:**
+        **Segmentation & Refinement Algorithm:**
         
+        **Stage 3A: Initial Segmentation**
         1. **Input Processing:** Takes boundary years from change detection
         2. **Segment Creation:** Creates contiguous periods between boundaries
         3. **Academic Year Aggregation:** Combines academic years within each period
         4. **Keyword Consolidation:** Merges keyword frequencies across years
         5. **Validation:** Ensures no gaps or overlaps between periods
         
+        **Stage 3B: Beam Search Refinement**
+        1. **Initialization:** Start with initial segmentation as base state
+        2. **State Generation:** Generate successor states through merge/split operations
+        3. **Evaluation:** Score each state using objective function + length penalties
+        4. **Beam Search:** Keep top-k states and iterate until convergence
+        5. **Optimization:** Select best final state based on cohesion/separation metrics
+        
         **Key Features:**
         - Contiguous periods with no gaps
         - Automatic handling of edge cases
+        - Objective function-guided refinement
+        - Constraint-aware split/merge operations
         - Pre-computed aggregations for efficiency
-        - Immutable data structures for reliability
         """
         )
 
-        if periods:
+        if refined_periods:
             boundary_year_list = [ay.year for ay in boundary_years]
             st.write(f"**Detected Boundaries:** {boundary_year_list}")
-            st.write(f"**Resulting Periods:**")
-            for i, period in enumerate(periods):
+
+            st.write(f"**Initial Periods:**")
+            for i, period in enumerate(initial_periods):
                 st.write(
                     f"- Period {i+1}: {period.start_year}-{period.end_year} ({period.end_year - period.start_year + 1} years)"
                 )
 
+            st.write(f"**Refined Periods:**")
+            for i, period in enumerate(refined_periods):
+                st.write(
+                    f"- Period {i+1}: {period.start_year}-{period.end_year} ({period.end_year - period.start_year + 1} years)"
+                )
+
+        # Show beam search configuration
+        config = st.session_state.algorithm_config
+        st.write("**Beam Search Configuration:**")
+        st.write(f"- Enabled: {config.beam_search_enabled}")
+        if config.beam_search_enabled:
+            st.write(f"- Beam Width: {config.beam_width}")
+            st.write(f"- Max Splits per Segment: {config.max_splits_per_segment}")
+            st.write(f"- Min Period Years: {config.min_period_years}")
+            st.write(f"- Max Period Years: {config.max_period_years}")
+
     # Data export
     st.subheader("💾 Export Results")
-    if st.button("Export Segmentation Results"):
+    if st.button("Export Segmentation & Refinement Results"):
         segmentation_data = {
             "domain": st.session_state.selected_domain,
             "boundary_years": [ay.year for ay in boundary_years],
-            "periods": [
+            "initial_periods": [
                 {
                     "period_id": i + 1,
                     "start_year": p.start_year,
@@ -605,13 +1052,32 @@ def show_segmentation():
                     "total_citations": p.total_citations,
                     "top_keywords": list(p.top_keywords[:10]),
                 }
-                for i, p in enumerate(periods)
+                for i, p in enumerate(initial_periods)
             ],
+            "refined_periods": [
+                {
+                    "period_id": i + 1,
+                    "start_year": p.start_year,
+                    "end_year": p.end_year,
+                    "duration": p.end_year - p.start_year + 1,
+                    "total_papers": p.total_papers,
+                    "total_citations": p.total_citations,
+                    "top_keywords": list(p.top_keywords[:10]),
+                }
+                for i, p in enumerate(refined_periods)
+            ],
+            "beam_search_config": {
+                "enabled": config.beam_search_enabled,
+                "beam_width": config.beam_width,
+                "max_splits_per_segment": config.max_splits_per_segment,
+                "min_period_years": config.min_period_years,
+                "max_period_years": config.max_period_years,
+            },
         }
 
         st.download_button(
-            label="Download Segmentation JSON",
+            label="Download Segmentation & Refinement JSON",
             data=pd.Series(segmentation_data).to_json(indent=2),
-            file_name=f"{st.session_state.selected_domain}_segmentation_results.json",
+            file_name=f"{st.session_state.selected_domain}_segmentation_refinement_results.json",
             mime="application/json",
         )

@@ -4,7 +4,6 @@ Displays the complete timeline analysis result with comprehensive visualizations
 
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import json
@@ -425,9 +424,8 @@ def show_final_results():
         stages_status = [
             ("Data Loading", st.session_state.academic_years is not None),
             ("Change Detection", st.session_state.boundary_years is not None),
-            ("Segmentation", st.session_state.initial_periods is not None),
+            ("Segmentation & Refinement", st.session_state.refined_periods is not None),
             ("Characterization", st.session_state.characterized_periods is not None),
-            ("Merging", st.session_state.final_periods is not None),
         ]
 
         st.write("**Progress Status:**")

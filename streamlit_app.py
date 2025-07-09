@@ -3,8 +3,6 @@ A comprehensive Streamlit app to visualize and interact with each step of the ac
 """
 
 import streamlit as st
-import time
-from pathlib import Path
 
 # Configure page
 st.set_page_config(
@@ -19,8 +17,8 @@ from streamlit_pages.data_exploration import show_data_exploration
 from streamlit_pages.stage2_change_detection import show_change_detection
 from streamlit_pages.stage3_segmentation import show_segmentation
 from streamlit_pages.stage4_characterization import show_characterization
-from streamlit_pages.stage5_merging import show_merging
 from streamlit_pages.final_results import show_final_results
+from streamlit_pages.evaluation import show_evaluation
 from core.utils.config import AlgorithmConfig
 from core.utils.general import discover_available_domains
 
@@ -39,6 +37,8 @@ def initialize_session_state():
         st.session_state.citation_acceleration_years = None
     if "initial_periods" not in st.session_state:
         st.session_state.initial_periods = None
+    if "refined_periods" not in st.session_state:
+        st.session_state.refined_periods = None
     if "characterized_periods" not in st.session_state:
         st.session_state.characterized_periods = None
     if "final_periods" not in st.session_state:
@@ -142,11 +142,11 @@ def show_global_configuration():
             help="Window around direction change to look for citation support",
         )
 
-        min_papers_per_year_for_direction = st.slider(
+        min_papers_per_year = st.slider(
             "Min Papers Per Year (Direction)",
             min_value=10,
             max_value=500,
-            value=getattr(config, "min_papers_per_year_for_direction", 100),
+            value=getattr(config, "min_papers_per_year", 100),
             step=10,
             help="Minimum papers per year to consider for direction change detection",
         )
@@ -192,30 +192,48 @@ def show_global_configuration():
             help="Minimum ratio of papers a keyword must appear in (0.05 = 5%)",
         )
 
-    # Anti-gaming parameters
-    with st.sidebar.expander("🛡️ Anti-Gaming", expanded=False):
-        anti_gaming_min_segment_size = st.slider(
-            "Min Segment Size",
+    # Beam search refinement parameters
+    with st.sidebar.expander("🔍 Beam Search Refinement", expanded=False):
+        beam_search_enabled = st.checkbox(
+            "Enable Beam Search",
+            value=getattr(config, "beam_search_enabled", True),
+            help="Enable beam search optimization after initial segmentation",
+        )
+
+        beam_width = st.slider(
+            "Beam Width",
+            min_value=1,
+            max_value=20,
+            value=getattr(config, "beam_width", 5),
+            step=1,
+            help="Number of best states to keep in each iteration",
+        )
+
+        max_splits_per_segment = st.slider(
+            "Max Splits Per Segment",
+            min_value=0,
+            max_value=5,
+            value=getattr(config, "max_splits_per_segment", 1),
+            step=1,
+            help="Maximum number of splits allowed per initial segment",
+        )
+
+        min_period_years = st.slider(
+            "Min Period Years",
+            min_value=1,
+            max_value=10,
+            value=getattr(config, "min_period_years", 3),
+            step=1,
+            help="Minimum years for any period (except edge periods)",
+        )
+
+        max_period_years = st.slider(
+            "Max Period Years",
             min_value=10,
-            max_value=200,
-            value=getattr(config, "anti_gaming_min_segment_size", 50),
-            step=10,
-            help="Minimum papers per segment",
-        )
-
-        anti_gaming_size_weight_power = st.slider(
-            "Size Weight Power",
-            min_value=0.0,
-            max_value=2.0,
-            value=getattr(config, "anti_gaming_size_weight_power", 0.5),
-            step=0.1,
-            help="Power for size weighting",
-        )
-
-        anti_gaming_enable_size_weighting = st.checkbox(
-            "Enable Size Weighting",
-            value=getattr(config, "anti_gaming_enable_size_weighting", True),
-            help="Whether to apply size weighting to prevent micro-segments",
+            max_value=100,
+            value=getattr(config, "max_period_years", 50),
+            step=5,
+            help="Maximum years for any period",
         )
 
     # Diagnostic parameters
@@ -244,17 +262,6 @@ def show_global_configuration():
             help="Interval for sampling scores for threshold calculation",
         )
 
-    # Merging parameters
-    with st.sidebar.expander("🔗 Merging", expanded=False):
-        merge_similarity_threshold = st.slider(
-            "Merge Similarity Threshold",
-            min_value=0.1,
-            max_value=0.9,
-            value=getattr(st.session_state, "merge_similarity_threshold", 0.6),
-            step=0.05,
-            help="Keyword overlap threshold for merging adjacent periods",
-        )
-
     # Update config if any parameter changed
     import dataclasses
 
@@ -267,23 +274,22 @@ def show_global_configuration():
             "direction_scoring_method": direction_scoring_method,
             "citation_confidence_boost": citation_confidence_boost,
             "citation_support_window_years": citation_support_window_years,
-            "min_papers_per_year_for_direction": min_papers_per_year_for_direction,
+            "min_papers_per_year": min_papers_per_year,
             "min_baseline_period_years": min_baseline_period_years,
             "cohesion_weight": cohesion_weight,
             "separation_weight": separation_weight,
             "top_k_keywords": top_k_keywords,
             "min_keyword_frequency_ratio": min_keyword_frequency_ratio,
-            "anti_gaming_min_segment_size": anti_gaming_min_segment_size,
-            "anti_gaming_size_weight_power": anti_gaming_size_weight_power,
-            "anti_gaming_enable_size_weighting": anti_gaming_enable_size_weighting,
+            "beam_search_enabled": beam_search_enabled,
+            "beam_width": beam_width,
+            "max_splits_per_segment": max_splits_per_segment,
+            "min_period_years": min_period_years,
+            "max_period_years": max_period_years,
             "save_direction_diagnostics": save_direction_diagnostics,
             "diagnostic_top_keywords_limit": diagnostic_top_keywords_limit,
             "score_distribution_window_years": score_distribution_window_years,
         }
     )
-
-    # Store merge_similarity_threshold separately (not part of AlgorithmConfig)
-    st.session_state.merge_similarity_threshold = merge_similarity_threshold
 
     new_config = type(config)(**config_dict)
 
@@ -293,6 +299,7 @@ def show_global_configuration():
         st.session_state.boundary_years = None
         st.session_state.citation_acceleration_years = None
         st.session_state.initial_periods = None
+        st.session_state.refined_periods = None
         st.session_state.characterized_periods = None
         st.session_state.final_periods = None
         st.rerun()
@@ -334,10 +341,10 @@ def main():
         options=[
             "📁 Data Exploration",
             "🔍 Stage 2: Change Detection",
-            "✂️ Stage 3: Segmentation",
+            "✂️ Stage 3: Segmentation & Refinement",
             "🏷️ Stage 4: Characterization",
-            "🔗 Stage 5: Merging",
             "🎯 Final Results",
+            "📊 Evaluation",
         ],
         horizontal=True,
     )
@@ -347,14 +354,14 @@ def main():
         show_data_exploration()
     elif page == "🔍 Stage 2: Change Detection":
         show_change_detection()
-    elif page == "✂️ Stage 3: Segmentation":
+    elif page == "✂️ Stage 3: Segmentation & Refinement":
         show_segmentation()
     elif page == "🏷️ Stage 4: Characterization":
         show_characterization()
-    elif page == "🔗 Stage 5: Merging":
-        show_merging()
     elif page == "🎯 Final Results":
         show_final_results()
+    elif page == "📊 Evaluation":
+        show_evaluation()
 
 
 if __name__ == "__main__":
