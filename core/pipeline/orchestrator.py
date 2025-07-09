@@ -10,8 +10,9 @@ from ..data.data_processing import (
 )
 from ..segmentation.change_point_detection import detect_boundary_years
 from ..segmentation.segmentation import create_segments_from_boundary_years
+from ..segmentation.beam_refinement import beam_search_refinement
 from ..segment_modeling.segment_modeling import characterize_academic_periods
-from ..segmentation.segment_merging import merge_similar_periods
+
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
 
@@ -86,16 +87,26 @@ def analyze_timeline(
 
         logger.info(f"Created {len(initial_periods)} initial periods")
 
+        # Step C.5: Beam search refinement (if enabled)
+        refined_periods = beam_search_refinement(
+            initial_periods=initial_periods,
+            academic_years=tuple(academic_years),
+            algorithm_config=algorithm_config,
+            verbose=verbose,
+        )
+
+        logger.info(f"Refined to {len(refined_periods)} periods after beam search")
+
         if segmentation_only:
             # For segmentation-only mode, return results without characterization and merging
             boundary_years = [ay.year for ay in boundary_academic_years]
             timeline_result = TimelineAnalysisResult(
                 domain_name=domain_name,
-                periods=tuple(initial_periods),
-                confidence=calculate_segmentation_confidence(initial_periods),
+                periods=tuple(refined_periods),
+                confidence=calculate_segmentation_confidence(refined_periods),
                 boundary_years=tuple(boundary_years),
                 narrative_evolution=generate_segmentation_narrative(
-                    initial_periods, domain_name
+                    refined_periods, domain_name
                 ),
             )
 
@@ -103,18 +114,10 @@ def analyze_timeline(
             logger.info(f"Segmentation completed in {total_time:.2f} seconds")
             return timeline_result
 
-        # Full pipeline: characterization and merging
-        characterized_periods = characterize_academic_periods(
+        # Step D: Full pipeline: characterization only (merging now handled by beam search)
+        final_periods = characterize_academic_periods(
             domain_name=domain_name,
-            periods=initial_periods,
-            verbose=verbose,
-        )
-
-        logger.info(f"Characterized {len(characterized_periods)} periods")
-
-        final_periods = merge_similar_periods(
-            periods=characterized_periods,
-            algorithm_config=algorithm_config,
+            periods=refined_periods,
             verbose=verbose,
         )
 

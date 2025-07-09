@@ -129,7 +129,7 @@ def detect_citation_acceleration_years(
         citations = citations[:-recent_lag]
 
     # 3. Smooth minor noise with a small moving-average
-    smoothing_window = 5 # Hardcoded: small window for noise reduction
+    smoothing_window = 5  # Hardcoded: small window for noise reduction
     if len(citations) >= smoothing_window:
         smoothed = moving_average(citations, smoothing_window)
         smoothed = np.pad(smoothed, (1, 1), mode="edge")[: len(citations)]
