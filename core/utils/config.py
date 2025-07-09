@@ -4,7 +4,7 @@ Configuration is loaded from config.json file with comprehensive validation.
 """
 
 from dataclasses import dataclass
-from typing import List, Optional, NamedTuple
+from typing import Optional, NamedTuple
 import os
 import json
 
@@ -49,20 +49,12 @@ class AlgorithmConfig:
     top_k_keywords: int
     min_keyword_frequency_ratio: float
 
-    # Anti-Gaming Parameters
-    anti_gaming_min_segment_size: int
-    anti_gaming_size_weight_power: float
-    anti_gaming_segment_count_penalty_sigma: float
-    anti_gaming_enable_size_weighting: bool
-    anti_gaming_enable_segment_floor: bool
-    anti_gaming_enable_count_penalty: bool
-
-    # Boundary Optimization Parameters
-    boundary_optimization_enabled: bool
-    boundary_search_window: int
-    boundary_max_exhaustive_signals: int
-    boundary_max_subset_enumeration: int
-    boundary_beam_width: int
+    # Beam Search Refinement Parameters
+    beam_search_enabled: bool
+    beam_width: int
+    max_splits_per_segment: int
+    min_period_years: int
+    max_period_years: int
 
     # System Parameters
     domain_name: Optional[str] = None
@@ -99,8 +91,7 @@ class AlgorithmConfig:
         try:
             detection_params = config["detection_parameters"]
             objective_params = config["objective_function"]
-            anti_gaming_params = config["anti_gaming"]
-            boundary_params = config["boundary_optimization"]
+            beam_params = config.get("beam_search", {})
             diagnostic_params = config.get("diagnostics", {})
 
             return cls(
@@ -135,31 +126,12 @@ class AlgorithmConfig:
                 min_keyword_frequency_ratio=objective_params[
                     "min_keyword_frequency_ratio"
                 ],
-                # Anti-gaming parameters
-                anti_gaming_min_segment_size=anti_gaming_params["min_segment_size"],
-                anti_gaming_size_weight_power=anti_gaming_params["size_weight_power"],
-                anti_gaming_segment_count_penalty_sigma=anti_gaming_params[
-                    "segment_count_penalty_sigma"
-                ],
-                anti_gaming_enable_size_weighting=anti_gaming_params[
-                    "enable_size_weighting"
-                ],
-                anti_gaming_enable_segment_floor=anti_gaming_params[
-                    "enable_segment_floor"
-                ],
-                anti_gaming_enable_count_penalty=anti_gaming_params[
-                    "enable_count_penalty"
-                ],
-                # Boundary optimization parameters
-                boundary_optimization_enabled=boundary_params["enabled"],
-                boundary_search_window=boundary_params["search_window"],
-                boundary_max_exhaustive_signals=boundary_params[
-                    "max_exhaustive_signals"
-                ],
-                boundary_max_subset_enumeration=boundary_params[
-                    "max_subset_enumeration"
-                ],
-                boundary_beam_width=boundary_params["beam_width"],
+                # Beam search refinement parameters
+                beam_search_enabled=beam_params.get("enabled", False),
+                beam_width=beam_params.get("beam_width", 5),
+                max_splits_per_segment=beam_params.get("max_splits_per_segment", 1),
+                min_period_years=beam_params.get("min_period_years", 3),
+                max_period_years=beam_params.get("max_period_years", 50),
                 # System parameters
                 domain_name=domain_name,
                 # Diagnostic parameters
@@ -254,59 +226,31 @@ class AlgorithmConfig:
                 f"min_keyword_frequency_ratio must be 0.0-1.0, got {self.min_keyword_frequency_ratio}"
             )
 
-        # Anti-gaming parameters
-        if not 1 <= self.anti_gaming_min_segment_size <= 200:
+        # Beam search refinement parameters
+        if not 1 <= self.beam_width <= 50:
+            raise ValueError(f"beam_width must be 1-50, got {self.beam_width}")
+
+        if not 0 <= self.max_splits_per_segment <= 10:
             raise ValueError(
-                f"anti_gaming_min_segment_size must be 1-200, got {self.anti_gaming_min_segment_size}"
+                f"max_splits_per_segment must be 0-10, got {self.max_splits_per_segment}"
             )
 
-        if not 0.0 <= self.anti_gaming_size_weight_power <= 2.0:
+        if not 1 <= self.min_period_years <= 20:
             raise ValueError(
-                f"anti_gaming_size_weight_power must be 0.0-2.0, got {self.anti_gaming_size_weight_power}"
+                f"min_period_years must be 1-20, got {self.min_period_years}"
             )
 
-        if not 0.5 <= self.anti_gaming_segment_count_penalty_sigma <= 20.0:
+        if not 5 <= self.max_period_years <= 200:
             raise ValueError(
-                f"anti_gaming_segment_count_penalty_sigma must be 0.5-20.0, got {self.anti_gaming_segment_count_penalty_sigma}"
+                f"max_period_years must be 5-200, got {self.max_period_years}"
             )
 
-        # Boundary optimization parameters
-        if not 1 <= self.boundary_search_window <= 10:
+        if self.min_period_years >= self.max_period_years:
             raise ValueError(
-                f"boundary_search_window must be 1-10, got {self.boundary_search_window}"
-            )
-
-        if not 1 <= self.boundary_max_exhaustive_signals <= 20:
-            raise ValueError(
-                f"boundary_max_exhaustive_signals must be 1-20, got {self.boundary_max_exhaustive_signals}"
-            )
-
-        if not 1 <= self.boundary_max_subset_enumeration <= 30:
-            raise ValueError(
-                f"boundary_max_subset_enumeration must be 1-30, got {self.boundary_max_subset_enumeration}"
-            )
-
-        if not 5 <= self.boundary_beam_width <= 100:
-            raise ValueError(
-                f"boundary_beam_width must be 5-100, got {self.boundary_beam_width}"
+                f"min_period_years ({self.min_period_years}) must be less than max_period_years ({self.max_period_years})"
             )
 
         # Citation Analysis scales
-
-    def get_anti_gaming_config(self):
-        """Get anti-gaming configuration for the objective function.
-
-        Returns:
-            AntiGamingConfig: Configuration object for anti-gaming parameters
-        """
-        return AntiGamingConfig(
-            min_segment_size=self.anti_gaming_min_segment_size,
-            size_weight_power=self.anti_gaming_size_weight_power,
-            segment_count_penalty_sigma=self.anti_gaming_segment_count_penalty_sigma,
-            enable_size_weighting=self.anti_gaming_enable_size_weighting,
-            enable_segment_floor=self.anti_gaming_enable_segment_floor,
-            enable_count_penalty=self.anti_gaming_enable_count_penalty,
-        )
 
     def get_configuration_summary(self) -> str:
         """Get a concise summary of the current configuration.
@@ -319,7 +263,6 @@ class AlgorithmConfig:
             f"cohesion_weight={self.cohesion_weight}, "
             f"separation_weight={self.separation_weight}, "
             f"top_k_keywords={self.top_k_keywords}, "
-            f"anti_gaming_enabled={self.anti_gaming_enable_size_weighting}"
         )
 
     def __str__(self) -> str:
@@ -331,5 +274,4 @@ class AlgorithmConfig:
         return (
             f"AlgorithmConfig(direction_change_threshold={self.direction_change_threshold:.3f}, "
             f"objective_weights=({self.cohesion_weight}, {self.separation_weight}), "
-            f"anti_gaming={self.anti_gaming_enable_size_weighting})"
         )

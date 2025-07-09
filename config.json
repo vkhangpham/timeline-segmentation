@@ -5,30 +5,22 @@
         "direction_scoring_method": "weighted_jaccard",
         "min_baseline_period_years": 3,
         "score_distribution_window_years": 3,
-        "citation_confidence_boost": 0.2,
+        "citation_confidence_boost": 0.1,
         "citation_support_window_years": 2,
         "min_papers_per_year": 100
     },
     "objective_function": {
         "cohesion_weight": 0.8,
         "separation_weight": 0.2,
-        "top_k_keywords": 50,
+        "top_k_keywords": 100,
         "min_keyword_frequency_ratio": 0.1
     },
-    "anti_gaming": {
-        "min_segment_size": 50,
-        "size_weight_power": 0.5,
-        "segment_count_penalty_sigma": 4.0,
-        "enable_size_weighting": true,
-        "enable_segment_floor": true,
-        "enable_count_penalty": false
-    },
-    "boundary_optimization": {
+    "beam_search": {
         "enabled": true,
-        "search_window": 3,
-        "max_exhaustive_signals": 10,
-        "max_subset_enumeration": 15,
-        "beam_width": 20
+        "beam_width": 5,
+        "max_splits_per_segment": 1,
+        "min_period_years": 3,
+        "max_period_years": 50
     },
     "diagnostics": {
         "save_direction_diagnostics": true,
