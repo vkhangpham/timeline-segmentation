@@ -24,14 +24,24 @@ class AntiGamingConfig(NamedTuple):
 class AlgorithmConfig:
     """Algorithm configuration loaded from config.json file."""
 
-    # Detection Parameters
-    direction_threshold: float
-    validation_threshold: float
-    citation_boost_rate: float
-    min_papers_per_year_for_direction: int
-    citation_support_window: int
-    citation_analysis_scales: List[int]
-    direction_window_size: int
+    # Direction Change Detection Parameters
+    direction_change_threshold: float
+    direction_threshold_strategy: (
+        str  # "fixed" | "global_p90" | "global_p95" | "global_p99"
+    )
+    direction_scoring_method: str  # "weighted_jaccard" | "jensen_shannon"
+    min_baseline_period_years: int
+    score_distribution_window_years: int
+
+    # Citation Analysis Parameters
+    citation_confidence_boost: float
+    citation_support_window_years: int
+
+    # Diagnostic Parameters
+    diagnostic_top_keywords_limit: int
+
+    # Data Filtering Parameters
+    min_papers_per_year: int
 
     # Objective Function Parameters
     cohesion_weight: float
@@ -56,6 +66,9 @@ class AlgorithmConfig:
 
     # System Parameters
     domain_name: Optional[str] = None
+
+    # Diagnostic Parameters
+    save_direction_diagnostics: bool = False
 
     @classmethod
     def from_config_file(
@@ -88,18 +101,33 @@ class AlgorithmConfig:
             objective_params = config["objective_function"]
             anti_gaming_params = config["anti_gaming"]
             boundary_params = config["boundary_optimization"]
+            diagnostic_params = config.get("diagnostics", {})
 
             return cls(
-                # Detection parameters
-                direction_threshold=detection_params["direction_threshold"],
-                validation_threshold=detection_params["validation_threshold"],
-                citation_boost_rate=detection_params["citation_boost_rate"],
-                min_papers_per_year_for_direction=detection_params[
-                    "min_papers_per_year_for_direction"
+                # Direction Change Detection parameters
+                direction_change_threshold=detection_params[
+                    "direction_change_threshold"
                 ],
-                citation_support_window=detection_params["citation_support_window"],
-                citation_analysis_scales=detection_params["citation_analysis_scales"],
-                direction_window_size=detection_params["direction_window_size"],
+                direction_threshold_strategy=detection_params.get(
+                    "direction_threshold_strategy", "fixed"
+                ),
+                direction_scoring_method=detection_params.get(
+                    "direction_scoring_method", "weighted_jaccard"
+                ),
+                min_baseline_period_years=detection_params.get(
+                    "min_baseline_period_years", 3
+                ),
+                score_distribution_window_years=detection_params.get(
+                    "score_distribution_window_years", 3
+                ),
+                # Validation parameters
+                # Citation Analysis parameters
+                citation_confidence_boost=detection_params["citation_confidence_boost"],
+                citation_support_window_years=detection_params[
+                    "citation_support_window_years"
+                ],
+                # Data Filtering parameters
+                min_papers_per_year=detection_params["min_papers_per_year"],
                 # Objective function parameters
                 cohesion_weight=objective_params["cohesion_weight"],
                 separation_weight=objective_params["separation_weight"],
@@ -134,6 +162,13 @@ class AlgorithmConfig:
                 boundary_beam_width=boundary_params["beam_width"],
                 # System parameters
                 domain_name=domain_name,
+                # Diagnostic parameters
+                save_direction_diagnostics=diagnostic_params.get(
+                    "save_direction_diagnostics", False
+                ),
+                diagnostic_top_keywords_limit=diagnostic_params.get(
+                    "diagnostic_top_keywords_limit", 10
+                ),
             )
         except KeyError as e:
             raise ValueError(f"Missing required parameter in configuration file: {e}")
@@ -144,31 +179,55 @@ class AlgorithmConfig:
 
     def _validate_parameters(self):
         """Validate all parameter values."""
-        # Detection thresholds
-        if not 0.0 <= self.direction_threshold <= 1.0:
+        # Direction Change Detection thresholds
+        if not 0.0 <= self.direction_change_threshold <= 1.0:
             raise ValueError(
-                f"direction_threshold must be 0.0-1.0, got {self.direction_threshold}"
+                f"direction_change_threshold must be 0.0-1.0, got {self.direction_change_threshold}"
             )
 
-        if not 0.0 <= self.validation_threshold <= 1.0:
+        valid_direction_strategies = ["fixed", "global_p90", "global_p95", "global_p99"]
+        if self.direction_threshold_strategy not in valid_direction_strategies:
             raise ValueError(
-                f"validation_threshold must be 0.0-1.0, got {self.validation_threshold}"
+                f"direction_threshold_strategy must be one of {valid_direction_strategies}, got {self.direction_threshold_strategy}"
             )
 
-        # Citation parameters
-        if not 0.0 <= self.citation_boost_rate <= 1.0:
+        valid_scoring_methods = ["weighted_jaccard", "jensen_shannon"]
+        if self.direction_scoring_method not in valid_scoring_methods:
             raise ValueError(
-                f"citation_boost_rate must be 0.0-1.0, got {self.citation_boost_rate}"
+                f"direction_scoring_method must be one of {valid_scoring_methods}, got {self.direction_scoring_method}"
             )
 
-        if not 1 <= self.min_papers_per_year_for_direction <= 1000:
+        if not 1 <= self.min_baseline_period_years <= 10:
             raise ValueError(
-                f"min_papers_per_year_for_direction must be 1-1000, got {self.min_papers_per_year_for_direction}"
+                f"min_baseline_period_years must be 1-10, got {self.min_baseline_period_years}"
             )
 
-        if not 1 <= self.citation_support_window <= 10:
+        if not 1 <= self.score_distribution_window_years <= 10:
             raise ValueError(
-                f"citation_support_window must be 1-10, got {self.citation_support_window}"
+                f"score_distribution_window_years must be 1-10, got {self.score_distribution_window_years}"
+            )
+
+        # Validation parameters
+        # Citation Analysis parameters
+        if not 0.0 <= self.citation_confidence_boost <= 1.0:
+            raise ValueError(
+                f"citation_confidence_boost must be 0.0-1.0, got {self.citation_confidence_boost}"
+            )
+
+        if not 1 <= self.citation_support_window_years <= 10:
+            raise ValueError(
+                f"citation_support_window_years must be 1-10, got {self.citation_support_window_years}"
+            )
+
+        if not 1 <= self.diagnostic_top_keywords_limit <= 50:
+            raise ValueError(
+                f"diagnostic_top_keywords_limit must be 1-50, got {self.diagnostic_top_keywords_limit}"
+            )
+
+        # Data Filtering parameters
+        if not 1 <= self.min_papers_per_year <= 1000:
+            raise ValueError(
+                f"min_papers_per_year must be 1-1000, got {self.min_papers_per_year}"
             )
 
         # Objective function parameters
@@ -187,8 +246,8 @@ class AlgorithmConfig:
                 f"cohesion_weight + separation_weight must equal 1.0, got {self.cohesion_weight + self.separation_weight:.6f}"
             )
 
-        if not 1 <= self.top_k_keywords <= 50:
-            raise ValueError(f"top_k_keywords must be 1-50, got {self.top_k_keywords}")
+        if not 1 <= self.top_k_keywords <= 100:
+            raise ValueError(f"top_k_keywords must be 1-100, got {self.top_k_keywords}")
 
         if not 0.0 <= self.min_keyword_frequency_ratio <= 1.0:
             raise ValueError(
@@ -232,18 +291,7 @@ class AlgorithmConfig:
                 f"boundary_beam_width must be 5-100, got {self.boundary_beam_width}"
             )
 
-        # Temporal window parameters
-        if not 1 <= self.direction_window_size <= 10:
-            raise ValueError(
-                f"direction_window_size must be 1-10, got {self.direction_window_size}"
-            )
-
-        if not self.citation_analysis_scales or not all(
-            1 <= scale <= 10 for scale in self.citation_analysis_scales
-        ):
-            raise ValueError(
-                f"citation_analysis_scales must be non-empty list with values 1-10, got {self.citation_analysis_scales}"
-            )
+        # Citation Analysis scales
 
     def get_anti_gaming_config(self):
         """Get anti-gaming configuration for the objective function.
@@ -267,8 +315,7 @@ class AlgorithmConfig:
             String summary of key configuration parameters
         """
         return (
-            f"direction_threshold={self.direction_threshold:.3f}, "
-            f"validation_threshold={self.validation_threshold:.3f}, "
+            f"direction_change_threshold={self.direction_change_threshold:.3f}, "
             f"cohesion_weight={self.cohesion_weight}, "
             f"separation_weight={self.separation_weight}, "
             f"top_k_keywords={self.top_k_keywords}, "
@@ -282,8 +329,7 @@ class AlgorithmConfig:
             Formatted string showing main configuration values
         """
         return (
-            f"AlgorithmConfig(direction_threshold={self.direction_threshold:.3f}, "
-            f"validation_threshold={self.validation_threshold:.3f}, "
+            f"AlgorithmConfig(direction_change_threshold={self.direction_change_threshold:.3f}, "
             f"objective_weights=({self.cohesion_weight}, {self.separation_weight}), "
             f"anti_gaming={self.anti_gaming_enable_size_weighting})"
         )

@@ -55,7 +55,7 @@ def _calculate_adaptive_timeout(prompt: str, model: str = "qwen2.5:3b") -> int:
     model_factors = {
         "deepseek-r1": 6.0,
         "deepseek-r1:8b-0528-qwen3-q4_K_M": 6.0,
-        "gemma3:12b": 2.5,
+        "gemma3n:latest": 2.5,
         "qwen2.5:14b": 2.5,
         "llama3.1:8b": 2.0,
         "qwen2.5:7b": 1.8,
