@@ -266,7 +266,7 @@ Examples:
     if args.validation_threshold is not None:
         overrides["validation_threshold"] = args.validation_threshold
     if args.citation_boost_rate is not None:
-        overrides["citation_boost_rate"] = args.citation_boost_rate
+        overrides["citation_confidence_boost"] = args.citation_boost_rate
 
     domain_for_config = args.domain if args.domain != "all" else None
 

@@ -345,7 +345,7 @@ Generate your analysis **only** in the following structured JSON format. **Do no
   "description": "Detailed technical explanation with paper references"
 }}"""
 
-    model = "gemma3:4b-it-qat"
+    model = "gemma3n:latest"
     if verbose:
         logger.info(f"  Sending LLM query with {model} model...")
         logger.info(f"  Prompt length: {len(prompt)} characters")
@@ -447,7 +447,7 @@ You are a research historian. Two adjacent research periods have been merged bec
 </instructions>
 """
 
-    model = "gemma3:4b-it-qat"
+    model = "gemma3n:latest"
     if verbose:
         logger.info(f"  Sending LLM query with {model} model...")
         logger.info(f"  Prompt length: {len(prompt)} characters")

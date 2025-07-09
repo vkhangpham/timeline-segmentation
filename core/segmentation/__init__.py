@@ -8,9 +8,8 @@ from .segmentation import (
 
 from .change_point_detection import (
     detect_boundary_years,
-    detect_direction_change_years,
+    detect_direction_change_years_with_citation_boost,
     detect_citation_acceleration_years,
-    validate_and_combine_signals,
 )
 
 from .segment_merging import (
@@ -22,8 +21,7 @@ __all__ = [
     "validate_period_contiguity",
     "get_boundary_transparency_report",
     "detect_boundary_years",
-    "detect_direction_change_years",
+    "detect_direction_change_years_with_citation_boost",
     "detect_citation_acceleration_years",
-    "validate_and_combine_signals",
     "merge_similar_periods",
 ]
