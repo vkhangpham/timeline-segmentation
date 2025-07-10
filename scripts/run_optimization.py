@@ -15,9 +15,10 @@ import sys
 from tqdm import tqdm
 
 # Check if we need to suppress logging (if --verbose is not in args)
-if '--verbose' not in sys.argv:
+if "--verbose" not in sys.argv:
     # Import logging utility first and set suppress mode before any core imports
     from core.utils.logging import set_suppress_console_logging
+
     set_suppress_console_logging(True)
 
 from core.utils.config import AlgorithmConfig
@@ -30,51 +31,56 @@ from core.utils.logging import configure_global_logging, get_logger
 
 class OptimizationProgressTracker:
     """Tracks optimization progress with tqdm and best score updates."""
-    
-    def __init__(self, total_trials: int, domain_name: str, optimization_config: Dict[str, Any] = None):
+
+    def __init__(
+        self,
+        total_trials: int,
+        domain_name: str,
+        optimization_config: Dict[str, Any] = None,
+    ):
         self.domain_name = domain_name
-        self.best_score = float('-inf')
+        self.best_score = float("-inf")
         self.best_params = {}
         self.optimization_config = optimization_config or {}
-        
+
         # Create progress bar
         self.pbar = tqdm(
             total=total_trials,
             desc=f"Optimizing {domain_name}",
             bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}] Best: {postfix}",
-            postfix="Starting..."
+            postfix="Starting...",
         )
-    
+
     def update(self, trial_result: Dict[str, Any]):
         """Update progress bar with trial result."""
         score = trial_result["objective_score"]
         params = trial_result["parameters"]
-        
+
         # Update best score if improved
         if score > self.best_score:
             self.best_score = score
             self.best_params = params.copy()
-        
+
         # Format current trial parameters for display (always show current, not just best)
         current_params = self._format_params(params)
         current_postfix = f"{score:.3f} | Current: {current_params}"
-        
+
         # If we have a best score, add it to the display
-        if self.best_score > float('-inf'):
+        if self.best_score > float("-inf"):
             best_params = self._format_params(self.best_params)
             current_postfix += f" | Best: {self.best_score:.3f} ({best_params})"
-            
+
         self.pbar.set_postfix_str(current_postfix)
         self.pbar.update(1)
-    
+
     def _format_params(self, params: Dict[str, Any]) -> str:
         """Format parameters for compact display."""
         if not params:
             return "N/A"
-        
+
         # Get all parameters from optimization config for comprehensive display
         param_config = self.optimization_config.get("parameters", {})
-        
+
         formatted_params = []
         for param_name, param_value in params.items():
             # Create short abbreviations for common parameters
@@ -93,9 +99,9 @@ class OptimizationProgressTracker:
                 "batch_size": "batch",
                 "num_epochs": "epochs",
             }
-            
+
             abbrev = param_abbrevs.get(param_name, param_name[:8])
-            
+
             # Format value based on type
             if isinstance(param_value, float):
                 formatted_value = f"{param_value:.3f}"
@@ -103,11 +109,11 @@ class OptimizationProgressTracker:
                 formatted_value = str(param_value)
             else:
                 formatted_value = str(param_value)
-            
+
             formatted_params.append(f"{abbrev}={formatted_value}")
-        
+
         return ", ".join(formatted_params)
-    
+
     def close(self):
         """Close progress bar."""
         self.pbar.close()
@@ -145,11 +151,11 @@ def create_objective_function(
             data_directory=data_directory,
             verbose=verbose,  # Only verbose if explicitly requested
         )
-        
+
         # Update progress tracker if provided
         if progress_tracker:
             progress_tracker.update(result)
-            
+
         return result
 
     return objective_function
@@ -190,7 +196,7 @@ def save_trial_results(
         "segment_f1",
         "runtime_seconds",
     ]
-    
+
     # Get parameter names dynamically from optimization config
     parameter_names = []
     if optimization_config and "parameters" in optimization_config:
@@ -198,7 +204,7 @@ def save_trial_results(
     elif results:
         # Fallback: extract parameter names from actual results
         parameter_names = list(results[0].get("parameters", {}).keys())
-    
+
     # Combine all fieldnames
     fieldnames = base_fieldnames + parameter_names + ["error_message"]
 
@@ -333,7 +339,11 @@ def run_optimization(
     clear_cache()
 
     # Create progress tracker (only if not verbose)
-    progress_tracker = None if verbose else OptimizationProgressTracker(n_calls, domain_name, optimization_config)
+    progress_tracker = (
+        None
+        if verbose
+        else OptimizationProgressTracker(n_calls, domain_name, optimization_config)
+    )
 
     # Create objective function
     objective_function = create_objective_function(
@@ -349,7 +359,7 @@ def run_optimization(
         # Run Bayesian optimization
         if verbose:
             logger.info("Using Bayesian optimization")
-            
+
         result = run_bayesian_optimization(
             config=optimization_config,
             objective_function=objective_function,
@@ -375,16 +385,123 @@ def run_optimization(
             logger.info(f"Best score: {best_result['objective_score']:.3f}")
             logger.info(f"Best parameters: {best_result['parameters']}")
         else:
-            print(f"\nOptimization complete! Best score: {best_result['objective_score']:.3f}")
+            print(
+                f"\nOptimization complete! Best score: {best_result['objective_score']:.3f}"
+            )
             if best_score_plot:
                 print(f"Best-score curve saved to: {best_score_plot}")
 
         return best_result, all_results
-        
+
     finally:
         # Always close progress tracker if it exists
         if progress_tracker:
             progress_tracker.close()
+
+
+def run_all_domains_optimization(
+    optimization_config: Dict[str, Any] = None,
+    data_directory: str = "resources",
+    verbose: bool = False,
+) -> bool:
+    """Run optimization for all available domains.
+
+    Args:
+        optimization_config: Optimization configuration dictionary
+        data_directory: Directory containing domain data
+        verbose: Enable verbose logging
+
+    Returns:
+        True if at least one domain succeeded, False otherwise
+    """
+    logger = get_logger(__name__, verbose, "all_domains")
+
+    domains = discover_available_domains(verbose)
+    if not domains:
+        logger.error("No domains found")
+        return False
+
+    successful = []
+    failed = []
+
+    if verbose:
+        logger.info("CROSS-DOMAIN OPTIMIZATION")
+        logger.info("=" * 50)
+        logger.info(f"Processing {len(domains)} domains: {', '.join(domains)}")
+    else:
+        print(f"Running optimization for {len(domains)} domains: {', '.join(domains)}")
+
+    for domain in domains:
+        if verbose:
+            logger.info(f"Processing {domain}...")
+        else:
+            print(f"\nProcessing {domain}...")
+
+        try:
+            # Load domain-specific optimization config if not provided
+            domain_optimization_config = optimization_config
+            if domain_optimization_config is None:
+                domain_optimization_config = load_config(domain_name=domain)
+
+            # Run optimization for this domain
+            best_result, all_results = run_optimization(
+                domain_name=domain,
+                optimization_config=domain_optimization_config,
+                data_directory=data_directory,
+                verbose=verbose,
+            )
+
+            # Save results
+            csv_path = save_trial_results(
+                all_results, domain, domain_optimization_config, verbose
+            )
+            json_path = save_best_config(best_result, domain, verbose)
+
+            successful.append(domain)
+
+            if verbose:
+                logger.info(f"✓ {domain} completed successfully")
+                logger.info(f"  Best score: {best_result['objective_score']:.3f}")
+                logger.info(f"  Results saved to: {csv_path}, {json_path}")
+            else:
+                print(
+                    f"✓ {domain} completed (score: {best_result['objective_score']:.3f})"
+                )
+
+        except Exception as e:
+            failed.append(domain)
+            if verbose:
+                logger.error(f"✗ {domain} failed: {e}")
+            else:
+                print(f"✗ {domain} failed: {e}")
+
+    # Print summary
+    if verbose:
+        logger.info("OPTIMIZATION COMPLETE")
+        logger.info("=" * 30)
+        logger.info(f"Success: {len(successful)}/{len(domains)} domains")
+    else:
+        print(f"\n{'='*50}")
+        print(f"OPTIMIZATION COMPLETE")
+        print(f"{'='*50}")
+        print(f"Success: {len(successful)}/{len(domains)} domains")
+
+    if successful:
+        if verbose:
+            logger.info(f"Successful: {', '.join(successful)}")
+        else:
+            print(f"Successful: {', '.join(successful)}")
+            print(
+                f"Results saved in 'results/optimized_params/' and 'results/optimization_logs/' directories"
+            )
+
+    if failed:
+        if verbose:
+            logger.warning(f"Failed: {', '.join(failed)}")
+        else:
+            print(f"Failed: {', '.join(failed)}")
+
+    return len(successful) > 0
 
 
 def main():
@@ -397,6 +514,8 @@ Examples:
   python scripts/run_optimization.py --domain deep_learning
   python scripts/run_optimization.py --domain applied_mathematics --verbose
   python scripts/run_optimization.py --domain computer_vision --config custom_config.yaml
+  python scripts/run_optimization.py --domain all --verbose
+  python scripts/run_optimization.py --domain all
         """,
     )
 
@@ -404,7 +523,7 @@ Examples:
         "--domain",
         type=str,
         required=True,
-        help="Domain to optimize",
+        help='Domain to optimize (use "all" for all domains)',
     )
     parser.add_argument(
         "--config",
@@ -420,6 +539,29 @@ Examples:
 
     args = parser.parse_args()
 
+    # Configure logging - only verbose if requested
+    if args.verbose:
+        configure_global_logging(
+            verbose=True, domain_name=args.domain if args.domain != "all" else None
+        )
+
+    # Handle "all" domains case
+    if args.domain == "all":
+        # Load optimization configuration (global config for all domains)
+        optimization_config = load_config(
+            config_path=args.config,
+            domain_name=None,  # Use global config for all domains
+        )
+
+        # Run optimization for all domains
+        success = run_all_domains_optimization(
+            optimization_config=optimization_config,
+            verbose=args.verbose,
+        )
+
+        return success
+
+    # Handle single domain case
     # Validate domain
     available_domains = discover_available_domains(args.verbose)
     if args.domain not in available_domains:
@@ -433,10 +575,6 @@ Examples:
         domain_name=args.domain,
     )
 
-    # Configure logging - only verbose if requested
-    if args.verbose:
-        configure_global_logging(verbose=True, domain_name=args.domain)
-
     # Run optimization
     best_result, all_results = run_optimization(
         domain_name=args.domain,
@@ -445,7 +583,9 @@ Examples:
     )
 
     # Save results
-    csv_path = save_trial_results(all_results, args.domain, optimization_config, args.verbose)
+    csv_path = save_trial_results(
+        all_results, args.domain, optimization_config, args.verbose
+    )
     json_path = save_best_config(best_result, args.domain, args.verbose)
 
     print(f"\n{'='*50}")
