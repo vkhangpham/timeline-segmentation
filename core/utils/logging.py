@@ -12,6 +12,7 @@ import datetime
 
 _global_log_file = None
 _logging_configured = False
+_suppress_console_logging = False
 
 
 class EmojiFormatter(logging.Formatter):
@@ -40,6 +41,16 @@ class FileFormatter(logging.Formatter):
         super().__init__(
             fmt="%(asctime)s | %(levelname)s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
         )
+
+
+def set_suppress_console_logging(suppress: bool = True):
+    """Set whether to suppress console logging output.
+    
+    Args:
+        suppress: If True, suppress console logging handlers
+    """
+    global _suppress_console_logging
+    _suppress_console_logging = suppress
 
 
 def ensure_log_directory() -> Path:
@@ -84,7 +95,7 @@ def setup_logging(
     Returns:
         Configured logger instance
     """
-    global _global_log_file, _logging_configured
+    global _global_log_file, _logging_configured, _suppress_console_logging
 
     if module_name is None:
         import inspect
@@ -100,13 +111,15 @@ def setup_logging(
     level = logging.DEBUG if verbose else logging.INFO
     logger.setLevel(level)
 
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setLevel(level)
+    # Only add console handler if not suppressing console logging
+    if not _suppress_console_logging:
+        console_handler = logging.StreamHandler(sys.stdout)
+        console_handler.setLevel(level)
 
-    emoji_formatter = EmojiFormatter()
-    console_handler.setFormatter(emoji_formatter)
+        emoji_formatter = EmojiFormatter()
+        console_handler.setFormatter(emoji_formatter)
 
-    logger.addHandler(console_handler)
+        logger.addHandler(console_handler)
 
     if _logging_configured and _global_log_file:
         file_handler = logging.FileHandler(_global_log_file, mode="a", encoding="utf-8")
@@ -151,7 +164,7 @@ def configure_global_logging(verbose: bool = False, domain_name: str = None):
         verbose: If True, enable DEBUG level logging globally
         domain_name: Optional domain name for log file naming
     """
-    global _global_log_file, _logging_configured
+    global _global_log_file, _logging_configured, _suppress_console_logging
 
     if _logging_configured:
         return
@@ -163,13 +176,15 @@ def configure_global_logging(verbose: bool = False, domain_name: str = None):
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
 
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setLevel(level)
+    # Only add console handler if not suppressing console logging
+    if not _suppress_console_logging:
+        console_handler = logging.StreamHandler(sys.stdout)
+        console_handler.setLevel(level)
 
-    emoji_formatter = EmojiFormatter()
-    console_handler.setFormatter(emoji_formatter)
+        emoji_formatter = EmojiFormatter()
+        console_handler.setFormatter(emoji_formatter)
 
-    root_logger.addHandler(console_handler)
+        root_logger.addHandler(console_handler)
 
     logs_dir = ensure_log_directory()
     log_filename = create_log_filename(domain_name)
@@ -185,9 +200,11 @@ def configure_global_logging(verbose: bool = False, domain_name: str = None):
 
     _logging_configured = True
 
-    root_logger.info(f"=== NEW ANALYSIS SESSION STARTED ===")
-    if domain_name:
-        root_logger.info(f"Domain: {domain_name}")
-    root_logger.info(f"Log file: {_global_log_file}")
-    root_logger.info(f"Verbose mode: {verbose}")
-    root_logger.info(f"=" * 50)
+    # Only log startup messages if console logging is not suppressed
+    if not _suppress_console_logging:
+        root_logger.info(f"=== NEW ANALYSIS SESSION STARTED ===")
+        if domain_name:
+            root_logger.info(f"Domain: {domain_name}")
+        root_logger.info(f"Log file: {_global_log_file}")
+        root_logger.info(f"Verbose mode: {verbose}")
+        root_logger.info(f"=" * 50)
