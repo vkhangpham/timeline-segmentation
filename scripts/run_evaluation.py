@@ -326,10 +326,10 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python run_evaluation.py --domain art
-  python run_evaluation.py --domain all --verbose
-  python run_evaluation.py --domain computer_vision --baseline-only manual
-  python run_evaluation.py --domain deep_learning --baseline-only 5-year
+  python scripts/run_evaluation.py --domain art
+  python scripts/run_evaluation.py --domain all --verbose
+  python scripts/run_evaluation.py --domain computer_vision --baseline-only manual
+  python scripts/run_evaluation.py --domain deep_learning --baseline-only 5-year
         """,
     )
     

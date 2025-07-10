@@ -295,7 +295,7 @@ def save_best_config(
     return str(json_file)
 
 
-def optimize_domain(
+def run_optimization(
     domain_name: str,
     optimization_config: Dict[str, Any] = None,
     data_directory: str = "resources",
@@ -394,9 +394,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python scripts/optimize_domain.py --domain deep_learning
-  python scripts/optimize_domain.py --domain applied_mathematics --verbose
-  python scripts/optimize_domain.py --domain computer_vision --config custom_config.yaml
+  python scripts/run_optimization.py --domain deep_learning
+  python scripts/run_optimization.py --domain applied_mathematics --verbose
+  python scripts/run_optimization.py --domain computer_vision --config custom_config.yaml
         """,
     )
 
@@ -438,7 +438,7 @@ Examples:
         configure_global_logging(verbose=True, domain_name=args.domain)
 
     # Run optimization
-    best_result, all_results = optimize_domain(
+    best_result, all_results = run_optimization(
         domain_name=args.domain,
         optimization_config=optimization_config,
         verbose=args.verbose,

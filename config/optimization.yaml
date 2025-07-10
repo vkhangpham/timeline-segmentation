@@ -2,7 +2,7 @@ parameters:
   # Uncomment to include in optimization
   direction_change_threshold:
     type: float
-    range: [0.6, 0.95]
+    range: [0.6, 0.9]
     description: "Threshold for detecting significant direction changes"
 
   # score_distribution_window_years:
