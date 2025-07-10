@@ -1,0 +1,179 @@
+{
+  "domain_name": "computer_vision",
+  "algorithm_result": {
+    "objective_score": -2.363788040591411,
+    "raw_objective_score": 0.23621195940858902,
+    "penalty": 2.6,
+    "cohesion_score": 0.19955745130614339,
+    "separation_score": 0.38282999181837146,
+    "num_segments": 8,
+    "num_transitions": 7,
+    "boundary_years": [
+      1793,
+      1927,
+      1976,
+      1979,
+      2001,
+      2011,
+      2014,
+      2017,
+      2024
+    ],
+    "methodology": "Multi-period objective: 0.8 \u00d7 0.200 + 0.2 \u00d7 0.383 = 0.236 (8 periods, 7 transitions)",
+    "details": {
+      "cohesion_details": "P1: 0.175 (62p, top: image analysis, machine vision, visual perception) | P2: 0.177 (1878p, top: machine vision, image analysis, computational imaging) | P3: 0.188 (582p, top: image analysis, machine vision, computational imaging) | P4: 0.197 (14116p, top: image analysis, machine vision, computational imaging) | P5: 0.201 (9692p, top: image analysis, machine vision, pattern recognition) | P6: 0.210 (2951p, top: image analysis, machine vision, pattern recognition) | P7: 0.223 (2767p, top: image analysis, machine vision, machine learning) | P8: 0.225 (5891p, top: machine learning, image analysis, machine vision)",
+      "separation_details": "T1\u21922: 0.546 (vocab=3583) | T2\u21923: 0.395 (vocab=4256) | T3\u21924: 0.397 (vocab=17486) | T4\u21925: 0.340 (vocab=26496) | T5\u21926: 0.329 (vocab=16289) | T6\u21927: 0.350 (vocab=8445) | T7\u21928: 0.323 (vocab=10997)",
+      "periods": [
+        "1793-1927",
+        "1928-1976",
+        "1977-1979",
+        "1980-2001",
+        "2002-2011",
+        "2012-2014",
+        "2015-2017",
+        "2018-2024"
+      ],
+      "penalty_details": "Penalty: 2.600 (Raw: 0.236 \u2192 Final: -2.364)"
+    }
+  },
+  "baseline_results": [
+    {
+      "baseline_name": "Gemini",
+      "objective_score": 0.18315240401113717,
+      "raw_objective_score": 0.20315240401113716,
+      "penalty": 0.02,
+      "cohesion_score": 0.16762925234781248,
+      "separation_score": 0.3452450106644358,
+      "num_segments": 5,
+      "boundary_years": [
+        1950,
+        1979,
+        1995,
+        2007,
+        2011,
+        2024
+      ]
+    },
+    {
+      "baseline_name": "Manual",
+      "objective_score": 0.20247021692571865,
+      "raw_objective_score": 0.20247021692571865,
+      "penalty": 0.0,
+      "cohesion_score": 0.16327202790291082,
+      "separation_score": 0.35926297301694987,
+      "num_segments": 4,
+      "boundary_years": [
+        1957,
+        1975,
+        1990,
+        2005,
+        2024
+      ]
+    },
+    {
+      "baseline_name": "5-year",
+      "objective_score": -1.1399448290845458,
+      "raw_objective_score": 0.3700551709154545,
+      "penalty": 1.5100000000000002,
+      "cohesion_score": 0.3112886088625196,
+      "separation_score": 0.6051214191271942,
+      "num_segments": 37,
+      "boundary_years": [
+        1793,
+        1797,
+        1812,
+        1827,
+        1862,
+        1867,
+        1872,
+        1877,
+        1882,
+        1887,
+        1892,
+        1897,
+        1902,
+        1907,
+        1912,
+        1917,
+        1922,
+        1927,
+        1932,
+        1937,
+        1942,
+        1947,
+        1952,
+        1957,
+        1962,
+        1967,
+        1972,
+        1977,
+        1982,
+        1987,
+        1992,
+        1997,
+        2002,
+        2007,
+        2012,
+        2017,
+        2022,
+        2024
+      ]
+    },
+    {
+      "baseline_name": "10-year",
+      "objective_score": -0.3561419977056313,
+      "raw_objective_score": 0.35385800229436865,
+      "penalty": 0.71,
+      "cohesion_score": 0.2965785202314641,
+      "separation_score": 0.5829759305459867,
+      "num_segments": 21,
+      "boundary_years": [
+        1793,
+        1802,
+        1812,
+        1832,
+        1862,
+        1872,
+        1882,
+        1892,
+        1902,
+        1912,
+        1922,
+        1932,
+        1942,
+        1952,
+        1962,
+        1972,
+        1982,
+        1992,
+        2002,
+        2012,
+        2022,
+        2024
+      ]
+    }
+  ],
+  "auto_metrics": {
+    "boundary_f1": 0.2857142857142857,
+    "boundary_precision": 0.2222222222222222,
+    "boundary_recall": 0.4,
+    "segment_f1": 0.8076923076923077,
+    "segment_precision": 0.875,
+    "segment_recall": 0.75,
+    "tolerance": 2,
+    "details": {
+      "algorithm_boundaries": "[1793, 1927, 1976, 1979, 2001, 2011, 2014, 2017, 2024]",
+      "manual_boundaries": "[1957, 1975, 1990, 2005, 2024]",
+      "algorithm_segments": "[(1793, 1927), (1928, 1976), (1977, 1979), (1980, 2001), (2002, 2011), (2012, 2014), (2015, 2017), (2018, 2024)]",
+      "manual_segments": "[(1957, 1975), (1976, 1990), (1991, 2005), (2007, 2024)]"
+    }
+  },
+  "ranking": {
+    "Algorithm": -2.363788040591411,
+    "Gemini": 0.18315240401113717,
+    "Manual": 0.20247021692571865,
+    "5-year": -1.1399448290845458,
+    "10-year": -0.3561419977056313
+  },
+  "summary": "Evaluation Results for computer_vision:\nAlgorithm Score: -2.364\nBaseline Scores:\n  Gemini: 0.183\n  Manual: 0.202\n  5-year: -1.140\n  10-year: -0.356\nAuto-Metrics vs Manual:\n  Boundary F1: 0.286\n  Segment F1: 0.808"
+}

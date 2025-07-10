@@ -1,0 +1,20 @@
+{
+  "domain_name": "applied_mathematics",
+  "optimization_date": "2025-07-09 21:11:24",
+  "best_objective_score": -8.039280607477604,
+  "best_parameters": {
+    "direction_change_threshold": 0.6484640472248111,
+    "citation_confidence_boost": 0.1633922571920664,
+    "min_keyword_frequency_ratio": 0.06927524403496296
+  },
+  "validation_metrics": {
+    "boundary_f1": 0.3846153846153846,
+    "segment_f1": 0.9090909090909091,
+    "num_segments": 7
+  },
+  "performance": {
+    "cohesion_score": 0.10512026660716466,
+    "separation_score": 0.3831158961833192,
+    "runtime_seconds": 10.36936616897583
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "num_domains": 6,
+  "domains": [
+    "applied_mathematics",
+    "computer_vision",
+    "deep_learning",
+    "machine_learning",
+    "machine_translation",
+    "natural_language_processing"
+  ],
+  "method_averages": {
+    "Algorithm": -3.1760586944454983,
+    "Gemini": -0.14606747780896015,
+    "Manual": 0.14707033680711543,
+    "5-year": -1.11603555159864,
+    "10-year": -0.32471657044167657
+  },
+  "auto_metrics_averages": {
+    "Algorithm": {
+      "boundary_f1": 0.37562437562437556,
+      "boundary_precision": 0.3237433862433862,
+      "boundary_recall": 0.45555555555555555,
+      "segment_f1": 0.8894068894068895,
+      "segment_precision": 0.9067460317460317,
+      "segment_recall": 0.8833333333333333
+    }
+  },
+  "method_f1_averages": {
+    "Algorithm": {
+      "boundary_f1": 0.37562437562437556,
+      "boundary_precision": 0.3237433862433862,
+      "boundary_recall": 0.45555555555555555,
+      "segment_f1": 0.45747863247863246,
+      "segment_precision": 0.40105820105820106,
+      "segment_recall": 0.5396825396825397
+    },
+    "Gemini": {
+      "boundary_f1": 0.5266899766899767,
+      "boundary_precision": 0.5166666666666666,
+      "boundary_recall": 0.5444444444444444,
+      "segment_f1": 0.5963980463980464,
+      "segment_precision": 0.5843253968253969,
+      "segment_recall": 0.6150793650793651
+    },
+    "5-year": {
+      "boundary_f1": 0.31736689876224755,
+      "boundary_precision": 0.18547977001878235,
+      "boundary_recall": 1.1500000000000001,
+      "segment_f1": 0.3496339324714611,
+      "segment_precision": 0.20861884762746832,
+      "segment_recall": 1.126984126984127
+    },
+    "10-year": {
+      "boundary_f1": 0.30331955030132257,
+      "boundary_precision": 0.19524190879689604,
+      "boundary_recall": 0.7055555555555556,
+      "segment_f1": 0.35308927155694564,
+      "segment_precision": 0.23344170493012864,
+      "segment_recall": 0.75
+    }
+  },
+  "domain_breakdown": {
+    "applied_mathematics": {
+      "status": "success",
+      "algorithm_score": -8.039280607477604,
+      "baseline_scores": {
+        "Gemini": -1.2828818997771163,
+        "Manual": -0.02803835523363532,
+        "5-year": -2.148228105207398,
+        "10-year": -0.9271736262853524
+      },
+      "auto_metrics": {
+        "boundary_f1": 0.42857142857142855,
+        "boundary_precision": 0.375,
+        "boundary_recall": 0.5,
+        "segment_f1": 0.888888888888889,
+        "segment_precision": 1.0,
+        "segment_recall": 0.8
+      }
+    },
+    "computer_vision": {
+      "status": "success",
+      "algorithm_score": -2.363788040591411,
+      "baseline_scores": {
+        "Gemini": 0.18315240401113717,
+        "Manual": 0.20247021692571865,
+        "5-year": -1.1399448290845458,
+        "10-year": -0.3561419977056313
+      },
+      "auto_metrics": {
+        "boundary_f1": 0.2857142857142857,
+        "boundary_precision": 0.2222222222222222,
+        "boundary_recall": 0.4,
+        "segment_f1": 0.8076923076923077,
+        "segment_precision": 0.875,
+        "segment_recall": 0.75
+      }
+    },
+    "deep_learning": {
+      "status": "success",
+      "algorithm_score": -2.036847865907406,
+      "baseline_scores": {
+        "Gemini": 0.15975458790453187,
+        "Manual": 0.20066526036153387,
+        "5-year": -0.8983981764091509,
+        "10-year": -0.12239088511117946
+      },
+      "auto_metrics": {
+        "boundary_f1": 0.4615384615384615,
+        "boundary_precision": 0.42857142857142855,
+        "boundary_recall": 0.5,
+        "segment_f1": 0.9090909090909091,
+        "segment_precision": 0.8333333333333334,
+        "segment_recall": 1.0
+      }
+    },
+    "machine_learning": {
+      "status": "success",
+      "algorithm_score": -3.0556519633586943,
+      "baseline_scores": {
+        "Gemini": 0.18679620950216547,
+        "Manual": 0.18250013620320094,
+        "5-year": -1.1970724452687058,
+        "10-year": -0.4179759670347203
+      },
+      "auto_metrics": {
+        "boundary_f1": 0.28571428571428575,
+        "boundary_precision": 0.25,
+        "boundary_recall": 0.3333333333333333,
+        "segment_f1": 0.923076923076923,
+        "segment_precision": 0.8571428571428571,
+        "segment_recall": 1.0
+      }
+    },
+    "machine_translation": {
+      "status": "success",
+      "algorithm_score": -2.3666370640006997,
+      "baseline_scores": {
+        "Gemini": -0.06562196567592929,
+        "Manual": 0.1644032953970509,
+        "5-year": -0.5189084415732689,
+        "10-year": 0.03149278008175527
+      },
+      "auto_metrics": {
+        "boundary_f1": 0.3636363636363636,
+        "boundary_precision": 0.3333333333333333,
+        "boundary_recall": 0.4,
+        "segment_f1": 1.0,
+        "segment_precision": 1.0,
+        "segment_recall": 1.0
+      }
+    },
+    "natural_language_processing": {
+      "status": "success",
+      "algorithm_score": -1.194146625337177,
+      "baseline_scores": {
+        "Gemini": -0.05760420281854997,
+        "Manual": 0.16042146718882347,
+        "5-year": -0.7936613120487708,
+        "10-year": -0.1561097265949311
+      },
+      "auto_metrics": {
+        "boundary_f1": 0.42857142857142855,
+        "boundary_precision": 0.3333333333333333,
+        "boundary_recall": 0.6,
+        "segment_f1": 0.8076923076923077,
+        "segment_precision": 0.875,
+        "segment_recall": 0.75
+      }
+    }
+  }
+}

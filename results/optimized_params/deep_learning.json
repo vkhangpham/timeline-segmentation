@@ -1,0 +1,20 @@
+{
+  "domain_name": "deep_learning",
+  "optimization_date": "2025-07-09 22:32:18",
+  "best_objective_score": -2.036847865907406,
+  "best_parameters": {
+    "direction_change_threshold": 0.8391422315889103,
+    "citation_confidence_boost": 0.14149949866739317,
+    "min_keyword_frequency_ratio": 0.13331949117361647
+  },
+  "validation_metrics": {
+    "boundary_f1": 0.3636363636363636,
+    "segment_f1": 0.9090909090909091,
+    "num_segments": 6
+  },
+  "performance": {
+    "cohesion_score": 0.16835876226056667,
+    "separation_score": 0.44232562142070353,
+    "runtime_seconds": 4.587034225463867
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "domain_name": "machine_translation",
+  "confidence": 0.9372544733182531,
+  "boundary_years": [
+    1956,
+    2006,
+    2011,
+    2015
+  ],
+  "narrative_evolution": "machine_translation segmentation results:; Period 1 (1819-1955): 23 papers; Period 2 (1956-2005): 1797 papers; Period 3 (2006-2010): 1329 papers; Period 4 (2011-2014): 1172 papers; Period 5 (2015-2024): 3932 papers",
+  "algorithm_config": {
+    "direction_change_threshold": 0.6,
+    "direction_threshold_strategy": "fixed",
+    "direction_scoring_method": "weighted_jaccard",
+    "min_baseline_period_years": 3,
+    "score_distribution_window_years": 3,
+    "citation_confidence_boost": 0.06695010917639953,
+    "citation_support_window_years": 2,
+    "diagnostic_top_keywords_limit": 10,
+    "min_papers_per_year": 100,
+    "cohesion_weight": 0.8,
+    "separation_weight": 0.2,
+    "top_k_keywords": 100,
+    "min_keyword_frequency_ratio": 0.09539493205181593,
+    "beam_search_enabled": true,
+    "beam_width": 5,
+    "max_splits_per_segment": 1,
+    "min_period_years": 5,
+    "max_period_years": 50,
+    "save_direction_diagnostics": true
+  },
+  "periods": [
+    {
+      "start_year": 1819,
+      "end_year": 1955,
+      "total_papers": 23,
+      "total_citations": 2986,
+      "top_keywords": [
+        "specialized translation",
+        "applied linguistics",
+        "general linguistics",
+        "textual practice",
+        "speech translation",
+        "multimodal translation",
+        "language technology",
+        "autonomous robot",
+        "human robot interaction",
+        "human machine system",
+        "computer-assisted translation",
+        "abstract machine",
+        "spoken language technology",
+        "interpretation technique",
+        "human-computer interaction",
+        "man-machine interface",
+        "intelligent robotic system",
+        "human-machine interaction",
+        "human-machine interface",
+        "manmachine interaction",
+        "language adaptation",
+        "language learning",
+        "implicature",
+        "paralinguistics",
+        "paraphrase",
+        "speech communication",
+        "textual entailment"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 1956,
+      "end_year": 2005,
+      "total_papers": 1797,
+      "total_citations": 192510,
+      "top_keywords": [
+        "computer-assisted translation",
+        "spoken language technology",
+        "neural machine translation"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 2006,
+      "end_year": 2010,
+      "total_papers": 1329,
+      "total_citations": 82648,
+      "top_keywords": [
+        "computer-assisted translation",
+        "statistical machine translation",
+        "spoken language technology"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 2011,
+      "end_year": 2014,
+      "total_papers": 1172,
+      "total_citations": 158573,
+      "top_keywords": [
+        "computer-assisted translation",
+        "statistical machine translation",
+        "neural machine translation"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 2015,
+      "end_year": 2024,
+      "total_papers": 3932,
+      "total_citations": 364285,
+      "top_keywords": [
+        "neural machine translation",
+        "language learning",
+        "computer-assisted translation"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    }
+  ]
+}

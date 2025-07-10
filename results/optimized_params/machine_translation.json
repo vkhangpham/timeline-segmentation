@@ -1,0 +1,20 @@
+{
+  "domain_name": "machine_translation",
+  "optimization_date": "2025-07-09 21:13:31",
+  "best_objective_score": -2.3666370640006997,
+  "best_parameters": {
+    "direction_change_threshold": 0.6,
+    "citation_confidence_boost": 0.06695010917639953,
+    "min_keyword_frequency_ratio": 0.09539493205181593
+  },
+  "validation_metrics": {
+    "boundary_f1": 0.33333333333333326,
+    "segment_f1": 1.0,
+    "num_segments": 5
+  },
+  "performance": {
+    "cohesion_score": 0.126351945373418,
+    "separation_score": 0.4614068985028286,
+    "runtime_seconds": 1.0882818698883057
+  }
+}

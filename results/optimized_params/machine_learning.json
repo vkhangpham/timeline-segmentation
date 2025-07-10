@@ -1,0 +1,20 @@
+{
+  "domain_name": "machine_learning",
+  "optimization_date": "2025-07-09 20:33:47",
+  "best_objective_score": -3.0556519633586943,
+  "best_parameters": {
+    "direction_change_threshold": 0.655656684130253,
+    "citation_confidence_boost": 0.2,
+    "min_keyword_frequency_ratio": 0.1
+  },
+  "validation_metrics": {
+    "boundary_f1": 0.3333333333333333,
+    "segment_f1": 0.923076923076923,
+    "num_segments": 7
+  },
+  "performance": {
+    "cohesion_score": 0.14065301439510286,
+    "separation_score": 0.4591281256261182,
+    "runtime_seconds": 6.77115273475647
+  }
+}

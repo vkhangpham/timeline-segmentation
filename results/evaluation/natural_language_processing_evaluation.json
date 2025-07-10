@@ -1,0 +1,169 @@
+{
+  "domain_name": "natural_language_processing",
+  "algorithm_result": {
+    "objective_score": -1.194146625337177,
+    "raw_objective_score": 0.18585337466282292,
+    "penalty": 1.3800000000000001,
+    "cohesion_score": 0.12833915612726754,
+    "separation_score": 0.4159102488050445,
+    "num_segments": 8,
+    "num_transitions": 7,
+    "boundary_years": [
+      1852,
+      1899,
+      1978,
+      1981,
+      1988,
+      2001,
+      2008,
+      2014,
+      2024
+    ],
+    "methodology": "Multi-period objective: 0.8 \u00d7 0.128 + 0.2 \u00d7 0.416 = 0.186 (8 periods, 7 transitions)",
+    "details": {
+      "cohesion_details": "P1: 0.187 (7p, top: applied linguistics, syntax, text mining) | P2: 0.111 (1286p, top: computational linguistics, semantics, speech processing) | P3: 0.111 (359p, top: computational linguistics, semantics, speech processing) | P4: 0.103 (1362p, top: computational linguistics, text mining, semantics) | P5: 0.117 (6188p, top: computational linguistics, machine learning, text mining) | P6: 0.127 (6841p, top: text mining, machine learning, computational linguistics) | P7: 0.128 (5838p, top: text mining, machine learning, knowledge discovery) | P8: 0.144 (8479p, top: machine learning, deep learning, text mining)",
+      "separation_details": "T1\u21922: 0.640 (vocab=2163) | T2\u21923: 0.395 (vocab=2574) | T3\u21924: 0.401 (vocab=2690) | T4\u21925: 0.389 (vocab=8804) | T5\u21926: 0.348 (vocab=14342) | T6\u21927: 0.344 (vocab=14825) | T7\u21928: 0.394 (vocab=16031)",
+      "periods": [
+        "1852-1899",
+        "1900-1978",
+        "1979-1981",
+        "1982-1988",
+        "1989-2001",
+        "2002-2008",
+        "2009-2014",
+        "2015-2024"
+      ],
+      "penalty_details": "Penalty: 1.380 (Raw: 0.186 \u2192 Final: -1.194)"
+    }
+  },
+  "baseline_results": [
+    {
+      "baseline_name": "Gemini",
+      "objective_score": -0.05760420281854997,
+      "raw_objective_score": 0.16239579718145003,
+      "penalty": 0.22,
+      "cohesion_score": 0.11066831081740584,
+      "separation_score": 0.3693057426376266,
+      "num_segments": 6,
+      "boundary_years": [
+        1950,
+        1985,
+        2005,
+        2014,
+        2016,
+        2019,
+        2024
+      ]
+    },
+    {
+      "baseline_name": "Manual",
+      "objective_score": 0.16042146718882347,
+      "raw_objective_score": 0.16042146718882347,
+      "penalty": 0.0,
+      "cohesion_score": 0.10075166783508892,
+      "separation_score": 0.3991006646037616,
+      "num_segments": 4,
+      "boundary_years": [
+        1950,
+        1970,
+        1990,
+        2010,
+        2024
+      ]
+    },
+    {
+      "baseline_name": "5-year",
+      "objective_score": -0.7936613120487708,
+      "raw_objective_score": 0.34633868795122935,
+      "penalty": 1.1400000000000001,
+      "cohesion_score": 0.27715864390433775,
+      "separation_score": 0.6230588641387957,
+      "num_segments": 30,
+      "boundary_years": [
+        1852,
+        1856,
+        1861,
+        1866,
+        1881,
+        1896,
+        1901,
+        1906,
+        1916,
+        1921,
+        1926,
+        1931,
+        1936,
+        1941,
+        1946,
+        1951,
+        1956,
+        1961,
+        1966,
+        1971,
+        1976,
+        1981,
+        1986,
+        1991,
+        1996,
+        2001,
+        2006,
+        2011,
+        2016,
+        2021,
+        2024
+      ]
+    },
+    {
+      "baseline_name": "10-year",
+      "objective_score": -0.1561097265949311,
+      "raw_objective_score": 0.3338902734050689,
+      "penalty": 0.49,
+      "cohesion_score": 0.2621822089056902,
+      "separation_score": 0.6207225314025835,
+      "num_segments": 17,
+      "boundary_years": [
+        1852,
+        1861,
+        1871,
+        1881,
+        1901,
+        1911,
+        1921,
+        1931,
+        1941,
+        1951,
+        1961,
+        1971,
+        1981,
+        1991,
+        2001,
+        2011,
+        2021,
+        2024
+      ]
+    }
+  ],
+  "auto_metrics": {
+    "boundary_f1": 0.42857142857142855,
+    "boundary_precision": 0.3333333333333333,
+    "boundary_recall": 0.6,
+    "segment_f1": 0.8076923076923077,
+    "segment_precision": 0.875,
+    "segment_recall": 0.75,
+    "tolerance": 2,
+    "details": {
+      "algorithm_boundaries": "[1852, 1899, 1978, 1981, 1988, 2001, 2008, 2014, 2024]",
+      "manual_boundaries": "[1950, 1970, 1990, 2010, 2024]",
+      "algorithm_segments": "[(1852, 1899), (1900, 1978), (1979, 1981), (1982, 1988), (1989, 2001), (2002, 2008), (2009, 2014), (2015, 2024)]",
+      "manual_segments": "[(1950, 1970), (1971, 1990), (1991, 2010), (2011, 2024)]"
+    }
+  },
+  "ranking": {
+    "Algorithm": -1.194146625337177,
+    "Gemini": -0.05760420281854997,
+    "Manual": 0.16042146718882347,
+    "5-year": -0.7936613120487708,
+    "10-year": -0.1561097265949311
+  },
+  "summary": "Evaluation Results for natural_language_processing:\nAlgorithm Score: -1.194\nBaseline Scores:\n  Gemini: -0.058\n  Manual: 0.160\n  5-year: -0.794\n  10-year: -0.156\nAuto-Metrics vs Manual:\n  Boundary F1: 0.429\n  Segment F1: 0.808"
+}

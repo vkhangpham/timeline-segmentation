@@ -1,0 +1,20 @@
+{
+  "domain_name": "computer_vision",
+  "optimization_date": "2025-07-09 20:45:51",
+  "best_objective_score": -2.363788040591411,
+  "best_parameters": {
+    "direction_change_threshold": 0.94663627149448,
+    "citation_confidence_boost": 0.1992303541726605,
+    "min_keyword_frequency_ratio": 0.08167976836165092
+  },
+  "validation_metrics": {
+    "boundary_f1": 0.25,
+    "segment_f1": 0.8076923076923077,
+    "num_segments": 8
+  },
+  "performance": {
+    "cohesion_score": 0.19955745130614339,
+    "separation_score": 0.38282999181837146,
+    "runtime_seconds": 6.604773044586182
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "domain_name": "machine_learning",
+  "confidence": 0.9422483990655368,
+  "boundary_years": [
+    1914,
+    1965,
+    1988,
+    1998,
+    2014,
+    2017
+  ],
+  "narrative_evolution": "machine_learning segmentation results:; Period 1 (1744-1913): 45 papers; Period 2 (1914-1964): 1131 papers; Period 3 (1965-1987): 6521 papers; Period 4 (1988-1997): 9348 papers; Period 5 (1998-2013): 15469 papers; Period 6 (2014-2016): 2714 papers; Period 7 (2017-2024): 7568 papers",
+  "algorithm_config": {
+    "direction_change_threshold": 0.655656684130253,
+    "direction_threshold_strategy": "fixed",
+    "direction_scoring_method": "weighted_jaccard",
+    "min_baseline_period_years": 3,
+    "score_distribution_window_years": 3,
+    "citation_confidence_boost": 0.2,
+    "citation_support_window_years": 2,
+    "diagnostic_top_keywords_limit": 10,
+    "min_papers_per_year": 100,
+    "cohesion_weight": 0.8,
+    "separation_weight": 0.2,
+    "top_k_keywords": 100,
+    "min_keyword_frequency_ratio": 0.1,
+    "beam_search_enabled": true,
+    "beam_width": 5,
+    "max_splits_per_segment": 1,
+    "min_period_years": 5,
+    "max_period_years": 50,
+    "save_direction_diagnostics": true
+  },
+  "periods": [
+    {
+      "start_year": 1744,
+      "end_year": 1913,
+      "total_papers": 45,
+      "total_citations": 2099,
+      "top_keywords": [
+        "machine learning research",
+        "deep learning",
+        "pattern recognition",
+        "image analysis",
+        "classification method",
+        "automatic classification",
+        "abstract interpretation"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 1914,
+      "end_year": 1964,
+      "total_papers": 1131,
+      "total_citations": 184466,
+      "top_keywords": [
+        "machine learning research",
+        "pattern recognition",
+        "deep learning",
+        "image analysis"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 1965,
+      "end_year": 1987,
+      "total_papers": 6521,
+      "total_citations": 1107749,
+      "top_keywords": [
+        "machine learning research",
+        "pattern recognition",
+        "image analysis",
+        "deep learning",
+        "machine vision",
+        "computer vision"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 1988,
+      "end_year": 1997,
+      "total_papers": 9348,
+      "total_citations": 2434838,
+      "top_keywords": [
+        "machine learning research",
+        "neural network (machine learning)",
+        "deep learning",
+        "pattern recognition",
+        "image analysis",
+        "neural computation",
+        "machine vision",
+        "computer vision"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 1998,
+      "end_year": 2013,
+      "total_papers": 15469,
+      "total_citations": 7461261,
+      "top_keywords": [
+        "machine learning research",
+        "deep learning",
+        "pattern recognition",
+        "image analysis",
+        "machine vision",
+        "computer vision"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 2014,
+      "end_year": 2016,
+      "total_papers": 2714,
+      "total_citations": 2953969,
+      "top_keywords": [
+        "deep learning",
+        "machine learning research",
+        "image analysis",
+        "computer vision",
+        "machine vision",
+        "pattern recognition",
+        "computational imaging",
+        "neural network (machine learning)",
+        "convolutional neural network",
+        "information fusion",
+        "image representation"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    },
+    {
+      "start_year": 2017,
+      "end_year": 2024,
+      "total_papers": 7568,
+      "total_citations": 3764609,
+      "top_keywords": [
+        "deep learning",
+        "image analysis",
+        "machine learning research",
+        "computer vision",
+        "machine vision",
+        "computational imaging",
+        "pattern recognition",
+        "information fusion",
+        "neural network (machine learning)"
+      ],
+      "topic_label": null,
+      "topic_description": null,
+      "representative_papers": [],
+      "confidence": 0.0,
+      "network_stability": 0.0,
+      "network_metrics": {}
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "domain_name": "natural_language_processing",
+  "optimization_date": "2025-07-09 19:35:51",
+  "best_objective_score": -1.194146625337177,
+  "best_parameters": {
+    "direction_change_threshold": 0.7610652568990685,
+    "citation_confidence_boost": 0.2,
+    "min_keyword_frequency_ratio": 0.09543453799630332
+  },
+  "validation_metrics": {
+    "boundary_f1": 0.4166666666666667,
+    "segment_f1": 0.8076923076923077,
+    "num_segments": 8
+  },
+  "performance": {
+    "cohesion_score": 0.12833915612726754,
+    "separation_score": 0.41591024880504446,
+    "runtime_seconds": 4.445300817489624
+  }
+}
