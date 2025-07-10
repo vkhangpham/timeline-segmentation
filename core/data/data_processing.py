@@ -111,6 +111,203 @@ def filter_keywords_by_frequency_ratio(
     }
 
 
+def filter_ubiquitous_keywords(
+    academic_years: List[AcademicYear],
+    ubiquity_threshold: float = 0.9,
+    algorithm_config=None,
+    verbose: bool = False,
+) -> List[AcademicYear]:
+    """Filter out keywords that appear as top keywords in most years (de-generalization).
+
+    This removes overly generic keywords that appear consistently across most years,
+    reducing noise and improving the discriminative power of remaining keywords.
+
+    Args:
+        academic_years: List of AcademicYear objects with initial top keywords
+        ubiquity_threshold: Threshold for considering a keyword ubiquitous (0.9 = 90%)
+        algorithm_config: Algorithm configuration for top_k_keywords
+        verbose: Enable verbose logging
+
+    Returns:
+        List of AcademicYear objects with filtered keywords
+
+    Raises:
+        ValueError: If academic_years is empty or ubiquity_threshold is invalid
+    """
+    if not academic_years:
+        raise ValueError("academic_years cannot be empty")
+
+    if not (0.0 <= ubiquity_threshold <= 1.0):
+        raise ValueError(
+            f"ubiquity_threshold must be between 0.0 and 1.0, got {ubiquity_threshold}"
+        )
+
+    logger = get_logger(__name__, verbose)
+
+    if verbose:
+        logger.info(
+            f"Starting ubiquitous keyword filtering with threshold {ubiquity_threshold}"
+        )
+
+    # Get configuration parameters
+    top_k = getattr(algorithm_config, "top_k_keywords", 15) if algorithm_config else 15
+    total_years = len(academic_years)
+    min_years_for_ubiquity = max(1, int(total_years * ubiquity_threshold))
+
+    if verbose:
+        logger.info(f"  Total years: {total_years}")
+        logger.info(f"  Minimum years for ubiquity: {min_years_for_ubiquity}")
+        logger.info(f"  Top-K keywords per year: {top_k}")
+        logger.info(f"  Max iterations: {max_iterations}")
+        logger.info(f"  Min replacement frequency: {min_replacement_freq}")
+
+    # Create working copy of academic years with mutable keyword data
+    filtered_years = []
+    for year in academic_years:
+        # Create working dictionary with mutable keyword data
+        year_data = {
+            "year": year.year,
+            "papers": year.papers,
+            "paper_count": year.paper_count,
+            "total_citations": year.total_citations,
+            "keyword_frequencies": dict(year.keyword_frequencies),
+            "top_keywords": list(year.top_keywords),
+        }
+        filtered_years.append(year_data)
+
+    iteration = 0
+    total_removed = 0
+    max_iterations = (
+        getattr(algorithm_config, "max_ubiquitous_iterations", 10)
+        if algorithm_config
+        else 10
+    )
+    min_replacement_freq = (
+        getattr(algorithm_config, "min_replacement_frequency", 2)
+        if algorithm_config
+        else 2
+    )
+    removed_keywords_history = set()  # Track previously removed keywords
+
+    while iteration < max_iterations:
+        iteration += 1
+        if verbose:
+            logger.info(f"  Iteration {iteration}: Checking for ubiquitous keywords...")
+
+        # Count frequency of each keyword across all years' top keywords
+        keyword_appearance_count = defaultdict(int)
+
+        for year_data in filtered_years:
+            top_keywords_set = set(year_data["top_keywords"])
+            for keyword in top_keywords_set:
+                keyword_appearance_count[keyword] += 1
+
+        # Find ubiquitous keywords (appear in >= min_years_for_ubiquity years)
+        ubiquitous_keywords = {
+            keyword
+            for keyword, count in keyword_appearance_count.items()
+            if count >= min_years_for_ubiquity
+        }
+
+        if not ubiquitous_keywords:
+            if verbose:
+                logger.info(f"  No ubiquitous keywords found. Stopping.")
+            break
+
+        # Check if we're cycling (trying to remove keywords we've already removed)
+        if ubiquitous_keywords & removed_keywords_history:
+            cycling_keywords = ubiquitous_keywords & removed_keywords_history
+            if verbose:
+                logger.warning(
+                    f"  Detected cycling with keywords: {sorted(list(cycling_keywords))}"
+                )
+                logger.info(f"  Stopping to prevent infinite loop.")
+            break
+
+        if verbose:
+            logger.info(
+                f"  Found {len(ubiquitous_keywords)} ubiquitous keywords: {sorted(list(ubiquitous_keywords))[:5]}..."
+            )
+
+        # Remove ubiquitous keywords and replace with next most frequent
+        for year_data in filtered_years:
+            # Remove ubiquitous keywords from top_keywords
+            original_top_keywords = year_data["top_keywords"][:]
+            year_data["top_keywords"] = [
+                kw for kw in year_data["top_keywords"] if kw not in ubiquitous_keywords
+            ]
+
+            removed_count = len(original_top_keywords) - len(year_data["top_keywords"])
+
+            if removed_count > 0:
+                # Find replacement keywords from the full frequency distribution
+                # Sort all keywords by frequency (descending)
+                sorted_keywords = sorted(
+                    year_data["keyword_frequencies"].items(),
+                    key=lambda x: x[1],
+                    reverse=True,
+                )
+
+                # Find keywords not already in top_keywords and not previously removed
+                current_top_set = set(year_data["top_keywords"])
+                replacement_candidates = [
+                    keyword
+                    for keyword, freq in sorted_keywords
+                    if keyword not in current_top_set
+                    and keyword not in removed_keywords_history
+                    and freq >= min_replacement_freq
+                ]
+
+                # Add replacements up to the original top_k size
+                replacements_needed = min(removed_count, len(replacement_candidates))
+                if replacements_needed > 0:
+                    year_data["top_keywords"].extend(
+                        replacement_candidates[:replacements_needed]
+                    )
+
+                # Ensure we don't exceed top_k limit
+                year_data["top_keywords"] = year_data["top_keywords"][:top_k]
+
+                if verbose and removed_count > 0:
+                    logger.info(
+                        f"    Year {year_data['year']}: Removed {removed_count} ubiquitous keywords, added {replacements_needed} replacements"
+                    )
+
+        # Track removed keywords to detect cycles
+        removed_keywords_history.update(ubiquitous_keywords)
+        total_removed += len(ubiquitous_keywords)
+
+        if verbose:
+            logger.info(
+                f"  Iteration {iteration} completed. Removed {len(ubiquitous_keywords)} ubiquitous keywords."
+            )
+
+    # Convert back to immutable AcademicYear objects
+    final_years = []
+    for year_data in filtered_years:
+        final_year = AcademicYear(
+            year=year_data["year"],
+            papers=year_data["papers"],
+            paper_count=year_data["paper_count"],
+            total_citations=year_data["total_citations"],
+            keyword_frequencies=year_data["keyword_frequencies"],
+            top_keywords=tuple(year_data["top_keywords"]),  # Convert back to immutable
+        )
+        final_years.append(final_year)
+
+    if verbose:
+        logger.info(f"Ubiquitous keyword filtering completed:")
+        logger.info(f"  Total iterations: {iteration}")
+        logger.info(f"  Total ubiquitous keywords removed: {total_removed}")
+        if iteration >= max_iterations:
+            logger.warning(
+                f"  Reached maximum iterations ({max_iterations}) - stopping to prevent infinite loop"
+            )
+        logger.info(f"  Final keyword diversity improved")
+
+    return final_years
+
+
 def load_domain_data(
     domain_name: str,
     algorithm_config,
@@ -539,6 +736,24 @@ def compute_academic_years(
 
     academic_years.sort(key=lambda ay: ay.year)
 
+    # Apply ubiquitous keyword filtering if enabled
+    ubiquity_threshold = getattr(algorithm_config, "ubiquity_threshold", 0.9)
+    apply_ubiquitous_filtering = getattr(
+        algorithm_config, "apply_ubiquitous_filtering", True
+    )
+
+    if apply_ubiquitous_filtering and len(academic_years) > 1:
+        logger = get_logger(__name__, verbose=False)
+        logger.info(
+            f"Applying ubiquitous keyword filtering with threshold {ubiquity_threshold}"
+        )
+        academic_years = filter_ubiquitous_keywords(
+            academic_years=academic_years,
+            ubiquity_threshold=ubiquity_threshold,
+            algorithm_config=algorithm_config,
+            verbose=False,
+        )
+
     return tuple(academic_years)
 
 
@@ -549,96 +764,105 @@ def load_timeline_from_file(
     verbose: bool = False,
 ) -> TimelineAnalysisResult:
     """Load timeline result from JSON file and reconstruct with original domain data.
-    
+
     Args:
         timeline_file: Path to timeline JSON file
         algorithm_config: Algorithm configuration (will be overridden by saved config if available)
         data_directory: Directory containing domain data files
         verbose: Enable verbose logging
-        
+
     Returns:
         TimelineAnalysisResult object reconstructed with original domain data
-        
+
     Raises:
         FileNotFoundError: If timeline file doesn't exist
         ValueError: If file format is invalid
     """
     logger = get_logger(__name__, verbose)
-    
+
     timeline_path = Path(timeline_file)
     if not timeline_path.exists():
         raise FileNotFoundError(f"Timeline file not found: {timeline_file}")
-    
+
     if verbose:
         logger.info(f"Loading timeline from file: {timeline_file}")
-    
+
     try:
         with open(timeline_path, "r") as f:
             data = json.load(f)
-        
+
         # Validate required fields
-        required_fields = ["domain_name", "confidence", "boundary_years", "narrative_evolution", "periods"]
+        required_fields = [
+            "domain_name",
+            "confidence",
+            "boundary_years",
+            "narrative_evolution",
+            "periods",
+        ]
         for field in required_fields:
             if field not in data:
                 raise ValueError(f"Missing required field '{field}' in timeline file")
-        
+
         domain_name = data["domain_name"]
-        
+
         # Load saved algorithm config if available (for fair comparison)
         if "algorithm_config" in data:
             saved_config = data["algorithm_config"]
             if verbose:
                 logger.info(f"Loading saved algorithm configuration from timeline file")
                 logger.info(f"Saved config: {saved_config}")
-            
+
             # Create new algorithm config from saved parameters
             import dataclasses
+
             config_dict = dataclasses.asdict(algorithm_config)
             config_dict.update(saved_config)
             algorithm_config = AlgorithmConfig(**config_dict)
-            
+
             logger.info(f"Using saved algorithm configuration for fair comparison")
         else:
-            logger.warning(f"No saved algorithm configuration found in timeline file. Using provided config.")
-        
+            logger.warning(
+                f"No saved algorithm configuration found in timeline file. Using provided config."
+            )
+
         # Load original domain data to get individual papers
         if verbose:
             logger.info(f"Loading original domain data for {domain_name}")
-        
+
         success, academic_years, error_message = load_domain_data(
             domain_name=domain_name,
             algorithm_config=algorithm_config,
             data_directory=data_directory,
             verbose=verbose,
         )
-        
+
         if not success:
             raise ValueError(f"Failed to load domain data: {error_message}")
-        
+
         # Extract segments from timeline data
         segments = []
         for period_data in data["periods"]:
             start_year = period_data["start_year"]
             end_year = period_data["end_year"]
             segments.append((start_year, end_year))
-        
+
         if verbose:
             logger.info(f"Reconstructing {len(segments)} periods from original data")
-        
+
         # Recreate AcademicPeriod objects using original domain data
         academic_periods = create_academic_periods_from_segments(
             academic_years=tuple(academic_years),
             segments=segments,
             algorithm_config=algorithm_config,
         )
-        
+
         # Update the periods with any additional information from the timeline file
         enriched_periods = []
-        
+
         for i, period in enumerate(academic_periods):
             if i < len(data["periods"]):
                 period_data = data["periods"][i]
-                
+
                 # Create a new period with the same data but additional fields from timeline
                 enriched_period = AcademicPeriod(
                     start_year=period.start_year,
@@ -661,7 +885,7 @@ def load_timeline_from_file(
                 enriched_periods.append(enriched_period)
             else:
                 enriched_periods.append(period)
-        
+
         # Reconstruct TimelineAnalysisResult
         timeline_result = TimelineAnalysisResult(
             domain_name=domain_name,
@@ -670,14 +894,14 @@ def load_timeline_from_file(
             boundary_years=tuple(data["boundary_years"]),
             narrative_evolution=data["narrative_evolution"],
         )
-        
+
         if verbose:
             logger.info(f"Successfully loaded timeline for {domain_name}")
             logger.info(f"Timeline has {len(timeline_result.periods)} periods")
             logger.info(f"Boundary years: {list(timeline_result.boundary_years)}")
-        
+
         return timeline_result
-        
+
     except json.JSONDecodeError as e:
         raise ValueError(f"Invalid JSON in timeline file: {e}")
     except Exception as e:

@@ -17,6 +17,14 @@ objective_function:
   top_k_keywords: 100
   min_keyword_frequency_ratio: 0.05
 
+# Ubiquitous Keyword Filtering (De-generalization)
+# Removes keywords that appear too frequently across all years to improve temporal discrimination
+ubiquitous_filtering:
+  apply_ubiquitous_filtering: true
+  ubiquity_threshold: 0.8  # Keywords appearing in ≥80% of years are considered ubiquitous
+  max_iterations: 10  # Maximum iterations to prevent infinite loops
+  min_replacement_frequency: 2  # Minimum frequency for replacement keywords
+
 beam_search:
   enabled: true
   beam_width: 5

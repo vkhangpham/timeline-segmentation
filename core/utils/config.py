@@ -49,6 +49,12 @@ class AlgorithmConfig:
     top_k_keywords: int
     min_keyword_frequency_ratio: float
 
+    # Ubiquitous Keyword Filtering Parameters
+    apply_ubiquitous_filtering: bool
+    ubiquity_threshold: float
+    max_ubiquitous_iterations: int
+    min_replacement_frequency: int
+
     # Beam Search Refinement Parameters
     beam_search_enabled: bool
     beam_width: int
@@ -91,6 +97,7 @@ class AlgorithmConfig:
         try:
             detection_params = config["detection_parameters"]
             objective_params = config["objective_function"]
+            ubiquitous_params = config.get("ubiquitous_filtering", {})
             beam_params = config.get("beam_search", {})
             diagnostic_params = config.get("diagnostics", {})
 
@@ -126,6 +133,15 @@ class AlgorithmConfig:
                 min_keyword_frequency_ratio=objective_params[
                     "min_keyword_frequency_ratio"
                 ],
+                # Ubiquitous keyword filtering parameters
+                apply_ubiquitous_filtering=ubiquitous_params.get(
+                    "apply_ubiquitous_filtering", True
+                ),
+                ubiquity_threshold=ubiquitous_params.get("ubiquity_threshold", 0.9),
+                max_ubiquitous_iterations=ubiquitous_params.get("max_iterations", 10),
+                min_replacement_frequency=ubiquitous_params.get(
+                    "min_replacement_frequency", 2
+                ),
                 # Beam search refinement parameters
                 beam_search_enabled=beam_params.get("enabled", False),
                 beam_width=beam_params.get("beam_width", 5),
@@ -226,6 +242,22 @@ class AlgorithmConfig:
                 f"min_keyword_frequency_ratio must be 0.0-1.0, got {self.min_keyword_frequency_ratio}"
             )
 
+        # Ubiquitous keyword filtering parameters
+        if not 0.0 <= self.ubiquity_threshold <= 1.0:
+            raise ValueError(
+                f"ubiquity_threshold must be 0.0-1.0, got {self.ubiquity_threshold}"
+            )
+
+        if not 1 <= self.max_ubiquitous_iterations <= 50:
+            raise ValueError(
+                f"max_ubiquitous_iterations must be 1-50, got {self.max_ubiquitous_iterations}"
+            )
+
+        if not 1 <= self.min_replacement_frequency <= 100:
+            raise ValueError(
+                f"min_replacement_frequency must be 1-100, got {self.min_replacement_frequency}"
+            )
+
         # Beam search refinement parameters
         if not 1 <= self.beam_width <= 50:
             raise ValueError(f"beam_width must be 1-50, got {self.beam_width}")
@@ -263,6 +295,8 @@ class AlgorithmConfig:
             f"cohesion_weight={self.cohesion_weight}, "
             f"separation_weight={self.separation_weight}, "
             f"top_k_keywords={self.top_k_keywords}, "
+            f"ubiquitous_filtering={'ON' if self.apply_ubiquitous_filtering else 'OFF'}, "
+            f"ubiquity_threshold={self.ubiquity_threshold:.2f}"
         )
 
     def __str__(self) -> str:
@@ -274,4 +308,6 @@ class AlgorithmConfig:
         return (
             f"AlgorithmConfig(direction_change_threshold={self.direction_change_threshold:.3f}, "
             f"objective_weights=({self.cohesion_weight}, {self.separation_weight}), "
+            f"ubiquitous_filtering={self.apply_ubiquitous_filtering}, "
+            f"ubiquity_threshold={self.ubiquity_threshold:.2f})"
         )
