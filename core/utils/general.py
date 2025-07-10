@@ -32,6 +32,60 @@ def discover_available_domains(verbose: bool = False) -> List[str]:
     return sorted(domains)
 
 
+def discover_available_timeline_domains(verbose: bool = False) -> List[str]:
+    """Discover available domains from timeline files in results/timelines directory.
+
+    Args:
+        verbose: Enable verbose logging
+
+    Returns:
+        List of domain names found in timeline files
+    """
+    logger = get_logger(__name__, verbose)
+    timelines_path = Path("results/timelines")
+
+    if not timelines_path.exists():
+        logger.warning("Timeline results directory not found: results/timelines")
+        return []
+
+    domains = []
+    for timeline_file in timelines_path.glob("*.json"):
+        # Extract domain name from filename
+        # Expected format: {domain_name}_timeline_analysis.json
+        filename = timeline_file.name
+        if filename.endswith("_timeline_analysis.json"):
+            domain_name = filename.replace("_timeline_analysis.json", "")
+            domains.append(domain_name)
+        else:
+            logger.warning(f"Unexpected timeline file format: {filename}")
+
+    if verbose:
+        logger.info(f"Found {len(domains)} domains with timeline files: {', '.join(domains)}")
+
+    return sorted(domains)
+
+
+def get_timeline_file_path(domain_name: str, verbose: bool = False) -> Optional[str]:
+    """Get the expected timeline file path for a domain.
+
+    Args:
+        domain_name: Domain name
+        verbose: Enable verbose logging
+
+    Returns:
+        Path to timeline file if it exists, None otherwise
+    """
+    logger = get_logger(__name__, verbose)
+    timeline_file = Path("results/timelines") / f"{domain_name}_timeline_analysis.json"
+    
+    if timeline_file.exists():
+        return str(timeline_file)
+    else:
+        if verbose:
+            logger.warning(f"Timeline file not found: {timeline_file}")
+        return None
+
+
 def ensure_results_directory():
     """Ensure the results directory exists."""
     Path("results").mkdir(exist_ok=True)

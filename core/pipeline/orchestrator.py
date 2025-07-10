@@ -99,7 +99,7 @@ def analyze_timeline(
 
         if segmentation_only:
             # For segmentation-only mode, return results without characterization and merging
-            boundary_years = [ay.year for ay in boundary_academic_years]
+            boundary_years = extract_boundary_years_from_periods(refined_periods)
             timeline_result = TimelineAnalysisResult(
                 domain_name=domain_name,
                 periods=tuple(refined_periods),
@@ -123,7 +123,7 @@ def analyze_timeline(
 
         logger.info(f"Final timeline: {len(final_periods)} periods")
 
-        boundary_years = [ay.year for ay in boundary_academic_years]
+        boundary_years = extract_boundary_years_from_periods(final_periods)
         timeline_result = TimelineAnalysisResult(
             domain_name=domain_name,
             periods=tuple(final_periods),
@@ -142,6 +142,41 @@ def analyze_timeline(
     except Exception as e:
         logger.error(f"Timeline analysis failed: {e}")
         raise RuntimeError(f"Timeline analysis failed for {domain_name}: {e}") from e
+
+
+def extract_boundary_years_from_periods(periods: List[AcademicPeriod]) -> List[int]:
+    """Extract boundary years from actual periods.
+    
+    This function extracts the transition points between periods, which are the 
+    years where one period ends and the next begins. This gives the true boundaries
+    between periods rather than just the detected change points.
+    
+    Args:
+        periods: List of academic periods
+        
+    Returns:
+        List of boundary years representing transitions between periods
+    """
+    if not periods:
+        return []
+    
+    # Sort periods by start year to ensure correct ordering
+    sorted_periods = sorted(periods, key=lambda p: p.start_year)
+    
+    boundary_years = []
+    
+    # Add transition points between periods
+    for i in range(len(sorted_periods) - 1):
+        current_period = sorted_periods[i]
+        next_period = sorted_periods[i + 1]
+        
+        # The boundary is the year where one period ends and the next begins
+        # If there's a gap, we use the start of the next period
+        # If they're consecutive, we use the start of the next period
+        boundary_year = next_period.start_year
+        boundary_years.append(boundary_year)
+    
+    return boundary_years
 
 
 def calculate_segmentation_confidence(periods: List[AcademicPeriod]) -> float:

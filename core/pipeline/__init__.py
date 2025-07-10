@@ -6,6 +6,7 @@ from .orchestrator import (
     calculate_segmentation_confidence,
     generate_narrative_evolution,
     generate_segmentation_narrative,
+    extract_boundary_years_from_periods,
 )
 
 __all__ = [
@@ -14,4 +15,5 @@ __all__ = [
     "calculate_segmentation_confidence",
     "generate_narrative_evolution",
     "generate_segmentation_narrative",
+    "extract_boundary_years_from_periods",
 ]

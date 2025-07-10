@@ -70,7 +70,8 @@ archive/
 *cache*
 dev_journal_phase*.md
 # Results directory - ignore subdirectories but track files in results/
-results/*/
+results/diagnostics/
+results/*logs*/
 web-app/
 logs/
 

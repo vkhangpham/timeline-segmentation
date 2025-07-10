@@ -13,4 +13,5 @@ pydantic
 requests
 streamlit
 nltk
-joblib 
+joblib
+pyyaml 

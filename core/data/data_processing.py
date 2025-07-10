@@ -8,13 +8,16 @@ import json
 import xml.etree.ElementTree as ET
 from typing import Dict, Tuple, List
 from collections import defaultdict, Counter
+from pathlib import Path
 
 from .data_models import (
     Paper,
     CitationRelation,
     AcademicYear,
     AcademicPeriod,
+    TimelineAnalysisResult,
 )
+from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
 
 
@@ -537,3 +540,145 @@ def compute_academic_years(
     academic_years.sort(key=lambda ay: ay.year)
 
     return tuple(academic_years)
+
+
+def load_timeline_from_file(
+    timeline_file: str,
+    algorithm_config: AlgorithmConfig,
+    data_directory: str = "resources",
+    verbose: bool = False,
+) -> TimelineAnalysisResult:
+    """Load timeline result from JSON file and reconstruct with original domain data.
+    
+    Args:
+        timeline_file: Path to timeline JSON file
+        algorithm_config: Algorithm configuration (will be overridden by saved config if available)
+        data_directory: Directory containing domain data files
+        verbose: Enable verbose logging
+        
+    Returns:
+        TimelineAnalysisResult object reconstructed with original domain data
+        
+    Raises:
+        FileNotFoundError: If timeline file doesn't exist
+        ValueError: If file format is invalid
+    """
+    logger = get_logger(__name__, verbose)
+    
+    timeline_path = Path(timeline_file)
+    if not timeline_path.exists():
+        raise FileNotFoundError(f"Timeline file not found: {timeline_file}")
+    
+    if verbose:
+        logger.info(f"Loading timeline from file: {timeline_file}")
+    
+    try:
+        with open(timeline_path, "r") as f:
+            data = json.load(f)
+        
+        # Validate required fields
+        required_fields = ["domain_name", "confidence", "boundary_years", "narrative_evolution", "periods"]
+        for field in required_fields:
+            if field not in data:
+                raise ValueError(f"Missing required field '{field}' in timeline file")
+        
+        domain_name = data["domain_name"]
+        
+        # Load saved algorithm config if available (for fair comparison)
+        if "algorithm_config" in data:
+            saved_config = data["algorithm_config"]
+            if verbose:
+                logger.info(f"Loading saved algorithm configuration from timeline file")
+                logger.info(f"Saved config: {saved_config}")
+            
+            # Create new algorithm config from saved parameters
+            import dataclasses
+            config_dict = dataclasses.asdict(algorithm_config)
+            config_dict.update(saved_config)
+            algorithm_config = AlgorithmConfig(**config_dict)
+            
+            logger.info(f"Using saved algorithm configuration for fair comparison")
+        else:
+            logger.warning(f"No saved algorithm configuration found in timeline file. Using provided config.")
+        
+        # Load original domain data to get individual papers
+        if verbose:
+            logger.info(f"Loading original domain data for {domain_name}")
+        
+        success, academic_years, error_message = load_domain_data(
+            domain_name=domain_name,
+            algorithm_config=algorithm_config,
+            data_directory=data_directory,
+            verbose=verbose,
+        )
+        
+        if not success:
+            raise ValueError(f"Failed to load domain data: {error_message}")
+        
+        # Extract segments from timeline data
+        segments = []
+        for period_data in data["periods"]:
+            start_year = period_data["start_year"]
+            end_year = period_data["end_year"]
+            segments.append((start_year, end_year))
+        
+        if verbose:
+            logger.info(f"Reconstructing {len(segments)} periods from original data")
+        
+        # Recreate AcademicPeriod objects using original domain data
+        academic_periods = create_academic_periods_from_segments(
+            academic_years=tuple(academic_years),
+            segments=segments,
+            algorithm_config=algorithm_config,
+        )
+        
+        # Update the periods with any additional information from the timeline file
+        enriched_periods = []
+        
+        for i, period in enumerate(academic_periods):
+            if i < len(data["periods"]):
+                period_data = data["periods"][i]
+                
+                # Create a new period with the same data but additional fields from timeline
+                enriched_period = AcademicPeriod(
+                    start_year=period.start_year,
+                    end_year=period.end_year,
+                    academic_years=period.academic_years,
+                    total_papers=period.total_papers,
+                    total_citations=period.total_citations,
+                    combined_keyword_frequencies=period.combined_keyword_frequencies,
+                    top_keywords=period.top_keywords,
+                    topic_label=period_data.get("topic_label"),
+                    topic_description=period_data.get("topic_description"),
+                    network_stability=period_data.get("network_stability", 0.0),
+                    community_persistence=period_data.get("community_persistence", 0.0),
+                    flow_stability=period_data.get("flow_stability", 0.0),
+                    centrality_consensus=period_data.get("centrality_consensus", 0.0),
+                    representative_papers=tuple(),  # Not saved in timeline files
+                    network_metrics=period_data.get("network_metrics", {}),
+                    confidence=period_data.get("confidence", 0.0),
+                )
+                enriched_periods.append(enriched_period)
+            else:
+                enriched_periods.append(period)
+        
+        # Reconstruct TimelineAnalysisResult
+        timeline_result = TimelineAnalysisResult(
+            domain_name=domain_name,
+            periods=tuple(enriched_periods),
+            confidence=data["confidence"],
+            boundary_years=tuple(data["boundary_years"]),
+            narrative_evolution=data["narrative_evolution"],
+        )
+        
+        if verbose:
+            logger.info(f"Successfully loaded timeline for {domain_name}")
+            logger.info(f"Timeline has {len(timeline_result.periods)} periods")
+            logger.info(f"Boundary years: {list(timeline_result.boundary_years)}")
+        
+        return timeline_result
+        
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in timeline file: {e}")
+    except Exception as e:
+        raise ValueError(f"Error loading timeline file: {e}")
