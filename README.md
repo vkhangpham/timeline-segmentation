@@ -37,6 +37,10 @@ conda activate timeline
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Note: scikit-optimize is included for Bayesian optimization
+# If you encounter issues, install manually:
+# pip install scikit-optimize
 ```
 
 ## Usage
@@ -65,6 +69,19 @@ python run_evaluation.py --domain all --verbose
 
 # Get detailed evaluation metrics
 python run_evaluation.py --domain machine_learning --verbose
+```
+
+### Parameter Optimization
+
+```bash
+# Optimize parameters for a single domain using Bayesian optimization
+python scripts/optimize_domain.py --domain deep_learning --verbose
+
+# Use custom configuration file
+python scripts/optimize_domain.py --domain machine_learning --config custom_config.yaml
+
+# Quick optimization (uses default config)
+python scripts/optimize_domain.py --domain computer_vision
 ```
 
 ### Advanced Options
@@ -126,6 +143,77 @@ The application opens at `http://localhost:8501` with a sequential workflow:
 5. **Beam Refinement** - Optimize boundaries through merge/split operations
 6. **Evaluation** - Comprehensive performance assessment with baselines and auto-metrics
 7. **Final Results** - Complete timeline with comprehensive analysis
+
+## Parameter Optimization System
+
+The system includes a sophisticated parameter optimization framework that automatically tunes algorithm parameters for optimal performance on each domain.
+
+### Bayesian Optimization
+
+The system uses Bayesian optimization with Gaussian Processes to efficiently explore the parameter space:
+
+- **Smart Exploration**: Uses acquisition functions (Expected Improvement) to balance exploration vs exploitation
+- **Efficient**: Requires fewer trials than grid or random search
+- **Adaptive**: Learns from previous trials to guide future parameter selection
+- **Robust**: Includes early stopping to prevent unnecessary computation
+
+### Configuration
+
+All optimization parameters are controlled via `config/optimization.yaml`:
+
+```yaml
+# Parameter search space
+parameters:
+  direction_change_threshold:
+    type: float
+    grid_values: [0.15, 0.25, 0.35, 0.45]
+    range: [0.05, 0.50]
+    description: "Threshold for detecting significant direction changes"
+  
+  citation_confidence_boost:
+    type: float
+    grid_values: [0.2, 0.5, 0.8]
+    range: [0.0, 1.0]
+    description: "Boost factor for citation-based confidence"
+
+# Bayesian optimization settings
+search:
+  strategy: "bayesian"
+  n_initial_points: 10
+  n_calls: 50
+  acquisition_function: "EI"
+
+# Penalty system
+penalty:
+  segment_count:
+    enabled: true
+    target_segments: 6
+    penalty_weight: 0.03
+
+# Execution settings
+execution:
+  max_workers: 4
+  cache_academic_years: true
+```
+
+### Optimization Results
+
+Results are automatically saved to:
+- `results/optimization_logs/{domain}.csv` - Detailed trial results
+- `results/optimized_params/{domain}.json` - Best configuration found
+
+### Usage Examples
+
+```bash
+# Quick optimization with default settings
+python scripts/optimize_domain.py --domain computer_vision
+
+# Bayesian optimization with verbose output
+python scripts/optimize_domain.py --domain deep_learning --verbose
+
+# Custom configuration file
+python scripts/optimize_domain.py --domain applied_mathematics --config my_config.yaml
+```
 
 ## Algorithm Details
 
@@ -362,6 +450,38 @@ evaluation = run_comprehensive_evaluation(
 
 print(f"Algorithm score: {evaluation['algorithm_result']['objective_score']:.3f}")
 print(f"Boundary F1: {evaluation['auto_metrics']['boundary_f1']:.3f}")
+```
+
+### Optimizing Parameters for Better Performance
+```bash
+# Optimize parameters for computer vision domain
+python scripts/optimize_domain.py --domain computer_vision --strategy bayesian --verbose
+```
+
+Expected optimization output:
+- Trial progress with objective scores
+- Best configuration found after optimization
+- Validation metrics (Boundary-F1, Segment-F1) for quality assessment
+- Results saved to `results/optimized_params/computer_vision.json`
+
+### Using Optimized Parameters
+```python
+import json
+from core.utils.config import AlgorithmConfig
+from core.pipeline.orchestrator import analyze_timeline
+
+# Load optimized parameters
+with open("results/optimized_params/computer_vision.json", "r") as f:
+    optimized_params = json.load(f)
+
+# Create config with optimized parameters
+config = AlgorithmConfig.from_config_file(domain_name="computer_vision")
+for param, value in optimized_params["parameters"].items():
+    setattr(config, param, value)
+
+# Run analysis with optimized configuration
+result = analyze_timeline("computer_vision", config, verbose=True)
+print(f"Optimized analysis produced {len(result.periods)} periods")
 ```
 
 ## Contributing
