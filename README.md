@@ -75,13 +75,13 @@ python run_evaluation.py --domain machine_learning --verbose
 
 ```bash
 # Optimize parameters for a single domain using Bayesian optimization
-python scripts/optimize_domain.py --domain deep_learning --verbose
+python scripts/run_optimization.py --domain deep_learning --verbose
 
 # Use custom configuration file
-python scripts/optimize_domain.py --domain machine_learning --config custom_config.yaml
+python scripts/run_optimization.py --domain machine_learning --config custom_config.yaml
 
 # Quick optimization (uses default config)
-python scripts/optimize_domain.py --domain computer_vision
+python scripts/run_optimization.py --domain computer_vision
 ```
 
 ### Advanced Options
@@ -206,13 +206,13 @@ Results are automatically saved to:
 
 ```bash
 # Quick optimization with default settings
-python scripts/optimize_domain.py --domain computer_vision
+python scripts/run_optimization.py --domain computer_vision
 
 # Bayesian optimization with verbose output
-python scripts/optimize_domain.py --domain deep_learning --verbose
+python scripts/run_optimization.py --domain deep_learning --verbose
 
 # Custom configuration file
-python scripts/optimize_domain.py --domain applied_mathematics --config my_config.yaml
+python scripts/run_optimization.py --domain applied_mathematics --config my_config.yaml
 ```
 
 ## Algorithm Details
@@ -275,7 +275,7 @@ Comprehensive evaluation includes:
 
 ## Configuration
 
-Edit `config.json` to customize algorithm behavior:
+Edit `config.yaml` to customize algorithm behavior:
 
 ```json
 {
@@ -455,7 +455,7 @@ print(f"Boundary F1: {evaluation['auto_metrics']['boundary_f1']:.3f}")
 ### Optimizing Parameters for Better Performance
 ```bash
 # Optimize parameters for computer vision domain
-python scripts/optimize_domain.py --domain computer_vision --strategy bayesian --verbose
+python scripts/run_optimization.py --domain computer_vision --verbose
 ```
 
 Expected optimization output:

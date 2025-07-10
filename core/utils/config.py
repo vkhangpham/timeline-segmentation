@@ -1,12 +1,12 @@
 """Algorithm configuration for timeline segmentation.
 
-Configuration is loaded from config.json file with comprehensive validation.
+Configuration is loaded from config.yaml file with comprehensive validation.
 """
 
 from dataclasses import dataclass
 from typing import Optional, NamedTuple
 import os
-import json
+import yaml
 
 
 class AntiGamingConfig(NamedTuple):
@@ -22,7 +22,7 @@ class AntiGamingConfig(NamedTuple):
 
 @dataclass
 class AlgorithmConfig:
-    """Algorithm configuration loaded from config.json file."""
+    """Algorithm configuration loaded from config.yaml file."""
 
     # Direction Change Detection Parameters
     direction_change_threshold: float
@@ -64,9 +64,9 @@ class AlgorithmConfig:
 
     @classmethod
     def from_config_file(
-        cls, config_path: str = "config.json", domain_name: Optional[str] = None
+        cls, config_path: str = "config/config.yaml", domain_name: Optional[str] = None
     ) -> "AlgorithmConfig":
-        """Load configuration from JSON file.
+        """Load configuration from YAML file.
 
         Args:
             config_path: Path to configuration file
@@ -84,9 +84,9 @@ class AlgorithmConfig:
 
         try:
             with open(config_path, "r") as f:
-                config = json.load(f)
-        except json.JSONDecodeError as e:
-            raise ValueError(f"Invalid JSON in configuration file {config_path}: {e}")
+                config = yaml.safe_load(f)
+        except yaml.YAMLError as e:
+            raise ValueError(f"Invalid YAML in configuration file {config_path}: {e}")
 
         try:
             detection_params = config["detection_parameters"]

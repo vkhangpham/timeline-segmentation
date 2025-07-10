@@ -73,7 +73,7 @@ def run_domain_analysis(
     Args:
         domain_name: Name of the domain to analyze
         segmentation_only: Run only segmentation (skip timeline analysis)
-        algorithm_config: Algorithm configuration (defaults to config.json)
+        algorithm_config: Algorithm configuration (defaults to config.yaml)
         no_save: Skip saving results to files
         verbose: Enable verbose logging
 
@@ -81,11 +81,6 @@ def run_domain_analysis(
         True if analysis succeeded, False otherwise
     """
     logger = get_logger(__name__, verbose, domain_name)
-
-    if algorithm_config is None:
-        algorithm_config = AlgorithmConfig.from_config_file(domain_name=domain_name)
-        if verbose:
-            logger.info("Using default configuration")
 
     try:
         timeline_result = analyze_timeline(
@@ -97,11 +92,11 @@ def run_domain_analysis(
         )
 
         if not no_save:
-            save_timeline_result(timeline_result, domain_name, verbose)
+            save_timeline_result(timeline_result, domain_name, algorithm_config, verbose)
         else:
             logger.info("Skipping save (--no-save flag specified)")
 
-        display_timeline_summary(timeline_result, verbose)
+        display_timeline_summary(timeline_result)
 
         return True
 
@@ -110,12 +105,13 @@ def run_domain_analysis(
         return False
 
 
-def save_timeline_result(timeline_result, domain_name: str, verbose: bool = False):
+def save_timeline_result(timeline_result, domain_name: str, algorithm_config: AlgorithmConfig, verbose: bool = False):
     """Save timeline analysis results to JSON file.
 
     Args:
         timeline_result: TimelineAnalysisResult object
         domain_name: Name of the domain
+        algorithm_config: Algorithm configuration used for analysis
         verbose: Enable verbose logging
     """
     logger = get_logger(__name__, verbose, domain_name)
@@ -128,6 +124,27 @@ def save_timeline_result(timeline_result, domain_name: str, verbose: bool = Fals
         "confidence": timeline_result.confidence,
         "boundary_years": list(timeline_result.boundary_years),
         "narrative_evolution": timeline_result.narrative_evolution,
+        "algorithm_config": {
+            "direction_change_threshold": algorithm_config.direction_change_threshold,
+            "direction_threshold_strategy": algorithm_config.direction_threshold_strategy,
+            "direction_scoring_method": algorithm_config.direction_scoring_method,
+            "min_baseline_period_years": algorithm_config.min_baseline_period_years,
+            "score_distribution_window_years": algorithm_config.score_distribution_window_years,
+            "citation_confidence_boost": algorithm_config.citation_confidence_boost,
+            "citation_support_window_years": algorithm_config.citation_support_window_years,
+            "diagnostic_top_keywords_limit": algorithm_config.diagnostic_top_keywords_limit,
+            "min_papers_per_year": algorithm_config.min_papers_per_year,
+            "cohesion_weight": algorithm_config.cohesion_weight,
+            "separation_weight": algorithm_config.separation_weight,
+            "top_k_keywords": algorithm_config.top_k_keywords,
+            "min_keyword_frequency_ratio": algorithm_config.min_keyword_frequency_ratio,
+            "beam_search_enabled": algorithm_config.beam_search_enabled,
+            "beam_width": algorithm_config.beam_width,
+            "max_splits_per_segment": algorithm_config.max_splits_per_segment,
+            "min_period_years": algorithm_config.min_period_years,
+            "max_period_years": algorithm_config.max_period_years,
+            "save_direction_diagnostics": algorithm_config.save_direction_diagnostics,
+        },
         "periods": [],
     }
 
@@ -140,6 +157,7 @@ def save_timeline_result(timeline_result, domain_name: str, verbose: bool = Fals
             "top_keywords": list(period.top_keywords),
             "topic_label": period.topic_label,
             "topic_description": period.topic_description,
+            "representative_papers": [dict(paper) for paper in period.representative_papers],
             "confidence": period.confidence,
             "network_stability": period.network_stability,
             "network_metrics": period.network_metrics,
@@ -151,17 +169,17 @@ def save_timeline_result(timeline_result, domain_name: str, verbose: bool = Fals
         json.dump(result_data, f, indent=2)
 
     logger.info(f"Timeline results saved to {output_file}")
+    if verbose:
+        logger.info(f"Saved algorithm config: {algorithm_config}")
 
 
-def display_timeline_summary(timeline_result, verbose: bool = False):
+def display_timeline_summary(timeline_result):
     """Display timeline analysis summary.
 
     Args:
         timeline_result: TimelineAnalysisResult object
         verbose: Enable verbose logging
     """
-    logger = get_logger(__name__, verbose, timeline_result.domain_name)
-
     print(f"\n{'='*50}")
     print(f"TIMELINE ANALYSIS SUMMARY: {timeline_result.domain_name}")
     print(f"{'='*50}")
@@ -194,14 +212,18 @@ def run_all_domains(
     algorithm_config: AlgorithmConfig = None,
     no_save: bool = False,
     verbose: bool = False,
+    use_optimized: bool = False,
+    overrides: dict = None,
 ) -> bool:
     """Run analysis for all available domains.
 
     Args:
         segmentation_only: Run only segmentation (skip timeline analysis)
-        algorithm_config: Algorithm configuration (defaults to config.json)
+        algorithm_config: Algorithm configuration (defaults to config.yaml)
         no_save: Skip saving results to files
         verbose: Enable verbose logging
+        use_optimized: Use optimized parameters for each domain (if available)
+        overrides: Parameter overrides from command line arguments
 
     Returns:
         True if at least one domain succeeded, False otherwise
@@ -210,6 +232,9 @@ def run_all_domains(
 
     if algorithm_config is None:
         algorithm_config = AlgorithmConfig.from_config_file()
+
+    if overrides is None:
+        overrides = {}
 
     domains = discover_available_domains(verbose)
     if not domains:
@@ -222,10 +247,49 @@ def run_all_domains(
     logger.info(f"CROSS-DOMAIN {analysis_type}")
     logger.info("=" * 50)
     logger.info(f"Processing {len(domains)} domains: {', '.join(domains)}")
+    
+    if use_optimized:
+        logger.info("Using optimized parameters where available")
 
     for domain in domains:
         logger.info(f"Processing {domain}...")
+        
+        # Start with domain-specific base configuration
         domain_config = AlgorithmConfig.from_config_file(domain_name=domain)
+        
+        # Apply optimized parameters if requested
+        domain_overrides = overrides.copy()
+        if use_optimized:
+            try:
+                optimized_params = load_optimized_parameters(domain, verbose)
+                # Add optimized parameters to overrides (command line args take precedence)
+                for key, value in optimized_params.items():
+                    if key not in domain_overrides:  # Don't override explicit command line arguments
+                        domain_overrides[key] = value
+                
+                # CRITICAL: When using optimized direction_change_threshold, 
+                # must set strategy to "fixed" so the algorithm uses it
+                if 'direction_change_threshold' in optimized_params and 'direction_threshold_strategy' not in domain_overrides:
+                    domain_overrides['direction_threshold_strategy'] = 'fixed'
+                    if verbose:
+                        logger.info(f"Set direction_threshold_strategy='fixed' for {domain} to use optimized direction_change_threshold")
+                        
+            except FileNotFoundError:
+                logger.warning(f"Optimized parameters not found for {domain}. Using default config.")
+            except ValueError as e:
+                logger.error(f"Error loading optimized parameters for {domain}: {e}")
+                # Continue with default config for this domain
+        
+        # Apply all overrides to the configuration
+        if domain_overrides:
+            import dataclasses
+            config_dict = dataclasses.asdict(domain_config)
+            config_dict.update(domain_overrides)
+            domain_config = AlgorithmConfig(**config_dict)
+            
+            if verbose:
+                logger.info(f"Applied parameter overrides for {domain}: {domain_overrides}")
+        
         if run_domain_analysis(
             domain, segmentation_only, domain_config, no_save, verbose
         ):
@@ -257,6 +321,7 @@ Examples:
   python scripts/run_timeline_analysis.py --domain deep_learning
   python scripts/run_timeline_analysis.py --domain applied_mathematics --use-optimized
   python scripts/run_timeline_analysis.py --domain all --verbose
+  python scripts/run_timeline_analysis.py --domain all --use-optimized --verbose
   python scripts/run_timeline_analysis.py --domain computer_vision --segmentation-only
   python scripts/run_timeline_analysis.py --domain applied_mathematics --use-optimized --verbose
         """,
@@ -302,7 +367,7 @@ Examples:
     parser.add_argument(
         "--use-optimized",
         action="store_true",
-        help="Use optimized parameters for the domain (if available)",
+        help="Use optimized parameters for the domain(s) (if available). For 'all' domains, automatically matches parameter files by domain name.",
     )
 
     args = parser.parse_args()
@@ -327,7 +392,7 @@ Examples:
 
     algorithm_config = AlgorithmConfig.from_config_file(domain_name=domain_for_config)
 
-    # Apply optimized parameters if requested
+    # Apply optimized parameters if requested for single domain
     if args.use_optimized and args.domain != "all":
         try:
             optimized_params = load_optimized_parameters(args.domain, args.verbose)
@@ -368,6 +433,8 @@ Examples:
             algorithm_config,
             args.no_save,
             args.verbose,
+            args.use_optimized,
+            overrides,
         )
     else:
         available_domains = discover_available_domains(args.verbose)
