@@ -139,8 +139,8 @@ def run_bayesian_optimization(
 
 def _build_parameter_space(config: Dict[str, Any]) -> Dict[str, Any]:
     """Build scikit-optimize parameter space from configuration.
-    
-    Automatically handles any parameter defined in the YAML, whether it's 
+
+    Automatically handles any parameter defined in the YAML, whether it's
     an existing AlgorithmConfig field or not.
     """
     space = {}

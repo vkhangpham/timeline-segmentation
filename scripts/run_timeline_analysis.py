@@ -15,48 +15,54 @@ from core.utils.logging import configure_global_logging, get_logger
 
 def load_optimized_parameters(domain_name: str, verbose: bool = False) -> dict:
     """Load optimized parameters for a domain from optimization results.
-    
+
     Args:
         domain_name: Name of the domain
         verbose: Enable verbose logging
-        
+
     Returns:
         Dictionary of optimized parameters
-        
+
     Raises:
         FileNotFoundError: If optimized parameters file doesn't exist
         ValueError: If parameters file is invalid
     """
     logger = get_logger(__name__, verbose, domain_name)
-    
+
     # Path to optimized parameters file
     params_file = Path(f"results/optimized_params/{domain_name}.json")
-    
+
     if not params_file.exists():
         raise FileNotFoundError(
             f"No optimized parameters found for {domain_name}. "
             f"Run optimization first: python scripts/optimize_domain.py --domain {domain_name}"
         )
-    
+
     try:
         with open(params_file, "r") as f:
             params_data = json.load(f)
-        
+
         if "best_parameters" not in params_data:
             raise ValueError(f"Invalid optimization results file: {params_file}")
-            
+
         optimized_params = params_data["best_parameters"]
-        
+
         if verbose:
             logger.info(f"Loaded optimized parameters from {params_file}")
-            logger.info(f"Optimization date: {params_data.get('optimization_date', 'unknown')}")
-            logger.info(f"Best objective score: {params_data.get('best_objective_score', 'unknown'):.3f}")
+            logger.info(
+                f"Optimization date: {params_data.get('optimization_date', 'unknown')}"
+            )
+            logger.info(
+                f"Best objective score: {params_data.get('best_objective_score', 'unknown'):.3f}"
+            )
             logger.info(f"Optimized parameters: {optimized_params}")
         else:
-            print(f"Using optimized parameters for {domain_name} (score: {params_data.get('best_objective_score', 0):.3f})")
-            
+            print(
+                f"Using optimized parameters for {domain_name} (score: {params_data.get('best_objective_score', 0):.3f})"
+            )
+
         return optimized_params
-        
+
     except json.JSONDecodeError as e:
         raise ValueError(f"Invalid JSON in optimization results file: {e}")
 
@@ -92,7 +98,9 @@ def run_domain_analysis(
         )
 
         if not no_save:
-            save_timeline_result(timeline_result, domain_name, algorithm_config, verbose)
+            save_timeline_result(
+                timeline_result, domain_name, algorithm_config, verbose
+            )
         else:
             logger.info("Skipping save (--no-save flag specified)")
 
@@ -105,7 +113,12 @@ def run_domain_analysis(
         return False
 
 
-def save_timeline_result(timeline_result, domain_name: str, algorithm_config: AlgorithmConfig, verbose: bool = False):
+def save_timeline_result(
+    timeline_result,
+    domain_name: str,
+    algorithm_config: AlgorithmConfig,
+    verbose: bool = False,
+):
     """Save timeline analysis results to JSON file.
 
     Args:
@@ -157,7 +170,9 @@ def save_timeline_result(timeline_result, domain_name: str, algorithm_config: Al
             "top_keywords": list(period.top_keywords),
             "topic_label": period.topic_label,
             "topic_description": period.topic_description,
-            "representative_papers": [dict(paper) for paper in period.representative_papers],
+            "representative_papers": [
+                dict(paper) for paper in period.representative_papers
+            ],
             "confidence": period.confidence,
             "network_stability": period.network_stability,
             "network_metrics": period.network_metrics,
@@ -247,16 +262,16 @@ def run_all_domains(
     logger.info(f"CROSS-DOMAIN {analysis_type}")
     logger.info("=" * 50)
     logger.info(f"Processing {len(domains)} domains: {', '.join(domains)}")
-    
+
     if use_optimized:
         logger.info("Using optimized parameters where available")
 
     for domain in domains:
         logger.info(f"Processing {domain}...")
-        
+
         # Start with domain-specific base configuration
         domain_config = AlgorithmConfig.from_config_file(domain_name=domain)
-        
+
         # Apply optimized parameters if requested
         domain_overrides = overrides.copy()
         if use_optimized:
@@ -264,32 +279,44 @@ def run_all_domains(
                 optimized_params = load_optimized_parameters(domain, verbose)
                 # Add optimized parameters to overrides (command line args take precedence)
                 for key, value in optimized_params.items():
-                    if key not in domain_overrides:  # Don't override explicit command line arguments
+                    if (
+                        key not in domain_overrides
+                    ):  # Don't override explicit command line arguments
                         domain_overrides[key] = value
-                
-                # CRITICAL: When using optimized direction_change_threshold, 
+
+                # CRITICAL: When using optimized direction_change_threshold,
                 # must set strategy to "fixed" so the algorithm uses it
-                if 'direction_change_threshold' in optimized_params and 'direction_threshold_strategy' not in domain_overrides:
-                    domain_overrides['direction_threshold_strategy'] = 'fixed'
+                if (
+                    "direction_change_threshold" in optimized_params
+                    and "direction_threshold_strategy" not in domain_overrides
+                ):
+                    domain_overrides["direction_threshold_strategy"] = "fixed"
                     if verbose:
-                        logger.info(f"Set direction_threshold_strategy='fixed' for {domain} to use optimized direction_change_threshold")
-                        
+                        logger.info(
+                            f"Set direction_threshold_strategy='fixed' for {domain} to use optimized direction_change_threshold"
+                        )
+
             except FileNotFoundError:
-                logger.warning(f"Optimized parameters not found for {domain}. Using default config.")
+                logger.warning(
+                    f"Optimized parameters not found for {domain}. Using default config."
+                )
             except ValueError as e:
                 logger.error(f"Error loading optimized parameters for {domain}: {e}")
                 # Continue with default config for this domain
-        
+
         # Apply all overrides to the configuration
         if domain_overrides:
             import dataclasses
+
             config_dict = dataclasses.asdict(domain_config)
             config_dict.update(domain_overrides)
             domain_config = AlgorithmConfig(**config_dict)
-            
+
             if verbose:
-                logger.info(f"Applied parameter overrides for {domain}: {domain_overrides}")
-        
+                logger.info(
+                    f"Applied parameter overrides for {domain}: {domain_overrides}"
+                )
+
         if run_domain_analysis(
             domain, segmentation_only, domain_config, no_save, verbose
         ):
@@ -398,18 +425,27 @@ Examples:
             optimized_params = load_optimized_parameters(args.domain, args.verbose)
             # Add optimized parameters to overrides (command line args take precedence)
             for key, value in optimized_params.items():
-                if key not in overrides:  # Don't override explicit command line arguments
+                if (
+                    key not in overrides
+                ):  # Don't override explicit command line arguments
                     overrides[key] = value
-            
-            # CRITICAL: When using optimized direction_change_threshold, 
+
+            # CRITICAL: When using optimized direction_change_threshold,
             # must set strategy to "fixed" so the algorithm uses it
-            if 'direction_change_threshold' in optimized_params and 'direction_threshold_strategy' not in overrides:
-                overrides['direction_threshold_strategy'] = 'fixed'
+            if (
+                "direction_change_threshold" in optimized_params
+                and "direction_threshold_strategy" not in overrides
+            ):
+                overrides["direction_threshold_strategy"] = "fixed"
                 if args.verbose:
-                    logger.info("Set direction_threshold_strategy='fixed' to use optimized direction_change_threshold")
-                    
+                    logger.info(
+                        "Set direction_threshold_strategy='fixed' to use optimized direction_change_threshold"
+                    )
+
         except FileNotFoundError:
-            logger.warning(f"Optimized parameters not found for {args.domain}. Using default config.")
+            logger.warning(
+                f"Optimized parameters not found for {args.domain}. Using default config."
+            )
         except ValueError as e:
             logger.error(f"Error loading optimized parameters for {args.domain}: {e}")
             return False
@@ -421,7 +457,7 @@ Examples:
         config_dict = dataclasses.asdict(algorithm_config)
         config_dict.update(overrides)
         algorithm_config = AlgorithmConfig(**config_dict)
-        
+
         if args.verbose:
             logger.info(f"Applied parameter overrides: {overrides}")
 

@@ -146,36 +146,36 @@ def analyze_timeline(
 
 def extract_boundary_years_from_periods(periods: List[AcademicPeriod]) -> List[int]:
     """Extract boundary years from actual periods.
-    
-    This function extracts the transition points between periods, which are the 
+
+    This function extracts the transition points between periods, which are the
     years where one period ends and the next begins. This gives the true boundaries
     between periods rather than just the detected change points.
-    
+
     Args:
         periods: List of academic periods
-        
+
     Returns:
         List of boundary years representing transitions between periods
     """
     if not periods:
         return []
-    
+
     # Sort periods by start year to ensure correct ordering
     sorted_periods = sorted(periods, key=lambda p: p.start_year)
-    
+
     boundary_years = []
-    
+
     # Add transition points between periods
     for i in range(len(sorted_periods) - 1):
         current_period = sorted_periods[i]
         next_period = sorted_periods[i + 1]
-        
+
         # The boundary is the year where one period ends and the next begins
         # If there's a gap, we use the start of the next period
         # If they're consecutive, we use the start of the next period
         boundary_year = next_period.start_year
         boundary_years.append(boundary_year)
-    
+
     return boundary_years
 
 

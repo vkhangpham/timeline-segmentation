@@ -86,12 +86,12 @@ def create_trial_config(
     """
     # Convert base config to dictionary
     config_dict = dataclasses.asdict(base_config)
-    
+
     # Apply parameter overrides for any existing AlgorithmConfig field
     for param_name, value in parameter_overrides.items():
         if param_name in config_dict:
             config_dict[param_name] = value
-    
+
     # Always set direction_threshold_strategy to "fixed" for optimization
     config_dict["direction_threshold_strategy"] = "fixed"
 
@@ -102,7 +102,7 @@ def compute_penalty(timeline_result, config: Dict[str, Any]) -> float:
     """Compute segmentation penalty based on configuration.
 
     Supports legacy *linear* (count-deviation) and new *hybrid* penalty that
-    (1) charges only for over-segmentation beyond an upper bound and 
+    (1) charges only for over-segmentation beyond an upper bound and
     (2) penalises periods shorter than a minimum length.
 
     Args:
@@ -243,35 +243,36 @@ def score_trial(
     verbose: bool = False,
 ) -> Dict[str, Any]:
     """Score a single trial with given parameters."""
-    
+
     # Suppress algorithm logging if not in verbose mode
     if not verbose:
         import logging
+
         # Save original log levels
         original_levels = {}
         loggers_to_suppress = [
-            '',  # Root logger
-            'core',
-            'core.segmentation',
-            'core.segmentation.segmentation',
-            'core.pipeline.orchestrator', 
-            'core.data.data_processing',
-            'core.segmentation.change_point_detection',
-            'core.segmentation.beam_refinement',
-            'core.segment_modeling.segment_modeling',
-            'core.utils.general',
-            'core.utils.logging',
-            'core.data',
-            'core.pipeline'
+            "",  # Root logger
+            "core",
+            "core.segmentation",
+            "core.segmentation.segmentation",
+            "core.pipeline.orchestrator",
+            "core.data.data_processing",
+            "core.segmentation.change_point_detection",
+            "core.segmentation.beam_refinement",
+            "core.segment_modeling.segment_modeling",
+            "core.utils.general",
+            "core.utils.logging",
+            "core.data",
+            "core.pipeline",
         ]
-        
+
         for logger_name in loggers_to_suppress:
             logger = logging.getLogger(logger_name)
             original_levels[logger_name] = logger.level
             logger.setLevel(logging.ERROR)  # Only show errors
-    
+
     start_time = time.time()
-    
+
     try:
         # Load and cache academic years for this domain
         academic_years = load_cached_academic_years(
@@ -302,7 +303,7 @@ def score_trial(
 
         # Apply penalty according to configuration (hybrid or linear)
         penalty = compute_penalty(timeline_result, optimization_config or {})
-        
+
         final_objective_score = evaluation_result.objective_score - penalty
 
         # Get validation metrics
@@ -327,7 +328,9 @@ def score_trial(
 
     except Exception as e:
         logger = get_logger(__name__, verbose, domain_name)
-        fail_score = (optimization_config or {}).get("scoring", {}).get("fail_score", -10.0)
+        fail_score = (
+            (optimization_config or {}).get("scoring", {}).get("fail_score", -10.0)
+        )
         if verbose:
             logger.error(f"Trial {trial_id} failed: {e}")
         return {
@@ -342,10 +345,10 @@ def score_trial(
             "runtime_seconds": time.time() - start_time,
             "error_message": str(e),
         }
-    
+
     finally:
         # Restore original log levels if they were changed
-        if not verbose and 'original_levels' in locals():
+        if not verbose and "original_levels" in locals():
             for logger_name, original_level in original_levels.items():
                 logging.getLogger(logger_name).setLevel(original_level)
 

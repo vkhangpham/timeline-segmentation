@@ -45,7 +45,7 @@ class FileFormatter(logging.Formatter):
 
 def set_suppress_console_logging(suppress: bool = True):
     """Set whether to suppress console logging output.
-    
+
     Args:
         suppress: If True, suppress console logging handlers
     """

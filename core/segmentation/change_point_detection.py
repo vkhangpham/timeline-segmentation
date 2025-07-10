@@ -57,9 +57,7 @@ def detect_boundary_years(
         if use_citation:
             if verbose:
                 logger.info("  Step 1: Computing citation acceleration years...")
-            citation_years = detect_citation_acceleration_years(
-                academic_years, verbose
-            )
+            citation_years = detect_citation_acceleration_years(academic_years, verbose)
             if verbose:
                 logger.info(f"  Citation acceleration years: {citation_years}")
 
@@ -98,44 +96,44 @@ def detect_citation_acceleration_years(
     verbose: bool = False,
 ) -> List[int]:
     """Scale-aware citation acceleration detection using regime-specific methods.
-    
+
     This method addresses the fundamental bias in traditional relative growth analysis
     by adapting detection strategies based on citation regime characteristics.
-    
+
     Args:
         academic_years: List of AcademicYear objects with papers and temporal data
         verbose: Enable verbose logging
-        
+
     Returns:
         List of years where citation acceleration occurs
     """
     logger = get_logger(__name__, verbose)
-    
+
     # 1. Prepare citation data
     year_citations = {ay.year: ay.total_citations for ay in academic_years}
     if len(year_citations) < 5:
         logger.warning("Insufficient citation data for acceleration detection")
         return []
-    
+
     years = np.array(sorted(year_citations.keys()))
     citations = np.array([year_citations[y] for y in years], dtype=float)
-    
+
     # 2. Remove recent years (incomplete citations)
     recent_lag = 2
     if len(citations) > recent_lag:
         years = years[:-recent_lag]
         citations = citations[:-recent_lag]
-    
+
     if len(citations) < 5:
         logger.warning("Insufficient data after removing recent years")
         return []
-    
+
     # 3. Apply regime-specific detection
     acceleration_years = []
-    
+
     for i, year in enumerate(years):
         regime = _classify_citation_regime(citations, i, window_size=10)
-        
+
         if regime == "sparse":
             if _detect_sparse_acceleration(citations, years, i, verbose):
                 acceleration_years.append(int(year))
@@ -145,32 +143,38 @@ def detect_citation_acceleration_years(
         elif regime == "mature":
             if _detect_mature_acceleration(citations, years, i, verbose):
                 acceleration_years.append(int(year))
-    
+
     # 4. Apply cooldown to prevent clustering
     final_years = _apply_cooldown(acceleration_years, cooldown=2)
-    
+
     if verbose:
-        logger.info(f"Scale-aware detection found {len(final_years)} acceleration years: {final_years}")
-        
+        logger.info(
+            f"Scale-aware detection found {len(final_years)} acceleration years: {final_years}"
+        )
+
         # Report distribution across eras
         modern_count = sum(1 for y in final_years if y >= 2000)
         mid_count = sum(1 for y in final_years if 1980 <= y < 2000)
         early_count = sum(1 for y in final_years if y < 1980)
-        
-        logger.info(f"Temporal distribution: early (<1980): {early_count}, "
-                   f"mid (1980-1999): {mid_count}, modern (2000+): {modern_count}")
-    
+
+        logger.info(
+            f"Temporal distribution: early (<1980): {early_count}, "
+            f"mid (1980-1999): {mid_count}, modern (2000+): {modern_count}"
+        )
+
     return final_years
 
 
-def _classify_citation_regime(citations: np.ndarray, index: int, window_size: int = 10) -> str:
+def _classify_citation_regime(
+    citations: np.ndarray, index: int, window_size: int = 10
+) -> str:
     """Classify citation regime based on local statistics.
-    
+
     Args:
         citations: Array of citation counts
         index: Current index in citations array
         window_size: Size of local window for statistics
-        
+
     Returns:
         Regime classification: "sparse", "emerging", or "mature"
     """
@@ -178,13 +182,13 @@ def _classify_citation_regime(citations: np.ndarray, index: int, window_size: in
     start_idx = max(0, index - window_size // 2)
     end_idx = min(len(citations), index + window_size // 2 + 1)
     local_window = citations[start_idx:end_idx]
-    
+
     if len(local_window) < 3:
         return "sparse"  # Default for insufficient data
-    
+
     median_citations = np.median(local_window)
     mean_citations = np.mean(local_window)
-    
+
     # Classification thresholds based on citation magnitude
     if median_citations < 100:
         return "sparse"
@@ -194,137 +198,150 @@ def _classify_citation_regime(citations: np.ndarray, index: int, window_size: in
         return "mature"
 
 
-def _detect_sparse_acceleration(citations: np.ndarray, years: np.ndarray, index: int, verbose: bool) -> bool:
+def _detect_sparse_acceleration(
+    citations: np.ndarray, years: np.ndarray, index: int, verbose: bool
+) -> bool:
     """Detect acceleration in sparse citation regime using absolute changes.
-    
+
     Args:
         citations: Array of citation counts
         years: Array of years
         index: Current index
         verbose: Enable verbose logging
-        
+
     Returns:
         True if acceleration detected
     """
     if index < 5:  # Need more history for meaningful detection in sparse regime
         return False
-    
+
     # Use absolute change with local context
     current_citations = citations[index]
     window_size = min(7, index)  # Larger window for sparse regime
-    baseline_citations = np.mean(citations[index-window_size:index])
-    
+    baseline_citations = np.mean(citations[index - window_size : index])
+
     # More conservative thresholds for sparse regime
     absolute_change = current_citations - baseline_citations
-    
+
     # Dynamic threshold based on local statistics
-    local_window = citations[max(0, index-15):index+1]
+    local_window = citations[max(0, index - 15) : index + 1]
     local_std = np.std(local_window)
     local_mean = np.mean(local_window)
-    
+
     # Require significant absolute change AND relative change
     absolute_threshold = max(50, 3 * local_std)  # 3 standard deviations
     relative_threshold = 1.0  # 100% increase minimum
-    
+
     relative_change = absolute_change / (baseline_citations + 1e-9)
-    
+
     # Additional validation: must be sustained (not just a spike)
     if index < len(citations) - 2:
         # Check if growth continues or at least doesn't immediately drop
         next_citations = citations[index + 1]
-        next_next_citations = citations[index + 2] if index + 2 < len(citations) else next_citations
-        
+        next_next_citations = (
+            citations[index + 2] if index + 2 < len(citations) else next_citations
+        )
+
         # Reject if it's just a temporary spike
-        if next_citations < baseline_citations and next_next_citations < baseline_citations:
+        if (
+            next_citations < baseline_citations
+            and next_next_citations < baseline_citations
+        ):
             return False
-    
+
     # Only detect if both absolute and relative thresholds are met
     passes_absolute = absolute_change > absolute_threshold
     passes_relative = relative_change > relative_threshold
-    
+
     # Additional check: must be significant relative to domain growth
     # Compare to overall domain growth pattern
-    domain_growth = np.median(np.diff(citations[max(0, index-20):index+1]))
+    domain_growth = np.median(np.diff(citations[max(0, index - 20) : index + 1]))
     significant_compared_to_domain = absolute_change > 3 * domain_growth
-    
+
     return passes_absolute and passes_relative and significant_compared_to_domain
 
 
-def _detect_emerging_acceleration(citations: np.ndarray, years: np.ndarray, index: int, verbose: bool) -> bool:
+def _detect_emerging_acceleration(
+    citations: np.ndarray, years: np.ndarray, index: int, verbose: bool
+) -> bool:
     """Detect acceleration in emerging citation regime using hybrid approach.
-    
+
     Args:
         citations: Array of citation counts
         years: Array of years
         index: Current index
         verbose: Enable verbose logging
-        
+
     Returns:
         True if acceleration detected
     """
     if index < 4:
         return False
-    
+
     current_citations = citations[index]
     window_size = min(6, index)  # Moderate window for emerging regime
-    baseline_citations = np.mean(citations[index-window_size:index])
-    
+    baseline_citations = np.mean(citations[index - window_size : index])
+
     # Hybrid: both absolute and relative thresholds
     absolute_change = current_citations - baseline_citations
     relative_change = absolute_change / (baseline_citations + 1e-9)
-    
+
     # Adaptive thresholds based on local statistics
-    local_window = citations[max(0, index-12):index+1]
+    local_window = citations[max(0, index - 12) : index + 1]
     local_std = np.std(local_window)
     local_median = np.median(local_window)
-    
+
     # More balanced thresholds for emerging regime
     absolute_threshold = max(100, 2 * local_std)  # 2 standard deviations
     relative_threshold = 0.5  # 50% relative increase
-    
+
     # Check for sustained growth
     if index < len(citations) - 1:
         next_citations = citations[index + 1]
-        if next_citations < baseline_citations * 1.1:  # Must maintain at least 10% above baseline
+        if (
+            next_citations < baseline_citations * 1.1
+        ):  # Must maintain at least 10% above baseline
             return False
-    
+
     return absolute_change > absolute_threshold and relative_change > relative_threshold
 
 
-def _detect_mature_acceleration(citations: np.ndarray, years: np.ndarray, index: int, verbose: bool) -> bool:
+def _detect_mature_acceleration(
+    citations: np.ndarray, years: np.ndarray, index: int, verbose: bool
+) -> bool:
     """Detect acceleration in mature citation regime using scale-aware normalization.
-    
+
     Args:
         citations: Array of citation counts
         years: Array of years
         index: Current index
         verbose: Enable verbose logging
-        
+
     Returns:
         True if acceleration detected
     """
     if index < 3:
         return False
-    
+
     current_citations = citations[index]
     window_size = min(5, index)  # Smaller window for mature regime (more responsive)
-    baseline_citations = np.mean(citations[index-window_size:index])
-    
+    baseline_citations = np.mean(citations[index - window_size : index])
+
     # For mature regime, focus on meaningful absolute changes
     absolute_change = current_citations - baseline_citations
-    
+
     # Scale-aware threshold based on local citation magnitude
-    local_window = citations[max(0, index-10):index+1]
+    local_window = citations[max(0, index - 10) : index + 1]
     local_median = np.median(local_window)
     local_std = np.std(local_window)
-    
+
     # Dynamic threshold that scales with citation magnitude
     # For mature regime, we expect larger absolute changes but smaller relative changes
     absolute_threshold = max(1000, 0.1 * local_median, 1.5 * local_std)
-    
+
     # Also check for acceleration (second derivative)
     if index >= 2:
-        growth_rates = np.diff(citations[max(0, index-5):index+1])
+        growth_rates = np.diff(citations[max(0, index - 5) : index + 1])
         if len(growth_rates) >= 2:
             acceleration = np.diff(growth_rates)
             if len(acceleration) > 0:
@@ -332,35 +349,37 @@ def _detect_mature_acceleration(citations: np.ndarray, years: np.ndarray, index:
                 # Positive acceleration is a good sign
                 if recent_acceleration > 0.1 * local_median:
                     absolute_threshold *= 0.8  # Lower threshold if accelerating
-    
+
     # Check relative change to avoid being too sensitive to noise
     relative_change = absolute_change / (baseline_citations + 1e-9)
     min_relative_change = 0.2  # At least 20% increase
-    
-    return absolute_change > absolute_threshold and relative_change > min_relative_change
+
+    return (
+        absolute_change > absolute_threshold and relative_change > min_relative_change
+    )
 
 
 def _apply_cooldown(years: List[int], cooldown: int = 2) -> List[int]:
     """Apply cooldown period to prevent clustering of detections.
-    
+
     Args:
         years: List of candidate years
         cooldown: Minimum years between detections
-        
+
     Returns:
         Filtered list of years with cooldown applied
     """
     if not years:
         return years
-    
+
     filtered_years = []
     last_year = None
-    
+
     for year in sorted(years):
         if last_year is None or year - last_year > cooldown:
             filtered_years.append(year)
             last_year = year
-    
+
     return filtered_years
 
 

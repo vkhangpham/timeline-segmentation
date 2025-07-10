@@ -60,7 +60,9 @@ def discover_available_timeline_domains(verbose: bool = False) -> List[str]:
             logger.warning(f"Unexpected timeline file format: {filename}")
 
     if verbose:
-        logger.info(f"Found {len(domains)} domains with timeline files: {', '.join(domains)}")
+        logger.info(
+            f"Found {len(domains)} domains with timeline files: {', '.join(domains)}"
+        )
 
     return sorted(domains)
 
@@ -77,7 +79,7 @@ def get_timeline_file_path(domain_name: str, verbose: bool = False) -> Optional[
     """
     logger = get_logger(__name__, verbose)
     timeline_file = Path("results/timelines") / f"{domain_name}_timeline_analysis.json"
-    
+
     if timeline_file.exists():
         return str(timeline_file)
     else:
