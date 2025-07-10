@@ -1,6 +1,6 @@
 # Timeline Segmentation Evaluation Module
 
-This module provides comprehensive evaluation capabilities for timeline segmentation results including objective function scoring, baseline comparisons, and auto-metrics calculation.
+Evaluation framework for timeline segmentation: objective scoring, baselines, and automatic metrics.
 
 ## Features
 
@@ -152,4 +152,21 @@ Results are saved to `results/evaluation/{domain}_evaluation.json` with complete
 - `core.data.data_processing`: Data loading and processing functions
 - `core.optimization.objective_function`: Objective function computation
 - `core.utils.config`: Algorithm configuration
-- `core.utils.logging`: Logging utilities 
+- `core.utils.logging`: Logging utilities
+
+## Cross-Domain Evaluation Results
+
+*Last updated: July 10, 2025*
+
+### Performance Summary (6 Domains)
+Comprehensive evaluation across: Applied Mathematics, Computer Vision, Deep Learning, Machine Learning, Machine Translation, Natural Language Processing
+
+| Method | Objective Score | Boundary F1 | Boundary Precision | Boundary Recall | Segment F1 | Segment Precision | Segment Recall |
+|--------|----------------|-------------|-------------------|-----------------|------------|-------------------|----------------|
+| **Manual** | **0.147** ⭐ | - | - | - | - | - | - |
+| **Gemini** | -0.146 | **0.527** ⭐ | **0.517** ⭐ | 0.544 | **0.596** ⭐ | 0.584 | 0.615 |
+| **10-year** | -0.325 | 0.303 | 0.195 | **0.706** ⭐ | 0.353 | 0.233 | **0.750** ⭐ |
+| **5-year** | -1.116 | 0.317 | 0.185 | 1.150 | 0.350 | 0.209 | 1.127 |
+| **Algorithm** | -3.176 | 0.376 | 0.324 | 0.456 | **0.889** ⭐ | **0.907** ⭐ | 0.883 |
+
+⭐ = Best score in category

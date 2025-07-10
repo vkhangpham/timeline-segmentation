@@ -5,26 +5,26 @@ including objective function scoring, baseline creation, and auto-metrics calcul
 """
 
 import json
+import yaml
 from pathlib import Path
 from typing import Dict, List, Tuple, NamedTuple, Optional
-from collections import defaultdict
-import numpy as np
 
 from ..data.data_models import AcademicPeriod, TimelineAnalysisResult
-from ..data.data_processing import (
-    load_domain_data,
-    create_academic_periods_from_segments,
-    filter_papers_by_year_range,
-)
 from ..optimization.objective_function import compute_objective_function
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
 
 
+# =============================================================================
+# DATA MODELS
+# =============================================================================
+
 class EvaluationResult(NamedTuple):
     """Result of timeline evaluation with objective function score."""
     
     objective_score: float
+    raw_objective_score: float  # Before penalty
+    penalty: float  # Penalty applied
     cohesion_score: float
     separation_score: float
     num_segments: int
@@ -39,6 +39,8 @@ class BaselineResult(NamedTuple):
     
     baseline_name: str
     objective_score: float
+    raw_objective_score: float  # Before penalty
+    penalty: float  # Penalty applied
     cohesion_score: float
     separation_score: float
     num_segments: int
@@ -70,12 +72,110 @@ class ComprehensiveEvaluationResult(NamedTuple):
     summary: str
 
 
+# =============================================================================
+# CONFIGURATION AND PENALTY CALCULATION
+# =============================================================================
+
+def load_penalty_configuration() -> Dict:
+    """Load penalty configuration from optimization config file.
+    
+    Returns:
+        Dictionary with penalty configuration
+    """
+    config_path = Path("config/optimization.yaml")
+    if not config_path.exists():
+        # Return default penalty configuration if file doesn't exist
+        return {
+            "type": "hybrid",
+            "target_segments_upper": 8,
+            "penalty_weight_over": 0.05,
+            "min_period_years": 5,
+            "short_period_weight": 0.02,
+            "max_period_years": 30,
+            "long_period_weight": 0.02,
+            "target_segments": 6,
+            "penalty_weight": 0.03,
+        }
+    
+    try:
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        return config.get("penalty", {})
+    except Exception:
+        # Return default if file can't be loaded
+        return {
+            "type": "hybrid",
+            "target_segments_upper": 8,
+            "penalty_weight_over": 0.05,
+            "min_period_years": 5,
+            "short_period_weight": 0.02,
+            "max_period_years": 30,
+            "long_period_weight": 0.02,
+            "target_segments": 6,
+            "penalty_weight": 0.03,
+        }
+
+
+def compute_penalty(academic_periods: List[AcademicPeriod], penalty_config: Dict) -> float:
+    """Compute segmentation penalty based on configuration.
+
+    Supports legacy linear (count-deviation) and new hybrid penalty that
+    (1) charges only for over-segmentation beyond an upper bound and 
+    (2) penalizes periods shorter than a minimum length.
+
+    Args:
+        academic_periods: List of AcademicPeriod objects to evaluate
+        penalty_config: Penalty configuration dictionary
+
+    Returns:
+        Non-negative penalty value to subtract from objective score.
+    """
+    penalty_type = penalty_config.get("type", "linear")
+    num_segments = len(academic_periods)
+
+    if penalty_type == "hybrid":
+        # Over-segmentation component (only if N exceeds upper target)
+        t_upper = penalty_config.get("target_segments_upper", 8)
+        w_over = penalty_config.get("penalty_weight_over", 0.05)
+        penalty_over = w_over * max(0, num_segments - t_upper)
+
+        # Short-period length component
+        min_len = penalty_config.get("min_period_years", 5)
+        w_short = penalty_config.get("short_period_weight", 0.02)
+
+        # Long-period length component
+        max_len = penalty_config.get("max_period_years", 30)
+        w_long = penalty_config.get("long_period_weight", 0.02)
+
+        short_accum = 0.0
+        long_accum = 0.0
+        for p in academic_periods:
+            period_len = p.end_year - p.start_year + 1
+            short_accum += max(0, min_len - period_len)
+            long_accum += max(0, period_len - max_len)
+
+        penalty_short = w_short * short_accum
+        penalty_long = w_long * long_accum
+
+        return penalty_over + penalty_short + penalty_long
+
+    # Default legacy linear penalty
+    target_segments = penalty_config.get("target_segments", 6)
+    penalty_weight = penalty_config.get("penalty_weight", 0.03)
+    deviation = abs(num_segments - target_segments)
+    return penalty_weight * deviation
+
+
+# =============================================================================
+# CORE EVALUATION LOGIC
+# =============================================================================
+
 def evaluate_timeline_result(
     timeline_result: TimelineAnalysisResult,
     algorithm_config: AlgorithmConfig,
     verbose: bool = False,
 ) -> EvaluationResult:
-    """Evaluate a timeline result using the objective function.
+    """Evaluate a timeline result using the objective function with penalty.
     
     Args:
         timeline_result: TimelineAnalysisResult from pipeline
@@ -83,7 +183,7 @@ def evaluate_timeline_result(
         verbose: Enable verbose logging
         
     Returns:
-        EvaluationResult with objective function score and details
+        EvaluationResult with objective function score and penalty details
     """
     logger = get_logger(__name__, verbose, timeline_result.domain_name)
     
@@ -101,6 +201,13 @@ def evaluate_timeline_result(
         verbose=verbose,
     )
     
+    # Load penalty configuration and compute penalty
+    penalty_config = load_penalty_configuration()
+    penalty = compute_penalty(academic_periods, penalty_config)
+    
+    # Apply penalty to get final score
+    final_score = obj_result.final_score - penalty
+    
     # Extract boundary years from periods
     boundary_years = []
     for i, period in enumerate(academic_periods):
@@ -115,14 +222,19 @@ def evaluate_timeline_result(
         "cohesion_details": obj_result.cohesion_details,
         "separation_details": obj_result.separation_details,
         "periods": [f"{p.start_year}-{p.end_year}" for p in academic_periods],
+        "penalty_details": f"Penalty: {penalty:.3f} (Raw: {obj_result.final_score:.3f} → Final: {final_score:.3f})",
     }
     
     if verbose:
-        logger.info(f"Objective function score: {obj_result.final_score:.3f}")
+        logger.info(f"Raw objective function score: {obj_result.final_score:.3f}")
+        logger.info(f"Penalty applied: {penalty:.3f}")
+        logger.info(f"Final objective score: {final_score:.3f}")
         logger.info(f"Cohesion: {obj_result.cohesion_score:.3f}, Separation: {obj_result.separation_score:.3f}")
     
     return EvaluationResult(
-        objective_score=obj_result.final_score,
+        objective_score=final_score,
+        raw_objective_score=obj_result.final_score,
+        penalty=penalty,
         cohesion_score=obj_result.cohesion_score,
         separation_score=obj_result.separation_score,
         num_segments=obj_result.num_segments,
@@ -131,431 +243,6 @@ def evaluate_timeline_result(
         methodology=obj_result.methodology,
         details=details,
     )
-
-
-def create_gemini_baseline(
-    domain_name: str,
-    algorithm_config: AlgorithmConfig,
-    data_directory: str = "resources",
-    verbose: bool = False,
-) -> BaselineResult:
-    """Create baseline using Gemini reference timeline.
-    
-    Args:
-        domain_name: Domain name to evaluate
-        algorithm_config: Algorithm configuration
-        data_directory: Directory containing data files
-        verbose: Enable verbose logging
-        
-    Returns:
-        BaselineResult with Gemini baseline evaluation
-    """
-    logger = get_logger(__name__, verbose, domain_name)
-    
-    # Load Gemini reference file
-    gemini_file = Path(f"data/references/{domain_name}_gemini.json")
-    
-    if not gemini_file.exists():
-        raise FileNotFoundError(f"Gemini reference file not found: {gemini_file}")
-    
-    with open(gemini_file, "r") as f:
-        gemini_data = json.load(f)
-    
-    # Extract year boundaries from Gemini data
-    periods = gemini_data["historical_periods"]
-    segments = []
-    
-    for period in periods:
-        start_year = period["start_year"]
-        end_year = period["end_year"]
-        segments.append((start_year, end_year))
-    
-    if verbose:
-        logger.info(f"Gemini baseline: {len(segments)} segments")
-        logger.info(f"Segments: {segments}")
-    
-    # Load domain data with same processing as pipeline
-    success, academic_years, error_message = load_domain_data(
-        domain_name=domain_name,
-        algorithm_config=algorithm_config,
-        data_directory=data_directory,
-        verbose=verbose,
-    )
-    
-    if not success:
-        raise RuntimeError(f"Failed to load domain data: {error_message}")
-    
-    # Filter academic years to match data range
-    data_years = set(year.year for year in academic_years)
-    min_data_year = min(data_years)
-    max_data_year = max(data_years)
-    
-    # Adjust segments to fit within data range
-    adjusted_segments = []
-    for start_year, end_year in segments:
-        # Clip to data range
-        adj_start = max(start_year, min_data_year)
-        adj_end = min(end_year, max_data_year)
-        
-        # Only include segments that have data
-        if adj_start <= adj_end and adj_start in data_years:
-            adjusted_segments.append((adj_start, adj_end))
-    
-    if not adjusted_segments:
-        raise ValueError(f"No Gemini segments overlap with data range {min_data_year}-{max_data_year}")
-    
-    # Create academic periods from segments
-    academic_periods = create_academic_periods_from_segments(
-        academic_years=tuple(academic_years),
-        segments=adjusted_segments,
-        algorithm_config=algorithm_config,
-    )
-    
-    # Compute objective function
-    obj_result = compute_objective_function(
-        academic_periods=academic_periods,
-        algorithm_config=algorithm_config,
-        verbose=verbose,
-    )
-    
-    # Extract boundary years
-    boundary_years = []
-    for i, period in enumerate(academic_periods):
-        if i == 0:
-            boundary_years.append(period.start_year)
-        boundary_years.append(period.end_year)
-    boundary_years = sorted(set(boundary_years))
-    
-    if verbose:
-        logger.info(f"Gemini baseline objective score: {obj_result.final_score:.3f}")
-    
-    return BaselineResult(
-        baseline_name="Gemini",
-        objective_score=obj_result.final_score,
-        cohesion_score=obj_result.cohesion_score,
-        separation_score=obj_result.separation_score,
-        num_segments=len(academic_periods),
-        boundary_years=boundary_years,
-        academic_periods=academic_periods,
-    )
-
-
-def create_manual_baseline(
-    domain_name: str,
-    algorithm_config: AlgorithmConfig,
-    data_directory: str = "resources",
-    verbose: bool = False,
-) -> BaselineResult:
-    """Create baseline using manual reference timeline.
-    
-    Args:
-        domain_name: Domain name to evaluate
-        algorithm_config: Algorithm configuration
-        data_directory: Directory containing data files
-        verbose: Enable verbose logging
-        
-    Returns:
-        BaselineResult with manual baseline evaluation
-    """
-    logger = get_logger(__name__, verbose, domain_name)
-    
-    # Load manual reference file
-    manual_file = Path(f"data/references/{domain_name}_manual.json")
-    
-    if not manual_file.exists():
-        raise FileNotFoundError(f"Manual reference file not found: {manual_file}")
-    
-    with open(manual_file, "r") as f:
-        manual_data = json.load(f)
-    
-    # Extract year boundaries from manual data (different format)
-    periods = manual_data["historical_periods"]
-    segments = []
-    
-    for period in periods:
-        years_str = period["years"]
-        # Parse years like "1400-1600" or "1946-2025"
-        if "-" in years_str:
-            start_year, end_year = map(int, years_str.split("-"))
-            segments.append((start_year, end_year))
-    
-    if verbose:
-        logger.info(f"Manual baseline: {len(segments)} segments")
-        logger.info(f"Segments: {segments}")
-    
-    # Load domain data with same processing as pipeline
-    success, academic_years, error_message = load_domain_data(
-        domain_name=domain_name,
-        algorithm_config=algorithm_config,
-        data_directory=data_directory,
-        verbose=verbose,
-    )
-    
-    if not success:
-        raise RuntimeError(f"Failed to load domain data: {error_message}")
-    
-    # Filter academic years to match data range
-    data_years = set(year.year for year in academic_years)
-    min_data_year = min(data_years)
-    max_data_year = max(data_years)
-    
-    # Adjust segments to fit within data range
-    adjusted_segments = []
-    for start_year, end_year in segments:
-        # Clip to data range
-        adj_start = max(start_year, min_data_year)
-        adj_end = min(end_year, max_data_year)
-        
-        # Only include segments that have data
-        if adj_start <= adj_end and adj_start in data_years:
-            adjusted_segments.append((adj_start, adj_end))
-    
-    if not adjusted_segments:
-        raise ValueError(f"No manual segments overlap with data range {min_data_year}-{max_data_year}")
-    
-    # Create academic periods from segments
-    academic_periods = create_academic_periods_from_segments(
-        academic_years=tuple(academic_years),
-        segments=adjusted_segments,
-        algorithm_config=algorithm_config,
-    )
-    
-    # Compute objective function
-    obj_result = compute_objective_function(
-        academic_periods=academic_periods,
-        algorithm_config=algorithm_config,
-        verbose=verbose,
-    )
-    
-    # Extract boundary years
-    boundary_years = []
-    for i, period in enumerate(academic_periods):
-        if i == 0:
-            boundary_years.append(period.start_year)
-        boundary_years.append(period.end_year)
-    boundary_years = sorted(set(boundary_years))
-    
-    if verbose:
-        logger.info(f"Manual baseline objective score: {obj_result.final_score:.3f}")
-    
-    return BaselineResult(
-        baseline_name="Manual",
-        objective_score=obj_result.final_score,
-        cohesion_score=obj_result.cohesion_score,
-        separation_score=obj_result.separation_score,
-        num_segments=len(academic_periods),
-        boundary_years=boundary_years,
-        academic_periods=academic_periods,
-    )
-
-
-def create_fixed_year_baseline(
-    domain_name: str,
-    algorithm_config: AlgorithmConfig,
-    year_interval: int,
-    data_directory: str = "resources",
-    verbose: bool = False,
-) -> BaselineResult:
-    """Create baseline using fixed year intervals.
-    
-    Args:
-        domain_name: Domain name to evaluate
-        algorithm_config: Algorithm configuration
-        year_interval: Year interval (5 or 10)
-        data_directory: Directory containing data files
-        verbose: Enable verbose logging
-        
-    Returns:
-        BaselineResult with fixed year baseline evaluation
-    """
-    logger = get_logger(__name__, verbose, domain_name)
-    
-    # Load domain data with same processing as pipeline
-    success, academic_years, error_message = load_domain_data(
-        domain_name=domain_name,
-        algorithm_config=algorithm_config,
-        data_directory=data_directory,
-        verbose=verbose,
-    )
-    
-    if not success:
-        raise RuntimeError(f"Failed to load domain data: {error_message}")
-    
-    # Get data year range
-    data_years = sorted(year.year for year in academic_years)
-    min_data_year = min(data_years)
-    max_data_year = max(data_years)
-    
-    # Create fixed year segments
-    segments = []
-    current_year = min_data_year
-    
-    while current_year <= max_data_year:
-        end_year = min(current_year + year_interval - 1, max_data_year)
-        segments.append((current_year, end_year))
-        current_year = end_year + 1
-    
-    if verbose:
-        logger.info(f"{year_interval}-year baseline: {len(segments)} segments (before filtering)")
-        logger.info(f"Segments: {segments}")
-    
-    # Filter segments to only include those with academic years
-    data_years_set = set(year.year for year in academic_years)
-    valid_segments = []
-    
-    for start_year, end_year in segments:
-        # Check if segment has any academic years with data
-        segment_years = [year for year in range(start_year, end_year + 1) if year in data_years_set]
-        if segment_years:
-            valid_segments.append((start_year, end_year))
-        elif verbose:
-            logger.info(f"Skipping segment {start_year}-{end_year}: no academic years with data")
-    
-    if not valid_segments:
-        raise ValueError(f"No valid segments found for {year_interval}-year baseline")
-    
-    if verbose:
-        logger.info(f"{year_interval}-year baseline: {len(valid_segments)} valid segments (after filtering)")
-        logger.info(f"Valid segments: {valid_segments}")
-    
-    # Create academic periods from valid segments
-    academic_periods = create_academic_periods_from_segments(
-        academic_years=tuple(academic_years),
-        segments=valid_segments,
-        algorithm_config=algorithm_config,
-    )
-    
-    # Compute objective function
-    obj_result = compute_objective_function(
-        academic_periods=academic_periods,
-        algorithm_config=algorithm_config,
-        verbose=verbose,
-    )
-    
-    # Extract boundary years
-    boundary_years = []
-    for i, period in enumerate(academic_periods):
-        if i == 0:
-            boundary_years.append(period.start_year)
-        boundary_years.append(period.end_year)
-    boundary_years = sorted(set(boundary_years))
-    
-    baseline_name = f"{year_interval}-year"
-    
-    if verbose:
-        logger.info(f"{baseline_name} baseline objective score: {obj_result.final_score:.3f}")
-    
-    return BaselineResult(
-        baseline_name=baseline_name,
-        objective_score=obj_result.final_score,
-        cohesion_score=obj_result.cohesion_score,
-        separation_score=obj_result.separation_score,
-        num_segments=len(academic_periods),
-        boundary_years=boundary_years,
-        academic_periods=academic_periods,
-    )
-
-
-def calculate_boundary_f1(
-    predicted_boundaries: List[int],
-    ground_truth_boundaries: List[int],
-    tolerance: int = 2,
-) -> Tuple[float, float, float]:
-    """Calculate F1 score for boundary year predictions with tolerance.
-    
-    Args:
-        predicted_boundaries: Predicted boundary years
-        ground_truth_boundaries: Ground truth boundary years
-        tolerance: Year tolerance for matching
-        
-    Returns:
-        Tuple of (f1_score, precision, recall)
-    """
-    if not predicted_boundaries or not ground_truth_boundaries:
-        return 0.0, 0.0, 0.0
-    
-    # Convert to sets for efficient lookup
-    pred_set = set(predicted_boundaries)
-    gt_set = set(ground_truth_boundaries)
-    
-    # Find matches with tolerance
-    true_positives = 0
-    matched_gt = set()
-    
-    for pred_year in pred_set:
-        for gt_year in gt_set:
-            if abs(pred_year - gt_year) <= tolerance and gt_year not in matched_gt:
-                true_positives += 1
-                matched_gt.add(gt_year)
-                break
-    
-    # Calculate precision and recall
-    precision = true_positives / len(pred_set) if pred_set else 0.0
-    recall = true_positives / len(gt_set) if gt_set else 0.0
-    
-    # Calculate F1 score
-    if precision + recall == 0:
-        f1_score = 0.0
-    else:
-        f1_score = 2 * precision * recall / (precision + recall)
-    
-    return f1_score, precision, recall
-
-
-def calculate_segment_f1(
-    predicted_segments: List[Tuple[int, int]],
-    ground_truth_segments: List[Tuple[int, int]],
-    max_segments_per_match: int = 3,
-) -> Tuple[float, float, float]:
-    """Calculate F1 score for segment predictions.
-    
-    A ground truth segment is considered matched if it can be represented
-    by no more than max_segments_per_match predicted segments, and vice versa.
-    
-    Args:
-        predicted_segments: List of (start_year, end_year) tuples
-        ground_truth_segments: List of (start_year, end_year) tuples
-        max_segments_per_match: Maximum segments allowed per match
-        
-    Returns:
-        Tuple of (f1_score, precision, recall)
-    """
-    if not predicted_segments or not ground_truth_segments:
-        return 0.0, 0.0, 0.0
-    
-    def segments_overlap(seg1, seg2):
-        """Check if two segments overlap."""
-        return not (seg1[1] < seg2[0] or seg2[1] < seg1[0])
-    
-    def get_overlapping_segments(target_segment, segment_list):
-        """Get segments that overlap with target segment."""
-        return [seg for seg in segment_list if segments_overlap(target_segment, seg)]
-    
-    # Calculate precision: how many predicted segments can be matched
-    matched_predicted = 0
-    for pred_seg in predicted_segments:
-        overlapping_gt = get_overlapping_segments(pred_seg, ground_truth_segments)
-        if 1 <= len(overlapping_gt) <= max_segments_per_match:
-            matched_predicted += 1
-    
-    # Calculate recall: how many ground truth segments can be matched
-    matched_ground_truth = 0
-    for gt_seg in ground_truth_segments:
-        overlapping_pred = get_overlapping_segments(gt_seg, predicted_segments)
-        if 1 <= len(overlapping_pred) <= max_segments_per_match:
-            matched_ground_truth += 1
-    
-    # Calculate precision and recall
-    precision = matched_predicted / len(predicted_segments) if predicted_segments else 0.0
-    recall = matched_ground_truth / len(ground_truth_segments) if ground_truth_segments else 0.0
-    
-    # Calculate F1 score
-    if precision + recall == 0:
-        f1_score = 0.0
-    else:
-        f1_score = 2 * precision * recall / (precision + recall)
-    
-    return f1_score, precision, recall
 
 
 def run_comprehensive_evaluation(
@@ -581,6 +268,14 @@ def run_comprehensive_evaluation(
     
     if verbose:
         logger.info(f"Running comprehensive evaluation for {domain_name}")
+    
+    # Import baseline and metrics functions
+    from .baselines import (
+        create_gemini_baseline,
+        create_manual_baseline,
+        create_fixed_year_baseline,
+    )
+    from .metrics import calculate_boundary_f1, calculate_segment_f1
     
     # 1. Evaluate algorithm result
     algorithm_result = evaluate_timeline_result(
@@ -744,4 +439,303 @@ def run_comprehensive_evaluation(
         auto_metrics=auto_metrics,
         ranking=ranking,
         summary=summary,
-    ) 
+    )
+
+
+def run_single_evaluation(
+    domain_name: str,
+    algorithm_config: AlgorithmConfig,
+    data_directory: str = "resources",
+    timeline_file: str = None,
+    verbose: bool = False,
+) -> bool:
+    """Run evaluation for a single domain.
+    
+    Args:
+        domain_name: Domain name to evaluate
+        algorithm_config: Algorithm configuration
+        data_directory: Directory containing data files
+        timeline_file: Optional path to existing timeline file
+        verbose: Enable verbose logging
+        
+    Returns:
+        True if evaluation succeeded, False otherwise
+    """
+    logger = get_logger(__name__, verbose, domain_name)
+    
+    try:
+        # Get timeline result - either from file or by running the algorithm
+        if timeline_file:
+            logger.info(f"Loading existing timeline from file: {timeline_file}")
+            from ..data.data_processing import load_timeline_from_file
+            timeline_result = load_timeline_from_file(
+                timeline_file=timeline_file,
+                algorithm_config=algorithm_config,
+                data_directory=data_directory,
+                verbose=verbose,
+            )
+            
+            # Verify domain name matches
+            if timeline_result.domain_name != domain_name:
+                logger.warning(f"Domain name mismatch: file contains '{timeline_result.domain_name}' but evaluating '{domain_name}'")
+                # Update domain name to match the requested evaluation
+                timeline_result = TimelineAnalysisResult(
+                    domain_name=domain_name,
+                    periods=timeline_result.periods,
+                    confidence=timeline_result.confidence,
+                    boundary_years=timeline_result.boundary_years,
+                    narrative_evolution=timeline_result.narrative_evolution,
+                )
+        else:
+            # Run segmentation-only pipeline to get timeline result
+            logger.info(f"Running segmentation pipeline for {domain_name}")
+            from ..pipeline.orchestrator import analyze_timeline
+            timeline_result = analyze_timeline(
+                domain_name=domain_name,
+                algorithm_config=algorithm_config,
+                data_directory=data_directory,
+                segmentation_only=True,
+                verbose=verbose,
+            )
+        
+        # Run comprehensive evaluation
+        logger.info(f"Running comprehensive evaluation for {domain_name}")
+        evaluation_result = run_comprehensive_evaluation(
+            domain_name=domain_name,
+            timeline_result=timeline_result,
+            algorithm_config=algorithm_config,
+            data_directory=data_directory,
+            verbose=verbose,
+        )
+        
+        # Save and display results
+        from .analysis import save_evaluation_result, display_evaluation_summary
+        save_evaluation_result(evaluation_result, verbose)
+        display_evaluation_summary(evaluation_result, verbose)
+        
+        return True
+        
+    except Exception as e:
+        logger.error(f"Evaluation failed for {domain_name}: {e}")
+        return False
+
+
+def run_all_domains_evaluation(
+    algorithm_config: AlgorithmConfig,
+    data_directory: str = "resources",
+    verbose: bool = False,
+) -> bool:
+    """Run evaluation for all available domains using existing timeline files.
+    
+    Args:
+        algorithm_config: Algorithm configuration
+        data_directory: Directory containing data files
+        verbose: Enable verbose logging
+        
+    Returns:
+        True if at least one domain succeeded, False otherwise
+    """
+    logger = get_logger(__name__, verbose, "all_domains")
+    
+    from ..utils.general import discover_available_timeline_domains, get_timeline_file_path
+    
+    # Discover domains from timeline files instead of resources directory
+    domains = discover_available_timeline_domains(verbose)
+    if not domains:
+        logger.error("No timeline files found in results/timelines directory")
+        logger.error("Please run timeline analysis first to generate timeline files")
+        return False
+    
+    successful = []
+    failed = []
+    domain_results = {}
+    
+    logger.info(f"COMPREHENSIVE EVALUATION")
+    logger.info("=" * 50)
+    logger.info(f"Processing {len(domains)} domains with existing timeline files: {', '.join(domains)}")
+    
+    for domain in domains:
+        logger.info(f"Processing {domain}...")
+        
+        # Get timeline file path
+        timeline_file = get_timeline_file_path(domain, verbose)
+        if not timeline_file:
+            logger.error(f"Timeline file not found for {domain}")
+            failed.append(domain)
+            domain_results[domain] = None
+            continue
+        
+        # Load domain-specific config
+        domain_config = AlgorithmConfig.from_config_file(domain_name=domain)
+        
+        # Run evaluation using existing timeline file
+        evaluation_success = run_single_evaluation(
+            domain_name=domain,
+            algorithm_config=domain_config,
+            data_directory=data_directory,
+            timeline_file=timeline_file,  # Always use existing timeline file
+            verbose=verbose,
+        )
+        
+        if evaluation_success:
+            successful.append(domain)
+            
+            # Load the evaluation result for cross-domain analysis
+            try:
+                results_file = Path("results/evaluation") / f"{domain}_evaluation.json"
+                if results_file.exists():
+                    with open(results_file, "r") as f:
+                        eval_data = json.load(f)
+                    
+                    # Convert back to result objects for analysis
+                    from types import SimpleNamespace
+                    
+                    # Create algorithm result
+                    algorithm_result = SimpleNamespace(
+                        objective_score=eval_data["algorithm_result"]["objective_score"],
+                        raw_objective_score=eval_data["algorithm_result"].get("raw_objective_score", eval_data["algorithm_result"]["objective_score"]),
+                        penalty=eval_data["algorithm_result"].get("penalty", 0.0),
+                        cohesion_score=eval_data["algorithm_result"]["cohesion_score"],
+                        separation_score=eval_data["algorithm_result"]["separation_score"],
+                        num_segments=eval_data["algorithm_result"]["num_segments"],
+                        boundary_years=eval_data["algorithm_result"]["boundary_years"],
+                    )
+                    
+                    # Create baseline results
+                    baseline_results = []
+                    for baseline_data in eval_data["baseline_results"]:
+                        baseline_result = SimpleNamespace(
+                            baseline_name=baseline_data["baseline_name"],
+                            objective_score=baseline_data["objective_score"],
+                            raw_objective_score=baseline_data.get("raw_objective_score", baseline_data["objective_score"]),
+                            penalty=baseline_data.get("penalty", 0.0),
+                            cohesion_score=baseline_data["cohesion_score"],
+                            separation_score=baseline_data["separation_score"],
+                            num_segments=baseline_data["num_segments"],
+                            boundary_years=baseline_data["boundary_years"],
+                        )
+                        baseline_results.append(baseline_result)
+                    
+                    # Create auto-metrics
+                    auto_metrics = SimpleNamespace(
+                        boundary_f1=eval_data["auto_metrics"]["boundary_f1"],
+                        boundary_precision=eval_data["auto_metrics"]["boundary_precision"],
+                        boundary_recall=eval_data["auto_metrics"]["boundary_recall"],
+                        segment_f1=eval_data["auto_metrics"]["segment_f1"],
+                        segment_precision=eval_data["auto_metrics"]["segment_precision"],
+                        segment_recall=eval_data["auto_metrics"]["segment_recall"],
+                    )
+                    
+                    # Create comprehensive result
+                    comprehensive_result = SimpleNamespace(
+                        domain_name=domain,
+                        algorithm_result=algorithm_result,
+                        baseline_results=baseline_results,
+                        auto_metrics=auto_metrics,
+                    )
+                    
+                    domain_results[domain] = comprehensive_result
+                    
+            except Exception as e:
+                logger.warning(f"Could not load evaluation results for {domain}: {e}")
+                domain_results[domain] = None
+        else:
+            failed.append(domain)
+            domain_results[domain] = None
+    
+    logger.info(f"EVALUATION COMPLETE")
+    logger.info("=" * 30)
+    logger.info(f"Success: {len(successful)}/{len(domains)} domains")
+    
+    if successful:
+        logger.info(f"Processed: {', '.join(successful)}")
+        logger.info("Results saved in 'results/evaluation/' directory")
+    
+    if failed:
+        logger.warning(f"Failed: {', '.join(failed)}")
+    
+    # Display cross-domain analysis if we have multiple successful domains
+    if len(successful) > 1:
+        from .analysis import display_cross_domain_analysis
+        display_cross_domain_analysis(domain_results, verbose)
+    
+    return len(successful) > 0
+
+
+def run_baseline_only_evaluation(
+    domain_name: str,
+    baseline_type: str,
+    algorithm_config: AlgorithmConfig,
+    data_directory: str = "resources",
+    verbose: bool = False,
+) -> bool:
+    """Run evaluation for a specific baseline only.
+    
+    Args:
+        domain_name: Domain name to evaluate
+        baseline_type: Type of baseline (gemini, manual, 5-year, 10-year)
+        algorithm_config: Algorithm configuration
+        data_directory: Directory containing data files
+        verbose: Enable verbose logging
+        
+    Returns:
+        True if evaluation succeeded, False otherwise
+    """
+    logger = get_logger(__name__, verbose, domain_name)
+    
+    from .baselines import (
+        create_gemini_baseline,
+        create_manual_baseline,
+        create_fixed_year_baseline,
+    )
+    
+    try:
+        if baseline_type == "gemini":
+            baseline_result = create_gemini_baseline(
+                domain_name=domain_name,
+                algorithm_config=algorithm_config,
+                data_directory=data_directory,
+                verbose=verbose,
+            )
+        elif baseline_type == "manual":
+            baseline_result = create_manual_baseline(
+                domain_name=domain_name,
+                algorithm_config=algorithm_config,
+                data_directory=data_directory,
+                verbose=verbose,
+            )
+        elif baseline_type == "5-year":
+            baseline_result = create_fixed_year_baseline(
+                domain_name=domain_name,
+                algorithm_config=algorithm_config,
+                year_interval=5,
+                data_directory=data_directory,
+                verbose=verbose,
+            )
+        elif baseline_type == "10-year":
+            baseline_result = create_fixed_year_baseline(
+                domain_name=domain_name,
+                algorithm_config=algorithm_config,
+                year_interval=10,
+                data_directory=data_directory,
+                verbose=verbose,
+            )
+        else:
+            logger.error(f"Invalid baseline type: {baseline_type}")
+            return False
+        
+        # Display baseline result
+        print(f"\n{'='*50}")
+        print(f"BASELINE EVALUATION: {domain_name} ({baseline_type})")
+        print(f"{'='*50}")
+        print(f"Objective Score: {baseline_result.objective_score:.3f}")
+        print(f"Cohesion Score: {baseline_result.cohesion_score:.3f}")
+        print(f"Separation Score: {baseline_result.separation_score:.3f}")
+        print(f"Number of Segments: {baseline_result.num_segments}")
+        print(f"Boundary Years: {baseline_result.boundary_years}")
+        
+        return True
+        
+    except Exception as e:
+        logger.error(f"Baseline evaluation failed for {domain_name}: {e}")
+        return False 
