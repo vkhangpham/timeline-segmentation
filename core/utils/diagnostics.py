@@ -48,8 +48,8 @@ def save_direction_diagnostics(
         "timestamp": timestamp,
         "total_years": len(academic_years),
         "year_range": {
-            "start": min(ay.year for ay in academic_years),
-            "end": max(ay.year for ay in academic_years),
+            "start": min(ay.year for ay in academic_years) if academic_years else None,
+            "end": max(ay.year for ay in academic_years) if academic_years else None,
         },
         "year_diagnostics": year_diagnostics,
         "distribution_stats": distribution_stats,
