@@ -46,18 +46,32 @@ class TransitionMetrics(NamedTuple):
 def evaluate_period_cohesion(
     academic_period: AcademicPeriod, top_k: int
 ) -> PeriodMetrics:
-    """Evaluate cohesion for an AcademicPeriod using Jaccard similarity.
+    """Evaluate cohesion for an AcademicPeriod using 1-JSD between years and period.
 
     Args:
         academic_period: AcademicPeriod with pre-computed keyword data
-        top_k: Number of top keywords to use
+        top_k: Number of top keywords to use (for consistency with original interface)
 
     Returns:
         PeriodMetrics with cohesion score and metadata
     """
-    keyword_frequencies = academic_period.combined_keyword_frequencies
+    # If only one year, perfect cohesion
+    if len(academic_period.academic_years) <= 1:
+        return PeriodMetrics(
+            cohesion=1.0,
+            size=academic_period.total_papers,
+            keywords_count=len(academic_period.combined_keyword_frequencies),
+            top_keywords=list(academic_period.top_keywords[:top_k]),
+        )
 
-    if not keyword_frequencies:
+    # Collect all keywords from all years to create period vocabulary
+    all_keywords = []
+    for academic_year in academic_period.academic_years:
+        for paper in academic_year.papers:
+            if paper.keywords:
+                all_keywords.extend(paper.keywords)
+
+    if not all_keywords:
         return PeriodMetrics(
             cohesion=0.0,
             size=academic_period.total_papers,
@@ -65,42 +79,59 @@ def evaluate_period_cohesion(
             top_keywords=[],
         )
 
-    top_keywords_items = sorted(
-        keyword_frequencies.items(), key=lambda x: x[1], reverse=True
-    )[:top_k]
-    top_keywords_set = {kw for kw, count in top_keywords_items}
-    top_keywords = [kw for kw, count in top_keywords_items]
+    # Create vocabulary from all keywords in the period
+    period_vocab = list(set(all_keywords))
+    
+    # Get overall period keyword distribution
+    period_distribution = get_frequency_distribution(all_keywords, period_vocab)
 
-    if not top_keywords_set:
-        return PeriodMetrics(
-            cohesion=0.0,
-            size=academic_period.total_papers,
-            keywords_count=len(keyword_frequencies),
-            top_keywords=[],
-        )
+    # Calculate JSD between each year and the overall period
+    jsd_scores = []
+    
+    for academic_year in academic_period.academic_years:
+        year_keywords = []
+        for paper in academic_year.papers:
+            if paper.keywords:
+                year_keywords.extend(paper.keywords)
+        
+        if not year_keywords:
+            continue
+            
+        year_distribution = get_frequency_distribution(year_keywords, period_vocab)
+        
+        # Add small epsilon to avoid issues with zero probabilities
+        epsilon = 1e-10
+        year_dist_smooth = year_distribution + epsilon
+        period_dist_smooth = period_distribution + epsilon
+        
+        # Normalize to ensure they sum to 1
+        year_dist_smooth = year_dist_smooth / year_dist_smooth.sum()
+        period_dist_smooth = period_dist_smooth / period_dist_smooth.sum()
+        
+        # Compute Jensen-Shannon divergence
+        js_divergence = jensenshannon(year_dist_smooth, period_dist_smooth, base=2)
+        
+        if not np.isnan(js_divergence):
+            jsd_scores.append(js_divergence)
 
-    jaccard_scores = []
-
-    for paper in academic_period.get_all_papers():
-        paper_keywords = set(paper.keywords) if paper.keywords else set()
-
-        if paper_keywords & top_keywords_set:
-            intersection = len(paper_keywords & top_keywords_set)
-            union = len(paper_keywords | top_keywords_set)
-
-            if union > 0:
-                jaccard = intersection / union
-                jaccard_scores.append(jaccard)
-
-    if not jaccard_scores:
+    if not jsd_scores:
         cohesion = 0.0
     else:
-        cohesion = float(np.mean(jaccard_scores))
+        # Return 1 - average_JSD (so higher values indicate better cohesion)
+        avg_jsd = float(np.mean(jsd_scores))
+        cohesion = 1.0 - avg_jsd
+
+    # Get top keywords for metadata (using period-level data)
+    top_keywords_items = sorted(
+        academic_period.combined_keyword_frequencies.items(), 
+        key=lambda x: x[1], reverse=True
+    )[:top_k]
+    top_keywords = [kw for kw, count in top_keywords_items]
 
     return PeriodMetrics(
         cohesion=cohesion,
         size=academic_period.total_papers,
-        keywords_count=len(keyword_frequencies),
+        keywords_count=len(academic_period.combined_keyword_frequencies),
         top_keywords=top_keywords,
     )
 
