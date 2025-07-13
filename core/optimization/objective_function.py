@@ -4,7 +4,7 @@ This module computes objective function scores using pre-computed AcademicPeriod
 data structures for period cohesion and separation evaluation.
 """
 
-from typing import List, NamedTuple, Dict, Any, Optional
+from typing import List, NamedTuple, Optional
 from collections import Counter
 import numpy as np
 from scipy.spatial.distance import jensenshannon

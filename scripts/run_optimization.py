@@ -332,6 +332,47 @@ def run_optimization(
     else:
         print(f"Starting optimization for {domain_name} ({n_calls} trials)")
 
+    # Log full optimization configuration before starting
+    if verbose:
+        logger.info("=" * 60)
+        logger.info("OPTIMIZATION CONFIGURATION")
+        logger.info("=" * 60)
+        
+        # Log parameters being optimized
+        parameters = optimization_config.get("parameters", {})
+        logger.info(f"Parameters being optimized ({len(parameters)}):")
+        for param_name, param_spec in parameters.items():
+            param_type = param_spec.get("type", "float")
+            param_range = param_spec.get("range", "N/A")
+            description = param_spec.get("description", "No description")
+            logger.info(f"  {param_name}: {param_type} {param_range} - {description}")
+        
+        # Log search configuration
+        search_config = optimization_config.get("search", {})
+        logger.info(f"Search strategy:")
+        for key, value in search_config.items():
+            logger.info(f"  {key}: {value}")
+        
+        # Log scoring configuration
+        scoring_config = optimization_config.get("scoring", {})
+        if scoring_config:
+            logger.info(f"Scoring configuration:")
+            for key, value in scoring_config.items():
+                logger.info(f"  {key}: {value}")
+        
+        # Log execution configuration
+        execution_config = optimization_config.get("execution", {})
+        if execution_config:
+            logger.info(f"Execution configuration:")
+            for key, value in execution_config.items():
+                logger.info(f"  {key}: {value}")
+        
+        logger.info("=" * 60)
+    else:
+        # Show condensed config info for non-verbose mode
+        parameters = optimization_config.get("parameters", {})
+        print(f"Optimizing {len(parameters)} parameters: {', '.join(parameters.keys())}")
+
     # Load base algorithm configuration
     base_config = AlgorithmConfig.from_config_file(domain_name=domain_name)
 

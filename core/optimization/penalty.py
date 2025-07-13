@@ -5,7 +5,7 @@ across optimization and beam search to prevent gaming and provide bounded scores
 """
 
 import math
-from typing import List, Dict, Any, Union
+from typing import List, Dict, Any
 from dataclasses import dataclass
 
 from ..data.data_models import AcademicPeriod

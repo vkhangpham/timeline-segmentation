@@ -15,6 +15,7 @@ from .optimization import (
     create_trial_config,
     score_trial,
     get_validation_metrics,
+    create_penalty_config_from_algorithm_config,
     clear_cache,
 )
 from .penalty import (
@@ -38,6 +39,7 @@ __all__ = [
     "create_trial_config",
     "score_trial",
     "get_validation_metrics",
+    "create_penalty_config_from_algorithm_config",
     "clear_cache",
     # Unified penalty system
     "PenaltyConfig",
