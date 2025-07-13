@@ -5,12 +5,10 @@ including objective function scoring, baseline creation, and auto-metrics calcul
 """
 
 import json
-import yaml
 from pathlib import Path
-from typing import Dict, List, NamedTuple, Tuple, Optional
+from typing import Dict, List, NamedTuple
 
 from ..data.data_models import AcademicPeriod, TimelineAnalysisResult
-from ..data.data_processing import load_domain_data
 from ..optimization.objective_function import compute_objective_function
 from ..optimization.penalty import create_penalty_config_from_dict
 from ..utils.config import AlgorithmConfig

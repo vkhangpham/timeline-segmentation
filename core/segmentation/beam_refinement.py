@@ -4,14 +4,13 @@ This module implements beam search to optimize segment boundaries through
 merge and split operations guided by the objective function.
 """
 
-import math
 from typing import List, Tuple, Set
 from dataclasses import dataclass
 
 from ..data.data_models import AcademicPeriod, AcademicYear
 from ..data.data_processing import create_academic_periods_from_segments
 from ..optimization.objective_function import compute_objective_function
-from ..optimization.penalty import PenaltyConfig, create_penalty_config_from_dict
+from ..optimization.penalty import create_penalty_config_from_dict
 from ..utils.logging import get_logger
 
 
