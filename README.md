@@ -146,7 +146,16 @@ The application opens at `http://localhost:8501` with a sequential workflow:
 
 ## Parameter Optimization System
 
-The system includes a sophisticated parameter optimization framework that automatically tunes algorithm parameters for optimal performance on each domain.
+The system includes a sophisticated parameter optimization framework with unified configuration management that automatically tunes algorithm parameters for optimal performance on each domain.
+
+### Unified Configuration Architecture
+
+The optimization system uses a two-file configuration approach:
+
+- **`config.yaml`**: Contains penalty system and objective function parameters (shared with main algorithm)
+- **`optimization.yaml`**: Contains only optimization-specific settings (search space, strategy, execution)
+
+This ensures **perfect synchronization** between the main algorithm and optimization process - no parameter duplication or inconsistencies.
 
 ### Bayesian Optimization
 
@@ -155,61 +164,68 @@ The system uses Bayesian optimization with Gaussian Processes to efficiently exp
 - **Smart Exploration**: Uses acquisition functions (Expected Improvement) to balance exploration vs exploitation
 - **Efficient**: Requires fewer trials than grid or random search
 - **Adaptive**: Learns from previous trials to guide future parameter selection
-- **Robust**: Includes early stopping to prevent unnecessary computation
+- **Comprehensive Logging**: Shows complete configuration before optimization starts
 
-### Configuration
+### Current Parameter Space
 
-All optimization parameters are controlled via `config/optimization.yaml`:
+The optimization system currently tunes 4 key parameters:
 
 ```yaml
-# Parameter search space
+# config/optimization.yaml - Parameter search space
 parameters:
   direction_change_threshold:
     type: float
-    grid_values: [0.15, 0.25, 0.35, 0.45]
-    range: [0.05, 0.50]
+    range: [0.6, 0.95]
     description: "Threshold for detecting significant direction changes"
   
   citation_confidence_boost:
     type: float
-    grid_values: [0.2, 0.5, 0.8]
-    range: [0.0, 1.0]
+    range: [0.05, 0.2]
     description: "Boost factor for citation-based confidence"
+  
+  min_keyword_frequency_ratio:
+    type: float
+    range: [0.05, 0.15]
+    description: "Minimum frequency ratio for keyword inclusion (data_processing.keyword_filter)"
 
-# Bayesian optimization settings
+  top_k_keywords:
+    type: int
+    range: [10, 30]
+    description: "Number of top keywords to consider for period cohesion (data_processing.keyword_filter)"
+
+# Search strategy
 search:
+  n_calls: 100
+  n_initial_points: 20
   strategy: "bayesian"
-  n_initial_points: 10
-  n_calls: 50
   acquisition_function: "EI"
-
-# Penalty system
-penalty:
-  segment_count:
-    enabled: true
-    target_segments: 6
-    penalty_weight: 0.03
 
 # Execution settings
 execution:
-  max_workers: 4
+  max_workers: 8
   cache_academic_years: true
 ```
+
+**Note**: Penalty and objective function parameters are automatically loaded from `config.yaml` to ensure consistency with the main algorithm.
 
 ### Optimization Results
 
 Results are automatically saved to:
-- `results/optimization_logs/{domain}.csv` - Detailed trial results
-- `results/optimized_params/{domain}.json` - Best configuration found
+- `results/optimization_logs/{domain}.csv` - Detailed trial results with all parameters and metrics
+- `results/optimized_params/{domain}.json` - Best configuration found with validation scores
+- `results/optimization_logs/{domain}_best_score.png` - Optimization convergence plot
 
 ### Usage Examples
 
 ```bash
-# Quick optimization with default settings
+# Quick optimization with tqdm progress bar
 python scripts/run_optimization.py --domain computer_vision
 
-# Bayesian optimization with verbose output
+# Verbose optimization with full configuration logging
 python scripts/run_optimization.py --domain deep_learning --verbose
+
+# Optimize all domains
+python scripts/run_optimization.py --domain all --verbose
 
 # Custom configuration file
 python scripts/run_optimization.py --domain applied_mathematics --config my_config.yaml
