@@ -1,37 +1,79 @@
-# Algorithm Configuration for Timeline Segmentation
-# This file configures all algorithm parameters for the timeline segmentation system
+# =============================================================================
+# DATA PROCESSING CONFIGURATION
+# =============================================================================
 
-detection_parameters:
-  direction_change_threshold: 0.1
-  direction_threshold_strategy: "global_p90"  # Options: "fixed", "global_p90", "global_p95", "global_p99"
-  direction_scoring_method: "weighted_jaccard"  # Options: "weighted_jaccard", "jensen_shannon"
-  min_baseline_period_years: 3
-  score_distribution_window_years: 3
-  citation_confidence_boost: 0.1
-  citation_support_window_years: 2
-  min_papers_per_year: 100
+data_processing:
+  # Year Filtering (data_processing.py)
+  year_filter:
+    min_papers_per_year: 100
 
-objective_function:
-  cohesion_weight: 0.8
-  separation_weight: 0.2
-  top_k_keywords: 100
-  min_keyword_frequency_ratio: 0.05
+  # Keyword Filtering (objective_function.py)
+  keyword_filter:
+    top_k_keywords: 100
+    min_keyword_frequency_ratio: 0.05
 
-# Ubiquitous Keyword Filtering (De-generalization)
-# Removes keywords that appear too frequently across all years to improve temporal discrimination
-ubiquitous_filtering:
-  apply_ubiquitous_filtering: true
-  ubiquity_threshold: 0.8  # Keywords appearing in ≥80% of years are considered ubiquitous
-  max_iterations: 10  # Maximum iterations to prevent infinite loops
-  min_replacement_frequency: 2  # Minimum frequency for replacement keywords
+  # Ubiquitous Keyword Filtering (data_processing.py)
+  ubiquitous_filtering:
+    apply_ubiquitous_filtering: true
+    ubiquity_threshold: 0.8
+    max_iterations: 10
+    min_replacement_frequency: 2
 
-beam_search:
-  enabled: true
-  beam_width: 5
-  max_splits_per_segment: 1
-  min_period_years: 5
-  max_period_years: 50
+# =============================================================================
+# SEGMENTATION MODULE CONFIGURATION
+# =============================================================================
 
-diagnostics:
-  save_direction_diagnostics: true
-  diagnostic_top_keywords_limit: 10 
+segmentation:
+  # Change Point Detection (direction_detection.py)
+  change_detection:
+    direction_change_threshold: 0.1
+    direction_threshold_strategy: "global_p90"
+    direction_scoring_method: "weighted_jaccard"
+    min_baseline_period_years: 3
+    score_distribution_window_years: 3
+
+  # Citation Analysis (citation_detection.py)
+  citation_analysis:
+    citation_confidence_boost: 0.1
+    citation_support_window_years: 2
+
+  # Beam Search Refinement (beam_refinement.py)
+  beam_refinement:
+    enabled: true
+    beam_width: 5
+    max_splits_per_segment: 1
+    min_period_years: 5
+    max_period_years: 15
+
+# =============================================================================
+# OPTIMIZATION MODULE CONFIGURATION
+# =============================================================================
+
+optimization:
+  # Objective Function (objective_function.py)
+  objective_function:
+    cohesion_weight: 0.8
+    separation_weight: 0.2
+
+  # Penalty System (penalty.py)
+  penalty:
+    min_period_years: 5
+    max_period_years: 14
+    auto_n_upper: true
+    n_upper_buffer: 1
+    target_segments_upper: 8
+    lambda_short: 0.05
+    lambda_long: 0.03
+    lambda_count: 0.02
+    enable_scaling: true
+    scaling_factor: 2.0
+
+# =============================================================================
+# SYSTEM CONFIGURATION
+# =============================================================================
+
+system:
+  # Diagnostics (diagnostics.py)
+  diagnostics:
+    save_direction_diagnostics: true
+    diagnostic_top_keywords_limit: 10 

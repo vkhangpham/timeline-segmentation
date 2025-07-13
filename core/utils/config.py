@@ -26,19 +26,14 @@ class AlgorithmConfig:
 
     # Direction Change Detection Parameters
     direction_change_threshold: float
-    direction_threshold_strategy: (
-        str  # "fixed" | "global_p90" | "global_p95" | "global_p99"
-    )
-    direction_scoring_method: str  # "weighted_jaccard" | "jensen_shannon"
+    direction_threshold_strategy: str
+    direction_scoring_method: str
     min_baseline_period_years: int
     score_distribution_window_years: int
 
     # Citation Analysis Parameters
     citation_confidence_boost: float
     citation_support_window_years: int
-
-    # Diagnostic Parameters
-    diagnostic_top_keywords_limit: int
 
     # Data Filtering Parameters
     min_papers_per_year: int
@@ -62,11 +57,24 @@ class AlgorithmConfig:
     min_period_years: int
     max_period_years: int
 
-    # System Parameters
-    domain_name: Optional[str] = None
+    # Penalty System Parameters
+    penalty_min_period_years: int
+    penalty_max_period_years: int
+    penalty_auto_n_upper: bool
+    penalty_n_upper_buffer: int
+    penalty_target_segments_upper: int
+    penalty_lambda_short: float
+    penalty_lambda_long: float
+    penalty_lambda_count: float
+    penalty_enable_scaling: bool
+    penalty_scaling_factor: float
 
     # Diagnostic Parameters
-    save_direction_diagnostics: bool = False
+    save_direction_diagnostics: bool
+    diagnostic_top_keywords_limit: int
+
+    # System Parameters
+    domain_name: Optional[str] = None
 
     @classmethod
     def from_config_file(
@@ -95,68 +103,74 @@ class AlgorithmConfig:
             raise ValueError(f"Invalid YAML in configuration file {config_path}: {e}")
 
         try:
-            detection_params = config["detection_parameters"]
-            objective_params = config["objective_function"]
-            ubiquitous_params = config.get("ubiquitous_filtering", {})
-            beam_params = config.get("beam_search", {})
-            diagnostic_params = config.get("diagnostics", {})
+            # Extract nested configuration sections
+            segmentation = config["segmentation"]
+            change_detection = segmentation["change_detection"]
+            citation_analysis = segmentation["citation_analysis"]
+            beam_refinement = segmentation["beam_refinement"]
+            
+            optimization = config["optimization"]
+            objective_function = optimization["objective_function"]
+            penalty = optimization["penalty"]
+            
+            data_processing = config["data_processing"]
+            year_filter = data_processing["year_filter"]
+            keyword_filter = data_processing["keyword_filter"]
+            ubiquitous_filtering = data_processing["ubiquitous_filtering"]
+            
+            system = config["system"]
+            diagnostics = system["diagnostics"]
 
             return cls(
                 # Direction Change Detection parameters
-                direction_change_threshold=detection_params[
-                    "direction_change_threshold"
-                ],
-                direction_threshold_strategy=detection_params.get(
-                    "direction_threshold_strategy", "fixed"
-                ),
-                direction_scoring_method=detection_params.get(
-                    "direction_scoring_method", "weighted_jaccard"
-                ),
-                min_baseline_period_years=detection_params.get(
-                    "min_baseline_period_years", 3
-                ),
-                score_distribution_window_years=detection_params.get(
-                    "score_distribution_window_years", 3
-                ),
-                # Validation parameters
+                direction_change_threshold=change_detection["direction_change_threshold"],
+                direction_threshold_strategy=change_detection.get("direction_threshold_strategy", "global_p90"),
+                direction_scoring_method=change_detection.get("direction_scoring_method", "weighted_jaccard"),
+                min_baseline_period_years=change_detection.get("min_baseline_period_years", 3),
+                score_distribution_window_years=change_detection.get("score_distribution_window_years", 3),
+                min_papers_per_year=year_filter.get("min_papers_per_year", 100),
+                
                 # Citation Analysis parameters
-                citation_confidence_boost=detection_params["citation_confidence_boost"],
-                citation_support_window_years=detection_params[
-                    "citation_support_window_years"
-                ],
-                # Data Filtering parameters
-                min_papers_per_year=detection_params["min_papers_per_year"],
+                citation_confidence_boost=citation_analysis["citation_confidence_boost"],
+                citation_support_window_years=citation_analysis["citation_support_window_years"],
+                
                 # Objective function parameters
-                cohesion_weight=objective_params["cohesion_weight"],
-                separation_weight=objective_params["separation_weight"],
-                top_k_keywords=objective_params["top_k_keywords"],
-                min_keyword_frequency_ratio=objective_params[
-                    "min_keyword_frequency_ratio"
-                ],
+                cohesion_weight=objective_function["cohesion_weight"],
+                separation_weight=objective_function["separation_weight"],
+                top_k_keywords=keyword_filter["top_k_keywords"],
+                min_keyword_frequency_ratio=keyword_filter["min_keyword_frequency_ratio"],
+                
+                # Penalty system parameters
+                penalty_min_period_years=penalty["min_period_years"],
+                penalty_max_period_years=penalty["max_period_years"],
+                penalty_auto_n_upper=penalty.get("auto_n_upper", True),
+                penalty_n_upper_buffer=penalty.get("n_upper_buffer", 1),
+                penalty_target_segments_upper=penalty.get("target_segments_upper", 8),
+                penalty_lambda_short=penalty.get("lambda_short", 0.05),
+                penalty_lambda_long=penalty.get("lambda_long", 0.03),
+                penalty_lambda_count=penalty.get("lambda_count", 0.02),
+                penalty_enable_scaling=penalty.get("enable_scaling", True),
+                penalty_scaling_factor=penalty.get("scaling_factor", 2.0),
+                
                 # Ubiquitous keyword filtering parameters
-                apply_ubiquitous_filtering=ubiquitous_params.get(
-                    "apply_ubiquitous_filtering", True
-                ),
-                ubiquity_threshold=ubiquitous_params.get("ubiquity_threshold", 0.9),
-                max_ubiquitous_iterations=ubiquitous_params.get("max_iterations", 10),
-                min_replacement_frequency=ubiquitous_params.get(
-                    "min_replacement_frequency", 2
-                ),
+                apply_ubiquitous_filtering=ubiquitous_filtering.get("apply_ubiquitous_filtering", True),
+                ubiquity_threshold=ubiquitous_filtering.get("ubiquity_threshold", 0.8),
+                max_ubiquitous_iterations=ubiquitous_filtering.get("max_iterations", 10),
+                min_replacement_frequency=ubiquitous_filtering.get("min_replacement_frequency", 2),
+                
                 # Beam search refinement parameters
-                beam_search_enabled=beam_params.get("enabled", False),
-                beam_width=beam_params.get("beam_width", 5),
-                max_splits_per_segment=beam_params.get("max_splits_per_segment", 1),
-                min_period_years=beam_params.get("min_period_years", 3),
-                max_period_years=beam_params.get("max_period_years", 50),
+                beam_search_enabled=beam_refinement.get("enabled", True),
+                beam_width=beam_refinement.get("beam_width", 5),
+                max_splits_per_segment=beam_refinement.get("max_splits_per_segment", 1),
+                min_period_years=beam_refinement.get("min_period_years", 5),
+                max_period_years=beam_refinement.get("max_period_years", 50),
+                
+                # Diagnostic parameters
+                save_direction_diagnostics=diagnostics.get("save_direction_diagnostics", False),
+                diagnostic_top_keywords_limit=diagnostics.get("diagnostic_top_keywords_limit", 10),
+                
                 # System parameters
                 domain_name=domain_name,
-                # Diagnostic parameters
-                save_direction_diagnostics=diagnostic_params.get(
-                    "save_direction_diagnostics", False
-                ),
-                diagnostic_top_keywords_limit=diagnostic_params.get(
-                    "diagnostic_top_keywords_limit", 10
-                ),
             )
         except KeyError as e:
             raise ValueError(f"Missing required parameter in configuration file: {e}")
@@ -195,7 +209,6 @@ class AlgorithmConfig:
                 f"score_distribution_window_years must be 1-10, got {self.score_distribution_window_years}"
             )
 
-        # Validation parameters
         # Citation Analysis parameters
         if not 0.0 <= self.citation_confidence_boost <= 1.0:
             raise ValueError(
@@ -282,7 +295,21 @@ class AlgorithmConfig:
                 f"min_period_years ({self.min_period_years}) must be less than max_period_years ({self.max_period_years})"
             )
 
-        # Citation Analysis scales
+        # Penalty system parameters
+        if not 1 <= self.penalty_min_period_years <= 20:
+            raise ValueError(
+                f"penalty_min_period_years must be 1-20, got {self.penalty_min_period_years}"
+            )
+
+        if not 5 <= self.penalty_max_period_years <= 200:
+            raise ValueError(
+                f"penalty_max_period_years must be 5-200, got {self.penalty_max_period_years}"
+            )
+
+        if self.penalty_min_period_years >= self.penalty_max_period_years:
+            raise ValueError(
+                f"penalty_min_period_years ({self.penalty_min_period_years}) must be less than penalty_max_period_years ({self.penalty_max_period_years})"
+            )
 
     def get_configuration_summary(self) -> str:
         """Get a concise summary of the current configuration.

@@ -1,5 +1,15 @@
+# Optimization Configuration for Timeline Segmentation
+# Parameter ranges for Bayesian optimization
+# 
+# Note: Penalty and objective function parameters are loaded from config.yaml
+# This file contains only optimization-specific configuration
+
+# =============================================================================
+# PARAMETER SEARCH SPACE
+# =============================================================================
+
 parameters:
-  # Uncomment to include in optimization
+  # Direction change detection parameters
   direction_change_threshold:
     type: float
     range: [0.6, 0.95]
@@ -13,54 +23,34 @@ parameters:
   min_keyword_frequency_ratio:
     type: float
     range: [0.05, 0.15]
-    description: "Minimum frequency ratio for keyword inclusion"
+    description: "Minimum frequency ratio for keyword inclusion (data_processing.keyword_filter)"
 
   top_k_keywords:
     type: int
     range: [10, 30]
-    description: "Number of top keywords to consider for period cohesion"
+    description: "Number of top keywords to consider for period cohesion (data_processing.keyword_filter)"
+
+# =============================================================================
+# SEARCH STRATEGY
+# =============================================================================
 
 search:
-  n_calls: 100  # Number of optimization trials
-  n_initial_points: 20  # Number of random points before optimization starts (~10-20% of n_calls)
+  n_calls: 100
+  n_initial_points: 20
   strategy: "bayesian"
   acquisition_function: "EI"
 
-# Penalty Configuration  
-penalty:
-  # Unified penalty system parameters
-  # Length constraints
-  min_period_years: 3         # Minimum period length (from cohesion analysis)
-  max_period_years: 14        # Maximum period length (knee of cohesion curve)
-  
-  # Segment count constraints
-  auto_n_upper: true          # Automatically calculate N_upper based on timeline span
-  n_upper_buffer: 1           # Buffer added to auto-calculated N_upper
-  target_segments_upper: 8    # Manual N_upper (used only if auto_n_upper is false)
-  
-  # Penalty weights (optimizable parameters)
-  lambda_short: 0.05          # Weight for short period penalty
-  lambda_long: 0.03           # Weight for long period penalty
-  lambda_count: 0.02          # Weight for over-segmentation penalty
-  
-  # Scaling parameters
-  enable_scaling: true        # Enable 0-1 scaling of final scores
-  scaling_factor: 2.0         # Sigmoid scaling factor
-  
-  # Legacy parameters (deprecated but kept for backward compatibility)
-  penalty_weight_over: 0.05
-  short_period_weight: 0.02
-  long_period_weight: 0.02
-  target_segments: 6
-  penalty_weight: 0.03
+# =============================================================================
+# OPTIMIZATION-SPECIFIC CONFIGURATION
+# =============================================================================
 
-# Scoring Configuration
+# Scoring configuration
 scoring:
-  fail_score: -10.0       # Score assigned to failed trials
+  fail_score: -10.0
   boundary_tolerance: 2
   max_segments_per_match: 3
 
-# Execution
+# Execution configuration
 execution:
   max_workers: 8
   cache_academic_years: true 
