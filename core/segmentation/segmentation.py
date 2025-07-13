@@ -33,6 +33,8 @@ def create_segments_from_boundary_years(
     logger = get_logger(__name__, verbose)
 
     if not academic_years:
+        if verbose:
+            logger.warning("No academic years provided for segmentation")
         return []
 
     available_years = sorted([year.year for year in academic_years])
@@ -44,6 +46,15 @@ def create_segments_from_boundary_years(
         logger.info(f"  Available year range: {min_year}-{max_year}")
         logger.info(f"  Total academic years: {len(academic_years)}")
         logger.info(f"  Boundary academic years: {len(boundary_academic_years)}")
+
+    # Handle empty boundary years - create single period
+    if not boundary_academic_years:
+        if verbose:
+            logger.info("  No boundary years - creating single period")
+        single_period_segments = [(min_year, max_year)]
+        return create_academic_periods_from_segments(
+            academic_years, single_period_segments, algorithm_config
+        )
 
     boundary_years = [ay.year for ay in boundary_academic_years]
     boundaries = sorted(set(boundary_years))

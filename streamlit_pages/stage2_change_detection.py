@@ -8,13 +8,16 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 import time
-from core.segmentation.change_point_detection import (
-    detect_boundary_years,
+from core.segmentation.change_point_detection import detect_boundary_years
+from core.segmentation.citation_detection import (
     detect_citation_acceleration_years,
+    moving_average,
+)
+from core.segmentation.direction_detection import (
     detect_direction_change_years_with_citation_boost,
-    compute_direction_score_by_method,
-    compute_adaptive_threshold_score,
-    normalize_frequencies,
+    calculate_direction_score,
+    calculate_threshold_from_scores,
+    normalize_keyword_frequencies,
     build_cumulative_baseline,
 )
 
@@ -45,8 +48,6 @@ def run_change_detection():
             # Also compute citation acceleration years for visualization
             citation_years = detect_citation_acceleration_years(
                 academic_years=st.session_state.academic_years,
-                domain_name=st.session_state.selected_domain,
-                algorithm_config=st.session_state.algorithm_config,
                 verbose=False,
             )
             st.session_state.citation_acceleration_years = citation_years
@@ -62,9 +63,7 @@ def calculate_direction_signals_streamlined(academic_years, algorithm_config):
     This ensures zero discrepancy between visualization and actual algorithm execution.
     """
     # Use the EXACT same algorithm as the main detection
-    citation_years = detect_citation_acceleration_years(
-        academic_years, "visualization", algorithm_config, verbose=False
-    )
+    citation_years = detect_citation_acceleration_years(academic_years, verbose=False)
 
     # Create a temporary config with diagnostics enabled to capture the detailed data
     import copy
@@ -117,8 +116,10 @@ def calculate_direction_signals_streamlined(academic_years, algorithm_config):
         baseline_frequencies = build_cumulative_baseline(
             eligible_years, last_boundary_idx, current_idx
         )
-        current_frequencies = normalize_frequencies(current_year.keyword_frequencies)
-        base_score = compute_direction_score_by_method(
+        current_frequencies = normalize_keyword_frequencies(
+            current_year.keyword_frequencies
+        )
+        base_score = calculate_direction_score(
             current_frequencies, baseline_frequencies, scoring_method
         )
         base_sample_scores.append(base_score)
@@ -130,7 +131,7 @@ def calculate_direction_signals_streamlined(academic_years, algorithm_config):
         threshold_strategy = getattr(
             algorithm_config, "direction_threshold_strategy", "global_p90"
         )
-        threshold = compute_adaptive_threshold_score(
+        threshold = calculate_threshold_from_scores(
             base_sample_scores,
             threshold_strategy,
             algorithm_config.direction_change_threshold,
@@ -148,10 +149,12 @@ def calculate_direction_signals_streamlined(academic_years, algorithm_config):
         baseline_frequencies = build_cumulative_baseline(
             eligible_years, last_boundary_idx, current_idx
         )
-        current_frequencies = normalize_frequencies(current_year.keyword_frequencies)
+        current_frequencies = normalize_keyword_frequencies(
+            current_year.keyword_frequencies
+        )
 
         # Compute base direction score (same as main algorithm)
-        base_score = compute_direction_score_by_method(
+        base_score = calculate_direction_score(
             current_frequencies, baseline_frequencies, scoring_method
         )
 
@@ -432,8 +435,6 @@ def create_citation_acceleration_chart(academic_years, citation_years=None):
     # Smoothed citations (as used in algorithm)
     smoothing_window = 5
     if len(citations) >= smoothing_window:
-        from core.segmentation.change_point_detection import moving_average
-
         smoothed = moving_average(np.array(citations), smoothing_window)
         smoothed = np.pad(smoothed, (1, 1), mode="edge")[: len(citations)]
 

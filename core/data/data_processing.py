@@ -430,9 +430,13 @@ def create_academic_periods_from_segments(
         ]
 
         if not segment_years:
-            raise ValueError(
-                f"No academic years found for segment {start_year}-{end_year}"
+            # Log warning instead of raising error - this can happen during optimization
+            import warnings
+            warnings.warn(
+                f"No academic years found for segment {start_year}-{end_year}. "
+                f"Available years: {sorted(available_years)}"
             )
+            continue
 
         segment_academic_years = tuple(year_lookup[year] for year in segment_years)
 
