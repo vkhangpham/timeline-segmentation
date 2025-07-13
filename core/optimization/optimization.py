@@ -13,6 +13,7 @@ from ..pipeline.orchestrator import analyze_timeline
 from ..evaluation.evaluation import evaluate_timeline_result
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
+from .penalty import PenaltyConfig, create_penalty_config_from_dict
 
 
 # Global cache for academic years
@@ -96,59 +97,6 @@ def create_trial_config(
     config_dict["direction_threshold_strategy"] = "fixed"
 
     return AlgorithmConfig(**config_dict)
-
-
-def compute_penalty(timeline_result, config: Dict[str, Any]) -> float:
-    """Compute segmentation penalty based on configuration.
-
-    Supports legacy *linear* (count-deviation) and new *hybrid* penalty that
-    (1) charges only for over-segmentation beyond an upper bound and
-    (2) penalises periods shorter than a minimum length.
-
-    Args:
-        timeline_result: TimelineAnalysisResult to inspect
-        config: Full optimization configuration dict (expects `penalty` key)
-
-    Returns:
-        Non-negative penalty value to subtract from objective score.
-    """
-    penalty_cfg = config.get("penalty", {})
-    penalty_type = penalty_cfg.get("type", "linear")  # backward compatibility
-
-    periods = getattr(timeline_result, "periods", [])
-    num_segments = len(periods)
-
-    if penalty_type == "hybrid":
-        # Over-segmentation component (only if N exceeds upper target)
-        t_upper = penalty_cfg.get("target_segments_upper", 8)
-        w_over = penalty_cfg.get("penalty_weight_over", 0.05)
-        penalty_over = w_over * max(0, num_segments - t_upper)
-
-        # Short-period length component
-        min_len = penalty_cfg.get("min_period_years", 5)
-        w_short = penalty_cfg.get("short_period_weight", 0.02)
-
-        # Long-period length component
-        max_len = penalty_cfg.get("max_period_years", 40)
-        w_long = penalty_cfg.get("long_period_weight", 0.02)
-
-        short_accum = 0.0
-        long_accum = 0.0
-        for p in periods:
-            period_len = p.end_year - p.start_year + 1
-            short_accum += max(0, min_len - period_len)
-            long_accum += max(0, period_len - max_len)
-
-        penalty_short = w_short * short_accum
-        penalty_long = w_long * long_accum
-
-        return penalty_over + penalty_short + penalty_long
-
-    # Default legacy linear penalty
-    target_segments = penalty_cfg.get("target_segments", 6)
-    penalty_weight = penalty_cfg.get("penalty_weight", 0.03)
-    deviation = abs(num_segments - target_segments)
-    return penalty_weight * deviation
 
 
 def get_validation_metrics(
@@ -294,17 +242,20 @@ def score_trial(
             verbose=verbose,
         )
 
-        # Evaluate the result
-        evaluation_result = evaluate_timeline_result(
-            timeline_result=timeline_result,
-            algorithm_config=trial_config,
+        # Create penalty configuration from optimization config
+        penalty_config = create_penalty_config_from_dict(optimization_config or {})
+
+        # Evaluate the result using unified penalty system
+        from ..optimization.objective_function import compute_objective_function
+        objective_result = compute_objective_function(
+            timeline_result.periods,
+            trial_config,
+            penalty_config=penalty_config,
             verbose=verbose,
         )
 
-        # Apply penalty according to configuration (hybrid or linear)
-        penalty = compute_penalty(timeline_result, optimization_config or {})
-
-        final_objective_score = evaluation_result.objective_score - penalty
+        # Use the penalized score as the final objective
+        final_objective_score = objective_result.final_score
 
         # Get validation metrics
         boundary_f1, segment_f1 = get_validation_metrics(
@@ -317,8 +268,11 @@ def score_trial(
             "trial_id": trial_id,
             "parameters": parameter_overrides,
             "objective_score": final_objective_score,
-            "cohesion_score": evaluation_result.cohesion_score,
-            "separation_score": evaluation_result.separation_score,
+            "raw_score": objective_result.raw_score,
+            "penalty": objective_result.penalty,
+            "scaled_score": objective_result.scaled_score,
+            "cohesion_score": objective_result.cohesion_score,
+            "separation_score": objective_result.separation_score,
             "num_segments": len(timeline_result.periods),
             "boundary_f1": boundary_f1,
             "segment_f1": segment_f1,
@@ -337,6 +291,9 @@ def score_trial(
             "trial_id": trial_id,
             "parameters": parameter_overrides,
             "objective_score": fail_score,
+            "raw_score": fail_score,
+            "penalty": 0.0,
+            "scaled_score": 0.0,
             "cohesion_score": 0.0,
             "separation_score": 0.0,
             "num_segments": 0,

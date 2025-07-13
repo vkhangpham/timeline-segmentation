@@ -4,18 +4,22 @@ This module computes objective function scores using pre-computed AcademicPeriod
 data structures for period cohesion and separation evaluation.
 """
 
-from typing import List, NamedTuple
+from typing import List, NamedTuple, Dict, Any, Optional
 from collections import Counter
 import numpy as np
 from scipy.spatial.distance import jensenshannon
 
 from ..data.data_models import AcademicPeriod
+from .penalty import PenaltyConfig, compute_penalized_objective, create_penalty_config_from_dict
 
 
 class ObjectiveFunctionResult(NamedTuple):
     """Complete result of objective function evaluation."""
 
     final_score: float
+    raw_score: float  # Before penalty
+    penalty: float
+    scaled_score: float  # 0-1 scaled score
     cohesion_score: float
     separation_score: float
     num_segments: int
@@ -227,17 +231,19 @@ def get_frequency_distribution(
 def compute_objective_function(
     academic_periods: List[AcademicPeriod],
     algorithm_config,
+    penalty_config: Optional[PenaltyConfig] = None,
     verbose: bool = False,
 ) -> ObjectiveFunctionResult:
-    """Compute objective function for academic periods using only cohesion and separation.
+    """Compute objective function for academic periods with unified penalty system.
 
     Args:
         academic_periods: List of AcademicPeriod objects to evaluate
         algorithm_config: AlgorithmConfig with cohesion/separation weights and top_k_keywords
+        penalty_config: Optional PenaltyConfig; if None, created from algorithm_config
         verbose: Enable verbose logging output
 
     Returns:
-        ObjectiveFunctionResult with cohesion and separation evaluation
+        ObjectiveFunctionResult with cohesion, separation, and penalty evaluation
 
     Raises:
         ValueError: If academic_periods is empty or algorithm_config is invalid
@@ -251,6 +257,12 @@ def compute_objective_function(
     from ..utils.logging import get_logger
 
     logger = get_logger(__name__, verbose)
+
+    # Create penalty config if not provided
+    if penalty_config is None:
+        # Convert algorithm_config to dict for penalty config creation
+        config_dict = {"penalty": {}}
+        penalty_config = create_penalty_config_from_dict(config_dict)
 
     cohesion_weight = algorithm_config.cohesion_weight
     separation_weight = algorithm_config.separation_weight
@@ -266,15 +278,24 @@ def compute_objective_function(
     if len(academic_periods) == 1:
         period_metrics = evaluate_period_cohesion(academic_periods[0], top_k)
 
-        final_score = cohesion_weight * period_metrics.cohesion
+        base_score = cohesion_weight * period_metrics.cohesion
+
+        # Apply unified penalty system
+        penalty_result = compute_penalized_objective(
+            base_score, academic_periods, penalty_config
+        )
 
         methodology = (
             f"Single period objective: {cohesion_weight:.1f} × {period_metrics.cohesion:.3f} "
-            f"(cohesion only) = {final_score:.3f}"
+            f"(cohesion only) = {base_score:.3f}, penalty = {penalty_result['penalty']:.3f}, "
+            f"final = {penalty_result['penalized_score']:.3f}, scaled = {penalty_result['scaled_score']:.3f}"
         )
 
         return ObjectiveFunctionResult(
-            final_score=final_score,
+            final_score=penalty_result["penalized_score"],
+            raw_score=base_score,
+            penalty=penalty_result["penalty"],
+            scaled_score=penalty_result["scaled_score"],
             cohesion_score=period_metrics.cohesion,
             separation_score=0.0,
             num_segments=1,
@@ -319,7 +340,12 @@ def compute_objective_function(
     avg_cohesion = float(np.mean(cohesion_scores))
     avg_separation = float(np.mean(separation_scores)) if separation_scores else 0.0
 
-    final_score = cohesion_weight * avg_cohesion + separation_weight * avg_separation
+    base_score = cohesion_weight * avg_cohesion + separation_weight * avg_separation
+
+    # Apply unified penalty system
+    penalty_result = compute_penalized_objective(
+        base_score, academic_periods, penalty_config
+    )
 
     cohesion_details = " | ".join(
         [
@@ -337,15 +363,21 @@ def compute_objective_function(
 
     methodology = (
         f"Multi-period objective: {cohesion_weight:.1f} × {avg_cohesion:.3f} + "
-        f"{separation_weight:.1f} × {avg_separation:.3f} = {final_score:.3f} "
+        f"{separation_weight:.1f} × {avg_separation:.3f} = {base_score:.3f}, "
+        f"penalty = {penalty_result['penalty']:.3f}, final = {penalty_result['penalized_score']:.3f}, "
+        f"scaled = {penalty_result['scaled_score']:.3f} "
         f"({len(academic_periods)} periods, {len(transition_metrics_list)} transitions)"
     )
 
     if verbose:
-        logger.info(f"Final objective score: {final_score:.3f}")
+        logger.info(f"Final objective score: {penalty_result['penalized_score']:.3f}")
+        logger.info(f"Scaled score: {penalty_result['scaled_score']:.3f}")
 
     return ObjectiveFunctionResult(
-        final_score=final_score,
+        final_score=penalty_result["penalized_score"],
+        raw_score=base_score,
+        penalty=penalty_result["penalty"],
+        scaled_score=penalty_result["scaled_score"],
         cohesion_score=avg_cohesion,
         separation_score=avg_separation,
         num_segments=len(academic_periods),

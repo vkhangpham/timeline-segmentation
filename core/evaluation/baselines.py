@@ -14,7 +14,8 @@ from ..data.data_processing import (
 from ..optimization.objective_function import compute_objective_function
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
-from .evaluation import load_penalty_configuration, compute_penalty, BaselineResult
+from ..optimization.penalty import create_penalty_config_from_dict
+from .evaluation import BaselineResult
 
 
 def create_gemini_baseline(
@@ -97,19 +98,16 @@ def create_gemini_baseline(
         algorithm_config=algorithm_config,
     )
 
-    # Compute objective function
+    # Create penalty configuration and compute objective function with unified penalty system
+    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+    
+    # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
         algorithm_config=algorithm_config,
+        penalty_config=penalty_config,
         verbose=verbose,
     )
-
-    # Load penalty configuration and compute penalty
-    penalty_config = load_penalty_configuration()
-    penalty = compute_penalty(academic_periods, penalty_config)
-
-    # Apply penalty to get final score
-    final_score = obj_result.final_score - penalty
 
     # Extract boundary years
     boundary_years = []
@@ -121,16 +119,16 @@ def create_gemini_baseline(
 
     if verbose:
         logger.info(
-            f"Gemini baseline raw objective score: {obj_result.final_score:.3f}"
+            f"Gemini baseline raw objective score: {obj_result.raw_score:.3f}"
         )
-        logger.info(f"Gemini baseline penalty applied: {penalty:.3f}")
-        logger.info(f"Gemini baseline final objective score: {final_score:.3f}")
+        logger.info(f"Gemini baseline penalty applied: {obj_result.penalty:.3f}")
+        logger.info(f"Gemini baseline final objective score: {obj_result.final_score:.3f}")
 
     return BaselineResult(
         baseline_name="Gemini",
-        objective_score=final_score,
-        raw_objective_score=obj_result.final_score,
-        penalty=penalty,
+        objective_score=obj_result.final_score,
+        raw_objective_score=obj_result.raw_score,
+        penalty=obj_result.penalty,
         cohesion_score=obj_result.cohesion_score,
         separation_score=obj_result.separation_score,
         num_segments=len(academic_periods),
@@ -221,19 +219,16 @@ def create_manual_baseline(
         algorithm_config=algorithm_config,
     )
 
-    # Compute objective function
+    # Create penalty configuration and compute objective function with unified penalty system
+    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+    
+    # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
         algorithm_config=algorithm_config,
+        penalty_config=penalty_config,
         verbose=verbose,
     )
-
-    # Load penalty configuration and compute penalty
-    penalty_config = load_penalty_configuration()
-    penalty = compute_penalty(academic_periods, penalty_config)
-
-    # Apply penalty to get final score
-    final_score = obj_result.final_score - penalty
 
     # Extract boundary years
     boundary_years = []
@@ -245,16 +240,16 @@ def create_manual_baseline(
 
     if verbose:
         logger.info(
-            f"Manual baseline raw objective score: {obj_result.final_score:.3f}"
+            f"Manual baseline raw objective score: {obj_result.raw_score:.3f}"
         )
-        logger.info(f"Manual baseline penalty applied: {penalty:.3f}")
-        logger.info(f"Manual baseline final objective score: {final_score:.3f}")
+        logger.info(f"Manual baseline penalty applied: {obj_result.penalty:.3f}")
+        logger.info(f"Manual baseline final objective score: {obj_result.final_score:.3f}")
 
     return BaselineResult(
         baseline_name="Manual",
-        objective_score=final_score,
-        raw_objective_score=obj_result.final_score,
-        penalty=penalty,
+        objective_score=obj_result.final_score,
+        raw_objective_score=obj_result.raw_score,
+        penalty=obj_result.penalty,
         cohesion_score=obj_result.cohesion_score,
         separation_score=obj_result.separation_score,
         num_segments=len(academic_periods),
@@ -347,19 +342,16 @@ def create_fixed_year_baseline(
         algorithm_config=algorithm_config,
     )
 
-    # Compute objective function
+    # Create penalty configuration and compute objective function with unified penalty system
+    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+    
+    # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
         algorithm_config=algorithm_config,
+        penalty_config=penalty_config,
         verbose=verbose,
     )
-
-    # Load penalty configuration and compute penalty
-    penalty_config = load_penalty_configuration()
-    penalty = compute_penalty(academic_periods, penalty_config)
-
-    # Apply penalty to get final score
-    final_score = obj_result.final_score - penalty
 
     # Extract boundary years
     boundary_years = []
@@ -373,18 +365,18 @@ def create_fixed_year_baseline(
 
     if verbose:
         logger.info(
-            f"{baseline_name} baseline raw objective score: {obj_result.final_score:.3f}"
+            f"{baseline_name} baseline raw objective score: {obj_result.raw_score:.3f}"
         )
-        logger.info(f"{baseline_name} baseline penalty applied: {penalty:.3f}")
+        logger.info(f"{baseline_name} baseline penalty applied: {obj_result.penalty:.3f}")
         logger.info(
-            f"{baseline_name} baseline final objective score: {final_score:.3f}"
+            f"{baseline_name} baseline final objective score: {obj_result.final_score:.3f}"
         )
 
     return BaselineResult(
         baseline_name=baseline_name,
-        objective_score=final_score,
-        raw_objective_score=obj_result.final_score,
-        penalty=penalty,
+        objective_score=obj_result.final_score,
+        raw_objective_score=obj_result.raw_score,
+        penalty=obj_result.penalty,
         cohesion_score=obj_result.cohesion_score,
         separation_score=obj_result.separation_score,
         num_segments=len(academic_periods),

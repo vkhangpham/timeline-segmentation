@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from ..data.data_models import AcademicPeriod, AcademicYear
 from ..data.data_processing import create_academic_periods_from_segments
 from ..optimization.objective_function import compute_objective_function
+from ..optimization.penalty import PenaltyConfig, create_penalty_config_from_dict
 from ..utils.logging import get_logger
 
 
@@ -71,45 +72,6 @@ class BeamSearchState:
         return "|".join(f"{seg.start_year}-{seg.end_year}" for seg in self.segments)
 
 
-def compute_length_penalty(
-    segments: List[SegmentNode],
-    available_years: Set[int],
-    min_years: int,
-    max_years: int,
-    penalty_alpha: float = 0.01,
-) -> float:
-    """Compute length penalty for segments outside valid range.
-
-    Args:
-        segments: List of segment nodes
-        available_years: Set of years with available data
-        min_years: Minimum allowed segment length
-        max_years: Maximum allowed segment length
-        penalty_alpha: Penalty decay parameter (reduced to be less severe)
-
-    Returns:
-        Penalty factor (0.0 to 1.0)
-    """
-    penalty = 1.0
-
-    for i, segment in enumerate(segments):
-        effective_length = segment.get_effective_length(available_years)
-
-        # Skip min length check for first and last segments
-        is_edge_segment = i == 0 or i == len(segments) - 1
-
-        if not is_edge_segment and effective_length < min_years:
-            gap = min_years - effective_length
-            penalty *= math.exp(-penalty_alpha * gap)
-        elif effective_length > max_years:
-            gap = effective_length - max_years
-            # Cap the penalty to avoid total score destruction
-            capped_gap = min(gap, 50)  # Cap at 50 years over limit
-            penalty *= math.exp(-penalty_alpha * capped_gap)
-
-    return penalty
-
-
 def evaluate_state(
     state: BeamSearchState,
     academic_years: Tuple[AcademicYear, ...],
@@ -117,7 +79,7 @@ def evaluate_state(
     algorithm_config,
     verbose: bool = False,
 ) -> float:
-    """Evaluate a beam search state using objective function and length penalty.
+    """Evaluate a beam search state using unified penalty system.
 
     Args:
         state: Beam search state to evaluate
@@ -127,7 +89,7 @@ def evaluate_state(
         verbose: Enable verbose logging
 
     Returns:
-        Total score (objective_score * length_penalty)
+        Total score using unified penalty system
     """
     try:
         # Convert to academic periods
@@ -136,26 +98,23 @@ def evaluate_state(
             academic_years, segments, algorithm_config
         )
 
-        # Compute objective function score
+        # Create penalty configuration from algorithm config
+        # For now, use default penalty config - this could be expanded to use algorithm_config
+        penalty_config = create_penalty_config_from_dict({"penalty": {}})
+
+        # Compute objective function score with unified penalty
         result = compute_objective_function(
-            academic_periods, algorithm_config, verbose=False
-        )
-        base_score = result.final_score
-
-        # Apply length penalty
-        length_penalty = compute_length_penalty(
-            state.segments,
-            available_years,
-            algorithm_config.min_period_years,
-            algorithm_config.max_period_years,
+            academic_periods, algorithm_config, penalty_config=penalty_config, verbose=False
         )
 
-        total_score = base_score * length_penalty
+        # Return the final penalized score
+        total_score = result.final_score
 
         if verbose:
             logger = get_logger(__name__, verbose)
             logger.info(
-                f"State evaluation: base={base_score:.3f}, penalty={length_penalty:.3f}, total={total_score:.3f}"
+                f"State evaluation: raw={result.raw_score:.3f}, penalty={result.penalty:.3f}, "
+                f"final={total_score:.3f}, scaled={result.scaled_score:.3f}"
             )
 
         return total_score
@@ -164,7 +123,7 @@ def evaluate_state(
         if verbose:
             logger = get_logger(__name__, verbose)
             logger.warning(f"Failed to evaluate state: {e}")
-        return 0.0
+        return -1000.0  # Large negative score for failed states
 
 
 def generate_merge_successors(

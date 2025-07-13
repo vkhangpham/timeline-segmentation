@@ -4,11 +4,6 @@ parameters:
     type: float
     range: [0.6, 0.95]
     description: "Threshold for detecting significant direction changes"
-
-  # score_distribution_window_years:
-  #   type: int
-  #   range: [1, 5]
-  #   description: "Window size in years for score distribution analysis"
   
   citation_confidence_boost:
     type: float
@@ -20,47 +15,11 @@ parameters:
     range: [0.05, 0.15]
     description: "Minimum frequency ratio for keyword inclusion"
 
-  # top_k_keywords:
-  #   type: int
-  #   range: [15, 100]
-  #   description: "Number of top keywords for characterization"
-  
-  # min_baseline_period_years:
-  #   type: int
-  #   range: [2, 8]
-  #   description: "Minimum baseline period for direction change detection"
-  
-  # citation_support_window_years:
-  #   type: int
-  #   range: [1, 5]
-  #   description: "Window for citation support analysis"
-  
-  # cohesion_weight:
-  #   type: float
-  #   range: [0.3, 0.9]
-  #   description: "Weight for cohesion in objective function"
-  
-  # separation_weight: 
-  #   type: float
-  #   range: [0.1, 0.7]
-  #   description: "Weight for separation in objective function"
-  
-  # beam_width:
-  #   type: int
-  #   range: [3, 10]
-  #   description: "Beam search width for refinement"
-  
-  # min_period_years:
-  #   type: int
-  #   range: [2, 8]
-  #   description: "Minimum period length in years"
-  
-  # max_period_years:
-  #   type: int
-  #   range: [20, 100]
-  #   description: "Maximum period length in years"
+  top_k_keywords:
+    type: int
+    range: [10, 30]
+    description: "Number of top keywords to consider for period cohesion"
 
-# Search Configuration
 search:
   n_calls: 100  # Number of optimization trials
   n_initial_points: 20  # Number of random points before optimization starts (~10-20% of n_calls)
@@ -69,18 +28,29 @@ search:
 
 # Penalty Configuration  
 penalty:
-  # Hybrid penalty combines over-segmentation and short-period penalties
-  type: hybrid            # [linear | hybrid]
-  # Over-segmentation component
-  target_segments_upper: 8      # No cost if segments ≤ this value
-  penalty_weight_over: 0.05     # Cost per extra segment beyond upper bound
-  # Short-period component
-  min_period_years: 5           # Minimum acceptable period length (years)
-  short_period_weight: 0.02     # Cost per missing year below min_period_years
-  # Long-period component
-  max_period_years: 30          # Maximum acceptable period length
-  long_period_weight: 0.02      # Cost per extra year beyond max_period_years
-  # Legacy linear parameters (still respected if type: linear )
+  # Unified penalty system parameters
+  # Length constraints
+  min_period_years: 3         # Minimum period length (from cohesion analysis)
+  max_period_years: 14        # Maximum period length (knee of cohesion curve)
+  
+  # Segment count constraints
+  auto_n_upper: true          # Automatically calculate N_upper based on timeline span
+  n_upper_buffer: 1           # Buffer added to auto-calculated N_upper
+  target_segments_upper: 8    # Manual N_upper (used only if auto_n_upper is false)
+  
+  # Penalty weights (optimizable parameters)
+  lambda_short: 0.05          # Weight for short period penalty
+  lambda_long: 0.03           # Weight for long period penalty
+  lambda_count: 0.02          # Weight for over-segmentation penalty
+  
+  # Scaling parameters
+  enable_scaling: true        # Enable 0-1 scaling of final scores
+  scaling_factor: 2.0         # Sigmoid scaling factor
+  
+  # Legacy parameters (deprecated but kept for backward compatibility)
+  penalty_weight_over: 0.05
+  short_period_weight: 0.02
+  long_period_weight: 0.02
   target_segments: 6
   penalty_weight: 0.03
 

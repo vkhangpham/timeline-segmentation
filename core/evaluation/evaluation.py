@@ -7,12 +7,15 @@ including objective function scoring, baseline creation, and auto-metrics calcul
 import json
 import yaml
 from pathlib import Path
-from typing import Dict, List, NamedTuple
+from typing import Dict, List, NamedTuple, Tuple, Optional
 
 from ..data.data_models import AcademicPeriod, TimelineAnalysisResult
+from ..data.data_processing import load_domain_data
 from ..optimization.objective_function import compute_objective_function
+from ..optimization.penalty import create_penalty_config_from_dict
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
+
 
 
 # =============================================================================
@@ -78,96 +81,7 @@ class ComprehensiveEvaluationResult(NamedTuple):
 # =============================================================================
 
 
-def load_penalty_configuration() -> Dict:
-    """Load penalty configuration from optimization config file.
 
-    Returns:
-        Dictionary with penalty configuration
-    """
-    config_path = Path("config/optimization.yaml")
-    if not config_path.exists():
-        # Return default penalty configuration if file doesn't exist
-        return {
-            "type": "hybrid",
-            "target_segments_upper": 8,
-            "penalty_weight_over": 0.05,
-            "min_period_years": 5,
-            "short_period_weight": 0.02,
-            "max_period_years": 30,
-            "long_period_weight": 0.02,
-            "target_segments": 6,
-            "penalty_weight": 0.03,
-        }
-
-    try:
-        with open(config_path, "r") as f:
-            config = yaml.safe_load(f)
-        return config.get("penalty", {})
-    except Exception:
-        # Return default if file can't be loaded
-        return {
-            "type": "hybrid",
-            "target_segments_upper": 8,
-            "penalty_weight_over": 0.05,
-            "min_period_years": 5,
-            "short_period_weight": 0.02,
-            "max_period_years": 30,
-            "long_period_weight": 0.02,
-            "target_segments": 6,
-            "penalty_weight": 0.03,
-        }
-
-
-def compute_penalty(
-    academic_periods: List[AcademicPeriod], penalty_config: Dict
-) -> float:
-    """Compute segmentation penalty based on configuration.
-
-    Supports legacy linear (count-deviation) and new hybrid penalty that
-    (1) charges only for over-segmentation beyond an upper bound and
-    (2) penalizes periods shorter than a minimum length.
-
-    Args:
-        academic_periods: List of AcademicPeriod objects to evaluate
-        penalty_config: Penalty configuration dictionary
-
-    Returns:
-        Non-negative penalty value to subtract from objective score.
-    """
-    penalty_type = penalty_config.get("type", "linear")
-    num_segments = len(academic_periods)
-
-    if penalty_type == "hybrid":
-        # Over-segmentation component (only if N exceeds upper target)
-        t_upper = penalty_config.get("target_segments_upper", 8)
-        w_over = penalty_config.get("penalty_weight_over", 0.05)
-        penalty_over = w_over * max(0, num_segments - t_upper)
-
-        # Short-period length component
-        min_len = penalty_config.get("min_period_years", 5)
-        w_short = penalty_config.get("short_period_weight", 0.02)
-
-        # Long-period length component
-        max_len = penalty_config.get("max_period_years", 30)
-        w_long = penalty_config.get("long_period_weight", 0.02)
-
-        short_accum = 0.0
-        long_accum = 0.0
-        for p in academic_periods:
-            period_len = p.end_year - p.start_year + 1
-            short_accum += max(0, min_len - period_len)
-            long_accum += max(0, period_len - max_len)
-
-        penalty_short = w_short * short_accum
-        penalty_long = w_long * long_accum
-
-        return penalty_over + penalty_short + penalty_long
-
-    # Default legacy linear penalty
-    target_segments = penalty_config.get("target_segments", 6)
-    penalty_weight = penalty_config.get("penalty_weight", 0.03)
-    deviation = abs(num_segments - target_segments)
-    return penalty_weight * deviation
 
 
 # =============================================================================
@@ -180,38 +94,30 @@ def evaluate_timeline_result(
     algorithm_config: AlgorithmConfig,
     verbose: bool = False,
 ) -> EvaluationResult:
-    """Evaluate a timeline result using the objective function with penalty.
+    """Evaluate a timeline result using the unified penalty system.
 
     Args:
-        timeline_result: TimelineAnalysisResult from pipeline
-        algorithm_config: Algorithm configuration for objective function
+        timeline_result: Timeline analysis result to evaluate
+        algorithm_config: Algorithm configuration
         verbose: Enable verbose logging
 
     Returns:
-        EvaluationResult with objective function score and penalty details
+        EvaluationResult with unified penalty-based scoring
     """
-    logger = get_logger(__name__, verbose, timeline_result.domain_name)
+    logger = get_logger(__name__, verbose)
 
-    if verbose:
-        logger.info(f"Evaluating timeline result for {timeline_result.domain_name}")
-        logger.info(f"Timeline has {len(timeline_result.periods)} periods")
-
-    # Extract AcademicPeriod objects from timeline result
     academic_periods = list(timeline_result.periods)
 
-    # Compute objective function
+    # Create penalty configuration from optimization config
+    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+
+    # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
         algorithm_config=algorithm_config,
+        penalty_config=penalty_config,
         verbose=verbose,
     )
-
-    # Load penalty configuration and compute penalty
-    penalty_config = load_penalty_configuration()
-    penalty = compute_penalty(academic_periods, penalty_config)
-
-    # Apply penalty to get final score
-    final_score = obj_result.final_score - penalty
 
     # Extract boundary years from periods
     boundary_years = []
@@ -219,36 +125,29 @@ def evaluate_timeline_result(
         if i == 0:
             boundary_years.append(period.start_year)
         boundary_years.append(period.end_year)
-
-    # Remove duplicates and sort
     boundary_years = sorted(set(boundary_years))
 
-    details = {
-        "cohesion_details": obj_result.cohesion_details,
-        "separation_details": obj_result.separation_details,
-        "periods": [f"{p.start_year}-{p.end_year}" for p in academic_periods],
-        "penalty_details": f"Penalty: {penalty:.3f} (Raw: {obj_result.final_score:.3f} → Final: {final_score:.3f})",
-    }
-
     if verbose:
-        logger.info(f"Raw objective function score: {obj_result.final_score:.3f}")
-        logger.info(f"Penalty applied: {penalty:.3f}")
-        logger.info(f"Final objective score: {final_score:.3f}")
-        logger.info(
-            f"Cohesion: {obj_result.cohesion_score:.3f}, Separation: {obj_result.separation_score:.3f}"
-        )
+        logger.info(f"Timeline evaluation: {obj_result.num_segments} segments")
+        logger.info(f"Final score: {obj_result.final_score:.3f}")
+        logger.info(f"Raw score: {obj_result.raw_score:.3f}")
+        logger.info(f"Penalty: {obj_result.penalty:.3f}")
+        logger.info(f"Scaled score: {obj_result.scaled_score:.3f}")
 
     return EvaluationResult(
-        objective_score=final_score,
-        raw_objective_score=obj_result.final_score,
-        penalty=penalty,
+        objective_score=obj_result.final_score,
+        raw_objective_score=obj_result.raw_score,
+        penalty=obj_result.penalty,
         cohesion_score=obj_result.cohesion_score,
         separation_score=obj_result.separation_score,
         num_segments=obj_result.num_segments,
         num_transitions=obj_result.num_transitions,
         boundary_years=boundary_years,
         methodology=obj_result.methodology,
-        details=details,
+        details={
+            "cohesion_details": obj_result.cohesion_details,
+            "separation_details": obj_result.separation_details,
+        },
     )
 
 

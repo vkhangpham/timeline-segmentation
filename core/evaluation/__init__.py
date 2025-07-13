@@ -6,8 +6,7 @@ from .evaluation import (
     run_single_evaluation,
     run_all_domains_evaluation,
     run_baseline_only_evaluation,
-    load_penalty_configuration,
-    compute_penalty,
+
     EvaluationResult,
     BaselineResult,
     AutoMetricResult,
@@ -41,8 +40,7 @@ __all__ = [
     "run_all_domains_evaluation",
     "run_baseline_only_evaluation",
     # Configuration
-    "load_penalty_configuration",
-    "compute_penalty",
+
     # Models
     "EvaluationResult",
     "BaselineResult",
