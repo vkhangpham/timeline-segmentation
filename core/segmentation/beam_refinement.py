@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from ..data.data_models import AcademicPeriod, AcademicYear
 from ..data.data_processing import create_academic_periods_from_segments
 from ..optimization.objective_function import compute_objective_function
-from ..optimization.penalty import create_penalty_config_from_dict
+from ..optimization.penalty import create_penalty_config_from_dict, create_penalty_config_from_algorithm_config
 from ..utils.logging import get_logger
 
 
@@ -98,8 +98,7 @@ def evaluate_state(
         )
 
         # Create penalty configuration from algorithm config
-        # For now, use default penalty config - this could be expanded to use algorithm_config
-        penalty_config = create_penalty_config_from_dict({"penalty": {}})
+        penalty_config = create_penalty_config_from_algorithm_config(algorithm_config)
 
         # Compute objective function score with unified penalty
         result = compute_objective_function(
@@ -113,7 +112,7 @@ def evaluate_state(
             logger = get_logger(__name__, verbose)
             logger.info(
                 f"State evaluation: raw={result.raw_score:.3f}, penalty={result.penalty:.3f}, "
-                f"final={total_score:.3f}, scaled={result.scaled_score:.3f}"
+                f"final={total_score:.3f}, scaled={result.scaled_score:.6f}"
             )
 
         return total_score
@@ -151,12 +150,7 @@ def generate_merge_successors(
             split_count=max(left_seg.split_count, right_seg.split_count),
         )
 
-        # Check if merged segment exceeds max length
-        if (
-            merged_segment.get_effective_length(available_years)
-            > algorithm_config.max_period_years
-        ):
-            continue
+
 
         # Create new state with merged segment
         new_segments = state.segments[:i] + [merged_segment] + state.segments[i + 2 :]
@@ -197,49 +191,35 @@ def find_best_split_points(
         if year in available_years
     ]
 
-    if len(segment_years) < 2 * algorithm_config.min_period_years:
+    if len(segment_years) < 2:
         return []
 
     # Evaluate all possible split points
     split_scores = []
 
-    for i in range(
-        algorithm_config.min_period_years,
-        len(segment_years) - algorithm_config.min_period_years,
-    ):
+    for i in range(1, len(segment_years) - 1):
         split_year = segment_years[i]
 
         # Create candidate segments
         left_segment = (segment.start_year, split_year)
         right_segment = (split_year + 1, segment.end_year)
 
-        # Check length constraints
-        left_length = sum(1 for y in segment_years if y <= split_year)
-        right_length = len(segment_years) - left_length
+        try:
+            # Create academic periods for this split
+            test_segments = [left_segment, right_segment]
+            test_periods = create_academic_periods_from_segments(
+                academic_years, test_segments, algorithm_config
+            )
 
-        if (
-            left_length >= algorithm_config.min_period_years
-            and right_length >= algorithm_config.min_period_years
-            and left_length <= algorithm_config.max_period_years
-            and right_length <= algorithm_config.max_period_years
-        ):
+            # Evaluate objective function
+            result = compute_objective_function(
+                test_periods, algorithm_config, verbose=False
+            )
+            split_scores.append((split_year, result.final_score))
 
-            try:
-                # Create academic periods for this split
-                test_segments = [left_segment, right_segment]
-                test_periods = create_academic_periods_from_segments(
-                    academic_years, test_segments, algorithm_config
-                )
-
-                # Evaluate objective function
-                result = compute_objective_function(
-                    test_periods, algorithm_config, verbose=False
-                )
-                split_scores.append((split_year, result.final_score))
-
-            except Exception:
-                # Skip invalid splits
-                continue
+        except Exception:
+            # Skip invalid splits
+            continue
 
     # Sort by score (descending) and return top candidates
     split_scores.sort(key=lambda x: x[1], reverse=True)

@@ -10,7 +10,7 @@ from typing import Dict, List, NamedTuple
 
 from ..data.data_models import AcademicPeriod, TimelineAnalysisResult
 from ..optimization.objective_function import compute_objective_function
-from ..optimization.penalty import create_penalty_config_from_dict
+from ..optimization.penalty import create_penalty_config_from_dict, create_penalty_config_from_algorithm_config
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
 
@@ -96,7 +96,7 @@ def evaluate_timeline_result(
 
     Args:
         timeline_result: Timeline analysis result to evaluate
-        algorithm_config: Algorithm configuration
+        algorithm_config: Algorithm configuration (may be overridden by timeline config)
         verbose: Enable verbose logging
 
     Returns:
@@ -106,13 +106,20 @@ def evaluate_timeline_result(
 
     academic_periods = list(timeline_result.periods)
 
-    # Create penalty configuration from optimization config
-    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+    # Use algorithm config from timeline result if available (for consistency)
+    config_to_use = algorithm_config
+    if timeline_result.algorithm_config is not None:
+        config_to_use = timeline_result.algorithm_config
+        if verbose:
+            logger.info("Using algorithm config from timeline result for consistent evaluation")
+
+    # Create penalty configuration from the appropriate config
+    penalty_config = create_penalty_config_from_algorithm_config(config_to_use)
 
     # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
-        algorithm_config=algorithm_config,
+        algorithm_config=config_to_use,
         penalty_config=penalty_config,
         verbose=verbose,
     )

@@ -204,4 +204,29 @@ def create_penalty_config_from_dict(config_dict: Dict[str, Any]) -> PenaltyConfi
         lambda_count=penalty_section.get("lambda_count", 0.02),
         enable_scaling=penalty_section.get("enable_scaling", True),
         scaling_factor=penalty_section.get("scaling_factor", 2.0)
+    )
+
+
+def create_penalty_config_from_algorithm_config(algorithm_config) -> PenaltyConfig:
+    """Create PenaltyConfig from AlgorithmConfig.
+    
+    This ensures optimization uses the same penalty parameters as the main algorithm.
+    
+    Args:
+        algorithm_config: AlgorithmConfig instance
+        
+    Returns:
+        PenaltyConfig instance
+    """
+    return PenaltyConfig(
+        min_period_years=algorithm_config.penalty_min_period_years,
+        max_period_years=algorithm_config.penalty_max_period_years,
+        auto_n_upper=algorithm_config.penalty_auto_n_upper,
+        n_upper_buffer=algorithm_config.penalty_n_upper_buffer,
+        target_segments_upper=algorithm_config.penalty_target_segments_upper,
+        lambda_short=algorithm_config.penalty_lambda_short,
+        lambda_long=algorithm_config.penalty_lambda_long,
+        lambda_count=algorithm_config.penalty_lambda_count,
+        enable_scaling=algorithm_config.penalty_enable_scaling,
+        scaling_factor=algorithm_config.penalty_scaling_factor,
     ) 

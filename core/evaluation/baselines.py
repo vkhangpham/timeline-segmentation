@@ -14,7 +14,7 @@ from ..data.data_processing import (
 from ..optimization.objective_function import compute_objective_function
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
-from ..optimization.penalty import create_penalty_config_from_dict
+from ..optimization.penalty import create_penalty_config_from_dict, create_penalty_config_from_algorithm_config
 from .evaluation import BaselineResult
 
 
@@ -99,7 +99,7 @@ def create_gemini_baseline(
     )
 
     # Create penalty configuration and compute objective function with unified penalty system
-    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+    penalty_config = create_penalty_config_from_algorithm_config(algorithm_config)
     
     # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
@@ -220,7 +220,7 @@ def create_manual_baseline(
     )
 
     # Create penalty configuration and compute objective function with unified penalty system
-    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+    penalty_config = create_penalty_config_from_algorithm_config(algorithm_config)
     
     # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
@@ -343,7 +343,7 @@ def create_fixed_year_baseline(
     )
 
     # Create penalty configuration and compute objective function with unified penalty system
-    penalty_config = create_penalty_config_from_dict({"penalty": {}})
+    penalty_config = create_penalty_config_from_algorithm_config(algorithm_config)
     
     # Compute objective function with unified penalty system
     obj_result = compute_objective_function(

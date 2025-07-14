@@ -12,7 +12,7 @@ from ..data.data_processing import load_domain_data
 from ..pipeline.orchestrator import analyze_timeline
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
-from .penalty import PenaltyConfig
+from .penalty import PenaltyConfig, create_penalty_config_from_algorithm_config
 
 
 # Global cache for academic years
@@ -310,29 +310,7 @@ def score_trial(
                 logging.getLogger(logger_name).setLevel(original_level)
 
 
-def create_penalty_config_from_algorithm_config(algorithm_config: AlgorithmConfig) -> PenaltyConfig:
-    """Create PenaltyConfig from AlgorithmConfig.
-    
-    This ensures optimization uses the same penalty parameters as the main algorithm.
-    
-    Args:
-        algorithm_config: AlgorithmConfig instance
-        
-    Returns:
-        PenaltyConfig instance
-    """
-    return PenaltyConfig(
-        min_period_years=algorithm_config.penalty_min_period_years,
-        max_period_years=algorithm_config.penalty_max_period_years,
-        auto_n_upper=algorithm_config.penalty_auto_n_upper,
-        n_upper_buffer=algorithm_config.penalty_n_upper_buffer,
-        target_segments_upper=algorithm_config.penalty_target_segments_upper,
-        lambda_short=algorithm_config.penalty_lambda_short,
-        lambda_long=algorithm_config.penalty_lambda_long,
-        lambda_count=algorithm_config.penalty_lambda_count,
-        enable_scaling=algorithm_config.penalty_enable_scaling,
-        scaling_factor=algorithm_config.penalty_scaling_factor,
-    )
+
 
 
 def clear_cache():

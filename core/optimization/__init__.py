@@ -15,7 +15,6 @@ from .optimization import (
     create_trial_config,
     score_trial,
     get_validation_metrics,
-    create_penalty_config_from_algorithm_config,
     clear_cache,
 )
 from .penalty import (
@@ -24,6 +23,7 @@ from .penalty import (
     compute_penalized_objective,
     compute_scaled_objective,
     create_penalty_config_from_dict,
+    create_penalty_config_from_algorithm_config,
 )
 from .bayesian_optimizer import run_bayesian_optimization
 from .optimization_config import load_config, get_parameter_space
@@ -39,7 +39,6 @@ __all__ = [
     "create_trial_config",
     "score_trial",
     "get_validation_metrics",
-    "create_penalty_config_from_algorithm_config",
     "clear_cache",
     # Unified penalty system
     "PenaltyConfig",
@@ -47,6 +46,7 @@ __all__ = [
     "compute_penalized_objective",
     "compute_scaled_objective",
     "create_penalty_config_from_dict",
+    "create_penalty_config_from_algorithm_config",
     # Optimization components
     "run_bayesian_optimization",
     "load_config",
