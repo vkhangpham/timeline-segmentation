@@ -54,8 +54,6 @@ class AlgorithmConfig:
     beam_search_enabled: bool
     beam_width: int
     max_splits_per_segment: int
-    min_period_years: int
-    max_period_years: int
 
     # Penalty System Parameters
     penalty_min_period_years: int
@@ -162,8 +160,6 @@ class AlgorithmConfig:
                 beam_search_enabled=beam_refinement.get("enabled", True),
                 beam_width=beam_refinement.get("beam_width", 5),
                 max_splits_per_segment=beam_refinement.get("max_splits_per_segment", 1),
-                min_period_years=beam_refinement.get("min_period_years", 5),
-                max_period_years=beam_refinement.get("max_period_years", 50),
                 
                 # Diagnostic parameters
                 save_direction_diagnostics=diagnostics.get("save_direction_diagnostics", False),
@@ -280,20 +276,7 @@ class AlgorithmConfig:
                 f"max_splits_per_segment must be 0-10, got {self.max_splits_per_segment}"
             )
 
-        if not 1 <= self.min_period_years <= 20:
-            raise ValueError(
-                f"min_period_years must be 1-20, got {self.min_period_years}"
-            )
 
-        if not 5 <= self.max_period_years <= 200:
-            raise ValueError(
-                f"max_period_years must be 5-200, got {self.max_period_years}"
-            )
-
-        if self.min_period_years >= self.max_period_years:
-            raise ValueError(
-                f"min_period_years ({self.min_period_years}) must be less than max_period_years ({self.max_period_years})"
-            )
 
         # Penalty system parameters
         if not 1 <= self.penalty_min_period_years <= 20:

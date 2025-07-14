@@ -42,8 +42,6 @@ segmentation:
     enabled: true
     beam_width: 5
     max_splits_per_segment: 1
-    min_period_years: 5
-    max_period_years: 15
 
 # =============================================================================
 # OPTIMIZATION MODULE CONFIGURATION

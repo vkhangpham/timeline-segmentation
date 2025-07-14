@@ -77,13 +77,11 @@ Optimizes segment boundaries through local search.
 | `enabled` | bool | true | [true, false] | Enable beam search refinement |
 | `beam_width` | int | 5 | [1, 50] | Number of states to explore |
 | `max_splits_per_segment` | int | 1 | [0, 10] | Maximum splits per segment |
-| `min_period_years` | int | 5 | [1, 20] | Minimum period length |
-| `max_period_years` | int | 50 | [5, 200] | Maximum period length |
 
 **Tuning Guidelines:**
 - **Higher `beam_width`**: More thorough exploration, slower execution
 - **More `max_splits_per_segment`**: More aggressive refinement
-- **Tighter period constraints**: More controlled segmentation
+- **Constraints are enforced through penalty system**: See penalty configuration for period length control
 
 ### Optimization Module
 
