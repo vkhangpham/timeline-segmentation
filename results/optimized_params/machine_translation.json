@@ -1,20 +1,21 @@
 {
   "domain_name": "machine_translation",
-  "optimization_date": "2025-07-09 21:13:31",
-  "best_objective_score": -2.3666370640006997,
+  "optimization_date": "2025-07-13 20:37:26",
+  "best_objective_score": -4.206225797861275,
   "best_parameters": {
-    "direction_change_threshold": 0.6,
-    "citation_confidence_boost": 0.06695010917639953,
-    "min_keyword_frequency_ratio": 0.09539493205181593
+    "direction_change_threshold": 0.8422627717471455,
+    "citation_confidence_boost": 0.06760414858832714,
+    "min_keyword_frequency_ratio": 0.14719244740071846,
+    "top_k_keywords": 12
   },
   "validation_metrics": {
-    "boundary_f1": 0.33333333333333326,
-    "segment_f1": 1.0,
-    "num_segments": 5
+    "boundary_f1": 0.0,
+    "segment_f1": 0.0,
+    "num_segments": 4
   },
   "performance": {
-    "cohesion_score": 0.126351945373418,
-    "separation_score": 0.4614068985028286,
-    "runtime_seconds": 1.0882818698883057
+    "cohesion_score": 0.5290572811778601,
+    "separation_score": 0.552641885982183,
+    "runtime_seconds": 2.5657670497894287
   }
 }
