@@ -108,6 +108,7 @@ def analyze_timeline(
                 narrative_evolution=generate_segmentation_narrative(
                     refined_periods, domain_name
                 ),
+                algorithm_config=algorithm_config,
             )
 
             total_time = time.time() - start_time
@@ -132,6 +133,7 @@ def analyze_timeline(
             narrative_evolution=generate_narrative_evolution(
                 final_periods, domain_name
             ),
+            algorithm_config=algorithm_config,
         )
 
         total_time = time.time() - start_time

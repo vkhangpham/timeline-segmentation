@@ -897,6 +897,7 @@ def load_timeline_from_file(
             confidence=data["confidence"],
             boundary_years=tuple(data["boundary_years"]),
             narrative_evolution=data["narrative_evolution"],
+            algorithm_config=algorithm_config,
         )
 
         if verbose:
