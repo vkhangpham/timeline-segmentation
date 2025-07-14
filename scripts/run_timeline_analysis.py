@@ -154,8 +154,6 @@ def save_timeline_result(
             "beam_search_enabled": algorithm_config.beam_search_enabled,
             "beam_width": algorithm_config.beam_width,
             "max_splits_per_segment": algorithm_config.max_splits_per_segment,
-            "min_period_years": algorithm_config.min_period_years,
-            "max_period_years": algorithm_config.max_period_years,
             "save_direction_diagnostics": algorithm_config.save_direction_diagnostics,
         },
         "periods": [],

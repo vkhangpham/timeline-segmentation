@@ -643,8 +643,7 @@ def show_refinement_analysis(initial_periods, refined_periods):
         st.write(f"- Enabled: {config.beam_search_enabled}")
         st.write(f"- Beam Width: {config.beam_width}")
         st.write(f"- Max Splits per Segment: {config.max_splits_per_segment}")
-        st.write(f"- Min Period Years: {config.min_period_years}")
-        st.write(f"- Max Period Years: {config.max_period_years}")
+
 
     with col2:
         st.write("**Refinement Results:**")
@@ -1033,8 +1032,7 @@ def show_segmentation():
         if config.beam_search_enabled:
             st.write(f"- Beam Width: {config.beam_width}")
             st.write(f"- Max Splits per Segment: {config.max_splits_per_segment}")
-            st.write(f"- Min Period Years: {config.min_period_years}")
-            st.write(f"- Max Period Years: {config.max_period_years}")
+
 
     # Data export
     st.subheader("💾 Export Results")
@@ -1070,8 +1068,6 @@ def show_segmentation():
                 "enabled": config.beam_search_enabled,
                 "beam_width": config.beam_width,
                 "max_splits_per_segment": config.max_splits_per_segment,
-                "min_period_years": config.min_period_years,
-                "max_period_years": config.max_period_years,
             },
         }
 
