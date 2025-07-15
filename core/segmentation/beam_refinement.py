@@ -6,11 +6,12 @@ merge and split operations guided by the objective function.
 
 from typing import List, Tuple, Set
 from dataclasses import dataclass
+from tqdm import tqdm
 
 from ..data.data_models import AcademicPeriod, AcademicYear
 from ..data.data_processing import create_academic_periods_from_segments
 from ..optimization.objective_function import compute_objective_function
-from ..optimization.penalty import create_penalty_config_from_dict, create_penalty_config_from_algorithm_config
+from ..optimization.penalty import create_penalty_config_from_algorithm_config
 from ..utils.logging import get_logger
 
 
@@ -102,7 +103,10 @@ def evaluate_state(
 
         # Compute objective function score with unified penalty
         result = compute_objective_function(
-            academic_periods, algorithm_config, penalty_config=penalty_config, verbose=False
+            academic_periods,
+            algorithm_config,
+            penalty_config=penalty_config,
+            verbose=False,
         )
 
         # Return the final penalized score
@@ -149,8 +153,6 @@ def generate_merge_successors(
             end_year=right_seg.end_year,
             split_count=max(left_seg.split_count, right_seg.split_count),
         )
-
-
 
         # Create new state with merged segment
         new_segments = state.segments[:i] + [merged_segment] + state.segments[i + 2 :]
@@ -328,12 +330,8 @@ def beam_search_refinement(
     )
 
     if verbose:
-        logger.info(f"=== BEAM SEARCH REFINEMENT STARTED ===")
-        logger.info(f"  Initial segments: {len(initial_segments)}")
-        logger.info(f"  Initial score: {initial_state.score:.3f}")
-        logger.info(f"  Beam width: {algorithm_config.beam_width}")
         logger.info(
-            f"  Max splits per segment: {algorithm_config.max_splits_per_segment}"
+            f"Beam search: {len(initial_segments)} segments, score={initial_state.score:.3f}, width={algorithm_config.beam_width}"
         )
 
     # Initialize beam
@@ -344,15 +342,24 @@ def beam_search_refinement(
     iteration = 0
     max_iterations = 20
 
+    # Progress bar for main iterations
+    iteration_pbar = tqdm(
+        total=max_iterations, desc="Beam search iterations", disable=not verbose
+    )
+
     while beam and iteration < max_iterations:
         iteration += 1
         new_beam = []
 
         if verbose:
-            logger.info(f"  Iteration {iteration}: exploring {len(beam)} states")
+            iteration_pbar.set_description(f"Iter {iteration}: {len(beam)} states")
+            iteration_pbar.update(1)
 
-        # Generate successors for each state in beam
-        for state in beam:
+        # Generate successors for each state in beam - with progress bar
+        state_pbar = tqdm(
+            beam, desc=f"Processing states", leave=False, disable=not verbose
+        )
+        for state in state_pbar:
             # Generate merge successors
             merge_successors = generate_merge_successors(
                 state, available_years, algorithm_config
@@ -363,50 +370,62 @@ def beam_search_refinement(
                 state, available_years, academic_years, algorithm_config
             )
 
-            # Evaluate all successors
-            for successor in merge_successors + split_successors:
-                state_hash = successor.get_state_hash()
-                if state_hash in seen_states:
-                    continue
-
-                seen_states.add(state_hash)
-                successor.score = evaluate_state(
-                    successor,
-                    academic_years,
-                    available_years,
-                    algorithm_config,
-                    verbose,
+            # Evaluate all successors with progress bar
+            all_successors = merge_successors + split_successors
+            if all_successors:
+                successor_pbar = tqdm(
+                    all_successors,
+                    desc="Evaluating successors",
+                    leave=False,
+                    disable=not verbose,
                 )
+                for successor in successor_pbar:
+                    state_hash = successor.get_state_hash()
+                    if state_hash in seen_states:
+                        continue
 
-                if successor.score > best_state.score:
-                    best_state = successor
-                    if verbose:
-                        logger.info(
-                            f"    New best score: {successor.score:.3f} ({len(successor.segments)} segments)"
+                    seen_states.add(state_hash)
+                    successor.score = evaluate_state(
+                        successor,
+                        academic_years,
+                        available_years,
+                        algorithm_config,
+                        False,  # Disable verbose for individual evaluations
+                    )
+
+                    if successor.score > best_state.score:
+                        best_state = successor
+                        successor_pbar.set_description(
+                            f"New best: {successor.score:.3f}"
                         )
+                        if verbose:
+                            logger.info(
+                                f"    best: {successor.score:.3f} ({len(successor.segments)} segments)"
+                            )
 
-                new_beam.append(successor)
+                    new_beam.append(successor)
+                successor_pbar.close()
+
+        state_pbar.close()
 
         # Keep top beam_width states
         new_beam.sort(key=lambda s: s.score, reverse=True)
         beam = new_beam[: algorithm_config.beam_width]
 
-        if verbose:
-            logger.info(
-                f"    Beam size: {len(beam)}, best in beam: {beam[0].score:.3f}"
-            )
-
         # Early termination if no improvement
         if not beam or beam[0].score <= best_state.score:
             if verbose:
-                logger.info("    No improvement found, terminating")
+                logger.info("    no improvement, terminating")
             break
 
+    # Close the iteration progress bar
+    iteration_pbar.close()
+
     if verbose:
-        logger.info(f"=== BEAM SEARCH REFINEMENT COMPLETED ===")
-        logger.info(f"  Final segments: {len(best_state.segments)}")
-        logger.info(f"  Final score: {best_state.score:.3f}")
-        logger.info(f"  Improvement: {best_state.score - initial_state.score:.3f}")
+        improvement = best_state.score - initial_state.score
+        logger.info(
+            f"Beam complete: {len(best_state.segments)} segments, final={best_state.score:.3f}, +{improvement:.3f}"
+        )
 
     # Convert best state back to academic periods
     final_segments = best_state.to_segment_tuples()
@@ -414,8 +433,9 @@ def beam_search_refinement(
         academic_years, final_segments, algorithm_config
     )
 
+    improvement = best_state.score - initial_state.score
     logger.info(
-        f"Beam search refinement: {len(initial_periods)} → {len(final_periods)} periods, score improvement: {best_state.score - initial_state.score:.3f}"
+        f"Beam: {len(initial_periods)}→{len(final_periods)} periods, +{improvement:.3f}"
     )
 
     return final_periods
