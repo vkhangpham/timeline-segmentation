@@ -306,13 +306,25 @@ def run_all_domains(
         if domain_overrides:
             import dataclasses
 
+            # Create parameter mapping for optimization results to AlgorithmConfig
+            param_mapping = {
+                "min_period_years": "penalty_min_period_years",
+                "max_period_years": "penalty_max_period_years",
+            }
+
+            # Map optimized parameter names to AlgorithmConfig parameter names
+            mapped_overrides = {}
+            for key, value in domain_overrides.items():
+                mapped_key = param_mapping.get(key, key)
+                mapped_overrides[mapped_key] = value
+
             config_dict = dataclasses.asdict(domain_config)
-            config_dict.update(domain_overrides)
+            config_dict.update(mapped_overrides)
             domain_config = AlgorithmConfig(**config_dict)
 
             if verbose:
                 logger.info(
-                    f"Applied parameter overrides for {domain}: {domain_overrides}"
+                    f"Applied parameter overrides for {domain}: {mapped_overrides}"
                 )
 
         if run_domain_analysis(

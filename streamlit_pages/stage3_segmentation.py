@@ -644,7 +644,6 @@ def show_refinement_analysis(initial_periods, refined_periods):
         st.write(f"- Beam Width: {config.beam_width}")
         st.write(f"- Max Splits per Segment: {config.max_splits_per_segment}")
 
-
     with col2:
         st.write("**Refinement Results:**")
         period_change = len(refined_periods) - len(initial_periods)
@@ -1032,7 +1031,6 @@ def show_segmentation():
         if config.beam_search_enabled:
             st.write(f"- Beam Width: {config.beam_width}")
             st.write(f"- Max Splits per Segment: {config.max_splits_per_segment}")
-
 
     # Data export
     st.subheader("💾 Export Results")
