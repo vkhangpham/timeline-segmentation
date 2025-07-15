@@ -19,16 +19,21 @@ parameters:
     type: float
     range: [0.05, 0.2]
     description: "Boost factor for citation-based confidence"
-  
-  min_keyword_frequency_ratio:
-    type: float
-    range: [0.05, 0.15]
-    description: "Minimum frequency ratio for keyword inclusion (data_processing.keyword_filter)"
 
   top_k_keywords:
     type: int
     range: [10, 30]
     description: "Number of top keywords to consider for period cohesion (data_processing.keyword_filter)"
+
+  min_period_years:
+    type: int
+    range: [3, 10]
+    description: "Minimum number of years per period"
+  
+  max_period_years:
+    type: int
+    range: [15, 30]
+    description: "Maximum number of years per period"
 
 # =============================================================================
 # SEARCH STRATEGY

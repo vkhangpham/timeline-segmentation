@@ -5,7 +5,7 @@
 data_processing:
   # Year Filtering (data_processing.py)
   year_filter:
-    min_papers_per_year: 100
+    min_papers_per_year: 50
 
   # Keyword Filtering (objective_function.py)
   keyword_filter:
@@ -35,7 +35,7 @@ segmentation:
   # Citation Analysis (citation_detection.py)
   citation_analysis:
     citation_confidence_boost: 0.1
-    citation_support_window_years: 2
+    citation_support_window_years: 1
 
   # Beam Search Refinement (beam_refinement.py)
   beam_refinement:
@@ -50,8 +50,8 @@ segmentation:
 optimization:
   # Objective Function (objective_function.py)
   objective_function:
-    cohesion_weight: 0.8
-    separation_weight: 0.2
+    cohesion_weight: 0.6
+    separation_weight: 0.4
 
   # Penalty System (penalty.py)
   penalty:
