@@ -106,38 +106,51 @@ class AlgorithmConfig:
             change_detection = segmentation["change_detection"]
             citation_analysis = segmentation["citation_analysis"]
             beam_refinement = segmentation["beam_refinement"]
-            
+
             optimization = config["optimization"]
             objective_function = optimization["objective_function"]
             penalty = optimization["penalty"]
-            
+
             data_processing = config["data_processing"]
             year_filter = data_processing["year_filter"]
             keyword_filter = data_processing["keyword_filter"]
             ubiquitous_filtering = data_processing["ubiquitous_filtering"]
-            
+
             system = config["system"]
             diagnostics = system["diagnostics"]
 
             return cls(
                 # Direction Change Detection parameters
-                direction_change_threshold=change_detection["direction_change_threshold"],
-                direction_threshold_strategy=change_detection.get("direction_threshold_strategy", "global_p90"),
-                direction_scoring_method=change_detection.get("direction_scoring_method", "weighted_jaccard"),
-                min_baseline_period_years=change_detection.get("min_baseline_period_years", 3),
-                score_distribution_window_years=change_detection.get("score_distribution_window_years", 3),
+                direction_change_threshold=change_detection[
+                    "direction_change_threshold"
+                ],
+                direction_threshold_strategy=change_detection.get(
+                    "direction_threshold_strategy", "global_p90"
+                ),
+                direction_scoring_method=change_detection.get(
+                    "direction_scoring_method", "weighted_jaccard"
+                ),
+                min_baseline_period_years=change_detection.get(
+                    "min_baseline_period_years", 3
+                ),
+                score_distribution_window_years=change_detection.get(
+                    "score_distribution_window_years", 3
+                ),
                 min_papers_per_year=year_filter.get("min_papers_per_year", 100),
-                
                 # Citation Analysis parameters
-                citation_confidence_boost=citation_analysis["citation_confidence_boost"],
-                citation_support_window_years=citation_analysis["citation_support_window_years"],
-                
+                citation_confidence_boost=citation_analysis[
+                    "citation_confidence_boost"
+                ],
+                citation_support_window_years=citation_analysis[
+                    "citation_support_window_years"
+                ],
                 # Objective function parameters
                 cohesion_weight=objective_function["cohesion_weight"],
                 separation_weight=objective_function["separation_weight"],
                 top_k_keywords=keyword_filter["top_k_keywords"],
-                min_keyword_frequency_ratio=keyword_filter["min_keyword_frequency_ratio"],
-                
+                min_keyword_frequency_ratio=keyword_filter[
+                    "min_keyword_frequency_ratio"
+                ],
                 # Penalty system parameters
                 penalty_min_period_years=penalty["min_period_years"],
                 penalty_max_period_years=penalty["max_period_years"],
@@ -149,22 +162,28 @@ class AlgorithmConfig:
                 penalty_lambda_count=penalty.get("lambda_count", 0.02),
                 penalty_enable_scaling=penalty.get("enable_scaling", True),
                 penalty_scaling_factor=penalty.get("scaling_factor", 2.0),
-                
                 # Ubiquitous keyword filtering parameters
-                apply_ubiquitous_filtering=ubiquitous_filtering.get("apply_ubiquitous_filtering", True),
+                apply_ubiquitous_filtering=ubiquitous_filtering.get(
+                    "apply_ubiquitous_filtering", True
+                ),
                 ubiquity_threshold=ubiquitous_filtering.get("ubiquity_threshold", 0.8),
-                max_ubiquitous_iterations=ubiquitous_filtering.get("max_iterations", 10),
-                min_replacement_frequency=ubiquitous_filtering.get("min_replacement_frequency", 2),
-                
+                max_ubiquitous_iterations=ubiquitous_filtering.get(
+                    "max_iterations", 10
+                ),
+                min_replacement_frequency=ubiquitous_filtering.get(
+                    "min_replacement_frequency", 2
+                ),
                 # Beam search refinement parameters
                 beam_search_enabled=beam_refinement.get("enabled", True),
                 beam_width=beam_refinement.get("beam_width", 5),
                 max_splits_per_segment=beam_refinement.get("max_splits_per_segment", 1),
-                
                 # Diagnostic parameters
-                save_direction_diagnostics=diagnostics.get("save_direction_diagnostics", False),
-                diagnostic_top_keywords_limit=diagnostics.get("diagnostic_top_keywords_limit", 10),
-                
+                save_direction_diagnostics=diagnostics.get(
+                    "save_direction_diagnostics", False
+                ),
+                diagnostic_top_keywords_limit=diagnostics.get(
+                    "diagnostic_top_keywords_limit", 10
+                ),
                 # System parameters
                 domain_name=domain_name,
             )
@@ -275,8 +294,6 @@ class AlgorithmConfig:
             raise ValueError(
                 f"max_splits_per_segment must be 0-10, got {self.max_splits_per_segment}"
             )
-
-
 
         # Penalty system parameters
         if not 1 <= self.penalty_min_period_years <= 20:

@@ -43,10 +43,8 @@ def analyze_timeline(
     start_time = time.time()
 
     try:
-        analysis_type = (
-            "segmentation" if segmentation_only else "full timeline analysis"
-        )
-        logger.info(f"Starting {analysis_type} for {domain_name}")
+        analysis_type = "segmentation" if segmentation_only else "full"
+        logger.info(f"Pipeline: {analysis_type} analysis for {domain_name}")
 
         success, academic_years, error_message = load_domain_data(
             domain_name=domain_name,
@@ -63,8 +61,6 @@ def analyze_timeline(
         if not academic_years:
             raise RuntimeError(f"No academic years found for {domain_name}")
 
-        logger.info(f"Loaded {len(academic_years)} academic years")
-
         boundary_academic_years = detect_boundary_years(
             academic_years=academic_years,
             domain_name=domain_name,
@@ -74,18 +70,12 @@ def analyze_timeline(
             verbose=verbose,
         )
 
-        logger.info(
-            f"Detected {len(boundary_academic_years)} boundary years: {[ay.year for ay in boundary_academic_years]}"
-        )
-
         initial_periods = create_segments_from_boundary_years(
             boundary_academic_years=boundary_academic_years,
             academic_years=tuple(academic_years),
             algorithm_config=algorithm_config,
             verbose=verbose,
         )
-
-        logger.info(f"Created {len(initial_periods)} initial periods")
 
         # Step C.5: Beam search refinement (if enabled)
         refined_periods = beam_search_refinement(
@@ -94,8 +84,6 @@ def analyze_timeline(
             algorithm_config=algorithm_config,
             verbose=verbose,
         )
-
-        logger.info(f"Refined to {len(refined_periods)} periods after beam search")
 
         if segmentation_only:
             # For segmentation-only mode, return results without characterization and merging
@@ -112,7 +100,9 @@ def analyze_timeline(
             )
 
             total_time = time.time() - start_time
-            logger.info(f"Segmentation completed in {total_time:.2f} seconds")
+            logger.info(
+                f"Segmentation: {len(refined_periods)} periods, {total_time:.1f}s"
+            )
             return timeline_result
 
         # Step D: Full pipeline: characterization only (merging now handled by beam search)
@@ -121,8 +111,6 @@ def analyze_timeline(
             periods=refined_periods,
             verbose=verbose,
         )
-
-        logger.info(f"Final timeline: {len(final_periods)} periods")
 
         boundary_years = extract_boundary_years_from_periods(final_periods)
         timeline_result = TimelineAnalysisResult(
@@ -137,7 +125,7 @@ def analyze_timeline(
         )
 
         total_time = time.time() - start_time
-        logger.info(f"Timeline analysis completed in {total_time:.2f} seconds")
+        logger.info(f"Timeline: {len(final_periods)} periods, {total_time:.1f}s")
 
         return timeline_result
 

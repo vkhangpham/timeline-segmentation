@@ -144,22 +144,15 @@ def filter_ubiquitous_keywords(
 
     logger = get_logger(__name__, verbose)
 
-    if verbose:
-        logger.info(
-            f"Starting ubiquitous keyword filtering with threshold {ubiquity_threshold}"
-        )
-
     # Get configuration parameters
     top_k = getattr(algorithm_config, "top_k_keywords", 15) if algorithm_config else 15
     total_years = len(academic_years)
     min_years_for_ubiquity = max(1, int(total_years * ubiquity_threshold))
 
     if verbose:
-        logger.info(f"  Total years: {total_years}")
-        logger.info(f"  Minimum years for ubiquity: {min_years_for_ubiquity}")
-        logger.info(f"  Top-K keywords per year: {top_k}")
-        logger.info(f"  Max iterations: {max_iterations}")
-        logger.info(f"  Min replacement frequency: {min_replacement_freq}")
+        logger.info(
+            f"Ubiquitous filter: {total_years} years, threshold={ubiquity_threshold}, min_years={min_years_for_ubiquity}, max_iter={max_iterations}"
+        )
 
     # Create working copy of academic years with mutable keyword data
     filtered_years = []
@@ -192,7 +185,7 @@ def filter_ubiquitous_keywords(
     while iteration < max_iterations:
         iteration += 1
         if verbose:
-            logger.info(f"  Iteration {iteration}: Checking for ubiquitous keywords...")
+            logger.info(f"  iter {iteration}: checking ubiquitous")
 
         # Count frequency of each keyword across all years' top keywords
         keyword_appearance_count = defaultdict(int)
@@ -211,7 +204,7 @@ def filter_ubiquitous_keywords(
 
         if not ubiquitous_keywords:
             if verbose:
-                logger.info(f"  No ubiquitous keywords found. Stopping.")
+                logger.info(f"  none found, stopping")
             break
 
         # Check if we're cycling (trying to remove keywords we've already removed)
@@ -219,15 +212,13 @@ def filter_ubiquitous_keywords(
             cycling_keywords = ubiquitous_keywords & removed_keywords_history
             if verbose:
                 logger.warning(
-                    f"  Detected cycling with keywords: {sorted(list(cycling_keywords))}"
+                    f"  cycling detected: {sorted(list(cycling_keywords))[:3]}..."
                 )
-                logger.info(f"  Stopping to prevent infinite loop.")
             break
 
         if verbose:
-            logger.info(
-                f"  Found {len(ubiquitous_keywords)} ubiquitous keywords: {sorted(list(ubiquitous_keywords))[:5]}..."
-            )
+            keywords_preview = sorted(list(ubiquitous_keywords))[:5]
+            logger.info(f"  found {len(ubiquitous_keywords)}: {keywords_preview}...")
 
         # Remove ubiquitous keywords and replace with next most frequent
         for year_data in filtered_years:
@@ -296,14 +287,10 @@ def filter_ubiquitous_keywords(
         final_years.append(final_year)
 
     if verbose:
-        logger.info(f"Ubiquitous keyword filtering completed:")
-        logger.info(f"  Total iterations: {iteration}")
-        logger.info(f"  Total ubiquitous keywords removed: {total_removed}")
-        if iteration >= max_iterations:
-            logger.warning(
-                f"  Reached maximum iterations ({max_iterations}) - stopping to prevent infinite loop"
-            )
-        logger.info(f"  Final keyword diversity improved")
+        status = f"max_iter_reached" if iteration >= max_iterations else "complete"
+        logger.info(
+            f"Ubiquitous filter: {iteration} iterations, {total_removed} removed, {status}"
+        )
 
     return final_years
 
@@ -358,25 +345,12 @@ def load_domain_data(
             )
             total_papers = sum(ay.paper_count for ay in academic_years)
             total_citations = sum(ay.total_citations for ay in academic_years)
-            logger.info(f"=== DATA LOADING COMPLETED ===")
-            logger.info(f"  Domain: {domain_name}")
             logger.info(
-                f"  Year range: {year_range[0]}-{year_range[1]} ({len(academic_years)} years)"
-            )
-            logger.info(f"  Total papers: {total_papers:,}")
-            logger.info(f"  Total citations: {total_citations:,}")
-            logger.info(
-                f"  Average papers per year: {total_papers / len(academic_years):.1f}"
-            )
-            logger.info(
-                f"  Average citations per year: {total_citations / len(academic_years):.1f}"
-            )
-            logger.info(
-                f"  Citation graph: {len(citations)} citations, {len(graph_nodes)} nodes"
+                f"Data loaded: {domain_name}, {total_papers:,}p, {total_citations:,}c, {len(citations)} graph citations, {len(graph_nodes)} nodes"
             )
 
         logger.info(
-            f"Successfully loaded {domain_name}: {len(papers)} papers, {len(academic_years)} years"
+            f"Loaded: {domain_name}, {len(papers)} papers, {len(academic_years)} years"
         )
         return True, list(academic_years), ""
 
@@ -432,6 +406,7 @@ def create_academic_periods_from_segments(
         if not segment_years:
             # Log warning instead of raising error - this can happen during optimization
             import warnings
+
             warnings.warn(
                 f"No academic years found for segment {start_year}-{end_year}. "
                 f"Available years: {sorted(available_years)}"
@@ -622,12 +597,8 @@ def load_citation_graph(
                 else:
                     invalid_count += 1
 
-        if invalid_count > 0:
-            logger.info(
-                f"Filtered out {invalid_count} temporally invalid citations from graph"
-            )
         logger.info(
-            f"Loaded {len(citations)} rich citations and {len(graph_nodes)} graph nodes"
+            f"Citations: {len(citations)} loaded, {invalid_count} filtered, {len(graph_nodes)} nodes"
         )
 
         return tuple(citations), tuple(graph_nodes)

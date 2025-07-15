@@ -42,15 +42,12 @@ def create_segments_from_boundary_years(
     max_year = available_years[-1]
 
     if verbose:
-        logger.info(f"=== SEGMENTATION STARTED ===")
-        logger.info(f"  Available year range: {min_year}-{max_year}")
-        logger.info(f"  Total academic years: {len(academic_years)}")
-        logger.info(f"  Boundary academic years: {len(boundary_academic_years)}")
+        logger.info(
+            f"Segmentation: {len(academic_years)} years ({min_year}-{max_year}), {len(boundary_academic_years)} boundaries"
+        )
 
     # Handle empty boundary years - create single period
     if not boundary_academic_years:
-        if verbose:
-            logger.info("  No boundary years - creating single period")
         single_period_segments = [(min_year, max_year)]
         return create_academic_periods_from_segments(
             academic_years, single_period_segments, algorithm_config
@@ -59,18 +56,9 @@ def create_segments_from_boundary_years(
     boundary_years = [ay.year for ay in boundary_academic_years]
     boundaries = sorted(set(boundary_years))
 
-    if verbose:
-        logger.info(f"  Raw boundary years: {boundary_years}")
-        logger.info(f"  Sorted unique boundaries: {boundaries}")
-
     valid_boundaries = [year for year in boundaries if min_year < year <= max_year]
 
-    if verbose:
-        logger.info(f"  Valid boundaries (within range): {valid_boundaries}")
-
     if not valid_boundaries:
-        if verbose:
-            logger.info("  No valid boundary years - creating single period")
         single_period_segments = [(min_year, max_year)]
         return create_academic_periods_from_segments(
             academic_years, single_period_segments, algorithm_config
@@ -87,11 +75,8 @@ def create_segments_from_boundary_years(
     if start_year <= max_year:
         segments.append((start_year, max_year))
 
-    if verbose:
-        logger.info(f"  Created segments: {segments}")
-
     logger.info(
-        f"Created {len(segments)} segments from {len(valid_boundaries)} boundaries"
+        f"Segments: {segments} ({len(segments)} from {len(valid_boundaries)} boundaries)"
     )
 
     academic_periods = create_academic_periods_from_segments(
@@ -101,7 +86,7 @@ def create_segments_from_boundary_years(
     if verbose:
         for i, period in enumerate(academic_periods):
             logger.info(
-                f"  Period {i+1}: {period.start_year}-{period.end_year} ({period.total_papers} papers, {period.total_citations} citations)"
+                f"  {i+1}: {period.start_year}-{period.end_year} ({period.total_papers}p, {period.total_citations}c)"
             )
 
     logger.info(f"Generated {len(academic_periods)} AcademicPeriod objects")

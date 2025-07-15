@@ -10,10 +10,9 @@ from typing import Dict, List, NamedTuple
 
 from ..data.data_models import AcademicPeriod, TimelineAnalysisResult
 from ..optimization.objective_function import compute_objective_function
-from ..optimization.penalty import create_penalty_config_from_dict, create_penalty_config_from_algorithm_config
+from ..optimization.penalty import create_penalty_config_from_algorithm_config
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
-
 
 
 # =============================================================================
@@ -79,9 +78,6 @@ class ComprehensiveEvaluationResult(NamedTuple):
 # =============================================================================
 
 
-
-
-
 # =============================================================================
 # CORE EVALUATION LOGIC
 # =============================================================================
@@ -111,7 +107,9 @@ def evaluate_timeline_result(
     if timeline_result.algorithm_config is not None:
         config_to_use = timeline_result.algorithm_config
         if verbose:
-            logger.info("Using algorithm config from timeline result for consistent evaluation")
+            logger.info(
+                "Using algorithm config from timeline result for consistent evaluation"
+            )
 
     # Create penalty configuration from the appropriate config
     penalty_config = create_penalty_config_from_algorithm_config(config_to_use)
@@ -133,11 +131,9 @@ def evaluate_timeline_result(
     boundary_years = sorted(set(boundary_years))
 
     if verbose:
-        logger.info(f"Timeline evaluation: {obj_result.num_segments} segments")
-        logger.info(f"Final score: {obj_result.final_score:.3f}")
-        logger.info(f"Raw score: {obj_result.raw_score:.3f}")
-        logger.info(f"Penalty: {obj_result.penalty:.3f}")
-        logger.info(f"Scaled score: {obj_result.scaled_score:.3f}")
+        logger.info(
+            f"Eval: {obj_result.num_segments} segments, final={obj_result.final_score:.3f}, raw={obj_result.raw_score:.3f}, penalty={obj_result.penalty:.3f}"
+        )
 
     return EvaluationResult(
         objective_score=obj_result.final_score,
@@ -178,7 +174,7 @@ def run_comprehensive_evaluation(
     logger = get_logger(__name__, verbose, domain_name)
 
     if verbose:
-        logger.info(f"Running comprehensive evaluation for {domain_name}")
+        logger.info(f"Comprehensive eval: {domain_name}")
 
     # Import baseline and metrics functions
     from .baselines import (
@@ -344,7 +340,7 @@ def run_comprehensive_evaluation(
     summary = "\n".join(summary_parts)
 
     if verbose:
-        logger.info("Comprehensive evaluation completed")
+        logger.info("Comprehensive eval complete")
         logger.info(summary)
 
     return ComprehensiveEvaluationResult(
@@ -381,7 +377,7 @@ def run_single_evaluation(
     try:
         # Get timeline result - either from file or by running the algorithm
         if timeline_file:
-            logger.info(f"Loading existing timeline from file: {timeline_file}")
+            logger.info(f"Loading timeline: {timeline_file}")
             from ..data.data_processing import load_timeline_from_file
 
             timeline_result = load_timeline_from_file(
@@ -418,7 +414,7 @@ def run_single_evaluation(
             )
 
         # Run comprehensive evaluation
-        logger.info(f"Running comprehensive evaluation for {domain_name}")
+        logger.info(f"Comprehensive eval: {domain_name}")
         evaluation_result = run_comprehensive_evaluation(
             domain_name=domain_name,
             timeline_result=timeline_result,

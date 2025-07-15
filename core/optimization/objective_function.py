@@ -10,7 +10,11 @@ import numpy as np
 from scipy.spatial.distance import jensenshannon
 
 from ..data.data_models import AcademicPeriod
-from .penalty import PenaltyConfig, compute_penalized_objective, create_penalty_config_from_dict
+from .penalty import (
+    PenaltyConfig,
+    compute_penalized_objective,
+    create_penalty_config_from_dict,
+)
 
 
 class ObjectiveFunctionResult(NamedTuple):
@@ -85,36 +89,36 @@ def evaluate_period_cohesion(
 
     # Create vocabulary from all keywords in the period
     period_vocab = list(set(all_keywords))
-    
+
     # Get overall period keyword distribution
     period_distribution = get_frequency_distribution(all_keywords, period_vocab)
 
     # Calculate JSD between each year and the overall period
     jsd_scores = []
-    
+
     for academic_year in academic_period.academic_years:
         year_keywords = []
         for paper in academic_year.papers:
             if paper.keywords:
                 year_keywords.extend(paper.keywords)
-        
+
         if not year_keywords:
             continue
-            
+
         year_distribution = get_frequency_distribution(year_keywords, period_vocab)
-        
+
         # Add small epsilon to avoid issues with zero probabilities
         epsilon = 1e-10
         year_dist_smooth = year_distribution + epsilon
         period_dist_smooth = period_distribution + epsilon
-        
+
         # Normalize to ensure they sum to 1
         year_dist_smooth = year_dist_smooth / year_dist_smooth.sum()
         period_dist_smooth = period_dist_smooth / period_dist_smooth.sum()
-        
+
         # Compute Jensen-Shannon divergence
         js_divergence = jensenshannon(year_dist_smooth, period_dist_smooth, base=2)
-        
+
         if not np.isnan(js_divergence):
             jsd_scores.append(js_divergence)
 
@@ -127,8 +131,9 @@ def evaluate_period_cohesion(
 
     # Get top keywords for metadata (using period-level data)
     top_keywords_items = sorted(
-        academic_period.combined_keyword_frequencies.items(), 
-        key=lambda x: x[1], reverse=True
+        academic_period.combined_keyword_frequencies.items(),
+        key=lambda x: x[1],
+        reverse=True,
     )[:top_k]
     top_keywords = [kw for kw, count in top_keywords_items]
 
@@ -269,11 +274,9 @@ def compute_objective_function(
     top_k = algorithm_config.top_k_keywords
 
     if verbose:
-        logger.info(f"Computing objective function for {len(academic_periods)} periods")
         logger.info(
-            f"Weights: cohesion={cohesion_weight}, separation={separation_weight}"
+            f"Objective: {len(academic_periods)} periods, cohesion={cohesion_weight}, separation={separation_weight}, top_k={top_k}"
         )
-        logger.info(f"Top-K keywords: {top_k}")
 
     if len(academic_periods) == 1:
         period_metrics = evaluate_period_cohesion(academic_periods[0], top_k)
@@ -312,10 +315,7 @@ def compute_objective_function(
         try:
             metrics = evaluate_period_cohesion(period, top_k)
             period_metrics_list.append(metrics)
-            if verbose:
-                logger.info(
-                    f"Period {i+1} cohesion: {metrics.cohesion:.3f} ({metrics.size} papers)"
-                )
+
         except Exception as e:
             raise ValueError(f"Failed to evaluate cohesion for period {i+1}: {e}")
 
@@ -325,10 +325,7 @@ def compute_objective_function(
                 academic_periods[i], academic_periods[i + 1]
             )
             transition_metrics_list.append(metrics)
-            if verbose:
-                logger.info(
-                    f"Transition {i+1}→{i+2} separation: {metrics.separation:.3f}"
-                )
+
         except Exception as e:
             raise ValueError(
                 f"Failed to evaluate separation for transition {i+1}→{i+2}: {e}"
@@ -370,8 +367,9 @@ def compute_objective_function(
     )
 
     if verbose:
-        logger.info(f"Final objective score: {penalty_result['penalized_score']:.3f}")
-        logger.info(f"Scaled score: {penalty_result['scaled_score']:.3f}")
+        logger.info(
+            f"Final: score={penalty_result['penalized_score']:.3f}, scaled={penalty_result['scaled_score']:.3f}"
+        )
 
     return ObjectiveFunctionResult(
         final_score=penalty_result["penalized_score"],

@@ -44,14 +44,11 @@ def detect_boundary_years(
         return []
 
     if verbose:
-        logger.info("=== SHIFT DETECTION STARTED ===")
-        logger.info(f"  Domain: {domain_name}")
-        logger.info(f"  Academic years: {len(academic_years)}")
+        min_year = min(ay.year for ay in academic_years)
+        max_year = max(ay.year for ay in academic_years)
         logger.info(
-            f"  Year range: {min(ay.year for ay in academic_years)}-{max(ay.year for ay in academic_years)}"
+            f"Segmentation: {domain_name}, {len(academic_years)} years ({min_year}-{max_year})"
         )
-        logger.info(f"  Use direction detection: {use_direction}")
-        logger.info(f"  Use citation detection: {use_citation}")
 
     if precomputed_signals:
         citation_years = precomputed_signals.get("citation_years", [])
@@ -62,24 +59,14 @@ def detect_boundary_years(
         # Step 1: Compute citation acceleration years first
         citation_years = []
         if use_citation:
-            if verbose:
-                logger.info("  Step 1: Computing citation acceleration years...")
             citation_years = detect_citation_acceleration_years(academic_years, verbose)
-            if verbose:
-                logger.info(f"  Citation acceleration years: {citation_years}")
 
         # Step 2: Compute direction scores with immediate citation boost
         boundary_years = []
         if use_direction:
-            if verbose:
-                logger.info(
-                    "  Step 2: Computing direction scores with citation boost..."
-                )
             boundary_years = detect_direction_change_years_with_citation_boost(
                 academic_years, citation_years, algorithm_config, verbose
             )
-            if verbose:
-                logger.info(f"  Final boundary years: {boundary_years}")
 
     year_lookup = {
         academic_year.year: academic_year for academic_year in academic_years
@@ -92,7 +79,6 @@ def detect_boundary_years(
         else:
             logger.warning(f"Boundary year {year} not found in academic years")
 
-    logger.info(
-        f"Detected {len(boundary_academic_years)} boundary years: {[ay.year for ay in boundary_academic_years]}"
-    )
+    boundary_list = [ay.year for ay in boundary_academic_years]
+    logger.info(f"Boundaries: {boundary_list} ({len(boundary_list)} detected)")
     return boundary_academic_years

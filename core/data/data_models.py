@@ -196,7 +196,9 @@ class TimelineAnalysisResult:
     confidence: float
     boundary_years: Tuple[int, ...]
     narrative_evolution: str
-    algorithm_config: Optional[Any] = None  # AlgorithmConfig used to generate this result
+    algorithm_config: Optional[Any] = (
+        None  # AlgorithmConfig used to generate this result
+    )
 
     def __post_init__(self):
         """Validate results."""

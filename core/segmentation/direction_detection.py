@@ -40,33 +40,36 @@ def detect_direction_change_years_with_citation_boost(
     """
     logger = get_logger(__name__, verbose)
 
-    if verbose:
-        scoring_method = getattr(
-            algorithm_config, "direction_scoring_method", "weighted_jaccard"
-        )
-        logger.info("    Starting streamlined direction change detection...")
-        logger.info(f"    Using scoring method: {scoring_method}")
-
     # Filter years with insufficient publication volume
     eligible_years = _filter_eligible_years(academic_years, algorithm_config)
     if len(eligible_years) < 3:
         logger.warning("Insufficient years for direction change detection")
         return []
 
-    if verbose:
-        logger.info(f"    Analyzing {len(eligible_years)} eligible years...")
+    scoring_method = getattr(
+        algorithm_config, "direction_scoring_method", "weighted_jaccard"
+    )
 
     # Calculate threshold (adaptive or fixed)
     threshold = _calculate_detection_threshold(
         eligible_years, algorithm_config, verbose
     )
 
+    if verbose:
+        eligible_years_list = [
+            y.year for y in eligible_years[:15]
+        ]  # Show first 15 years
+        if len(eligible_years) > 15:
+            eligible_years_list.append("...")
+        logger.info(
+            f"Direction: {len(eligible_years)} years {eligible_years_list}, {scoring_method}, threshold={threshold:.3f}"
+        )
+
     # Run main detection algorithm
     boundaries = _run_cumulative_detection_algorithm(
         eligible_years, citation_years, algorithm_config, threshold, verbose
     )
 
-    logger.info(f"Detected {len(boundaries)} streamlined boundary years")
     return boundaries
 
 
@@ -85,18 +88,10 @@ def _calculate_detection_threshold(
 
     if threshold_strategy == "fixed":
         threshold = algorithm_config.direction_change_threshold
-        if verbose:
-            logger = get_logger(__name__, verbose)
-            logger.info(f"    Using fixed threshold: {threshold:.3f}")
     else:
         threshold = _calculate_adaptive_threshold(
             eligible_years, algorithm_config, verbose
         )
-        if verbose:
-            logger = get_logger(__name__, verbose)
-            logger.info(
-                f"    Using adaptive threshold ({threshold_strategy}): {threshold:.3f}"
-            )
 
     return threshold
 
@@ -141,15 +136,6 @@ def _calculate_adaptive_threshold(
         algorithm_config.direction_change_threshold,
     )
 
-    if verbose:
-        logger.info("    Step 2: Calculated adaptive threshold from BASE scores")
-        if base_sample_scores:
-            logger.info(
-                f"    Base sample score range: {min(base_sample_scores):.3f}-{max(base_sample_scores):.3f}"
-            )
-        else:
-            logger.info("    No base sample scores collected")
-
     return threshold
 
 
@@ -161,11 +147,6 @@ def _collect_base_scores_for_threshold(
 
     min_baseline_years = getattr(algorithm_config, "min_baseline_period_years", 3)
     sampling_interval = getattr(algorithm_config, "score_distribution_window_years", 3)
-
-    if verbose:
-        logger.info(
-            f"    Step 1: Collecting BASE scores using cumulative simulation (every {sampling_interval} years)..."
-        )
 
     base_sample_scores = []
     scoring_method = getattr(
@@ -238,11 +219,6 @@ def _run_cumulative_detection_algorithm(
 ) -> List[int]:
     """Run the main cumulative detection algorithm with citation boost."""
     logger = get_logger(__name__, verbose)
-
-    if verbose:
-        logger.info(
-            "    Step 3: Running cumulative algorithm with proper boundary updates..."
-        )
 
     # Get algorithm parameters
     scoring_method = getattr(

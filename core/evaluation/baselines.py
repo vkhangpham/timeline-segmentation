@@ -14,7 +14,10 @@ from ..data.data_processing import (
 from ..optimization.objective_function import compute_objective_function
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
-from ..optimization.penalty import create_penalty_config_from_dict, create_penalty_config_from_algorithm_config
+from ..optimization.penalty import (
+    create_penalty_config_from_dict,
+    create_penalty_config_from_algorithm_config,
+)
 from .evaluation import BaselineResult
 
 
@@ -100,7 +103,7 @@ def create_gemini_baseline(
 
     # Create penalty configuration and compute objective function with unified penalty system
     penalty_config = create_penalty_config_from_algorithm_config(algorithm_config)
-    
+
     # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
@@ -118,11 +121,11 @@ def create_gemini_baseline(
     boundary_years = sorted(set(boundary_years))
 
     if verbose:
-        logger.info(
-            f"Gemini baseline raw objective score: {obj_result.raw_score:.3f}"
-        )
+        logger.info(f"Gemini baseline raw objective score: {obj_result.raw_score:.3f}")
         logger.info(f"Gemini baseline penalty applied: {obj_result.penalty:.3f}")
-        logger.info(f"Gemini baseline final objective score: {obj_result.final_score:.3f}")
+        logger.info(
+            f"Gemini baseline final objective score: {obj_result.final_score:.3f}"
+        )
 
     return BaselineResult(
         baseline_name="Gemini",
@@ -221,7 +224,7 @@ def create_manual_baseline(
 
     # Create penalty configuration and compute objective function with unified penalty system
     penalty_config = create_penalty_config_from_algorithm_config(algorithm_config)
-    
+
     # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
@@ -239,11 +242,11 @@ def create_manual_baseline(
     boundary_years = sorted(set(boundary_years))
 
     if verbose:
-        logger.info(
-            f"Manual baseline raw objective score: {obj_result.raw_score:.3f}"
-        )
+        logger.info(f"Manual baseline raw objective score: {obj_result.raw_score:.3f}")
         logger.info(f"Manual baseline penalty applied: {obj_result.penalty:.3f}")
-        logger.info(f"Manual baseline final objective score: {obj_result.final_score:.3f}")
+        logger.info(
+            f"Manual baseline final objective score: {obj_result.final_score:.3f}"
+        )
 
     return BaselineResult(
         baseline_name="Manual",
@@ -344,7 +347,7 @@ def create_fixed_year_baseline(
 
     # Create penalty configuration and compute objective function with unified penalty system
     penalty_config = create_penalty_config_from_algorithm_config(algorithm_config)
-    
+
     # Compute objective function with unified penalty system
     obj_result = compute_objective_function(
         academic_periods=academic_periods,
@@ -367,7 +370,9 @@ def create_fixed_year_baseline(
         logger.info(
             f"{baseline_name} baseline raw objective score: {obj_result.raw_score:.3f}"
         )
-        logger.info(f"{baseline_name} baseline penalty applied: {obj_result.penalty:.3f}")
+        logger.info(
+            f"{baseline_name} baseline penalty applied: {obj_result.penalty:.3f}"
+        )
         logger.info(
             f"{baseline_name} baseline final objective score: {obj_result.final_score:.3f}"
         )

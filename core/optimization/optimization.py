@@ -247,6 +247,7 @@ def score_trial(
 
         # Evaluate the result using unified penalty system
         from ..optimization.objective_function import compute_objective_function
+
         objective_result = compute_objective_function(
             timeline_result.periods,
             trial_config,
@@ -308,9 +309,6 @@ def score_trial(
         if not verbose and "original_levels" in locals():
             for logger_name, original_level in original_levels.items():
                 logging.getLogger(logger_name).setLevel(original_level)
-
-
-
 
 
 def clear_cache():
