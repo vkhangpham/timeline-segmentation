@@ -1,0 +1,91 @@
+{
+  "domain": "Machine Learning",
+  "historical_periods": [
+    {
+      "period_name": "Foundational Era",
+      "start_year": 1943,
+      "end_year": 1959,
+      "duration_years": 17,
+      "description": "This period laid the groundwork for machine learning by introducing fundamental theories such as the artificial neuron model and Hebbian learning. Early milestones included the Turing Test as a metric for machine intelligence and the creation of the first practical learning programs.",
+      "representative_developments": [
+        "1943: McCulloch & Pitts' mathematical model of neural networks",
+        "1949: Hebbian learning by Donald Hebb",
+        "1950: Turing Test proposed by Alan Turing",
+        "1952: Arthur Samuel's checkers-playing program"
+      ]
+    },
+    {
+      "period_name": "Symbolic AI and Early Algorithms",
+      "start_year": 1960,
+      "end_year": 1979,
+      "duration_years": 20,
+      "description": "Machine learning research in this era focused on symbolic reasoning, rule-based AI and early statistical algorithms like nearest neighbor. Neural networks struggled due to their limitations. Funding cuts and skepticism toward AI started late in this period.",
+      "representative_developments": [
+        "1967: Introduction of k-nearest neighbors algorithm (Cover & Hart)",
+        "First AI 'expert systems'",
+        "1973: Lighthill Report leads to funding cuts and the start of 'AI winter'",
+        "1979: Stanford Cart applies machine learning to robotics"
+      ]
+    },
+    {
+      "period_name": "AI Winter and Slow Progress",
+      "start_year": 1980,
+      "end_year": 1986,
+      "duration_years": 7,
+      "description": "Machine learning progress slowed significantly due to reduced funding and skepticism about the field's potential. Despite this, several foundational algorithms were quietly developed, such as early work in backpropagation and explanation-based learning.",
+      "representative_developments": [
+        "1981: Gerald Dejong introduces explanation-based learning",
+        "1982: Geoff Hinton's paper on backpropagation",
+        "1985: Sejnowski's NetTalk demonstrates machine learning for speech"
+      ]
+    },
+    {
+      "period_name": "Statistical Learning and Neural Resurgence",
+      "start_year": 1987,
+      "end_year": 1996,
+      "duration_years": 10,
+      "description": "Neural networks returned to prominence due to practical backpropagation and growing computational power. This period saw the rise of data-driven models and statistical learning methods like support vector machines. Machine learning research shifted from symbolic to empirical paradigms.",
+      "representative_developments": [
+        "1989: LeCun, Bengio & Haffner demonstrate convolutional neural networks (CNNs)",
+        "Q-learning for reinforcement learning introduced",
+        "Genetic algorithms become commercially available"
+      ]
+    },
+    {
+      "period_name": "Kernel Methods and ML Maturation",
+      "start_year": 1997,
+      "end_year": 2011,
+      "duration_years": 15,
+      "description": "Machine learning matured as kernel methods (SVMs) and ensemble approaches became standard. The scale of problems addressed by ML expanded dramatically, fueled by improved hardware and abundant data. Major public feats like Deep Blue defeating Kasparov demonstrated ML capabilities.",
+      "representative_developments": [
+        "1997: IBM Deep Blue defeats Garry Kasparov at chess",
+        "Rise and widespread adoption of SVMs, boosting, and random forests",
+        "First large, publicly available datasets for benchmarking"
+      ]
+    },
+    {
+      "period_name": "Deep Learning Revolution",
+      "start_year": 2012,
+      "end_year": 2017,
+      "duration_years": 6,
+      "description": "Breakthroughs in deep learning, especially with convolutional and recurrent neural networks, led to a rapid adoption of ML in image and language processing. GPU-powered computation made training large neural networks feasible and set new benchmarks for practical applications.",
+      "representative_developments": [
+        "2012: AlexNet wins the ImageNet challenge (Krizhevsky, Sutskever, Hinton)",
+        "2014: GANs (Goodfellow et al.) introduced",
+        "2016: AlphaGo defeats world Go champion"
+      ]
+    },
+    {
+      "period_name": "Foundation Models and Generative AI",
+      "start_year": 2018,
+      "end_year": 2025,
+      "duration_years": 8,
+      "description": "Transformer-based architectures enabled massive pretrained models (foundation models). This era is defined by generative AI applications in text, image, code, and broader multimodal settings. ML became integral to major industry products and widely discussed across society.",
+      "representative_developments": [
+        "2018: BERT (Devlin et al.) revolutionizes language models",
+        "2020: GPT-3 marks scalability of transformer models",
+        "2022–2025: Proliferation of generative AI products (chatbots, text-to-image models)"
+      ]
+    }
+  ]
+}

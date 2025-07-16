@@ -1,0 +1,99 @@
+{
+  "domain": "Deep Learning Research",
+  "historical_periods": [
+    {
+      "period_name": "Early Foundations",
+      "start_year": 1943,
+      "end_year": 1968,
+      "duration_years": 26,
+      "description": "Mathematical models of neurons and simple learning systems emerge; single-layer perceptrons demonstrate basic pattern recognition but face significant definitional limitations.",
+      "representative_developments": [
+        "McCulloch & Pitts (1943): A Logical Calculus of the Ideas Immanent in Nervous Activity",
+        "Rosenblatt (1958): Perceptron model for pattern recognition"
+      ]
+    },
+    {
+      "period_name": "Perceptrons, AI Winter, and the Limits of Simple Networks",
+      "start_year": 1969,
+      "end_year": 1979,
+      "duration_years": 11,
+      "description": "Critical analysis reveals fundamental limits of shallow neural networks, leading to skepticism and a shift in focus away from neural learning methods toward symbolic AI.",
+      "representative_developments": [
+        "Minsky & Papert (1969): \"Perceptrons\" book demonstrates the inability of single-layer perceptrons to solve XOR problems"
+      ]
+    },
+    {
+      "period_name": "Backpropagation Renaissance and Early Deep Architectures",
+      "start_year": 1980,
+      "end_year": 1989,
+      "duration_years": 10,
+      "description": "Rediscovery and practical use of backpropagation enables training of multilayer networks. The period also sees the inception of core neural architectures such as CNNs and RNNs in early forms.",
+      "representative_developments": [
+        "Fukushima (1980): Neocognitron, an early convolutional neural network",
+        "Hopfield (1982): Hopfield recurrent neural networks",
+        "Hinton & Sejnowski (1985): Boltzmann Machines",
+        "Rumelhart, Hinton & Williams (1986): Backpropagation for multilayer perceptrons"
+      ]
+    },
+    {
+      "period_name": "Quiet Progress and the Second AI Winter",
+      "start_year": 1990,
+      "end_year": 2005,
+      "duration_years": 16,
+      "description": "Despite funding challenges, key innovations like LSTM and LeNet-5 arise. Data-driven neural approaches are slowly advanced in specialized domains such as handwriting recognition and early NLP.",
+      "representative_developments": [
+        "Hochreiter & Schmidhuber (1997): Long Short-Term Memory (LSTM)",
+        "LeCun et al. (1998): LeNet-5, a CNN for digit recognition",
+        "Bengio et al. (2003): Neural probabilistic language models"
+      ]
+    },
+    {
+      "period_name": "Deep Learning Revolution",
+      "start_year": 2006,
+      "end_year": 2011,
+      "duration_years": 6,
+      "description": "Unsupervised pretraining and layer-wise learning revive deep model research, propelled by the availability of large, labeled datasets and growing GPU capabilities.",
+      "representative_developments": [
+        "Hinton, Osindero & Teh (2006): Greedy layer-wise unsupervised training of deep belief networks",
+        "Deng et al. (2009): Launch of the ImageNet dataset"
+      ]
+    },
+    {
+      "period_name": "Modern Deep Learning and Neural Networks Outperform Traditional Methods",
+      "start_year": 2012,
+      "end_year": 2016,
+      "duration_years": 5,
+      "description": "Deep neural architectures break through to state-of-the-art performance in vision, language, and games. Large-scale training with GPUs becomes standard and foundational models are established.",
+      "representative_developments": [
+        "Krizhevsky, Sutskever & Hinton (2012): AlexNet wins ImageNet",
+        "Goodfellow et al. (2014): Generative Adversarial Networks (GANs)",
+        "Sutskever et al. (2014): Sequence to sequence learning with neural networks",
+        "Silver et al. (2016): AlphaGo defeats a human champion at Go"
+      ]
+    },
+    {
+      "period_name": "Era of Transformers and Foundation Models",
+      "start_year": 2017,
+      "end_year": 2021,
+      "duration_years": 5,
+      "description": "Major shift to self-attention and large-scale pretraining; Transformer models become universal architecture for language and vision with broad capabilities.",
+      "representative_developments": [
+        "Vaswani et al. (2017): Transformer architecture ('Attention Is All You Need')",
+        "Devlin et al. (2018): BERT, bidirectional pretraining for language understanding",
+        "Radford et al. (2019–2020): GPT-2 and GPT-3, large autoregressive language models"
+      ]
+    },
+    {
+      "period_name": "Generative AI, Multimodality, and AI Democratization",
+      "start_year": 2022,
+      "end_year": 2025,
+      "duration_years": 4,
+      "description": "Generative models demonstrate human-like reasoning and creation in text, images, and beyond. Foundation models become accessible, multimodal, and widely deployed across domains.",
+      "representative_developments": [
+        "Ouyang et al. (2022): ChatGPT demonstrates scalable conversational AI",
+        "Touvron et al. (2023): LLaMA, open-source large language models",
+        "Release and adoption of GPT-4, Gemini, and other large-scale multimodal models"
+      ]
+    }
+  ]
+}

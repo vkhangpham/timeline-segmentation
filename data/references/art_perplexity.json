@@ -1,0 +1,65 @@
+{
+  "domain": "Art research (Art history as an academic field)",
+  "historical_periods": [
+    {
+      "period_name": "Foundational Biographical Tradition",
+      "start_year": 1550,
+      "end_year": 1849,
+      "duration_years": 300,
+      "description": "Art research was rooted primarily in artist biographies and anecdotal history. Giorgio Vasari's 'The Lives of the Artists' (1550) marked the foundation, chronicling Italian Renaissance masters and introducing the cyclical progression of art's development. This period prioritized the lives and achievements of individual artists and set a precedent for historical narrative in art research.",
+      "representative_developments": [
+        "Vasari, Giorgio. The Lives of the Artists (1550)",
+        "Biographical approach to art history",
+        "Emphasis on the lineage and revival of classical art"
+      ]
+    },
+    {
+      "period_name": "Disciplinary Formation and Formalism",
+      "start_year": 1850,
+      "end_year": 1949,
+      "duration_years": 100,
+      "description": "Art history emerged as a formal academic discipline in the 19th century, especially in Germany. The focus shifted to systematic methodologies such as formalism, connoisseurship, and stylistic analysis. Scholars like Winckelmann and Hegel explored art in its historical context and universal ideas. There was a rise in institutions and a scientific orientation to interpreting artworks.",
+      "representative_developments": [
+        "Johann Joachim Winckelmann's writings on the history of ancient art",
+        "Development of formalism and stylistic analysis as methods",
+        "Establishment of art history departments in universities"
+      ]
+    },
+    {
+      "period_name": "Methodological Expansion and the 'New Art History'",
+      "start_year": 1950,
+      "end_year": 1979,
+      "duration_years": 30,
+      "description": "This era was defined by the diversification of methodologies and introduction of post-positivist critique. Social history, semiotics, feminism, psychoanalysis, and structuralism entered the field. 'New Art History' rejected pure formalism and brought interdisciplinary and critical theory approaches, focusing on context, meaning, and power structures within art.",
+      "representative_developments": [
+        "Rise of social art history and Marxist analysis",
+        "Introduction of feminist art history (e.g., Linda Nochlin’s 'Why Have There Been No Great Women Artists?' 1971)",
+        "Beginnings of structuralist and semiotic analysis in art"
+      ]
+    },
+    {
+      "period_name": "Globalization, Pluralism, and Interdisciplinary Approaches",
+      "start_year": 1980,
+      "end_year": 2004,
+      "duration_years": 25,
+      "description": "Art research became increasingly global and pluralistic, acknowledging non-Western narratives and interdisciplinary influences. The boundaries between art history, cultural studies, anthropology, and visual studies blurred. There was greater attention to gender, identity, postcolonialism, and media. Digital resources for research began to emerge in this period.",
+      "representative_developments": [
+        "Expansion of global and non-Western art histories",
+        "Embrace of postcolonial, queer, and identity-focused analysis",
+        "Integration of visual culture studies; emergence of digital archives"
+      ]
+    },
+    {
+      "period_name": "Digital Age, Transnational Debates, and Contemporary Criticality",
+      "start_year": 2005,
+      "end_year": 2025,
+      "duration_years": 21,
+      "description": "Art historical research in the contemporary era is marked by digital scholarship, collaborative databases, and networked projects like the Heilbrunn Timeline of Art History and Collaborative ART Archive (CARTA). Scholarship is transnational, often decentering the West, and critically reflects on its own history and methodologies. Emphasis is placed on interdisciplinarity, accessibility, online resources, and dynamic engagement with emerging art practices and global narratives.",
+      "representative_developments": [
+        "Launch and expansion of The Met's Heilbrunn Timeline of Art History (2000–present)[4]",
+        "Collaborative ART Archive (CARTA) project[3]",
+        "Contemporary transnational debates; reflexive and critical methodologies (EBSCO overview 2024)[5]"
+      ]
+    }
+  ]
+}

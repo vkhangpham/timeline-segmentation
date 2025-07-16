@@ -1,0 +1,84 @@
+{
+  "domain": "Applied Mathematics",
+  "historical_periods": [
+    {
+      "period_name": "Proto-Applied Mathematics",
+      "start_year": 1700,
+      "end_year": 1799,
+      "duration_years": 100,
+      "description": "This era encompasses the foundational development of mathematical concepts, with applications in astronomy, engineering, and physics by ancient and early modern civilizations. Key progress includes the early use of geometry and arithmetic in ancient Mesopotamia and Egypt, as well as the birth of calculus by Newton and Leibniz. Mathematical methods evolved in direct response to practical, real-world problems, particularly in navigation, mechanics, and astronomy.",
+      "representative_developments": [
+        "Babylonian base-60 numerical system",
+        "Ancient Egyptian geometry for land surveying",
+        "Archimedes' work on mechanics and hydrostatics",
+        "Newton's 'Philosophiæ Naturalis Principia Mathematica' (1687)",
+        "Leibniz's calculus notation and differential calculus"
+      ]
+    },
+    {
+      "period_name": "Specialization and Institutionalization",
+      "start_year": 1800,
+      "end_year": 1899,
+      "duration_years": 100,
+      "description": "Applied mathematics emerged as a distinct academic discipline, increasingly separated from pure mathematics, motivated by growing needs in engineering, physics, and industry during the 19th century. Rigorous mathematical modeling and the study of differential equations, Fourier analysis, and other analytical tools advanced and formalized key methods for solving physical and engineering problems.",
+      "representative_developments": [
+        "Fourier's 'Théorie analytique de la chaleur' (1822)",
+        "Navier–Stokes equations for fluid flow (1822–1845)",
+        "Cauchy's contributions to complex analysis and mechanics",
+        "Legendre's method of least squares (1805)",
+        "Gauss's work in mathematical modeling and statistics"
+      ]
+    },
+    {
+      "period_name": "Expansion and Early Computation",
+      "start_year": 1900,
+      "end_year": 1945,
+      "duration_years": 46,
+      "description": "This period saw rapid growth in applied analysis, probability, and statistics, with universities expanding mathematical research in support of physical and engineering sciences. The mathematical community developed foundational numerical methods to handle computations required for practical applications before the widespread availability of electronic computers.",
+      "representative_developments": [
+        "Kolmogorov's axiomatization of probability theory (1933)",
+        "Development of numerical methods for solving differential equations",
+        "Advances in functional analysis applied to mechanics and physics"
+      ]
+    },
+    {
+      "period_name": "Computing Revolution and Algorithmic Methods",
+      "start_year": 1946,
+      "end_year": 1969,
+      "duration_years": 24,
+      "description": "The invention and adoption of electronic computers allowed applied mathematics to address previously intractable problems in simulation, optimization, and scientific computation. Numerical analysis and algorithm development became central, supporting advances in operations research, fluid dynamics, and engineering.",
+      "representative_developments": [
+        "Monte Carlo methods (Metropolis, Ulam, von Neumann, late 1940s)",
+        "Dantzig's Simplex algorithm for linear programming (1947)",
+        "Crank–Nicolson method for PDEs (1947)",
+        "Establishment of computational mathematics laboratories (e.g., National Applied Mathematics Lab at NBS, 1947)"
+      ]
+    },
+    {
+      "period_name": "Diversification and Computational Science",
+      "start_year": 1970,
+      "end_year": 1999,
+      "duration_years": 30,
+      "description": "Applied mathematics diversified into new domains such as computer science, economics, biology, and information theory. Growth in computational power led to the development of mathematical software for large-scale simulations and data analysis, while mathematical modeling became crucial in emerging science and engineering fields.",
+      "representative_developments": [
+        "Fast Fourier Transform (Cooley & Tukey, 1965, widespread adoption in this period)",
+        "RSA public-key cryptography (1977)",
+        "Development of large-scale optimization and simulation codes",
+        "Mathematical modeling in epidemiology, climatology, and engineering"
+      ]
+    },
+    {
+      "period_name": "Modern Synthesis: Data, AI, and Complex Systems",
+      "start_year": 2000,
+      "end_year": 2025,
+      "duration_years": 26,
+      "description": "Applied mathematics is now shaped by advances in data science, artificial intelligence, large-scale simulations, and interdisciplinary research. Paradigm shifts include machine learning, network analysis, uncertainty quantification, and mathematical approaches to genomics, finance, and societal systems. Theoretical and computational methods are applied collaboratively in global, cross-disciplinary efforts.",
+      "representative_developments": [
+        "Deep learning algorithms and large-scale optimization (post-2010)",
+        "Uncertainty quantification in computational sciences",
+        "Viazovska's solution to the sphere-packing problem in 8 and 24 dimensions (2016)[4]",
+        "Mathematical analysis of complex networks and big data"
+      ]
+    }
+  ]
+}

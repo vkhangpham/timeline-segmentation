@@ -1,0 +1,81 @@
+{
+  "domain": "Natural Language Processing",
+  "historical_periods": [
+    {
+      "period_name": "Early Symbolic Era",
+      "start_year": 1949,
+      "end_year": 1970,
+      "duration_years": 22,
+      "description": "NLP research began with rule-based, symbolic methods drawing from linguistics and logic, focusing on tasks like machine translation using explicit linguistic rules.",
+      "representative_developments": [
+        "Warren Weaver’s Memo on translation (1949)",
+        "Georgetown-IBM experiment: first machine translation demo (1954)",
+        "ELIZA: early rule-based chatbot (Weizenbaum, 1966)"
+      ]
+    },
+    {
+      "period_name": "Artificial Intelligence and Knowledge-Based Systems",
+      "start_year": 1971,
+      "end_year": 1989,
+      "duration_years": 19,
+      "description": "Focus shifted to AI approaches that emphasized semantic representation and world knowledge, using logic-based systems and ontologies for parsing and understanding.",
+      "representative_developments": [
+        "SHRDLU system (Winograd, 1971)",
+        "Conceptual Dependency Theory (Schank, 1975)",
+        "Frame Semantics (Fillmore, 1976)"
+      ]
+    },
+    {
+      "period_name": "Statistical and Corpus-Based NLP",
+      "start_year": 1990,
+      "end_year": 2012,
+      "duration_years": 23,
+      "description": "A transformation towards statistical modeling occurred, leveraging large text corpora and probabilistic methods for tasks like tagging, parsing, and translation.",
+      "representative_developments": [
+        "Hidden Markov Models for POS tagging (Rabiner, 1989)",
+        "IBM statistical machine translation models (Brown et al., 1990, 1993)",
+        "Head-Driven Statistical Models for Parsing (Collins, 1999)"
+      ]
+    },
+    {
+      "period_name": "Neural Networks and Deep Learning",
+      "start_year": 2013,
+      "end_year": 2017,
+      "duration_years": 5,
+      "description": "Deep learning, word embeddings, and neural networks revolutionized NLP, enabling flexible modeling of linguistic features and accelerating progress in tasks such as machine translation and question answering.",
+      "representative_developments": [
+        "Word2Vec embeddings (Mikolov et al., 2013)",
+        "GloVe embeddings (Pennington et al., 2014)",
+        "Sequence-to-sequence RNNs (Sutskever et al., 2014; Bahdanau et al., 2014)",
+        "Attentional Neural Machine Translation (Luong et al., 2015)"
+      ]
+    },
+    {
+      "period_name": "Pretraining, Transfer, and Transformers",
+      "start_year": 2018,
+      "end_year": 2021,
+      "duration_years": 4,
+      "description": "Transformer architectures and pretraining on massive datasets led to context-rich models and transfer learning, enabling even better results across NLP tasks.",
+      "representative_developments": [
+        "\"Attention is All You Need\" (Vaswani et al., 2017)",
+        "BERT: Bidirectional Transformer (Devlin et al., 2018)",
+        "GPT and successors (Radford et al., 2018+)",
+        "XLNet (Yang et al., 2019), RoBERTa (Liu et al., 2019)"
+      ]
+    },
+    {
+      "period_name": "Large Language Models and Foundation Models",
+      "start_year": 2022,
+      "end_year": 2025,
+      "duration_years": 4,
+      "description": "NLP is dominated by large-scale pretrained language models—'foundation models'—which are adaptable to numerous tasks and raise new questions about scale, bias, and alignment.",
+      "representative_developments": [
+        "GPT-3 (Brown et al., 2020)",
+        "T5: Text-to-Text Transfer Transformer (Raffel et al., 2020)",
+        "PaLM (Chowdhery et al., 2022)",
+        "LLaMA (Touvron et al., 2023)",
+        "ChatGPT"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "domain": "Computer Science",
+  "historical_periods": [
+    {
+      "period_name": "Foundations of Computability and Electronic Computing",
+      "start_year": 1936,
+      "end_year": 1956,
+      "duration_years": 21,
+      "description": "This era established the formal basis of computation (Turing machines, computability) and saw the invention of the first programmable electronic computers. Seminal theoretical models and the earliest hardware implementations laid the groundwork for the entire field.",
+      "representative_developments": [
+        "A. Turing, 'On Computable Numbers, with an Application to the Entscheidungsproblem' (1936)[2][6][7][9]",
+        "Konrad Zuse’s Z3, the first functional program-controlled computer (1941)[2][8]",
+        "ENIAC, the first general-purpose programmable electronic computer (1943–1945)[7][8]",
+        "John von Neumann, 'First Draft of a Report on the EDVAC' (1945)[2]"
+      ]
+    },
+    {
+      "period_name": "Programming Languages, Algorithms, and Software Foundations",
+      "start_year": 1957,
+      "end_year": 1969,
+      "duration_years": 13,
+      "description": "Transition from hardware-centric computing to software and abstract computation. This period saw high-level programming languages, foundational algorithms, the definition of 'Computer Science' as an academic discipline, and the beginnings of software engineering.",
+      "representative_developments": [
+        "FORTRAN, the first widely adopted programming language (1957)[5]",
+        "John Backus et al., 'The FORTRAN Automatic Coding System' (1957)",
+        "Development of LISP (1958), foundational for AI and symbolic computation",
+        "George Forsythe coins 'computer science' (1961)[5]",
+        "First university computer science departments established (Purdue, 1962)[5]"
+      ]
+    },
+    {
+      "period_name": "Theoretical Computer Science and Emerging Systems",
+      "start_year": 1970,
+      "end_year": 1979,
+      "duration_years": 10,
+      "description": "Computer science research matures with breakthroughs in computational complexity, algorithmic theory, databases, and emerging operating systems—the groundwork for future networking and distributed computing.",
+      "representative_developments": [
+        "E.F. Codd, 'A Relational Model of Data for Large Shared Data Banks' (1970)",
+        "Stephen Cook, 'The Complexity of Theorem-Proving Procedures' and the concept of NP-completeness (1971)",
+        "Development and widespread adoption of UNIX (early 1970s)",
+        "Dijkstra, 'Go To Statement Considered Harmful' (1968, influential through the 1970s)[6]"
+      ]
+    },
+    {
+      "period_name": "Networking, Personal Computing, and Early User Interfaces",
+      "start_year": 1980,
+      "end_year": 1989,
+      "duration_years": 10,
+      "description": "The rise of networking, distributed systems, and human-computer interaction. Personal computers, graphical user interfaces, and foundational networking protocols transform both research and society.",
+      "representative_developments": [
+        "Adoption of TCP/IP protocol suite (early 1980s)[4]",
+        "Leslie Lamport, 'Time, Clocks, and the Ordering of Events in a Distributed System' (1978, influential into the 1980s)",
+        "Introduction of graphical user interfaces for personal computers (Apple Macintosh, 1984)[5]",
+        "Tim Berners-Lee begins work on the early concepts leading to the World Wide Web (1989)"
+      ]
+    },
+    {
+      "period_name": "Internet, Web, and Global Information Revolution",
+      "start_year": 1990,
+      "end_year": 2009,
+      "duration_years": 20,
+      "description": "Internet and web technologies proliferate, enabling real-time global information sharing, search, and commerce. Computer science research focuses on scalable algorithms, information retrieval, and the democratization of computation.",
+      "representative_developments": [
+        "Tim Berners-Lee, 'Information Management: A Proposal'—birth of the World Wide Web (1990)",
+        "Sergey Brin and Lawrence Page, 'The Anatomy of a Large-Scale Hypertextual Web Search Engine' (1998), core of Google Search",
+        "Rise of object-oriented programming and systems (Java, 1995)",
+        "Dean & Ghemawat, 'MapReduce: Simplified Data Processing on Large Clusters' (2004)"
+      ]
+    },
+    {
+      "period_name": "Big Data, Machine Learning, and Cloud Computing",
+      "start_year": 2010,
+      "end_year": 2018,
+      "duration_years": 9,
+      "description": "Due to the explosion of data creation and availability, distributed and scalable computation, machine learning, and deep neural networks become central. Cloud infrastructure transforms accessibility and scale.",
+      "representative_developments": [
+        "Krizhevsky, Sutskever, Hinton, 'ImageNet Classification with Deep Convolutional Neural Networks' (2012)",
+        "Rise of Apache Hadoop and Spark for large-scale data processing",
+        "'Attention Is All You Need' (Vaswani et al., 2017), introduces the Transformer architecture powering modern NLP"
+      ]
+    },
+    {
+      "period_name": "Generative AI and Large Language Models",
+      "start_year": 2019,
+      "end_year": 2025,
+      "duration_years": 7,
+      "description": "A paradigm shift to generative AI and large language models (LLMs) redefines natural language processing, code generation, and synthesis across modalities. Issues of scale, interpretability, and responsible deployment become pressing research foci.",
+      "representative_developments": [
+        "GPT-3 (Brown et al., 'Language Models are Few-Shot Learners', 2020)",
+        "Mass adoption of deep generative models for text, code, and images",
+        "Rapid progress in multi-modal AI systems, reinforcement learning (AlphaFold, Copilot, DALL-E)"
+      ]
+    }
+  ]
+}

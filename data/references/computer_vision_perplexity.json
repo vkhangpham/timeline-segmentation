@@ -1,0 +1,71 @@
+{
+  "domain": "Computer Vision",
+  "historical_periods": [
+    {
+      "period_name": "Early Experiments and Digital Imaging Foundations",
+      "start_year": 1959,
+      "end_year": 1969,
+      "duration_years": 11,
+      "description": "The field was initiated with the invention of the first digital image scanner, the framing of computer vision as a research problem by Larry Roberts, and attempts to automate the interpretation of 2D images into 3D information. Early work focused on connecting cameras to computers and recognizing basic shapes, setting the groundwork for future advances.",
+      "representative_developments": [
+        "1959 – First digital image scanner transforms images to numerical grids[1][5][8]",
+        "1963 – Larry Roberts describes deriving 3D information from 2D photographs[1][5][7]",
+        "1964 – Woody Bledsoe pioneers automated facial recognition[7]",
+        "1966 – Marvin Minsky launches automatic scene description project[1][5][6]",
+        "1967 – Earliest facial recognition system using edge detection and feature matching[2]"
+      ]
+    },
+    {
+      "period_name": "Symbolic and Structural AI Era",
+      "start_year": 1970,
+      "end_year": 1989,
+      "duration_years": 20,
+      "description": "Research focused on rule-based, symbolic models and early structural approaches: extracting edges, representing objects as geometric or polyhedral primitives, and early face/object recognition using templates. Development of 3D modeling, line labeling, and the introduction of stretchable templates and polyhedral scene interpretation.",
+      "representative_developments": [
+        "1971 – Max Clowes and David Huffman: polyhedral object interpretation methods[7]",
+        "1973 – Fischler & Elschlager: stretchable templates for object matching[7]",
+        "1973 – Takeo Kanade builds the first automated face recognition system[7]",
+        "1980 – Kunihiko Fukushima develops the 'neocognitron', precursor of CNNs[1][5][8]"
+      ]
+    },
+    {
+      "period_name": "Statistical Methods and Optimization",
+      "start_year": 1990,
+      "end_year": 2009,
+      "duration_years": 20,
+      "description": "Statistical models, optimization, and feature engineering became dominant. This period saw the rise of face recognition using principal component analysis, emergence of advanced image segmentation techniques (e.g., graph cuts), dense 3D reconstruction, robust camera calibration, and the first wide deployment of computer vision in surveillance. Feature descriptors and statistical learning dominated progress.",
+      "representative_developments": [
+        "1991 – Eigenfaces: principal component analysis for face recognition[6]",
+        "Early 1990s – Multiplex video devices and ATM surveillance deployment[5]",
+        "Mid-1990s – Advances in 3D stereo correspondence and multi-view techniques[6]",
+        "Late 1990s – Graph cut methods for segmentation, Markov Random Fields, bundle adjustment for camera calibration[6]"
+      ]
+    },
+    {
+      "period_name": "Large-Scale Data and Early Deep Learning",
+      "start_year": 2010,
+      "end_year": 2014,
+      "duration_years": 5,
+      "description": "The field saw an acceleration from the availability of massive, labeled datasets and real-world benchmarks. In 2012, deep learning (CNNs) achieved a breakthrough on ImageNet, marking a paradigm shift. Feature learning began to replace handcrafted features as the dominant approach.",
+      "representative_developments": [
+        "2010 – Acceleration in deep learning research for vision[1][5][8]",
+        "2012 – Google Brain's neural network recognizes images from vast data, utilizing deep learning on 16,000 processors[1][5][8]",
+        "2012 – Krizhevsky et al.: AlexNet wins ImageNet, reducing error by a significant margin (seminal deep CNN)[8]",
+        "2014 – Further development and adoption of advanced deep learning models"
+      ]
+    },
+    {
+      "period_name": "Deep Learning Maturity and Multimodal Vision",
+      "start_year": 2015,
+      "end_year": 2025,
+      "duration_years": 11,
+      "description": "Deep convolutional networks and, more recently, vision transformers have driven rapid progress. This period is marked by universal benchmarks, foundation models, large-scale multimodal systems, and edge and real-time deployment. Catastrophic improvements in classification, detection, segmentation, and image understanding—the field is deeply integrated with language, robotics, and real-world applications.",
+      "representative_developments": [
+        "2015 – Deep residual networks and inception architectures redefine model depth[6]",
+        "2020 – Vision Transformers (ViT): Adaption of transformer networks to vision tasks",
+        "2020s – Widespread real-time inference on edge devices",
+        "2021–2025 – AI systems integrate visual and language data for advanced context understanding"
+      ]
+    }
+  ]
+}
