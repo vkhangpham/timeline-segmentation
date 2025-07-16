@@ -132,30 +132,14 @@ def save_timeline_result(
     results_dir = Path("results/timelines")
     results_dir.mkdir(parents=True, exist_ok=True)
 
+    import dataclasses
+    
     result_data = {
         "domain_name": timeline_result.domain_name,
         "confidence": timeline_result.confidence,
         "boundary_years": list(timeline_result.boundary_years),
         "narrative_evolution": timeline_result.narrative_evolution,
-        "algorithm_config": {
-            "direction_change_threshold": algorithm_config.direction_change_threshold,
-            "direction_threshold_strategy": algorithm_config.direction_threshold_strategy,
-            "direction_scoring_method": algorithm_config.direction_scoring_method,
-            "min_baseline_period_years": algorithm_config.min_baseline_period_years,
-            "score_distribution_window_years": algorithm_config.score_distribution_window_years,
-            "citation_confidence_boost": algorithm_config.citation_confidence_boost,
-            "citation_support_window_years": algorithm_config.citation_support_window_years,
-            "diagnostic_top_keywords_limit": algorithm_config.diagnostic_top_keywords_limit,
-            "min_papers_per_year": algorithm_config.min_papers_per_year,
-            "cohesion_weight": algorithm_config.cohesion_weight,
-            "separation_weight": algorithm_config.separation_weight,
-            "top_k_keywords": algorithm_config.top_k_keywords,
-            "min_keyword_frequency_ratio": algorithm_config.min_keyword_frequency_ratio,
-            "beam_search_enabled": algorithm_config.beam_search_enabled,
-            "beam_width": algorithm_config.beam_width,
-            "max_splits_per_segment": algorithm_config.max_splits_per_segment,
-            "save_direction_diagnostics": algorithm_config.save_direction_diagnostics,
-        },
+        "algorithm_config": dataclasses.asdict(algorithm_config),
         "periods": [],
     }
 

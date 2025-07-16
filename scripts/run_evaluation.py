@@ -9,14 +9,12 @@ import argparse
 import sys
 from pathlib import Path
 
-from core.utils.general import discover_available_timeline_domains
+from core.utils.general import discover_available_timeline_domains, get_timeline_file_path
 from core.utils.config import AlgorithmConfig
 from core.utils.logging import configure_global_logging, get_logger
-from core.evaluation.evaluation import (
-    run_single_evaluation,
-    run_all_domains_evaluation,
-    run_baseline_only_evaluation,
-)
+from core.evaluation.evaluation import evaluate_domains
+from core.evaluation.baselines import clear_cache
+from core.evaluation.analysis import display_cross_domain_analysis
 
 
 def main():
@@ -28,8 +26,8 @@ def main():
 Examples:
   python scripts/run_evaluation.py --domain art --timeline-file results/timelines/art_timeline_analysis.json
   python scripts/run_evaluation.py --domain all --verbose
-  python scripts/run_evaluation.py --domain computer_vision --baseline-only manual --timeline-file results/timelines/computer_vision_timeline_analysis.json
-  python scripts/run_evaluation.py --domain deep_learning --baseline-only 5-year --timeline-file results/timelines/deep_learning_timeline_analysis.json
+  python scripts/run_evaluation.py --domain computer_vision --baseline-only 5-year
+  python scripts/run_evaluation.py --domain deep_learning --baseline-only 10-year
         """,
     )
 
@@ -42,130 +40,106 @@ Examples:
     parser.add_argument(
         "--baseline-only",
         type=str,
-        choices=["gemini", "manual", "5-year", "10-year"],
+        choices=["5-year", "10-year"],
         help="Run only a specific baseline evaluation",
+    )
+    parser.add_argument(
+        "--timeline-file",
+        type=str,
+        help="Optional path to specific timeline file to evaluate",
     )
     parser.add_argument(
         "--data-directory",
         type=str,
         default="resources",
-        help="Directory containing data files",
+        help="Directory containing domain data (default: resources)",
     )
     parser.add_argument(
-        "--verbose", action="store_true", help="Enable verbose logging (DEBUG level)"
+        "--clear-cache",
+        action="store_true",
+        help="Clear baseline result cache before evaluation",
     )
-    parser.add_argument(
-        "--timeline-file",
-        type=str,
-        default=None,
-        help="Path to existing timeline JSON file (required for specific domains)",
-    )
+    parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
 
     args = parser.parse_args()
 
-    # Validate timeline file usage
-    if args.domain != "all":
-        # For specific domains, timeline file is required
-        if not args.timeline_file:
-            print(
-                "Error: --timeline-file is required when evaluating a specific domain"
-            )
-            print("Timeline evaluation requires existing timeline files.")
-            print(
-                "Example: python scripts/run_evaluation.py --domain art --timeline-file results/timelines/art_timeline_analysis.json"
-            )
-            return False
-
-        # Check if timeline file exists
-        timeline_path = Path(args.timeline_file)
-        if not timeline_path.exists():
-            print(f"Error: Timeline file not found: {args.timeline_file}")
-            return False
-    else:
-        # For "all" domains, timeline file should not be specified
-        if args.timeline_file:
-            print("Error: --timeline-file cannot be used with --domain all")
-            print(
-                "The 'all' option automatically discovers and uses timeline files from results/timelines/"
-            )
-            return False
-
-    # Validate baseline-only usage
-    if args.baseline_only:
-        if args.domain == "all":
-            print("Error: --baseline-only cannot be used with --domain all")
-            print("Baseline evaluation requires specifying a specific domain.")
-            return False
-
-        if not args.timeline_file:
-            print("Error: --timeline-file is required when using --baseline-only")
-            print(
-                "Baseline evaluation requires an existing timeline file for comparison."
-            )
-            return False
-
     # Configure logging
-    configure_global_logging(
-        verbose=args.verbose, domain_name=args.domain if args.domain != "all" else None
-    )
-    logger = get_logger(
-        __name__, args.verbose, args.domain if args.domain != "all" else None
-    )
+    configure_global_logging(verbose=args.verbose)
+    logger = get_logger(__name__, args.verbose)
 
-    # Prepare algorithm config
-    domain_for_config = args.domain if args.domain != "all" else None
-    algorithm_config = AlgorithmConfig.from_config_file(domain_name=domain_for_config)
+    # Clear cache if requested
+    if args.clear_cache:
+        clear_cache()
+        logger.info("Baseline cache cleared")
 
-    # Run evaluation
-    success = False
+    # Load algorithm configuration
+    algorithm_config = AlgorithmConfig.from_config_file()
 
-    if args.baseline_only:
-        # Run baseline-only evaluation
+    # Validate timeline file if provided
+    if args.timeline_file and not Path(args.timeline_file).exists():
+        logger.error(f"Timeline file not found: {args.timeline_file}")
+        return False
+
+    # Prepare domains and timeline files
+    if args.domain == "all":
+        domains = discover_available_timeline_domains(args.verbose)
+        if not domains:
+            logger.error("No timeline files found")
+            return False
+        
+        # Build timeline files mapping
+        timeline_files = {}
+        for domain in domains:
+            timeline_file = get_timeline_file_path(domain, args.verbose)
+            if timeline_file:
+                timeline_files[domain] = timeline_file
+                
+        print(f"EVALUATING {len(domains)} DOMAINS")
+        print("=" * 50)
+    else:
+        # Single domain
         available_domains = discover_available_timeline_domains(args.verbose)
         if args.domain not in available_domains:
             logger.error(f"Invalid domain: {args.domain}")
-            logger.error(
-                f"Available domains with timeline files: {', '.join(available_domains)}"
-            )
+            logger.error(f"Available domains: {', '.join(available_domains)}")
             return False
+            
+        domains = [args.domain]
+        timeline_files = {args.domain: args.timeline_file} if args.timeline_file else None
 
-        success = run_baseline_only_evaluation(
-            domain_name=args.domain,
-            baseline_type=args.baseline_only,
-            algorithm_config=algorithm_config,
-            data_directory=args.data_directory,
-            verbose=args.verbose,
-        )
-    elif args.domain == "all":
-        # Run comprehensive evaluation for all domains with existing timeline files
-        success = run_all_domains_evaluation(
-            algorithm_config=algorithm_config,
-            data_directory=args.data_directory,
-            verbose=args.verbose,
-        )
+    # Run evaluation
+    results = evaluate_domains(
+        domains=domains,
+        algorithm_config=algorithm_config,
+        data_directory=args.data_directory,
+        timeline_files=timeline_files,
+        baseline_only=args.baseline_only,
+        verbose=args.verbose,
+    )
+
+    # Handle results
+    successful = [d for d, r in results.items() if r is not None]
+    failed = [d for d, r in results.items() if r is None]
+
+    if failed:
+        print(f"\nFailed domains: {', '.join(failed)}")
+
+    # Cross-domain analysis for multiple successful evaluations
+    if len(successful) >= 2 and not args.baseline_only:
+        try:
+            successful_results = {d: r for d, r in results.items() if r is not None}
+            display_cross_domain_analysis(successful_results, args.verbose)
+        except Exception as e:
+            logger.warning(f"Cross-domain analysis failed: {e}")
+
+    success = len(successful) > 0
+    if success:
+        logger.info("Evaluation completed successfully")
     else:
-        # Run comprehensive evaluation for single domain
-        available_domains = discover_available_timeline_domains(args.verbose)
-        if args.domain not in available_domains:
-            logger.warning(
-                f"Domain '{args.domain}' not found in existing timeline files"
-            )
-            logger.info(
-                f"Available domains with timeline files: {', '.join(available_domains)}"
-            )
-            logger.info("Proceeding with evaluation using provided timeline file...")
-
-        success = run_single_evaluation(
-            domain_name=args.domain,
-            algorithm_config=algorithm_config,
-            data_directory=args.data_directory,
-            timeline_file=args.timeline_file,
-            verbose=args.verbose,
-        )
-
+        logger.error("Evaluation failed")
+        
     return success
 
 
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+    sys.exit(0 if main() else 1)

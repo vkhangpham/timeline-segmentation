@@ -22,7 +22,7 @@ if "--verbose" not in sys.argv:
     set_suppress_console_logging(True)
 
 from core.utils.config import AlgorithmConfig
-from core.optimization.optimization import score_trial, clear_cache
+from core.optimization.optimization import score_trial, clear_cache, compute_best_result_validation_metrics
 from core.optimization.bayesian_optimizer import run_bayesian_optimization
 from core.optimization.optimization_config import load_config
 from core.utils.general import discover_available_domains
@@ -421,16 +421,33 @@ def run_optimization(
         if not valid_results:
             raise RuntimeError("All optimization trials failed!")
 
+        # Compute validation metrics for best result only (for performance)
+        if verbose:
+            logger.info("Computing validation metrics for best result...")
+        else:
+            print("Computing validation metrics for best result...")
+        
+        best_result = compute_best_result_validation_metrics(
+            best_result=best_result,
+            domain_name=domain_name,
+            base_config=base_config,
+            data_directory=data_directory,
+            verbose=verbose,
+        )
+
         if verbose:
             logger.info("=== Optimization Complete ===")
             logger.info(f"Total trials: {len(all_results)}")
             logger.info(f"Successful trials: {len(valid_results)}")
             logger.info(f"Best score: {best_result['objective_score']:.3f}")
             logger.info(f"Best parameters: {best_result['parameters']}")
+            logger.info(f"Validation metrics: Boundary-F1={best_result.get('boundary_f1', 0.0):.3f}, Segment-F1={best_result.get('segment_f1', 0.0):.3f}")
         else:
             print(
                 f"\nOptimization complete! Best score: {best_result['objective_score']:.3f}"
             )
+            if best_result.get('validation_computed'):
+                print(f"Validation: Boundary-F1={best_result.get('boundary_f1', 0.0):.3f}, Segment-F1={best_result.get('segment_f1', 0.0):.3f}")
             if best_score_plot:
                 print(f"Best-score curve saved to: {best_score_plot}")
 
