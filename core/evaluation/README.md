@@ -1,6 +1,6 @@
 # Timeline Segmentation Evaluation Module
 
-Evaluation framework for timeline segmentation: objective scoring, baselines, and automatic metrics.
+Evaluation framework for timeline segmentation with dual reference scoring system.
 
 ## Features
 
@@ -9,26 +9,29 @@ Evaluation framework for timeline segmentation: objective scoring, baselines, an
 - **Purpose**: Calculate objective function score for any timeline segmentation result
 - **Output**: EvaluationResult with objective score, cohesion/separation scores, and detailed metrics
 
-### 2. Baseline Creation & Evaluation
-Four types of baselines are supported:
+### 2. Reference Loading
+Two types of reference timelines are supported:
 
-#### Gemini Baseline
-- **Function**: `create_gemini_baseline(domain_name, algorithm_config, data_directory="resources", verbose=False)`
-- **Purpose**: Create baseline using Gemini reference timeline from `data/references/{domain}_gemini.json`
+#### Gemini Reference
+- **Function**: `load_gemini_reference(domain_name, academic_years, min_data_year, max_data_year, algorithm_config, use_cache=True, verbose=False)`
+- **Purpose**: Load Gemini reference timeline from `data/references/{domain}_gemini.json`
 - **Data Processing**: Same filtering as pipeline (paper filter, year filter, keyword filter)
 
-#### Manual Baseline  
-- **Function**: `create_manual_baseline(domain_name, algorithm_config, data_directory="resources", verbose=False)`
-- **Purpose**: Create baseline using manual reference timeline from `data/references/{domain}_manual.json`
+#### Perplexity Reference
+- **Function**: `load_perplexity_reference(domain_name, academic_years, min_data_year, max_data_year, algorithm_config, use_cache=True, verbose=False)`
+- **Purpose**: Load Perplexity reference timeline from `data/references/{domain}_perplexity.json`
 - **Data Processing**: Same filtering as pipeline
 
+### 3. Baseline Creation
+Fixed year baselines are supported:
+
 #### Fixed Year Baselines
-- **Function**: `create_fixed_year_baseline(domain_name, algorithm_config, year_interval, data_directory="resources", verbose=False)`
+- **Function**: `create_fixed_year_baseline(domain_name, year_interval, academic_years, min_data_year, max_data_year, algorithm_config, use_cache=True, verbose=False)`
 - **Purpose**: Create baseline with fixed year intervals (5-year or 10-year)
 - **Data Processing**: Same filtering as pipeline
 
-### 3. Auto-Metrics
-Two types of F1-scores are calculated against Manual baseline:
+### 4. Dual Reference Auto-Metrics
+Metrics are calculated against both Gemini and Perplexity references:
 
 #### Boundary F1
 - **Function**: `calculate_boundary_f1(predicted_boundaries, ground_truth_boundaries, tolerance=2)`
@@ -40,33 +43,34 @@ Two types of F1-scores are calculated against Manual baseline:
 - **Purpose**: Compare segments allowing up to 3 predicted segments per ground truth segment
 - **Logic**: Ground truth segment [1990, 2000] matches predicted segments [1990,1992], [1993,1996], [1997,2001]
 
-### 4. Comprehensive Evaluation
-- **Function**: `run_comprehensive_evaluation(domain_name, timeline_result, algorithm_config, data_directory="resources", verbose=False)`
-- **Purpose**: Run all evaluations and return complete results
-- **Output**: ComprehensiveEvaluationResult with algorithm result, baselines, auto-metrics, and ranking
+### 5. Final Evaluation System
+- **Function**: `run_final_evaluation(domain_name, timeline_result, algorithm_config, data_directory="resources", use_cache=True, verbose=False)`
+- **Purpose**: Run comprehensive evaluation with dual reference system
+- **Methods Evaluated**: 3 methods (Algorithm, 5-year baseline, 10-year baseline)
+- **Metrics per Method**: 4 scores (boundary F1 and segment F1 vs both Gemini and Perplexity references)
+- **Output**: FinalEvaluationResult with all methods metrics against both references
 
 ## Usage
 
 ### Command Line Interface
 ```bash
 # Full evaluation for single domain
-python run_evaluation.py --domain art --verbose
+python scripts/run_evaluation.py --domain art --verbose
 
 # Full evaluation for all domains
-python run_evaluation.py --domain all --verbose
+python scripts/run_evaluation.py --domain all --verbose
 
-# Baseline-only evaluation
-python run_evaluation.py --domain art --baseline-only manual
-python run_evaluation.py --domain art --baseline-only gemini
-python run_evaluation.py --domain art --baseline-only 5-year
-python run_evaluation.py --domain art --baseline-only 10-year
+# Baseline-only evaluation (5-year or 10-year only)
+python scripts/run_evaluation.py --domain art --baseline-only 5-year
+python scripts/run_evaluation.py --domain art --baseline-only 10-year
 ```
 
 ### Programmatic Usage
 ```python
 from core.utils.config import AlgorithmConfig
 from core.pipeline.orchestrator import analyze_timeline
-from core.evaluation.evaluation import run_comprehensive_evaluation
+from core.evaluation.evaluation import run_final_evaluation
+from core.evaluation.analysis import display_final_evaluation_summary
 
 # Setup
 domain_name = "art"
@@ -79,17 +83,20 @@ timeline_result = analyze_timeline(
     segmentation_only=True,
 )
 
-# Comprehensive evaluation
-evaluation_result = run_comprehensive_evaluation(
+# Final evaluation with dual references
+evaluation_result = run_final_evaluation(
     domain_name=domain_name,
     timeline_result=timeline_result,
     algorithm_config=algorithm_config,
 )
 
-# Access results
-print(f"Algorithm score: {evaluation_result.algorithm_result.objective_score:.3f}")
-print(f"Boundary F1: {evaluation_result.auto_metrics.boundary_f1:.3f}")
-print(f"Segment F1: {evaluation_result.auto_metrics.segment_f1:.3f}")
+# Display results
+display_final_evaluation_summary(evaluation_result, verbose=True)
+
+# Access metrics
+alg_metrics = evaluation_result.all_methods_metrics.algorithm_metrics
+print(f"Algorithm vs Gemini - Boundary F1: {alg_metrics.gemini_boundary_f1:.3f}")
+print(f"Algorithm vs Perplexity - Boundary F1: {alg_metrics.perplexity_boundary_f1:.3f}")
 ```
 
 ## Data Structures
@@ -104,7 +111,7 @@ print(f"Segment F1: {evaluation_result.auto_metrics.segment_f1:.3f}")
 - `details`: Additional details (cohesion/separation per period)
 
 ### BaselineResult
-- `baseline_name`: Name of baseline (Gemini, Manual, 5-year, 10-year)
+- `baseline_name`: Name of baseline (5-year, 10-year)
 - `objective_score`: Objective function score
 - `cohesion_score`: Cohesion score
 - `separation_score`: Separation score
@@ -112,21 +119,19 @@ print(f"Segment F1: {evaluation_result.auto_metrics.segment_f1:.3f}")
 - `boundary_years`: List of boundary years
 - `academic_periods`: List of AcademicPeriod objects
 
-### AutoMetricResult
-- `boundary_f1`: F1 score for boundary year matching
-- `boundary_precision`: Precision for boundary matching
-- `boundary_recall`: Recall for boundary matching
-- `segment_f1`: F1 score for segment matching
-- `segment_precision`: Precision for segment matching  
-- `segment_recall`: Recall for segment matching
-- `tolerance`: Year tolerance used for boundary matching
-- `details`: Additional details about matching
+### MethodMetrics
+- `method_name`: Name of the method (Algorithm, 5-year, 10-year)
+- `objective_score`: Objective function score
+- `gemini_boundary_f1`: Boundary F1 score vs Gemini reference
+- `gemini_segment_f1`: Segment F1 score vs Gemini reference
+- `perplexity_boundary_f1`: Boundary F1 score vs Perplexity reference
+- `perplexity_segment_f1`: Segment F1 score vs Perplexity reference
 
-### ComprehensiveEvaluationResult
+### FinalEvaluationResult
 - `domain_name`: Domain name
 - `algorithm_result`: EvaluationResult for algorithm
-- `baseline_results`: List of BaselineResult objects
-- `auto_metrics`: AutoMetricResult vs Manual baseline
+- `baseline_results`: List of BaselineResult objects (5-year, 10-year)
+- `all_methods_metrics`: AllMethodsMetrics with comprehensive dual reference metrics
 - `ranking`: Dictionary of method -> objective_score
 - `summary`: Text summary of results
 
@@ -136,15 +141,15 @@ Results are saved to `results/evaluation/{domain}_evaluation.json` with complete
 
 ## Key Implementation Details
 
-1. **Data Consistency**: All baselines use the same data processing pipeline as the main algorithm (paper filtering, year filtering, keyword filtering)
+1. **Dual Reference System**: All methods (Algorithm, 5-year, 10-year) are evaluated against both Gemini and Perplexity references
 
-2. **Robust Error Handling**: Baselines that fail (e.g., missing reference files, sparse data) are handled gracefully
+2. **Data Consistency**: All baselines and references use the same data processing pipeline as the main algorithm
 
-3. **Flexible Evaluation**: Can evaluate any timeline result, not just from the main pipeline
+3. **Robust Caching**: Efficient caching system for reference and baseline results
 
-4. **Performance**: Efficient parallel processing where possible
+4. **Flexible Evaluation**: Can evaluate any timeline result, not just from the main pipeline
 
-5. **Comprehensive Metrics**: Multiple evaluation perspectives (objective function, boundary accuracy, segment accuracy)
+5. **Comprehensive Metrics**: 4 scores per method (boundary F1 and segment F1 vs both references)
 
 ## Dependencies
 
@@ -154,19 +159,25 @@ Results are saved to `results/evaluation/{domain}_evaluation.json` with complete
 - `core.utils.config`: Algorithm configuration
 - `core.utils.logging`: Logging utilities
 
-## Cross-Domain Evaluation Results
+## Example Output
 
-*Last updated: July 10, 2025*
+```
+FINAL EVALUATION RESULTS: MACHINE_LEARNING
+================================================================================
 
-### Performance Summary (6 Domains)
-Comprehensive evaluation across: Applied Mathematics, Computer Vision, Deep Learning, Machine Learning, Machine Translation, Natural Language Processing
+Objective Scores:
+----------------------------------------
+Method          Objective Score
+----------------------------------------
+Algorithm       -1.554         
+5-year          0.541          
+10-year         0.508          
 
-| Method | Objective Score | Boundary F1 | Boundary Precision | Boundary Recall | Segment F1 | Segment Precision | Segment Recall |
-|--------|----------------|-------------|-------------------|-----------------|------------|-------------------|----------------|
-| **Manual** | **0.147** ⭐ | - | - | - | - | - | - |
-| **Gemini** | -0.146 | **0.527** ⭐ | **0.517** ⭐ | 0.544 | **0.596** ⭐ | 0.584 | 0.615 |
-| **10-year** | -0.325 | 0.303 | 0.195 | **0.706** ⭐ | 0.353 | 0.233 | **0.750** ⭐ |
-| **5-year** | -1.116 | 0.317 | 0.185 | 1.150 | 0.350 | 0.209 | 1.127 |
-| **Algorithm** | -3.176 | 0.376 | 0.324 | 0.456 | **0.889** ⭐ | **0.907** ⭐ | 0.883 |
-
-⭐ = Best score in category
+Auto-metrics vs References (tolerance = 2 years):
+--------------------------------------------------------------------------------
+Method       Gemini Boundary Gemini Segment Perplexity Boundary Perplexity Segment
+--------------------------------------------------------------------------------
+Algorithm    0.400           0.960          0.545               0.960           
+5-year       0.343           0.296          0.432               0.605           
+10-year      0.200           0.818          0.273               0.870           
+```

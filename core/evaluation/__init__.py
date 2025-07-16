@@ -1,60 +1,64 @@
 """Evaluation module for timeline segmentation quality assessment."""
 
 from .evaluation import (
+    # Core evaluation functions
     evaluate_timeline_result,
-    run_comprehensive_evaluation,
-    run_single_evaluation,
-    run_all_domains_evaluation,
-    run_baseline_only_evaluation,
+    run_final_evaluation,
+    evaluate_domains,
+    # Helper functions
+    calculate_method_metrics_against_references,
+    # Unified data models
     EvaluationResult,
-    BaselineResult,
-    AutoMetricResult,
-    ComprehensiveEvaluationResult,
+    DomainEvaluationSummary,
 )
 
 from .baselines import (
-    create_gemini_baseline,
-    create_manual_baseline,
+    # Reference loading functions
+    load_gemini_reference,
+    load_perplexity_reference,
+    # Baseline creation functions
     create_fixed_year_baseline,
+    # Shared data loading and caching
+    load_shared_academic_data,
+    clear_cache,
+    compute_config_hash,
 )
 
 from .metrics import (
     calculate_boundary_f1,
     calculate_segment_f1,
-    calculate_f1_score_between_methods,
 )
 
 from .analysis import (
     save_evaluation_result,
-    display_evaluation_summary,
+    display_final_evaluation_summary,
     display_cross_domain_analysis,
-    save_cross_domain_results,
 )
 
 __all__ = [
     # Core evaluation functions
     "evaluate_timeline_result",
-    "run_comprehensive_evaluation",
-    "run_single_evaluation",
-    "run_all_domains_evaluation",
-    "run_baseline_only_evaluation",
-    # Configuration
-    # Models
+    "run_final_evaluation",
+    "evaluate_domains",
+    # Helper functions
+    "calculate_method_metrics_against_references",
+    # Unified data models
     "EvaluationResult",
-    "BaselineResult",
-    "AutoMetricResult",
-    "ComprehensiveEvaluationResult",
-    # Baselines
-    "create_gemini_baseline",
-    "create_manual_baseline",
+    "DomainEvaluationSummary",
+    # Reference loading functions
+    "load_gemini_reference",
+    "load_perplexity_reference",
+    # Baseline creation functions
     "create_fixed_year_baseline",
+    # Shared data loading and caching
+    "load_shared_academic_data",
+    "clear_cache",
+    "compute_config_hash",
     # Metrics
     "calculate_boundary_f1",
     "calculate_segment_f1",
-    "calculate_f1_score_between_methods",
     # Analysis
     "save_evaluation_result",
-    "display_evaluation_summary",
+    "display_final_evaluation_summary",
     "display_cross_domain_analysis",
-    "save_cross_domain_results",
 ]

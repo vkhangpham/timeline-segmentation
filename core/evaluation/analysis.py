@@ -7,20 +7,16 @@ and saving/loading evaluation results.
 import json
 from pathlib import Path
 from typing import Dict, Optional
-from collections import defaultdict
 
 from ..utils.logging import get_logger
-from .evaluation import ComprehensiveEvaluationResult
-from .metrics import calculate_f1_score_between_methods
+from .evaluation import DomainEvaluationSummary
 
 
-def save_evaluation_result(
-    evaluation_result: ComprehensiveEvaluationResult, verbose: bool = False
-):
+def save_evaluation_result(evaluation_result, verbose: bool = False):
     """Save evaluation result to JSON file.
 
     Args:
-        evaluation_result: ComprehensiveEvaluationResult object
+        evaluation_result: DomainEvaluationSummary object
         verbose: Enable verbose logging
     """
     logger = get_logger(__name__, verbose, evaluation_result.domain_name)
@@ -29,40 +25,51 @@ def save_evaluation_result(
     results_dir = Path("results/evaluation")
     results_dir.mkdir(parents=True, exist_ok=True)
 
+    # Find algorithm and baseline results
+    algorithm_result = evaluation_result.get_result("Algorithm")
+    baseline_results = [r for r in evaluation_result.results if r.name in ["5-year", "10-year"]]
+    
+    if algorithm_result is None:
+        logger.error("No algorithm result found in evaluation summary")
+        return
+
     # Prepare data for JSON serialization
     result_data = {
         "domain_name": evaluation_result.domain_name,
         "algorithm_result": {
-            "objective_score": evaluation_result.algorithm_result.objective_score,
-            "raw_objective_score": evaluation_result.algorithm_result.raw_objective_score,
-            "penalty": evaluation_result.algorithm_result.penalty,
-            "cohesion_score": evaluation_result.algorithm_result.cohesion_score,
-            "separation_score": evaluation_result.algorithm_result.separation_score,
-            "num_segments": evaluation_result.algorithm_result.num_segments,
-            "num_transitions": evaluation_result.algorithm_result.num_transitions,
-            "boundary_years": evaluation_result.algorithm_result.boundary_years,
-            "methodology": evaluation_result.algorithm_result.methodology,
-            "details": evaluation_result.algorithm_result.details,
+            "objective_score": algorithm_result.objective_score,
+            "raw_objective_score": algorithm_result.raw_objective_score,
+            "penalty": algorithm_result.penalty,
+            "cohesion_score": algorithm_result.cohesion_score,
+            "separation_score": algorithm_result.separation_score,
+            "num_segments": algorithm_result.num_segments,
+            "num_transitions": algorithm_result.num_transitions,
+            "boundary_years": algorithm_result.boundary_years,
+            "methodology": algorithm_result.methodology,
+            "details": algorithm_result.details,
         },
         "baseline_results": [],
-        "auto_metrics": {
-            "boundary_f1": evaluation_result.auto_metrics.boundary_f1,
-            "boundary_precision": evaluation_result.auto_metrics.boundary_precision,
-            "boundary_recall": evaluation_result.auto_metrics.boundary_recall,
-            "segment_f1": evaluation_result.auto_metrics.segment_f1,
-            "segment_precision": evaluation_result.auto_metrics.segment_precision,
-            "segment_recall": evaluation_result.auto_metrics.segment_recall,
-            "tolerance": evaluation_result.auto_metrics.tolerance,
-            "details": evaluation_result.auto_metrics.details,
+        "all_methods_metrics": {
+            "algorithm_metrics": {
+                "method_name": algorithm_result.name,
+                "objective_score": algorithm_result.objective_score,
+                "gemini_boundary_f1": algorithm_result.reference_metrics.get("gemini_boundary_f1", 0.0),
+                "gemini_segment_f1": algorithm_result.reference_metrics.get("gemini_segment_f1", 0.0),
+                "perplexity_boundary_f1": algorithm_result.reference_metrics.get("perplexity_boundary_f1", 0.0),
+                "perplexity_segment_f1": algorithm_result.reference_metrics.get("perplexity_segment_f1", 0.0),
+            },
+            "baseline_metrics": [],
+            "tolerance": evaluation_result.tolerance,
+            "details": {},
         },
-        "ranking": evaluation_result.ranking,
-        "summary": evaluation_result.summary,
+        "ranking": evaluation_result.get_ranking(),
+        "summary": "",  # Will be generated if needed
     }
 
     # Add baseline results
-    for baseline in evaluation_result.baseline_results:
+    for baseline in baseline_results:
         baseline_data = {
-            "baseline_name": baseline.baseline_name,
+            "baseline_name": baseline.name,
             "objective_score": baseline.objective_score,
             "raw_objective_score": baseline.raw_objective_score,
             "penalty": baseline.penalty,
@@ -73,371 +80,205 @@ def save_evaluation_result(
         }
         result_data["baseline_results"].append(baseline_data)
 
+    # Add baseline metrics
+    for baseline in baseline_results:
+        baseline_metric_data = {
+            "method_name": baseline.name,
+            "objective_score": baseline.objective_score,
+            "gemini_boundary_f1": baseline.reference_metrics.get("gemini_boundary_f1", 0.0),
+            "gemini_segment_f1": baseline.reference_metrics.get("gemini_segment_f1", 0.0),
+            "perplexity_boundary_f1": baseline.reference_metrics.get("perplexity_boundary_f1", 0.0),
+            "perplexity_segment_f1": baseline.reference_metrics.get("perplexity_segment_f1", 0.0),
+        }
+        result_data["all_methods_metrics"]["baseline_metrics"].append(baseline_metric_data)
+
     # Save to file
     output_file = results_dir / f"{evaluation_result.domain_name}_evaluation.json"
     with open(output_file, "w") as f:
         json.dump(result_data, f, indent=2)
 
-    logger.info(f"Evaluation results saved to {output_file}")
-
-
-def display_evaluation_summary(
-    evaluation_result: ComprehensiveEvaluationResult, verbose: bool = False
-):
-    """Display evaluation summary.
-
-    Args:
-        evaluation_result: ComprehensiveEvaluationResult object
-        verbose: Enable verbose logging
-    """
-    logger = get_logger(__name__, verbose, evaluation_result.domain_name)
-
-    print(f"\n{'='*60}")
-    print(f"EVALUATION SUMMARY: {evaluation_result.domain_name}")
-    print(f"{'='*60}")
-
-    # Algorithm result
-    alg_result = evaluation_result.algorithm_result
-    print(f"\nALGORITHM RESULT:")
-    print(f"-" * 20)
-    print(
-        f"Objective Score: {alg_result.objective_score:.3f} (Raw: {alg_result.raw_objective_score:.3f}, Penalty: {alg_result.penalty:.3f})"
-    )
-    print(f"Cohesion Score: {alg_result.cohesion_score:.3f}")
-    print(f"Separation Score: {alg_result.separation_score:.3f}")
-    print(f"Number of Segments: {alg_result.num_segments}")
-    print(f"Boundary Years: {alg_result.boundary_years}")
-
-    # Baseline results
-    if evaluation_result.baseline_results:
-        print(f"\nBASELINE RESULTS:")
-        print(f"-" * 20)
-        for baseline in evaluation_result.baseline_results:
-            print(
-                f"{baseline.baseline_name}: {baseline.objective_score:.3f} "
-                f"(Raw: {baseline.raw_objective_score:.3f}, Penalty: {baseline.penalty:.3f}, "
-                f"{baseline.num_segments} segments)"
-            )
-
-    # Auto-metrics
-    auto_metrics = evaluation_result.auto_metrics
-    print(f"\nAUTO-METRICS (vs Manual):")
-    print(f"-" * 30)
-    print(
-        f"Boundary F1: {auto_metrics.boundary_f1:.3f} "
-        f"(P: {auto_metrics.boundary_precision:.3f}, R: {auto_metrics.boundary_recall:.3f})"
-    )
-    print(
-        f"Segment F1: {auto_metrics.segment_f1:.3f} "
-        f"(P: {auto_metrics.segment_precision:.3f}, R: {auto_metrics.segment_recall:.3f})"
-    )
-    print(f"Tolerance: ±{auto_metrics.tolerance} years")
-
-    # Ranking
-    print(f"\nRANKING (by Objective Score):")
-    print(f"-" * 30)
-    sorted_ranking = sorted(
-        evaluation_result.ranking.items(), key=lambda x: x[1], reverse=True
-    )
-    for i, (name, score) in enumerate(sorted_ranking):
-        print(f"{i+1}. {name}: {score:.3f}")
-
-    print(f"\n{'='*60}")
+    if verbose:
+        logger.info(f"Results saved: {output_file}")
 
 
 def display_cross_domain_analysis(
     domain_results: Dict[str, Optional[object]], verbose: bool = False
 ):
-    """Display cross-domain analysis and rankings.
+    """Display cross-domain analysis in a concise tabular format.
 
     Args:
-        domain_results: Dictionary mapping domain names to their evaluation results
-        verbose: Enable verbose logging
+        domain_results: Dictionary mapping domain names to DomainEvaluationSummary objects
+        verbose: Enable verbose output
     """
-    logger = get_logger(__name__, verbose, "cross_domain")
+    print("\n" + "=" * 80)
+    print("CROSS-DOMAIN EVALUATION ANALYSIS")
+    print("=" * 80)
 
-    if len(domain_results) < 2:
-        logger.info("Cross-domain analysis requires at least 2 domains")
-        return
-
-    # Collect metrics across domains
-    method_scores = defaultdict(list)
-    method_auto_metrics = defaultdict(lambda: defaultdict(list))
-    method_boundaries = defaultdict(list)  # Store boundary years for F1 calculation
-    manual_boundaries = []  # Store manual baseline boundaries
-
-    for domain_name, result in domain_results.items():
-        if result is None:
-            continue
-
-        # Collect objective scores
-        method_scores["Algorithm"].append(result.algorithm_result.objective_score)
-        method_boundaries["Algorithm"].append(result.algorithm_result.boundary_years)
-
-        for baseline in result.baseline_results:
-            method_scores[baseline.baseline_name].append(baseline.objective_score)
-            method_boundaries[baseline.baseline_name].append(baseline.boundary_years)
-
-            # Store manual boundaries for F1 calculation
-            if baseline.baseline_name == "Manual":
-                manual_boundaries.append(baseline.boundary_years)
-
-        # Collect auto-metrics (Algorithm vs Manual)
-        auto_metrics = result.auto_metrics
-        method_auto_metrics["Algorithm"]["boundary_f1"].append(auto_metrics.boundary_f1)
-        method_auto_metrics["Algorithm"]["boundary_precision"].append(
-            auto_metrics.boundary_precision
-        )
-        method_auto_metrics["Algorithm"]["boundary_recall"].append(
-            auto_metrics.boundary_recall
-        )
-        method_auto_metrics["Algorithm"]["segment_f1"].append(auto_metrics.segment_f1)
-        method_auto_metrics["Algorithm"]["segment_precision"].append(
-            auto_metrics.segment_precision
-        )
-        method_auto_metrics["Algorithm"]["segment_recall"].append(
-            auto_metrics.segment_recall
-        )
-
-    # Calculate F1 scores for all methods vs manual baseline
-    method_f1_scores = defaultdict(lambda: defaultdict(list))
-
-    for method_name, boundaries_list in method_boundaries.items():
-        if method_name == "Manual":
-            continue  # Skip manual vs manual comparison
-
-        for i, method_boundaries_single in enumerate(boundaries_list):
-            if i < len(manual_boundaries):
-                manual_boundaries_single = manual_boundaries[i]
-                f1_result = calculate_f1_score_between_methods(
-                    method_boundaries_single, manual_boundaries_single, tolerance=2
-                )
-
-                for metric_name, value in f1_result.items():
-                    method_f1_scores[method_name][metric_name].append(value)
-
-    # Calculate averages
-    method_avg_scores = {}
-    method_std_scores = {}
-
-    for method, scores in method_scores.items():
-        if scores:
-            avg_score = sum(scores) / len(scores)
-            std_score = (sum((x - avg_score) ** 2 for x in scores) / len(scores)) ** 0.5
-            method_avg_scores[method] = avg_score
-            method_std_scores[method] = std_score
-
-    # Calculate F1 score averages
-    method_f1_avg = {}
-    method_f1_std = {}
-
-    for method, metrics in method_f1_scores.items():
-        method_f1_avg[method] = {}
-        method_f1_std[method] = {}
-
-        for metric_name, values in metrics.items():
-            if values:
-                avg_val = sum(values) / len(values)
-                std_val = (sum((x - avg_val) ** 2 for x in values) / len(values)) ** 0.5
-                method_f1_avg[method][metric_name] = avg_val
-                method_f1_std[method][metric_name] = std_val
-
-    # Calculate auto-metrics averages
-    auto_metrics_avg = {}
-    auto_metrics_std = {}
-
-    for method, metrics in method_auto_metrics.items():
-        auto_metrics_avg[method] = {}
-        auto_metrics_std[method] = {}
-
-        for metric_name, values in metrics.items():
-            if values:
-                avg_val = sum(values) / len(values)
-                std_val = (sum((x - avg_val) ** 2 for x in values) / len(values)) ** 0.5
-                auto_metrics_avg[method][metric_name] = avg_val
-                auto_metrics_std[method][metric_name] = std_val
-
-    # Display results
-    print(f"\n{'='*80}")
-    print(f"CROSS-DOMAIN ANALYSIS ({len(domain_results)} domains)")
-    print(f"{'='*80}")
-
-    # Domain breakdown
-    print(f"\nDOMAIN BREAKDOWN:")
-    print(f"-" * 40)
-    for domain_name, result in domain_results.items():
-        if result is None:
-            print(f"{domain_name}: FAILED")
-            continue
-
-        algo_score = result.algorithm_result.objective_score
-        auto_f1 = result.auto_metrics.boundary_f1
-        print(f"{domain_name}: Algorithm={algo_score:.3f}, Boundary F1={auto_f1:.3f}")
-
-    # Average objective scores
-    print(f"\nAVERAGE OBJECTIVE SCORES:")
-    print(f"-" * 40)
-    sorted_methods = sorted(method_avg_scores.items(), key=lambda x: x[1], reverse=True)
-
-    for i, (method, avg_score) in enumerate(sorted_methods):
-        std_score = method_std_scores.get(method, 0.0)
-        print(f"{i+1}. {method}: {avg_score:.3f} (±{std_score:.3f})")
-
-    # F1 scores vs Manual baseline
-    print(f"\nF1 SCORES VS MANUAL BASELINE:")
-    print(f"-" * 40)
-
-    # Sort methods by boundary F1 score
-    boundary_f1_rankings = []
-    for method, f1_metrics in method_f1_avg.items():
-        if "boundary_f1" in f1_metrics:
-            boundary_f1_rankings.append((method, f1_metrics["boundary_f1"]))
-
-    boundary_f1_rankings.sort(key=lambda x: x[1], reverse=True)
-
-    for i, (method, boundary_f1) in enumerate(boundary_f1_rankings):
-        std_f1 = method_f1_std.get(method, {}).get("boundary_f1", 0.0)
-
-        # Get segment F1 for this method
-        segment_f1 = method_f1_avg.get(method, {}).get("segment_f1", 0.0)
-        segment_f1_std = method_f1_std.get(method, {}).get("segment_f1", 0.0)
-
-        print(
-            f"{i+1}. {method}: Boundary F1={boundary_f1:.3f} (±{std_f1:.3f}), Segment F1={segment_f1:.3f} (±{segment_f1_std:.3f})"
-        )
-
-    # Auto-metrics for Algorithm (original implementation)
-    if "Algorithm" in auto_metrics_avg:
-        print(f"\nAUTO-METRICS (Algorithm vs Manual - Original Implementation):")
-        print(f"-" * 60)
-        algo_metrics = auto_metrics_avg["Algorithm"]
-        algo_std = auto_metrics_std["Algorithm"]
-
-        boundary_f1 = algo_metrics.get("boundary_f1", 0.0)
-        boundary_f1_std = algo_std.get("boundary_f1", 0.0)
-        boundary_p = algo_metrics.get("boundary_precision", 0.0)
-        boundary_p_std = algo_std.get("boundary_precision", 0.0)
-        boundary_r = algo_metrics.get("boundary_recall", 0.0)
-        boundary_r_std = algo_std.get("boundary_recall", 0.0)
-
-        segment_f1 = algo_metrics.get("segment_f1", 0.0)
-        segment_f1_std = algo_std.get("segment_f1", 0.0)
-        segment_p = algo_metrics.get("segment_precision", 0.0)
-        segment_p_std = algo_std.get("segment_precision", 0.0)
-        segment_r = algo_metrics.get("segment_recall", 0.0)
-        segment_r_std = algo_std.get("segment_recall", 0.0)
-
-        print(f"Boundary F1: {boundary_f1:.3f} (±{boundary_f1_std:.3f})")
-        print(f"  Precision: {boundary_p:.3f} (±{boundary_p_std:.3f})")
-        print(f"  Recall:    {boundary_r:.3f} (±{boundary_r_std:.3f})")
-        print(f"Segment F1:  {segment_f1:.3f} (±{segment_f1_std:.3f})")
-        print(f"  Precision: {segment_p:.3f} (±{segment_p_std:.3f})")
-        print(f"  Recall:    {segment_r:.3f} (±{segment_r_std:.3f})")
-
-    # Performance summary
-    print(f"\nPERFORMANCE SUMMARY:")
-    print(f"-" * 30)
-
-    # Best method by objective score
-    if len(sorted_methods) > 0:
-        best_method, best_score = sorted_methods[0]
-        print(f"Best Method (Objective Score): {best_method} ({best_score:.3f})")
-
-    # Best method by F1 score
-    if len(boundary_f1_rankings) > 0:
-        best_f1_method, best_f1_score = boundary_f1_rankings[0]
-        print(f"Best Method (F1 vs Manual): {best_f1_method} ({best_f1_score:.3f})")
-
-    # Algorithm performance
-    if "Algorithm" in method_avg_scores:
-        algo_score = method_avg_scores["Algorithm"]
-        algo_rank = next(
-            (
-                i + 1
-                for i, (method, _) in enumerate(sorted_methods)
-                if method == "Algorithm"
-            ),
-            None,
-        )
-        print(f"Algorithm Rank (Objective): #{algo_rank} ({algo_score:.3f})")
-
-        # Algorithm F1 rank
-        algo_f1_rank = next(
-            (
-                i + 1
-                for i, (method, _) in enumerate(boundary_f1_rankings)
-                if method == "Algorithm"
-            ),
-            None,
-        )
-        algo_f1_score = method_f1_avg.get("Algorithm", {}).get("boundary_f1", 0.0)
-        print(f"Algorithm Rank (F1): #{algo_f1_rank} ({algo_f1_score:.3f})")
-    # Save cross-domain results
-    save_cross_domain_results(
-        domain_results, method_avg_scores, auto_metrics_avg, method_f1_avg, verbose
-    )
-
-    print(f"\n{'='*80}")
-
-
-def save_cross_domain_results(
-    domain_results: Dict[str, Optional[object]],
-    method_avg_scores: Dict[str, float],
-    auto_metrics_avg: Dict[str, Dict[str, float]],
-    method_f1_avg: Dict[str, Dict[str, float]],
-    verbose: bool = False,
-):
-    """Save cross-domain analysis results.
-
-    Args:
-        domain_results: Dictionary mapping domain names to their evaluation results
-        method_avg_scores: Average objective scores for each method
-        auto_metrics_avg: Average auto-metrics for each method
-        method_f1_avg: Average F1 scores for each method vs manual baseline
-        verbose: Enable verbose logging
-    """
-    logger = get_logger(__name__, verbose, "cross_domain")
-
-    results_dir = Path("results/evaluation")
-    results_dir.mkdir(parents=True, exist_ok=True)
-
-    # Prepare cross-domain summary
-    cross_domain_data = {
-        "num_domains": len(domain_results),
-        "domains": list(domain_results.keys()),
-        "method_averages": method_avg_scores,
-        "auto_metrics_averages": auto_metrics_avg,
-        "method_f1_averages": method_f1_avg,
-        "domain_breakdown": {},
+    # Filter successful results
+    successful_results = {
+        domain: result
+        for domain, result in domain_results.items()
+        if result is not None
     }
 
-    # Add domain breakdown
-    for domain_name, result in domain_results.items():
+    if not successful_results:
+        print("No successful evaluations found.")
+        return
+
+    print(f"\nDomains evaluated: {len(successful_results)}")
+    print(f"Domains: {', '.join(sorted(successful_results.keys()))}")
+
+    # Collect metrics for each method across domains
+    method_metrics = {
+        "Algorithm": {"objective": [], "gemini_boundary_f1": [], "gemini_segment_f1": [], "perplexity_boundary_f1": [], "perplexity_segment_f1": []},
+        "5-year": {"objective": [], "gemini_boundary_f1": [], "gemini_segment_f1": [], "perplexity_boundary_f1": [], "perplexity_segment_f1": []},
+        "10-year": {"objective": [], "gemini_boundary_f1": [], "gemini_segment_f1": [], "perplexity_boundary_f1": [], "perplexity_segment_f1": []},
+    }
+
+    for domain_name, result in successful_results.items():
         if result is None:
-            cross_domain_data["domain_breakdown"][domain_name] = {"status": "failed"}
             continue
 
-        domain_data = {
-            "status": "success",
-            "algorithm_score": result.algorithm_result.objective_score,
-            "baseline_scores": {
-                baseline.baseline_name: baseline.objective_score
-                for baseline in result.baseline_results
-            },
-            "auto_metrics": {
-                "boundary_f1": result.auto_metrics.boundary_f1,
-                "boundary_precision": result.auto_metrics.boundary_precision,
-                "boundary_recall": result.auto_metrics.boundary_recall,
-                "segment_f1": result.auto_metrics.segment_f1,
-                "segment_precision": result.auto_metrics.segment_precision,
-                "segment_recall": result.auto_metrics.segment_recall,
-            },
-        }
-        cross_domain_data["domain_breakdown"][domain_name] = domain_data
+        # Extract method results from the unified structure
+        for eval_result in result.results:
+            if eval_result.name in method_metrics:
+                method_metrics[eval_result.name]["objective"].append(eval_result.objective_score)
+                method_metrics[eval_result.name]["gemini_boundary_f1"].append(
+                    eval_result.reference_metrics.get("gemini_boundary_f1", 0.0)
+                )
+                method_metrics[eval_result.name]["gemini_segment_f1"].append(
+                    eval_result.reference_metrics.get("gemini_segment_f1", 0.0)
+                )
+                method_metrics[eval_result.name]["perplexity_boundary_f1"].append(
+                    eval_result.reference_metrics.get("perplexity_boundary_f1", 0.0)
+                )
+                method_metrics[eval_result.name]["perplexity_segment_f1"].append(
+                    eval_result.reference_metrics.get("perplexity_segment_f1", 0.0)
+                )
 
-    # Save to file
-    output_file = results_dir / "cross_domain_analysis.json"
-    with open(output_file, "w") as f:
-        json.dump(cross_domain_data, f, indent=2)
+    # Calculate averages
+    method_averages = {}
+    for method_name, metrics in method_metrics.items():
+        method_averages[method_name] = {}
+        for metric_name, values in metrics.items():
+            if values:
+                method_averages[method_name][metric_name] = sum(values) / len(values)
+            else:
+                method_averages[method_name][metric_name] = 0.0
 
-    logger.info(f"Cross-domain analysis saved to {output_file}")
+    # Find best scores for highlighting
+    best_objective = max(method_averages.values(), key=lambda x: x.get("objective", 0))["objective"]
+    best_gemini_boundary = max(method_averages.values(), key=lambda x: x.get("gemini_boundary_f1", 0))["gemini_boundary_f1"]
+    best_gemini_segment = max(method_averages.values(), key=lambda x: x.get("gemini_segment_f1", 0))["gemini_segment_f1"]
+    best_perplexity_boundary = max(method_averages.values(), key=lambda x: x.get("perplexity_boundary_f1", 0))["perplexity_boundary_f1"]
+    best_perplexity_segment = max(method_averages.values(), key=lambda x: x.get("perplexity_segment_f1", 0))["perplexity_segment_f1"]
+
+    # Display table
+    print(f"\nCross-Domain Performance Summary ({len(successful_results)} domains)")
+    print("-" * 120)
+    
+    header = f"{'Method':<12} {'Objective':<12} {'Gem-Bound':<12} {'Gem-Seg':<10} {'Perp-Bound':<12} {'Perp-Seg':<10}"
+    print(header)
+    print("-" * len(header))
+
+    for method_name in ["Algorithm", "5-year", "10-year"]:
+        if method_name in method_averages and any(method_averages[method_name].values()):
+            avg = method_averages[method_name]
+            
+            # Add highlighting for best scores
+            obj_str = f"{avg['objective']:.3f}"
+            if abs(avg['objective'] - best_objective) < 0.001:
+                obj_str += " ⭐"
+                
+            gb_str = f"{avg['gemini_boundary_f1']:.3f}"
+            if abs(avg['gemini_boundary_f1'] - best_gemini_boundary) < 0.001:
+                gb_str += " ⭐"
+                
+            gs_str = f"{avg['gemini_segment_f1']:.3f}"
+            if abs(avg['gemini_segment_f1'] - best_gemini_segment) < 0.001:
+                gs_str += " ⭐"
+
+            pb_str = f"{avg['perplexity_boundary_f1']:.3f}"
+            if abs(avg['perplexity_boundary_f1'] - best_perplexity_boundary) < 0.001:
+                pb_str += " ⭐"
+
+            ps_str = f"{avg['perplexity_segment_f1']:.3f}"
+            if abs(avg['perplexity_segment_f1'] - best_perplexity_segment) < 0.001:
+                ps_str += " ⭐"
+
+            print(f"{method_name:<12} {obj_str:<12} {gb_str:<12} {gs_str:<10} {pb_str:<12} {ps_str:<10}")
+
+    print("\n⭐ = Best score in category")
+    print("Gem = Gemini reference, Perp = Perplexity reference")
+    print("Bound = Boundary F1, Seg = Segment F1")
+
+
+def display_final_evaluation_summary(
+    evaluation_result: DomainEvaluationSummary, verbose: bool = False
+):
+    """Display final evaluation results in concise tabular format.
+
+    Args:
+        evaluation_result: Domain evaluation summary with unified structure
+        verbose: Enable verbose output
+    """
+    print("\n" + "=" * 80)
+    print(f"FINAL EVALUATION RESULTS: {evaluation_result.domain_name.upper()}")
+    print("=" * 80)
+
+    # Collect all methods from the unified structure
+    all_methods = evaluation_result.results
+
+    # Display objective scores table
+    print("\nObjective Scores:")
+    print("-" * 40)
+    print(f"{'Method':<15} {'Objective Score':<15}")
+    print("-" * 40)
+    
+    for method in all_methods:
+        print(f"{method.name:<15} {method.objective_score:<15.3f}")
+
+    # Display metrics vs both references
+    print(f"\nAuto-metrics vs References (tolerance = {evaluation_result.tolerance} years):")
+    print("-" * 80)
+    
+    # Header
+    header = f"{'Method':<12} {'Gemini Boundary':<15} {'Gemini Segment':<14} {'Perplexity Boundary':<19} {'Perplexity Segment':<16}"
+    print(header)
+    print("-" * len(header))
+    
+    # Data rows
+    for method in all_methods:
+        gemini_boundary = method.reference_metrics.get("gemini_boundary_f1", 0.0)
+        gemini_segment = method.reference_metrics.get("gemini_segment_f1", 0.0)
+        perplexity_boundary = method.reference_metrics.get("perplexity_boundary_f1", 0.0)
+        perplexity_segment = method.reference_metrics.get("perplexity_segment_f1", 0.0)
+        
+        print(f"{method.name:<12} "
+              f"{gemini_boundary:<15.3f} "
+              f"{gemini_segment:<14.3f} "
+              f"{perplexity_boundary:<19.3f} "
+              f"{perplexity_segment:<16.3f}")
+
+    # Find best scores for summary
+    best_objective = max(method.objective_score for method in all_methods)
+    best_gemini_boundary = max(method.reference_metrics.get("gemini_boundary_f1", 0.0) for method in all_methods)
+    best_gemini_segment = max(method.reference_metrics.get("gemini_segment_f1", 0.0) for method in all_methods)
+    best_perplexity_boundary = max(method.reference_metrics.get("perplexity_boundary_f1", 0.0) for method in all_methods)
+    best_perplexity_segment = max(method.reference_metrics.get("perplexity_segment_f1", 0.0) for method in all_methods)
+
+    print(f"\nBest Scores:")
+    print(f"  Objective: {best_objective:.3f}")
+    print(f"  Gemini Boundary F1: {best_gemini_boundary:.3f}")
+    print(f"  Gemini Segment F1: {best_gemini_segment:.3f}")
+    print(f"  Perplexity Boundary F1: {best_perplexity_boundary:.3f}")
+    print(f"  Perplexity Segment F1: {best_perplexity_segment:.3f}")
+
+    if verbose:
+        print(f"\nDetailed Information:")
+        # Display details from any method that has them
+        for method in all_methods:
+            if method.details:
+                print(f"\n{method.name} Details:")
+                for key, value in method.details.items():
+                    print(f"  {key}: {value}")
