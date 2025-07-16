@@ -12,12 +12,12 @@ parameters:
   # Direction change detection parameters
   direction_change_threshold:
     type: float
-    range: [0.6, 0.95]
+    range: [0.4, 0.9]
     description: "Threshold for detecting significant direction changes"
   
   citation_confidence_boost:
     type: float
-    range: [0.05, 0.2]
+    range: [0.05, 0.15]
     description: "Boost factor for citation-based confidence"
 
   top_k_keywords:
@@ -27,7 +27,7 @@ parameters:
 
   min_period_years:
     type: int
-    range: [3, 10]
+    range: [4, 10]
     description: "Minimum number of years per period"
   
   max_period_years:
@@ -40,8 +40,8 @@ parameters:
 # =============================================================================
 
 search:
-  n_calls: 100
-  n_initial_points: 20
+  n_calls: 50              # Reasonable number for faster optimization
+  n_initial_points: 10     # Reasonable initial exploration
   strategy: "bayesian"
   acquisition_function: "EI"
 
@@ -51,7 +51,7 @@ search:
 
 # Scoring configuration
 scoring:
-  fail_score: -10.0
+  fail_score: -20.0
   boundary_tolerance: 2
   max_segments_per_match: 3
 

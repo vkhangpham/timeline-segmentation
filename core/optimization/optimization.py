@@ -12,7 +12,7 @@ from ..data.data_processing import load_domain_data
 from ..pipeline.orchestrator import analyze_timeline
 from ..utils.config import AlgorithmConfig
 from ..utils.logging import get_logger
-from .penalty import PenaltyConfig, create_penalty_config_from_algorithm_config
+from .penalty import create_penalty_config_from_algorithm_config
 
 
 # Global cache for academic years
@@ -153,7 +153,7 @@ def get_validation_metrics(
         algorithm_boundaries = sorted(set(algorithm_boundaries))
 
         # Calculate metrics
-        from ..evaluation.evaluation import calculate_boundary_f1, calculate_segment_f1
+        from ..evaluation.metrics import calculate_boundary_f1, calculate_segment_f1
 
         boundary_f1, _, _ = calculate_boundary_f1(
             predicted_boundaries=algorithm_boundaries,
@@ -229,8 +229,11 @@ def score_trial(
             verbose=verbose,
         )
 
-        # Create trial configuration
+        # Create trial configuration with optimization-specific settings
         trial_config = create_trial_config(base_config, parameter_overrides)
+        
+        # OPTIMIZATION: Disable beam search for faster trials
+        trial_config.beam_search_enabled = False
 
         # Run timeline analysis (segmentation only)
         timeline_result = analyze_timeline(
@@ -258,12 +261,9 @@ def score_trial(
         # Use the penalized score as the final objective
         final_objective_score = objective_result.final_score
 
-        # Get validation metrics
-        boundary_f1, segment_f1 = get_validation_metrics(
-            timeline_result=timeline_result,
-            domain_name=domain_name,
-            verbose=verbose,
-        )
+        # OPTIMIZATION: Skip validation metrics during optimization (major speedup)
+        # These can be computed only for the best result at the end
+        boundary_f1, segment_f1 = 0.0, 0.0
 
         return {
             "trial_id": trial_id,
@@ -275,8 +275,8 @@ def score_trial(
             "cohesion_score": objective_result.cohesion_score,
             "separation_score": objective_result.separation_score,
             "num_segments": len(timeline_result.periods),
-            "boundary_f1": boundary_f1,
-            "segment_f1": segment_f1,
+            "boundary_f1": boundary_f1,  # Skip during optimization
+            "segment_f1": segment_f1,    # Skip during optimization
             "runtime_seconds": time.time() - start_time,
             "error_message": None,
         }
@@ -315,3 +315,68 @@ def clear_cache():
     """Clear cached academic years."""
     global _cached_academic_years
     _cached_academic_years.clear()
+
+
+def compute_best_result_validation_metrics(
+    best_result: Dict[str, Any],
+    domain_name: str,
+    base_config: AlgorithmConfig,
+    data_directory: str = "resources",
+    verbose: bool = False,
+) -> Dict[str, Any]:
+    """Compute validation metrics for the best optimization result.
+    
+    This function should be called only once for the best result to avoid
+    slowing down the optimization process.
+    
+    Args:
+        best_result: Best trial result from optimization
+        domain_name: Name of the domain
+        base_config: Base algorithm configuration
+        data_directory: Directory containing domain data
+        verbose: Enable verbose logging
+        
+    Returns:
+        Updated best_result with validation metrics included
+    """
+    logger = get_logger(__name__, verbose, domain_name)
+    
+    if verbose:
+        logger.info("Computing validation metrics for best result...")
+    
+    try:
+        # Create configuration with best parameters (enable beam search for final result)
+        best_config = create_trial_config(base_config, best_result["parameters"])
+        best_config.beam_search_enabled = True  # Enable for final validation
+        
+        # Run full timeline analysis (analyze_timeline handles its own data loading)
+        timeline_result = analyze_timeline(
+            domain_name=domain_name,
+            algorithm_config=best_config,
+            data_directory=data_directory,
+            segmentation_only=True,
+            verbose=verbose,
+        )
+        
+        # Compute validation metrics
+        boundary_f1, segment_f1 = get_validation_metrics(
+            timeline_result=timeline_result,
+            domain_name=domain_name,
+            verbose=verbose,
+        )
+        
+        # Update best result with validation metrics
+        updated_result = best_result.copy()
+        updated_result["boundary_f1"] = boundary_f1
+        updated_result["segment_f1"] = segment_f1
+        updated_result["validation_computed"] = True
+        
+        if verbose:
+            logger.info(f"Validation metrics: Boundary-F1={boundary_f1:.3f}, Segment-F1={segment_f1:.3f}")
+        
+        return updated_result
+        
+    except Exception as e:
+        logger.warning(f"Failed to compute validation metrics: {e}")
+        # Return original result if validation fails
+        return best_result

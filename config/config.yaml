@@ -50,8 +50,8 @@ segmentation:
 optimization:
   # Objective Function (objective_function.py)
   objective_function:
-    cohesion_weight: 0.6
-    separation_weight: 0.4
+    cohesion_weight: 0.7
+    separation_weight: 0.3
 
   # Penalty System (penalty.py)
   penalty:
@@ -60,10 +60,10 @@ optimization:
     auto_n_upper: true
     n_upper_buffer: 1
     target_segments_upper: 8
-    lambda_short: 0.05
-    lambda_long: 0.03
-    lambda_count: 0.02
-    enable_scaling: true
+    lambda_short: 0.01
+    lambda_long: 0.01
+    lambda_count: 0.03
+    enable_scaling: false
     scaling_factor: 2.0
 
 # =============================================================================
