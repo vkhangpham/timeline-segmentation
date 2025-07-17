@@ -49,10 +49,33 @@ def compute_config_hash(algorithm_config: AlgorithmConfig) -> str:
         "ubiquity_threshold": algorithm_config.ubiquity_threshold,
         "apply_ubiquitous_filtering": algorithm_config.apply_ubiquitous_filtering,
         "min_papers_per_year": algorithm_config.min_papers_per_year,
+        "min_paper_per_segment": algorithm_config.min_paper_per_segment,
     }
 
     config_str = json.dumps(config_dict, sort_keys=True)
     return hashlib.md5(config_str.encode()).hexdigest()[:8]
+
+
+def calculate_segment_paper_count(
+    start_year: int,
+    end_year: int,
+    academic_years: List[AcademicYear]
+) -> int:
+    """Calculate total paper count for a segment.
+    
+    Args:
+        start_year: Segment start year (inclusive)
+        end_year: Segment end year (inclusive)
+        academic_years: List of academic years data
+        
+    Returns:
+        Total paper count in the segment
+    """
+    total_papers = 0
+    for year in academic_years:
+        if start_year <= year.year <= end_year:
+            total_papers += year.paper_count
+    return total_papers
 
 
 def load_shared_academic_data(
@@ -142,10 +165,48 @@ def create_baseline_from_segments(
             f"No {baseline_name} segments overlap with data range {min_data_year}-{max_data_year}"
         )
 
-    # Create academic periods from segments
+    # Filter segments that don't meet minimum paper count threshold
+    valid_segments = []
+    skipped_segments = []
+    
+    for start_year, end_year in adjusted_segments:
+        segment_paper_count = calculate_segment_paper_count(
+            start_year, end_year, academic_years
+        )
+        
+        if segment_paper_count >= algorithm_config.min_paper_per_segment:
+            valid_segments.append((start_year, end_year))
+        else:
+            skipped_segments.append((start_year, end_year, segment_paper_count))
+            if verbose:
+                logger.info(
+                    f"Skipping {baseline_name} segment {start_year}-{end_year}: "
+                    f"{segment_paper_count} papers < {algorithm_config.min_paper_per_segment} threshold"
+                )
+    
+    if not valid_segments:
+        if verbose:
+            logger.warning(
+                f"No {baseline_name} segments meet minimum paper count threshold "
+                f"({algorithm_config.min_paper_per_segment})"
+            )
+        # Return minimal baseline with 0 score
+        return EvaluationResult(
+            name=baseline_name,
+            objective_score=0.0,
+            boundary_years=[min_data_year, max_data_year],
+            num_segments=0,
+            raw_objective_score=0.0,
+            penalty=0.0,
+            cohesion_score=0.0,
+            separation_score=0.0,
+            academic_periods=[],
+        )
+
+    # Create academic periods from valid segments
     academic_periods = create_academic_periods_from_segments(
         academic_years=tuple(academic_years),
-        segments=adjusted_segments,
+        segments=valid_segments,
         algorithm_config=algorithm_config,
     )
 
