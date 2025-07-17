@@ -40,8 +40,8 @@ def detect_direction_change_years_with_citation_boost(
     """
     logger = get_logger(__name__, verbose)
 
-    # Filter years with insufficient publication volume
-    eligible_years = _filter_eligible_years(academic_years, algorithm_config)
+    # Years are already filtered during data loading based on min_papers_per_year
+    eligible_years = academic_years
     if len(eligible_years) < 3:
         logger.warning("Insufficient years for direction change detection")
         return []
@@ -145,8 +145,8 @@ def _collect_base_scores_for_threshold(
     """Collect BASE scores using cumulative simulation for threshold calculation."""
     logger = get_logger(__name__, verbose)
 
-    min_baseline_years = getattr(algorithm_config, "min_baseline_period_years", 3)
-    sampling_interval = getattr(algorithm_config, "score_distribution_window_years", 3)
+    min_baseline_years = algorithm_config.min_baseline_period_years
+    sampling_interval = algorithm_config.score_distribution_window_years
 
     base_sample_scores = []
     scoring_method = getattr(
@@ -224,7 +224,7 @@ def _run_cumulative_detection_algorithm(
     scoring_method = getattr(
         algorithm_config, "direction_scoring_method", "weighted_jaccard"
     )
-    min_baseline_years = getattr(algorithm_config, "min_baseline_period_years", 3)
+    min_baseline_years = algorithm_config.min_baseline_period_years
     support_window = algorithm_config.citation_support_window_years
     boost_factor = algorithm_config.citation_confidence_boost
 
@@ -239,6 +239,19 @@ def _run_cumulative_detection_algorithm(
 
         # Skip if insufficient baseline period
         if current_idx - last_boundary_idx < min_baseline_years:
+            continue
+
+        # Skip if insufficient papers in potential segment
+        segment_paper_count = sum(
+            eligible_years[i].paper_count 
+            for i in range(last_boundary_idx, current_idx)
+        )
+        if segment_paper_count < algorithm_config.min_paper_per_segment:
+            if verbose:
+                logger.info(
+                    f"      {current_year.year}: skipping due to insufficient papers in segment "
+                    f"({segment_paper_count} < {algorithm_config.min_paper_per_segment})"
+                )
             continue
 
         # Calculate direction score
@@ -548,13 +561,6 @@ def normalize_keyword_frequencies(
 # =============================================================================
 
 
-def _filter_eligible_years(
-    academic_years: List[AcademicYear], algorithm_config
-) -> List[AcademicYear]:
-    """Filter years with insufficient publication volume."""
-    min_papers_threshold = getattr(algorithm_config, "min_papers_per_year", 100)
-    return [ay for ay in academic_years if ay.paper_count >= min_papers_threshold]
-
 
 def _create_year_diagnostics(
     current_year: AcademicYear,
@@ -802,7 +808,7 @@ def _save_diagnostics_if_enabled(
     verbose: bool,
 ) -> None:
     """Save diagnostics if enabled in configuration."""
-    save_diagnostics = getattr(algorithm_config, "save_direction_diagnostics", False)
+    save_diagnostics = algorithm_config.save_direction_diagnostics
     if save_diagnostics and hasattr(algorithm_config, "domain_name"):
         from core.utils.diagnostics import save_direction_diagnostics
 

@@ -50,7 +50,6 @@ def analyze_timeline(
             domain_name=domain_name,
             algorithm_config=algorithm_config,
             data_directory=data_directory,
-            min_papers_per_year=5,
             apply_year_filtering=True,
             verbose=verbose,
         )
