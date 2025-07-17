@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Domain-specific parameter optimization for timeline segmentation.
 
 This script uses Bayesian optimization to find optimal parameters for each domain.
@@ -47,8 +46,7 @@ class OptimizationProgressTracker:
         self.pbar = tqdm(
             total=total_trials,
             desc=f"Optimizing {domain_name}",
-            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}] Best: {postfix}",
-            postfix="Starting...",
+            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]{postfix}",
         )
 
     def update(self, trial_result: Dict[str, Any]):
@@ -61,14 +59,15 @@ class OptimizationProgressTracker:
             self.best_score = score
             self.best_params = params.copy()
 
-        # Format current trial parameters for display (always show current, not just best)
+        # Format current trial parameters for display
         current_params = self._format_params(params)
-        current_postfix = f"{score:.3f} | Current: {current_params}"
-
-        # If we have a best score, add it to the display
+        
+        # Build compact status message
         if self.best_score > float("-inf"):
             best_params = self._format_params(self.best_params)
-            current_postfix += f" | Best: {self.best_score:.3f} ({best_params})"
+            current_postfix = f" Score: {score:.3f} | Current: {current_params} | Best: {self.best_score:.3f} ({best_params})"
+        else:
+            current_postfix = f" Score: {score:.3f} | Current: {current_params}"
 
         self.pbar.set_postfix_str(current_postfix)
         self.pbar.update(1)
@@ -78,19 +77,16 @@ class OptimizationProgressTracker:
         if not params:
             return "N/A"
 
-        # Get all parameters from optimization config for comprehensive display
-        param_config = self.optimization_config.get("parameters", {})
-
         formatted_params = []
         for param_name, param_value in params.items():
             # Create short abbreviations for common parameters
             param_abbrevs = {
                 "direction_change_threshold": "dir_thresh",
-                "score_distribution_window_years": "window",
+                "score_distribution_window_years": "window", 
                 "citation_confidence_boost": "cit_boost",
                 "outlier_threshold": "outlier",
                 "min_segment_length": "min_len",
-                "max_segment_length": "max_len",
+                "max_segment_length": "max_len", 
                 "change_point_threshold": "cp_thresh",
                 "confidence_threshold": "conf_thresh",
                 "smoothing_window": "smooth",
@@ -98,6 +94,9 @@ class OptimizationProgressTracker:
                 "learning_rate": "lr",
                 "batch_size": "batch",
                 "num_epochs": "epochs",
+                "top_k_keywords": "top_k",
+                "min_period_years": "min_peri", 
+                "max_period_years": "max_peri"
             }
 
             abbrev = param_abbrevs.get(param_name, param_name[:8])

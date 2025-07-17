@@ -16,22 +16,21 @@ class PenaltyConfig:
     """Configuration for unified penalty computation."""
 
     # Length constraints
-    min_period_years: int = 3
-    max_period_years: int = 14
+    min_period_years: int
+    max_period_years: int
 
     # Segment count constraints
-    auto_n_upper: bool = True
-    n_upper_buffer: int = 1
-    target_segments_upper: int = 8  # Used only if auto_n_upper is False
+    auto_n_upper: bool
+    n_upper_buffer: int
 
     # Penalty weights
-    lambda_short: float = 0.05
-    lambda_long: float = 0.03
-    lambda_count: float = 0.02
+    lambda_short: float
+    lambda_long: float
+    lambda_count: float
 
     # Scaling parameters
-    enable_scaling: bool = True
-    scaling_factor: float = 2.0  # For sigmoid scaling: 1/(1+exp(-k*raw))
+    enable_scaling: bool
+    scaling_factor: float
 
 
 def compute_timeline_span(academic_periods: List[AcademicPeriod]) -> int:
@@ -98,11 +97,8 @@ def compute_unified_penalty(
 
     num_segments = len(academic_periods)
 
-    # Compute N_upper (automatically or from config)
-    if penalty_config.auto_n_upper:
-        n_upper = compute_auto_n_upper(academic_periods, penalty_config)
-    else:
-        n_upper = penalty_config.target_segments_upper
+    # Compute N_upper automatically
+    n_upper = compute_auto_n_upper(academic_periods, penalty_config)
 
     # 1. Short period penalty
     short_penalty = 0.0
@@ -192,21 +188,35 @@ def create_penalty_config_from_dict(config_dict: Dict[str, Any]) -> PenaltyConfi
 
     Returns:
         PenaltyConfig instance
+        
+    Raises:
+        KeyError: If required configuration parameters are missing
     """
-    # Extract relevant parameters with defaults
+    # Extract relevant parameters without defaults
     penalty_section = config_dict.get("penalty", {})
+    
+    if not penalty_section:
+        raise KeyError("Missing 'penalty' section in configuration")
+    
+    required_params = [
+        "min_period_years", "max_period_years", "auto_n_upper", "n_upper_buffer",
+        "lambda_short", "lambda_long", "lambda_count", "enable_scaling", "scaling_factor"
+    ]
+    
+    for param in required_params:
+        if param not in penalty_section:
+            raise KeyError(f"Missing required penalty parameter: {param}")
 
     return PenaltyConfig(
-        min_period_years=penalty_section.get("min_period_years", 3),
-        max_period_years=penalty_section.get("max_period_years", 14),
-        auto_n_upper=penalty_section.get("auto_n_upper", True),
-        n_upper_buffer=penalty_section.get("n_upper_buffer", 1),
-        target_segments_upper=penalty_section.get("target_segments_upper", 8),
-        lambda_short=penalty_section.get("lambda_short", 0.05),
-        lambda_long=penalty_section.get("lambda_long", 0.03),
-        lambda_count=penalty_section.get("lambda_count", 0.02),
-        enable_scaling=penalty_section.get("enable_scaling", True),
-        scaling_factor=penalty_section.get("scaling_factor", 2.0),
+        min_period_years=penalty_section["min_period_years"],
+        max_period_years=penalty_section["max_period_years"],
+        auto_n_upper=penalty_section["auto_n_upper"],
+        n_upper_buffer=penalty_section["n_upper_buffer"],
+        lambda_short=penalty_section["lambda_short"],
+        lambda_long=penalty_section["lambda_long"],
+        lambda_count=penalty_section["lambda_count"],
+        enable_scaling=penalty_section["enable_scaling"],
+        scaling_factor=penalty_section["scaling_factor"],
     )
 
 
@@ -220,13 +230,25 @@ def create_penalty_config_from_algorithm_config(algorithm_config) -> PenaltyConf
 
     Returns:
         PenaltyConfig instance
+        
+    Raises:
+        AttributeError: If required penalty attributes are missing from algorithm_config
     """
+    required_attrs = [
+        "penalty_min_period_years", "penalty_max_period_years", "penalty_auto_n_upper",
+        "penalty_n_upper_buffer", "penalty_lambda_short", "penalty_lambda_long",
+        "penalty_lambda_count", "penalty_enable_scaling", "penalty_scaling_factor"
+    ]
+    
+    for attr in required_attrs:
+        if not hasattr(algorithm_config, attr):
+            raise AttributeError(f"Missing required algorithm config attribute: {attr}")
+
     return PenaltyConfig(
         min_period_years=algorithm_config.penalty_min_period_years,
         max_period_years=algorithm_config.penalty_max_period_years,
         auto_n_upper=algorithm_config.penalty_auto_n_upper,
         n_upper_buffer=algorithm_config.penalty_n_upper_buffer,
-        target_segments_upper=algorithm_config.penalty_target_segments_upper,
         lambda_short=algorithm_config.penalty_lambda_short,
         lambda_long=algorithm_config.penalty_lambda_long,
         lambda_count=algorithm_config.penalty_lambda_count,

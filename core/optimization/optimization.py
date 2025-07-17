@@ -52,7 +52,6 @@ def load_cached_academic_years(
         domain_name=domain_name,
         algorithm_config=algorithm_config,
         data_directory=data_directory,
-        min_papers_per_year=5,
         apply_year_filtering=True,
         verbose=verbose,
     )
@@ -339,9 +338,9 @@ def compute_best_result_validation_metrics(
     Returns:
         Updated best_result with validation metrics included
     """
-    logger = get_logger(__name__, verbose, domain_name)
-    
+    # Only create logger in verbose mode to avoid unwanted output
     if verbose:
+        logger = get_logger(__name__, verbose, domain_name)
         logger.info("Computing validation metrics for best result...")
     
     try:
@@ -377,6 +376,8 @@ def compute_best_result_validation_metrics(
         return updated_result
         
     except Exception as e:
-        logger.warning(f"Failed to compute validation metrics: {e}")
+        if verbose:
+            logger = get_logger(__name__, verbose, domain_name)
+            logger.warning(f"Failed to compute validation metrics: {e}")
         # Return original result if validation fails
         return best_result
