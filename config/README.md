@@ -113,7 +113,6 @@ Prevents pathological segmentations through penalty functions.
 | `max_period_years` | int | 14 | [5, 200] | Maximum acceptable period length |
 | `auto_n_upper` | bool | true | [true, false] | Auto-calculate segment upper bound |
 | `n_upper_buffer` | int | 1 | [0, 10] | Buffer for auto-calculated upper bound |
-| `target_segments_upper` | int | 8 | [1, 20] | Manual segment upper bound |
 | `lambda_short` | float | 0.05 | [0.0, 1.0] | Weight for short period penalty |
 | `lambda_long` | float | 0.03 | [0.0, 1.0] | Weight for long period penalty |
 | `lambda_count` | float | 0.02 | [0.0, 1.0] | Weight for over-segmentation penalty |
@@ -221,7 +220,6 @@ To detect more subtle paradigm shifts:
 To get fewer, more stable segments:
 - Increase `direction_change_threshold` to 0.15
 - Increase `lambda_count` to 0.05
-- Decrease `target_segments_upper` to 6
 
 ### 3. Improving Performance
 To speed up processing:

@@ -122,7 +122,6 @@ data_processing:
     max_period_years: 14
     auto_n_upper: true
     n_upper_buffer: 1
-    target_segments_upper: 8
     lambda_short: 0.05
     lambda_long: 0.03
     lambda_count: 0.02
@@ -208,7 +207,6 @@ These parameters remain constant during optimization:
 - **`lambda_short`**: 0.05 - Penalty weight for short periods
 - **`lambda_long`**: 0.03 - Penalty weight for long periods
 - **`lambda_count`**: 0.02 - Penalty weight for over-segmentation
-- **`target_segments_upper`**: 8 - No penalty threshold for segment count
 
 #### Objective Function Parameters
 - **`cohesion_weight`**: 0.8 - Weight for cohesion in objective function

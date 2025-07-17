@@ -12,27 +12,27 @@ parameters:
   # Direction change detection parameters
   direction_change_threshold:
     type: float
-    range: [0.4, 0.9]
+    range: [0.45, 0.85]
     description: "Threshold for detecting significant direction changes"
   
   citation_confidence_boost:
     type: float
-    range: [0.05, 0.15]
+    range: [0.05, 0.25]
     description: "Boost factor for citation-based confidence"
 
   top_k_keywords:
     type: int
-    range: [10, 30]
+    range: [10, 50]
     description: "Number of top keywords to consider for period cohesion (data_processing.keyword_filter)"
 
   min_period_years:
     type: int
-    range: [4, 10]
+    range: [4, 8]
     description: "Minimum number of years per period"
   
   max_period_years:
     type: int
-    range: [15, 30]
+    range: [15, 25]
     description: "Maximum number of years per period"
 
 # =============================================================================
@@ -40,8 +40,8 @@ parameters:
 # =============================================================================
 
 search:
-  n_calls: 50              # Reasonable number for faster optimization
-  n_initial_points: 10     # Reasonable initial exploration
+  n_calls: 200
+  n_initial_points: 20
   strategy: "bayesian"
   acquisition_function: "EI"
 
