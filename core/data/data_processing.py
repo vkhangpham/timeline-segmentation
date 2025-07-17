@@ -145,7 +145,7 @@ def filter_ubiquitous_keywords(
     logger = get_logger(__name__, verbose)
 
     # Get configuration parameters
-    top_k = getattr(algorithm_config, "top_k_keywords", 15) if algorithm_config else 15
+    top_k = algorithm_config.top_k_keywords if algorithm_config else 15
     total_years = len(academic_years)
     min_years_for_ubiquity = max(1, int(total_years * ubiquity_threshold))
 
@@ -171,12 +171,12 @@ def filter_ubiquitous_keywords(
     iteration = 0
     total_removed = 0
     max_iterations = (
-        getattr(algorithm_config, "max_ubiquitous_iterations", 10)
+        algorithm_config.max_ubiquitous_iterations
         if algorithm_config
         else 10
     )
     min_replacement_freq = (
-        getattr(algorithm_config, "min_replacement_frequency", 2)
+        algorithm_config.min_replacement_frequency
         if algorithm_config
         else 2
     )
@@ -299,7 +299,6 @@ def load_domain_data(
     domain_name: str,
     algorithm_config,
     data_directory: str = "resources",
-    min_papers_per_year: int = 5,
     apply_year_filtering: bool = True,
     verbose: bool = False,
 ) -> Tuple[bool, List[AcademicYear], str]:
@@ -309,7 +308,6 @@ def load_domain_data(
         domain_name: Name of the domain to load
         algorithm_config: Algorithm configuration for keyword processing
         data_directory: Directory containing domain data files
-        min_papers_per_year: Minimum papers required per year
         apply_year_filtering: Whether to filter years with insufficient papers
         verbose: Enable verbose logging
 
@@ -337,6 +335,18 @@ def load_domain_data(
             citations, graph_nodes = tuple(), tuple()
 
         academic_years = compute_academic_years(papers, algorithm_config, domain_name)
+
+        # Apply year filtering if enabled
+        if apply_year_filtering:
+            initial_count = len(academic_years)
+            academic_years = [ay for ay in academic_years if ay.paper_count >= algorithm_config.min_papers_per_year]
+            filtered_count = len(academic_years)
+            
+            if verbose and initial_count != filtered_count:
+                logger.info(
+                    f"Year filtering: {initial_count} -> {filtered_count} years "
+                    f"(removed {initial_count - filtered_count} years with < {algorithm_config.min_papers_per_year} papers)"
+                )
 
         if verbose:
             year_range = (
@@ -425,7 +435,7 @@ def create_academic_periods_from_segments(
 
         # Apply frequency ratio filtering if available in config
         min_ratio = (
-            getattr(algorithm_config, "min_keyword_frequency_ratio", 0.1)
+            algorithm_config.min_keyword_frequency_ratio
             if algorithm_config
             else 0.1
         )
@@ -684,13 +694,13 @@ def compute_academic_years(
         keyword_frequencies = dict(Counter(all_keywords))
 
         # Apply frequency ratio filtering if configured
-        min_ratio = getattr(algorithm_config, "min_keyword_frequency_ratio", 0.0)
+        min_ratio = algorithm_config.min_keyword_frequency_ratio
         if min_ratio > 0.0:
             keyword_frequencies = filter_keywords_by_frequency_ratio(
                 keyword_frequencies, paper_count, min_ratio
             )
 
-        top_k = getattr(algorithm_config, "top_k_keywords", 15)
+        top_k = algorithm_config.top_k_keywords
         # remove domain itself from top keywords
         if domain_name.replace("_", " ") in keyword_frequencies:
             del keyword_frequencies[domain_name.replace("_", " ")]
@@ -712,10 +722,8 @@ def compute_academic_years(
     academic_years.sort(key=lambda ay: ay.year)
 
     # Apply ubiquitous keyword filtering if enabled
-    ubiquity_threshold = getattr(algorithm_config, "ubiquity_threshold", 0.9)
-    apply_ubiquitous_filtering = getattr(
-        algorithm_config, "apply_ubiquitous_filtering", True
-    )
+    ubiquity_threshold = algorithm_config.ubiquity_threshold
+    apply_ubiquitous_filtering = algorithm_config.apply_ubiquitous_filtering
 
     if apply_ubiquitous_filtering and len(academic_years) > 1:
         logger = get_logger(__name__, verbose=False)
@@ -780,25 +788,35 @@ def load_timeline_from_file(
 
         domain_name = data["domain_name"]
 
-        # Load saved algorithm config if available (for fair comparison)
-        if "algorithm_config" in data:
-            saved_config = data["algorithm_config"]
-            if verbose:
-                logger.info(f"Loading saved algorithm configuration from timeline file")
-                logger.info(f"Saved config: {saved_config}")
-
-            # Create new algorithm config from saved parameters
-            import dataclasses
-
-            config_dict = dataclasses.asdict(algorithm_config)
-            config_dict.update(saved_config)
-            algorithm_config = AlgorithmConfig(**config_dict)
-
-            logger.info(f"Using saved algorithm configuration for fair comparison")
-        else:
-            logger.warning(
-                f"No saved algorithm configuration found in timeline file. Using provided config."
+        # Load saved algorithm config - REQUIRED for strict evaluation consistency
+        if "algorithm_config" not in data:
+            raise ValueError(
+                f"Timeline file missing required 'algorithm_config' section. "
+                f"Timeline files must contain complete algorithm configuration for evaluation consistency."
             )
+
+        saved_config = data["algorithm_config"]
+        if verbose:
+            logger.info(f"Loading saved algorithm configuration from timeline file")
+            logger.info(f"Saved config: {saved_config}")
+
+        # Validate that ALL required parameters are present in saved config
+        import dataclasses
+        required_fields = set(field.name for field in dataclasses.fields(AlgorithmConfig))
+        missing_fields = required_fields - set(saved_config.keys())
+        
+        if missing_fields:
+            raise ValueError(
+                f"Timeline file missing required algorithm configuration parameters: {sorted(missing_fields)}. "
+                f"This timeline file was created with an older version and cannot be used for evaluation. "
+                f"Please regenerate the timeline with the current algorithm version."
+            )
+
+        # Create algorithm config ONLY from saved parameters (no fallback to defaults)
+        algorithm_config = AlgorithmConfig(**saved_config)
+
+        if verbose:
+            logger.info(f"Using complete saved algorithm configuration for strict evaluation consistency")
 
         # Load original domain data to get individual papers
         if verbose:
