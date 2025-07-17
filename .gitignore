@@ -65,8 +65,16 @@ htmlcov/
 .dmypy.json
 dmypy.json 
 
+# AI editor files
+.cursor/
+.cursorrules
+.cursorignore
+.windsurf/
+.windsurf.json
+CLAUDE.md
+
+# dev files
 archive/
-.cursor*
 *cache*
 dev_journal_phase*.md
 # Results directory - ignore subdirectories but track files in results/

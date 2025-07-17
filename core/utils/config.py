@@ -30,6 +30,7 @@ class AlgorithmConfig:
     direction_scoring_method: str
     min_baseline_period_years: int
     score_distribution_window_years: int
+    min_paper_per_segment: int
 
     # Citation Analysis Parameters
     citation_confidence_boost: float
@@ -60,7 +61,6 @@ class AlgorithmConfig:
     penalty_max_period_years: int
     penalty_auto_n_upper: bool
     penalty_n_upper_buffer: int
-    penalty_target_segments_upper: int
     penalty_lambda_short: float
     penalty_lambda_long: float
     penalty_lambda_count: float
@@ -124,19 +124,22 @@ class AlgorithmConfig:
                 direction_change_threshold=change_detection[
                     "direction_change_threshold"
                 ],
-                direction_threshold_strategy=change_detection.get(
-                    "direction_threshold_strategy", "global_p90"
-                ),
-                direction_scoring_method=change_detection.get(
-                    "direction_scoring_method", "weighted_jaccard"
-                ),
-                min_baseline_period_years=change_detection.get(
-                    "min_baseline_period_years", 3
-                ),
-                score_distribution_window_years=change_detection.get(
-                    "score_distribution_window_years", 3
-                ),
-                min_papers_per_year=year_filter.get("min_papers_per_year", 100),
+                direction_threshold_strategy=change_detection[
+                    "direction_threshold_strategy"
+                ],
+                direction_scoring_method=change_detection[
+                    "direction_scoring_method"
+                ],
+                min_baseline_period_years=change_detection[
+                    "min_baseline_period_years"
+                ],
+                score_distribution_window_years=change_detection[
+                    "score_distribution_window_years"
+                ],
+                min_paper_per_segment=change_detection[
+                    "min_paper_per_segment"
+                ],
+                min_papers_per_year=year_filter["min_papers_per_year"],
                 # Citation Analysis parameters
                 citation_confidence_boost=citation_analysis[
                     "citation_confidence_boost"
@@ -154,36 +157,35 @@ class AlgorithmConfig:
                 # Penalty system parameters
                 penalty_min_period_years=penalty["min_period_years"],
                 penalty_max_period_years=penalty["max_period_years"],
-                penalty_auto_n_upper=penalty.get("auto_n_upper", True),
-                penalty_n_upper_buffer=penalty.get("n_upper_buffer", 1),
-                penalty_target_segments_upper=penalty.get("target_segments_upper", 8),
-                penalty_lambda_short=penalty.get("lambda_short", 0.05),
-                penalty_lambda_long=penalty.get("lambda_long", 0.03),
-                penalty_lambda_count=penalty.get("lambda_count", 0.02),
-                penalty_enable_scaling=penalty.get("enable_scaling", True),
-                penalty_scaling_factor=penalty.get("scaling_factor", 2.0),
+                penalty_auto_n_upper=penalty["auto_n_upper"],
+                penalty_n_upper_buffer=penalty["n_upper_buffer"],
+                penalty_lambda_short=penalty["lambda_short"],
+                penalty_lambda_long=penalty["lambda_long"],
+                penalty_lambda_count=penalty["lambda_count"],
+                penalty_enable_scaling=penalty["enable_scaling"],
+                penalty_scaling_factor=penalty["scaling_factor"],
                 # Ubiquitous keyword filtering parameters
-                apply_ubiquitous_filtering=ubiquitous_filtering.get(
-                    "apply_ubiquitous_filtering", True
-                ),
-                ubiquity_threshold=ubiquitous_filtering.get("ubiquity_threshold", 0.8),
-                max_ubiquitous_iterations=ubiquitous_filtering.get(
-                    "max_iterations", 10
-                ),
-                min_replacement_frequency=ubiquitous_filtering.get(
-                    "min_replacement_frequency", 2
-                ),
+                apply_ubiquitous_filtering=ubiquitous_filtering[
+                    "apply_ubiquitous_filtering"
+                ],
+                ubiquity_threshold=ubiquitous_filtering["ubiquity_threshold"],
+                max_ubiquitous_iterations=ubiquitous_filtering[
+                    "max_iterations"
+                ],
+                min_replacement_frequency=ubiquitous_filtering[
+                    "min_replacement_frequency"
+                ],
                 # Beam search refinement parameters
-                beam_search_enabled=beam_refinement.get("enabled", True),
-                beam_width=beam_refinement.get("beam_width", 5),
-                max_splits_per_segment=beam_refinement.get("max_splits_per_segment", 1),
+                beam_search_enabled=beam_refinement["enabled"],
+                beam_width=beam_refinement["beam_width"],
+                max_splits_per_segment=beam_refinement["max_splits_per_segment"],
                 # Diagnostic parameters
-                save_direction_diagnostics=diagnostics.get(
-                    "save_direction_diagnostics", False
-                ),
-                diagnostic_top_keywords_limit=diagnostics.get(
-                    "diagnostic_top_keywords_limit", 10
-                ),
+                save_direction_diagnostics=diagnostics[
+                    "save_direction_diagnostics"
+                ],
+                diagnostic_top_keywords_limit=diagnostics[
+                    "diagnostic_top_keywords_limit"
+                ],
                 # System parameters
                 domain_name=domain_name,
             )
@@ -222,6 +224,11 @@ class AlgorithmConfig:
         if not 1 <= self.score_distribution_window_years <= 10:
             raise ValueError(
                 f"score_distribution_window_years must be 1-10, got {self.score_distribution_window_years}"
+            )
+
+        if not 1 <= self.min_paper_per_segment <= 10000:
+            raise ValueError(
+                f"min_paper_per_segment must be 1-10000, got {self.min_paper_per_segment}"
             )
 
         # Citation Analysis parameters

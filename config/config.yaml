@@ -9,8 +9,8 @@ data_processing:
 
   # Keyword Filtering (objective_function.py)
   keyword_filter:
-    top_k_keywords: 100
-    min_keyword_frequency_ratio: 0.05
+    top_k_keywords: 30
+    min_keyword_frequency_ratio: 0.01
 
   # Ubiquitous Keyword Filtering (data_processing.py)
   ubiquitous_filtering:
@@ -26,11 +26,12 @@ data_processing:
 segmentation:
   # Change Point Detection (direction_detection.py)
   change_detection:
-    direction_change_threshold: 0.1
+    direction_change_threshold: 0.6
     direction_threshold_strategy: "global_p90"
     direction_scoring_method: "weighted_jaccard"
     min_baseline_period_years: 3
     score_distribution_window_years: 3
+    min_paper_per_segment: 100
 
   # Citation Analysis (citation_detection.py)
   citation_analysis:
@@ -50,8 +51,8 @@ segmentation:
 optimization:
   # Objective Function (objective_function.py)
   objective_function:
-    cohesion_weight: 0.7
-    separation_weight: 0.3
+    cohesion_weight: 0.8
+    separation_weight: 0.2
 
   # Penalty System (penalty.py)
   penalty:
@@ -59,11 +60,10 @@ optimization:
     max_period_years: 14
     auto_n_upper: true
     n_upper_buffer: 1
-    target_segments_upper: 8
-    lambda_short: 0.01
-    lambda_long: 0.01
-    lambda_count: 0.03
-    enable_scaling: false
+    lambda_short: 0.1
+    lambda_long: 0.001
+    lambda_count: 0.05
+    enable_scaling: true
     scaling_factor: 2.0
 
 # =============================================================================
